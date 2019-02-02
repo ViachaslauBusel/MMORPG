@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8083cfc6efa3c46821d59f40049695, type: 3}
+  m_Name: TRObject_1_0
+  m_EditorClassIdentifier: 
+  mapObjects:
+  - postion: {x: 1134.682, y: 183.755, z: 2007.843}
+    orientation: {x: -0, y: 0.70552766, z: -0, w: -0.7086824}
+    scale: {x: 1.3824, y: 1.3824, z: 1.3824}
+    prefab: {fileID: 149652, guid: 7a842a736c4821a48be7072e10b899aa, type: 3}
+  - postion: {x: 1139.68, y: 183.7, z: 2008.41}
+    orientation: {x: -0, y: 0.5224925, z: -0, w: 0.8526439}
+    scale: {x: 0.64685, y: 0.7932968, z: 0.64685}
+    prefab: {fileID: 112294, guid: a7dd0ffd8472e9d4cb4fc02ed478e67d, type: 3}

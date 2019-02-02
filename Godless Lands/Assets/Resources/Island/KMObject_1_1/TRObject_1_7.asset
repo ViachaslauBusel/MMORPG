@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8083cfc6efa3c46821d59f40049695, type: 3}
+  m_Name: TRObject_1_7
+  m_EditorClassIdentifier: 
+  mapObjects:
+  - postion: {x: 1146.147, y: 184.301, z: 1789.64}
+    orientation: {x: -0.04318831, y: -0.99903923, z: -0.0003215111, w: -0.0074372482}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 163990, guid: e7e6f7a218212394baab79eb29f02491, type: 3}
+  - postion: {x: 1130.74, y: 185.074, z: 1789.748}
+    orientation: {x: 0.0070089437, y: -0.9995493, z: 0.00020467117, w: -0.029188275}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 163990, guid: e7e6f7a218212394baab79eb29f02491, type: 3}
+  - postion: {x: 1142.38, y: 184.64, z: 1789.6287}
+    orientation: {x: -0.01377013, y: -0.9998872, z: 0.00008251843, w: 0.005991892}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 123178, guid: ee3001aa7177f384a8e8e400d0a13cdc, type: 3}
+  - postion: {x: 1128.4596, y: 185.0871, z: 1791.5691}
+    orientation: {x: -0.034904696, y: -0.7287764, z: 0.032716, w: 0.68307865}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 123178, guid: ee3001aa7177f384a8e8e400d0a13cdc, type: 3}
+  - postion: {x: 1128.1221, y: 185.297, z: 1799.073}
+    orientation: {x: 0.0017702263, y: -0.7306012, z: -0.0016543975, w: 0.68280023}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 163990, guid: e7e6f7a218212394baab79eb29f02491, type: 3}
+  - postion: {x: 1153.867, y: 183.90016, z: 1789.8998}
+    orientation: {x: -0.026470108, y: -0.99922335, z: -0.00077296497, w: -0.029178753}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 163990, guid: e7e6f7a218212394baab79eb29f02491, type: 3}
+  - postion: {x: 1134.479, y: 185.021, z: 1789.568}
+    orientation: {x: -0.037607178, y: -0.9988171, z: 0.0011598142, w: 0.030803751}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 123178, guid: ee3001aa7177f384a8e8e400d0a13cdc, type: 3}
+  - postion: {x: 1161.561, y: 184.342, z: 1790.148}
+    orientation: {x: 0.04606314, y: -0.998512, z: 0.0013451095, w: -0.029157981}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 163990, guid: e7e6f7a218212394baab79eb29f02491, type: 3}
+  - postion: {x: 1138.3666, y: 184.72014, z: 1789.5897}
+    orientation: {x: -0.021304844, y: -0.9993469, z: -0.00062213175, w: -0.029182365}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 163990, guid: e7e6f7a218212394baab79eb29f02491, type: 3}
+  - postion: {x: 1128.3411, y: 185.339, z: 1795.337}
+    orientation: {x: -0.011571902, y: -0.71410966, z: 0.011340767, w: 0.6998464}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 123178, guid: ee3001aa7177f384a8e8e400d0a13cdc, type: 3}
+  - postion: {x: 1149.9863, y: 184.05983, z: 1789.6705}
+    orientation: {x: -0.013570616, y: -0.9994818, z: -0.0003962815, w: -0.029186305}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 123178, guid: ee3001aa7177f384a8e8e400d0a13cdc, type: 3}
+  - postion: {x: 1157.75, y: 183.97, z: 1790.02}
+    orientation: {x: 0.04301252, y: -0.99886745, z: 0.00087512366, w: -0.020322753}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 123178, guid: ee3001aa7177f384a8e8e400d0a13cdc, type: 3}
+  - postion: {x: 1166.441, y: 184.363, z: 1798.094}
+    orientation: {x: -0.0204146, y: 0.68507093, z: -0.021689905, w: 0.72786725}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 123178, guid: ee3001aa7177f384a8e8e400d0a13cdc, type: 3}
+  - postion: {x: 1165.199, y: 184.495, z: 1790.359}
+    orientation: {x: 0.0036270793, y: -0.9995674, z: 0.00010591551, w: -0.02918845}
+    scale: {x: 1.0608, y: 1.0608, z: 1.0608}
+    prefab: {fileID: 123178, guid: ee3001aa7177f384a8e8e400d0a13cdc, type: 3}

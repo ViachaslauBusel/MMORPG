@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c6dca456ba4354944bb058ffae6dddf9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - prefabInformer: {instanceID: 0}
+  - prefabDragCell: {fileID: 2113460901444901805, guid: 01873ff5af5cd8b4e919c68efe1c0bd9,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

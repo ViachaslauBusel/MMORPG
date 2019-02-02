@@ -1,0 +1,2998 @@
+fileFormatVersion: 2
+guid: 1e627bcafe9e32d40ad554880f36b5eb
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Fantastic UI Starter Pack_0
+    21300002: Fantastic UI Starter Pack_1
+    21300004: Fantastic UI Starter Pack_2
+    21300006: Fantastic UI Starter Pack_3
+    21300008: Fantastic UI Starter Pack_4
+    21300010: Fantastic UI Starter Pack_5
+    21300012: Fantastic UI Starter Pack_6
+    21300014: Fantastic UI Starter Pack_7
+    21300016: Fantastic UI Starter Pack_8
+    21300018: Fantastic UI Starter Pack_9
+    21300020: Fantastic UI Starter Pack_10
+    21300022: Fantastic UI Starter Pack_11
+    21300024: Fantastic UI Starter Pack_12
+    21300026: Fantastic UI Starter Pack_13
+    21300028: Fantastic UI Starter Pack_14
+    21300030: Fantastic UI Starter Pack_15
+    21300032: Fantastic UI Starter Pack_16
+    21300034: Fantastic UI Starter Pack_17
+    21300036: Fantastic UI Starter Pack_18
+    21300038: Fantastic UI Starter Pack_19
+    21300040: Fantastic UI Starter Pack_20
+    21300042: Fantastic UI Starter Pack_21
+    21300044: Fantastic UI Starter Pack_22
+    21300046: Fantastic UI Starter Pack_23
+    21300048: Fantastic UI Starter Pack_24
+    21300050: Fantastic UI Starter Pack_25
+    21300052: Fantastic UI Starter Pack_26
+    21300054: Fantastic UI Starter Pack_27
+    21300056: Fantastic UI Starter Pack_28
+    21300058: Fantastic UI Starter Pack_29
+    21300060: Fantastic UI Starter Pack_30
+    21300062: Fantastic UI Starter Pack_31
+    21300064: Fantastic UI Starter Pack_32
+    21300066: Fantastic UI Starter Pack_33
+    21300068: Fantastic UI Starter Pack_34
+    21300070: Fantastic UI Starter Pack_35
+    21300072: Fantastic UI Starter Pack_36
+    21300074: Fantastic UI Starter Pack_37
+    21300076: Fantastic UI Starter Pack_38
+    21300078: Fantastic UI Starter Pack_39
+    21300080: Fantastic UI Starter Pack_40
+    21300082: Fantastic UI Starter Pack_41
+    21300084: Fantastic UI Starter Pack_42
+    21300086: Fantastic UI Starter Pack_43
+    21300088: Fantastic UI Starter Pack_44
+    21300090: Fantastic UI Starter Pack_45
+    21300092: Fantastic UI Starter Pack_46
+    21300094: Fantastic UI Starter Pack_47
+    21300096: Fantastic UI Starter Pack_48
+    21300098: Fantastic UI Starter Pack_49
+    21300100: Fantastic UI Starter Pack_50
+    21300102: Fantastic UI Starter Pack_51
+    21300104: Fantastic UI Starter Pack_52
+    21300106: Fantastic UI Starter Pack_53
+    21300108: Fantastic UI Starter Pack_54
+    21300110: Fantastic UI Starter Pack_55
+    21300112: Fantastic UI Starter Pack_56
+    21300114: Fantastic UI Starter Pack_57
+    21300116: Fantastic UI Starter Pack_58
+    21300118: Fantastic UI Starter Pack_59
+    21300120: Fantastic UI Starter Pack_60
+    21300122: Fantastic UI Starter Pack_61
+    21300124: Fantastic UI Starter Pack_62
+    21300126: Fantastic UI Starter Pack_63
+    21300128: Fantastic UI Starter Pack_64
+    21300130: Fantastic UI Starter Pack_65
+    21300132: Fantastic UI Starter Pack_66
+    21300134: Fantastic UI Starter Pack_67
+    21300136: Fantastic UI Starter Pack_68
+    21300138: Fantastic UI Starter Pack_69
+    21300140: Fantastic UI Starter Pack_70
+    21300142: Fantastic UI Starter Pack_71
+    21300144: Fantastic UI Starter Pack_72
+    21300146: Fantastic UI Starter Pack_73
+    21300148: Fantastic UI Starter Pack_74
+    21300150: Fantastic UI Starter Pack_75
+    21300152: Fantastic UI Starter Pack_76
+    21300154: Fantastic UI Starter Pack_77
+    21300156: Fantastic UI Starter Pack_78
+    21300158: Fantastic UI Starter Pack_79
+    21300160: Fantastic UI Starter Pack_80
+    21300162: Fantastic UI Starter Pack_81
+    21300164: Fantastic UI Starter Pack_82
+    21300166: Fantastic UI Starter Pack_83
+    21300168: Fantastic UI Starter Pack_84
+    21300170: Fantastic UI Starter Pack_85
+    21300172: Fantastic UI Starter Pack_86
+    21300174: Fantastic UI Starter Pack_87
+    21300176: Fantastic UI Starter Pack_88
+    21300178: Fantastic UI Starter Pack_89
+    21300180: Fantastic UI Starter Pack_90
+    21300182: Fantastic UI Starter Pack_91
+    21300184: Fantastic UI Starter Pack_92
+    21300186: Fantastic UI Starter Pack_93
+    21300188: Fantastic UI Starter Pack_94
+    21300190: Fantastic UI Starter Pack_95
+    21300192: Fantastic UI Starter Pack_96
+    21300194: Fantastic UI Starter Pack_97
+    21300196: Fantastic UI Starter Pack_98
+    21300198: Fantastic UI Starter Pack_99
+    21300200: Fantastic UI Starter Pack_100
+    21300202: Fantastic UI Starter Pack_101
+    21300204: Fantastic UI Starter Pack_102
+    21300206: Fantastic UI Starter Pack_103
+    21300208: Fantastic UI Starter Pack_104
+    21300210: Fantastic UI Starter Pack_105
+    21300212: Fantastic UI Starter Pack_106
+    21300214: Fantastic UI Starter Pack_107
+    21300216: Fantastic UI Starter Pack_108
+    21300218: Fantastic UI Starter Pack_109
+    21300220: Fantastic UI Starter Pack_110
+    21300222: Fantastic UI Starter Pack_111
+    21300224: Fantastic UI Starter Pack_112
+    21300226: Fantastic UI Starter Pack_113
+    21300228: Fantastic UI Starter Pack_114
+    21300230: Fantastic UI Starter Pack_115
+    21300232: Fantastic UI Starter Pack_116
+    21300234: Fantastic UI Starter Pack_117
+    21300236: Fantastic UI Starter Pack_118
+    21300238: Fantastic UI Starter Pack_119
+    21300240: Fantastic UI Starter Pack_120
+    21300242: Fantastic UI Starter Pack_121
+    21300244: Fantastic UI Starter Pack_122
+    21300246: Fantastic UI Starter Pack_123
+    21300248: Fantastic UI Starter Pack_124
+    21300250: Fantastic UI Starter Pack_125
+    21300252: Fantastic UI Starter Pack_126
+    21300254: Fantastic UI Starter Pack_127
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: 1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_0
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 1360
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_1
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 1346
+        width: 64
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_2
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1344
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_3
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 1341
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_4
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 1343
+        width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_5
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 1343
+        width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_6
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 1332
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_7
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 1387
+        width: 24
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_8
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 1335
+        width: 37
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_9
+      rect:
+        serializedVersion: 2
+        x: 1213
+        y: 1330
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_10
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 1330
+        width: 64
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_11
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 1330
+        width: 64
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_12
+      rect:
+        serializedVersion: 2
+        x: 1501
+        y: 1330
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_13
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 1311
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_14
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 1336
+        width: 40
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_15
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 1335
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_16
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 1336
+        width: 25
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_17
+      rect:
+        serializedVersion: 2
+        x: 1589
+        y: 1330
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_18
+      rect:
+        serializedVersion: 2
+        x: 1675
+        y: 1330
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_19
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 1244
+        width: 64
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_20
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 1244
+        width: 67
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_21
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 1244
+        width: 46
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_22
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 1244
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_23
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 1244
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_24
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 1250
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_25
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 1248
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_26
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 1248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_27
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 1242
+        width: 62
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_28
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 1242
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_29
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 1232
+        width: 62
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_30
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 1223
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_31
+      rect:
+        serializedVersion: 2
+        x: 1323
+        y: 1223
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_32
+      rect:
+        serializedVersion: 2
+        x: 1432
+        y: 1223
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_33
+      rect:
+        serializedVersion: 2
+        x: 1541
+        y: 1223
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_34
+      rect:
+        serializedVersion: 2
+        x: 1676
+        y: 1266
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_35
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 1240
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_36
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 986
+        width: 245
+        height: 243
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 20, z: 20, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_37
+      rect:
+        serializedVersion: 2
+        x: 1698
+        y: 1220
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_38
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 1143
+        width: 64
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_39
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1049
+        width: 107
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 20, z: 20, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_40
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 1128
+        width: 128
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_41
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 1128
+        width: 128
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_42
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 1151
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_43
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 1151
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_44
+      rect:
+        serializedVersion: 2
+        x: 1132
+        y: 1151
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_45
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 1134
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_46
+      rect:
+        serializedVersion: 2
+        x: 1341
+        y: 1134
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_47
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 1134
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_48
+      rect:
+        serializedVersion: 2
+        x: 1583
+        y: 1134
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_49
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 1134
+        width: 64
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_50
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 1088
+        width: 63
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_51
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 1070
+        width: 130
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_52
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 1101
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_53
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 1101
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_54
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 1102
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_55
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 1070
+        width: 129
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_56
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 1044
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_57
+      rect:
+        serializedVersion: 2
+        x: 1081
+        y: 1044
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_58
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 1044
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_59
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 1033
+        width: 64
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_60
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 1033
+        width: 65
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_61
+      rect:
+        serializedVersion: 2
+        x: 1474
+        y: 1033
+        width: 64
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_62
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1033
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_63
+      rect:
+        serializedVersion: 2
+        x: 1727
+        y: 1033
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_64
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 1014
+        width: 64
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_65
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 991
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_66
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 990
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_67
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 992
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_68
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 743
+        width: 236
+        height: 237
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 20, z: 20, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_69
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 959
+        width: 64
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_70
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 963
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_71
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 963
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_72
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 947
+        width: 9
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_73
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 938
+        width: 13
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_74
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 940
+        width: 9
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_75
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 956
+        width: 130
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_76
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 956
+        width: 130
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_77
+      rect:
+        serializedVersion: 2
+        x: 1219
+        y: 902
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_78
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 902
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_79
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 902
+        width: 64
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_80
+      rect:
+        serializedVersion: 2
+        x: 1559
+        y: 900
+        width: 69
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_81
+      rect:
+        serializedVersion: 2
+        x: 1676
+        y: 902
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_82
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 899
+        width: 63
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_83
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 931
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_84
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 905
+        width: 125
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_85
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 900
+        width: 135
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_86
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 896
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_87
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 896
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_88
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 896
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_89
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 844
+        width: 63
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_90
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 876
+        width: 34
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_91
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 837
+        width: 13
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_92
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 836
+        width: 13
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_93
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 785
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 20, z: 20, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_94
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 783
+        width: 102
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 20, z: 20, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_95
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 779
+        width: 113
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 20, z: 20, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_96
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 796
+        width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_97
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 796
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_98
+      rect:
+        serializedVersion: 2
+        x: 1427
+        y: 796
+        width: 30
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_99
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 796
+        width: 64
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_100
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 855
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_101
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 796
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_102
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 776
+        width: 67
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_103
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 823
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_104
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 823
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_105
+      rect:
+        serializedVersion: 2
+        x: 1606
+        y: 825
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_106
+      rect:
+        serializedVersion: 2
+        x: 1612
+        y: 802
+        width: 44
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_107
+      rect:
+        serializedVersion: 2
+        x: 1657
+        y: 825
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_108
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 807
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_109
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 769
+        width: 13
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_110
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 771
+        width: 9
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_111
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 796
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_112
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 765
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_113
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 765
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_114
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 715
+        width: 69
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_115
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 441
+        width: 250
+        height: 246
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 20, z: 20, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_116
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 448
+        width: 249
+        height: 255
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 20, z: 20, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_117
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 448
+        width: 109
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_118
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 445
+        width: 226
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_119
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 449
+        width: 120
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_120
+      rect:
+        serializedVersion: 2
+        x: 1483
+        y: 599
+        width: 264
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_121
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 564
+        width: 266
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_122
+      rect:
+        serializedVersion: 2
+        x: 1483
+        y: 528
+        width: 264
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_123
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 326
+        width: 644
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_124
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 276
+        width: 604
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_125
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 158
+        width: 652
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_126
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 119
+        width: 597
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Fantastic UI Starter Pack_127
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 57
+        width: 607
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline:
+    - - {x: -176, y: -695}
+      - {x: -176, y: -672}
+      - {x: -787, y: -672}
+      - {x: -787, y: -695}
+    - - {x: -780, y: -622}
+      - {x: -782, y: -624}
+      - {x: -782, y: -631}
+      - {x: -780, y: -633}
+      - {x: -183, y: -633}
+      - {x: -181, y: -631}
+      - {x: -181, y: -624}
+      - {x: -183, y: -622}
+    - - {x: -797, y: -524}
+      - {x: -808, y: -537}
+      - {x: -808, y: -579}
+      - {x: -793, y: -594}
+      - {x: -156, y: -594}
+      - {x: -152, y: -581}
+      - {x: -152, y: -534}
+      - {x: -165, y: -524}
+    - - {x: -166, y: -470}
+      - {x: -166, y: -457}
+      - {x: -168, y: -456}
+      - {x: -627, y: -456}
+      - {x: -632, y: -458}
+      - {x: -661, y: -456}
+      - {x: -770, y: -456}
+      - {x: -774, y: -458}
+      - {x: -774, y: -471}
+      - {x: -773, y: -476}
+      - {x: -169, y: -476}
+    - - {x: -781, y: -381}
+      - {x: -795, y: -391}
+      - {x: -795, y: -419}
+      - {x: -793, y: -426}
+      - {x: -152, y: -426}
+      - {x: -147, y: -422}
+      - {x: -147, y: -392}
+      - {x: -151, y: -381}
+    - - {x: -790, y: -58}
+      - {x: -793, y: -60}
+      - {x: -793, y: -305}
+      - {x: -791, y: -308}
+      - {x: -542, y: -308}
+      - {x: -539, y: -306}
+      - {x: -539, y: -58}
+    - - {x: 123, y: -298}
+      - {x: 128, y: -278}
+      - {x: 129, y: -238}
+      - {x: 129, y: -226}
+      - {x: 122, y: -210}
+      - {x: 129, y: -221}
+      - {x: 129, y: -247}
+      - {x: 134, y: -254}
+      - {x: 128, y: -298}
+      - {x: 134, y: -301}
+      - {x: 150, y: -305}
+      - {x: 167, y: -265}
+      - {x: 167, y: -127}
+      - {x: 111, y: -60}
+      - {x: 22, y: -47}
+      - {x: -63, y: -47}
+      - {x: -63, y: -137}
+      - {x: -45, y: -140}
+      - {x: -10, y: -307}
+      - {x: 23, y: -307}
+      - {x: 33, y: -281}
+      - {x: 27, y: -300}
+      - {x: 30, y: -307}
+      - {x: 50, y: -307}
+      - {x: 55, y: -305}
+      - {x: 67, y: -307}
+      - {x: 103, y: -307}
+    - - {x: -245, y: -45}
+      - {x: -493, y: -45}
+      - {x: -494, y: -46}
+      - {x: -494, y: -304}
+      - {x: -242, y: -304}
+      - {x: -241, y: -300}
+      - {x: -241, y: -48}
+    - - {x: -160, y: -43}
+      - {x: -183, y: -82}
+      - {x: -194, y: -150}
+      - {x: -194, y: -201}
+      - {x: -177, y: -202}
+      - {x: -171, y: -197}
+      - {x: -169, y: -189}
+      - {x: -173, y: -254}
+      - {x: -159, y: -304}
+      - {x: -110, y: -304}
+      - {x: -81, y: -203}
+      - {x: -81, y: -133}
+      - {x: -113, y: -43}
+    - - {x: 288, y: -183}
+      - {x: 290, y: -185}
+      - {x: 291, y: -201}
+      - {x: 292, y: -204}
+      - {x: 299, y: -209}
+      - {x: 306, y: -211}
+      - {x: 314, y: -204}
+      - {x: 314, y: -136}
+      - {x: 304, y: -75}
+      - {x: 270, y: -43}
+      - {x: 228, y: -43}
+      - {x: 197, y: -87}
+      - {x: 190, y: -100}
+      - {x: 190, y: -301}
+      - {x: 194, y: -303}
+      - {x: 314, y: -303}
+      - {x: 314, y: -272}
+      - {x: 299, y: -225}
+      - {x: 291, y: -202}
+      - {x: 290, y: -190}
+    - - {x: 483, y: -193}
+      - {x: 481, y: -195}
+      - {x: 481, y: -222}
+      - {x: 483, y: -224}
+      - {x: 747, y: -224}
+      - {x: 749, y: -222}
+      - {x: 749, y: -195}
+      - {x: 747, y: -193}
+    - - {x: 480, y: -188}
+      - {x: 750, y: -188}
+      - {x: 750, y: -155}
+      - {x: 480, y: -155}
+    - - {x: 483, y: -122}
+      - {x: 481, y: -124}
+      - {x: 481, y: -151}
+      - {x: 483, y: -153}
+      - {x: 747, y: -153}
+      - {x: 749, y: -151}
+      - {x: 749, y: -124}
+      - {x: 747, y: -122}
+    - - {x: -464, y: 17}
+      - {x: -529, y: 17}
+      - {x: -535, y: 16}
+      - {x: -535, y: -37}
+      - {x: -464, y: -37}
+      - {x: -462, y: -32}
+      - {x: -462, y: -1}
+      - {x: -463, y: 11}
+    - - {x: -785, y: 232}
+      - {x: -787, y: 230}
+      - {x: -787, y: -7}
+      - {x: -785, y: -9}
+      - {x: -549, y: -9}
+      - {x: -547, y: -7}
+      - {x: -547, y: 230}
+      - {x: -549, y: 232}
+    - - {x: -438, y: 36}
+      - {x: -438, y: 14}
+      - {x: -437, y: 13}
+      - {x: -429, y: 13}
+      - {x: -422, y: 14}
+      - {x: -421, y: 17}
+      - {x: -421, y: 27}
+      - {x: -424, y: 36}
+    - - {x: -404, y: 36}
+      - {x: -416, y: 36}
+      - {x: -418, y: 31}
+      - {x: -418, y: 15}
+      - {x: -417, y: 15}
+      - {x: -409, y: 13}
+      - {x: -403, y: 13}
+      - {x: -402, y: 14}
+      - {x: -402, y: 35}
+    - - {x: -365, y: 71}
+      - {x: -369, y: 67}
+      - {x: -369, y: 21}
+      - {x: -365, y: 17}
+      - {x: -356, y: 17}
+      - {x: -352, y: 21}
+      - {x: -352, y: 67}
+      - {x: -356, y: 71}
+    - - {x: -339, y: 69}
+      - {x: -341, y: 67}
+      - {x: -341, y: 21}
+      - {x: -339, y: 19}
+      - {x: -330, y: 19}
+      - {x: -328, y: 21}
+      - {x: -328, y: 67}
+      - {x: -330, y: 69}
+    - - {x: -524, y: 80}
+      - {x: -533, y: 78}
+      - {x: -533, y: 24}
+      - {x: -462, y: 24}
+      - {x: -462, y: 79}
+      - {x: -464, y: 80}
+    - - {x: -5, y: 143}
+      - {x: -14, y: 142}
+      - {x: -14, y: 31}
+      - {x: -10, y: 27}
+      - {x: 103, y: 27}
+      - {x: 103, y: 140}
+      - {x: 102, y: 143}
+    - - {x: -150, y: 137}
+      - {x: -150, y: 31}
+      - {x: -48, y: 31}
+      - {x: -44, y: 35}
+      - {x: -44, y: 133}
+      - {x: -48, y: 137}
+    - - {x: -274, y: 137}
+      - {x: -276, y: 135}
+      - {x: -276, y: 35}
+      - {x: -274, y: 33}
+      - {x: -174, y: 33}
+      - {x: -172, y: 35}
+      - {x: -172, y: 135}
+      - {x: -174, y: 137}
+    - - {x: 228, y: 110}
+      - {x: 213, y: 103}
+      - {x: 212, y: 98}
+      - {x: 212, y: 80}
+      - {x: 228, y: 44}
+      - {x: 277, y: 44}
+      - {x: 280, y: 57}
+      - {x: 280, y: 89}
+      - {x: 257, y: 110}
+    - - {x: 383, y: 107}
+      - {x: 369, y: 112}
+      - {x: 333, y: 112}
+      - {x: 318, y: 110}
+      - {x: 318, y: 44}
+      - {x: 370, y: 44}
+      - {x: 386, y: 58}
+      - {x: 386, y: 104}
+    - - {x: 451, y: 112}
+      - {x: 428, y: 112}
+      - {x: 425, y: 111}
+      - {x: 425, y: 46}
+      - {x: 428, y: 44}
+      - {x: 449, y: 44}
+      - {x: 459, y: 47}
+      - {x: 459, y: 98}
+      - {x: 458, y: 110}
+    - - {x: 537, y: 108}
+      - {x: 497, y: 81}
+      - {x: 497, y: 55}
+      - {x: 507, y: 44}
+      - {x: 531, y: 44}
+      - {x: 565, y: 83}
+      - {x: 565, y: 100}
+      - {x: 558, y: 108}
+    - - {x: 664, y: 71}
+      - {x: 664, y: 79}
+      - {x: 661, y: 85}
+      - {x: 659, y: 83}
+      - {x: 652, y: 83}
+      - {x: 655, y: 83}
+      - {x: 658, y: 86}
+      - {x: 662, y: 92}
+      - {x: 649, y: 112}
+      - {x: 621, y: 112}
+      - {x: 613, y: 106}
+      - {x: 604, y: 96}
+      - {x: 604, y: 58}
+      - {x: 619, y: 44}
+      - {x: 637, y: 44}
+      - {x: 639, y: 48}
+      - {x: 640, y: 54}
+      - {x: 648, y: 52}
+      - {x: 657, y: 52}
+    - - {x: 714, y: 112}
+      - {x: 702, y: 104}
+      - {x: 702, y: 64}
+      - {x: 712, y: 44}
+      - {x: 757, y: 44}
+      - {x: 771, y: 64}
+      - {x: 771, y: 101}
+      - {x: 762, y: 112}
+    - - {x: -435, y: 63}
+      - {x: -437, y: 61}
+      - {x: -437, y: 57}
+      - {x: -435, y: 55}
+      - {x: -427, y: 55}
+      - {x: -425, y: 57}
+      - {x: -425, y: 61}
+      - {x: -427, y: 63}
+    - - {x: -429, y: 94}
+      - {x: -439, y: 94}
+      - {x: -442, y: 93}
+      - {x: -442, y: 76}
+      - {x: -438, y: 71}
+      - {x: -427, y: 71}
+      - {x: -423, y: 77}
+      - {x: -423, y: 85}
+      - {x: -424, y: 92}
+    - - {x: -411, y: 94}
+      - {x: -419, y: 91}
+      - {x: -420, y: 87}
+      - {x: -420, y: 71}
+      - {x: -404, y: 71}
+      - {x: -402, y: 79}
+      - {x: -402, y: 90}
+      - {x: -405, y: 94}
+    - - {x: -342, y: 88}
+      - {x: -338, y: 84}
+      - {x: -331, y: 84}
+      - {x: -325, y: 86}
+      - {x: -325, y: 138}
+      - {x: -328, y: 139}
+      - {x: -338, y: 139}
+      - {x: -342, y: 135}
+    - - {x: -369, y: 85}
+      - {x: -354, y: 85}
+      - {x: -352, y: 86}
+      - {x: -352, y: 135}
+      - {x: -354, y: 140}
+      - {x: -364, y: 140}
+      - {x: -369, y: 139}
+    - - {x: 616, y: 104}
+      - {x: 614, y: 103}
+      - {x: 614, y: 94}
+      - {x: 621, y: 90}
+      - {x: 629, y: 90}
+      - {x: 629, y: 102}
+      - {x: 625, y: 104}
+    - - {x: 646, y: 104}
+      - {x: 639, y: 98}
+      - {x: 639, y: 92}
+      - {x: 641, y: 90}
+      - {x: 646, y: 90}
+      - {x: 650, y: 92}
+      - {x: 654, y: 96}
+      - {x: 654, y: 104}
+    - - {x: -532, y: 141}
+      - {x: -532, y: 92}
+      - {x: -465, y: 92}
+      - {x: -465, y: 141}
+    - - {x: -440, y: 137}
+      - {x: -441, y: 136}
+      - {x: -441, y: 124}
+      - {x: -403, y: 124}
+      - {x: -403, y: 133}
+      - {x: -407, y: 137}
+    - - {x: -399, y: 173}
+      - {x: -422, y: 173}
+      - {x: -427, y: 172}
+      - {x: -427, y: 144}
+      - {x: -400, y: 144}
+      - {x: -398, y: 146}
+      - {x: -398, y: 172}
+    - - {x: -351, y: 173}
+      - {x: -374, y: 173}
+      - {x: -379, y: 172}
+      - {x: -379, y: 144}
+      - {x: -352, y: 144}
+      - {x: -350, y: 146}
+      - {x: -350, y: 172}
+    - - {x: -336, y: 173}
+      - {x: -336, y: 146}
+      - {x: -333, y: 144}
+      - {x: -308, y: 144}
+      - {x: -306, y: 150}
+      - {x: -306, y: 170}
+      - {x: -309, y: 173}
+    - - {x: -530, y: 196}
+      - {x: -532, y: 194}
+      - {x: -532, y: 153}
+      - {x: -531, y: 147}
+      - {x: -469, y: 147}
+      - {x: -465, y: 148}
+      - {x: -465, y: 196}
+    - - {x: -137, y: 148}
+      - {x: 2, y: 148}
+      - {x: 2, y: 190}
+      - {x: 1, y: 193}
+      - {x: -137, y: 193}
+    - - {x: 561, y: 222}
+      - {x: 557, y: 199}
+      - {x: 557, y: 150}
+      - {x: 578, y: 148}
+      - {x: 617, y: 148}
+      - {x: 630, y: 164}
+      - {x: 630, y: 222}
+    - - {x: 229, y: 218}
+      - {x: 217, y: 218}
+      - {x: 217, y: 210}
+      - {x: 226, y: 186}
+      - {x: 279, y: 150}
+      - {x: 284, y: 150}
+      - {x: 285, y: 152}
+      - {x: 285, y: 159}
+      - {x: 248, y: 207}
+    - - {x: 330, y: 218}
+      - {x: 330, y: 206}
+      - {x: 339, y: 187}
+      - {x: 393, y: 150}
+      - {x: 397, y: 150}
+      - {x: 399, y: 152}
+      - {x: 399, y: 170}
+      - {x: 353, y: 218}
+    - - {x: 445, y: 220}
+      - {x: 445, y: 198}
+      - {x: 493, y: 150}
+      - {x: 513, y: 150}
+      - {x: 513, y: 158}
+      - {x: 475, y: 215}
+      - {x: 456, y: 220}
+    - - {x: 679, y: 218}
+      - {x: 674, y: 200}
+      - {x: 674, y: 150}
+      - {x: 731, y: 150}
+      - {x: 738, y: 151}
+      - {x: 742, y: 189}
+      - {x: 742, y: 215}
+      - {x: 739, y: 218}
+    - - {x: -280, y: 188}
+      - {x: -282, y: 186}
+      - {x: -282, y: 155}
+      - {x: -280, y: 153}
+      - {x: -155, y: 153}
+      - {x: -153, y: 155}
+      - {x: -153, y: 186}
+      - {x: -155, y: 188}
+    - - {x: -438, y: 195}
+      - {x: -440, y: 193}
+      - {x: -440, y: 181}
+      - {x: -438, y: 179}
+      - {x: -430, y: 179}
+      - {x: -428, y: 181}
+      - {x: -428, y: 193}
+      - {x: -430, y: 195}
+    - - {x: -365, y: 240}
+      - {x: -369, y: 236}
+      - {x: -369, y: 190}
+      - {x: -365, y: 186}
+      - {x: -356, y: 186}
+      - {x: -352, y: 190}
+      - {x: -352, y: 236}
+      - {x: -356, y: 240}
+    - - {x: -340, y: 238}
+      - {x: -341, y: 235}
+      - {x: -341, y: 188}
+      - {x: -329, y: 188}
+      - {x: -328, y: 191}
+      - {x: -328, y: 238}
+    - - {x: -388, y: 233}
+      - {x: -393, y: 231}
+      - {x: -393, y: 200}
+      - {x: -391, y: 195}
+      - {x: -384, y: 195}
+      - {x: -380, y: 197}
+      - {x: -380, y: 230}
+      - {x: -383, y: 233}
+    - - {x: -286, y: 240}
+      - {x: -286, y: 204}
+      - {x: -152, y: 204}
+      - {x: -152, y: 237}
+      - {x: -155, y: 240}
+    - - {x: 2, y: 240}
+      - {x: -128, y: 240}
+      - {x: -132, y: 236}
+      - {x: -132, y: 208}
+      - {x: -128, y: 204}
+      - {x: -3, y: 204}
+      - {x: 1, y: 208}
+      - {x: 2, y: 217}
+    - - {x: -462, y: 254}
+      - {x: -463, y: 256}
+      - {x: -530, y: 256}
+      - {x: -530, y: 207}
+      - {x: -463, y: 207}
+      - {x: -462, y: 210}
+    - - {x: -442, y: 236}
+      - {x: -442, y: 213}
+      - {x: -439, y: 211}
+      - {x: -433, y: 211}
+      - {x: -425, y: 218}
+      - {x: -425, y: 232}
+      - {x: -435, y: 236}
+    - - {x: -422, y: 213}
+      - {x: -419, y: 211}
+      - {x: -407, y: 211}
+      - {x: -407, y: 234}
+      - {x: -421, y: 234}
+      - {x: -422, y: 231}
+    - - {x: -780, y: 481}
+      - {x: -786, y: 476}
+      - {x: -786, y: 238}
+      - {x: -783, y: 234}
+      - {x: -539, y: 234}
+      - {x: -537, y: 235}
+      - {x: -537, y: 481}
+    - - {x: 83, y: 282}
+      - {x: 81, y: 280}
+      - {x: 81, y: 240}
+      - {x: 83, y: 238}
+      - {x: 123, y: 238}
+      - {x: 125, y: 240}
+      - {x: 125, y: 280}
+      - {x: 123, y: 282}
+    - - {x: 33, y: 283}
+      - {x: 31, y: 281}
+      - {x: 31, y: 241}
+      - {x: 33, y: 239}
+      - {x: 73, y: 239}
+      - {x: 75, y: 241}
+      - {x: 75, y: 281}
+      - {x: 73, y: 283}
+    - - {x: 136, y: 280}
+      - {x: 134, y: 278}
+      - {x: 134, y: 242}
+      - {x: 136, y: 240}
+      - {x: 172, y: 240}
+      - {x: 174, y: 242}
+      - {x: 174, y: 278}
+      - {x: 172, y: 280}
+    - - {x: -462, y: 312}
+      - {x: -526, y: 312}
+      - {x: -530, y: 306}
+      - {x: -530, y: 266}
+      - {x: -526, y: 262}
+      - {x: -466, y: 262}
+      - {x: -462, y: 266}
+    - - {x: 239, y: 281}
+      - {x: 287, y: 281}
+      - {x: 287, y: 333}
+      - {x: 271, y: 345}
+      - {x: 227, y: 345}
+      - {x: 219, y: 338}
+      - {x: 219, y: 309}
+    - - {x: 345, y: 291}
+      - {x: 360, y: 281}
+      - {x: 414, y: 281}
+      - {x: 414, y: 303}
+      - {x: 397, y: 344}
+      - {x: 394, y: 345}
+      - {x: 345, y: 345}
+    - - {x: 472, y: 306}
+      - {x: 500, y: 285}
+      - {x: 520, y: 281}
+      - {x: 540, y: 281}
+      - {x: 540, y: 304}
+      - {x: 518, y: 345}
+      - {x: 492, y: 345}
+      - {x: 472, y: 338}
+    - - {x: 629, y: 349}
+      - {x: 609, y: 346}
+      - {x: 598, y: 330}
+      - {x: 598, y: 281}
+      - {x: 663, y: 281}
+      - {x: 666, y: 287}
+      - {x: 666, y: 291}
+      - {x: 661, y: 349}
+    - - {x: 726, y: 340}
+      - {x: 725, y: 332}
+      - {x: 725, y: 281}
+      - {x: 793, y: 281}
+      - {x: 793, y: 349}
+      - {x: 757, y: 349}
+      - {x: 750, y: 347}
+    - - {x: 31, y: 338}
+      - {x: 29, y: 336}
+      - {x: 29, y: 294}
+      - {x: 31, y: 292}
+      - {x: 73, y: 292}
+      - {x: 75, y: 294}
+      - {x: 75, y: 336}
+      - {x: 73, y: 338}
+    - - {x: 81, y: 338}
+      - {x: 79, y: 336}
+      - {x: 79, y: 294}
+      - {x: 81, y: 292}
+      - {x: 123, y: 292}
+      - {x: 125, y: 294}
+      - {x: 125, y: 336}
+      - {x: 123, y: 338}
+    - - {x: 131, y: 338}
+      - {x: 129, y: 336}
+      - {x: 129, y: 294}
+      - {x: 131, y: 292}
+      - {x: 173, y: 292}
+      - {x: 175, y: 294}
+      - {x: 175, y: 336}
+      - {x: 173, y: 338}
+    - - {x: -442, y: 405}
+      - {x: -442, y: 297}
+      - {x: -331, y: 297}
+      - {x: -331, y: 405}
+    - - {x: -286, y: 356}
+      - {x: -286, y: 318}
+      - {x: -152, y: 318}
+      - {x: -152, y: 354}
+      - {x: -153, y: 356}
+    - - {x: -132, y: 354}
+      - {x: -132, y: 318}
+      - {x: 1, y: 318}
+      - {x: 1, y: 354}
+    - - {x: -532, y: 385}
+      - {x: -534, y: 382}
+      - {x: -534, y: 339}
+      - {x: -533, y: 336}
+      - {x: -467, y: 336}
+      - {x: -467, y: 385}
+    - - {x: 33, y: 393}
+      - {x: 31, y: 391}
+      - {x: 31, y: 351}
+      - {x: 33, y: 349}
+      - {x: 73, y: 349}
+      - {x: 75, y: 351}
+      - {x: 75, y: 391}
+      - {x: 73, y: 393}
+    - - {x: 83, y: 393}
+      - {x: 81, y: 391}
+      - {x: 81, y: 351}
+      - {x: 83, y: 349}
+      - {x: 123, y: 349}
+      - {x: 125, y: 351}
+      - {x: 125, y: 391}
+      - {x: 123, y: 393}
+    - - {x: 136, y: 390}
+      - {x: 134, y: 388}
+      - {x: 134, y: 352}
+      - {x: 136, y: 350}
+      - {x: 172, y: 350}
+      - {x: 174, y: 352}
+      - {x: 174, y: 388}
+      - {x: 172, y: 390}
+    - - {x: -287, y: 409}
+      - {x: -287, y: 376}
+      - {x: -155, y: 376}
+      - {x: -155, y: 409}
+    - - {x: -133, y: 409}
+      - {x: -133, y: 376}
+      - {x: -1, y: 376}
+      - {x: -1, y: 409}
+    - - {x: 219, y: 439}
+      - {x: 222, y: 424}
+      - {x: 267, y: 382}
+      - {x: 287, y: 382}
+      - {x: 287, y: 405}
+      - {x: 256, y: 450}
+      - {x: 219, y: 450}
+    - - {x: 373, y: 382}
+      - {x: 407, y: 382}
+      - {x: 407, y: 411}
+      - {x: 387, y: 447}
+      - {x: 368, y: 450}
+      - {x: 339, y: 450}
+      - {x: 339, y: 431}
+    - - {x: 495, y: 382}
+      - {x: 528, y: 382}
+      - {x: 528, y: 413}
+      - {x: 527, y: 416}
+      - {x: 473, y: 450}
+      - {x: 460, y: 450}
+      - {x: 460, y: 428}
+    - - {x: 583, y: 418}
+      - {x: 581, y: 416}
+      - {x: 581, y: 395}
+      - {x: 607, y: 382}
+      - {x: 649, y: 382}
+      - {x: 649, y: 398}
+      - {x: 609, y: 418}
+    - - {x: 703, y: 445}
+      - {x: 702, y: 443}
+      - {x: 702, y: 412}
+      - {x: 736, y: 382}
+      - {x: 770, y: 382}
+      - {x: 770, y: 433}
+      - {x: 736, y: 445}
+    - - {x: -530, y: 440}
+      - {x: -534, y: 438}
+      - {x: -534, y: 391}
+      - {x: -466, y: 391}
+      - {x: -466, y: 434}
+      - {x: -468, y: 440}
+    - - {x: 32, y: 445}
+      - {x: 30, y: 443}
+      - {x: 30, y: 401}
+      - {x: 32, y: 399}
+      - {x: 74, y: 399}
+      - {x: 76, y: 401}
+      - {x: 76, y: 443}
+      - {x: 74, y: 445}
+    - - {x: 82, y: 445}
+      - {x: 80, y: 443}
+      - {x: 80, y: 401}
+      - {x: 82, y: 399}
+      - {x: 124, y: 399}
+      - {x: 126, y: 401}
+      - {x: 126, y: 443}
+      - {x: 124, y: 445}
+    - - {x: 132, y: 445}
+      - {x: 130, y: 443}
+      - {x: 130, y: 401}
+      - {x: 132, y: 399}
+      - {x: 174, y: 399}
+      - {x: 176, y: 401}
+      - {x: 176, y: 443}
+      - {x: 174, y: 445}
+    - - {x: 671, y: 539}
+      - {x: 648, y: 516}
+      - {x: 648, y: 488}
+      - {x: 685, y: 468}
+      - {x: 716, y: 468}
+      - {x: 716, y: 518}
+      - {x: 702, y: 539}
+    - - {x: 268, y: 519}
+      - {x: 219, y: 539}
+      - {x: 212, y: 539}
+      - {x: 212, y: 521}
+      - {x: 240, y: 471}
+      - {x: 244, y: 471}
+      - {x: 245, y: 472}
+      - {x: 248, y: 477}
+      - {x: 281, y: 507}
+      - {x: 281, y: 510}
+    - - {x: 321, y: 539}
+      - {x: 321, y: 471}
+      - {x: 389, y: 471}
+      - {x: 389, y: 539}
+    - - {x: 430, y: 539}
+      - {x: 430, y: 471}
+      - {x: 498, y: 471}
+      - {x: 498, y: 539}
+    - - {x: 546, y: 539}
+      - {x: 539, y: 518}
+      - {x: 539, y: 475}
+      - {x: 555, y: 471}
+      - {x: 607, y: 471}
+      - {x: 607, y: 486}
+      - {x: 591, y: 527}
+      - {x: 581, y: 539}
+    - - {x: 123, y: 550}
+      - {x: 111, y: 519}
+      - {x: 111, y: 497}
+      - {x: 114, y: 486}
+      - {x: 116, y: 480}
+      - {x: 177, y: 480}
+      - {x: 177, y: 512}
+      - {x: 154, y: 550}
+    - - {x: -88, y: 558}
+      - {x: -88, y: 493}
+      - {x: -87, y: 490}
+      - {x: -22, y: 490}
+      - {x: -22, y: 544}
+      - {x: -45, y: 558}
+    - - {x: 8, y: 558}
+      - {x: 8, y: 490}
+      - {x: 63, y: 490}
+      - {x: 76, y: 494}
+      - {x: 76, y: 524}
+      - {x: 50, y: 558}
+    - - {x: -763, y: 548}
+      - {x: -775, y: 542}
+      - {x: -779, y: 527}
+      - {x: -779, y: 492}
+      - {x: -711, y: 492}
+      - {x: -711, y: 518}
+      - {x: -726, y: 548}
+    - - {x: -653, y: 560}
+      - {x: -672, y: 549}
+      - {x: -673, y: 544}
+      - {x: -673, y: 492}
+      - {x: -603, y: 492}
+      - {x: -602, y: 512}
+      - {x: -602, y: 558}
+      - {x: -609, y: 560}
+    - - {x: -551, y: 560}
+      - {x: -566, y: 551}
+      - {x: -566, y: 495}
+      - {x: -560, y: 492}
+      - {x: -533, y: 492}
+      - {x: -516, y: 495}
+      - {x: -516, y: 548}
+      - {x: -524, y: 560}
+    - - {x: -458, y: 560}
+      - {x: -477, y: 552}
+      - {x: -477, y: 521}
+      - {x: -471, y: 517}
+      - {x: -470, y: 517}
+      - {x: -467, y: 520}
+      - {x: -469, y: 517}
+      - {x: -473, y: 516}
+      - {x: -477, y: 513}
+      - {x: -477, y: 508}
+      - {x: -465, y: 492}
+      - {x: -442, y: 492}
+      - {x: -424, y: 500}
+      - {x: -409, y: 551}
+      - {x: -409, y: 560}
+    - - {x: -323, y: 560}
+      - {x: -350, y: 554}
+      - {x: -370, y: 548}
+      - {x: -370, y: 517}
+      - {x: -363, y: 517}
+      - {x: -360, y: 520}
+      - {x: -362, y: 517}
+      - {x: -366, y: 516}
+      - {x: -370, y: 513}
+      - {x: -370, y: 510}
+      - {x: -358, y: 492}
+      - {x: -326, y: 492}
+      - {x: -316, y: 494}
+      - {x: -302, y: 550}
+      - {x: -302, y: 559}
+      - {x: -305, y: 560}
+    - - {x: -342, y: 502}
+      - {x: -344, y: 500}
+      - {x: -344, y: 498}
+      - {x: -342, y: 496}
+      - {x: -340, y: 496}
+      - {x: -338, y: 498}
+      - {x: -338, y: 500}
+      - {x: -340, y: 502}
+    - - {x: -195, y: 532}
+      - {x: -224, y: 532}
+      - {x: -226, y: 525}
+      - {x: -226, y: 506}
+      - {x: -225, y: 502}
+      - {x: -219, y: 498}
+      - {x: -202, y: 496}
+      - {x: -194, y: 496}
+      - {x: -189, y: 500}
+      - {x: -189, y: 530}
+    - - {x: -172, y: 532}
+      - {x: -175, y: 531}
+      - {x: -175, y: 496}
+      - {x: -140, y: 496}
+      - {x: -139, y: 497}
+      - {x: -139, y: 531}
+      - {x: -141, y: 532}
+    - - {x: -270, y: 534}
+      - {x: -274, y: 531}
+      - {x: -274, y: 506}
+      - {x: -271, y: 498}
+      - {x: -244, y: 498}
+      - {x: -238, y: 501}
+      - {x: -238, y: 524}
+      - {x: -242, y: 534}
+    - - {x: -473, y: 533}
+      - {x: -475, y: 531}
+      - {x: -475, y: 529}
+      - {x: -472, y: 526}
+      - {x: -470, y: 526}
+      - {x: -468, y: 528}
+      - {x: -468, y: 531}
+      - {x: -470, y: 533}
+    - - {x: -365, y: 533}
+      - {x: -368, y: 530}
+      - {x: -368, y: 529}
+      - {x: -365, y: 526}
+      - {x: -363, y: 526}
+      - {x: -361, y: 528}
+      - {x: -361, y: 531}
+      - {x: -363, y: 533}
+    - - {x: -770, y: 596}
+      - {x: -770, y: 562}
+      - {x: -765, y: 561}
+      - {x: -758, y: 565}
+      - {x: -755, y: 569}
+      - {x: -754, y: 578}
+      - {x: -754, y: 569}
+      - {x: -751, y: 565}
+      - {x: -754, y: 562}
+      - {x: -753, y: 559}
+      - {x: -739, y: 559}
+      - {x: -738, y: 560}
+      - {x: -738, y: 592}
+      - {x: -744, y: 596}
+    - - {x: 223, y: 646}
+      - {x: 211, y: 646}
+      - {x: 211, y: 635}
+      - {x: 221, y: 612}
+      - {x: 244, y: 589}
+      - {x: 258, y: 578}
+      - {x: 272, y: 578}
+      - {x: 279, y: 587}
+      - {x: 279, y: 597}
+      - {x: 270, y: 616}
+    - - {x: 307, y: 640}
+      - {x: 307, y: 618}
+      - {x: 341, y: 578}
+      - {x: 375, y: 578}
+      - {x: 375, y: 609}
+      - {x: 328, y: 640}
+    - - {x: 408, y: 640}
+      - {x: 404, y: 640}
+      - {x: 403, y: 638}
+      - {x: 403, y: 634}
+      - {x: 412, y: 615}
+      - {x: 437, y: 582}
+      - {x: 452, y: 578}
+      - {x: 470, y: 578}
+      - {x: 471, y: 580}
+      - {x: 471, y: 592}
+      - {x: 432, y: 627}
+    - - {x: 499, y: 646}
+      - {x: 499, y: 627}
+      - {x: 502, y: 611}
+      - {x: 540, y: 578}
+      - {x: 548, y: 578}
+      - {x: 559, y: 586}
+      - {x: 559, y: 595}
+      - {x: 509, y: 646}
+    - - {x: 588, y: 635}
+      - {x: 587, y: 634}
+      - {x: 587, y: 622}
+      - {x: 589, y: 616}
+      - {x: 623, y: 578}
+      - {x: 632, y: 578}
+      - {x: 637, y: 580}
+      - {x: 644, y: 589}
+      - {x: 644, y: 604}
+      - {x: 609, y: 635}
+    - - {x: 697, y: 635}
+      - {x: 673, y: 635}
+      - {x: 673, y: 618}
+      - {x: 674, y: 613}
+      - {x: 709, y: 578}
+      - {x: 725, y: 578}
+      - {x: 730, y: 584}
+      - {x: 730, y: 605}
+    - - {x: -25, y: 602}
+      - {x: -44, y: 643}
+      - {x: -47, y: 648}
+      - {x: -78, y: 648}
+      - {x: -83, y: 647}
+      - {x: -83, y: 584}
+      - {x: -73, y: 580}
+      - {x: -17, y: 580}
+      - {x: -15, y: 584}
+      - {x: -15, y: 598}
+      - {x: -17, y: 599}
+    - - {x: 14, y: 586}
+      - {x: 15, y: 583}
+      - {x: 83, y: 583}
+      - {x: 83, y: 626}
+      - {x: 75, y: 651}
+      - {x: 21, y: 651}
+      - {x: 14, y: 621}
+    - - {x: 115, y: 652}
+      - {x: 111, y: 641}
+      - {x: 111, y: 583}
+      - {x: 179, y: 583}
+      - {x: 179, y: 603}
+      - {x: 155, y: 652}
+    - - {x: -442, y: 656}
+      - {x: -451, y: 653}
+      - {x: -451, y: 589}
+      - {x: -383, y: 589}
+      - {x: -383, y: 656}
+    - - {x: -338, y: 657}
+      - {x: -338, y: 593}
+      - {x: -335, y: 591}
+      - {x: -271, y: 591}
+      - {x: -270, y: 593}
+      - {x: -270, y: 657}
+    - - {x: -171, y: 657}
+      - {x: -175, y: 652}
+      - {x: -200, y: 657}
+      - {x: -224, y: 657}
+      - {x: -224, y: 593}
+      - {x: -220, y: 591}
+      - {x: -162, y: 591}
+      - {x: -156, y: 596}
+      - {x: -156, y: 652}
+      - {x: -162, y: 657}
+    - - {x: -571, y: 613}
+      - {x: -547, y: 592}
+      - {x: -529, y: 592}
+      - {x: -503, y: 610}
+      - {x: -503, y: 652}
+      - {x: -567, y: 652}
+      - {x: -571, y: 645}
+    - - {x: -664, y: 614}
+      - {x: -641, y: 594}
+      - {x: -626, y: 594}
+      - {x: -596, y: 619}
+      - {x: -596, y: 648}
+      - {x: -597, y: 652}
+      - {x: -659, y: 652}
+      - {x: -664, y: 643}
+    - - {x: -768, y: 653}
+      - {x: -777, y: 645}
+      - {x: -777, y: 619}
+      - {x: -773, y: 608}
+      - {x: -738, y: 608}
+      - {x: -732, y: 612}
+      - {x: -732, y: 644}
+      - {x: -742, y: 653}
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
