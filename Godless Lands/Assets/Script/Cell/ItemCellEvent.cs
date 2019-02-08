@@ -7,13 +7,16 @@ namespace Cells
 {
     public class ItemCellEvent : CellEvent
     {
-        private GameObject prefabInformer; //Префаб бьекта c текстом информации о обьекте в ячейке
+        private static GameObject prefabInformer; //Префаб бьекта c текстом информации о обьекте в ячейке
       
        
 
         private new void Start()
         {
-            prefabInformer = Resources.Load<GameObject>("Cell/PanelItemInfo");
+            if (prefabInformer == null)
+            {
+                prefabInformer = Resources.Load<GameObject>("Cell/PanelItemInfo");
+            }
             base.Start();
         }
 
@@ -24,14 +27,19 @@ namespace Cells
             if (itemCell == null) return;
             Item item = itemCell.GetItem();
 
-            informer = Instantiate(prefabInformer);
-             ItemInformer _informer = informer.GetComponent<ItemInformer>();
-            _informer.Initial(Input.mousePosition, cellParent.parent);
+            informer = ItemInfo(cellParent.parent, item, itemCell.GetCount());
+        }
 
-           
-            _informer.SetIcon(itemCell.GetIcon());
+        public static GameObject ItemInfo(Transform parent, Item item, int count)
+        {
+            GameObject obj = Instantiate(prefabInformer);
+            ItemInformer _informer = obj.GetComponent<ItemInformer>();
+            _informer.Initial(Input.mousePosition, parent);
+
+
+            _informer.SetIcon(item.texture);
             _informer.SetName(item.nameItem);
-            if (item.stack) _informer.SetCount(itemCell.GetCount());
+            if (item.stack) _informer.SetCount(count);
             switch (item.use)
             {
                 case ItemUse.Weapon:
@@ -52,6 +60,7 @@ namespace Cells
                     break;
             }
             _informer.setDescription(item.description);
+            return obj;
         }
     }
 }

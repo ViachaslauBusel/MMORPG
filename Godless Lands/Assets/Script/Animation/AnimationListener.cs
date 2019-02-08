@@ -40,8 +40,9 @@ public class AnimationListener : MonoBehaviour
         {
             case 1: //layer 1 = Проиграть анимацию умений с контролем времени
                 int milliseconds = nw.ReadInt();
-                PanelSkills.Hide((milliseconds - NetworkManager.Socket.GetPing()) / 1000);
-                animationSkill.UseAnimationSkill(animation, (milliseconds / 1000));
+
+                PanelSkills.Hide((milliseconds - NetworkManager.Socket.GetPing()) / 1000.0f);
+                animationSkill.UseAnimationSkill(animation, (milliseconds / 1000.0f));
                 break;
             case 2:
                 animationSkill.UseAnimState(animation);

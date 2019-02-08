@@ -28,7 +28,7 @@ public class Types {
     public const short TeleportToPoint = 22;
     public const short MonsterAnim = 23;
     public const short TargetUpdate = 24;
-    public const short HPViewUpdateHP = 25;
+    public const short HPViewUpdate = 25;//0-load name hp mp stamina/ 1 - hp mp stamina / 2 - hp/ 3 - mp/ 4 - stamina
     public const short PlayerDead = 26;//S->C отпрвка игроку
     public const short PlayerResurrection = 27;
     public const short LoadInventory = 28;//C->S запрос на получение содержимого сумки S->C содержимое сумки
@@ -57,5 +57,10 @@ public class Types {
     public const short MonsterMove = 51;
     public const short MonsterEndMove = 52;
     public const short PlayAnimSkill = 53;
+    public const short loadBar = 54;
+    public const short updateBarCell = 55;
+    public const short UseItemByKey = 56;
+    public const short WrapBarCell = 57;
+    public const short WrapItem = 58;
 
 }

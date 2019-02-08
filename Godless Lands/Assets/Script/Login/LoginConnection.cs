@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class LoginConnection : MonoBehaviour {
     public string loginServer = "127.0.0.1";
     public bool localhost = false;
-    private const short version = 3;
+    private const short version = 4;
 
     private InputField input_login;
     private InputField input_pass;

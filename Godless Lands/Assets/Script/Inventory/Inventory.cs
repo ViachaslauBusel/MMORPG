@@ -45,6 +45,7 @@ public class Inventory : MonoBehaviour {
         text_filling.text = filling + "/" + size_bag;
         int index = nw.ReadInt();//Индекс изменившейся ячейки
         int id_item = nw.ReadInt();//Индекс нового предмета в этой ячейке
+        int key = nw.ReadInt();//Уnикальный ид предмета
         int count = 0;
         Item item;
         if (id_item > 0)//Если предмет существует 
@@ -57,6 +58,7 @@ public class Inventory : MonoBehaviour {
       //  print("item: " + (item == null));
         items[index].SetCount(count);
         items[index].PutItem(item);
+        items[index].SetKey(key);
     }
 
     private void LoadingInventory(NetworkWriter nw)
@@ -73,6 +75,7 @@ public class Inventory : MonoBehaviour {
         {
             int id_item = nw.ReadInt();
             item = itemsList.GetItem(id_item);
+            int key = nw.ReadInt();
             count_item = 0;
             if (item != null)//Если ячейка не пуста
             {
@@ -85,6 +88,7 @@ public class Inventory : MonoBehaviour {
             _itemCell.PutItem(item);
             _itemCell.SetCount(count_item);
             _itemCell.SetIndex(i);
+            _itemCell.SetKey(key);
             items[i] = _itemCell;
         }
     }

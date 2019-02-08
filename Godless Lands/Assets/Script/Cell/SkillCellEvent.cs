@@ -7,14 +7,15 @@ namespace Cells
 {
     public class SkillCellEvent : CellEvent
     {
-        private GameObject prefabInformer; //Префаб бьекта c текстом информации о обьекте в ячейке
+        private static GameObject prefabInformer; //Префаб бьекта c текстом информации о обьекте в ячейке
 
 
 
         private new void Start()
         {
             doubleClick = false;
-            prefabInformer = Resources.Load<GameObject>("Cell/SkillInformer");
+            if (prefabInformer == null)
+            { prefabInformer = Resources.Load<GameObject>("Cell/SkillInformer"); }
             base.Start();
         }
 
@@ -25,18 +26,23 @@ namespace Cells
             if (skillCell == null) return;
             Skill skill = skillCell.GetSkill();
 
-            informer = Instantiate(prefabInformer);
-            SkillInformer _informer = informer.GetComponent<SkillInformer>();
-            _informer.Initial(Input.mousePosition, cellParent.parent);
+            informer = SkillInfo(skill, cellParent.parent);
+        }
+
+        public static GameObject SkillInfo(Skill skill, Transform parent)
+        {
+            GameObject obj = Instantiate(prefabInformer);
+            SkillInformer _informer = obj.GetComponent<SkillInformer>();
+            _informer.Initial(Input.mousePosition, parent);
 
 
-            _informer.SetIcon(skillCell.GetIcon());
+            _informer.SetIcon(skill.icon);
             _informer.SetName(skill.name);
             _informer.SetApplyTime(skill.applyingTime);
             _informer.SetReuseTime(skill.reuseTime);
 
             MelleSkill melleSkill = skill.GetMelleSkill();
-            if(melleSkill != null)
+            if (melleSkill != null)
             {
                 _informer.SetRange(melleSkill.range);
                 _informer.SetAngle(melleSkill.angle);
@@ -46,6 +52,8 @@ namespace Cells
 
             //  _informer.SetVitality(skill.viltality);
             _informer.setDescription(skill.description);
+
+            return obj;
         }
     }
 }

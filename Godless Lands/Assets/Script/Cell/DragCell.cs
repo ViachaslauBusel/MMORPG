@@ -67,6 +67,7 @@ namespace Cells
                         return;
                     }
                 }
+                cell.Abort();
             }
         }
     }

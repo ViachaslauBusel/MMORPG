@@ -45,5 +45,14 @@ namespace SkillsRedactor {
             }
             return false;
         }
+
+        public Skill GetSkill(int id)
+        {
+            foreach (Skill _skill in skills)
+            {
+                if (_skill.id == id) return _skill;
+            }
+            return null;
+        }
     }
 }

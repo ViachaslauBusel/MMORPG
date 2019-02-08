@@ -100,7 +100,7 @@ namespace OpenWorld {
                         totalProgress = (x * map.mapSize) + y;
 
                         folder = map.mapName + "/KMBlock_" + x + '_' + y;
-                        Remove(folder);
+                    //    Remove(folder);
                         Fix(folder);
                     }
                 }
@@ -119,8 +119,11 @@ namespace OpenWorld {
 
                     if (mapElement != null)
                     {
-                        mapElement.terrainData.baseMapResolution = 64;
-                        mapElement.terrainData.SetDetailResolution(128, 32);
+                        mapElement.terrainData.wavingGrassSpeed = 0.2f;
+                        mapElement.terrainData.wavingGrassAmount = 0.31f;
+                        mapElement.terrainData.wavingGrassStrength = 0.3f;
+                        //  mapElement.terrainData.baseMapResolution = 64;
+                        //  mapElement.terrainData.SetDetailResolution(128, 32);
                         AssetDatabase.Refresh();
                         EditorUtility.SetDirty(mapElement);
                         AssetDatabase.SaveAssets();

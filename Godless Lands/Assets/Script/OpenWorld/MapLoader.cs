@@ -16,6 +16,8 @@ namespace OpenWorld
         private int _areaVisible = 2;
         private int _basemapDistance = 50;
         private int _quality;
+        private float _detailDistance;
+        private float _detailDensity;
       //  public int areaDestroy = 3;
         private GameObject[,] terrainMap;
         private Vector4 border;
@@ -29,12 +31,39 @@ namespace OpenWorld
             areaVisible = PlayerPrefs.GetInt("areaVisible", 4);
             _basemapDistance = PlayerPrefs.GetInt("basemapDistance", 50);
             Qulity = PlayerPrefs.GetInt("QualityLevel", 1);
-   
+            _detailDistance = PlayerPrefs.GetFloat("DetailDistance", 80.0f);
+            _detailDensity = PlayerPrefs.GetFloat("DetailDensity", 1.0f);
 
-                        enabled = false;
+
+            enabled = false;
            
         }
 
+
+        public float DetailDistance
+        {
+            set
+            {
+                PlayerPrefs.SetFloat("DetailDistance", value);
+                _detailDistance = value;
+            }
+            get
+            {
+                return _detailDistance;
+            }
+        }
+        public float DetailDensity
+        {
+            set
+            {
+                PlayerPrefs.SetFloat("DetailDensity", value);
+                _detailDensity = value;
+            }
+            get
+            {
+                return _detailDensity;
+            }
+        }
         public int Qulity
         {
             set
@@ -443,6 +472,7 @@ namespace OpenWorld
 
         private IEnumerator IECreateTerrain(int xKMBlock, int yKMBlock, int xTRBlock, int yTRBlock, GameObject obj, bool async = true)
         {
+            if (obj == null) yield break; 
             
             TerrainInfo terrainInfo = obj.AddComponent<TerrainInfo>();
             terrainInfo.xKM = xKMBlock;
@@ -485,7 +515,11 @@ namespace OpenWorld
            // terrain.heightmapPixelError = 1;
             terrain.heightmapPixelError = 5;
             terrain.basemapDistance = _basemapDistance;
-            terrain.treeCrossFadeLength = 100.0f;
+            terrain.treeCrossFadeLength = 50.0f;
+            terrain.treeBillboardDistance = 100.0f;
+            terrain.detailObjectDistance = _detailDistance;
+            terrain.detailObjectDensity = _detailDensity;
+      
              Vector3 position = new Vector3((xKMBlock*1000.0f)+(xTRBlock * map.blockSize), 0.0f, (yKMBlock * 1000.0f) + (yTRBlock * map.blockSize));
             terrain_obj.transform.position = position;
             terrain_obj.layer = LayerMask.NameToLayer("Terrain");

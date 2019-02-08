@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class GraphicSetting : MonoBehaviour
@@ -10,7 +11,11 @@ public class GraphicSetting : MonoBehaviour
     public Slider sliderScaleUI;
     public Slider sliderViewDistance;
     public Slider sliderBaseMapDis;
+    public Slider sliderDetailDistance;
+    public Slider sliderDetailDensity;
     public Dropdown dropdownQulity;
+    public Dropdown dropdownPostProfile;
+    public PostProfiles postProfiles;
     private MapLoader mapLoader;
     private UIScaler scaler;
 
@@ -36,7 +41,21 @@ public class GraphicSetting : MonoBehaviour
         }
         dropdownQulity.AddOptions(optionDatas);
         dropdownQulity.value = mapLoader.Qulity;
+
+        sliderDetailDistance.value = mapLoader.DetailDistance;
+        sliderDetailDensity.value = mapLoader.DetailDensity;
+
+        dropdownPostProfile.ClearOptions();
+         optionDatas = new List<Dropdown.OptionData>();
+        foreach(string _profile in postProfiles.GetProfiles())
+        {
+            optionDatas.Add(new Dropdown.OptionData(_profile));
+        }
+        dropdownPostProfile.AddOptions(optionDatas);
+        dropdownPostProfile.value = postProfiles.Profile;
     }
+
+
 
     //Применить размер UI элементов
     private void ApplyScaleUI()
@@ -68,7 +87,22 @@ public class GraphicSetting : MonoBehaviour
             mapLoader.Qulity = dropdownQulity.value;
             restart = true;
         }
-
+        //Зона прогрузки травы
+        if (mapLoader.DetailDistance != sliderDetailDistance.value)
+        {
+            mapLoader.DetailDistance = sliderDetailDistance.value;
+            restart = true;
+        }
+        //Количество травы
+        if (mapLoader.DetailDensity != sliderDetailDensity.value)
+        {
+            mapLoader.DetailDensity = sliderDetailDensity.value;
+            restart = true;
+        }
+        if (postProfiles.Profile != dropdownPostProfile.value)
+        {
+            postProfiles.Profile = dropdownPostProfile.value;
+        }
         if (restart) StartCoroutine(IERestart());
     }
 

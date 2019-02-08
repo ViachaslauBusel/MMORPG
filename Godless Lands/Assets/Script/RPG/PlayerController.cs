@@ -8,7 +8,6 @@ using OpenWorld;
 
 public class PlayerController : MonoBehaviour {
 
-    public HPView hp_view;
     public float speed = 5.0f;
     public GameObject prefGameLoader;
 
@@ -61,6 +60,10 @@ public class PlayerController : MonoBehaviour {
     {
         return character.transform.position;
     }
+    public static Transform Transform
+    {
+        get { return character.transform; }
+    }
 
     private void MyCharacter(NetworkWriter nw)
     {
@@ -68,13 +71,6 @@ public class PlayerController : MonoBehaviour {
         int login_id = nw.ReadInt();
 
         transform.position = nw.ReadVec3();
-
-        string _name = nw.ReadString();
-        int hp = nw.ReadInt();
-        int max_hp = nw.ReadInt();
-
-        hp_view.SetName(_name);
-        hp_view.UpdateHP(hp, max_hp);
 
         enabled = true;
     }

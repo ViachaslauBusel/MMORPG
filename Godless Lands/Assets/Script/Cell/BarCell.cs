@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using Items;
+using RUCP;
+using SkillsRedactor;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +14,11 @@ namespace Cells
         private Text help;
         private Token token;
         private Coroutine coroutineHide;
-        private Cell targetCell;//Выбраная умения,предмет, действия для использования в ячейке
+        private Skill skill;//Выбраная умения,предмет, действия для использования в ячейке
+        private Item item;
+        private int key;//уникальный ид предмета
+        private Transform playerTransform;
+        private int index;//Номер этой ячейки
 
         private new void Awake()
         {
@@ -19,6 +26,7 @@ namespace Cells
             hide = transform.Find("Hide").GetComponent<Image>();
             hide.enabled = false;
             help = transform.Find("help").GetComponent<Text>();
+            playerTransform = GameObject.Find("Player").transform;
         }
 
         public bool IsUse(Token _token)
@@ -42,14 +50,28 @@ namespace Cells
 
         public override bool IsEmpty()
         {
-            return targetCell == null;
+            return skill == null && item == null;
         }
 
         public override void Use()
         {
-
-            if (IsEmpty()) return;
-            targetCell.Use();
+            if(skill != null)
+            {
+                NetworkWriter nw = new NetworkWriter(Channels.Reliable);
+                nw.SetTypePack(Types.Skill);
+                nw.write(skill.id);
+                nw.write(playerTransform.forward.x);//Направление игрока
+                nw.write(playerTransform.forward.z);
+                NetworkManager.Send(nw);
+            }
+            if(item != null)
+            {
+                NetworkWriter nw = new NetworkWriter(Channels.Reliable);
+                nw.SetTypePack(Types.UseItemByKey);
+                nw.write(key);
+                nw.write(item.id);
+                NetworkManager.Send(nw);
+            }
 
         }
 
@@ -57,20 +79,81 @@ namespace Cells
         {
 
             if (cell == null || cell.IsEmpty() || cell.GetType() == typeof(TradeCell) || cell.GetType() == typeof(OfferCell)) { icon.enabled = false; return; }
+
             if(cell.GetType() == typeof(BarCell))//Поменять местами содержимое ячейки
             {
-                Cell _instCell = this.targetCell;
-                BarCell barCell = cell as BarCell;
-                Put(barCell.GetTargetCell());
-                barCell.Put(_instCell);
+                NetworkWriter writer = new NetworkWriter(Channels.Reliable);
+                writer.SetTypePack(Types.WrapBarCell);
+                writer.write((byte)index);//Номер ячейки на панели
+                writer.write((byte)(cell as BarCell).index);//Номер ячейки на панели
+                NetworkManager.Send(writer);
                 return;
             }
-   
-            icon.enabled = true;
-            this.targetCell = cell;
-            icon.sprite = Sprite.Create(cell.GetIcon(), new Rect(0.0f, 0.0f, cell.GetIcon().width, cell.GetIcon().height), new Vector2(0.5f, 0.5f), 100.0f);
+
+            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
+            nw.SetTypePack(Types.updateBarCell);
+            nw.write((byte)index);//Номер ячейки на панели
+
+            //тип ячейки -   0 умения, 1 предмет
+            if (cell.GetType() == typeof(SkillCell))
+            {
+                nw.write(0);//type
+                nw.write((cell as SkillCell).GetSkill().id);
+  
+            }
+            else if (cell.GetType() == typeof(ItemCell))
+            {
+                ItemCell item = cell as ItemCell;
+                nw.write(1);//type
+                nw.write(item.GetItem().id);
+                nw.write(item.GetKey());
+            }
+            else if (cell.GetType() == typeof(ArmorCell))
+            {
+                ArmorCell item = cell as ArmorCell;
+                nw.write(1);//type
+                nw.write(item.GetItem().id);
+                nw.write(item.GetKey());
+            }
+            else return;
+            NetworkManager.Send(nw);
+            // icon.enabled = true;
+            // this.targetCell = cell;
+            //  icon.sprite = Sprite.Create(cell.GetIcon(), new Rect(0.0f, 0.0f, cell.GetIcon().width, cell.GetIcon().height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
+        public void SetSkill(Skill skill)
+        {
+            item = null;
+            this.skill = skill;
+             icon.enabled = true;
+             icon.sprite = Sprite.Create(skill.icon, new Rect(0.0f, 0.0f, skill.icon.width, skill.icon.height), new Vector2(0.5f, 0.5f), 100.0f);
+        }
+
+        public void SetItem(Item item, int key)
+        {
+            skill = null;
+            this.item = item;
+            this.key = key;
+            icon.enabled = true;
+            icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        }
+
+        public void Clear()
+        {
+            item = null;
+            skill = null;
+            icon.enabled = false;
+        }
+
+        public Skill GetSkill()
+        {
+            return skill;
+        }
+        public Item GetItem()
+        {
+            return item;
+        }
         public void Hide(float time)
         {
            if (coroutineHide != null) StopCoroutine(coroutineHide);
@@ -90,9 +173,23 @@ namespace Cells
             hide.enabled = false;
         }
 
-        public Cell GetTargetCell()
+        /*  public System.Object GetTargetCell()
+          {
+              return targetCell;
+          }*/
+
+        public override void Abort()
         {
-            return targetCell;
+            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
+            nw.SetTypePack(Types.updateBarCell);
+            nw.write((byte)index);//Номер ячейки на панели
+            nw.write(-1);//type
+            NetworkManager.Send(nw);
+        }
+
+        public void SetIndex(int index)
+        {
+            this.index = index;
         }
     }
 }

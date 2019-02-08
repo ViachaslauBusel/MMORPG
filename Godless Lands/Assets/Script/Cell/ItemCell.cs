@@ -11,6 +11,7 @@ namespace Cells
         protected Item item;
         protected int index;
         protected int count;
+        protected int key;
 
         public override bool IsEmpty()
         {
@@ -46,13 +47,22 @@ namespace Cells
             if (cell == null) return;
             if (cell.GetType() != typeof(ItemCell)) return;
             ItemCell itemCell = cell as ItemCell;
-            print("Wrap items");
-           
+            NetworkWriter writer = new NetworkWriter(Channels.Reliable);
+            writer.SetTypePack(Types.WrapItem);
+            writer.write((byte)index);//Номер ячейки на панели
+            writer.write((byte)itemCell.index);//Номер ячейки на панели
+            NetworkManager.Send(writer);
+
         }
 
         public void SetCount(int count)
         {
             this.count = count;
+        }
+
+        public void SetKey(int key)
+        {
+            this.key = key;
         }
 
         public void SetIndex(int index)
@@ -71,6 +81,10 @@ namespace Cells
         public int GetIndex()
         {
             return index;
+        }
+        public int GetKey()
+        {
+            return key;
         }
     }
 }

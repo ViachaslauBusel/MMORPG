@@ -40,5 +40,10 @@ namespace Cells
         {
             icon.enabled = true;
         }
+
+        public virtual void Abort()
+        {
+
+        }
     }
 }
