@@ -106,6 +106,12 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
         end_point = false;
         CalculateAnimation();
        animator.SetFloat("speedRun", speed / 3.5f);
+
+        //Если игрок застрял, телепортироват в точку
+        if(Vector3.Distance(transform.position, next_position) > 3.0f)
+        {
+            character.transform.position = next_position;
+        }
     }
     public void EndPosition(Vector3 _next, byte indicator)
     {
