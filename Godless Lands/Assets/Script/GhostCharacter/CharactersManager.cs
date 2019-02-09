@@ -108,7 +108,7 @@ public class CharactersManager : MonoBehaviour {
             {
                 case 1: //layer 1 = Проиграть анимацию умений с контролем времени
                     int milliseconds = nw.ReadInt();
-                    characters[id_login].GetComponent<AnimationSkill>().UseAnimationSkill(anim, (milliseconds / 1000));
+                    characters[id_login].GetComponent<AnimationSkill>().UseAnimationSkill(anim, (milliseconds / 1000.0f));
                     break;
                 case 2://layer 2 = Проиграть анимацию состояния без контроля времени
                     characters[id_login].GetComponent<AnimationSkill>().UseAnimState(anim);
