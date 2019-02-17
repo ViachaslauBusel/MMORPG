@@ -1031,7 +1031,7 @@ GameObject:
   - component: {fileID: 3271640567910533088}
   - component: {fileID: 1539027054012944857}
   - component: {fileID: 9149947421408626226}
-  - component: {fileID: 5639819769834540219}
+  - component: {fileID: 4849022278739890652}
   m_Layer: 9
   m_Name: OtherPlayer
   m_TagString: Untagged
@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dead: 0
---- !u!114 &5639819769834540219
+--- !u!114 &4849022278739890652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1129,11 +1129,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3271640567910533089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91fd22632e28ba8408a481e107c23452, type: 3}
+  m_Script: {fileID: 11500000, guid: 623e8f9a3405f4e429750b07eddd4401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon_right: {fileID: 5771078715881287790}
-  weapon_sheath: {fileID: 1393690360415492520}
+  weapon_hand: {fileID: 5771078715881287790}
+  weapon_back: {fileID: 1393690360415492520}
 --- !u!1 &3303004114598939762
 GameObject:
   m_ObjectHideFlags: 0

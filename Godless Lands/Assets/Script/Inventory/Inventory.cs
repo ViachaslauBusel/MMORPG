@@ -14,16 +14,25 @@ public class Inventory : MonoBehaviour {
     public Transform bag;
     public GameObject itemCell;
     public Text text_filling;
-    private Canvas inventory;
+    private Canvas canvasInventory;
     private ItemCell[] items;
     private int size_bag;
 
     private UISort uISort;
 
+    private static Inventory inventory;
+
     private void Awake()
     {
+        if (inventory != null) Destroy(gameObject);
+        inventory = this;
         RegisteredTypes.RegisterTypes(Types.LoadInventory, LoadingInventory);
         RegisteredTypes.RegisterTypes(Types.UpdateInventory, UpdateInventory);
+    }
+
+    public static Item GetItem(int id)
+    {
+       return inventory.itemsList.GetItem(id);
     }
 
     public ItemCell[] GetCellItems()
@@ -34,8 +43,8 @@ public class Inventory : MonoBehaviour {
     private void Start()
     {
         uISort = GetComponentInParent<UISort>();
-        inventory = GetComponent<Canvas>();
-        inventory.enabled = false;
+        canvasInventory = GetComponent<Canvas>();
+        canvasInventory.enabled = false;
     }
 
     private void UpdateInventory(NetworkWriter nw)//Обновление содержимого ячейки
@@ -55,10 +64,8 @@ public class Inventory : MonoBehaviour {
         }
       //  print("id: " + id_item);
         item = itemsList.GetItem(id_item);
-      //  print("item: " + (item == null));
-        items[index].SetCount(count);
-        items[index].PutItem(item);
-        items[index].SetKey(key);
+        //  print("item: " + (item == null));
+        items[index].Refresh(item, count, key);
     }
 
     private void LoadingInventory(NetworkWriter nw)
@@ -99,9 +106,9 @@ public class Inventory : MonoBehaviour {
     public void OpenCloseInventory()
     {
         
-        inventory.enabled = !inventory.enabled;
+        canvasInventory.enabled = !canvasInventory.enabled;
 
-        if(inventory.enabled) uISort.PickUp(inventory);
+        if(canvasInventory.enabled) uISort.PickUp(canvasInventory);
     }
 
 

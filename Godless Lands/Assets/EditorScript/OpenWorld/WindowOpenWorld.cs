@@ -110,6 +110,14 @@ namespace OpenWorld
                 case 5://Настройки редактора карты
                     WindowSetting.Draw();
                     break;
+                case 6://Инструменты для Редактирование ресурсов   
+                    if (mapLoader == null)
+                    {
+                        mapLoader = CreateMap(SceneView.lastActiveSceneView.camera.transform);
+                        if (mapLoader == null) return;
+                    }
+                    WindowResourcesAcriveTools.Draw();
+                    break;
             }
 
             
@@ -180,6 +188,12 @@ namespace OpenWorld
                 case 4://Экпорт на сервер
 
                     break;
+                case 6:
+                    if (WindowResourcesAcriveTools.ResourcesDraw)
+                    { ResourcesSceneGUI.SceneGUI(sceneView.camera); }
+
+                    ResourcesVisibleSceneGUI.SceneGUI(mapLoader);
+                    break;
             }
             
          
@@ -189,7 +203,9 @@ namespace OpenWorld
         {
             TerrainSceneGUI.Destroy();
             MonsterSceneGUI.Destroy();
+            ResourcesSceneGUI.Destroy(); 
             MonsterVisibleSceneGUI.Destroy();
+            ResourcesVisibleSceneGUI.Destroy();
         }
 
         private void OnDestroy()

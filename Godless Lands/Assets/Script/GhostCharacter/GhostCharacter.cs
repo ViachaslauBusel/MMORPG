@@ -1,4 +1,5 @@
-﻿using RUCP;
+﻿using Items;
+using RUCP;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
     private CharacterController character;
     public int ID;
 
-    private GhostArmor armor;
+    private Armor armor;
     private Vector3 next_position;
     private Quaternion next_rotation;
     private Animator animator;
@@ -26,7 +27,6 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
 
     private byte indicator;
     private byte moveIndex;
-
 
     public void SetStartPosition(Vector3 pos, byte indicator, byte moveIndex)
     {
@@ -47,16 +47,26 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
 
     public void SetCombatState(bool state)
     {
-        armor.SetCombatState(state);
+        armor.SetCombatstate(state);
     }
     public void SetArmor(NetworkWriter nw)
     {
-        armor = GetComponent<GhostArmor>();
-        armor.ReadArmor(nw);
+        armor = GetComponent<Armor>();
+        armor.Init();
+        while (nw.AvailableBytes >= 8)
+        {
+            ItemUse part = (ItemUse)nw.ReadInt();
+            int id_item = nw.ReadInt();
+            Item _item = Inventory.GetItem(id_item);
+            armor.PutItem(part, _item);
+        }
     }
     public void UpdateArmor(NetworkWriter nw)
     {
-        armor.UpdateArmor(nw);
+        ItemUse part = (ItemUse)nw.ReadInt();
+        int id_item = nw.ReadInt();
+        Item _item = Inventory.GetItem(id_item);
+        armor.PutItem(part, _item);
     }
 
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using MonsterRedactor;
+using Resource;
 
 namespace OpenWorld
 {
@@ -13,17 +14,23 @@ namespace OpenWorld
         private static int _areaViseble = 1;
         private static MonstersList _monstersList;
         private static WorldMonstersList _worldMonstrList;
+        private static ResourceList _resourceList;
+        private static WorldResourcesList _worldResourcesList;
 
         public static Map Map{get{return editMap; } }
         public static int areaVisible { get { return _areaViseble; } }
         public static MonstersList monstersList { get { return _monstersList; } }
         public static WorldMonstersList WorldMonsterList { get { return _worldMonstrList; } }
+        public static ResourceList ResourcesList { get { return _resourceList; } }
+        public static WorldResourcesList WorldResourcesList { get { return _worldResourcesList; } }
 
 
         private static Map dontSaveMap;
         private static int dontSaveAreaVisible;
         private static MonstersList dontSaveMonstersList;
         private static WorldMonstersList dontSaveWorldMonsterList;
+        private static ResourceList dontSaveResourcesList;
+        private static WorldResourcesList dontSaveWorldResourceList;
 
         public static void Draw()
         {
@@ -46,8 +53,17 @@ namespace OpenWorld
             GUILayout.Label("Список монстров закрепленых на карте"); GUILayout.Space(5.0f);
             dontSaveWorldMonsterList = EditorGUILayout.ObjectField(dontSaveWorldMonsterList, typeof(WorldMonstersList), false) as WorldMonstersList;
 
+            GUILayout.Space(15.0f);
+            GUILayout.Label("Список ресурсов"); GUILayout.Space(5.0f);
+            dontSaveResourcesList = EditorGUILayout.ObjectField(dontSaveResourcesList, typeof(ResourceList), false) as ResourceList;
+
+            GUILayout.Space(15.0f);
+            GUILayout.Label("Список ресурсов закрепленых на карте"); GUILayout.Space(5.0f);
+            dontSaveWorldResourceList = EditorGUILayout.ObjectField(dontSaveWorldResourceList, typeof(WorldResourcesList), false) as WorldResourcesList;
+
             GUILayout.Space(20.0f);
-            GUI.enabled = dontSaveAreaVisible != _areaViseble || dontSaveMap != editMap || dontSaveMonstersList != _monstersList || dontSaveWorldMonsterList != _worldMonstrList;
+            GUI.enabled = dontSaveAreaVisible != _areaViseble || dontSaveMap != editMap || dontSaveMonstersList != _monstersList || dontSaveWorldMonsterList != _worldMonstrList || dontSaveResourcesList != _resourceList
+                || _worldResourcesList != dontSaveWorldResourceList;
             if (GUILayout.Button("Save"))
             {
                 _areaViseble = dontSaveAreaVisible;
@@ -64,6 +80,14 @@ namespace OpenWorld
                 _worldMonstrList = dontSaveWorldMonsterList;
                 pathToPrefab = AssetDatabase.GetAssetPath(_worldMonstrList);
                 PlayerPrefs.SetString("editWorldMonsterList", pathToPrefab);
+
+                _resourceList = dontSaveResourcesList;
+                pathToPrefab = AssetDatabase.GetAssetPath(_resourceList);
+                PlayerPrefs.SetString("editResourcesList", pathToPrefab);
+
+                _worldResourcesList = dontSaveWorldResourceList;
+                pathToPrefab = AssetDatabase.GetAssetPath(_worldResourcesList);
+                PlayerPrefs.SetString("editWorldResourcesList", pathToPrefab);
 
                 WindowOpenWorld.ReloadMap();
             }
@@ -86,6 +110,15 @@ namespace OpenWorld
             path = PlayerPrefs.GetString("editWorldMonsterList");
             _worldMonstrList = AssetDatabase.LoadAssetAtPath<WorldMonstersList>(path);
             dontSaveWorldMonsterList = _worldMonstrList;
+
+
+            path = PlayerPrefs.GetString("editResourcesList");
+            _resourceList = AssetDatabase.LoadAssetAtPath<ResourceList>(path);
+            dontSaveResourcesList = _resourceList;
+
+            path = PlayerPrefs.GetString("editWorldResourcesList");
+            _worldResourcesList = AssetDatabase.LoadAssetAtPath<WorldResourcesList>(path);
+            dontSaveWorldResourceList = _worldResourcesList;
 
         }
     }

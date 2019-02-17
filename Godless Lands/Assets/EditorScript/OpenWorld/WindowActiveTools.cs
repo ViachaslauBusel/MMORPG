@@ -36,11 +36,19 @@ namespace OpenWorld
                 PlayerPrefs.SetInt("ActiveTools", active);
             }
 
-            //Отрисовка и редактирование монстров нпц и ресурсов
+            //Отрисовка и редактирование монстров нпц
             GUI.enabled = active != 2;
             if(GUILayout.Button(EditorGUIUtility.IconContent("Avatar Icon"), EditorStyles.miniButtonMid, GUILayout.Width(25.0f), GUILayout.Height(25.0f)))
             {
                 active = 2;
+                PlayerPrefs.SetInt("ActiveTools", active);
+            }
+
+            //Отрисовка и редактирование ресурсов
+            GUI.enabled = active != 6;
+            if (GUILayout.Button(EditorGUIUtility.IconContent("Avatar Icon"), EditorStyles.miniButtonMid, GUILayout.Width(25.0f), GUILayout.Height(25.0f)))
+            {
+                active = 6;
                 PlayerPrefs.SetInt("ActiveTools", active);
             }
 

@@ -8,7 +8,6 @@ namespace MonsterRedactor
     public class WorldMonstersList : ScriptableObject
     {
         public List<WorldMonster> worldMonsters;
-        public int test;
          
         public void Add(WorldMonster monster)
         {

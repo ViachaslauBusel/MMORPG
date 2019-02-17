@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using MonsterRedactor;
+using Resource;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -49,6 +50,16 @@ namespace OpenWorld {
                     return;
                 }
                 MonsterExport.Export(WindowSetting.WorldMonsterList, WindowSetting.monstersList);
+                EditorUtility.DisplayDialog("Export monsters.dat", "Экспорт выполнен", "ok");
+            }
+            if (GUILayout.Button("Export resources.dat"))
+            {
+                if (WindowSetting.WorldResourcesList == null || WindowSetting.ResourcesList == null)
+                {
+                    EditorUtility.DisplayDialog("Export resources.dat", "Ошибка экспорта", "ok");
+                    return;
+                }
+                ResourcesExport.Export(WindowSetting.WorldResourcesList, WindowSetting.ResourcesList);
                 EditorUtility.DisplayDialog("Export monsters.dat", "Экспорт выполнен", "ok");
             }
             if (GUILayout.Button("Export terrain.dat"))

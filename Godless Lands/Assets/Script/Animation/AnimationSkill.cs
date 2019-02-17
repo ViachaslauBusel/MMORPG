@@ -7,7 +7,7 @@ public class AnimationSkill : MonoBehaviour {
     private Animator animator;
     private bool skill_block = false;
     public bool dead = false;
-    private float speedAnim;
+    private float speedAnim = 1.0f;
 
     public float GetSpeedAnim()
     {
@@ -38,6 +38,14 @@ public class AnimationSkill : MonoBehaviour {
         else if (animation == 3) { animator.SetTrigger("react"); skill_block = true; }
         else if (animation == 4) { animator.SetBool("dead", true); animator.SetTrigger("dying"); PlayerController controller = GetComponent<PlayerController>(); if (controller != null) controller.enabled = false; skill_block = true; }
         else if (animation == 5) { animator.SetBool("dead", false); }
+    }
+
+    public void UseAnimState(int animation,float time)
+    {
+        if (dead) return;
+        speedAnim = time;
+        animator.SetInteger("StateType", animation);
+        animator.SetTrigger("State");
     }
 
     public void freezeOn()

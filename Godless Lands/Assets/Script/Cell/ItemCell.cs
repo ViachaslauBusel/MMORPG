@@ -6,12 +6,15 @@ using UnityEngine;
 
 namespace Cells
 {
+    public delegate void Refresh(ItemCell itemCell);
+    
     public class ItemCell : Cell
     {
         protected Item item;
         protected int index;
         protected int count;
         protected int key;
+        public Refresh refresh;
 
         public override bool IsEmpty()
         {
@@ -40,6 +43,14 @@ namespace Cells
             }
             ShowIcon();
             icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        }
+
+        public void Refresh(Item item, int count, int key)
+        { 
+            PutItem(item);
+            SetCount(count);
+            SetKey(key);
+            refresh(this);
         }
 
         public override void Put(Cell cell)

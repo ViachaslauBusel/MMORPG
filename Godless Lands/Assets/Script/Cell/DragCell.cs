@@ -33,15 +33,15 @@ namespace Cells
 
             if (!Input.GetButton("MouseLeft"))
             {
-                Ray();
                 Destroy(gameObject);
                 enabled = false;
+                if(Ray())
                 cell.ShowIcon();//Снова показать иконеку в ячейке
  
             }
         }
 
-        private void Ray()
+        private bool Ray()
         {
             //Set up the new Pointer Event
             m_PointerEventData = new PointerEventData(m_EventSystem);
@@ -64,11 +64,13 @@ namespace Cells
                         Cell resultCell = result.gameObject.GetComponent<Cell>();
                         if (resultCell == null) continue;
                         resultCell.Put(cell);
-                        return;
+                        return true;
                     }
                 }
-                cell.Abort();
+               
             }
+            cell.Abort();
+            return false;
         }
     }
 }

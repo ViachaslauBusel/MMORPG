@@ -5,6 +5,7 @@ using UnityEngine;
 using RUCP;
 using System;
 using System.Text;
+using Items;
 
 public class CharactersManager : MonoBehaviour {
 
@@ -112,7 +113,11 @@ public class CharactersManager : MonoBehaviour {
                     break;
                 case 2://layer 2 = Проиграть анимацию состояния без контроля времени
                     characters[id_login].GetComponent<AnimationSkill>().UseAnimState(anim);
-                    break; 
+                    break;
+                case 3: //layer 3 = Проиграть анимацию состояния с контролем времени
+                    int timeMilli = nw.ReadInt();
+                    characters[id_login].GetComponent<AnimationSkill>().UseAnimState(anim, (timeMilli / 1000.0f));
+                    break;
             }
         }
     }
@@ -141,6 +146,7 @@ public class CharactersManager : MonoBehaviour {
         {
 
                 GameObject obj = Instantiate(shipObject, Vector3.zero, Quaternion.identity);
+            obj.transform.SetParent(transform);
             GhostCharacter ship_obj = obj.GetComponent<GhostCharacter>();
             ship_obj.SetStartPosition(nw.ReadVec3(), nw.ReadByte(), nw.ReadByte());
             ship_obj.NextRotation(nw.ReadFloat());

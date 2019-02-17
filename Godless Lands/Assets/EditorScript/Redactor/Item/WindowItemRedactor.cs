@@ -16,7 +16,7 @@ namespace Items
         private int width_item = 100;
         private int height_item = 140;
 
-        private Texture2D item_icon;
+  
         private ItemEditor select_editor;
         private float menu_height = 30.0f;
 
@@ -37,6 +37,9 @@ namespace Items
             select_editor = ScriptableObject.CreateInstance<ItemEditor>();
             titleContent.image = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Editor/Img/bag.png"); //Resources.Load("Editor/Img/bag") as Texture2D;
             redactorStyle = new RedactorStyle();
+
+            string path = PlayerPrefs.GetString("WindowItemRedactorItemsList");
+            itemsList = AssetDatabase.LoadAssetAtPath<ItemsList>(path);
         }
 
         private void DrawMenu()
@@ -166,6 +169,8 @@ namespace Items
             AssetDatabase.Refresh();
             EditorUtility.SetDirty(itemsList);
             AssetDatabase.SaveAssets();
+
+            PlayerPrefs.SetString("WindowItemRedactorItemsList", AssetDatabase.GetAssetPath(itemsList));
         }
         public static ItemsList Create()
         {

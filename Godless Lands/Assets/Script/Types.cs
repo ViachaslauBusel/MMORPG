@@ -62,5 +62,10 @@ public class Types {
     public const short UseItemByKey = 56;
     public const short WrapBarCell = 57;
     public const short WrapItem = 58;
+    public const short ResourceCreate = 59;//S-C отправка на клиент данных для создания ресурса
+    public const short ResourceDelete = 60;//S-C отправка на клиент данных для удаление ресурса
+    public const short ResourceUse = 61;
+    public const short LoadArmor = 62;
+    public const short RecipeUse = 63;
 
 }

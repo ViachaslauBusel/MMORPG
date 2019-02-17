@@ -69,5 +69,15 @@ namespace Items
         {
             return items;
         }
+
+        public string[] GetNames()
+        {
+            string[] names = new string[items.Count];
+            for(int i=0; i<names.Length; i++)
+            {
+                names[i] = items[i].nameItem;
+            }
+            return names;
+        }
     }
 }

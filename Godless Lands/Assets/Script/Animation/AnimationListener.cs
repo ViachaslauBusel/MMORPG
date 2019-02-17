@@ -44,9 +44,14 @@ public class AnimationListener : MonoBehaviour
                 PanelSkills.Hide((milliseconds - NetworkManager.Socket.GetPing()) / 1000.0f);
                 animationSkill.UseAnimationSkill(animation, (milliseconds / 1000.0f));
                 break;
-            case 2:
+            case 2: //layer 2 = Проиграть анимацию состояния без контроля времени
                 animationSkill.UseAnimState(animation);
-                break; //layer 2 = Проиграть анимацию состояния без контроля времени
+                break;
+            case 3: //layer 3 = Проиграть анимацию состояния с контролем времени
+                int timeMilli = nw.ReadInt();
+                PanelSkills.Hide((timeMilli - NetworkManager.Socket.GetPing()) / 1000.0f);
+                animationSkill.UseAnimState(animation, (timeMilli / 1000.0f));
+                break;
         }
        
     }

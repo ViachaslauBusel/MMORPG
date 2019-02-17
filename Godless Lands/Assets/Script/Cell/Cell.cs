@@ -32,8 +32,9 @@ namespace Cells
            return icon.sprite.texture;
         }
 
-        public void HideIcon()
+        public virtual void HideIcon()
         {
+            print("hide icon");
             icon.enabled = false;
         }
         public void ShowIcon()

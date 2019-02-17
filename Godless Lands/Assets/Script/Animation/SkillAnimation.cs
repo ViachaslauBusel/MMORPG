@@ -10,6 +10,10 @@ public class SkillAnimation : StateMachineBehaviour
         float time = animator.GetComponent<AnimationSkill>().GetSpeedAnim();
 
         float speedUse = stateInfo.length / time;
+        if (float.IsInfinity(speedUse))
+        {
+            Debug.Log("Время использование умения: " + time + " Множитель: " + speedUse + " длина анимации:" + stateInfo.length + " speed:" + stateInfo.speed);
+        }
       //  Debug.Log("Время использование умения: " + time + " Множитель: " + speedUse + " длина анимации:" + stateInfo.length +" speed:"+ stateInfo.speed);
         animator.SetFloat("SpeedSkill", animator.GetFloat("SpeedSkill") * speedUse);
     }

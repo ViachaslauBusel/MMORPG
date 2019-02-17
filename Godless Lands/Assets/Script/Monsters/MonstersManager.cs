@@ -114,6 +114,7 @@ namespace Monsters
             if (prefabMonster == null) { print("Error monster skin: " + idSkin); return; }
 
             GameObject _obj = Instantiate(prefabMonster, postion, Quaternion.Euler(0.0f, rotation, 0.0f));
+            _obj.transform.SetParent(transform);
 
             Monster _monster = _obj.GetComponent<Monster>();
             _monster.StartMonster();

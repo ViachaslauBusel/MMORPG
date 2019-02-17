@@ -15,7 +15,7 @@ namespace Cells
 
         private new void Awake()
         {
-            base.Awake();
+            icon = transform.Find("Icon").GetComponent<Image>();
             defaultIcon = icon.sprite.texture;
         }
 
@@ -28,8 +28,9 @@ namespace Cells
             NetworkManager.Send(nw);
         }
 
-        public new void HideIcon()
+        public override void HideIcon()
         {
+            print("new hide icon");
             icon.sprite = Sprite.Create(defaultIcon, new Rect(0.0f, 0.0f, defaultIcon.width, defaultIcon.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
