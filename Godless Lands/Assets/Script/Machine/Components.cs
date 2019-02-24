@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Components : MonoBehaviour
 {
+    public bool fuel;
     private ActionCell[] cells;
 
     private void Awake()
     {
         cells = GetComponentsInChildren<ActionCell>();
+        for(int i=0; i<cells.Length; i++)
+        {
+            cells[i].SetIndex(i);
+            cells[i].fuel = fuel;
+        }
     }
 
     public int Length
@@ -24,10 +30,30 @@ public class Components : MonoBehaviour
 
     public bool ConstainsItem(int id)
     {
+        print("ConstainsItem i");
         foreach (ActionCell cell in cells)
         {
-            if (!cell.IsEmpty() && cell.GetItem().id == id) return true;
+            if (!cell.IsEmpty() && cell.ID() == id) return true;
         }
         return false;
+    }
+
+    public void Clear()
+    {
+        foreach (ActionCell cell in cells)
+        {
+            cell.PutItem(null, 0);
+        }
+    }
+
+    public ActionCell[] GetCells()
+    {
+        return cells;
+    }
+
+    public ActionCell GetCell(int index)
+    {
+        if (index < 0 || index >= cells.Length) return null;
+        return cells[index];
     }
 }

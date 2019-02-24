@@ -14,7 +14,12 @@ namespace Recipes {
                 foreach (Recipe recipe in recipesList.recipes)
                 {
                     stream_out.Write(recipe.id);
+                    stream_out.Write((int)recipe.use);
                     stream_out.Write(recipe.result);
+
+                    stream_out.Write((int)recipe.profession);
+                    stream_out.Write(recipe.exp);
+                    stream_out.Write(recipe.stamina);
 
                     stream_out.Write((byte)recipe.component.Count);
                     foreach (Piece component in recipe.component)

@@ -95,3 +95,30 @@ MonoBehaviour:
     use: 0
     _serializableObj: 
     type: 
+  - id: 9
+    nameItem: "\u0417\u0430\u0433\u043E\u0442\u043E\u0432\u043A\u0430 \u043A\u043B\u0438\u043D\u043A\u0430"
+    texture: {fileID: 2800000, guid: af50dc4fa7b6d314895d0f8c79adb4a5, type: 3}
+    description: "\u0417\u0430\u0433\u043E\u0442\u043E\u0432\u043A\u0430 \u043A\u043B\u0438\u043D\u043A\u0430"
+    stack: 1
+    prefab: {fileID: 0}
+    use: 0
+    _serializableObj: 
+    type: 
+  - id: 10
+    nameItem: "\u041A\u043B\u0438\u043D\u043E\u043A"
+    texture: {fileID: 2800000, guid: af50dc4fa7b6d314895d0f8c79adb4a5, type: 3}
+    description: 
+    stack: 1
+    prefab: {fileID: 0}
+    use: 0
+    _serializableObj: 
+    type: 
+  - id: 11
+    nameItem: "\u0422\u043E\u0447\u0438\u043B\u044C\u043D\u044B\u0439 \u043A\u0430\u043C\u0435\u043D\u044C"
+    texture: {fileID: 2800000, guid: 9e2c99a2f1ae70343ba923d766b9ead8, type: 3}
+    description: 
+    stack: 1
+    prefab: {fileID: 0}
+    use: 0
+    _serializableObj: 
+    type: 

@@ -36,19 +36,18 @@ namespace Cells
             if (item.stack)
             {
                 count -= input_count;
-                if (count < 1) PutItem(null);
+                if (count < 1) PutItem(null, 0);
             }
             else
             {
-                PutItem(null);
+                PutItem(null, 0);
             }
         }
 
         public void PutItemCell(ItemCell itemCell)
         {
-            PutItem(itemCell.GetItem());
-            count = itemCell.GetCount();
             index = itemCell.GetIndex();
+            PutItem(itemCell.GetItem(), itemCell.GetCount());
         }
 
         public override void Put(Cell cell)

@@ -13,6 +13,9 @@ namespace Resource
         public float startSpawn;
         public float timeSpawn;
         public List<Drop> drops;
+        public ProfessionEnum profession;//Профессия которая получает опыт
+        public int exp;//Получаему очки опыта
+        public int stamina; //Затраты стамины
 
         public Fabric()
         {

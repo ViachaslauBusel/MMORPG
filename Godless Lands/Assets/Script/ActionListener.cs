@@ -34,6 +34,7 @@ public class ActionListener : MonoBehaviour
                 toObject.y = 0.0f;
                 if (Vector3.Angle(player.forward, toObject) < 40.0f)
                 {
+           
                     if (Input.GetButtonDown("Action"))
                     {
                         action.Use();

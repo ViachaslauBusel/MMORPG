@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73aafb4542a919f489556dba9bf38fcf, type: 3}
+  m_Name: MachineList
+  m_EditorClassIdentifier: 
+  machines:
+  - id: 1
+    position: {x: 1131.7819, y: 182.91522, z: 1889.3762}
+    rotation: {x: -0, y: 318.92572, z: 0}
+    scale: {x: 1.5, y: 1.5, z: 1.5}
+    prefab: {fileID: 3933912921224244895, guid: fc763a89b14565e418bc2a081e2ed233,
+      type: 3}
+    machineUse: 1
+  - id: 2
+    position: {x: 1126.601, y: 183.212, z: 1882.511}
+    rotation: {x: -0, y: 358.84357, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    prefab: {fileID: 107654, guid: 0d6eeafbd2a04544c86ce51aa012bbf2, type: 3}
+    machineUse: 2

@@ -1,4 +1,5 @@
 ﻿using OpenWorld;
+using RUCP;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,7 +65,12 @@ public class GameLoader : MonoBehaviour
             yield return null;
             progressBar.fillAmount = 0.2f * asyncLoad.progress;
         }
-        PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
+        print("isDone");
+        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
+        nw.SetTypePack(Types.MapEntrance);
+        NetworkManager.Send(nw);
+    
+    PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
 
         while (!player.enabled)
         {

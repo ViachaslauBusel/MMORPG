@@ -54,7 +54,7 @@ Material:
     - _Cutoff: 0.547
     - _EmissivePower: 0.05
     - _Gloss: 0.091
-    - _Metalic: 1
+    - _Metalic: 0
     - _Shininess: 0.1
     - _WindIntensity: 0.0483
     - _WindQuality: 0

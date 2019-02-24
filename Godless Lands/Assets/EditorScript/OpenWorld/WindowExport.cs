@@ -73,28 +73,37 @@ namespace OpenWorld {
                 EditorUtility.DisplayDialog("Export terrain.dat", "Экспорт выполнен", "ok");
             }
 
-
-
-          /*  if (GUILayout.Button("fix TerrainData"))
+            if (GUILayout.Button("Export machines.dat"))
             {
-                float maxProgress = map.mapSize * map.mapSize;
-                float totalProgress = 0.0f;
-
-                string folder;
-                for (int x = 0; x < map.mapSize; x++)
+                if (WindowSetting.MachineList == null)
                 {
-                    EditorUtility.DisplayProgressBar("OpenWorld", "fix terrain", totalProgress / maxProgress);
-                    for (int y = 0; y < map.mapSize; y++)
-                    {
-
-                        totalProgress = (x * map.mapSize) + y;
-
-                        folder = map.mapName + "/KMBlock_" + x + '_' + y;
-                        Fix(folder);
-                    }
+                    EditorUtility.DisplayDialog("Export machines.dat", "Ошибка экспорта", "ok");
+                    return;
                 }
-                EditorUtility.ClearProgressBar();
-            }*/
+                MachinesExport.Export(WindowSetting.MachineList);
+                EditorUtility.DisplayDialog("Export machines.dat", "Экспорт выполнен", "ok");
+            }
+
+            /*  if (GUILayout.Button("fix TerrainData"))
+              {
+                  float maxProgress = map.mapSize * map.mapSize;
+                  float totalProgress = 0.0f;
+
+                  string folder;
+                  for (int x = 0; x < map.mapSize; x++)
+                  {
+                      EditorUtility.DisplayProgressBar("OpenWorld", "fix terrain", totalProgress / maxProgress);
+                      for (int y = 0; y < map.mapSize; y++)
+                      {
+
+                          totalProgress = (x * map.mapSize) + y;
+
+                          folder = map.mapName + "/KMBlock_" + x + '_' + y;
+                          Fix(folder);
+                      }
+                  }
+                  EditorUtility.ClearProgressBar();
+              }*/
 
             if (GUILayout.Button("Remove missing Tree/Grass"))
             {

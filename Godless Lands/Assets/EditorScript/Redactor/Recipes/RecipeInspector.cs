@@ -29,6 +29,10 @@ namespace Recipes
             recipe.result = EditorGUILayout.IntField("result:", recipe.result);
             DrawItem(recipe.result);
 
+            recipe.profession = (ProfessionEnum)EditorGUILayout.EnumPopup(recipe.profession);
+            recipe.exp = EditorGUILayout.IntField("Exp:", recipe.exp);
+            recipe.stamina = EditorGUILayout.IntField("Stamina:", recipe.stamina);
+
             if (GUILayout.Button("Add component"))
             {
                 recipe.component.Add(new Piece());

@@ -24,6 +24,10 @@ namespace Resource
                     stream_out.Write((int)(fabric.startSpawn * 1000));
                     stream_out.Write((int)(fabric.timeSpawn * 1000));
 
+                    stream_out.Write((int)fabric.profession);
+                    stream_out.Write(fabric.exp);
+                    stream_out.Write(fabric.stamina);
+
                     //Drop
                     stream_out.Write(fabric.drops.Count);
                     foreach(Drop drop in fabric.drops)

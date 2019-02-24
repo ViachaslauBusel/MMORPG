@@ -4,6 +4,6 @@ using UnityEngine;
 
 public enum MachineUse
 {
-   Smelter,
-   Grindstone
+   Smelter = 1,
+   Grindstone = 2
 }

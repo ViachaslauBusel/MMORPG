@@ -53,13 +53,11 @@ public class Trade : MonoBehaviour
 
     private void PutMyOfferItem(int id, int count)
     {
-        myOfferItems[myIndex].SetCount(count);
-        myOfferItems[myIndex++].PutItem(inventory.itemsList.GetItem(id));
+        myOfferItems[myIndex++].PutItem(inventory.itemsList.GetItem(id), count);
     }
     private void PutOtherOfferItem(int id, int count)
     {
-        otherOfferItem[otherIndex].SetCount(count);
-        otherOfferItem[otherIndex++].PutItem(inventory.itemsList.GetItem(id));
+        otherOfferItem[otherIndex++].PutItem(inventory.itemsList.GetItem(id), count);
     }
 
     private void ClearMyTradeCell()//Очистить все ячейки этого игрока
@@ -67,8 +65,7 @@ public class Trade : MonoBehaviour
         myIndex = 0;
         for (int i = 0; i < myOfferItems.Length; i++)
         {
-            myOfferItems[i].SetCount(0);
-            myOfferItems[i].PutItem(null);
+            myOfferItems[i].PutItem(null, 0);
         }
 
       
@@ -78,8 +75,7 @@ public class Trade : MonoBehaviour
         otherIndex = 0;
         for (int i = 0; i < otherOfferItem.Length; i++)
         {
-            otherOfferItem[i].SetCount(0);
-            otherOfferItem[i].PutItem(null);
+            otherOfferItem[i].PutItem(null, 0);
         }
     }
 
@@ -184,7 +180,7 @@ public class Trade : MonoBehaviour
                 GameObject _obj = Instantiate(offerCell);
                 _obj.transform.SetParent(parent_myOffer);
                 OfferCell _offerCell = _obj.GetComponent<OfferCell>();
-                _offerCell.PutItem(null);
+                _offerCell.PutItem(null, 0);
                 _offerCell.SetOpen(true);
                 myOfferItems[i] = _offerCell;
             }

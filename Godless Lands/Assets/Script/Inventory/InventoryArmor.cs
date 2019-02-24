@@ -14,10 +14,10 @@ public class InventoryArmor : MonoBehaviour
         switch (use)
         {
             case ItemUse.Weapon:
-                weapon.PutItem(item);
+                weapon.PutItem(item, 1);
                 break;
             case ItemUse.Pickaxe:
-                pickaxe.PutItem(item);
+                pickaxe.PutItem(item, 1);
                 break;
         }
     }

@@ -9,7 +9,7 @@ public class Types {
     public const short MyCharacters = 3; //C->S запрос на получение списка персонажей, S->C Список персонажей
     public const short OwnCharacterCreate = 4; //C->S->C Отправка на сервер запроса на создание персонажа и отпрака обратно подтверждение или ошибки
     public const short CharacterCreate = 5; //S ->C отправка данных о других кораблях в системе
-    public const short MyCharacter = 6; //C->S Запрос на получение информации о выбраном персонаже S->C Информация о выбраном персонаже
+    public const short MapEntrance = 6; //C->S Запрос на получение информации о выбраном персонаже S->C Информация о выбраном персонаже
     public const short SelectCharacter = 7; // C->S Выбор персонажа в лоби // S->C Ответ от сервера
     public const short Login = 8;  //C->S отпровляет логин и пароль на сервер
     public const short Registration = 9; //C->S отпровляет логин и пароль  для регистрации акаунта
@@ -67,5 +67,13 @@ public class Types {
     public const short ResourceUse = 61;
     public const short LoadArmor = 62;
     public const short RecipeUse = 63;
+    public const short MachineUse = 64;
+    public const short MachineCreate = 65;
+    public const short MachineDelete = 66;
+    public const short MachineAddComponent = 67;
+    public const short MachineRemoveComponent = 68;
+    public const short MachineClose = 69;
+    public const short ProfessionUpdate = 70;
+    public const short ProfessionLoad = 71;
 
 }

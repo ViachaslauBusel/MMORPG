@@ -11,6 +11,9 @@ namespace Recipes
         public int result;
         public List<Piece> component;
         public List<Piece> fuel;
+        public ProfessionEnum profession;//Профессия которая получает опыт
+        public int exp;//Получаему очки опыта
+        public int stamina; //Затраты стамины
 
         public Recipe()
         {

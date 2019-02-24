@@ -6,11 +6,16 @@ using UnityEngine;
 public class GhostResource : MonoBehaviour, Action
 {
     public int ID;
+    public GameObject lod;
+    public GameObject fragments;
     private Animator animator;
+    private BoxCollider collider;
 
     private void Awake()
     {
+        collider = GetComponent<BoxCollider>();
         animator = GetComponent<Animator>();
+        fragments.SetActive(false);
         ActionListener.Add(this);
     }
     public Vector3 position
@@ -44,6 +49,9 @@ public class GhostResource : MonoBehaviour, Action
 
     public void DestroyAnim()
     {
+        collider.enabled = false;
+        lod.SetActive(false);
+        fragments.SetActive(true);
         animator.SetTrigger("destroy");
     }
 
@@ -56,4 +64,5 @@ public class GhostResource : MonoBehaviour, Action
     {
         ActionListener.Remove(this);
     }
+
 }

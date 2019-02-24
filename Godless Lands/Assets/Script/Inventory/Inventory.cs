@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using Cells;
 using Items;
 
+public delegate void RefreshCount();
 public class Inventory : MonoBehaviour {
 
     public ItemsList itemsList;
@@ -19,6 +20,7 @@ public class Inventory : MonoBehaviour {
     private int size_bag;
 
     private UISort uISort;
+    private RefreshCount refreshCount;
 
     private static Inventory inventory;
 
@@ -33,6 +35,28 @@ public class Inventory : MonoBehaviour {
     public static Item GetItem(int id)
     {
        return inventory.itemsList.GetItem(id);
+    }
+    public static int GetCount(int key)
+    {
+        if (inventory.items == null) return 0;
+       foreach(ItemCell itemCell in inventory.items)
+        {
+            if (itemCell.GetKey() == key) return itemCell.GetCount();
+        }
+        return 0;
+    }
+    public static void RegisterCount(RefreshCount refresh)
+    {
+        if(inventory.refreshCount == null)
+            inventory.refreshCount = refresh;
+        else
+        inventory.refreshCount += refresh;
+    }
+    public static void UnregisterCount(RefreshCount refresh)
+    {
+        if (inventory.refreshCount == null) return;
+
+            inventory.refreshCount -= refresh;
     }
 
     public ItemCell[] GetCellItems()
@@ -55,6 +79,7 @@ public class Inventory : MonoBehaviour {
         int index = nw.ReadInt();//Индекс изменившейся ячейки
         int id_item = nw.ReadInt();//Индекс нового предмета в этой ячейке
         int key = nw.ReadInt();//Уnикальный ид предмета
+
         int count = 0;
         Item item;
         if (id_item > 0)//Если предмет существует 
@@ -66,6 +91,8 @@ public class Inventory : MonoBehaviour {
         item = itemsList.GetItem(id_item);
         //  print("item: " + (item == null));
         items[index].Refresh(item, count, key);
+
+        if (refreshCount != null) refreshCount();
     }
 
     private void LoadingInventory(NetworkWriter nw)
@@ -92,12 +119,13 @@ public class Inventory : MonoBehaviour {
             GameObject _obj = Instantiate(itemCell);
             _obj.transform.SetParent(bag);
             ItemCell _itemCell = _obj.GetComponent<ItemCell>();
-            _itemCell.PutItem(item);
-            _itemCell.SetCount(count_item);
+            _itemCell.PutItem(item, count_item);
             _itemCell.SetIndex(i);
             _itemCell.SetKey(key);
             items[i] = _itemCell;
         }
+
+        if (refreshCount != null) refreshCount();
     }
 
     

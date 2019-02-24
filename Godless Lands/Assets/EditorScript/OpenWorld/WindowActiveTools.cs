@@ -52,6 +52,14 @@ namespace OpenWorld
                 PlayerPrefs.SetInt("ActiveTools", active);
             }
 
+            //Отрисовка и редактирование станков
+            GUI.enabled = active != 7;
+            if (GUILayout.Button(EditorGUIUtility.IconContent("Avatar Icon"), EditorStyles.miniButtonMid, GUILayout.Width(25.0f), GUILayout.Height(25.0f)))
+            {
+                active = 7;
+                PlayerPrefs.SetInt("ActiveTools", active);
+            }
+
             //Отрисовка и редактирование обьектов на карте
             GUI.enabled = active != 3;
             if(GUILayout.Button(EditorGUIUtility.IconContent("Prefab Icon"), EditorStyles.miniButtonMid, GUILayout.Width(25.0f), GUILayout.Height(25.0f)))

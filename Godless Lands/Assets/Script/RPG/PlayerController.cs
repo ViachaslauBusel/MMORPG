@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake()
     {
-        
-        RegisteredTypes.RegisterTypes(Types.MyCharacter, MyCharacter);
+        print("Awake");
+        RegisteredTypes.RegisterTypes(Types.MapEntrance, MyCharacter);
         RegisteredTypes.RegisterTypes(Types.TeleportToPoint, TeleportToPoint);
     }
 
@@ -40,13 +40,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Start () {
-
+        print("Start");
         animationSkill = GetComponent<AnimationSkill>();
         character = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         animator.SetFloat("speedRun", speed / 3.5f);
        
-        GetMyCharacter();
+
 
         enabled = false;
     }
@@ -75,12 +75,7 @@ public class PlayerController : MonoBehaviour {
         enabled = true;
     }
 
-    private void GetMyCharacter()
-    {
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-        nw.SetTypePack(Types.MyCharacter);
-        NetworkManager.Send(nw);
-    }
+
 
     void Update () {
         if (character.isGrounded)
@@ -173,7 +168,7 @@ public class PlayerController : MonoBehaviour {
     private void OnDestroy()
     {
 
-        RegisteredTypes.UnregisterTypes(Types.MyCharacter);
+        RegisteredTypes.UnregisterTypes(Types.MapEntrance);
         RegisteredTypes.UnregisterTypes(Types.TeleportToPoint);
     }
     }

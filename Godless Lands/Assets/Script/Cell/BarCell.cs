@@ -19,13 +19,16 @@ namespace Cells
         private int key;//уникальный ид предмета
         private Transform playerTransform;
         private int index;//Номер этой ячейки
+        private Text count;
 
         private new void Awake()
         {
+            count = transform.Find("Count").GetComponent<Text>();
             base.Awake();
             hide = transform.Find("Hide").GetComponent<Image>();
             hide.enabled = false;
             help = transform.Find("help").GetComponent<Text>();
+           
             playerTransform = GameObject.Find("Player").transform;
         }
 
@@ -130,20 +133,42 @@ namespace Cells
              icon.sprite = Sprite.Create(skill.icon, new Rect(0.0f, 0.0f, skill.icon.width, skill.icon.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
-        public void SetItem(Item item, int key)
+        public void SetItem(Item item, int key, bool setCount = true)
         {
+            if (item == null) { Clear(); return; }
             skill = null;
             this.item = item;
             this.key = key;
             icon.enabled = true;
             icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+
+            if (item.stack && setCount)
+            {
+                count.text = Inventory.GetCount(key).ToString();
+                count.enabled = true;
+            }
+            else
+                count.text = "";
         }
 
+        //Обновилось количество какого то предмета в инвентаре
+        public void Refresh()
+        {
+         //   print("refresh");
+            if (item != null && item.stack)
+            {
+           //     print("count"+Inventory.GetCount(item.id).ToString());
+           
+                count.text = Inventory.GetCount(key).ToString();
+                count.enabled = true;
+            }
+        }
         public void Clear()
         {
             item = null;
             skill = null;
             icon.enabled = false;
+            count.text = "";
         }
 
         public Skill GetSkill()
@@ -177,7 +202,16 @@ namespace Cells
           {
               return targetCell;
           }*/
-
+        public override void HideIcon()
+        {
+            base.HideIcon();
+            count.enabled = false;
+        }
+        public override void ShowIcon()
+        {
+            base.ShowIcon();
+            count.enabled = true;
+        }
         public override void Abort()
         {
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);

@@ -35,13 +35,13 @@ namespace Cells
             {
                 Destroy(gameObject);
                 enabled = false;
-                if(Ray())
+                Ray();
                 cell.ShowIcon();//Снова показать иконеку в ячейке
  
             }
         }
 
-        private bool Ray()
+        private void Ray()
         {
             //Set up the new Pointer Event
             m_PointerEventData = new PointerEventData(m_EventSystem);
@@ -64,13 +64,13 @@ namespace Cells
                         Cell resultCell = result.gameObject.GetComponent<Cell>();
                         if (resultCell == null) continue;
                         resultCell.Put(cell);
-                        return true;
+                        return;
                     }
                 }
                
             }
             cell.Abort();
-            return false;
+         //   return false;
         }
     }
 }

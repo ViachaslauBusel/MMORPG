@@ -30,7 +30,6 @@ namespace Cells
 
         public override void HideIcon()
         {
-            print("new hide icon");
             icon.sprite = Sprite.Create(defaultIcon, new Rect(0.0f, 0.0f, defaultIcon.width, defaultIcon.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 

@@ -10,6 +10,7 @@ namespace Cells
  
         protected Image icon;
 
+
         protected void Awake()
         {
         
@@ -34,10 +35,9 @@ namespace Cells
 
         public virtual void HideIcon()
         {
-            print("hide icon");
             icon.enabled = false;
         }
-        public void ShowIcon()
+        public virtual void ShowIcon()
         {
             icon.enabled = true;
         }

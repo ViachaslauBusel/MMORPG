@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipes:
   - id: 1
-    use: 0
+    use: 1
     result: 7
     component:
     - ID: 6
@@ -22,3 +22,30 @@ MonoBehaviour:
     fuel:
     - ID: 8
       count: 5
+    profession: 1
+    exp: 10
+    stamina: 100
+  - id: 2
+    use: 1
+    result: 9
+    component:
+    - ID: 7
+      count: 5
+    fuel:
+    - ID: 8
+      count: 6
+    profession: 1
+    exp: 150
+    stamina: 300
+  - id: 3
+    use: 2
+    result: 10
+    component:
+    - ID: 9
+      count: 2
+    fuel:
+    - ID: 11
+      count: 5
+    profession: 1
+    exp: 100
+    stamina: 400

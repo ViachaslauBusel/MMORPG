@@ -118,6 +118,14 @@ namespace OpenWorld
                     }
                     WindowResourcesAcriveTools.Draw();
                     break;
+                case 7://Инструменты для Редактирование станков   
+                    if (mapLoader == null)
+                    {
+                        mapLoader = CreateMap(SceneView.lastActiveSceneView.camera.transform);
+                        if (mapLoader == null) return;
+                    }
+                    WindowMachineActiveTools.Draw();
+                    break;
             }
 
             
@@ -194,6 +202,12 @@ namespace OpenWorld
 
                     ResourcesVisibleSceneGUI.SceneGUI(mapLoader);
                     break;
+                case 7:
+               /*     if (WindowMachineActiveTools.ResourcesDraw)
+                    { ResourcesSceneGUI.SceneGUI(sceneView.camera); }*/
+
+                    MachineVisibleSceneGUI.SceneGUI(mapLoader);
+                    break;
             }
             
          
@@ -206,6 +220,7 @@ namespace OpenWorld
             ResourcesSceneGUI.Destroy(); 
             MonsterVisibleSceneGUI.Destroy();
             ResourcesVisibleSceneGUI.Destroy();
+            MachineVisibleSceneGUI.Destroy();
         }
 
         private void OnDestroy()

@@ -3,10 +3,11 @@ using RUCP;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Cells
 {
-    public delegate void Refresh(ItemCell itemCell);
+  
     
     public class ItemCell : Cell
     {
@@ -14,12 +15,20 @@ namespace Cells
         protected int index;
         protected int count;
         protected int key;
-        public Refresh refresh;
+        protected Text countTxt;
+
+
+
+        protected new void Awake()
+        {
+            base.Awake();
+            countTxt = transform.Find("Count").GetComponent<Text>();
+        }
 
         public override bool IsEmpty()
         {
             if (item == null) return true;
-            if (item.id < 0) return true;
+            if (item.id <= 0) return true;
             return false;
         }
 
@@ -33,24 +42,32 @@ namespace Cells
             NetworkManager.Send(nw);
         }
 
-        public void PutItem(Item item)
+        public virtual void PutItem(Item item, int count)
         {
+            this.count = count;
             this.item = item;
             if (IsEmpty())
             {
+                if (countTxt != null)
+                    countTxt.text = "";
                 HideIcon();
                 return;
             }
             ShowIcon();
             icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+            if (countTxt != null)
+            {
+                if (item.stack)
+                    countTxt.text = count.ToString();
+                else countTxt.text = "";
+            }
         }
 
         public void Refresh(Item item, int count, int key)
         { 
-            PutItem(item);
-            SetCount(count);
-            SetKey(key);
-            refresh(this);
+            PutItem(item, count);
+            this.key = key;
+
         }
 
         public override void Put(Cell cell)
@@ -60,15 +77,10 @@ namespace Cells
             ItemCell itemCell = cell as ItemCell;
             NetworkWriter writer = new NetworkWriter(Channels.Reliable);
             writer.SetTypePack(Types.WrapItem);
-            writer.write((byte)index);//Номер ячейки на панели
-            writer.write((byte)itemCell.index);//Номер ячейки на панели
+            writer.write((byte)index);
+            writer.write((byte)itemCell.index);
             NetworkManager.Send(writer);
 
-        }
-
-        public void SetCount(int count)
-        {
-            this.count = count;
         }
 
         public void SetKey(int key)
@@ -84,6 +96,11 @@ namespace Cells
         public Item GetItem()
         {
             return item;
+        }
+        public int ID()
+        {
+            if (IsEmpty()) return -1;
+            return item.id;
         }
         public int GetCount()
         {

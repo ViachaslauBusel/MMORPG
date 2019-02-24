@@ -13,7 +13,7 @@ namespace OpenWorld
         
         public Transform trackingObj;
         public Map map;
-        private int _areaVisible = 2;
+        private int _areaVisible;
         private int _basemapDistance = 50;
         private int _quality;
         private float _detailDistance;

@@ -30,6 +30,10 @@ namespace Resource
             resource.startSpawn = EditorGUILayout.FloatField("start Spawn:", resource.startSpawn);
             resource.timeSpawn = EditorGUILayout.FloatField("time Spawn:", resource.timeSpawn);
 
+            resource.profession = (ProfessionEnum)EditorGUILayout.EnumPopup(resource.profession);
+            resource.exp = EditorGUILayout.IntField("Exp:", resource.exp);
+            resource.stamina = EditorGUILayout.IntField("Stamina:", resource.stamina);
+
             if (GUILayout.Button("Add drop"))
             {
                 resource.drops.Add(new Drop());

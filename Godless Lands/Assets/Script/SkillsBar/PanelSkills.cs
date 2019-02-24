@@ -23,14 +23,29 @@ namespace SkillsBar
             {
                 barCells[i].SetIndex(i);
             }
+         
             RegisteredTypes.RegisterTypes(Types.loadBar, loadBar);
             RegisteredTypes.RegisterTypes(Types.updateBarCell, updateBarCell);
            
         }
+        private void Start()
+        {
+            Inventory.RegisterCount(RefreshCount);
+        }
 
+        private void RefreshCount()
+        {
+            foreach(BarCell cell in barCells)
+            {
+                cell.Refresh();
+            }
+        }
         private void loadBar(NetworkWriter nw)
         {
-            
+            while(nw.AvailableBytes > 0)
+            {
+                updateBarCell(nw);
+            }
         }
 
         private void updateBarCell(NetworkWriter nw)
@@ -68,6 +83,7 @@ namespace SkillsBar
         private void OnDestroy()
         {
             RegisteredTypes.UnregisterTypes(Types.updateBarCell);
+            Inventory.UnregisterCount(RefreshCount);
         }
     }
 }
