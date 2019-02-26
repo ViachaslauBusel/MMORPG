@@ -65,7 +65,7 @@ public class GameLoader : MonoBehaviour
             yield return null;
             progressBar.fillAmount = 0.2f * asyncLoad.progress;
         }
-        print("isDone");
+
         NetworkWriter nw = new NetworkWriter(Channels.Reliable);
         nw.SetTypePack(Types.MapEntrance);
         NetworkManager.Send(nw);

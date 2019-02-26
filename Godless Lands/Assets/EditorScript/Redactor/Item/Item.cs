@@ -53,6 +53,7 @@ namespace Items
             if (type == typeof(WeaponItem)) return ItemUse.Weapon;
             if (type == typeof(WeaponItem)) return ItemUse.Armor;
             if (type == typeof(RestorePointsItem)) return ItemUse.RestorePoints;
+            if (type == typeof(RecipesItem)) return ItemUse.Recipes;
             return ItemUse.None;
         }
     }

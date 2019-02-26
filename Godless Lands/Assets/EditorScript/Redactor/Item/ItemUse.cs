@@ -8,5 +8,6 @@ public enum ItemUse : int
     Weapon = 1,
     Armor = 2,
     RestorePoints = 3,
-    Pickaxe = 4
+    Pickaxe = 4,
+    Recipes = 5
 }

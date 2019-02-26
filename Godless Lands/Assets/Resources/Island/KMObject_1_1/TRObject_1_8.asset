@@ -61,10 +61,6 @@ MonoBehaviour:
     orientation: {x: -0, y: 0.26546857, z: -0, w: 0.96411955}
     scale: {x: 1, y: 1, z: 1}
     prefab: {fileID: 181180, guid: 641519eac122e5b498759337e7d08337, type: 3}
-  - postion: {x: 1128.473, y: 183.2, z: 1876.583}
-    orientation: {x: -0, y: 0.99935895, z: -0, w: 0.03580215}
-    scale: {x: 1.7477857, y: 1.7477857, z: 1.7477857}
-    prefab: {fileID: 198364, guid: 37718bf60b3f85c41b6e25a8f9abd017, type: 3}
   - postion: {x: 1125.835, y: 183.186, z: 1878.127}
     orientation: {x: -0, y: 0.684563, z: -0, w: 0.7289538}
     scale: {x: 1.6699, y: 1.6699, z: 1.6699}

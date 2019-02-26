@@ -12,6 +12,7 @@ namespace Machines
     {
         public Smelter smelter;
         public Smelter grindstone;
+        public Workbench workbench;
         private Machine selectMachine;
 
         private void Awake()
@@ -60,6 +61,9 @@ namespace Machines
                     break;
                 case MachineUse.Grindstone:
                     selectMachine = grindstone;
+                    break;
+                case MachineUse.Workbench:
+                    selectMachine = workbench;
                     break;
             }
             if (selectMachine != null) selectMachine.Open();

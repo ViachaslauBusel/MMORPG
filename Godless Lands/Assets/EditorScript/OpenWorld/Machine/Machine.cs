@@ -22,7 +22,7 @@ namespace OpenWorld
             rotation = gameObject.transform.rotation.eulerAngles;
             scale = gameObject.transform.localScale;
             this.prefab = prefab;
-            ActionMachine machine = gameObject.GetComponent<ActionMachine>();
+            Action machine = gameObject.GetComponent<Action>();
              machineUse = machine.GetMachine();
         }
     }

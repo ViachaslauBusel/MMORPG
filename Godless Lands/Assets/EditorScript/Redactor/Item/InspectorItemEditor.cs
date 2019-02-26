@@ -53,6 +53,9 @@ namespace Items
                     case ItemUse.RestorePoints:
                         _item.serializableObj = new RestorePointsItem();
                         break;
+                    case ItemUse.Recipes:
+                        _item.serializableObj = new RecipesItem();
+                        break;
                     default: return;
                 }
                 itemEditor.serializableObject = _item.serializableObj;
@@ -69,6 +72,9 @@ namespace Items
                     break;
                 case ItemUse.RestorePoints:
                     InspectorItemRestorePoints.Draw(itemEditor.serializableObject);
+                    break;
+                case ItemUse.Recipes:
+                    InspectorRecipes.Draw(itemEditor.serializableObject);
                     break;
             }
 

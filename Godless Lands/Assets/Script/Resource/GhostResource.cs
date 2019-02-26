@@ -65,4 +65,12 @@ public class GhostResource : MonoBehaviour, Action
         ActionListener.Remove(this);
     }
 
+    public MachineUse GetMachine()
+    {
+        throw new System.NotImplementedException();
+    }
+    public void SetID(int id)
+    {
+        ID = id;
+    }
 }

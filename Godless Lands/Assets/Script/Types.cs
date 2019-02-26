@@ -75,5 +75,6 @@ public class Types {
     public const short MachineClose = 69;
     public const short ProfessionUpdate = 70;
     public const short ProfessionLoad = 71;
+    public const short WorkbenchRecipeUse = 72;
 
 }

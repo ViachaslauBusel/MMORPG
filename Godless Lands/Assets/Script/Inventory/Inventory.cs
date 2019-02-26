@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour {
         RegisteredTypes.RegisterTypes(Types.LoadInventory, LoadingInventory);
         RegisteredTypes.RegisterTypes(Types.UpdateInventory, UpdateInventory);
     }
-
+    //Создает предмет по ид
     public static Item GetItem(int id)
     {
        return inventory.itemsList.GetItem(id);
@@ -44,6 +44,16 @@ public class Inventory : MonoBehaviour {
             if (itemCell.GetKey() == key) return itemCell.GetCount();
         }
         return 0;
+    }
+    //Получить общее количество всех предметов в инвенторе по ид
+    public static int GetAllCount(int id)
+    {
+        int allCount = 0;
+        foreach (ItemCell itemCell in inventory.items)
+        {
+            if (itemCell.ID() == id) allCount += itemCell.GetCount();
+        }
+        return allCount;
     }
     public static void RegisterCount(RefreshCount refresh)
     {

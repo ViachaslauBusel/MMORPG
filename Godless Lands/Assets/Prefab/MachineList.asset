@@ -26,3 +26,9 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     prefab: {fileID: 107654, guid: 0d6eeafbd2a04544c86ce51aa012bbf2, type: 3}
     machineUse: 2
+  - id: 3
+    position: {x: 1128.473, y: 183.2, z: 1876.583}
+    rotation: {x: -0, y: 175.8965, z: -0}
+    scale: {x: 1.7477857, y: 1.7477857, z: 1.7477857}
+    prefab: {fileID: 198364, guid: 37718bf60b3f85c41b6e25a8f9abd017, type: 3}
+    machineUse: 3

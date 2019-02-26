@@ -9,6 +9,7 @@ public class MachinesManager : MonoBehaviour
 {
     public GameObject smelterPref;
     public GameObject grindstonePref;
+    public GameObject workbenchPref;
     private static Dictionary<int, GameObject> machines;
 
 
@@ -56,6 +57,9 @@ public class MachinesManager : MonoBehaviour
             case MachineUse.Grindstone:
                 prefab = grindstonePref;
                 break;
+            case MachineUse.Workbench:
+                prefab = workbenchPref;
+                break;
             default:
                 print("Error machine skin: ");
                 return;
@@ -65,7 +69,7 @@ public class MachinesManager : MonoBehaviour
         GameObject _obj = Instantiate(prefab, postion, Quaternion.Euler(rotation));
         _obj.transform.SetParent(transform);
 
-        ActionMachine action = _obj.GetComponent<ActionMachine>();
+        Action action = _obj.GetComponent<Action>();
         action.SetID(id);
         machines.Add(id, _obj);
     }

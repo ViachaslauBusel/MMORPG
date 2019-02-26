@@ -39,6 +39,7 @@ namespace Cells
         }
         public virtual void ShowIcon()
         {
+            if(!IsEmpty())
             icon.enabled = true;
         }
 

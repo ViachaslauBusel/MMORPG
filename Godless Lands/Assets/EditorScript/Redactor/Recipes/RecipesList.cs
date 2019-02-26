@@ -55,5 +55,22 @@ namespace Recipes
         {
            Remove(obj as Recipe);
         }
+
+        public Recipe GetRecipe(int id)
+        {
+            foreach (Recipe recipe in recipes)
+            {
+                if (recipe.id == id) return recipe;
+            }
+            return null;
+        }
+        public Recipe GetRecipeByResult(int idItem)
+        {
+            foreach (Recipe recipe in recipes)
+            {
+                if (recipe.result == idItem) return recipe;
+            }
+            return null;
+        }
     }
 }

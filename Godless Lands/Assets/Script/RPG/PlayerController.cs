@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake()
     {
-        print("Awake");
         RegisteredTypes.RegisterTypes(Types.MapEntrance, MyCharacter);
         RegisteredTypes.RegisterTypes(Types.TeleportToPoint, TeleportToPoint);
     }
@@ -40,7 +39,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Start () {
-        print("Start");
         animationSkill = GetComponent<AnimationSkill>();
         character = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
