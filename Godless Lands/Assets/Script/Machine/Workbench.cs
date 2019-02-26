@@ -19,7 +19,7 @@ namespace Machines
         public WorkbenchCell cell;
         private Canvas canvas;
         private static Workbench workbench;
-        private List<RecipeComponent> components = new List<RecipeComponent>();
+        private RecipeComponent result;
         private int machineID;
         private Recipe selectRecipe;
 
@@ -45,12 +45,14 @@ namespace Machines
         {
             canvas.enabled = false;
             Clear();
+            Inventory.UnregisterCount(Refresh);
         }
 
         public void Open(int id)
         {
             machineID = id;
             canvas.enabled = true;
+            Inventory.RegisterCount(Refresh);
         }
         public void Open()
         {
@@ -68,6 +70,7 @@ namespace Machines
 
         public void Create()
         {
+            if (selectRecipe == null) return;
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);
             nw.SetTypePack(Types.WorkbenchRecipeUse);
             nw.write(selectRecipe.id);
@@ -86,26 +89,26 @@ namespace Machines
           //  {
                 GameObject obj = Instantiate(recipeComponentPref);
                 obj.transform.SetParent(content);
-                RecipeComponent component = obj.GetComponent<RecipeComponent>();
+            result = obj.GetComponent<RecipeComponent>();
             Piece piece = new Piece();
             piece.ID = selectRecipe.result;
             piece.count = 0;
+
+            result.SetPiece(piece);
+            result.Start();
+            result.Expand();
                
-                component.SetPiece(piece);
-            component.Start();
-            component.Expand();
-                components.Add(component);
            // }
         }
 
         public void Clear()
         {
-           foreach(RecipeComponent recipeComponent in components)
-            {
-                recipeComponent.Destroy();
-            }
-            components.Clear();
-            recName.text = "";
+
+            if(result != null)
+            result.Destroy();
+
+            result = null;
+            recName.text = "Поместите рецепт в ячейку";
             cell.PutItem(null);
         }
 
@@ -117,7 +120,7 @@ namespace Machines
 
         public void Refresh()
         {
-            throw new System.NotImplementedException();
+            if (result != null) result.Refresh();
         }
     }
 }

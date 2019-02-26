@@ -19,6 +19,7 @@ namespace Machines
         private bool expand = false;
         private Item item;
         private int allCount;
+        private int count;
         private Recipe nextRecipe;
         private Workbench workbench;
         private List<RecipeComponent> children;
@@ -67,6 +68,17 @@ namespace Machines
             if (nextRecipe == null) return;
             if (expand) { expandTxt.text = "-"; CreateChilds(); }
             else { expandTxt.text = "+"; DestroyChilds(); }
+        }
+
+        public void Refresh()
+        {
+            allCount = Inventory.GetAllCount(item.id);
+            if (count != 0)
+                countTxt.text = " (" + count + "/" + allCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
+            foreach (RecipeComponent component in children)
+            {
+                component.Refresh();
+            }
         }
 
         public void Destroy()
@@ -118,8 +130,9 @@ namespace Machines
                 expandTxt.text = "+";
 
             allCount = Inventory.GetAllCount(piece.ID);
-            if (piece.count != 0)
-                 countTxt.text = " (" + piece.count + "/" + allCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
+            count = piece.count;
+            if (count != 0)
+                 countTxt.text = " (" + count + "/" + allCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
             else countTxt.text = " ";
 
             item = Inventory.GetItem(piece.ID);
