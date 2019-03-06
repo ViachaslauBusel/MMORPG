@@ -56,6 +56,14 @@ namespace Items
             }
         }
 
+        public Item CreateItem(int id)
+        {
+            foreach (Item _item in items)
+            {
+                if (_item.id == id) return new Item(_item);
+            }
+            return null;
+        }
         public Item GetItem(int id)
         {
             foreach (Item _item in items)

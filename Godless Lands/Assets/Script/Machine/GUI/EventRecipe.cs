@@ -49,7 +49,7 @@ public class EventRecipe : EventTrigger
 
     public virtual void ShowInfo()
     {
-         informer = ItemCellEvent.ItemInfo(parentCanvas.transform, component.GetItem(), component.GetCount());
+         informer = ItemCellEvent.ItemInfo(parentCanvas.transform, component.GetItem());
     }
 
     public virtual void HideInfo()

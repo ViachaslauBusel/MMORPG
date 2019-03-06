@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Recipes;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,10 +11,14 @@ namespace Items
 
         // public string prefab;
         public SkillBranch weaponType;
-        public int physicalAttack;
-        public int prickingDamage;
-        public int crushingDamage;
-        public int choppingDamage;
+        public int minDamege;
+        public int maxDamage;
         public float speed;
+        public List<Piece> pieces;//Компоненты на который распадается предмет после нейдачной заточки
+
+        public WeaponItem()
+        {
+            pieces = new List<Piece>();
+        }
     }
 }

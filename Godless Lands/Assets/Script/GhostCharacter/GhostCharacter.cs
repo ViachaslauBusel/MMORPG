@@ -57,7 +57,7 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
         {
             ItemUse part = (ItemUse)nw.ReadInt();
             int id_item = nw.ReadInt();
-            Item _item = Inventory.GetItem(id_item);
+            Item _item = Inventory.CreateItem(id_item);
             armor.PutItem(part, _item);
         }
     }
@@ -65,7 +65,7 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
     {
         ItemUse part = (ItemUse)nw.ReadInt();
         int id_item = nw.ReadInt();
-        Item _item = Inventory.GetItem(id_item);
+        Item _item = Inventory.CreateItem(id_item);
         armor.PutItem(part, _item);
     }
 

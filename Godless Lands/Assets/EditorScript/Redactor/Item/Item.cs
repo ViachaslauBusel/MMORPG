@@ -10,19 +10,45 @@ namespace Items
     [System.Serializable]
     public class Item
     {
-
+        [NonSerialized]
+        public int count;
+        [NonSerialized]
+        public int enchant_level;
+        [NonSerialized]
+        public int durability;
+        [NonSerialized]
+        public int maxDurability;
 
         public int id;
         public string nameItem;
         public Texture2D texture;
         public string description;
         public bool stack;
+        public int weight;
         public GameObject prefab;
         public ItemUse use;
         [SerializeField]
         private string _serializableObj;
         [SerializeField]
         private string type;
+
+        public Item(Item item)
+        {
+            id = item.id;
+            nameItem = item.nameItem;
+            texture = item.texture;
+            description = item.description;
+            stack = item.stack;
+            weight = item.weight;
+            prefab = item.prefab;
+            use = item.use;
+            _serializableObj = item._serializableObj;
+            type = item.type;
+        }
+        public Item()
+        {
+
+        }
 
         public bool IsEmpty()
         {

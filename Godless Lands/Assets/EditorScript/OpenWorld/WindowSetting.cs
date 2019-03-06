@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using MonsterRedactor;
 using Resource;
+using Items;
 
 namespace OpenWorld
 {
@@ -17,6 +18,7 @@ namespace OpenWorld
         private static ResourceList _resourceList;
         private static WorldResourcesList _worldResourcesList;
         private static MachineList _machineList;
+        private static ItemsList _itemsList;
 
         public static Map Map{get{return editMap; } }
         public static int areaVisible { get { return _areaViseble; } }
@@ -25,6 +27,7 @@ namespace OpenWorld
         public static ResourceList ResourcesList { get { return _resourceList; } }
         public static WorldResourcesList WorldResourcesList { get { return _worldResourcesList; } }
         public static MachineList MachineList { get { return _machineList; } }
+        public static ItemsList ItemsList { get { return _itemsList; } }
 
 
         private static Map dontSaveMap;
@@ -34,6 +37,7 @@ namespace OpenWorld
         private static ResourceList dontSaveResourcesList;
         private static WorldResourcesList dontSaveWorldResourceList;
         private static MachineList dontSaveMachineList;
+        private static ItemsList dontSaveItemsList;
 
         public static void Draw()
         {
@@ -68,9 +72,13 @@ namespace OpenWorld
             GUILayout.Label("Список станков закрепленых на карте"); GUILayout.Space(5.0f);
             dontSaveMachineList = EditorGUILayout.ObjectField(dontSaveMachineList, typeof(MachineList), false) as MachineList;
 
+            GUILayout.Space(15.0f);
+            GUILayout.Label("Список предметов"); GUILayout.Space(5.0f);
+            dontSaveItemsList = EditorGUILayout.ObjectField(dontSaveItemsList, typeof(ItemsList), false) as ItemsList;
+
             GUILayout.Space(20.0f);
             GUI.enabled = dontSaveAreaVisible != _areaViseble || dontSaveMap != editMap || dontSaveMonstersList != _monstersList || dontSaveWorldMonsterList != _worldMonstrList || dontSaveResourcesList != _resourceList
-                || _worldResourcesList != dontSaveWorldResourceList || _machineList != dontSaveMachineList;
+                || _worldResourcesList != dontSaveWorldResourceList || _machineList != dontSaveMachineList || _itemsList != dontSaveItemsList;
             if (GUILayout.Button("Save"))
             {
                 _areaViseble = dontSaveAreaVisible;
@@ -99,6 +107,9 @@ namespace OpenWorld
                 _machineList = dontSaveMachineList;
                 pathToPrefab = AssetDatabase.GetAssetPath(_machineList);
                 PlayerPrefs.SetString("editMachineList", pathToPrefab);
+
+                _itemsList = dontSaveItemsList;
+                Project.ItemsList = _itemsList;
 
                 WindowOpenWorld.ReloadMap();
             }
@@ -134,6 +145,8 @@ namespace OpenWorld
             path = PlayerPrefs.GetString("editMachineList");
             _machineList = AssetDatabase.LoadAssetAtPath<MachineList>(path);
             dontSaveMachineList = _machineList;
+
+            dontSaveItemsList = _itemsList = Project.ItemsList;
 
         }
     }

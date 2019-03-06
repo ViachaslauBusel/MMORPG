@@ -50,7 +50,7 @@ namespace Cells
 
             //Create a list of Raycast Results
             List<RaycastResult> results = new List<RaycastResult>();
-
+            Result raycastResult = null;
             foreach (GraphicRaycaster raycaster in cellParent.raycasters)
             {
                 //Raycast using the Graphics Raycaster and mouse click position
@@ -61,16 +61,39 @@ namespace Cells
                 {
                     if (result.gameObject.tag.Equals("Cell"))
                     {
-                        Cell resultCell = result.gameObject.GetComponent<Cell>();
-                        if (resultCell == null) continue;
-                        resultCell.Put(cell);
-                        return;
+                        if (raycastResult == null)
+                        {
+                            raycastResult = new Result();
+                            raycastResult.resultObj = result.gameObject;
+                            raycastResult.order = result.sortingOrder;
+                        }
+                        else
+                        {
+                            if(result.sortingOrder > raycastResult.order)
+                            {
+                                raycastResult.resultObj = result.gameObject;
+                                raycastResult.order = result.sortingOrder;
+                            }
+                        }
+                        
+                      //  return;
                     }
                 }
                
             }
+            if(raycastResult != null)
+            {
+                Cell resultCell = raycastResult.resultObj.GetComponent<Cell>();
+                resultCell.Put(cell);
+            }
             cell.Abort();
          //   return false;
+        }
+
+        private class Result
+        {
+            public GameObject resultObj;
+            public int order;
         }
     }
 }

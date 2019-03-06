@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using Recipes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -8,6 +9,7 @@ namespace Items
 {
     public class InspectorItemWeapon
     {
+        
 
         public static void Draw(System.Object obj)
         {
@@ -15,11 +17,16 @@ namespace Items
             if (weaponItem == null) return;
 
             weaponItem.weaponType = (SkillBranch)EditorGUILayout.EnumPopup("Тип оружия", weaponItem.weaponType);
-            weaponItem.physicalAttack = EditorGUILayout.IntField("Физ. Атака:", weaponItem.physicalAttack);
-            weaponItem.prickingDamage = EditorGUILayout.IntField("колющий:", weaponItem.prickingDamage);
-            weaponItem.crushingDamage = EditorGUILayout.IntField("дробящий:", weaponItem.crushingDamage);
-            weaponItem.choppingDamage = EditorGUILayout.IntField("рубящий:", weaponItem.choppingDamage);
+            weaponItem.minDamege = EditorGUILayout.IntField("мин. урон:", weaponItem.minDamege);
+            weaponItem.maxDamage = EditorGUILayout.IntField("мин. урон:", weaponItem.maxDamage);
             weaponItem.speed = EditorGUILayout.FloatField("Скор. Атаки:", weaponItem.speed);
+
+            if (GUILayout.Button("Add component"))
+            {
+                weaponItem.pieces.Add(new Piece());
+            }
+
+            RecipeInspector.DrawComponent(weaponItem.pieces);
         }
     }
 }

@@ -16,14 +16,17 @@ namespace Cells
         private Coroutine coroutineHide;
         private Skill skill;//Выбраная умения,предмет, действия для использования в ячейке
         private Item item;
+        private int itemID;
         private int key;//уникальный ид предмета
         private Transform playerTransform;
         private int index;//Номер этой ячейки
-        private Text count;
+        private Text countTxt;
+        private int type = -1;
+     //   private int count;
 
         private new void Awake()
         {
-            count = transform.Find("Count").GetComponent<Text>();
+            countTxt = transform.Find("Count").GetComponent<Text>();
             base.Awake();
             hide = transform.Find("Hide").GetComponent<Image>();
             hide.enabled = false;
@@ -70,7 +73,7 @@ namespace Cells
             if(item != null)
             {
                 NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-                nw.SetTypePack(Types.UseItemByKey);
+                nw.SetTypePack(Types.UseItem);
                 nw.write(key);
                 nw.write(item.id);
                 NetworkManager.Send(nw);
@@ -127,40 +130,57 @@ namespace Cells
 
         public void SetSkill(Skill skill)
         {
-            item = null;
+            type = 0;
+            Clear();
             this.skill = skill;
              icon.enabled = true;
              icon.sprite = Sprite.Create(skill.icon, new Rect(0.0f, 0.0f, skill.icon.width, skill.icon.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
-        public void SetItem(Item item, int key, bool setCount = true)
+        public void SetItem(int id, int key)
         {
-            if (item == null) { Clear(); return; }
-            skill = null;
-            this.item = item;
+            type = 1;
+            itemID = id;
             this.key = key;
+            Clear();
+            item = Inventory.GetItem(key);
+            if (item == null) {  return; }
             icon.enabled = true;
             icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
 
-            if (item.stack && setCount)
+            if (item.stack)
             {
-                count.text = Inventory.GetCount(key).ToString();
-                count.enabled = true;
+                countTxt.text = item.count.ToString();
+                countTxt.enabled = true;
             }
             else
-                count.text = "";
+                countTxt.text = "";
+        }
+
+        public void SetEmpty()
+        {
+            type = -1;
+            Clear();
         }
 
         //Обновилось количество какого то предмета в инвентаре
         public void Refresh()
         {
-         //   print("refresh");
-            if (item != null && item.stack)
+            //   print("refresh");
+            if (type == 1)
             {
-           //     print("count"+Inventory.GetCount(item.id).ToString());
-           
-                count.text = Inventory.GetCount(key).ToString();
-                count.enabled = true;
+                item = Inventory.GetItem(key);
+                if (item == null) { return; }
+                icon.enabled = true;
+                icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+
+                if (item.stack)
+                {
+                    countTxt.text = item.count.ToString();
+                    countTxt.enabled = true;
+                }
+                else
+                    countTxt.text = "";
             }
         }
         public void Clear()
@@ -168,7 +188,12 @@ namespace Cells
             item = null;
             skill = null;
             icon.enabled = false;
-            count.text = "";
+            countTxt.text = "";
+        }
+
+        public int GetCount()
+        {
+            return item.count;
         }
 
         public Skill GetSkill()
@@ -205,12 +230,12 @@ namespace Cells
         public override void HideIcon()
         {
             base.HideIcon();
-            count.enabled = false;
+            countTxt.enabled = false;
         }
         public override void ShowIcon()
         {
             base.ShowIcon();
-            count.enabled = true;
+            countTxt.enabled = true;
         }
         public override void Abort()
         {

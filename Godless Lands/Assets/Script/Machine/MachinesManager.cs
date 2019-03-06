@@ -10,6 +10,7 @@ public class MachinesManager : MonoBehaviour
     public GameObject smelterPref;
     public GameObject grindstonePref;
     public GameObject workbenchPref;
+    public GameObject tanneryPref;
     private static Dictionary<int, GameObject> machines;
 
 
@@ -59,6 +60,9 @@ public class MachinesManager : MonoBehaviour
                 break;
             case MachineUse.Workbench:
                 prefab = workbenchPref;
+                break;
+            case MachineUse.Tannery:
+                prefab = tanneryPref;
                 break;
             default:
                 print("Error machine skin: ");

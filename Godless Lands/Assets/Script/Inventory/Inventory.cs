@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour {
     private Canvas canvasInventory;
     private ItemCell[] items;
     private int size_bag;
+    private InventoryArmor armor;
 
     private UISort uISort;
     private RefreshCount refreshCount;
@@ -28,13 +29,37 @@ public class Inventory : MonoBehaviour {
     {
         if (inventory != null) Destroy(gameObject);
         inventory = this;
+        armor = GetComponentInChildren<InventoryArmor>();
         RegisteredTypes.RegisterTypes(Types.LoadInventory, LoadingInventory);
         RegisteredTypes.RegisterTypes(Types.UpdateInventory, UpdateInventory);
+        RegisteredTypes.RegisterTypes(Types.UpdateItem, UpdateItem);
     }
-    //Создает предмет по ид
-    public static Item GetItem(int id)
+
+    private void UpdateItem(NetworkWriter nw)
     {
-       return inventory.itemsList.GetItem(id);
+        Item item = GetItem(nw.ReadInt());
+        if (item != null) item.durability = nw.ReadInt();
+    }
+
+    internal void Refresh()//Вызывается из ячеек экипировки при их обновлении
+    {
+        refreshCount();
+    }
+
+    //Создает предмет по ид
+    public static Item CreateItem(int id)
+    {
+       return inventory.itemsList.CreateItem(id);
+    }
+    public static Item GetItem(int key)
+    {
+        if (inventory.items == null) return null;
+        foreach (ItemCell itemCell in inventory.items)
+        {
+            if (itemCell.GetKey() == key) return itemCell.GetItem();
+        }
+
+        return inventory.armor.GetItem(key);
     }
     public static int GetCount(int key)
     {
@@ -43,7 +68,8 @@ public class Inventory : MonoBehaviour {
         {
             if (itemCell.GetKey() == key) return itemCell.GetCount();
         }
-        return 0;
+
+        return inventory.armor.GetCount(key);
     }
     //Получить общее количество всех предметов в инвенторе по ид
     public static int GetAllCount(int id)
@@ -84,23 +110,32 @@ public class Inventory : MonoBehaviour {
     private void UpdateInventory(NetworkWriter nw)//Обновление содержимого ячейки
     {
         int filling = nw.ReadInt();//Заполнение рюкзака
-        size_bag = nw.ReadInt();
+      //  size_bag = nw.ReadInt();
         text_filling.text = filling + "/" + size_bag;
+
+
         int index = nw.ReadInt();//Индекс изменившейся ячейки
-        int id_item = nw.ReadInt();//Индекс нового предмета в этой ячейке
         int key = nw.ReadInt();//Уnикальный ид предмета
 
-        int count = 0;
-        Item item;
-        if (id_item > 0)//Если предмет существует 
+        if (index >= 0 && index < items.Length)
         {
-            count = nw.ReadInt();
-           
+            items[index].SetKey(key);
+            if (key == 0) { items[index].PutItem(null, 0); return; }
         }
-      //  print("id: " + id_item);
-        item = itemsList.GetItem(id_item);
-        //  print("item: " + (item == null));
-        items[index].Refresh(item, count, key);
+        else return;
+       
+
+            int id_item = nw.ReadInt();//Индекс нового предмета в этой ячейке
+            int count = nw.ReadInt();
+         items[index].PutItem(itemsList.CreateItem(id_item), count);
+
+        if(nw.AvailableBytes > 0)
+        {
+            items[index].SetEnchantLevel(nw.ReadInt());
+            items[index].SetDurabilty(nw.ReadInt());
+            items[index].SetMaxDurabilty(nw.ReadInt());
+        }
+
 
         if (refreshCount != null) refreshCount();
     }
@@ -112,28 +147,45 @@ public class Inventory : MonoBehaviour {
         text_filling.text = filling + "/" + size_bag;
         items = new ItemCell[size_bag];
 
-        int count_item;
+      //  int count_item;
 
         Item item;
-        for (int i=0; i<items.Length; i++)
+        for (int i = 0; i < items.Length; i++)//Создать пустые ячейки
         {
-            int id_item = nw.ReadInt();
-            item = itemsList.GetItem(id_item);
-            int key = nw.ReadInt();
-            count_item = 0;
-            if (item != null)//Если ячейка не пуста
-            {
-                count_item = nw.ReadInt();
-            }
-
             GameObject _obj = Instantiate(itemCell);
             _obj.transform.SetParent(bag);
-            ItemCell _itemCell = _obj.GetComponent<ItemCell>();
-            _itemCell.PutItem(item, count_item);
-            _itemCell.SetIndex(i);
-            _itemCell.SetKey(key);
-            items[i] = _itemCell;
+            items[i] = _obj.GetComponent<ItemCell>();
+            items[i].SetIndex(i);
         }
+
+        while(nw.AvailableBytes > 0)
+        {
+            int index = nw.ReadInt();
+            int key = nw.ReadInt();
+            int id_item = nw.ReadInt();
+            int count = nw.ReadInt();
+
+            if (index >= 0 && index < items.Length)
+            {
+                
+                items[index].SetKey(key);
+                items[index].PutItem(itemsList.CreateItem(id_item), count);
+            }
+
+            if (nw.ReadBool())
+            {
+                int enchant_level = nw.ReadInt();
+                int durability = nw.ReadInt();
+                int maxDurability = nw.ReadInt();
+                if (index > 0 && index < items.Length)
+                {
+                    items[index].SetEnchantLevel(enchant_level);
+                    items[index].SetDurabilty(durability);
+                    items[index].SetMaxDurabilty(maxDurability);
+                }
+            }
+        }
+  
 
         if (refreshCount != null) refreshCount();
     }
@@ -154,5 +206,6 @@ public class Inventory : MonoBehaviour {
     {
         RegisteredTypes.UnregisterTypes(Types.LoadInventory);
         RegisteredTypes.UnregisterTypes(Types.UpdateInventory);
+        RegisteredTypes.UnregisterTypes(Types.UpdateItem);
     }
 }

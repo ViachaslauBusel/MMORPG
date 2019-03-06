@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Recipes;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -22,11 +23,15 @@ namespace Items
                     {
                         case ItemUse.Weapon:
                             WeaponItem weapon = _item.serializableObj as WeaponItem;
-                            stream_out.Write(weapon.physicalAttack);
-                            stream_out.Write(weapon.prickingDamage);
-                            stream_out.Write(weapon.crushingDamage);
-                            stream_out.Write(weapon.choppingDamage);
+                            stream_out.Write(weapon.minDamege);
+                            stream_out.Write(weapon.maxDamage);
                             stream_out.Write(weapon.speed);
+                            stream_out.Write(weapon.pieces.Count);
+                            foreach(Piece piece in weapon.pieces)
+                            {
+                                stream_out.Write(piece.ID);
+                                stream_out.Write(piece.count);
+                            }
                             break;
                         case ItemUse.RestorePoints:
                             RestorePointsItem pointsItem = _item.serializableObj as RestorePointsItem;

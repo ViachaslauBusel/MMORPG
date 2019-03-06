@@ -24,7 +24,7 @@ public class GhostArmor : MonoBehaviour{
         itemsList = Resources.Load("Inventory/ItemList") as ItemsList;
         //weapon
         int item_id = nw.ReadInt();
-        Item item = itemsList.GetItem(item_id);
+        Item item = itemsList.CreateItem(item_id);
         PutOnWeapon(item);
     }
 
@@ -33,7 +33,7 @@ public class GhostArmor : MonoBehaviour{
         ItemUse part = (ItemUse)nw.ReadInt();
         int item_id = nw.ReadInt();
 
-        Item item = itemsList.GetItem(item_id);
+        Item item = itemsList.CreateItem(item_id);
         PutOnWeapon(item);
     }
 

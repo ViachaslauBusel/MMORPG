@@ -34,6 +34,7 @@ namespace Items
             else { _item.description = ""; }
             _item.description = EditorGUILayout.TextField("Описание:", _item.description.Replace(';', '\n'), GUILayout.Height(_heightLabel));
             _item.stack = EditorGUILayout.Toggle("Складировать?", _item.stack);
+            _item.weight = EditorGUILayout.IntField("Вес:", _item.weight);
             _item.prefab = EditorGUILayout.ObjectField("Префаб: ", _item.prefab, typeof(GameObject), false) as GameObject;
             //  EditorGUILayout.EndScrollView();
             _item.use = (ItemUse)EditorGUILayout.EnumPopup("Используется?", _item.use);

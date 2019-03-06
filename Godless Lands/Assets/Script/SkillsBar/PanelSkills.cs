@@ -13,7 +13,6 @@ namespace SkillsBar
     public class PanelSkills : MonoBehaviour
     {
         public SkillsList skillsList;
-        public ItemsList ItemsList;
         private static BarCell[] barCells;
 
         private void Awake()
@@ -57,7 +56,7 @@ namespace SkillsBar
             switch (type)
             {
                 case -1://Очистить ячейку
-                    barCells[cell].Clear();
+                    barCells[cell].SetEmpty();
                     break;
                 case 0://skill
                     Skill skill = skillsList.GetSkill(id);
@@ -65,9 +64,7 @@ namespace SkillsBar
                     barCells[cell].SetSkill(skill);
                     break;
                 case 1://item
-                    Item item = ItemsList.GetItem(id);
-                    if (item == null) return;
-                    barCells[cell].SetItem(item, key);
+                    barCells[cell].SetItem(id, key);
                     break;
             }
         }

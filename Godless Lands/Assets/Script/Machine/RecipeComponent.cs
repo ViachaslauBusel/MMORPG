@@ -19,7 +19,7 @@ namespace Machines
         private bool expand = false;
         private Item item;
         private int allCount;
-        private int count;
+      //  private int count;
         private Recipe nextRecipe;
         private Workbench workbench;
         private List<RecipeComponent> children;
@@ -73,8 +73,8 @@ namespace Machines
         public void Refresh()
         {
             allCount = Inventory.GetAllCount(item.id);
-            if (count != 0)
-                countTxt.text = " (" + count + "/" + allCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
+            if (item.count != 0)
+                countTxt.text = " (" + item.count + "/" + allCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
             foreach (RecipeComponent component in children)
             {
                 component.Refresh();
@@ -119,23 +119,24 @@ namespace Machines
 
         public void SetPiece(Piece piece,LayoutElement parenlayout = null, bool fuel = false)
         {
-            if(parenlayout != null)//Если есть потомок
+            item = Inventory.CreateItem(piece.ID);
+            if (parenlayout != null)//Если есть потомок
             {
                 element.minWidth = parenlayout.minWidth + 45.0f;
                 child = true;
             }
             nextRecipe = Workbench.GetRecipeByResult(piece.ID);//Поиск состоит ли этот компонент из компонентов
-
-            if(nextRecipe != null)//Если состоит
+            
+            if (nextRecipe != null)//Если состоит
                 expandTxt.text = "+";
 
             allCount = Inventory.GetAllCount(piece.ID);
-            count = piece.count;
-            if (count != 0)
-                 countTxt.text = " (" + count + "/" + allCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
+            item.count = piece.count;
+            if (item.count != 0)
+                 countTxt.text = " (" + allCount + "/" + item.count + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
             else countTxt.text = " ";
 
-            item = Inventory.GetItem(piece.ID);
+           
             icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
             nameTxt.text = item.nameItem;
 

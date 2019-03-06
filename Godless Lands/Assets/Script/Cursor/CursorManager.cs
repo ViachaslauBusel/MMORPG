@@ -8,9 +8,11 @@ public class CursorManager : MonoBehaviour {
     public Texture2D cursorStandart;
     public Texture2D cursorDrop;
     public Texture2D cursorAtack;
+    public Texture2D hammer;
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
     private Camera _camera;
+    private bool block = false;
 
     private void Start()
     {
@@ -20,6 +22,7 @@ public class CursorManager : MonoBehaviour {
 
     private void Update()
     {
+        if (block) return;
         if (Input.GetButton("MouseRight"))
         {
             Cursor.visible = false;
@@ -54,6 +57,17 @@ public class CursorManager : MonoBehaviour {
                     break;
             }
         }
+    }
+
+    public void OnHammer()
+    {
+        Cursor.SetCursor(hammer, hotSpot, cursorMode);
+        block = true;
+    }
+    public void OffHammer()
+    {
+        Cursor.SetCursor(cursorStandart, hotSpot, cursorMode);
+        block = false;
     }
 
 }

@@ -6,5 +6,6 @@ public enum MachineUse
 {
    Smelter = 1,
    Grindstone = 2,
-    Workbench = 3
+    Workbench = 3,
+    Tannery = 4
 }

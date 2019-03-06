@@ -8,6 +8,7 @@ using UnityEngine;
 public class ProfessionManager : MonoBehaviour
 {
     public Profession blacksmith;
+    public Profession tanner;
     private Canvas canvas;
 
     private void Awake()
@@ -24,6 +25,9 @@ public class ProfessionManager : MonoBehaviour
         {
             case ProfessionEnum.Blacksmith:
                 blacksmith.UpdatePruf(nw);
+                break;
+            case ProfessionEnum.Tanner:
+                tanner.UpdatePruf(nw);
                 break;
             default:
                 print("Error update profession");

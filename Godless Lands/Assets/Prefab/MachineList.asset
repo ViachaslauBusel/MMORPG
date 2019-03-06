@@ -32,3 +32,9 @@ MonoBehaviour:
     scale: {x: 1.7477857, y: 1.7477857, z: 1.7477857}
     prefab: {fileID: 198364, guid: 37718bf60b3f85c41b6e25a8f9abd017, type: 3}
     machineUse: 3
+  - id: 4
+    position: {x: 1133.7839, y: 182.91522, z: 1902.1871}
+    rotation: {x: -0, y: 194.92719, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    prefab: {fileID: 536365155, guid: 6a191037892da7e48b7839646f0f31a5, type: 3}
+    machineUse: 4

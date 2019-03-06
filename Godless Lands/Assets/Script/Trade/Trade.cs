@@ -53,11 +53,11 @@ public class Trade : MonoBehaviour
 
     private void PutMyOfferItem(int id, int count)
     {
-        myOfferItems[myIndex++].PutItem(inventory.itemsList.GetItem(id), count);
+        myOfferItems[myIndex++].PutItem(inventory.itemsList.CreateItem(id), count);
     }
     private void PutOtherOfferItem(int id, int count)
     {
-        otherOfferItem[otherIndex++].PutItem(inventory.itemsList.GetItem(id), count);
+        otherOfferItem[otherIndex++].PutItem(inventory.itemsList.CreateItem(id), count);
     }
 
     private void ClearMyTradeCell()//Очистить все ячейки этого игрока

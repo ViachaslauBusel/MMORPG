@@ -10,23 +10,26 @@ public class Lobby_Character : MonoBehaviour {
 
     
     private Text txt_name;
-    private int id = -1;
+    private int id;
 
     private Canvas canvas_main, canvas_character_cretor;
+    private Button button;
 
-
-
-    private void Start()
+    private void Awake()
     {
         canvas_main = GameObject.Find("CanvasMain").GetComponent<Canvas>();
         canvas_character_cretor = GameObject.Find("CanvasCharacterCreator").GetComponent<Canvas>();
         txt_name = GetComponentInChildren<Text>();
+        button = GetComponent<Button>();
+        button.interactable = false;
     }
+
 
     public void SetCharacter(int id, string name)
     {
         this.id = id;
         this.txt_name.text = name;
+        button.interactable = true;
     }
 
     public void ButTouch()

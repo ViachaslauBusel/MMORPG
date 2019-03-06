@@ -45,16 +45,24 @@ public class Lobby : MonoBehaviour {
     /// <param name="nw"></param>
     private void MyCharacters(NetworkWriter nw)
     {
-       for(int i=0;  nw.AvailableBytes > 0; i++)
+        print("Пакет получен");
+       for(int i=0; i<characters.Length; i++)
         {
-            if (i == characters.Length) break;
-            characters[i].SetCharacter(nw.ReadInt(), nw.ReadString());
+            int ID = -1;
+            string charName = "Создать персонажа";
+            if (nw.AvailableBytes >= 8)
+            {
+                 ID = nw.ReadInt();
+                 charName = nw.ReadString();
+            }
+            characters[i].SetCharacter(ID, charName);
         }
        // order = false;
     }
 
     private  void ConnectionLobby()
     {
+        print("Пакет отправлен");
         NetworkWriter nw = new NetworkWriter(Channels.Reliable);
         nw.SetTypePack(Types.LobbyEntrance);
         NetworkManager.Send(nw);

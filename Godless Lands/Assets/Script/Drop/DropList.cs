@@ -70,7 +70,6 @@ public class DropList : MonoBehaviour {
         nw.write(id_item);
 
         NetworkManager.Send(nw);
-        Close();
     }
 
     private void OnDestroy()

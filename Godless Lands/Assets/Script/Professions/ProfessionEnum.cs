@@ -4,5 +4,6 @@ using UnityEngine;
 
 public enum ProfessionEnum: int
 {
-    Blacksmith = 1
+    Blacksmith = 1,
+    Tanner = 2
 }

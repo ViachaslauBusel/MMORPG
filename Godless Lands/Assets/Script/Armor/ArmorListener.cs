@@ -31,21 +31,31 @@ public class ArmorListener : MonoBehaviour {
     {
        while(nw.AvailableBytes >= 8)
         {
-            ItemUse part = (ItemUse)nw.ReadInt();
-            int id_item = nw.ReadInt();
-            Item _item = Inventory.GetItem(id_item);
-            inventoryArmor.PutItem(part, _item);//Отоброзить иконку в инвентаре
-            armor.PutItem(part, _item);
+            UpdateArmor(nw);
         }
     }
 
     private void UpdateArmor(NetworkWriter nw)
     {
         ItemUse part = (ItemUse)nw.ReadInt();
-        int id_item = nw.ReadInt();
-        Item _item = Inventory.GetItem(id_item);
-        inventoryArmor.PutItem(part, _item);//Отоброзить иконку в инвентаре
-        armor.PutItem(part, _item);
+        int key = nw.ReadInt();
+        Item item = null;
+        if (key != 0) item = ReadItem(nw);
+       
+
+        inventoryArmor.PutItem(part, item, key);//Отоброзить иконку в инвентаре
+        armor.PutItem(part, item);
+    }
+
+    private Item ReadItem(NetworkWriter nw)
+    {
+        Item _item = Inventory.CreateItem(nw.ReadInt());
+        _item.count = nw.ReadInt();
+        _item.enchant_level = nw.ReadInt();
+        _item.durability = nw.ReadInt();
+        _item.maxDurability = nw.ReadInt();
+
+        return _item;
     }
 
 
@@ -70,5 +80,7 @@ public class ArmorListener : MonoBehaviour {
     private void OnDestroy()
     {
         RegisteredTypes.UnregisterTypes(Types.UpdateArmor);
+        RegisteredTypes.UnregisterTypes(Types.CombatState);
+        RegisteredTypes.UnregisterTypes(Types.LoadArmor);
     }
 }

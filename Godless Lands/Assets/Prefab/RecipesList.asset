@@ -61,3 +61,15 @@ MonoBehaviour:
     profession: 1
     exp: 0
     stamina: 0
+  - id: 5
+    use: 4
+    result: 17
+    component:
+    - ID: 16
+      count: 5
+    fuel:
+    - ID: 18
+      count: 5
+    profession: 2
+    exp: 10
+    stamina: 100

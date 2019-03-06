@@ -59,7 +59,7 @@ public class Types {
     public const short PlayAnimSkill = 53;
     public const short loadBar = 54;
     public const short updateBarCell = 55;
-    public const short UseItemByKey = 56;
+    public const short free = 56;
     public const short WrapBarCell = 57;
     public const short WrapItem = 58;
     public const short ResourceCreate = 59;//S-C отправка на клиент данных для создания ресурса
@@ -76,5 +76,8 @@ public class Types {
     public const short ProfessionUpdate = 70;
     public const short ProfessionLoad = 71;
     public const short WorkbenchRecipeUse = 72;
+    public const short ItemEnchant = 73;
+    public const short UpdateItem = 74;
+    public const short ItemRepair = 75;
 
 }

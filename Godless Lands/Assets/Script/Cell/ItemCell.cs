@@ -13,7 +13,6 @@ namespace Cells
     {
         protected Item item;
         protected int index;
-        protected int count;
         protected int key;
         protected Text countTxt;
 
@@ -37,14 +36,14 @@ namespace Cells
             if (IsEmpty()) return;
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);
             nw.SetTypePack(Types.UseItem);
-            nw.write(index);
+            nw.write(key);
             nw.write(item.id);
             NetworkManager.Send(nw);
         }
 
         public virtual void PutItem(Item item, int count)
         {
-            this.count = count;
+           
             this.item = item;
             if (IsEmpty())
             {
@@ -53,6 +52,7 @@ namespace Cells
                 HideIcon();
                 return;
             }
+            item.count = count;
             ShowIcon();
             icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
             if (countTxt != null)
@@ -73,6 +73,10 @@ namespace Cells
         public override void Put(Cell cell)
         {
             if (cell == null) return;
+            if(cell.GetType() == typeof(ArmorCell))
+            {
+                cell.Use();
+            }
             if (cell.GetType() != typeof(ItemCell)) return;
             ItemCell itemCell = cell as ItemCell;
             NetworkWriter writer = new NetworkWriter(Channels.Reliable);
@@ -104,7 +108,8 @@ namespace Cells
         }
         public int GetCount()
         {
-            return count;
+            if (IsEmpty()) return 0;
+            return item.count;
         }
         public int GetIndex()
         {
@@ -113,6 +118,19 @@ namespace Cells
         public int GetKey()
         {
             return key;
+        }
+
+        public void SetEnchantLevel(int level)
+        {
+            item.enchant_level = level;
+        }
+        public void SetDurabilty(int durability)
+        {
+            item.durability = durability;
+        }
+        public void SetMaxDurabilty(int durability)
+        {
+            item.maxDurability = durability;
         }
     }
 }

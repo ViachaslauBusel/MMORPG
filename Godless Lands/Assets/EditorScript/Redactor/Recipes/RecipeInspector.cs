@@ -12,6 +12,8 @@ namespace Recipes
     public class RecipeInspector : Editor
     {
         private static ItemsList itemsList;
+
+
         public override void OnInspectorGUI()
         {
          //   EditorGUIUtility.labelWidth = 10.0f;
@@ -23,7 +25,7 @@ namespace Recipes
 
             GUILayout.Space(10.0f);
 
-            itemsList = ((RecipeEditor)target).itemsList;
+           // itemsList = Project.ItemsList;
 
             recipe.use = (MachineUse) EditorGUILayout.EnumPopup(recipe.use);
             recipe.result = EditorGUILayout.IntField("result:", recipe.result);
@@ -49,7 +51,7 @@ namespace Recipes
 
         }
 
-        private void DrawComponent(List<Piece> pieces)
+        public static void DrawComponent(List<Piece> pieces)
         {
             Piece remove = null;
             for (int i = 0; i < pieces.Count; i++)
@@ -72,9 +74,13 @@ namespace Recipes
             }
         }
 
-        private bool DrawItemComponent(int id)
+        public static bool DrawItemComponent(int id)
         {
-            if (itemsList == null) return false;
+            if (itemsList == null)
+            {
+                itemsList = Project.ItemsList;
+              //  return false;
+            }
             Item item = itemsList.GetItem(id);
             GUILayout.BeginHorizontal();
             if (item != null)

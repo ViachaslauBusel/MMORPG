@@ -21,6 +21,7 @@ MonoBehaviour:
       \u043F\u0438\u0449\u0443 \u0432 \u0441\u0432\u0435\u0436\u0435\u043C \u0432\u0438\u0434\u0435,\n\u0432\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u0435\u0442
       \u0425\u041F "
     stack: 1
+    weight: 50
     prefab: {fileID: 0}
     use: 3
     _serializableObj: '{"hp":500,"stamina":0,"mp":0}'
@@ -30,6 +31,7 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: 16d06b0eb6fbb1e4fba02badf44b7a43, type: 3}
     description: 
     stack: 0
+    weight: 900
     prefab: {fileID: 1850576378525214, guid: e9b85860d07f92945b386b0acee4fe2a, type: 3}
     use: 4
     _serializableObj: 
@@ -40,18 +42,27 @@ MonoBehaviour:
     description: "\u0422\u0430\u043A\u0438\u043C \u0442\u043E\u043F\u043E\u0440\u043E\u043C\n
       \u043C\u043E\u0436\u043D\u043E \u0432\u0442\u0430\u0449\u0438\u0442\u044C \u043B\u044E\u0431\u043E\u043C\u0443)"
     stack: 0
+    weight: 600
     prefab: {fileID: 1985893358777052, guid: 025f5b5995d81e04baa62a90bab01c54, type: 3}
     use: 1
-    _serializableObj: '{"weaponType":1,"physicalAttack":200,"prickingDamage":50,"crushingDamage":0,"choppingDamage":250,"speed":2.5}'
+    _serializableObj: '{"weaponType":1,"minDamege":100,"maxDamage":150,"speed":0.800000011920929,"pieces":[{"ID":7,"count":10}]}'
     type: Items.WeaponItem
   - id: 4
-    nameItem: "\u041C\u0435\u0447"
+    nameItem: "\u0420\u0436\u0430\u0432\u044B\u0439 \u043A\u043E\u0440\u043E\u0442\u043A\u0438\u0439
+      \u043C\u0435\u0447"
     texture: {fileID: 2800000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
-    description: "\u041C\u0435\u0447 \u043A\u043B\u0430\u0434\u0435\u043D\u0435\u0446)"
+    description: "\u0420\u0436\u0430\u0432\u044B\u0439 \u043A\u043E\u0440\u043E\u0442\u043A\u0438\u0439
+      \u043C\u0435\u0447, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043A\u043E\u0433\u0434\u0430-\u0442\u043E
+      \u043F\u0440\u0438\u043D\u0430\u0434\u043B\u0435\u0436\u0430\u043B \u0430\u0432\u0430\u043D\u0442\u044E\u0440\u0438\u0441\u0442\u0443,\n\u043F\u043E\u043A\u0430
+      \u0435\u0433\u043E \u043A\u043E\u043B\u0435\u043D\u043E \u043D\u0435 \u043F\u0440\u043E\u043D\u0437\u0438\u043B\u0430
+      \u0441\u0442\u0440\u0435\u043B\u0430. \u0422\u0435\u043F\u0435\u0440\u044C \u044D\u0442\u043E\u0442
+      \u043C\u0435\u0447 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442\u0441\u044F\n\u043A\u0430\u043A
+      \u043B\u043E\u043F\u0430\u0442\u0430 \u043D\u0430 \u043E\u0433\u043E\u0440\u043E\u0434\u0435."
     stack: 0
+    weight: 700
     prefab: {fileID: 1850576378525214, guid: 0466fcd0fd73ee744851048e6006aa5d, type: 3}
     use: 1
-    _serializableObj: '{"weaponType":1,"physicalAttack":300,"prickingDamage":100,"crushingDamage":0,"choppingDamage":200,"speed":1.5}'
+    _serializableObj: '{"weaponType":1,"minDamege":110,"maxDamage":160,"speed":1.0,"pieces":[{"ID":7,"count":10}]}'
     type: Items.WeaponItem
   - id: 5
     nameItem: "\u0420\u0443\u0431\u0430\u043D\u043E\u043A"
@@ -62,9 +73,10 @@ MonoBehaviour:
       \u0438\u043B\u0438 \u0440\u0443\u0431\u044F\u0449\u0435\u0433\u043E\n\u0438
       \u043A\u043E\u043B\u044E\u0449\u0435\u0433\u043E \u0443\u0434\u0430\u0440\u043E\u0432"
     stack: 0
+    weight: 900
     prefab: {fileID: 1672486138402514, guid: de052fac90a293f479a6adec10eee949, type: 3}
     use: 1
-    _serializableObj: '{"weaponType":1,"physicalAttack":410,"prickingDamage":50,"crushingDamage":0,"choppingDamage":250,"speed":1.0}'
+    _serializableObj: '{"weaponType":1,"minDamege":200,"maxDamage":230,"speed":1.5,"pieces":[{"ID":7,"count":12}]}'
     type: Items.WeaponItem
   - id: 6
     nameItem: "\u0416\u0435\u043B\u0435\u0437\u043D\u0430\u044F \u0440\u0443\u0434\u0430"
@@ -72,6 +84,7 @@ MonoBehaviour:
     description: "\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B, \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u043C\u044B\u0439
       \u0434\u043B\u044F \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u043E\u0432"
     stack: 1
+    weight: 100
     prefab: {fileID: 0}
     use: 0
     _serializableObj: 
@@ -82,6 +95,7 @@ MonoBehaviour:
     description: "\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B, \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u043C\u044B\u0439
       \u0434\u043B\u044F \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u043E\u0432"
     stack: 1
+    weight: 150
     prefab: {fileID: 0}
     use: 0
     _serializableObj: 
@@ -91,6 +105,7 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: 126b6331e8636834eb608a4b10f49817, type: 3}
     description: 
     stack: 1
+    weight: 90
     prefab: {fileID: 0}
     use: 0
     _serializableObj: 
@@ -100,6 +115,7 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: af50dc4fa7b6d314895d0f8c79adb4a5, type: 3}
     description: "\u0417\u0430\u0433\u043E\u0442\u043E\u0432\u043A\u0430 \u043A\u043B\u0438\u043D\u043A\u0430"
     stack: 1
+    weight: 300
     prefab: {fileID: 0}
     use: 0
     _serializableObj: 
@@ -109,6 +125,7 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: af50dc4fa7b6d314895d0f8c79adb4a5, type: 3}
     description: 
     stack: 1
+    weight: 300
     prefab: {fileID: 0}
     use: 0
     _serializableObj: 
@@ -118,6 +135,7 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: 9e2c99a2f1ae70343ba923d766b9ead8, type: 3}
     description: 
     stack: 1
+    weight: 90
     prefab: {fileID: 0}
     use: 0
     _serializableObj: 
@@ -127,6 +145,7 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: 53226da35d205e64aa7a1b6671e5203c, type: 3}
     description: 
     stack: 1
+    weight: 50
     prefab: {fileID: 0}
     use: 5
     _serializableObj: '{"recipeID":4}'
@@ -136,7 +155,66 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: 83c57d619a1d6be478ee04728c4b52f5, type: 3}
     description: 
     stack: 0
+    weight: 1000
     prefab: {fileID: 1850576378525214, guid: e9b27eb28a4ff0644a0bf78333f7b7e3, type: 3}
     use: 1
-    _serializableObj: '{"weaponType":2,"physicalAttack":500,"prickingDamage":200,"crushingDamage":400,"choppingDamage":0,"speed":1.2000000476837159}'
+    _serializableObj: '{"weaponType":2,"minDamege":300,"maxDamage":360,"speed":1.100000023841858,"pieces":[{"ID":7,"count":20},{"ID":8,"count":30}]}'
     type: Items.WeaponItem
+  - id: 14
+    nameItem: "\u0421\u0432\u0438\u0442\u043E\u043A: \u041C\u043E\u0434\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0438"
+    texture: {fileID: 2800000, guid: db427fab3e94daf4caa704d9314a77a1, type: 3}
+    description: "\u0428\u0430\u043D\u0441 \u0443\u0441\u043F\u0435\u0448\u043D\u043E\u0439
+      \u043C\u043E\u0434\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0438 60%. \u041A\u0430\u0436\u0434\u044B\u0439
+      \u0443\u0440\u043E\u0432\u0435\u043D\u044C\n\u043C\u043E\u0434\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0438
+      \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0443\u0440\u043E\u043D
+      \u043D\u0430 2%. \u041F\u0440\u0438 \u043D\u0435\u0443\u0434\u0430\u0447\u043D\u043E\u0439\n\u043C\u043E\u0434\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0438
+      \u0441\u043D\u0438\u0436\u0430\u0435\u0442\u0441\u044F \u043F\u0440\u043E\u0447\u043D\u043E\u0441\u0442\u044C
+      \u043D\u0430 25 \u0435\u0434\u0435\u043D\u0438\u0446"
+    stack: 1
+    weight: 50
+    prefab: {fileID: 0}
+    use: 6
+    _serializableObj: 
+    type: 
+  - id: 15
+    nameItem: "\u041A\u0443\u0437\u043D\u0435\u0447\u043D\u044B\u0439 \u043C\u043E\u043B\u043E\u0442"
+    texture: {fileID: 2800000, guid: 4092629512f4d7f4595d49c620d674e2, type: 3}
+    description: "\u041F\u0440\u0438 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0438
+      \u043D\u0430 \u043E\u0440\u0443\u0436\u0438\u0438 \u0432\u043E\u0441\u0442\u043E\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u0435\u0442\n25
+      \u0435\u0434\u0435\u043D\u0438\u0446 \u043F\u0440\u043E\u0447\u043D\u043E\u0441\u0442\u0438"
+    stack: 1
+    weight: 200
+    prefab: {fileID: 0}
+    use: 7
+    _serializableObj: 
+    type: 
+  - id: 16
+    nameItem: "\u0428\u043A\u0443\u0440\u0430 \u0436\u0438\u0432\u043E\u0442\u043D\u043E\u0433\u043E"
+    texture: {fileID: 2800000, guid: 022205d6b1a113e41b80d8c0f1fb8da8, type: 3}
+    description: 
+    stack: 1
+    weight: 120
+    prefab: {fileID: 0}
+    use: 0
+    _serializableObj: 
+    type: 
+  - id: 17
+    nameItem: "\u0412\u044B\u0434\u0435\u043B\u0430\u043D\u043D\u0430\u044F \u043A\u043E\u0436\u0430"
+    texture: {fileID: 2800000, guid: 738d3155b4c916642a0960267595836b, type: 3}
+    description: 
+    stack: 1
+    weight: 100
+    prefab: {fileID: 0}
+    use: 0
+    _serializableObj: 
+    type: 
+  - id: 18
+    nameItem: "\u0420\u0435\u0430\u043A\u0442\u0438\u0432 \u0434\u043B\u044F \u0434\u0443\u0431\u043B\u0435\u043D\u0438\u044F"
+    texture: {fileID: 2800000, guid: 0c52b44113e098941bd61a55af4745b1, type: 3}
+    description: 
+    stack: 1
+    weight: 50
+    prefab: {fileID: 0}
+    use: 0
+    _serializableObj: 
+    type: 

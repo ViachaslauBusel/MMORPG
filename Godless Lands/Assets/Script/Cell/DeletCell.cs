@@ -10,7 +10,7 @@ namespace Cells
         private new void Start()
         {
             base.Start();
-            ShowIcon();
+            icon.enabled = true;
         }
         public override void Put(Cell cell)
         {
@@ -39,7 +39,7 @@ namespace Cells
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);
             nw.SetTypePack(Types.DeletItem);
        //     print("Del index: " + index);
-            nw.write(itemCell.GetIndex());
+            nw.write(itemCell.GetKey());
             nw.write(itemCell.GetItem().id);
             if (itemCell.GetItem().stack)
             {

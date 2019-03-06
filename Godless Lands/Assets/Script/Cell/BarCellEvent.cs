@@ -26,7 +26,7 @@ namespace Cells
             }
             else if(barCell.GetItem() != null)
             {
-                informer = ItemCellEvent.ItemInfo(cellParent.parent, barCell.GetItem(), 0);
+                informer = ItemCellEvent.ItemInfo(cellParent.parent, barCell.GetItem());
             }
             //    (cell as BarCell).GetTargetCell().GetComponent<CellEvent>().ShowInfo();
         }

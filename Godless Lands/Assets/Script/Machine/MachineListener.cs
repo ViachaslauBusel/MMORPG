@@ -12,6 +12,7 @@ namespace Machines
     {
         public Smelter smelter;
         public Smelter grindstone;
+        public Smelter tannery;
         public Workbench workbench;
         private Machine selectMachine;
 
@@ -43,7 +44,7 @@ namespace Machines
             if (selectMachine == null) return;
             bool fuel = nw.ReadBool();
             int index = nw.ReadInt();
-            Item item = Inventory.GetItem(nw.ReadInt());
+            Item item = Inventory.CreateItem(nw.ReadInt());
             int count = nw.ReadInt();
             if(fuel) selectMachine.PutFuel(index, item, count);
             else selectMachine.PutComponent(index, item, count);
@@ -64,6 +65,9 @@ namespace Machines
                     break;
                 case MachineUse.Workbench:
                     selectMachine = workbench;
+                    break;
+                case MachineUse.Tannery:
+                    selectMachine = tannery;
                     break;
             }
             if (selectMachine != null) selectMachine.Open();
