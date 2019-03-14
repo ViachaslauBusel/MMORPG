@@ -37,6 +37,7 @@ public class Chat_MessageReception : MonoBehaviour
         GameObject obj =  Instantiate(msg_obj);
         obj.transform.SetParent(transform);
         obj.GetComponent<RectTransform>().localScale = Vector3.one;
+        int layer = nw.ReadInt();//Канал по которому пришло сообщения <<<<<<<<<<<<<<<<<<
         string character = nw.ReadString();
         string _message = nw.ReadString();
         if (_message.Contains("%")) _message = ReplaceSpecial(_message, nw);

@@ -1905,7 +1905,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loginServer: 93.170.128.229
-  localhost: 1
+  localhost: 0
+  version: 5
 --- !u!1 &1403641948
 GameObject:
   m_ObjectHideFlags: 0
