@@ -94,7 +94,7 @@ namespace Cells
         public void SetDurability(int durab, int maxDurability)
         {
             durability.enabled = true;
-            durability.text = "Прочность["+ durab + " / "+maxDurability+"]";
+            durability.text = "Прочность ["+ durab + " / "+maxDurability+"]";
         }
      /*   public void SetPrickingDamage(int atack, int quality)
         {

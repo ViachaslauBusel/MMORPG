@@ -20,11 +20,11 @@ TagManager:
   - 
   - Monster
   - Characters
-  - DeadMonster
+  - MonsterDrop
   - Terrain
   - Player
   - PostProcess
-  - 
+  - CharacterDrop
   - 
   - 
   - 

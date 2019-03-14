@@ -59,7 +59,7 @@ public class Types {
     public const short PlayAnimSkill = 53;
     public const short loadBar = 54;
     public const short updateBarCell = 55;
-    public const short free = 56;
+    public const short CharacterDead = 56;
     public const short WrapBarCell = 57;
     public const short WrapItem = 58;
     public const short ResourceCreate = 59;//S-C отправка на клиент данных для создания ресурса
@@ -79,5 +79,9 @@ public class Types {
     public const short ItemEnchant = 73;
     public const short UpdateItem = 74;
     public const short ItemRepair = 75;
+    public const short ItemMove = 76;
+    public const short CorpseCreate = 77;
+    public const short CorpseDelete = 78;
+    public const short CorpseUpdate = 79;
 
 }

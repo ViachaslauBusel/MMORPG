@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MachinesManager : MonoBehaviour
+public class MachinesManager : MonoBehaviour, Manager
 {
     public GameObject smelterPref;
     public GameObject grindstonePref;
@@ -27,6 +27,14 @@ public class MachinesManager : MonoBehaviour
     {
 
         machines = new Dictionary<int, GameObject>();
+    }
+
+    public void AllDestroy()
+    {
+        foreach (GameObject obj in machines.Values)
+            Destroy(obj);
+        machines.Clear();
+
     }
 
     private void MachineDelete(NetworkWriter nw)

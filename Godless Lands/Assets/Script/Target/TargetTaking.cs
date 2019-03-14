@@ -39,6 +39,9 @@ public class TargetTaking : MonoBehaviour {
                     case 10://DeadMobs
                         FindDrop(2, hit.transform.GetComponent<TargetObject>().Id());
                         break;
+                    case 14:
+                        FindDrop(4, hit.transform.GetComponent<TargetObject>().Id());
+                        break;
                     }
             }
         }

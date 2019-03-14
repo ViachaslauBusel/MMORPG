@@ -76,8 +76,13 @@ namespace Cells
             }
             else if (data.button == PointerEventData.InputButton.Right)//По клику правой кнопкай мыши
             {
-                   cell.Use();
+                RightClick();
             }
+        }
+
+        public virtual void RightClick()
+        {
+            cell.Use();
         }
 
         public override void OnBeginDrag(PointerEventData eventData)//Перемещение предмета

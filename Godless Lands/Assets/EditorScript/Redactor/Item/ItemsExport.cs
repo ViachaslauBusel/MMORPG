@@ -18,6 +18,7 @@ namespace Items
                     stream_out.Write((int)_item.use);
                     stream_out.Write(_item.id);
                     stream_out.Write(_item.stack);
+                    stream_out.Write(_item.weight);
                    
                     switch (_item.use)
                     {

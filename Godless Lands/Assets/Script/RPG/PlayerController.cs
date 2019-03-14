@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake()
     {
+        enabled = false;
         RegisteredTypes.RegisterTypes(Types.MapEntrance, MyCharacter);
         RegisteredTypes.RegisterTypes(Types.TeleportToPoint, TeleportToPoint);
     }
@@ -43,10 +44,7 @@ public class PlayerController : MonoBehaviour {
         character = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         animator.SetFloat("speedRun", speed / 3.5f);
-       
-
-
-        enabled = false;
+        
     }
 
     public static AnimationSkill PlayerAnim()

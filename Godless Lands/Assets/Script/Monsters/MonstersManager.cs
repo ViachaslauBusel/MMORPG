@@ -9,7 +9,7 @@ using MonsterRedactor;
 
 namespace Monsters
 {
-    public class MonstersManager : MonoBehaviour
+    public class MonstersManager : MonoBehaviour, Manager
     {
 
         public MonstersList monstersList;
@@ -22,6 +22,14 @@ namespace Monsters
             RegisteredTypes.RegisterTypes(Types.MonsterAnim, MonsterAnim);
             RegisteredTypes.RegisterTypes(Types.MonsterMove, MonsterMove);
             RegisteredTypes.RegisterTypes(Types.MonsterEndMove, MonsterEndMove);
+        }
+
+        public void AllDestroy()
+        {
+            foreach (Monster monster in monsters.Values)
+                Destroy(monster.gameObject);
+            monsters.Clear();
+    
         }
 
         private void MonsterEndMove(NetworkWriter nw)
@@ -142,5 +150,7 @@ namespace Monsters
             RegisteredTypes.UnregisterTypes(Types.MonsterMove);
             RegisteredTypes.UnregisterTypes(Types.MonsterEndMove);
         }
+
+
     }
 }

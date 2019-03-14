@@ -7,7 +7,7 @@ using System;
 using System.Text;
 using Items;
 
-public class CharactersManager : MonoBehaviour {
+public class CharactersManager : MonoBehaviour, Manager {
 
     public GameObject shipObject;
      private static Dictionary<int, GhostCharacter> characters; //логин ид, GhostShip
@@ -22,8 +22,44 @@ public class CharactersManager : MonoBehaviour {
         RegisteredTypes.RegisterTypes(Types.CharacterRotation, CharacterRotation);
         RegisteredTypes.RegisterTypes(Types.CharacterEndMove, CharacterEndMove);
         RegisteredTypes.RegisterTypes(Types.CharacterCombatState, CharacterCombatState);
+      //  RegisteredTypes.RegisterTypes(Types.CharacterDead, CharacterDead);
     }
 
+   /* private void CharacterDead(NetworkWriter nw)
+    {
+        int login_id = nw.ReadInt();
+        int corpse_id = nw.ReadInt();
+        print("Transfer: " + login_id);
+        if (characters.ContainsKey(login_id))
+        {
+            CorpsesManager.AddUnconfirmedBode(corpse_id, characters[login_id].gameObject);
+            characters.Remove(login_id);
+        }
+        else { print("Error not found character"); }
+    }*/
+
+    public static GameObject FindChar(int id)
+    {
+        try
+        {
+            GameObject obj = characters[id].gameObject;
+            characters.Remove(id);
+            return obj;
+        }
+        catch(KeyNotFoundException e)
+        {
+            return null;
+        }
+      
+    }
+
+    public void AllDestroy()
+    {
+        foreach (GhostCharacter ghost in characters.Values)
+            Destroy(ghost.gameObject);
+        characters.Clear();
+       
+    }
     private void CharacterCombatState(NetworkWriter nw)
     {
 
@@ -188,4 +224,6 @@ public class CharactersManager : MonoBehaviour {
         RegisteredTypes.UnregisterTypes(Types.CharacterEndMove);
         RegisteredTypes.UnregisterTypes(Types.CharacterCombatState);
     }
+
+   
 }

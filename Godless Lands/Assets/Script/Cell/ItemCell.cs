@@ -41,6 +41,15 @@ namespace Cells
             NetworkManager.Send(nw);
         }
 
+        public void Move()
+        {
+            if (IsEmpty()) return;
+            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
+            nw.SetTypePack(Types.ItemMove);
+            nw.write(key);
+            NetworkManager.Send(nw);
+        }
+
         public virtual void PutItem(Item item, int count)
         {
            

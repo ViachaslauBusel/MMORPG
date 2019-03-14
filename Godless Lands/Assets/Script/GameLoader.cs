@@ -1,10 +1,12 @@
-﻿using OpenWorld;
+﻿using Monsters;
+using OpenWorld;
 using RUCP;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GameLoader : MonoBehaviour
 {
@@ -34,9 +36,16 @@ public class GameLoader : MonoBehaviour
     private IEnumerator IELoadPoint()
     {
 
+        var managers = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<Manager>();
+
+        foreach(Manager manager in managers)
+        {
+            manager.AllDestroy();
+        }
 
         PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
-        player.enabled = false;   
+        player.enabled = false;
+        player.GetComponent<AnimationSkill>().DeadOff();//Отключить намацию смерти
 
         mapLoader = GameObject.Find("Map").GetComponent<MapLoader>();
         mapLoader.DestroyMap();
@@ -48,7 +57,9 @@ public class GameLoader : MonoBehaviour
             progressBar.fillAmount =  mapLoader.progress;
         }
 
-
+        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
+        nw.SetTypePack(Types.MapEntrance);
+        NetworkManager.Send(nw);
 
         Time.timeScale = 1.0f;//Включить физику
         player.enabled = true;

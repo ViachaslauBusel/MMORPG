@@ -29,13 +29,13 @@ public class CursorManager : MonoBehaviour {
             return;
         }
         Cursor.visible = true;
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (EventSystem.current.IsPointerOverGameObject())//Если экран заграждает GUI
         {
             Cursor.SetCursor(cursorStandart, hotSpot, cursorMode);
             return;
         }
-
-        RaycastHit hit;
+      
+       RaycastHit hit;
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         int layermask = 1 << 8;//Monsters
         layermask |= 1 << 10;//DeadMonsters
@@ -49,6 +49,10 @@ public class CursorManager : MonoBehaviour {
                 case 9://Players
                     Cursor.SetCursor(cursorAtack, hotSpot, cursorMode);
                     break;
+                case 14://DeadCharacter
+                    DisplayInformer.On(hit.transform.gameObject);
+                    Cursor.SetCursor(cursorDrop, hotSpot, cursorMode);
+                    return;
                 case 10://DeadMobs
                     Cursor.SetCursor(cursorDrop, hotSpot, cursorMode);
                     break;
@@ -57,6 +61,7 @@ public class CursorManager : MonoBehaviour {
                     break;
             }
         }
+        DisplayInformer.Off();
     }
 
     public void OnHammer()

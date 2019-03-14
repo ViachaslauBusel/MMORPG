@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Resource
 {
-    public class ResourcesManager : MonoBehaviour
+    public class ResourcesManager : MonoBehaviour, Manager
     {
         public ResourceList resourceList;
         private static Dictionary<int, GhostResource> resources;
@@ -27,6 +27,16 @@ namespace Resource
           
             resources = new Dictionary<int, GhostResource>();
         }
+
+
+        public void AllDestroy()
+        {
+            foreach (GhostResource resource in resources.Values)
+                Destroy(resource.gameObject);
+            resources.Clear();
+          
+        }
+
 
         private void ResourceDelete(NetworkWriter nw)
         {

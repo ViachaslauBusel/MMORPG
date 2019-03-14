@@ -2,14 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Cells
 {
     public class ItemCellEvent : CellEvent
     {
         private static GameObject prefabInformer; //Префаб бьекта c текстом информации о обьекте в ячейке
-      
-       
+        private static GameObject prefabMenu;
+        private GameObject Objmenu;
+
 
         private new void Start()
         {
@@ -17,8 +19,26 @@ namespace Cells
             {
                 prefabInformer = Resources.Load<GameObject>("Cell/PanelItemInfo");
             }
+            if (prefabMenu == null)
+                prefabMenu = Resources.Load<GameObject>("Cell/Menu");
             base.Start();
         }
+
+        public override void RightClick()//Использвоние предмета
+        {
+            if (cell.GetType() == typeof(ItemCell) && !cell.IsEmpty())
+            {
+                ItemCell itemCell = cell as ItemCell;
+                Objmenu = Instantiate(prefabMenu);
+                CellMenu menu = Objmenu.GetComponent<CellMenu>();
+                menu.Initial(cellParent.parent);
+                menu.use.onClick.AddListener(itemCell.Use);
+                menu.move.onClick.AddListener(itemCell.Move);
+                //   Button use =
+            }
+            else cell.Use();
+        }
+
 
         public override void ShowInfo()
         {

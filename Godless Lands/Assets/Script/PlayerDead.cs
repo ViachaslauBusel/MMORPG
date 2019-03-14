@@ -35,10 +35,9 @@ public class PlayerDead : MonoBehaviour {
         controller.enabled = true;
     }
 
-    private void PlayerDeadVoid(NetworkWriter nw)
+    private void PlayerDeadVoid(NetworkWriter nw)//Пакет 
     {
-        animationSkill.UseAnimState(4);
-        animationSkill.dead = true;
+        animationSkill.DeadOn();
         controller.enabled = false;
        
         canvas_dead.enabled = true;
@@ -46,7 +45,6 @@ public class PlayerDead : MonoBehaviour {
 
     public void PlayerRes()
     {
-        animationSkill.dead = false;
         canvas_dead.enabled = false;
 
         NetworkWriter nw = new NetworkWriter(Channels.Reliable);

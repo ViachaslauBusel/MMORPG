@@ -5,8 +5,7 @@ using UnityEngine;
 public class AnimationSkill : MonoBehaviour {
 
     private Animator animator;
-    private bool skill_block = false;
-    public bool dead = false;
+    public bool block = false;
     private float speedAnim = 1.0f;
 
     public float GetSpeedAnim()
@@ -14,47 +13,53 @@ public class AnimationSkill : MonoBehaviour {
         return speedAnim;
     }
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    public void UseAnim(string anim)
+    /*public void UseAnim(string anim)
     {
         animator.Play(anim);
-    }
+    }*/
 
     public void UseAnimationSkill(int animation, float speed)
     {
+        if (block) return;
         speedAnim = speed;
-        if (dead) return;
+        if (block) return;
         animator.SetInteger("AttackType", animation);
         animator.SetTrigger("atack");
     }
 
     public void UseAnimState(int animation)
     {
-        if (animation == 2) { animator.SetTrigger("spell"); skill_block = true; }
-        else if (animation == 3) { animator.SetTrigger("react"); skill_block = true; }
-        else if (animation == 4) { animator.SetBool("dead", true); animator.SetTrigger("dying"); PlayerController controller = GetComponent<PlayerController>(); if (controller != null) controller.enabled = false; skill_block = true; }
+        if (block) return;
+        if (animation == 2) { animator.SetTrigger("spell");  }
+        else if (animation == 3) { animator.SetTrigger("react");  }
+        else if (animation == 4) {  animator.SetTrigger("dying");  }
         else if (animation == 5) { animator.SetBool("dead", false); }
     }
 
     public void UseAnimState(int animation,float time)
     {
-        if (dead) return;
+        if (block) return;
         speedAnim = time;
         animator.SetInteger("StateType", animation);
         animator.SetTrigger("State");
     }
 
-    public void freezeOn()
+    public void DeadOn()
     {
-       // if (animator.GetFloat("skill_speed") < 0.0f) animator.SetFloat("skill_speed", 1.0f);
+        block = true;
+        if(animator == null) animator = GetComponent<Animator>();
+        animator.SetTrigger("dying");
     }
 
-    public void FreexeOff()
+    public void DeadOff()
     {
-       // if(skill_block) animator.SetFloat("skill_speed", -1.0f);
+        block = false;
+        if (animator == null) animator = GetComponent<Animator>();
+        animator.SetTrigger("Cancel");
     }
 }
