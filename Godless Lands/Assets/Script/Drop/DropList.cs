@@ -28,7 +28,7 @@ public class DropList : MonoBehaviour {
         ClearDropList();
         monster_layer = nw.ReadInt();
         monster_id = nw.ReadInt();
-        print("monster id: " + monster_id + " monster layer: " + monster_layer);
+    //    print("monster id: " + monster_id + " monster layer: " + monster_layer);
         while (nw.AvailableBytes > 0)
         {
             int id_item = nw.ReadInt();
@@ -70,6 +70,8 @@ public class DropList : MonoBehaviour {
         nw.write(id_item);
 
         NetworkManager.Send(nw);
+
+        if (id_item == -1) Close();//-1 take all drop and close window
     }
 
     private void OnDestroy()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1447086511}
-  m_IndirectSpecularColor: {r: 0.76021516, g: 0.8641941, b: 0.9875286, a: 1}
+  m_IndirectSpecularColor: {r: 0.7602157, g: 0.86419433, b: 0.98752946, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7652,7 +7652,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1575304206}
   m_HandleRect: {fileID: 1575304205}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -10516,7 +10516,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1594853}
   m_HandleRect: {fileID: 1594852}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -13272,7 +13272,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: -275.12506}
+  m_AnchoredPosition: {x: -0.000030517578, y: -275.12497}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580182927
@@ -14971,7 +14971,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1188274068}
   m_HandleRect: {fileID: 1188274067}
   m_Direction: 2
-  m_Value: 0.9999995
+  m_Value: 0.99999905
   m_Size: 0.86556274
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -19616,8 +19616,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1477581803}
   m_HandleRect: {fileID: 1477581802}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -20878,7 +20878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000029913732}
+  m_AnchoredPosition: {x: 0, y: 0.0000494913}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &940546375
@@ -22544,7 +22544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000024358325}
+  m_AnchoredPosition: {x: 0, y: 0.000005546884}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1070764574
@@ -23391,8 +23391,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 432143221}
   m_HandleRect: {fileID: 432143220}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -29989,7 +29989,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 999945741}
   m_HandleRect: {fileID: 999945740}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -30685,7 +30685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000050188355}
+  m_AnchoredPosition: {x: 0, y: 0.000010455862}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1384538099
@@ -34154,7 +34154,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1897570014}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -35233,7 +35233,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2097489665}
   m_HandleRect: {fileID: 2097489664}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -43335,7 +43335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0.000042540756}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0.000013883469}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1928116414
@@ -47826,7 +47826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.254}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00007764765, y: 0}
+  m_AnchoredPosition: {x: -0.00007396289, y: 0}
   m_SizeDelta: {x: 0, y: 164}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2106773804
@@ -52231,7 +52231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95defcb32734dd0479a23b145120bdff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chat: {fileID: 7554969778409678664}
+  chat: {fileID: 0}
 --- !u!223 &7554969778409678666
 Canvas:
   m_ObjectHideFlags: 0
