@@ -13,5 +13,6 @@ public class TabData{
 	public string tabName;
 	public bool tabActive;
 	public int tabFontSize;
+	public int tabIndex;
 	public List<ChatLayer> tabLayers;
 }

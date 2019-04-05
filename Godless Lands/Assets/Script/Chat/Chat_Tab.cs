@@ -34,10 +34,11 @@ public class Chat_Tab : MonoBehaviour{
 		}
 		set {
 			tabName.text = value;
+			DropdownTab.TabName = value;
 		}
 	}
 
-	int tabFontSize;
+	int tabFontSize = 24;
 	public int TabFontSize{
 		get{
 			return tabFontSize;
@@ -66,9 +67,23 @@ public class Chat_Tab : MonoBehaviour{
 	public ChatTabClickEvent OnChatTabClickEvent;
 
 	public RectTransform messageContainer;
-
 	public int maxMessages = 30;
 	[System.NonSerialized] List<Chat_Message> messages = new List<Chat_Message>();
+
+	RectTransform rectTransform;
+	public float TabWidth{ 
+		get{ 
+			return rectTransform.rect.width;
+		}
+	}
+	
+	public int TabIndex { get;set;}
+
+	public Chat_DropdownTab DropdownTab;
+
+	private void Awake() {
+		rectTransform = GetComponent<RectTransform>();		
+	}
 
 	public void OnChatTabClick(){
 		if (OnChatTabClickEvent != null){
@@ -89,11 +104,8 @@ public class Chat_Tab : MonoBehaviour{
 		}
 	}
 
-	public void LoadDefaultSettings(){
-		TabName = "New Tab";
-		TabFontSize = 24;
-		// TODO layer color alpha not applying. wtf?
-		Layers = new List<ChatLayer>{
+	public static List<ChatLayer> GetDefaultLayers(){ 
+		return new List<ChatLayer>{
 			new ChatLayer(){
 				id = 0,
 				name = "System",
@@ -154,6 +166,7 @@ public class Chat_Tab : MonoBehaviour{
 		if (chatLayer == null){
 			// Maybe use a fallback layer instead of 0?
 			chatLayer = Layers[0];
+			Debug.LogError("Server send unrecognizable chatLayer: " + layerID);
 		}
 
 		messageObject.FontSize = TabFontSize;

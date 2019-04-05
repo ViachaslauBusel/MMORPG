@@ -17,7 +17,7 @@ public class Chat_MessageReception : MonoBehaviour
    // private int auto_scroll_index = 0;
   //  private RectTransform rectTransform;
     private ItemsList itemsList;
-	[SerializeField] Chat_Manager chat;
+	private Chat_Manager chat;
 
     private void Awake()
     {
@@ -26,6 +26,7 @@ public class Chat_MessageReception : MonoBehaviour
 
     private void Start()
     {
+		chat = GetComponent<Chat_Manager>();
         itemsList = Resources.Load("Inventory/ItemList") as ItemsList;
       //  rectTransform = GetComponent<RectTransform>();
         //messages = new GameObject[max_message];

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Chat_ResizeWindow : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler {
 	
@@ -13,6 +14,8 @@ public class Chat_ResizeWindow : MonoBehaviour, IPointerDownHandler, IDragHandle
 
 	Vector2 currentPointerPosition;
 	Vector2 previousPointerPosition;
+
+	public UnityEvent OnChatResize;
 
 	public void OnPointerDown (PointerEventData data) {
 			if(resizeTarget == null) return;
@@ -45,6 +48,10 @@ public class Chat_ResizeWindow : MonoBehaviour, IPointerDownHandler, IDragHandle
 		resizeTarget.sizeDelta = delta;
 
 		previousPointerPosition = currentPointerPosition;
+
+		if (OnChatResize != null){
+			OnChatResize.Invoke();
+		}
 	}
 
 	public void Start(){

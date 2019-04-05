@@ -8,8 +8,7 @@ public class TabItem : MonoBehaviour{
 	[SerializeField] Text tabName;
 	public string TabName{
 		set{
-			tabName.text = value;
-			tab.TabName = value; 
+			tabName.text = value; 
 		}
 	}
 
@@ -20,6 +19,7 @@ public class TabItem : MonoBehaviour{
 		}
 		set{
 			tab = value;
+			TabName = tab.TabName;
 		}
 	}
 

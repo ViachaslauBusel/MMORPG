@@ -23,8 +23,11 @@ public class ChatSettings : MonoBehaviour{
 
 	List<LayerItem> chatLayers = new List<LayerItem>();
 
-	void OnEnable(){
+	void Awake() {
 		chat = transform.GetComponentInParent<Chat_Manager>();
+	}
+
+	void OnEnable(){
 
 		List<Chat_Tab> tabs = chat.Tabs;
 		TabItem tabToSelect = null;
@@ -38,11 +41,12 @@ public class ChatSettings : MonoBehaviour{
 		for(int i = 0; i < tabs.Count; i++){
 			TabItem tabItem = Instantiate(tabItemPrefab, tabItemsContainer);
 			tabItem.Tab = tabs[i];
-			tabItem.TabName = tabs[i].TabName;
 			tabItem.OnTabClickEvent += OnSelectTab;
+
 			if (tabs[i].TabSelected) {
 				tabToSelect = tabItem;
 			}
+			tabItem.transform.SetSiblingIndex(tabs[i].TabIndex);
 			tabItems.Add(tabItem);
 		}
 		
@@ -54,8 +58,8 @@ public class ChatSettings : MonoBehaviour{
 
 		if (tabToSelect != null){ 
 			OnSelectTab(tabToSelect);
+			SwitchToTabSettings();
 		}
-		SwitchToTabSettings();
 	}
 
 	void OnDisable(){
@@ -75,13 +79,10 @@ public class ChatSettings : MonoBehaviour{
 
 	//Method for button.
 	public void CreateNewTab(){
-		if (chat.Tabs.Count + 1 > chat.maxTabs) return;
-
 		Chat_Tab tab = chat.CreateNewTab();
 
 		TabItem tabItem = Instantiate(tabItemPrefab, tabItemsContainer);
 		tabItem.Tab = tab;
-		tabItem.TabName = tab.TabName;
 		tabItem.OnTabClickEvent += OnSelectTab;
 		tabItems.Add(tabItem);
 		
@@ -107,13 +108,15 @@ public class ChatSettings : MonoBehaviour{
 		tabSettingsGroup.gameObject.SetActive(true);
 	}
 
-	void LoadTabSettings(){
+	void LoadTabSettings(bool loadDefaultLayers = false){
 		fontSizeSlider.value = selectedTabItem.Tab.TabFontSize;
 		fontSizeValue.text = selectedTabItem.Tab.TabFontSize.ToString();
 		tabNameInput.text = selectedTabItem.Tab.TabName;
 
-		for(int i = 0; i < selectedTabItem.Tab.Layers.Count; i++){
-			chatLayers[i].SetLayerData(selectedTabItem.Tab.Layers[i]);
+		//It can not load reseted color data from chat.SelectedTab.Layers and I don't know why.
+		List<ChatLayer> layers = loadDefaultLayers ? Chat_Tab.GetDefaultLayers() : chat.SelectedTab.Layers;
+		for(int i = 0; i < layers.Count; i++){
+			chatLayers[i].SetLayerData(layers[i]);
 		}
 	}
 
@@ -123,10 +126,8 @@ public class ChatSettings : MonoBehaviour{
 	}
 	
 	public void ApplyTabName(){
-		selectedTabItem.TabName = tabNameInput.text;
+		selectedTabItem.TabName = selectedTabItem.Tab.TabName = tabNameInput.text;
 	}
-
-
 
 	void ApplyLayerSettings(LayerItem layer, bool visible, Color color){
 		int layerIndex = chatLayers.IndexOf(layer);
@@ -147,11 +148,15 @@ public class ChatSettings : MonoBehaviour{
 		chat.OnSelectTab(selectedTabItem.Tab);
 
 		LoadTabSettings();
+
+		chat.ValidateTabsWidth();
 	}
 
 	public void ResetTabSettings(){
-		selectedTabItem.Tab.LoadDefaultSettings();
-		LoadTabSettings();
+		chat.SelectedTab.TabName = "New Tab";
+		chat.SelectedTab.TabFontSize = 24;
+		chat.SelectedTab.Layers = Chat_Tab.GetDefaultLayers();
+		LoadTabSettings(true);
 	}
 
 	public void RemoveSelectedTab(){
