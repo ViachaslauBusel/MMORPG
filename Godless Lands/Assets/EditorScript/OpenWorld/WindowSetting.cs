@@ -6,6 +6,7 @@ using UnityEngine;
 using MonsterRedactor;
 using Resource;
 using Items;
+using NPCRedactor;
 
 namespace OpenWorld
 {
@@ -15,6 +16,8 @@ namespace OpenWorld
         private static int _areaViseble = 1;
         private static MonstersList _monstersList;
         private static WorldMonstersList _worldMonstrList;
+        private static NPCList _NPCList;
+        private static WorldNPCList _worldNPCList;
         private static ResourceList _resourceList;
         private static WorldResourcesList _worldResourcesList;
         private static MachineList _machineList;
@@ -24,6 +27,8 @@ namespace OpenWorld
         public static int areaVisible { get { return _areaViseble; } }
         public static MonstersList monstersList { get { return _monstersList; } }
         public static WorldMonstersList WorldMonsterList { get { return _worldMonstrList; } }
+        public static NPCList NPCList { get { return _NPCList; } }
+        public static WorldNPCList WorldNPCList { get { return _worldNPCList; } }
         public static ResourceList ResourcesList { get { return _resourceList; } }
         public static WorldResourcesList WorldResourcesList { get { return _worldResourcesList; } }
         public static MachineList MachineList { get { return _machineList; } }
@@ -34,6 +39,8 @@ namespace OpenWorld
         private static int dontSaveAreaVisible;
         private static MonstersList dontSaveMonstersList;
         private static WorldMonstersList dontSaveWorldMonsterList;
+        private static NPCList dontSaveNPCList;
+        private static WorldNPCList dontSaveWorldNPCList;
         private static ResourceList dontSaveResourcesList;
         private static WorldResourcesList dontSaveWorldResourceList;
         private static MachineList dontSaveMachineList;
@@ -61,6 +68,14 @@ namespace OpenWorld
             dontSaveWorldMonsterList = EditorGUILayout.ObjectField(dontSaveWorldMonsterList, typeof(WorldMonstersList), false) as WorldMonstersList;
 
             GUILayout.Space(15.0f);
+            GUILayout.Label("Список NPC"); GUILayout.Space(5.0f);
+            dontSaveNPCList = EditorGUILayout.ObjectField(dontSaveNPCList, typeof(NPCList), false) as NPCList;
+
+            GUILayout.Space(15.0f);
+            GUILayout.Label("Список NPC закрепленых на карте"); GUILayout.Space(5.0f);
+            dontSaveWorldNPCList = EditorGUILayout.ObjectField(dontSaveWorldNPCList, typeof(WorldNPCList), false) as WorldNPCList;
+
+            GUILayout.Space(15.0f);
             GUILayout.Label("Список ресурсов"); GUILayout.Space(5.0f);
             dontSaveResourcesList = EditorGUILayout.ObjectField(dontSaveResourcesList, typeof(ResourceList), false) as ResourceList;
 
@@ -78,7 +93,8 @@ namespace OpenWorld
 
             GUILayout.Space(20.0f);
             GUI.enabled = dontSaveAreaVisible != _areaViseble || dontSaveMap != editMap || dontSaveMonstersList != _monstersList || dontSaveWorldMonsterList != _worldMonstrList || dontSaveResourcesList != _resourceList
-                || _worldResourcesList != dontSaveWorldResourceList || _machineList != dontSaveMachineList || _itemsList != dontSaveItemsList;
+                || _worldResourcesList != dontSaveWorldResourceList || _machineList != dontSaveMachineList || _itemsList != dontSaveItemsList ||
+                _NPCList != dontSaveNPCList || _worldNPCList != dontSaveWorldNPCList;
             if (GUILayout.Button("Save"))
             {
                 _areaViseble = dontSaveAreaVisible;
@@ -95,6 +111,14 @@ namespace OpenWorld
                 _worldMonstrList = dontSaveWorldMonsterList;
                 pathToPrefab = AssetDatabase.GetAssetPath(_worldMonstrList);
                 PlayerPrefs.SetString("editWorldMonsterList", pathToPrefab);
+
+                _NPCList = dontSaveNPCList;
+                pathToPrefab = AssetDatabase.GetAssetPath(_NPCList);
+                PlayerPrefs.SetString("editNPCList", pathToPrefab);
+
+                _worldNPCList = dontSaveWorldNPCList;
+                pathToPrefab = AssetDatabase.GetAssetPath(_worldNPCList);
+                PlayerPrefs.SetString("editWorldNPCList", pathToPrefab);
 
                 _resourceList = dontSaveResourcesList;
                 pathToPrefab = AssetDatabase.GetAssetPath(_resourceList);
@@ -133,6 +157,13 @@ namespace OpenWorld
             _worldMonstrList = AssetDatabase.LoadAssetAtPath<WorldMonstersList>(path);
             dontSaveWorldMonsterList = _worldMonstrList;
 
+            path = PlayerPrefs.GetString("editNPCList");
+            _NPCList = AssetDatabase.LoadAssetAtPath<NPCList>(path);
+            dontSaveNPCList = _NPCList;
+
+            path = PlayerPrefs.GetString("editWorldNPCList");
+            _worldNPCList = AssetDatabase.LoadAssetAtPath<WorldNPCList>(path);
+            dontSaveWorldNPCList = _worldNPCList;
 
             path = PlayerPrefs.GetString("editResourcesList");
             _resourceList = AssetDatabase.LoadAssetAtPath<ResourceList>(path);
