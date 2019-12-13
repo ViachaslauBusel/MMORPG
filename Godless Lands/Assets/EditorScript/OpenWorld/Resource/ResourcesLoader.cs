@@ -1,10 +1,11 @@
 ﻿#if UNITY_EDITOR
+using OpenWorld;
 using Resource;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OpenWorld
+namespace OpenWorldEditor
 {
     public class ResourcesLoader : MonoBehaviour
     {

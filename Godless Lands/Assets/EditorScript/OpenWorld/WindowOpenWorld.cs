@@ -5,17 +5,12 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace OpenWorld
+namespace OpenWorldEditor
 {
-
-    
+    //
     public class WindowOpenWorld : EditorWindow
     {
-
-
-       
-        private static MapLoader mapLoader;
-        private static int activeTools = -1;
+        private static int activeTools = -1;//Текущий активный инструмент(кнопка)
         public static WindowOpenWorld window;
 
         [MenuItem("Window/TerrainEditor")]
@@ -31,35 +26,17 @@ namespace OpenWorld
             window = this;
             // Add (or re-add) the delegate.
             SceneView.onSceneGUIDelegate += this.OnSceneGUI;
-            WindowSetting.Load();
+            WindowSetting.Load();//Загрузка скрипта хранящего префабы-списки
             WindowActiveTools.Load();
-            /*    GameObject findObj = GameObject.Find("MapEditor");
-                if (findObj != null) {
-                    mapLoader = CreateMap(SceneView.lastActiveSceneView.camera.transform);
-                }
-                else
-                {
-                    Debug.Log("obj == null");
-                }*/
-            //Debug.Log("Terrain editor OnEnable");
-
-
-
         }
         private void OnDisable()
         {
-         //   Debug.Log("Terrain editor OnDisable");
             SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
             DestroySceneGUI();
-           // if (mapLoader != null) DestroyImmediate(mapLoader.gameObject);
-    
         }
 
-        private void OnGUI()
+        private void OnGUI()//Отрисовка меню редактора
         {
-           // GUILayout.Space(20.0f);
-       
-            
 
             if(activeTools != WindowActiveTools.Active())//Если поменялся инструмент, удалить используемые ресурсы на сцене
             {
@@ -70,110 +47,49 @@ namespace OpenWorld
             switch (activeTools)
             {
                 case 0://Редактирование отключено
-                    if (mapLoader != null) DestroyImmediate(mapLoader.gameObject);
-                    GameObject obj = GameObject.Find("MapEditor");
-                    if (obj != null) DestroyImmediate(obj);
-                    Resources.UnloadUnusedAssets();
+                    WorldLoader.Destroy();
                     return;
                 case 1:// Отрисовать инструменты для Редактирование террейна/     
-                    if (mapLoader == null)
-                    {
-                        mapLoader = CreateMap(SceneView.lastActiveSceneView.camera.transform);
-                        if (mapLoader == null) return;
-                    }
-                    WindowTerrain.Draw(WindowSetting.Map, mapLoader);
+                    WindowTerrain.Draw(WindowSetting.Map, WorldLoader.Map);
                     break;
                 case 2://Инструменты для Редактирование монстров                 
-                    if (mapLoader == null)
-                    {
-                        mapLoader = CreateMap(SceneView.lastActiveSceneView.camera.transform);
-                        if (mapLoader == null) return;
-                    }
-                    WindowMonsterActiveTools.Draw();
+                   if(WorldLoader.IsHaveMap)
+                      WindowMonsterActiveTools.Draw();
                     break;
                 case 3://Отрисовать инструменты для редактирование обьектов
-                    if (mapLoader == null)
-                    {
-                        mapLoader = CreateMap(SceneView.lastActiveSceneView.camera.transform);
-                        if (mapLoader == null) return;
-                    }
-                    WindowObject.Draw(WindowSetting.Map, mapLoader);
+                    WindowObject.Draw(WindowSetting.Map, WorldLoader.Map);
                     break;
                 case 4://Экпорт на сервер
-                    if (WindowSetting.Map == null)
-                    {
-                        EditorGUILayout.HelpBox("Карта не выбрана", MessageType.Error);
-                        return;
-                    }
                         WindowExport.Draw(WindowSetting.Map);
                     break;
                 case 5://Настройки редактора карты
                     WindowSetting.Draw();
                     break;
                 case 6://Инструменты для Редактирование ресурсов   
-                    if (mapLoader == null)
-                    {
-                        mapLoader = CreateMap(SceneView.lastActiveSceneView.camera.transform);
-                        if (mapLoader == null) return;
-                    }
-                    WindowResourcesAcriveTools.Draw();
+                    if (WorldLoader.IsHaveMap)
+                        WindowResourcesAcriveTools.Draw();
                     break;
                 case 7://Инструменты для Редактирование станков   
-                    if (mapLoader == null)
-                    {
-                        mapLoader = CreateMap(SceneView.lastActiveSceneView.camera.transform);
-                        if (mapLoader == null) return;
-                    }
-                    WindowMachineActiveTools.Draw();
+                    if (WorldLoader.IsHaveMap)
+                        WindowMachineActiveTools.Draw();
                     break;
             }
 
             
         }
 
-        public static MapLoader CreateMap(Transform trackingTransform)
-        {
-           
-            if (EditorApplication.isPlaying && trackingTransform.GetComponent<Camera>() != null)
-            {
-                GameObject _obj = GameObject.Find("MapEditor");
-                if (_obj != null) return _obj.GetComponent<MapLoader>();
-                return null;
-            }
-            if (WindowSetting.Map == null)
-            {
-                EditorGUILayout.HelpBox("Карта не выбрана", MessageType.Error);
-                return null;
-            }
-            GameObject obj = GameObject.Find("MapEditor");
-            if (obj != null) DestroyImmediate(obj);
-            obj = Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/Map.prefab"));
-            obj.name = "MapEditor";
-            MapLoader mapLoader = obj.GetComponent<MapLoader>();
-            mapLoader.trackingObj = trackingTransform;
-            mapLoader.map = WindowSetting.Map;
-            mapLoader.areaVisible = WindowSetting.areaVisible;
-            mapLoader.LoadMap();
-            RenderSettings.fog = false;
-            return mapLoader;
-
-        }
+       
         public static void ReloadMap()
         {
-            if(mapLoader != null)
-            {
-                Transform tracking = mapLoader.trackingObj;
-                DestroyImmediate(mapLoader);
-                mapLoader = CreateMap(tracking);
-            }
+            WorldLoader.Reload();
         }
         private void OnSceneGUI(SceneView sceneView)
         {
            // OnGUI();
-            if (mapLoader != null)
+            if (WorldLoader.IsMap)
             {
 
-                mapLoader.ChangeBlock();
+                WorldLoader.Map.ChangeBlock();
             }
             else return;
 
@@ -188,7 +104,7 @@ namespace OpenWorld
                     if (WindowMonsterActiveTools.MontersDraw)
                     { MonsterSceneGUI.SceneGUI(sceneView.camera); }
         
-                        MonsterVisibleSceneGUI.SceneGUI(mapLoader);
+                        MonsterVisibleSceneGUI.SceneGUI(WorldLoader.Map);
                     break;
                 case 3://Отрисовать инструменты для редактирование обьектов
                     WindowOpenWorld.window.Repaint();
@@ -200,13 +116,13 @@ namespace OpenWorld
                     if (WindowResourcesAcriveTools.ResourcesDraw)
                     { ResourcesSceneGUI.SceneGUI(sceneView.camera); }
 
-                    ResourcesVisibleSceneGUI.SceneGUI(mapLoader);
+                    ResourcesVisibleSceneGUI.SceneGUI(WorldLoader.Map);
                     break;
                 case 7:
                /*     if (WindowMachineActiveTools.ResourcesDraw)
                     { ResourcesSceneGUI.SceneGUI(sceneView.camera); }*/
 
-                    MachineVisibleSceneGUI.SceneGUI(mapLoader);
+                    MachineVisibleSceneGUI.SceneGUI(WorldLoader.Map);
                     break;
             }
             
@@ -228,7 +144,7 @@ namespace OpenWorld
 
             SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
             DestroySceneGUI();
-            if (mapLoader != null) DestroyImmediate(mapLoader.gameObject);
+            WorldLoader.Destroy();
         }
 
  

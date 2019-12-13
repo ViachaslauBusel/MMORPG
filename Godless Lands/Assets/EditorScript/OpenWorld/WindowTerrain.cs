@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using OpenWorld;
 
-namespace OpenWorld
+namespace OpenWorldEditor
 {
 
    
@@ -82,6 +83,8 @@ namespace OpenWorld
 
         public static void Draw(Map editMap, MapLoader mapLoader)
         {
+            if (mapLoader == null) return;
+
             WindowTerrain.DrawTools();
             WindowTerrain.DrawHelp();
 

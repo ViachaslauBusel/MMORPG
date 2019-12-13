@@ -1,17 +1,19 @@
 ﻿#if UNITY_EDITOR
 using MonsterRedactor;
+using OpenWorld;
 using Resource;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-namespace OpenWorld {
+namespace OpenWorldEditor {
     public class WindowExport
     {
         private static Map map;
         public static void Draw(Map _map)
         {
+            if (_map == null) return;
             map = _map;
 
             if (GUILayout.Button("Export Spawn Point"))

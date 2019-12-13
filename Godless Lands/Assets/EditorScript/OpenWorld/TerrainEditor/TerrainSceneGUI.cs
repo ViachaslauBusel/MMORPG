@@ -1,10 +1,11 @@
 ﻿#if UNITY_EDITOR
+using OpenWorld;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace OpenWorld
+namespace OpenWorldEditor
 {
    
     //Отрисовка кистей редактора террейна

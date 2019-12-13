@@ -1,10 +1,11 @@
 ﻿#if UNITY_EDITOR
+using OpenWorld;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Water;
 
-namespace OpenWorld {
+namespace OpenWorldEditor {
 
     //Обновлене одного тайла с  обьектами карты
     public class MapEditLoader

@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using OpenWorld;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace OpenWorld
+namespace OpenWorldEditor
 {
     public class WindowObject
     {
@@ -18,6 +19,7 @@ namespace OpenWorld
 
         public static void Draw(Map _editMap, MapLoader loader)
         {
+            if (loader == null) return;
             editMap = _editMap;
             mapLoader = loader;
             GUILayout.Space(15.0f);

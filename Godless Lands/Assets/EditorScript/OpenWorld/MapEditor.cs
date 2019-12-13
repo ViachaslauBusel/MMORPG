@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using OpenWorld;
 
-namespace OpenWorld
+namespace OpenWorldEditor
 {
    
     [CustomEditor(typeof(Map))]

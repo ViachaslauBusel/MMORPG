@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace OpenWorld
+namespace OpenWorldEditor
 {
     //Настройки и список кистей
     public class Brushes
