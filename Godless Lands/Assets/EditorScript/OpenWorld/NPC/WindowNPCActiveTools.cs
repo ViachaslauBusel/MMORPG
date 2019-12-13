@@ -10,7 +10,13 @@ namespace OpenWorldEditor
     {
         private static int tools = 0;
 
+        /// <summary>
+        /// Инструмент кисть
+        /// </summary>
         public static bool NPCDraw { get { return tools == 1; } }
+        /// <summary>
+        /// Инструмент вывод НПЦ закрепленных на карте
+        /// </summary>
         public static bool NPCVisible { get { return tools == 2; } }
 
         public static void Draw()
@@ -31,9 +37,8 @@ namespace OpenWorldEditor
             GUI.enabled = tools != 2;
             if (GUILayout.Button(EditorGUIUtility.IconContent("UnityLogo"), EditorStyles.miniButtonRight, GUILayout.Width(25.0f), GUILayout.Height(25.0f)))
             {
-
                 tools = 2;
-                MonsterSceneGUI.Destroy();
+                SceneNPCBrush.Destroy();
             }
 
 
@@ -44,10 +49,10 @@ namespace OpenWorldEditor
             switch (tools)
             {
                 case 1:
-                    WindowNPC.Draw();
+                    WindowNPCBrush.Draw();//Список доступных НПЦ в качестве кисти
                     break;
                 case 2:
-                    WindowVisibleNPC.Draw();
+                    WindowVisibleNPC.Draw();//Список доступных НПЦ на сцене
                     break;
             }
         }

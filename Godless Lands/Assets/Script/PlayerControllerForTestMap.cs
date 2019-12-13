@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using OpenWorld;
+using OpenWorldEditor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,12 +20,12 @@ public class PlayerControllerForTestMap : MonoBehaviour
         /*  GameObject objectMap = GameObject.Find("MapEditor");
           if (objectMap != null)
           {
-              MapLoader mapLoader = objectMap.GetComponent<MapLoader>();
+              MapLoader mapLoader = objectMap.GetComponent<MapLoader>()trs;
               mapLoader.trackingObj = transform;
               mapLoader.DestroyMap();
               mapLoader.LoadMap();
           }*/
-        WindowOpenWorld.CreateMap(transform);
+        WorldLoader.Map.trackingObj = transform;
     }
 
     void Start()

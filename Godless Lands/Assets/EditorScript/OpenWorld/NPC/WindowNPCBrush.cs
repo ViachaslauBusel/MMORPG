@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using NPCRedactor;
+using NPCs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -7,27 +8,41 @@ using UnityEngine;
 
 namespace OpenWorldEditor
 {
-    public class WindowNPC
+    /// <summary>
+    /// Отрисовка инструмента кисть в окне OpenWorldEditor
+    /// </summary>
+    public class WindowNPCBrush
     {
         private static int page = 0;
         private static int npcOnPage = 20;
         private static int selectIndex = -1;
         private static GameObject _editableNPC;
-        private static float radius = 1.0f;
-        private static NPCDraw npcDrawGizmos;
 
 
-        public static NPC NPCPaint { get { if (WindowSetting.NPCList == null || _editableNPC != null) return null; return WindowSetting.NPCList[selectIndex]; } }
+        /// <summary>
+        /// Возвращает префаб НПЦ для выбранной кисти, если кисть не выбрана или есть обьект для закрепление null
+        /// </summary>
+        public static NPCPrefab NPCPrefab { get { if (WindowSetting.NPCList == null) return null; return WindowSetting.NPCList[selectIndex]; } }
+        /// <summary>
+        /// Текущий обьект для добовление на карту
+        /// </summary>
         public static GameObject editableNPC
         {
             set
             {
-                radius = 1.0f;
-                npcDrawGizmos = value.AddComponent<NPCDraw>();//скрипт для отрисовки радиуса спавна 
                 _editableNPC = value;
             }
+            get { return _editableNPC; }
         }
 
+        /// <summary>
+        /// Режим закрепление НПЦ на карту
+        /// </summary>
+        public static bool IsFixationMode { get { return _editableNPC != null; } }
+
+        /// <summary>
+        /// Закрепление НПЦ на карте
+        /// </summary>
         private static void EditNPC()
         {
 
@@ -40,13 +55,13 @@ namespace OpenWorldEditor
 
             if (GUILayout.Button("Закрепить"))
             {
-                WindowSetting.WorldNPCList.Add(new WorldNPC(WindowSetting.NPCList[selectIndex].id, _editableNPC.transform.position, radius));
+                WindowSetting.WorldNPCList.Add(new WorldNPC(WindowSetting.NPCList[selectIndex].id, _editableNPC.transform.position, _editableNPC.transform.rotation.eulerAngles.y));
                 AssetDatabase.Refresh();
-                EditorUtility.SetDirty(WindowSetting.WorldMonsterList);
+                EditorUtility.SetDirty(WindowSetting.WorldNPCList);
                 AssetDatabase.SaveAssets();
                 GameObject.DestroyImmediate(_editableNPC);
                 _editableNPC = null;
-                MonsterVisibleSceneGUI.UpdateMonsterLoader();
+                NPCVisibleSceneGUI.UpdateNPCLoader();
             }
 
 
@@ -54,6 +69,9 @@ namespace OpenWorldEditor
         }
 
 
+        /// <summary>
+        /// Отрисовка списка кистей
+        /// </summary>
         public static void Draw()
         {
             GUILayout.Space(20.0f);

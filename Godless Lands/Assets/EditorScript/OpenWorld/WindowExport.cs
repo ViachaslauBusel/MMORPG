@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using MonsterRedactor;
+using NPCRedactor;
 using OpenWorld;
 using Resource;
 using System.Collections;
@@ -53,6 +54,16 @@ namespace OpenWorldEditor {
                 }
                 MonsterExport.Export(WindowSetting.WorldMonsterList, WindowSetting.monstersList);
                 EditorUtility.DisplayDialog("Export monsters.dat", "Экспорт выполнен", "ok");
+            }
+            if (GUILayout.Button("Export npc.dat"))
+            {
+                if (WindowSetting.WorldNPCList == null || WindowSetting.NPCList == null)
+                {
+                    EditorUtility.DisplayDialog("Export npc.dat", "Ошибка экспорта", "ok");
+                    return;
+                }
+                NPCExport.Export(WindowSetting.WorldNPCList, WindowSetting.NPCList);
+                EditorUtility.DisplayDialog("Export npc.dat", "Экспорт выполнен", "ok");
             }
             if (GUILayout.Button("Export resources.dat"))
             {

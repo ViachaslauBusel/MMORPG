@@ -83,5 +83,7 @@ public class Types {
     public const short CorpseCreate = 77;
     public const short CorpseDelete = 78;
     public const short CorpseUpdate = 79;
+    public const short NpcCreate = 80;
+    public const short NpcDelete = 81;
 
 }

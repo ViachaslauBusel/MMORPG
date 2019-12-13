@@ -8,6 +8,7 @@ using Resource;
 using Items;
 using NPCRedactor;
 using OpenWorld;
+using NPCs;
 
 namespace OpenWorldEditor
 {

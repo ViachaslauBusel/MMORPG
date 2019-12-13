@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace NPCRedactor
+namespace NPCs
 {
     public class NPCList : ScriptableObject
     {
-        public List<NPC> npcList;
+        public List<NPCPrefab> npcList;
 
-        public void Add(NPC _npc)
+        public void Add(NPCPrefab _npc)
         {
             if (npcList == null)
             {
-                npcList = new List<NPC>();
+                npcList = new List<NPCPrefab>();
             }
             if (_npc.id == 0) _npc.id++;
 
@@ -22,16 +22,16 @@ namespace NPCRedactor
 
         public GameObject GetPrefab(int id)
         {
-            foreach (NPC _npc in npcList)
+            foreach (NPCPrefab _npc in npcList)
             {
                 if (_npc.id == id) return _npc.prefab;
             }
             return null;
         }
 
-        public NPC GetNPC(int id)
+        public NPCPrefab GetNPC(int id)
         {
-            foreach (NPC _npc in npcList)
+            foreach (NPCPrefab _npc in npcList)
             {
                 if (_npc.id == id) return _npc;
             }
@@ -40,13 +40,13 @@ namespace NPCRedactor
 
         private bool ConstainsKey(int id)
         {
-            foreach (NPC _npc in npcList)
+            foreach (NPCPrefab _npc in npcList)
             {
                 if (_npc.id == id) return true;
             }
             return false;
         }
-        public void RemoveItem(NPC _npc)
+        public void RemoveItem(NPCPrefab _npc)
         {
             if (_npc == null) return;
             npcList.Remove(_npc);
@@ -55,7 +55,7 @@ namespace NPCRedactor
         {
             get { if (npcList == null) return 0; return npcList.Count; }
         }
-        public NPC this[int index]
+        public NPCPrefab this[int index]
         {
             get
             {
@@ -65,7 +65,7 @@ namespace NPCRedactor
             }
         }
 
-        public List<NPC> GetList()
+        public List<NPCPrefab> GetList()
         {
             return npcList;
         }

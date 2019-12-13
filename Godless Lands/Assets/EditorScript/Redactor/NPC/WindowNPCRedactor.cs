@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using NPCs;
 using Redactor;
 using System.Collections;
 using System.Collections.Generic;
@@ -110,7 +111,7 @@ namespace NPCRedactor
                 for (hor_i = 0; hor_i < horizontal_element; hor_i++)
                 {
                     if (npcList.Count <= index) goto off;
-                    NPC npc = npcList[index++];
+                    NPCPrefab npc = npcList[index++];
                     DrawItemArea(npc, ver_i, hor_i, horizontal_space, vertical_space);  //Draw Item Area
                 }
             }
@@ -122,7 +123,7 @@ namespace NPCRedactor
                                         height_item * ver_i + vertical_space * ver_i + 38 + menu_height,   //Отрисовать кнопку добавить
                                                      64, 64), "", redactorStyle.Plus))
                 {
-                    NPC _npc = new NPC();
+                    NPCs.NPCPrefab _npc = new NPCs.NPCPrefab();
                     SelectItem(_npc);
                     npcList.Add(_npc);
 
@@ -131,14 +132,14 @@ namespace NPCRedactor
             }
         }
 
-        private void SelectItem(NPC _npc) //Отоброзить в инспекторе
+        private void SelectItem(NPCs.NPCPrefab _npc) //Отоброзить в инспекторе
         {
             if (select_editor == null) select_editor = ScriptableObject.CreateInstance<NPCEditor>();
             select_editor.npc = _npc;
             Selection.activeObject = select_editor;
         }
 
-        private void DrawItemArea(NPC npc, int ver_i, int hor_i, float horizontal_space, float vertical_space)
+        private void DrawItemArea(NPCs.NPCPrefab npc, int ver_i, int hor_i, float horizontal_space, float vertical_space)
         {
             GUILayout.BeginArea(new Rect(width_item * hor_i + horizontal_space * hor_i,
                                          height_item * ver_i + vertical_space * ver_i + menu_height,

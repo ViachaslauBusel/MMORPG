@@ -36,11 +36,19 @@ namespace OpenWorldEditor
                 PlayerPrefs.SetInt("ActiveTools", active);
             }
 
-            //Отрисовка и редактирование монстров нпц
+            //Отрисовка и редактирование монстров
             GUI.enabled = active != 2;
             if(GUILayout.Button(EditorGUIUtility.IconContent("Avatar Icon"), EditorStyles.miniButtonMid, GUILayout.Width(25.0f), GUILayout.Height(25.0f)))
             {
                 active = 2;
+                PlayerPrefs.SetInt("ActiveTools", active);
+            }
+
+            //Отрисовка и редактирование NPC
+            GUI.enabled = active != 8;
+            if (GUILayout.Button(EditorGUIUtility.IconContent("Avatar Icon"), EditorStyles.miniButtonMid, GUILayout.Width(25.0f), GUILayout.Height(25.0f)))
+            {
+                active = 8;
                 PlayerPrefs.SetInt("ActiveTools", active);
             }
 

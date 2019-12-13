@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using OpenWorld;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -22,7 +23,7 @@ namespace OpenWorldEditor
                        mapLoader = obj.GetComponent<MapLoader>();
                     
                     if (mapLoader == null)
-                        mapLoader = CreateMap(SceneView.lastActiveSceneView.camera.transform);
+                        mapLoader = CreateMap();
                 }
                 return mapLoader;
             }
@@ -56,7 +57,7 @@ namespace OpenWorldEditor
             }
         }
 
-        public static MapLoader CreateMap(Transform trackingTransform)
+        public static MapLoader CreateMap()
         {
 
             //Если игра запущена
@@ -71,20 +72,40 @@ namespace OpenWorldEditor
                 EditorGUILayout.HelpBox("Карта не выбрана", MessageType.Error);
                 return null;
             }
-
-            //   GameObject obj = GameObject.Find("MapEditor");
-            //   if (obj != null) GameObject.DestroyImmediate(obj);
+            Transform target = FindTarget();
+            if (target == null) return null;
 
             GameObject obj = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/Map.prefab"));
             obj.name = "MapEditor";
             MapLoader mapLoader = obj.GetComponent<MapLoader>();
-            mapLoader.trackingObj = trackingTransform;
+            mapLoader.trackingObj = target;
             mapLoader.map = WindowSetting.Map;
             mapLoader.areaVisible = WindowSetting.areaVisible;
             mapLoader.LoadMap();
             RenderSettings.fog = false;
             return mapLoader;
 
+        }
+
+        private static Transform FindTarget()
+        {
+            Camera _camera = SceneView.lastActiveSceneView.camera;
+            if (_camera == null) return null;
+            return _camera.transform;
+        }
+        /// <summary>
+        /// Обновление позиции обьекта вокруг которой отрисовается карта
+        /// </summary>
+        internal static void Update()
+        {
+            MapLoader mapLoader = Map;
+            if(mapLoader.trackingObj == null)//Если карта потеряла обьект слежения
+            {
+                Transform target = FindTarget();
+                if (target == null) return;
+                mapLoader.trackingObj = target;
+            }
+            mapLoader.ChangeBlock();
         }
     }
 }

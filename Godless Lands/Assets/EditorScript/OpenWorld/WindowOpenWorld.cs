@@ -73,6 +73,10 @@ namespace OpenWorldEditor
                     if (WorldLoader.IsHaveMap)
                         WindowMachineActiveTools.Draw();
                     break;
+                case 8://Инструменты для Редактирование NPC                 
+                    if (WorldLoader.IsHaveMap)
+                        WindowNPCActiveTools.Draw();
+                    break;
             }
 
             
@@ -83,13 +87,13 @@ namespace OpenWorldEditor
         {
             WorldLoader.Reload();
         }
-        private void OnSceneGUI(SceneView sceneView)
+        private void OnSceneGUI(SceneView sceneView)//Отрисовка инструментов на сцене
         {
            // OnGUI();
             if (WorldLoader.IsMap)
             {
 
-                WorldLoader.Map.ChangeBlock();
+                WorldLoader.Update();
             }
             else return;
 
@@ -124,15 +128,23 @@ namespace OpenWorldEditor
 
                     MachineVisibleSceneGUI.SceneGUI(WorldLoader.Map);
                     break;
+                case 8://Инструменты для Редактирование NPC
+                    if (WindowNPCActiveTools.NPCDraw)//Если включен режим рисование или добовление нпц
+                    { SceneNPCBrush.SceneGUI(sceneView.camera); }
+
+                    NPCVisibleSceneGUI.SceneGUI(WorldLoader.Map);//Отрисовка НПЦ ывокруг
+                    break;
             }
             
          
         }
 
-        private void DestroySceneGUI()
+        private void DestroySceneGUI()//Очистка сцены
         {
             TerrainSceneGUI.Destroy();
             MonsterSceneGUI.Destroy();
+            SceneNPCBrush.Destroy();
+            NPCVisibleSceneGUI.Destroy();
             ResourcesSceneGUI.Destroy(); 
             MonsterVisibleSceneGUI.Destroy();
             ResourcesVisibleSceneGUI.Destroy();

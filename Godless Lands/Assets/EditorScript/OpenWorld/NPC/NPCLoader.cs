@@ -7,9 +7,12 @@ using UnityEngine;
 
 namespace OpenWorldEditor
 {
+    /// <summary>
+    /// Вешаеться на карту вместе с MaoLoader и подгружает НПЦ вокруг цели
+    /// </summary>
     public class NPCLoader : MonoBehaviour
     {
-        private Transform trackingObj;
+        private Transform trackingObj;//Цель вокруг которой подгружаются НПЦ
         private Vector4 border;
         private float _areaVisible = 300.0f;
         private float blockSize = 70.0f;
@@ -109,7 +112,8 @@ namespace OpenWorldEditor
                     {
                         GameObject instantiateNPC = Instantiate(prefabNPC);
                         instantiateNPC.transform.position = npc.point;
-                        NPCDraw npcDraw = instantiateNPC.AddComponent<NPCDraw>();
+                        instantiateNPC.transform.rotation = Quaternion.Euler(0.0f, npc.radius, 0.0f);
+                       NPCDraw npcDraw = instantiateNPC.AddComponent<NPCDraw>();
 
                         npcDraw.worldNPC = npc;
                         npcVisible.Add(npcDraw);

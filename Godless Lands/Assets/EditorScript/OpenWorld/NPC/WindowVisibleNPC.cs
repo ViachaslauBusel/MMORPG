@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using NPCRedactor;
+using NPCs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -27,7 +28,7 @@ namespace OpenWorldEditor
             {
                 GUILayout.Space(10.0f);
                 GUILayout.BeginHorizontal();
-                NPC _npc = WindowSetting.NPCList.GetNPC(npcDraw.worldNPC.id);
+                NPCPrefab _npc = WindowSetting.NPCList.GetNPC(npcDraw.worldNPC.id);
                 GUILayout.Label(_npc.name + ": " + _npc.id);
 
                 GUI.enabled = selectId != npcDraw.worldNPC.GetHashCode();

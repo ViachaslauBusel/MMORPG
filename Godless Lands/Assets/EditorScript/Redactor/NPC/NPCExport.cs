@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using NPCs;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +15,7 @@ namespace NPCRedactor
             {
                 foreach (WorldNPC worldNPC in worldNPCList.worldNPC)
                 {
-                    NPC npc = NPCList.GetNPC(worldNPC.id);
+                    NPCs.NPCPrefab npc = NPCList.GetNPC(worldNPC.id);
                     stream_out.Write(worldNPC.id);//ID
                     stream_out.Write(worldNPC.point.x);
                     stream_out.Write(worldNPC.point.y);

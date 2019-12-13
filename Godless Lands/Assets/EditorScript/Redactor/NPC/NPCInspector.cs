@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using NPCs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -12,7 +13,7 @@ namespace NPCRedactor
     {
         public override void OnInspectorGUI()
         {
-            NPC npc = ((NPCEditor)target).npc;
+            NPCPrefab npc = ((NPCEditor)target).npc;
 
             GUILayout.Space(15.0f);
 
