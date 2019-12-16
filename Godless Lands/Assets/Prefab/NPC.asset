@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcList:
   - id: 1
-    prefabPath: Monsters/SKELETON 1
+    prefabPath: NPC/SKELETON NPC
     name: NPC

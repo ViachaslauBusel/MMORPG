@@ -27,5 +27,10 @@ namespace Redactor
         {
 
         }
+
+        public virtual void RemoveAt(int index)
+        {
+
+        }
     }
 }

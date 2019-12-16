@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172e0782a6a3e0947a6a762d3b8bb044, type: 3}
   m_Name: World NPCs
   m_EditorClassIdentifier: 
-  worldNPC: []
+  worldNPC:
+  - id: 1
+    point: {x: 1130.3282, y: 182.91522, z: 1846.6376}
+    radius: 0
+  - id: 1
+    point: {x: 1124.0743, y: 182.91522, z: 1863.7697}
+    radius: 190.99998

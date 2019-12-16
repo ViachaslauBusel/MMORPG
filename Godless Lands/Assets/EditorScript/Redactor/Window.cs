@@ -25,14 +25,14 @@ namespace Redactor
             redactorStyle = new RedactorStyle();
         }
 
-        private void OnGUI()
+        public virtual void OnGUI()
         {
             DrawMenu();
             if (objectList == null) return;
             DrawWindow();
         }
 
-        protected void DrawMenu()
+        public void DrawMenu()
         {
 
             GUILayout.BeginHorizontal(redactorStyle.Menu);
