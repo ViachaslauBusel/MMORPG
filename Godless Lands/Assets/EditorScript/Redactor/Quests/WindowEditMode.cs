@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using Quests;
+using Redactor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -10,53 +11,61 @@ namespace QuestsRedactor
     public class WindowEditMode
     {
         private static Quest selectQuest;
+        private static bool editMode = false;
 
 
-        private static List<Connection> connections;
 
-        private static GUIStyle nodeStyle;
-        private static GUIStyle inPointStyle;
+
         private static GUIStyle outPointStyle;
-        private static GUIStyle selectedNodeStyle;
+
 
         private static ConnectionPoint selectedInPoint;
         private static ConnectionPoint selectedOutPoint;
 
-        private static Vector2 offset;
+
         private static Vector2 drag;
 
         public static void OnEnable()
         {
-            nodeStyle = new GUIStyle();
-            nodeStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1.png") as Texture2D;
-            nodeStyle.border = new RectOffset(12, 12, 12, 12);
+            
+          
 
-            inPointStyle = new GUIStyle();
-            inPointStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn left.png") as Texture2D;
-            inPointStyle.active.background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn left on.png") as Texture2D;
-            inPointStyle.border = new RectOffset(4, 4, 12, 12);
+         
 
             outPointStyle = new GUIStyle();
-            outPointStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn right.png") as Texture2D;
-            outPointStyle.active.background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn right on.png") as Texture2D;
+            outPointStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn up.png") as Texture2D;
+            outPointStyle.active.background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn up on.png") as Texture2D;
             outPointStyle.border = new RectOffset(4, 4, 12, 12);
 
-            selectedNodeStyle = new GUIStyle();
-            selectedNodeStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1 on.png") as Texture2D;
-            selectedNodeStyle.border = new RectOffset(12, 12, 12, 12);
+
 
         }
 
-        public static void DrawMenu(ref bool editMode)
-        {
-            if (GUI.Button(new Rect(5,5,30,30), EditorGUIUtility.IconContent("vcs_refresh"), EditorStyles.miniButtonLeft))
-            {
-                editMode = false;
-            }
-        }
-        public static void DrawStages(Quest _quest)
+        public static bool IsActivated() { return editMode; }
+        public static void Activate(Quest _quest)
         {
             selectQuest = _quest;
+            foreach (QuestStage stage in _quest.stages)
+                stage.Load(OnClickInPoint, OnClickOutPoint); 
+
+            editMode = true;
+        }
+        public static void Deactivate()
+        {
+            editMode = false;
+            selectQuest = null;
+        }
+
+        public static void DrawMenu()
+        {
+            WindowGrid.Draw(drag, 20, 0.2f, Color.gray);
+            WindowGrid.Draw(drag, 100, 0.4f, Color.gray);
+            if (GUI.Button(new Rect(5,5,30,30), EditorGUIUtility.IconContent("vcs_refresh"), EditorStyles.miniButtonLeft))
+                editMode = false;
+        }
+        public static void DrawStages()
+        {
+           
             if (selectQuest == null || selectQuest.stages == null) return;
             foreach(QuestStage stage in selectQuest.stages)
             {
@@ -66,24 +75,24 @@ namespace QuestsRedactor
 
         public static void DrawConnections()
         {
-            if (connections != null)
+            if (selectQuest.connections != null)
             {
-                for (int i = 0; i < connections.Count; i++)
+                for (int i = 0; i < selectQuest.connections.Count; i++)
                 {
-                    connections[i].Draw();
+                    selectQuest.connections[i].Draw();
                 }
             }
         }
 
         public static void DrawConnectionLine(Event e)
         {
-            if (selectedInPoint != null && selectedOutPoint == null)
+            if (selectedInPoint != null && selectedOutPoint == null)//Рисование линии от нажатой аут к мыши
             {
                 Handles.DrawBezier(
-                    selectedInPoint.rect.center,
+                    selectedInPoint.Position,
                     e.mousePosition,
-                    selectedInPoint.rect.center + Vector2.left * 50f,
-                    e.mousePosition - Vector2.left * 50f,
+                    selectedInPoint.Position + ((selectedInPoint.direction == ConnectionDirection.Left) ? Vector2.left : Vector2.right) * 50f,
+                    e.mousePosition - ((selectedInPoint.direction == ConnectionDirection.Left) ? Vector2.left : Vector2.right) * 50f,
                     Color.white,
                     null,
                     2f
@@ -95,10 +104,10 @@ namespace QuestsRedactor
             if (selectedOutPoint != null && selectedInPoint == null)
             {
                 Handles.DrawBezier(
-                    selectedOutPoint.rect.center,
+                    selectedOutPoint.Position,
                     e.mousePosition,
-                    selectedOutPoint.rect.center - Vector2.left * 50f,
-                    e.mousePosition + Vector2.left * 50f,
+                    selectedOutPoint.Position + ((selectedOutPoint.direction == ConnectionDirection.Left) ? Vector2.left : Vector2.right) * 50f,
+                    e.mousePosition - ((selectedOutPoint.direction == ConnectionDirection.Left) ? Vector2.left : Vector2.right) * 50f,
                     Color.white,
                     null,
                     2f
@@ -167,30 +176,7 @@ namespace QuestsRedactor
             genericMenu.ShowAsContext();
         }
 
-        public static void DrawGrid(float gridSpacing, float gridOpacity, Color gridColor)
-        {
-            int widthDivs = Mathf.CeilToInt(Screen.width / gridSpacing);
-            int heightDivs = Mathf.CeilToInt(Screen.height / gridSpacing);
-
-            Handles.BeginGUI();
-            Handles.color = new Color(gridColor.r, gridColor.g, gridColor.b, gridOpacity);
-
-            offset += drag * 0.5f;
-            Vector3 newOffset = new Vector3(offset.x % gridSpacing, offset.y % gridSpacing, 0);
-
-            for (int i = 0; i < widthDivs; i++)
-            {
-                Handles.DrawLine(new Vector3(gridSpacing * i, -gridSpacing, 0) + newOffset, new Vector3(gridSpacing * i, Screen.height, 0f) + newOffset);
-            }
-
-            for (int j = 0; j < heightDivs; j++)
-            {
-                Handles.DrawLine(new Vector3(-gridSpacing, gridSpacing * j, 0) + newOffset, new Vector3(Screen.width, gridSpacing * j, 0f) + newOffset);
-            }
-
-            Handles.color = Color.white;
-            Handles.EndGUI();
-        }
+       
         private static void OnClickAddNode(Vector2 mousePosition)
         {
             if (selectQuest.stages == null)
@@ -198,7 +184,7 @@ namespace QuestsRedactor
                 selectQuest.stages = new List<QuestStage>();
             }
 
-            selectQuest.stages.Add(new QuestStage(mousePosition, 200, 50, nodeStyle, selectedNodeStyle, inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint));
+            selectQuest.stages.Add(new QuestStage(mousePosition, 200, 150, outPointStyle, OnClickInPoint, OnClickOutPoint));
 
         }
 
@@ -208,7 +194,7 @@ namespace QuestsRedactor
 
             if (selectedOutPoint != null)
             {
-                if (selectedOutPoint.node != selectedInPoint.node)
+                if (selectedOutPoint != selectedInPoint)
                 {
                     CreateConnection();
                     ClearConnectionSelection();
@@ -226,7 +212,7 @@ namespace QuestsRedactor
 
             if (selectedInPoint != null)
             {
-                if (selectedOutPoint.node != selectedInPoint.node)
+                if (selectedOutPoint != selectedInPoint)
                 {
                     CreateConnection();
                     ClearConnectionSelection();
@@ -240,17 +226,17 @@ namespace QuestsRedactor
 
         private static void OnClickRemoveConnection(Connection connection)
         {
-            connections.Remove(connection);
+            selectQuest.connections.Remove(connection);
         }
 
         private static void CreateConnection()
         {
-            if (connections == null)
+            if (selectQuest.connections == null)
             {
-                connections = new List<Connection>();
+                selectQuest.connections = new List<Connection>();
             }
 
-            connections.Add(new Connection(selectedInPoint, selectedOutPoint, OnClickRemoveConnection));
+            selectQuest.connections.Add(new Connection(selectedInPoint, selectedOutPoint, OnClickRemoveConnection));
         }
 
         private static void ClearConnectionSelection()

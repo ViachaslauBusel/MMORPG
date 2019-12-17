@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace QuestsRedactor
 {
+
     public class Connection
     {
         public ConnectionPoint inPoint;
@@ -21,16 +22,16 @@ namespace QuestsRedactor
         public void Draw()
         {
             Handles.DrawBezier(
-                inPoint.rect.center,
-                outPoint.rect.center,
-                inPoint.rect.center + Vector2.left * 50f,
-                outPoint.rect.center - Vector2.left * 50f,
+                inPoint.Position,
+                outPoint.Position,
+                inPoint.Position + ((inPoint.direction == ConnectionDirection.Left)? Vector2.left: Vector2.right) * 50f,
+                outPoint.Position + ((outPoint.direction == ConnectionDirection.Left) ? Vector2.left : Vector2.right) * 50f,
                 Color.white,
                 null,
                 2f
             );
 
-            if (Handles.Button((inPoint.rect.center + outPoint.rect.center) * 0.5f, Quaternion.identity, 4, 8, Handles.RectangleCap))
+            if (Handles.Button((inPoint.Position + outPoint.Position) * 0.5f, Quaternion.identity, 4, 8, Handles.RectangleCap))
             {
                 if (OnClickRemoveConnection != null)
                 {

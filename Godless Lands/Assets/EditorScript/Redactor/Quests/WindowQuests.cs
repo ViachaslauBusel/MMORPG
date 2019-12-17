@@ -14,7 +14,7 @@ namespace QuestsRedactor
     {
         //  private RecipeEditor selectEditor;
         private Quest selectQuest;
-        private bool editMode = false;
+       
    
 
         [MenuItem("Window/Quests")]
@@ -34,12 +34,10 @@ namespace QuestsRedactor
         }
         public override void OnGUI()
         {
-            if (editMode)
+            if (WindowEditMode.IsActivated())
             {
-                WindowEditMode.DrawGrid(20, 0.2f, Color.gray);
-                WindowEditMode.DrawGrid(100, 0.4f, Color.gray);
-                WindowEditMode.DrawMenu(ref editMode);
-                WindowEditMode.DrawStages(selectQuest);
+                WindowEditMode.DrawMenu();
+                WindowEditMode.DrawStages();
                 WindowEditMode.DrawConnections();
                 WindowEditMode.DrawConnectionLine(Event.current);
                 WindowEditMode.ProcessStageEvents(Event.current);
@@ -75,7 +73,7 @@ namespace QuestsRedactor
                     if (GUILayout.Button(EditorGUIUtility.IconContent("d_editicon.sml"), EditorStyles.miniButtonMid, GUILayout.Width(25.0f), GUILayout.Height(25.0f)))
                     {
                         selectQuest = _quest;
-                        editMode = true;
+                        WindowEditMode.Activate(_quest);
                     }
                 } GUILayout.EndHorizontal();
             } GUILayout.EndVertical();
@@ -108,7 +106,7 @@ namespace QuestsRedactor
             AssetDatabase.Refresh();
             EditorUtility.SetDirty(objectList as QuestsList);
             AssetDatabase.SaveAssets();
-            QuestsExport.Export(objectList as QuestsList);
+          //  QuestsExport.Export(objectList as QuestsList);
             EditorUtility.DisplayDialog("Сохранение Рецептов", "Рецеты сохранены в контейнер: " + AssetDatabase.GetAssetPath(objectList) +
                 "\nФайл для экспорта на сервер: " + "Export/quests.dat", "OK");
 

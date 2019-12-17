@@ -5,51 +5,44 @@ using UnityEngine;
 
 namespace QuestsRedactor
 {
+    [System.Serializable]
     public enum ConnectionPointType { In, Out }
+    [System.Serializable]
+    public enum ConnectionDirection { Left, Right }
 
+    [System.Serializable]
     public class ConnectionPoint
     {
-        public Rect rect;
 
         public ConnectionPointType type;
+        public ConnectionDirection direction;
 
-        public QuestStage node;
-
-        public GUIStyle style;
+        private Vector2 _position;
 
         public Action<ConnectionPoint> OnClickConnectionPoint;
 
-        public ConnectionPoint(QuestStage node, ConnectionPointType type, GUIStyle style, Action<ConnectionPoint> OnClickConnectionPoint)
+        public Vector2 Position { get { return _position; } }
+
+        public ConnectionPoint(ConnectionPointType type, ConnectionDirection direction, Action<ConnectionPoint> OnClickConnectionPoint)
         {
-            this.node = node;
             this.type = type;
-            this.style = style;
             this.OnClickConnectionPoint = OnClickConnectionPoint;
-            rect = new Rect(0, 0, 10f, 20f);
+            this.direction = direction;
         }
 
-        public void Draw()
+        public void Draw(Rect lastRect)
         {
-            rect.y = node.rect.y + (node.rect.height * 0.5f) - rect.height * 0.5f;
 
-            switch (type)
-            {
-                case ConnectionPointType.In:
-                    rect.x = node.rect.x - rect.width + 8f;
-                    break;
 
-                case ConnectionPointType.Out:
-                    rect.x = node.rect.x + node.rect.width - 8f;
-                    break;
-            }
-
-            if (GUI.Button(rect, "", style))
+            if (GUILayout.Button("", QuestStyle.InPoint, GUILayout.Width(15), GUILayout.Height(15)))
             {
                 if (OnClickConnectionPoint != null)
                 {
                     OnClickConnectionPoint(this);
                 }
             }
+           Rect rect = GUILayoutUtility.GetLastRect();
+            _position = new Vector2(lastRect.x + rect.center.x, lastRect.y + rect.center.y);
         }
     }
 }
