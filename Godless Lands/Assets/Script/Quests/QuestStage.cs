@@ -19,26 +19,28 @@ namespace Quests
         public bool isSelected;
 
         public ConnectionPoint inLeft, inRight;
+        public List<Answer> answers;
         //   public ConnectionPoint outPoint;
         private GUIStyle style;
 
 
-        public QuestStage(Vector2 position, float width, float height, GUIStyle outPointStyle, Action<ConnectionPoint> OnClickInPoint, Action<ConnectionPoint> OnClickOutPoint)
+        public QuestStage(Vector2 position, float width, float height, GUIStyle outPointStyle)
         {
             rect = new Rect(position.x, position.y, width, height);
 
-            inLeft = new ConnectionPoint(ConnectionPointType.In, ConnectionDirection.Left, OnClickInPoint);
-            inRight = new ConnectionPoint(ConnectionPointType.In, ConnectionDirection.Right, OnClickInPoint);
+            inLeft = new ConnectionPoint(ConnectionPointType.In, ConnectionDirection.Left);
+            inRight = new ConnectionPoint(ConnectionPointType.In, ConnectionDirection.Right);
             //  outPoint = new ConnectionPoint(this, ConnectionPointType.Out, outPointStyle, OnClickOutPoint);
-
+            answers = new List<Answer>();
+            answers.Add(new Answer());
             style = QuestStyle.StageBody;
         }
 
-        public void Load(Action<ConnectionPoint> OnClickInPoint, Action<ConnectionPoint> OnClickOutPoint)
+        public void Load()
         {
-            inLeft.OnClickConnectionPoint = OnClickInPoint;
+           // inLeft.OnClickConnectionPoint = OnClickInPoint;
 
-            inRight.OnClickConnectionPoint = OnClickInPoint;
+          //  inRight.OnClickConnectionPoint = OnClickInPoint;
             style = QuestStyle.StageBody;
             //   outPoint.node = this;
             //  outPoint.OnClickConnectionPoint = OnClickOutPoint;
@@ -53,6 +55,13 @@ namespace Quests
         {
             GUILayout.BeginHorizontal();
             GUILayout.Space(12.0f);
+            if (GUILayout.Button(EditorGUIUtility.IconContent("d_P4_DeletedLocal"), EditorStyles.miniButtonMid, GUILayout.Width(25.0f), GUILayout.Height(25.0f)))
+            {
+                if(EditorUtility.DisplayDialog("delet", "Вы действительно хотите удалить звено?", "ДА", "НЕТ"))
+                {
+                    WindowEditMode.DeletStage(this);
+                }
+            }
             if (GUILayout.Button(EditorGUIUtility.IconContent("d_editicon.sml"), EditorStyles.miniButtonMid, GUILayout.Width(25.0f), GUILayout.Height(25.0f)))
             {
                 WindowTextEditor.ShowWindow(this);
@@ -72,6 +81,8 @@ namespace Quests
                 GUILayout.Space(40.0f);
                 TextWrapper.Label(descripton, 200.0f, 5);
                 DrawMenu();
+                foreach (Answer answer in answers)
+                    answer.Draw();
             }
             GUILayout.EndArea();
             GUILayout.BeginArea(rectTitle, QuestStyle.StageTitle);

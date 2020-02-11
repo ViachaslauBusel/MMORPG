@@ -10,6 +10,7 @@ namespace Redactor
     {
         public static void Label(string text, float width, int line)
         {
+            if (text == null) return;
             width -= 13.0f;
             string[] word = text.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
             if (word.Length == 0) return;

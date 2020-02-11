@@ -10,7 +10,7 @@ namespace QuestsRedactor
 {
     public class WindowEditMode
     {
-        private static Quest selectQuest;
+        public static Quest selectQuest;
         private static bool editMode = false;
 
 
@@ -19,8 +19,7 @@ namespace QuestsRedactor
         private static GUIStyle outPointStyle;
 
 
-        private static ConnectionPoint selectedInPoint;
-        private static ConnectionPoint selectedOutPoint;
+
 
 
         private static Vector2 drag;
@@ -46,7 +45,7 @@ namespace QuestsRedactor
         {
             selectQuest = _quest;
             foreach (QuestStage stage in _quest.stages)
-                stage.Load(OnClickInPoint, OnClickOutPoint); 
+                stage.Load(); 
 
             editMode = true;
         }
@@ -67,11 +66,16 @@ namespace QuestsRedactor
         {
            
             if (selectQuest == null || selectQuest.stages == null) return;
-            foreach(QuestStage stage in selectQuest.stages)
+            for(int i= selectQuest.stages.Count-1; i >= 0 ; i--)
             {
-                stage.Draw();
+                selectQuest.stages[i].Draw();
             }
         }
+        public static void DeletStage(QuestStage stage)
+        {
+            selectQuest.stages.Remove(stage);
+        }
+
 
         public static void DrawConnections()
         {
@@ -86,7 +90,7 @@ namespace QuestsRedactor
 
         public static void DrawConnectionLine(Event e)
         {
-            if (selectedInPoint != null && selectedOutPoint == null)//Рисование линии от нажатой аут к мыши
+      /*      if (selectedInPoint != null && selectedOutPoint == null)//Рисование линии от нажатой аут к мыши
             {
                 Handles.DrawBezier(
                     selectedInPoint.Position,
@@ -114,7 +118,7 @@ namespace QuestsRedactor
                 );
 
                 GUI.changed = true;
-            }
+            }*/
         }
 
         public static void ProcessEvents(Event e)
@@ -184,66 +188,11 @@ namespace QuestsRedactor
                 selectQuest.stages = new List<QuestStage>();
             }
 
-            selectQuest.stages.Add(new QuestStage(mousePosition, 200, 150, outPointStyle, OnClickInPoint, OnClickOutPoint));
+        //    selectQuest.stages.Add(new QuestStage(mousePosition, 200, 180, outPointStyle, OnClickInPoint, OnClickOutPoint));
 
         }
 
-        private static void OnClickInPoint(ConnectionPoint inPoint)
-        {
-            selectedInPoint = inPoint;
-
-            if (selectedOutPoint != null)
-            {
-                if (selectedOutPoint != selectedInPoint)
-                {
-                    CreateConnection();
-                    ClearConnectionSelection();
-                }
-                else
-                {
-                    ClearConnectionSelection();
-                }
-            }
-        }
-
-        private static void OnClickOutPoint(ConnectionPoint outPoint)
-        {
-            selectedOutPoint = outPoint;
-
-            if (selectedInPoint != null)
-            {
-                if (selectedOutPoint != selectedInPoint)
-                {
-                    CreateConnection();
-                    ClearConnectionSelection();
-                }
-                else
-                {
-                    ClearConnectionSelection();
-                }
-            }
-        }
-
-        private static void OnClickRemoveConnection(Connection connection)
-        {
-            selectQuest.connections.Remove(connection);
-        }
-
-        private static void CreateConnection()
-        {
-            if (selectQuest.connections == null)
-            {
-                selectQuest.connections = new List<Connection>();
-            }
-
-            selectQuest.connections.Add(new Connection(selectedInPoint, selectedOutPoint, OnClickRemoveConnection));
-        }
-
-        private static void ClearConnectionSelection()
-        {
-            selectedInPoint = null;
-            selectedOutPoint = null;
-        }
+      
     }
 }
 #endif

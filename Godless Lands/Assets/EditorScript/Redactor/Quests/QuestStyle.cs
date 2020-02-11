@@ -10,11 +10,25 @@ namespace QuestsRedactor
     {
         private static GUIStyle stageBodyStyle;
         private static GUIStyle stageTitleStyle;
+        private static GUIStyle answerStyle;
         private static GUIStyle inPointStyle;
         private static GUIStyle outPointStyle;
         private static GUIStyle selectedStageStyle;
 
 
+        public static GUIStyle Answer
+        {
+            get
+            {
+                if (answerStyle == null)
+                {
+                    answerStyle = new GUIStyle();
+                    answerStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node3.png") as Texture2D;
+                    answerStyle.border = new RectOffset(12, 12, 12, 12);
+                }
+                return answerStyle;
+            }
+        }
         public static GUIStyle StageBody
         {
             get
@@ -53,6 +67,20 @@ namespace QuestsRedactor
                     inPointStyle.border = new RectOffset(0, 0, 0, 0);
                 }
                 return inPointStyle;
+            }
+        }
+        public static GUIStyle OutPoint
+        {
+            get
+            {
+                if (outPointStyle == null)
+                {
+                    outPointStyle = new GUIStyle();
+                    outPointStyle.normal.background = EditorGUIUtility.Load("d_winbtn_mac_max") as Texture2D;
+                    outPointStyle.active.background = EditorGUIUtility.Load("d_winbtn_mac_max_a") as Texture2D;
+                    outPointStyle.border = new RectOffset(0, 0, 0, 0);
+                }
+                return outPointStyle;
             }
         }
         public static GUIStyle SelectedStage

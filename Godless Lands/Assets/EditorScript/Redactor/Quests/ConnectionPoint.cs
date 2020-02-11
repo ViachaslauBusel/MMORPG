@@ -19,14 +19,13 @@ namespace QuestsRedactor
 
         private Vector2 _position;
 
-        public Action<ConnectionPoint> OnClickConnectionPoint;
 
         public Vector2 Position { get { return _position; } }
 
-        public ConnectionPoint(ConnectionPointType type, ConnectionDirection direction, Action<ConnectionPoint> OnClickConnectionPoint)
+        public ConnectionPoint(ConnectionPointType type, ConnectionDirection direction)
         {
             this.type = type;
-            this.OnClickConnectionPoint = OnClickConnectionPoint;
+   
             this.direction = direction;
         }
 
@@ -36,9 +35,14 @@ namespace QuestsRedactor
 
             if (GUILayout.Button("", QuestStyle.InPoint, GUILayout.Width(15), GUILayout.Height(15)))
             {
-                if (OnClickConnectionPoint != null)
+                switch (type)
                 {
-                    OnClickConnectionPoint(this);
+                    case ConnectionPointType.In:
+                        WindowConnections.OnClickInPoint(this);
+                        break;
+                    case ConnectionPointType.Out:
+                        WindowConnections.OnClickOutPoint(this);
+                        break;
                 }
             }
            Rect rect = GUILayoutUtility.GetLastRect();
