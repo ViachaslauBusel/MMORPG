@@ -58,7 +58,7 @@ namespace OpenWorldEditor
         private static bool ConstainsHeight(TerrainData terrainData, float height)
         {
             height /= terrainData.size.y;
-            float[,] heights = terrainData.GetHeights(0, 0, terrainData.heightmapWidth, terrainData.heightmapHeight);
+            float[,] heights = terrainData.GetHeights(0, 0, terrainData.heightmapResolution, terrainData.heightmapResolution);
             for (int y = 0; y < heights.GetLength(1); y++)
             {
                 for (int x = 0; x < heights.GetLength(0); x++)

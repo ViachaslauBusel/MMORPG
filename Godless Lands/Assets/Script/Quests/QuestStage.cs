@@ -12,8 +12,10 @@ namespace Quests
     public class QuestStage
     {
         public Rect rect;
-        public string title = "test";
-        public string descripton = "Кроме главного редактора в котором создаются квесты, имеются ещё и вспомогательные. Это редактор диалогов для персонажа и редактор сообщений для триггера. Вот описание нод используемых в данных редакторах. Поскольку они сходны я приведу описание для них обоих.";
+        //ИД этого звена(уровня)
+        public int id;
+        public string title = "no title";
+        public string descripton = "empty";
 
         public bool isDragged;
         public bool isSelected;
@@ -22,14 +24,19 @@ namespace Quests
         public List<Answer> answers;
         //   public ConnectionPoint outPoint;
         private GUIStyle style;
+        /// <summary>
+        /// Активный в атрисовке
+        /// </summary>
+        public static QuestStage Active { get; private set; }
 
 
-        public QuestStage(Vector2 position, float width, float height, GUIStyle outPointStyle)
+        public QuestStage(Vector2 position, float width, float height, int idStage)
         {
+            id = idStage;
             rect = new Rect(position.x, position.y, width, height);
 
-            inLeft = new ConnectionPoint(ConnectionPointType.In, ConnectionDirection.Left);
-            inRight = new ConnectionPoint(ConnectionPointType.In, ConnectionDirection.Right);
+            inLeft = new ConnectionPoint(this, ConnectionPointType.In, ConnectionDirection.Left);
+            inRight = new ConnectionPoint(this, ConnectionPointType.In, ConnectionDirection.Right);
             //  outPoint = new ConnectionPoint(this, ConnectionPointType.Out, outPointStyle, OnClickOutPoint);
             answers = new List<Answer>();
             answers.Add(new Answer());
@@ -51,6 +58,9 @@ namespace Quests
             rect.position += delta;
         }
 
+        /// <summary>
+        /// Отрисовывает кнопки управления
+        /// </summary>
         private void DrawMenu()
         {
             GUILayout.BeginHorizontal();
@@ -66,36 +76,52 @@ namespace Quests
             {
                 WindowTextEditor.ShowWindow(this);
             }
+            if (GUILayout.Button(EditorGUIUtility.IconContent("d_P4_AddedRemote"), EditorStyles.miniButtonMid, GUILayout.Width(25.0f), GUILayout.Height(25.0f)))
+            {
+                answers.Add(new Answer());
+            }
             GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
         }
 
         public void Draw()
         {
-
+            Active = this;
             //  outPoint.Draw();
             Rect rectTitle = new Rect(rect.x, rect.y, rect.width, 40.0f);
-         //   Rect rectDescription = new Rect(rect.x+100, rect.y + 45.0f, rect.width, 100.0f);
-            GUILayout.BeginArea(rect, QuestStyle.StageBody);
+            Rect rectBody = new Rect(rect.x, rect.y, rect.width, rect.height + answers.Count * 15.0f);
+
+
+            //Тело
+            GUILayout.BeginArea(rectBody, QuestStyle.StageBody);
             {
                 GUILayout.Space(40.0f);
                 TextWrapper.Label(descripton, 200.0f, 5);
                 DrawMenu();
-                foreach (Answer answer in answers)
-                    answer.Draw();
+
+                //Отрисовка и удаление ответов
+                for (int i = answers.Count-1; i >= 0; i--)
+                { 
+                    if (answers[i].Draw())
+                        answers.RemoveAt(i);
+                    
+                }
+        
             }
             GUILayout.EndArea();
-            GUILayout.BeginArea(rectTitle, QuestStyle.StageTitle);
+
+            //Заголовок
+            GUILayout.BeginArea(rectTitle, isSelected? QuestStyle.StageTitleSelect : QuestStyle.StageTitle);
             {
                 GUILayout.BeginVertical();
                 GUILayout.FlexibleSpace();
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(15);
-                inLeft.Draw(rectTitle);
+                inLeft.Draw();
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(title);
                 GUILayout.FlexibleSpace();
-                inRight.Draw(rectTitle);
+                inRight.Draw();
                 GUILayout.Space(15);
                 GUILayout.EndHorizontal();
                 GUILayout.FlexibleSpace();
@@ -118,13 +144,13 @@ namespace Quests
                             isDragged = true;
                             GUI.changed = true;
                             isSelected = true;
-                            style = QuestStyle.SelectedStage;
+                         //   style = QuestStyle.SelectedStage;
                         }
                         else
                         {
                             GUI.changed = true;
                             isSelected = false;
-                            style = QuestStyle.StageBody;
+                           // style = QuestStyle.StageBody;
                         }
                     }
                     break;

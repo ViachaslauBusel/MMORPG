@@ -75,7 +75,7 @@ namespace OpenWorldEditor
                     terrainData.terrainLayers = terrainLayers;
                        terrainData.SetAlphamaps(0, 0, GetMapTexture(terrainData.alphamapHeight, terrainData.alphamapWidth, terrainLayers.Length));*/
 
-                    float[,] heights = terrainData.GetHeights(0, 0, terrainData.heightmapWidth, terrainData.heightmapHeight);
+                    float[,] heights = terrainData.GetHeights(0, 0, terrainData.heightmapResolution, terrainData.heightmapResolution);
 
                     for (int yh = 0; yh < heights.GetLength(1); yh++)
                     {

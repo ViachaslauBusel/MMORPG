@@ -56,12 +56,12 @@ namespace OpenWorldEditor
             {
                 // stream_out.Write(xKM * map.blocksCount + x);//Позиция по Х
                 //   stream_out.Write(yKM * map.blocksCount + y);//Позиция по Y
-                int size = (mapElement.terrainData.heightmapHeight * mapElement.terrainData.heightmapWidth) * 4;
+                int size = (mapElement.terrainData.heightmapResolution * mapElement.terrainData.heightmapResolution) * 4;
                 stream_out.Write(size);//Размер массива высот
-                float[,] heights = mapElement.terrainData.GetHeights(0, 0, mapElement.terrainData.heightmapWidth, mapElement.terrainData.heightmapHeight);
-                for (int i = 0; i < mapElement.terrainData.heightmapHeight; i++)
+                float[,] heights = mapElement.terrainData.GetHeights(0, 0, mapElement.terrainData.heightmapResolution, mapElement.terrainData.heightmapResolution);
+                for (int i = 0; i < mapElement.terrainData.heightmapResolution; i++)
                 {
-                    for (int j = 0; j < mapElement.terrainData.heightmapWidth; j++)
+                    for (int j = 0; j < mapElement.terrainData.heightmapResolution; j++)
                     {
                         //   stream_out.Write(mapElement.terrainData.size.y * heights[i, j]);//Точка высоты 
                         byte[] _data = BitConverter.GetBytes(mapElement.terrainData.size.y * heights[i, j]);

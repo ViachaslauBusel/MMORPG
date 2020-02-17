@@ -16,6 +16,7 @@ namespace QuestsRedactor
 
 
 
+
         private static GUIStyle outPointStyle;
 
 
@@ -55,13 +56,20 @@ namespace QuestsRedactor
             selectQuest = null;
         }
 
+        /// <summary>
+        /// Отрисовывает сетку и кнопку возврата
+        /// </summary>
         public static void DrawMenu()
         {
+            //Маленькая сетка
             WindowGrid.Draw(drag, 20, 0.2f, Color.gray);
+            //Большая сетка
             WindowGrid.Draw(drag, 100, 0.4f, Color.gray);
-            if (GUI.Button(new Rect(5,5,30,30), EditorGUIUtility.IconContent("vcs_refresh"), EditorStyles.miniButtonLeft))
+            //Кнопка возврата. верхний левый угол
+            if (GUI.Button(new Rect(5,5,30,30), EditorGUIUtility.IconContent("d_tab_prev@2x"), EditorStyles.miniButtonLeft))
                 editMode = false;
         }
+
         public static void DrawStages()
         {
            
@@ -79,13 +87,20 @@ namespace QuestsRedactor
 
         public static void DrawConnections()
         {
-            if (selectQuest.connections != null)
+            foreach(QuestStage stage in selectQuest.stages)
+            {
+                foreach(Answer answer in stage.answers)
+                {
+                    answer.DrawBezier();
+                }
+            }
+         /*   if (selectQuest.connections != null)
             {
                 for (int i = 0; i < selectQuest.connections.Count; i++)
                 {
                     selectQuest.connections[i].Draw();
                 }
-            }
+            }*/
         }
 
         public static void DrawConnectionLine(Event e)
@@ -188,7 +203,11 @@ namespace QuestsRedactor
                 selectQuest.stages = new List<QuestStage>();
             }
 
-        //    selectQuest.stages.Add(new QuestStage(mousePosition, 200, 180, outPointStyle, OnClickInPoint, OnClickOutPoint));
+            int idStages = 0;
+            while (selectQuest.Contains(idStages))
+            { idStages++; }
+
+            selectQuest.stages.Add(new QuestStage(mousePosition, 200, 190, idStages));
 
         }
 

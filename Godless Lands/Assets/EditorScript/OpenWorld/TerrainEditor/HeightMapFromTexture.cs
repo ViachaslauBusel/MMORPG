@@ -71,7 +71,7 @@ namespace OpenWorldEditor
 
         private static void SetHeight(TerrainData terrainData, int xStart, int yStart, float minHeight, float setHeight, float mapHeight, float[] grayScale, int heightMapPoint)
         {
-            float[,] heights = terrainData.GetHeights(0, 0, terrainData.heightmapWidth, terrainData.heightmapHeight);
+            float[,] heights = terrainData.GetHeights(0, 0, terrainData.heightmapResolution, terrainData.heightmapResolution);
          
 
             for (int y = 0; y < heights.GetLength(1); y++)

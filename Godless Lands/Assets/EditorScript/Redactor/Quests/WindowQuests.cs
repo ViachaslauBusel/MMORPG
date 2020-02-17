@@ -13,8 +13,9 @@ namespace QuestsRedactor
     public class WindowQuests : Window
     {
         //  private RecipeEditor selectEditor;
-        private Quest selectQuest;
-       
+        public Quest selectQuest;
+        
+        public static WindowQuests Instance { get; private set; }
    
 
         [MenuItem("Window/Quests")]
@@ -27,6 +28,7 @@ namespace QuestsRedactor
         private new void OnEnable()
         {
             base.OnEnable();
+            Instance = this;
             string path = PlayerPrefs.GetString("RedactorQuestsList");
             objectList = AssetDatabase.LoadAssetAtPath<QuestsList>(path);
 

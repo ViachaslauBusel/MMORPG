@@ -10,8 +10,10 @@ namespace QuestsRedactor
     {
         private static GUIStyle stageBodyStyle;
         private static GUIStyle stageTitleStyle;
+        private static GUIStyle stageTitSelectleStyle;
         private static GUIStyle answerStyle;
         private static GUIStyle inPointStyle;
+        private static GUIStyle butDeletStyle;
         private static GUIStyle outPointStyle;
         private static GUIStyle selectedStageStyle;
 
@@ -55,6 +57,19 @@ namespace QuestsRedactor
                 return stageTitleStyle;
             }
         }
+        public static GUIStyle StageTitleSelect
+        {
+            get
+            {
+                if (stageTitSelectleStyle == null)
+                {
+                    stageTitSelectleStyle = new GUIStyle();
+                    stageTitSelectleStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node3.png") as Texture2D;
+                    stageTitSelectleStyle.border = new RectOffset(12, 12, 12, 12);
+                }
+                return stageTitSelectleStyle;
+            }
+        }
         public static GUIStyle InPoint
         {
             get
@@ -67,6 +82,20 @@ namespace QuestsRedactor
                     inPointStyle.border = new RectOffset(0, 0, 0, 0);
                 }
                 return inPointStyle;
+            }
+        }
+        public static GUIStyle ButtonDelet
+        {
+            get
+            {
+                if (butDeletStyle == null)
+                {
+                    butDeletStyle = new GUIStyle();
+                    butDeletStyle.normal.background = EditorGUIUtility.Load("d_P4_DeletedRemote") as Texture2D;
+                    butDeletStyle.active.background = EditorGUIUtility.Load("d_P4_DeletedLocal") as Texture2D;
+                    butDeletStyle.border = new RectOffset(0, 0, 0, 0);
+                }
+                return butDeletStyle;
             }
         }
         public static GUIStyle OutPoint

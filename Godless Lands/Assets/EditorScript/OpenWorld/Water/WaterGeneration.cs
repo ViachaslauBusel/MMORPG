@@ -59,7 +59,7 @@ namespace OpenWorldEditor
 
         public static Mesh CreateTileWater(TerrainData terrainData, float waterLevel)
         {
-            float[,] heights = terrainData.GetHeights(0, 0, terrainData.heightmapWidth, terrainData.heightmapHeight);
+            float[,] heights = terrainData.GetHeights(0, 0, terrainData.heightmapResolution, terrainData.heightmapResolution);
 
 
             waterLevel /= terrainData.size.y;

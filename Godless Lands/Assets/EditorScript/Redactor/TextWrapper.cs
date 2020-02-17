@@ -8,28 +8,38 @@ namespace Redactor
 {
     public class TextWrapper
     {
+        /// <summary>
+        /// Отрисовывает текст построчно. С шириной сторк width. Число строк = line
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="width"></param>
+        /// <param name="line"></param>
         public static void Label(string text, float width, int line)
         {
             if (text == null) return;
             width -= 13.0f;
+            //Массив слов
             string[] word = text.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
-            if (word.Length == 0) return;
 
-            int draw = 0;
-            string lineStr = word[0];
-            for(int i=1; i<word.Length; i++)
+            int wordIndex = 0;
+            string lineStr;
+            for (int i = 0; i < line; i++)
             {
-                if (GUI.skin.label.CalcSize(new GUIContent(lineStr + word[i])).x > width)
+                lineStr = "";
+                for (; wordIndex < word.Length; wordIndex++)
                 {
-                    if (++draw < line)
-                    { Draw(lineStr, width); lineStr = word[i]; }
-                    else
-                        return;
+                    //Если ширина строки больше нужной, выйти из цикла for
+                    if (GUI.skin.label.CalcSize(new GUIContent(lineStr + word[wordIndex])).x > width)
+                    {
+                        break;
+                    }
+                    else//Если нет, добавить слово к строке
+                    { lineStr += " " + word[wordIndex]; }
                 }
-                else
-                { lineStr += " " + word[i]; }
+
+
+                Draw(lineStr, width);
             }
-            Draw(lineStr, width);
         }
 
         private static void Draw(string text, float width)

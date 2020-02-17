@@ -21,7 +21,21 @@ namespace QuestsRedactor
 
 
         public Vector2 Position { get { return _position; } }
+        public Answer Answer { get; private set; }
+        public QuestStage QuestStage { get; private set; }
 
+        public ConnectionPoint(Answer answer, ConnectionPointType type, ConnectionDirection direction)
+        {
+            Answer = answer;
+            this.type = type;
+            this.direction = direction;
+        }
+        public ConnectionPoint(QuestStage stage, ConnectionPointType type, ConnectionDirection direction)
+        {
+            QuestStage = stage;
+            this.type = type;
+            this.direction = direction;
+        }
         public ConnectionPoint(ConnectionPointType type, ConnectionDirection direction)
         {
             this.type = type;
@@ -29,7 +43,7 @@ namespace QuestsRedactor
             this.direction = direction;
         }
 
-        public void Draw(Rect lastRect)
+        public void Draw()
         {
 
 
@@ -46,7 +60,7 @@ namespace QuestsRedactor
                 }
             }
            Rect rect = GUILayoutUtility.GetLastRect();
-            _position = new Vector2(lastRect.x + rect.center.x, lastRect.y + rect.center.y);
+            _position = new Vector2(QuestStage.Active.rect.x + rect.center.x, QuestStage.Active.rect.y + rect.center.y);
         }
     }
 }

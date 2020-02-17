@@ -35,23 +35,23 @@ namespace OpenWorldEditor
                     {
                         terrain = TerrainOrientation.Get(terrain, Orientation.Left); // terrain.GetComponent<TerrainInfo>().left;
                         if (terrain == null) return;//TODO
-                        xTerrain = (terrain.terrainData.heightmapWidth-1) + xTerrain;
+                        xTerrain = (terrain.terrainData.heightmapResolution-1) + xTerrain;
                     }
                     while (yTerrain < 0)
                     {
                         terrain = TerrainOrientation.Get(terrain, Orientation.Up);
                         if (terrain == null) return;//TODO
-                        yTerrain = (terrain.terrainData.heightmapHeight - 1) + yTerrain;
+                        yTerrain = (terrain.terrainData.heightmapResolution - 1) + yTerrain;
                     }
-                    while (xTerrain >= terrain.terrainData.heightmapWidth - 1)
+                    while (xTerrain >= terrain.terrainData.heightmapResolution - 1)
                     {
-                        xTerrain -= (terrain.terrainData.heightmapWidth - 1);
+                        xTerrain -= (terrain.terrainData.heightmapResolution - 1);
                         terrain = TerrainOrientation.Get(terrain, Orientation.Right);
                         if (terrain == null) return;//TODO
                     }
-                    while (yTerrain >= terrain.terrainData.heightmapHeight - 1)
+                    while (yTerrain >= terrain.terrainData.heightmapResolution - 1)
                     {
-                        yTerrain -= (terrain.terrainData.heightmapHeight - 1);
+                        yTerrain -= (terrain.terrainData.heightmapResolution - 1);
                         terrain = TerrainOrientation.Get(terrain, Orientation.Down);
                         if (terrain == null) return;//TODO
                     }
@@ -70,7 +70,7 @@ namespace OpenWorldEditor
             foreach (TerrainPoints trPoint in terrainPoints)
             {
                 TerrainInfo terrain = trPoint.GetTerrainInfo();
-                float[,] heights = terrain.terrainData.GetHeights(0, 0, terrain.terrainData.heightmapWidth, terrain.terrainData.heightmapHeight);
+                float[,] heights = terrain.terrainData.GetHeights(0, 0, terrain.terrainData.heightmapResolution, terrain.terrainData.heightmapResolution);
 
                 foreach (Point point in trPoint.GetPoints())
                 {
@@ -87,20 +87,20 @@ namespace OpenWorldEditor
                     {
                         TerrainInfo left = TerrainOrientation.Get(terrain, Orientation.Left);
                         if (left == null) return;
-                        trEqualizePoints.AddPoint(left, left.terrainData.heightmapWidth - 1, point.y, raise, true);
+                        trEqualizePoints.AddPoint(left, left.terrainData.heightmapResolution - 1, point.y, raise, true);
                     }
                     if (point.y == 0)
                     {
                         TerrainInfo up = TerrainOrientation.Get(terrain, Orientation.Up);
                         if (up == null) return;
-                        trEqualizePoints.AddPoint(up,  point.x, up.terrainData.heightmapHeight - 1, raise, true);
+                        trEqualizePoints.AddPoint(up,  point.x, up.terrainData.heightmapResolution - 1, raise, true);
                     }
                     if(point.x == 0 && point.y == 0)
                     {
                         TerrainInfo corner = TerrainOrientation.Get(terrain, Orientation.Up);
                         corner = TerrainOrientation.Get(corner, Orientation.Left);
                         if (corner == null) return;
-                        trEqualizePoints.AddPoint(corner, corner.terrainData.heightmapWidth - 1, corner.terrainData.heightmapHeight - 1, raise, true);
+                        trEqualizePoints.AddPoint(corner, corner.terrainData.heightmapResolution - 1, corner.terrainData.heightmapResolution - 1, raise, true);
                     }
 
                     heights[point.y, point.x] = raise;
