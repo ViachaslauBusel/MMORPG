@@ -1,5 +1,4 @@
 ﻿#if UNITY_EDITOR
-using Quests;
 using Redactor;
 using System.Collections;
 using System.Collections.Generic;
@@ -61,15 +60,19 @@ namespace QuestsRedactor
         /// </summary>
         public static void DrawMenu()
         {
-            //Маленькая сетка
-            WindowGrid.Draw(drag, 20, 0.2f, Color.gray);
-            //Большая сетка
-            WindowGrid.Draw(drag, 100, 0.4f, Color.gray);
+            
             //Кнопка возврата. верхний левый угол
             if (GUI.Button(new Rect(5,5,30,30), EditorGUIUtility.IconContent("d_tab_prev@2x"), EditorStyles.miniButtonLeft))
                 editMode = false;
         }
 
+        public static void DrawGrid(float scale)
+        {
+            //Маленькая сетка
+            WindowGrid.Draw(drag, 20, 0.2f, Color.gray, scale);
+            //Большая сетка
+            WindowGrid.Draw(drag, 100, 0.4f, Color.gray, scale);
+        }
         public static void DrawStages()
         {
            
@@ -207,7 +210,7 @@ namespace QuestsRedactor
             while (selectQuest.Contains(idStages))
             { idStages++; }
 
-            selectQuest.stages.Add(new QuestStage(mousePosition, 200, 190, idStages));
+            selectQuest.stages.Add(new QuestStage(mousePosition, 200, 200, idStages));
 
         }
 

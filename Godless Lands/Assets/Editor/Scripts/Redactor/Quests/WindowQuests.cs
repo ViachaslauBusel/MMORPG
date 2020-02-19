@@ -1,6 +1,5 @@
 ﻿#if UNITY_EDITOR
 
-using Quests;
 using Recipes;
 using Redactor;
 using System.Collections;
@@ -14,6 +13,7 @@ namespace QuestsRedactor
     {
         //  private RecipeEditor selectEditor;
         public Quest selectQuest;
+        private float scale = 1.0f;
         
         public static WindowQuests Instance { get; private set; }
    
@@ -23,7 +23,10 @@ namespace QuestsRedactor
         {
             WindowQuests window = EditorWindow.GetWindow<WindowQuests>(false, "Quests");
             window.minSize = new Vector2(600.0f, 320.0f);
+          
         }
+
+        
 
         private new void OnEnable()
         {
@@ -38,15 +41,24 @@ namespace QuestsRedactor
         {
             if (WindowEditMode.IsActivated())
             {
-                WindowEditMode.DrawMenu();
-                WindowEditMode.DrawStages();
-                WindowEditMode.DrawConnections();
-                WindowEditMode.DrawConnectionLine(Event.current);
-                WindowEditMode.ProcessStageEvents(Event.current);
-                WindowEditMode.ProcessEvents(Event.current);
               
+
+                scale = EditorZoomArea.Begin(scale); {
+
+                    WindowEditMode.DrawGrid(scale);
+                    WindowEditMode.DrawStages();
+                    WindowEditMode.DrawConnections();
+                    WindowEditMode.DrawConnectionLine(Event.current);
+                    WindowEditMode.ProcessStageEvents(Event.current);
+                    WindowEditMode.ProcessEvents(Event.current);
+
+                } EditorZoomArea.End();
+
+
+                WindowEditMode.DrawMenu();
             }
             else base.OnGUI();
+            
         }
         protected override void CreateObject()
         {
@@ -108,8 +120,9 @@ namespace QuestsRedactor
             AssetDatabase.Refresh();
             EditorUtility.SetDirty(objectList as QuestsList);
             AssetDatabase.SaveAssets();
-          //  QuestsExport.Export(objectList as QuestsList);
-            EditorUtility.DisplayDialog("Сохранение Рецептов", "Рецеты сохранены в контейнер: " + AssetDatabase.GetAssetPath(objectList) +
+            //  QuestsExport.Export(objectList as QuestsList);
+            QuestsExport.Save(objectList as QuestsList);
+             EditorUtility.DisplayDialog("Сохранение Рецептов", "Рецеты сохранены в контейнер: " + AssetDatabase.GetAssetPath(objectList) +
                 "\nФайл для экспорта на сервер: " + "Export/quests.dat", "OK");
 
             PlayerPrefs.SetString("RedactorQuestsList", AssetDatabase.GetAssetPath(objectList));

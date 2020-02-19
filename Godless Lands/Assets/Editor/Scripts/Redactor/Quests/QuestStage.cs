@@ -1,4 +1,4 @@
-﻿using QuestsRedactor;
+﻿using OpenWorldEditor;
 using Redactor;
 using System;
 using System.Collections;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Quests
+namespace QuestsRedactor
 {
     [System.Serializable]
     public class QuestStage
@@ -16,6 +16,7 @@ namespace Quests
         public int id;
         public string title = "no title";
         public string descripton = "empty";
+        public int NPC;
 
         public bool isDragged;
         public bool isSelected;
@@ -97,6 +98,16 @@ namespace Quests
             {
                 GUILayout.Space(40.0f);
                 TextWrapper.Label(descripton, 200.0f, 5);
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(15);
+                string name = WindowSetting.NPCList.GetName(NPC);
+                if (name.Equals("not found")) GUI.color = Color.red;
+                else GUI.color = Color.green;
+                NPC = EditorGUILayout.IntField(name, NPC, GUILayout.Width(170));
+                GUI.color = Color.white;
+                GUILayout.EndHorizontal();
+
                 DrawMenu();
 
                 //Отрисовка и удаление ответов

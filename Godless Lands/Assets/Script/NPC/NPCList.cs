@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -68,6 +69,15 @@ namespace NPCs
         public List<NPCPrefab> GetList()
         {
             return npcList;
+        }
+
+        public string GetName(int nPC)
+        {
+            foreach (NPCPrefab _npc in npcList)
+            {
+                if (_npc.id == nPC) return _npc.name;
+            }
+            return "not found";
         }
     }
 }

@@ -10,10 +10,10 @@ namespace Redactor
     {
         private static Vector2 offset = Vector2.zero;
 
-        public static void Draw(Vector2 drag, float gridSpacing, float gridOpacity, Color gridColor)
+        public static void Draw(Vector2 drag, float gridSpacing, float gridOpacity, Color gridColor, float scale = 1.0f)
         {
-            int widthDivs = Mathf.CeilToInt(Screen.width / gridSpacing);
-            int heightDivs = Mathf.CeilToInt(Screen.height / gridSpacing);
+            int widthDivs = Mathf.CeilToInt(EditorZoomArea.Width(scale) / gridSpacing);
+            int heightDivs = Mathf.CeilToInt(EditorZoomArea.Height(scale) / gridSpacing);
 
             Handles.BeginGUI();
             Handles.color = new Color(gridColor.r, gridColor.g, gridColor.b, gridOpacity);
@@ -23,12 +23,12 @@ namespace Redactor
 
             for (int i = 0; i < widthDivs; i++)
             {
-                Handles.DrawLine(new Vector3(gridSpacing * i, -gridSpacing, 0) + newOffset, new Vector3(gridSpacing * i, Screen.height, 0f) + newOffset);
+                Handles.DrawLine(new Vector3(gridSpacing * i, -gridSpacing, 0) + newOffset, new Vector3(gridSpacing * i, EditorZoomArea.Height(scale), 0f) + newOffset);
             }
 
             for (int j = 0; j < heightDivs; j++)
             {
-                Handles.DrawLine(new Vector3(-gridSpacing, gridSpacing * j, 0) + newOffset, new Vector3(Screen.width, gridSpacing * j, 0f) + newOffset);
+                Handles.DrawLine(new Vector3(-gridSpacing, gridSpacing * j, 0) + newOffset, new Vector3(EditorZoomArea.Width(scale), gridSpacing * j, 0f) + newOffset);
             }
 
             Handles.color = Color.white;
