@@ -159,8 +159,9 @@ namespace QuestsRedactor
             }
         }
 
-        private static void OnDrag(Vector2 delta)
+        public static void OnDrag(Vector2 delta)
         {
+
             drag = delta;
 
             if (selectQuest.stages != null)

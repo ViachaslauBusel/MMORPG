@@ -22,7 +22,8 @@ namespace QuestsRedactor {
 
         public static void Save(QuestsList questsList)
         {
-            string path = Application.dataPath + "/Resources/Quests";
+            string folder = "/Resources/Quests";
+            string path = Application.dataPath + folder;
             if (Directory.Exists(path))
             { DeleteDirectory(path); }
 
@@ -44,16 +45,17 @@ namespace QuestsRedactor {
                     {
                         stage.answers.Add(_a.idStage);
                     }
-                   // quest.stages.Add(stage);
+                    quest.stages.Add(stage);
                 }
-                SaveFile(path, quest);
+                SaveFile(folder, quest);
             }
         }
 
         public static void SaveFile(string path, Quests.Quest quest)
         {
-            Quests.Quest asset = ScriptableObject.CreateInstance<Quests.Quest>();
-            AssetDatabase.CreateAsset(asset, path+"4.asset");
+           // Quests.Quest asset = ScriptableObject.CreateInstance<Quests.Quest>();
+            string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath("Assets"+path + "/" + quest.id + ".asset");
+            AssetDatabase.CreateAsset(quest, assetPathAndName);
                 /*
             string file = JsonUtility.ToJson(quest);
 

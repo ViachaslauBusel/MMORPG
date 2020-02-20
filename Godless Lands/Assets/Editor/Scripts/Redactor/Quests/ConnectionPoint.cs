@@ -59,7 +59,8 @@ namespace QuestsRedactor
                 }
             }
            Rect rect = GUILayoutUtility.GetLastRect();
-            _position = new Vector2(QuestStage.Active.rect.x + rect.center.x, QuestStage.Active.rect.y + rect.center.y);
+            _position = new Vector2(QuestStage.Active.rect.x + rect.center.x,
+                                    QuestStage.Active.rect.y + rect.center.y);
         }
     }
 }

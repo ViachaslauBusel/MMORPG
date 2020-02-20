@@ -18,8 +18,8 @@ MonoBehaviour:
     stages:
     - rect:
         serializedVersion: 2
-        x: 572
-        y: 254
+        x: 431.85565
+        y: 182.05109
         width: 200
         height: 190
       id: 0
@@ -51,8 +51,8 @@ MonoBehaviour:
         idStage: 3
     - rect:
         serializedVersion: 2
-        x: 116
-        y: 104
+        x: -24.144379
+        y: 32.051086
         width: 200
         height: 190
       id: 1
@@ -79,8 +79,8 @@ MonoBehaviour:
         idStage: 0
     - rect:
         serializedVersion: 2
-        x: 831
-        y: 215
+        x: 690.8552
+        y: 143.05109
         width: 200
         height: 190
       id: 2
@@ -105,8 +105,8 @@ MonoBehaviour:
         idStage: -1
     - rect:
         serializedVersion: 2
-        x: 333
-        y: 41
+        x: 192.85562
+        y: -30.948914
         width: 200
         height: 190
       id: 3

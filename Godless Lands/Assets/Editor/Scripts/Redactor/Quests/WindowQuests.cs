@@ -16,14 +16,14 @@ namespace QuestsRedactor
         private float scale = 1.0f;
         
         public static WindowQuests Instance { get; private set; }
-   
+
 
         [MenuItem("Window/Quests")]
         public static void ShowWindow()
         {
             WindowQuests window = EditorWindow.GetWindow<WindowQuests>(false, "Quests");
             window.minSize = new Vector2(600.0f, 320.0f);
-          
+
         }
 
         
@@ -32,14 +32,19 @@ namespace QuestsRedactor
         {
             base.OnEnable();
             Instance = this;
+            EditorZoomArea.mouseScroll += WindowEditMode.OnDrag;
             string path = PlayerPrefs.GetString("RedactorQuestsList");
             objectList = AssetDatabase.LoadAssetAtPath<QuestsList>(path);
 
             WindowEditMode.OnEnable();
         }
+        private void OnDisable()
+        {
+            EditorZoomArea.mouseScroll -= WindowEditMode.OnDrag;
+        }
         public override void OnGUI()
         {
-            if (WindowEditMode.IsActivated())
+            if (selectQuest != null && WindowEditMode.IsActivated())
             {
               
 

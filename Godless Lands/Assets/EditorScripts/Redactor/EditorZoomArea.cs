@@ -6,9 +6,13 @@ using UnityEngine;
 
 public class EditorZoomArea
 {
+   // public delegate void Delta(Vector2 delta);
+
     private const float kEditorWindowTabHeight = 21.0f;
     private const float minScale = 0.1f, maxScale = 3.0f;
     private static Matrix4x4 _prevGuiMatrix;
+   
+    public static event Action<Vector2> mouseScroll;
 
     public static float Begin(float scale)
     {
@@ -44,16 +48,26 @@ public class EditorZoomArea
     }
     public static float Height(float scale)
     {
-        return Screen.height * (1.0f / scale) - kEditorWindowTabHeight;
+        return Screen.height * (1.0f / scale);
     }
     private static float CalculateScale(float scale)
     {
         if (Event.current.type == EventType.ScrollWheel)
         {
             Vector2 delta = Event.current.delta;
-            scale = Mathf.Clamp(scale + delta.y * 0.01f, minScale, maxScale);
-            GUI.changed = true;
+            float _s = Mathf.Clamp(scale + delta.y * 0.01f, minScale, maxScale); 
 
+
+            Vector2 mousePosition = Event.current.mousePosition;
+            Vector2 dif = (mousePosition * (1.0f / _s)) - (mousePosition * (1.0f / scale));
+            scale = _s;
+
+           
+
+            //  Debug.Log(mousePosition);
+            mouseScroll?.Invoke(dif);
+
+            GUI.changed = true;
         }
         return scale;
     }

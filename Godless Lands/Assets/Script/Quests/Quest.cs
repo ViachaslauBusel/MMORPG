@@ -9,11 +9,11 @@ namespace Quests
     {
         public int id;
         public string title;
-       // public List<Stage> stages;
+        public List<Stage> stages;
 
         public Quest()
         {
-          //  stages = new List<Stage>();
+            stages = new List<Stage>();
         }
     }
 }
