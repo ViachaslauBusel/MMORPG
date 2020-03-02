@@ -15,15 +15,15 @@ namespace Quests
         }
         public  void GetGuest(int id)
         {
-            StartCoroutine(LoadGuest(id));
+         //   StartCoroutine(LoadGuest(id));
         }
 
-        private IEnumerator LoadGuest(int id)
+       /* private IEnumerator LoadGuest(int id)
         {
-          ResourceRequest request =  Resources.LoadAsync("Quests/" + id);
-            yield return request;
-            Debug.Log(request.asset.GetType());
+          //ResourceRequest request =  Resources.LoadAsync("Quests/" + id);
+          //  yield return request;
+          //  Debug.Log(request.asset.GetType());
            // Debug.Log(JsonUtility.FromJson<Quest>((string)).title);
-        }
+        }*/
     }
 }
