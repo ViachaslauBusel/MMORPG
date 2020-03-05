@@ -25,13 +25,13 @@ namespace Cells
             if (cell.IsEmpty() || !Equipment.Is(itemCell.GetItem())) return;
 
             PutItem(itemCell.GetItem(), itemCell.GetCount());
-            key = itemCell.GetKey();
+            objectID = itemCell.GetObjectID();
         }
 
 
         internal void Refresh()//Вызывается из инвентаря при обновлении предметов
         {
-            Item item = Inventory.GetItem(key);
+            Item item = Inventory.GetItem(objectID);
             PutItem(item, (item == null) ? 0 : item.count);
         }
     }

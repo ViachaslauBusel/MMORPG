@@ -11,6 +11,8 @@ using Items;
 public delegate void RefreshCount();
 public class Inventory : MonoBehaviour {
 
+    public static Inventory Instance;
+
     public ItemsList itemsList;
    // public Transform bag;
     public GameObject itemCell;
@@ -24,14 +26,14 @@ public class Inventory : MonoBehaviour {
     private UISort uISort;
     private RefreshCount refreshCount;
 
-    private static Inventory inventory;
+
 
     private void Awake()
     {
-        if (inventory != null) Destroy(gameObject);
-        inventory = this;
+        if (Instance != null) Destroy(gameObject);
+        Instance = this;
         armor = GetComponentInChildren<InventoryArmor>();
-        RegisteredTypes.RegisterTypes(Types.LoadInventory, LoadingInventory);
+     //   RegisteredTypes.RegisterTypes(Types.LoadInventory, LoadingInventory);
         RegisteredTypes.RegisterTypes(Types.UpdateInventory, UpdateInventory);
         RegisteredTypes.RegisterTypes(Types.UpdateItem, UpdateItem);
     }
@@ -50,45 +52,45 @@ public class Inventory : MonoBehaviour {
     //Создает предмет по ид
     public static Item CreateItem(int id)
     {
-       return inventory.itemsList.CreateItem(id);
+       return Instance.itemsList.CreateItem(id);
     }
     public static Item GetItem(int key)
     {
-        if (inventory.bag.items == null || inventory.backpack.items == null) return null;
-        foreach (ItemCell itemCell in inventory.bag.items)
+        if (Instance.bag.items == null || Instance.backpack.items == null) return null;
+        foreach (ItemCell itemCell in Instance.bag.items)
         {
-            if (itemCell.GetKey() == key) return itemCell.GetItem();
+            if (itemCell.GetObjectID() == key) return itemCell.GetItem();
         }
-        foreach (ItemCell itemCell in inventory.backpack.items)
+        foreach (ItemCell itemCell in Instance.backpack.items)
         {
-            if (itemCell.GetKey() == key) return itemCell.GetItem();
+            if (itemCell.GetObjectID() == key) return itemCell.GetItem();
         }
 
-        return inventory.armor.GetItem(key);
+        return Instance.armor.GetItem(key);
     }
     public static int GetCount(int key)
     {
-        if (inventory.bag.items == null || inventory.backpack.items == null) return 0;
-       foreach(ItemCell itemCell in inventory.bag.items)
+        if (Instance.bag.items == null || Instance.backpack.items == null) return 0;
+       foreach(ItemCell itemCell in Instance.bag.items)
         {
-            if (itemCell.GetKey() == key) return itemCell.GetCount();
+            if (itemCell.GetObjectID() == key) return itemCell.GetCount();
         }
-        foreach (ItemCell itemCell in inventory.backpack.items)
+        foreach (ItemCell itemCell in Instance.backpack.items)
         {
-            if (itemCell.GetKey() == key) return itemCell.GetCount();
+            if (itemCell.GetObjectID() == key) return itemCell.GetCount();
         }
 
-        return inventory.armor.GetCount(key);
+        return Instance.armor.GetCount(key);
     }
     //Получить общее количество всех предметов в инвенторе по ид
     public static int GetAllCount(int id)
     {
         int allCount = 0;
-        foreach (ItemCell itemCell in inventory.bag.items)
+        foreach (ItemCell itemCell in Instance.bag.items)
         {
             if (itemCell.ID() == id) allCount += itemCell.GetCount();
         }
-        foreach (ItemCell itemCell in inventory.backpack.items)
+        foreach (ItemCell itemCell in Instance.backpack.items)
         {
             if (itemCell.ID() == id) allCount += itemCell.GetCount();
         }
@@ -96,23 +98,23 @@ public class Inventory : MonoBehaviour {
     }
     public static void RegisterCount(RefreshCount refresh)
     {
-        if(inventory.refreshCount == null)
-            inventory.refreshCount = refresh;
+        if(Instance.refreshCount == null)
+            Instance.refreshCount = refresh;
         else
-        inventory.refreshCount += refresh;
+            Instance.refreshCount += refresh;
     }
     public static void UnregisterCount(RefreshCount refresh)
     {
-        if (inventory.refreshCount == null) return;
+        if (Instance.refreshCount == null) return;
 
-            inventory.refreshCount -= refresh;
+        Instance.refreshCount -= refresh;
     }
 
     public ItemCell[] GetCellItems()
     {
-        ItemCell[] items = new ItemCell[bag.items.Length + backpack.items.Length];
+        ItemCell[] items = new ItemCell[bag.items.Count + backpack.items.Count];
         bag.items.CopyTo(items, 0);
-        backpack.items.CopyTo(items, bag.items.Length);
+        backpack.items.CopyTo(items, bag.items.Count);
         return items;
     }
 
@@ -138,7 +140,7 @@ public class Inventory : MonoBehaviour {
         if (refreshCount != null) refreshCount();
     }
 
-    private void LoadingInventory(NetworkWriter nw)
+  /*  private void LoadingInventory(NetworkWriter nw)
     {
         switch (nw.ReadByte())
         {
@@ -151,7 +153,7 @@ public class Inventory : MonoBehaviour {
         }
 
         if (refreshCount != null) refreshCount();
-    }
+    }*/
 
     
 

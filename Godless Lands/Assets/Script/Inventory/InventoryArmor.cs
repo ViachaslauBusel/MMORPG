@@ -16,18 +16,19 @@ public class InventoryArmor : MonoBehaviour
         inventory = GetComponentInParent<Inventory>();
     }
 
-    public void PutItem(ItemUse use, Item item, int key)
+    public void PutItem(ItemUse use, Item item)
     {
         int quality = (item == null) ? 0 : item.count;
+        int objectID = (item == null) ? 0 : item.objectID;
         switch (use)
         {
             case ItemUse.Weapon:
                 weapon.PutItem(item, quality);
-                weapon.SetKey(key);
+                weapon.SetObjectID(objectID);
                 break;
             case ItemUse.Pickaxe: 
                 pickaxe.PutItem(item, quality);
-                pickaxe.SetKey(key);
+                pickaxe.SetObjectID(objectID);
                 break;
         }
         inventory.Refresh();
@@ -35,17 +36,17 @@ public class InventoryArmor : MonoBehaviour
 
     public int GetCount(int key)
     {
-        if (weapon.GetKey() == key) return weapon.GetCount();
-        if (pickaxe.GetKey() == key) return pickaxe.GetCount();
+        if (weapon.GetObjectID() == key) return weapon.GetCount();
+        if (pickaxe.GetObjectID() == key) return pickaxe.GetCount();
         print("Key not found: " + key);
-        print("Key weapon: " + weapon.GetKey());
+        print("Key weapon: " + weapon.GetObjectID());
         return 0;
     }
 
     internal Item GetItem(int key)
     {
-        if (weapon.GetKey() == key) return weapon.GetItem();
-        if (pickaxe.GetKey() == key) return pickaxe.GetItem();
+        if (weapon.GetObjectID() == key) return weapon.GetItem();
+        if (pickaxe.GetObjectID() == key) return pickaxe.GetItem();
         return null;
     }
 }

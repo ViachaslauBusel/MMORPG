@@ -12,64 +12,94 @@ public class Bag : MonoBehaviour
     public Text text_filling;
     public BarWeight weight;
     public GameObject itemCell;
-    private int size_bag;
+    private int maxCell;
     [HideInInspector]
-    public ItemCell[] items;
-    private ItemsList itemsList;
+    public List<ItemCell> items;
 
 
     public void UpdateInventory(NetworkWriter nw)//Обновление содержимого ячейки
     {
         int filling = nw.ReadInt();//Заполнение рюкзака
-                                   //  size_bag = nw.ReadInt();
-        text_filling.text = filling + "/" + size_bag;
+        maxCell = nw.ReadInt();//Всего ячеек
 
-
-
-        weight.UpdateWeight(nw.ReadInt());
-
-
-        int index = nw.ReadInt();//Индекс изменившейся ячейки
-        int key = nw.ReadInt();//Уnикальный ид предмета
-
-        if (index >= 0 && index < items.Length)
+        if (items == null || items.Count != maxCell)
         {
-            items[index].SetKey(key);
-            if (key == 0) { items[index].PutItem(null, 0); return; }
-        }
-        else return;
-
-
-        int id_item = nw.ReadInt();//Индекс нового предмета в этой ячейке
-        int count = nw.ReadInt();
-        items[index].PutItem(itemsList.CreateItem(id_item), count);
-
-        if (nw.AvailableBytes > 0)
-        {
-            items[index].SetEnchantLevel(nw.ReadInt());
-            items[index].SetDurabilty(nw.ReadInt());
-            items[index].SetMaxDurabilty(nw.ReadInt());
+            UpdateCellsCount();
         }
 
+        text_filling.text = filling + "/" + this.maxCell;
+
+
+        //текущий и максимальный вес
+        weight.UpdateWeight(nw.ReadInt(), nw.ReadInt());
+
+        while (nw.AvailableBytes > 0)
+        {
+
+            int index = nw.ReadInt();//Индекс изменившейся ячейки
+            int itemID = nw.ReadInt();//ид предмета
+
+            if (index >= 0 && index < items.Count)
+            {
+                //  items[index].SetObjectID(objetcID);
+                if (itemID == 0) { items[index].PutItem(null, 0); return; }
+            }
+            else return;
+
+
+            int objectID = nw.ReadInt();//Индекс нового предмета в этой ячейке
+            int itemCount = nw.ReadInt();
+
+            items[index].SetObjectID(objectID);
+            items[index].PutItem(Inventory.Instance.itemsList.CreateItem(itemID), itemID);
+
+            if (nw.ReadBool())//Если предмет элемент экеперовки
+            {
+                items[index].SetEnchantLevel(nw.ReadInt());
+                items[index].SetDurabilty(nw.ReadInt());
+                items[index].SetMaxDurabilty(nw.ReadInt());
+            }
+        }
+    }
+
+    private void UpdateCellsCount()
+    {
+        if (items == null)
+            items = new List<ItemCell>();
+
+        //Создать пустые ячейки
+        for (int i=items.Count; i<maxCell; i++)
+        {
+            GameObject _obj = Instantiate(itemCell);
+            _obj.transform.SetParent(content);
+            items.Add(_obj.GetComponent<ItemCell>());
+            items[i].SetIndex(i);
+        }
+        //Удалить ячейки
+        for(int i=items.Count-1; i>=maxCell; i--)
+        {
+            Destroy(items[i].gameObject);
+            items.RemoveAt(i);
+        }
     }
 
 
-    public void LoadingInventory(NetworkWriter nw, ItemsList itemsList)
+  /*  public void LoadingInventory(NetworkWriter nw, ItemsList itemsList)
     {
         this.itemsList = itemsList;
         int filling = nw.ReadInt();
-        size_bag = nw.ReadInt();
-        text_filling.text = filling + "/" + size_bag;
+        maxCell = nw.ReadInt();
+        text_filling.text = filling + "/" + maxCell;
 
         weight.LoadWeight(nw.ReadInt(), nw.ReadInt());
       
 
-        items = new ItemCell[size_bag];
+        items = new ItemCell[maxCell];
 
         //  int count_item;
 
         Item item;
-        for (int i = 0; i < items.Length; i++)//Создать пустые ячейки
+        for (int i = 0; i < items.Length; i++)
         {
             GameObject _obj = Instantiate(itemCell);
             _obj.transform.SetParent(content);
@@ -87,7 +117,7 @@ public class Bag : MonoBehaviour
             if (index >= 0 && index < items.Length)
             {
 
-                items[index].SetKey(key);
+                items[index].SetObjectID(key);
                 items[index].PutItem(itemsList.CreateItem(id_item), count);
             }
 
@@ -103,9 +133,9 @@ public class Bag : MonoBehaviour
                     items[index].SetMaxDurabilty(maxDurability);
                 }
             }
-        }
+        }*/
 
 
      //   if (refreshCount != null) refreshCount();
-    }
+   // }
 }

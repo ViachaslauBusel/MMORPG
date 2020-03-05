@@ -20,6 +20,7 @@ namespace Items
         public int maxDurability;
 
         public int id;
+        public int objectID;
         public string nameItem;
         public Texture2D texture;
         public string description;

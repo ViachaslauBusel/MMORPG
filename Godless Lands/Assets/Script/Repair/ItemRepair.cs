@@ -67,7 +67,7 @@ public class ItemRepair : MonoBehaviour
                         if (resultCell.GetType() == typeof(ItemCell) || resultCell.GetType() == typeof(ArmorCell))
                         {
                             ItemCell itemCell = resultCell as ItemCell;
-                            RepairItem(itemCell.GetKey());
+                            RepairItem(itemCell.GetObjectID());
                             return;
                         }
                     }

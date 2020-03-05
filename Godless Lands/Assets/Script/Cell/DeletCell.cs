@@ -39,7 +39,7 @@ namespace Cells
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);
             nw.SetTypePack(Types.DeletItem);
        //     print("Del index: " + index);
-            nw.write(itemCell.GetKey());
+            nw.write(itemCell.GetObjectID());
             nw.write(itemCell.GetItem().id);
             if (itemCell.GetItem().stack)
             {

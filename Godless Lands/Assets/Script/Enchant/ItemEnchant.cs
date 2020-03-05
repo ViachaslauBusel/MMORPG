@@ -102,7 +102,7 @@ public class ItemEnchant : MonoBehaviour
         NetworkWriter nw = new NetworkWriter(Channels.Reliable | Channels.Discard);
         nw.SetTypePack(Types.ItemEnchant);
         nw.write((byte)3);//Заточить
-        nw.write(enchantCell.GetKey());
+        nw.write(enchantCell.GetObjectID());
         NetworkManager.Send(nw);
     }
 

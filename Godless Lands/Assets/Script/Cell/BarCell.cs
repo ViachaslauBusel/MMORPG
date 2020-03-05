@@ -112,14 +112,14 @@ namespace Cells
                 ItemCell item = cell as ItemCell;
                 nw.write(1);//type
                 nw.write(item.GetItem().id);
-                nw.write(item.GetKey());
+                nw.write(item.GetObjectID());
             }
             else if (cell.GetType() == typeof(ArmorCell))
             {
                 ArmorCell item = cell as ArmorCell;
                 nw.write(1);//type
                 nw.write(item.GetItem().id);
-                nw.write(item.GetKey());
+                nw.write(item.GetObjectID());
             }
             else return;
             NetworkManager.Send(nw);

@@ -46,7 +46,7 @@ public class ActionCell : ItemCell
         nw.SetTypePack(Types.MachineAddComponent);
         nw.write(fuel);
         nw.write(index);
-        nw.write(itemCell.GetKey());
+        nw.write(itemCell.GetObjectID());
         NetworkManager.Send(nw);
 
     }

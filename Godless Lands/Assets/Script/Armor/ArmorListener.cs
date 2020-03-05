@@ -38,18 +38,19 @@ public class ArmorListener : MonoBehaviour {
     private void UpdateArmor(NetworkWriter nw)
     {
         ItemUse part = (ItemUse)nw.ReadInt();
-        int key = nw.ReadInt();
+        int itemID = nw.ReadInt();
         Item item = null;
-        if (key != 0) item = ReadItem(nw);
+        if (itemID != 0) item = ReadItem(nw, itemID);
        
 
-        inventoryArmor.PutItem(part, item, key);//Отоброзить иконку в инвентаре
+        inventoryArmor.PutItem(part, item);//Отоброзить иконку в инвентаре
         armor.PutItem(part, item);
     }
 
-    private Item ReadItem(NetworkWriter nw)
+    private Item ReadItem(NetworkWriter nw, int itemID)
     {
-        Item _item = Inventory.CreateItem(nw.ReadInt());
+        Item _item = Inventory.CreateItem(itemID);
+        _item.objectID = nw.ReadInt();
         _item.count = nw.ReadInt();
         _item.enchant_level = nw.ReadInt();
         _item.durability = nw.ReadInt();

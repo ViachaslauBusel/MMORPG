@@ -19,7 +19,7 @@ namespace Cells
         {
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);
             nw.SetTypePack(Types.ItemTrade);
-            nw.write(key);
+            nw.write(objectID);
             int input_count = -1;
             if (item.stack)
             {
@@ -49,7 +49,7 @@ namespace Cells
         {
             index = itemCell.GetIndex();
             PutItem(itemCell.GetItem(), itemCell.GetCount());
-            key = itemCell.GetKey();
+            objectID = itemCell.GetObjectID();
         }
 
         public override void Put(Cell cell)

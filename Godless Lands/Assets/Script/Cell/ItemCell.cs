@@ -13,7 +13,7 @@ namespace Cells
     {
         protected Item item;
         protected int index;
-        protected int key;
+        protected int objectID;
         protected Text countTxt;
 
 
@@ -36,7 +36,7 @@ namespace Cells
             if (IsEmpty()) return;
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);
             nw.SetTypePack(Types.UseItem);
-            nw.write(key);
+            nw.write(objectID);
             nw.write(item.id);
             NetworkManager.Send(nw);
         }
@@ -46,7 +46,7 @@ namespace Cells
             if (IsEmpty()) return;
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);
             nw.SetTypePack(Types.ItemMove);
-            nw.write(key);
+            nw.write(objectID);
             NetworkManager.Send(nw);
         }
 
@@ -75,7 +75,7 @@ namespace Cells
         public void Refresh(Item item, int count, int key)
         { 
             PutItem(item, count);
-            this.key = key;
+            this.objectID = key;
 
         }
 
@@ -96,9 +96,9 @@ namespace Cells
 
         }
 
-        public void SetKey(int key)
+        public void SetObjectID(int objetcID)
         {
-            this.key = key;
+            this.objectID = objetcID;
         }
 
         public void SetIndex(int index)
@@ -124,9 +124,9 @@ namespace Cells
         {
             return index;
         }
-        public int GetKey()
+        public int GetObjectID()
         {
-            return key;
+            return objectID;
         }
 
         public void SetEnchantLevel(int level)
