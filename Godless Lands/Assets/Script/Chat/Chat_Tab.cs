@@ -55,7 +55,7 @@ public class Chat_Tab : MonoBehaviour{
 	[SerializeField] List<ChatLayer> layers = new List<ChatLayer>();
 	public List<ChatLayer> Layers{
 		get{
-			return layers;
+			return GetDefaultLayers();
 		}
 		set{
 			layers = value;

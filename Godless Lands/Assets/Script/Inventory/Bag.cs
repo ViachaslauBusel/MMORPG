@@ -19,12 +19,14 @@ public class Bag : MonoBehaviour
 
     public void UpdateInventory(NetworkWriter nw)//Обновление содержимого ячейки
     {
+
         int filling = nw.ReadInt();//Заполнение рюкзака
         maxCell = nw.ReadInt();//Всего ячеек
 
         if (items == null || items.Count != maxCell)
         {
             UpdateCellsCount();
+           
         }
 
         text_filling.text = filling + "/" + this.maxCell;
@@ -41,17 +43,17 @@ public class Bag : MonoBehaviour
 
             if (index >= 0 && index < items.Count)
             {
-                //  items[index].SetObjectID(objetcID);
-                if (itemID == 0) { items[index].PutItem(null, 0); return; }
+
+                if (itemID == 0) { items[index].PutItem(null, 0); continue; }
             }
-            else return;
+            else continue;
 
 
             int objectID = nw.ReadInt();//Индекс нового предмета в этой ячейке
             int itemCount = nw.ReadInt();
 
             items[index].SetObjectID(objectID);
-            items[index].PutItem(Inventory.Instance.itemsList.CreateItem(itemID), itemID);
+            items[index].PutItem(Inventory.Instance.itemsList.CreateItem(itemID), itemCount);
 
             if (nw.ReadBool())//Если предмет элемент экеперовки
             {

@@ -95,9 +95,9 @@ public class Chat_Manager : MonoBehaviour{
 
 	public void ReceiveMessage(string message, string player, int layer){
 		foreach(Chat_Tab tab in tabs){
-			if(tab.CanReceiveMessage(layer)){
+			//if(tab.CanReceiveMessage(layer)){
 				tab.ReceiveMessage(Instantiate(messagePrefab) as Chat_Message, message, player, layer);
-			}
+			//}
 		}
 	}
 
@@ -133,12 +133,16 @@ public class Chat_Manager : MonoBehaviour{
 			TabWrapper loadedData = JsonUtility.FromJson<TabWrapper>(dataAsJson);
 
 			foreach(TabData loadedTab in loadedData.tabData){
+				Debug.Log("load tab: " + loadedTab.tabLayers);
 				Chat_Tab tab = CreateNewTab(loadedTab.tabName, loadedTab.tabIndex);
 				tab.TabFontSize = loadedTab.tabFontSize;
 				tab.Layers = loadedTab.tabLayers;
 				if (loadedTab.tabActive) tabToActivate = tab;
 			}
-        }
+        }else
+		{
+			Debug.LogError("File not found: "+filePath);
+		}
 		
 		if (tabs.Count == 0){
 			tabToActivate = CreateNewTab();

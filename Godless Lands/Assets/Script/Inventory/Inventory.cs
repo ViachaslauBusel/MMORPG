@@ -169,7 +169,7 @@ public class Inventory : MonoBehaviour {
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.LoadInventory);
+     //   RegisteredTypes.UnregisterTypes(Types.LoadInventory);
         RegisteredTypes.UnregisterTypes(Types.UpdateInventory);
         RegisteredTypes.UnregisterTypes(Types.UpdateItem);
     }

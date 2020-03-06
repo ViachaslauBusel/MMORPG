@@ -17,6 +17,11 @@ namespace Cells
             "blue",
             "red"
         };
+        public static string GetColor(int index)
+        {
+            if (index < 0 || index >= colorQuality.Length) return "white";
+            return colorQuality[index];
+        }
        public static readonly string[] nameQuality =
        {
             "Бесполезный предмет",
@@ -25,7 +30,11 @@ namespace Cells
             "Качественный предмет",
             "Мастерский предмет"
         };
-
+        public static string GetName(int index)
+        {
+            if (index < 0 || index >= nameQuality.Length) return "ошибка: "+index;
+            return nameQuality[index];
+        }
         public static readonly float[] percentQuality =
         {
             0.9f,
@@ -48,8 +57,8 @@ namespace Cells
 
         public void SetName(int enchant_level, string _name, int quality, int durab)
         {
-            nameTxt.text = "<size=26><color=" + colorQuality[quality] + ">" + ((enchant_level != 0)? '+'+enchant_level.ToString()+' ':"") + _name + "</color></size>" + '\n' ;
-            nameTxt.text += "<size=22><color=" + colorQuality[quality] + ">" + nameQuality[quality] + "</color></size>" + '\n';
+            nameTxt.text = "<size=26><color=" + GetColor(quality) + ">" + ((enchant_level != 0)? '+'+enchant_level.ToString()+' ':"") + _name + "</color></size>" + '\n' ;
+            nameTxt.text += "<size=22><color=" + GetColor(quality) + ">" + GetName(quality) + "</color></size>" + '\n';
             if(durab < 1) nameTxt.text += "<color=red>Сломанный предмет</color>" + '\n';
             nameTxt.text += '\n';
 

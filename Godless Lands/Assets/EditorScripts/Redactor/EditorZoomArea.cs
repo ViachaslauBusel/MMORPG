@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class EditorZoomArea
 {
-   // public delegate void Delta(Vector2 delta);
 
     private const float kEditorWindowTabHeight = 21.0f;
     private const float minScale = 0.1f, maxScale = 3.0f;

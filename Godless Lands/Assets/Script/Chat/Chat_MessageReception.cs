@@ -35,24 +35,14 @@ public class Chat_MessageReception : MonoBehaviour
     private void ChatMessage(NetworkWriter nw)
     {
        
-        //GameObject obj =  Instantiate(msg_obj);
-        //obj.transform.SetParent(transform);
-        //obj.GetComponent<RectTransform>().localScale = Vector3.one;
+
 		int layer = nw.ReadInt();
         string character = nw.ReadString();
         string _message = nw.ReadString();
         if (_message.Contains("%")) _message = ReplaceSpecial(_message, nw);
-        //obj.GetComponent<Text>().text = character + ": " + _message;
 
-        //if (messages[index] != null) Destroy(messages[index]);
-        //messages[index] = obj;
-
-        //index++;
-        //index %= max_message;
+     
 		chat.ReceiveMessage(_message, character, layer);
-
-       // auto_scroll = true;
-
     }
 
     private string ReplaceSpecial(string msg, NetworkWriter nw)
@@ -61,32 +51,6 @@ public class Chat_MessageReception : MonoBehaviour
         Item _item = itemsList.GetItem(nw.ReadInt());
         if (_item == null) return msg;
         return msg.Replace("%item:", _item.nameItem);
-    }
-    private void Update()
-    {
-       /* if (auto_scroll)
-        {
-            print("true");
-            auto_scroll = false;
-            while(auto_scroll_index != index)
-            {
-              
-
-                Vector2 pos = rectTransform.anchoredPosition;
-                pos.y += messages[auto_scroll_index].GetComponent<RectTransform>().sizeDelta.y;
-                print(rectTransform.sizeDelta);
-                if (messages[auto_scroll_index].GetComponent<RectTransform>().sizeDelta.y == 0.0f) print("error");
-                print(messages[auto_scroll_index].GetComponent<RectTransform>().sizeDelta.y);
-                rectTransform.anchoredPosition = pos;
-
-                auto_scroll_index++;
-                auto_scroll_index %= max_message;
-            }
-        }*/
-    }
-    public void AutoScroll()
-    {
-
     }
     private void OnDestroy()
     {

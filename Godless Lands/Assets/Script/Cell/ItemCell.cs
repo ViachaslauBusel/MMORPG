@@ -90,8 +90,8 @@ namespace Cells
             ItemCell itemCell = cell as ItemCell;
             NetworkWriter writer = new NetworkWriter(Channels.Reliable);
             writer.SetTypePack(Types.WrapItem);
+            writer.write(itemCell.objectID);
             writer.write((byte)index);
-            writer.write((byte)itemCell.index);
             NetworkManager.Send(writer);
 
         }
