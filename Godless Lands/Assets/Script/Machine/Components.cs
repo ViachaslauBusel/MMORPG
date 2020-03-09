@@ -42,7 +42,7 @@ public class Components : MonoBehaviour
     {
         foreach (ActionCell cell in cells)
         {
-            cell.PutItem(null, 0);
+            cell.PutItem(null);
         }
     }
 

@@ -143,7 +143,7 @@ namespace Cells
             itemID = id;
             this.key = key;
             Clear();
-            item = Inventory.GetItem(key);
+            item = Inventory.GetItemByObjectID(key);
             if (item == null) {  return; }
             icon.enabled = true;
             icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
@@ -169,7 +169,7 @@ namespace Cells
             //   print("refresh");
             if (type == 1)
             {
-                item = Inventory.GetItem(key);
+                item = Inventory.GetItemByObjectID(key);
                 if (item == null) { return; }
                 icon.enabled = true;
                 icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);

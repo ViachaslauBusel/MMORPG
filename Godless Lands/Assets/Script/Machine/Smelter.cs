@@ -41,19 +41,19 @@ namespace Machines
             createBut.interactable = false;
         }
 
-        public void PutComponent(int index, Item item, int count)
+        public void UpdateComponent(int index, Item item)
         {
             ActionCell actionCell = component.GetCell(index);
             if (actionCell == null) return;
-            actionCell.PutItem(item, count);
+            actionCell.PutItem(item);
             Refresh();
         }
 
-        public void PutFuel(int index, Item item, int count)
+        public void UpdateFuel(int index, Item item)
         {
             ActionCell actionCell = fuel.GetCell(index);
             if (actionCell == null) return;
-            actionCell.PutItem(item, count);
+            actionCell.PutItem(item);
             Refresh();
         }
         private void RefreshCount()
@@ -170,6 +170,5 @@ namespace Machines
             selectRecipe = null;
         }
 
-      
     }
 }

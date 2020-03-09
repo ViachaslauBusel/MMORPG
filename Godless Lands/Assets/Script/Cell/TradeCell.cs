@@ -9,6 +9,9 @@ namespace Cells
     {
 
 
+        /// <summary>
+        /// Предложить предмет на обмен
+        /// </summary>
         public override void Use()
          {
             if (IsEmpty()) return;
@@ -19,7 +22,7 @@ namespace Cells
         {
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);
             nw.SetTypePack(Types.ItemTrade);
-            nw.write(objectID);
+            nw.write(item.objectID);
             int input_count = -1;
             if (item.stack)
             {
@@ -33,7 +36,7 @@ namespace Cells
             }
             NetworkManager.Send(nw);
 
-            if (item.stack)
+            /*if (item.stack)
             {
                 item.count -= input_count;
                 if (item.count < 1) PutItem(null, 0);
@@ -42,14 +45,14 @@ namespace Cells
             else
             {
                 PutItem(null, 0);
-            }
+            }*/ 
+            //TODO sync trade
         }
 
         public void PutItemCell(ItemCell itemCell)
         {
             index = itemCell.GetIndex();
-            PutItem(itemCell.GetItem(), itemCell.GetCount());
-            objectID = itemCell.GetObjectID();
+            PutItem(itemCell.GetItem());
         }
 
         public override void Put(Cell cell)

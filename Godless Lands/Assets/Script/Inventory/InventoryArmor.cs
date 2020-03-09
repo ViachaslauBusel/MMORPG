@@ -16,19 +16,16 @@ public class InventoryArmor : MonoBehaviour
         inventory = GetComponentInParent<Inventory>();
     }
 
-    public void PutItem(ItemUse use, Item item)
+    public void PutItem(ItemType use, Item item)
     {
-        int quality = (item == null) ? 0 : item.count;
-        int objectID = (item == null) ? 0 : item.objectID;
+
         switch (use)
         {
-            case ItemUse.Weapon:
-                weapon.PutItem(item, quality);
-                weapon.SetObjectID(objectID);
+            case ItemType.Weapon:
+                weapon.PutItem(item);
                 break;
-            case ItemUse.Pickaxe: 
-                pickaxe.PutItem(item, quality);
-                pickaxe.SetObjectID(objectID);
+            case ItemType.Pickaxe: 
+                pickaxe.PutItem(item);
                 break;
         }
         inventory.Refresh();

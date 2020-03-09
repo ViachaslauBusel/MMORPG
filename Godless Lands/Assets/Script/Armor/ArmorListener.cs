@@ -37,7 +37,7 @@ public class ArmorListener : MonoBehaviour {
 
     private void UpdateArmor(NetworkWriter nw)
     {
-        ItemUse part = (ItemUse)nw.ReadInt();
+        ItemType part = (ItemType)nw.ReadInt();
         int itemID = nw.ReadInt();
         Item item = null;
         if (itemID != 0) item = ReadItem(nw, itemID);

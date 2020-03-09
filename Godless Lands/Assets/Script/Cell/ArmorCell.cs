@@ -11,7 +11,7 @@ namespace Cells
     {
         private Texture2D defaultIcon;
         //Как используется ячейка
-        public ItemUse use;
+        public ItemType use;
 
         private new void Awake()
         {
@@ -24,7 +24,7 @@ namespace Cells
             if (IsEmpty()) return;
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);
             nw.SetTypePack(Types.TakeOffArmor);
-            nw.write((int)GetItem().use);
+            nw.write((int)GetItem().type);
             NetworkManager.Send(nw);
         }
 
@@ -39,7 +39,7 @@ namespace Cells
             if (cell.GetType() != typeof(ItemCell) || cell.IsEmpty()) return;//Если ячейка не для предметов или пустая
 
             ItemCell itemCell = cell as ItemCell;
-            if (itemCell.GetItem().use != use) return;//Если тип предмета не соответствует ячейке
+            if (itemCell.GetItem().type != use) return;//Если тип предмета не соответствует ячейке
             cell.Use();//Использовать предмет
         }
 

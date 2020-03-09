@@ -13,9 +13,9 @@ namespace Cells {
 
         private void Start()
         {
-            itemCell_0.PutItem(itemsList.GetItem(Random.Range(0, itemsList.Count)), 1);
-            itemCell_1.PutItem(itemsList.GetItem(Random.Range(0, itemsList.Count)), 1);
-            itemCell_2.PutItem(itemsList.GetItem(Random.Range(0, itemsList.Count)), 1);
+            itemCell_0.PutItem(itemsList.GetItem(Random.Range(0, itemsList.Count)));
+            itemCell_1.PutItem(itemsList.GetItem(Random.Range(0, itemsList.Count)));
+            itemCell_2.PutItem(itemsList.GetItem(Random.Range(0, itemsList.Count)));
         }
     }
 }

@@ -10,8 +10,8 @@ namespace Machines
         void Refresh();
         void SelectRecipe(Recipe select);
         void Open();
-        void PutComponent(int index, Item item, int count);
-        void PutFuel(int index, Item item, int count);
+        void UpdateComponent(int index, Item item);
+        void UpdateFuel(int index, Item item);
         void Hide();
     }
 }

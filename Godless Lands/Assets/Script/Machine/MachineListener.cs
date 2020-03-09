@@ -42,12 +42,15 @@ namespace Machines
         private void MachineComponent(NetworkWriter nw)
         {
             if (selectMachine == null) return;
-            bool fuel = nw.ReadBool();
-            int index = nw.ReadInt();
-            Item item = Inventory.CreateItem(nw.ReadInt());
-            int count = nw.ReadInt();
-            if(fuel) selectMachine.PutFuel(index, item, count);
-            else selectMachine.PutComponent(index, item, count);
+            bool component = nw.ReadBool();
+            while (nw.AvailableBytes > 0)
+            {
+                int index = nw.ReadInt();
+                Item item = nw.ReadItem();
+
+                if (component) selectMachine.UpdateComponent(index, item);
+                else selectMachine.UpdateFuel(index, item); 
+            }
         }
 
         private void MachineUseVoid(NetworkWriter nw)

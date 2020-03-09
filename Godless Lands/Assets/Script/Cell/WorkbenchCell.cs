@@ -21,7 +21,7 @@ namespace Cells
         {
             if (cell == null) return;
             ItemCell itemCell = cell as ItemCell;
-            if (itemCell == null || itemCell.IsEmpty() || itemCell.GetItem().use != ItemUse.Recipes) return;
+            if (itemCell == null || itemCell.IsEmpty() || itemCell.GetItem().type != ItemType.Recipes) return;
             //  if (components.ConstainsItem(itemCell.GetItem().id)) return;//Если этот предмет уже есть в списке
             //   PutItem(itemCell.GetItem(), itemCell.GetCount(), itemCell.GetKey());//Установить иконку
             PutItem(itemCell.GetItem());

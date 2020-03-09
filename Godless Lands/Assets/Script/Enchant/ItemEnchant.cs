@@ -72,7 +72,7 @@ public class ItemEnchant : MonoBehaviour
     {
         if (canvas.enabled) Inventory.UnregisterCount(Refresh);
         canvas.enabled = false;
-        enchantCell.PutItem(null, 0);
+        enchantCell.PutItem(null);
     }
 
     public void Sharpen()

@@ -58,14 +58,14 @@ namespace Cells
 
             _informer.SetIcon(item.texture);
 
-            if (item.use == ItemUse.Weapon || item.use == ItemUse.Armor)
+            if (item.type == ItemType.Weapon || item.type == ItemType.Armor)
                 _informer.SetName(item.enchant_level, item.nameItem, item.count, item.durability);
             else _informer.SetName(item.nameItem);
 
             if (item.stack) _informer.SetCount(item.count);
-            switch (item.use)
+            switch (item.type)
             {
-                case ItemUse.Weapon:
+                case ItemType.Weapon:
                     WeaponItem weapon = item.serializableObj as WeaponItem;
                     if (weapon == null) break;
                     _informer.SetLevel(weapon.weaponType);
@@ -77,7 +77,7 @@ namespace Cells
                 //    if (weapon.crushingDamage > 0) _informer.SetCrushingDamage(weapon.crushingDamage, count);
                  //   if (weapon.choppingDamage > 0) _informer.SetChoppingDamage(weapon.choppingDamage, count);
                     break;
-                case ItemUse.RestorePoints:
+                case ItemType.RestorePoints:
                     RestorePointsItem restorePoints = item.serializableObj as RestorePointsItem;
                     if (restorePoints == null) break;
                     if (restorePoints.hp > 0) _informer.SetHP(restorePoints.hp);

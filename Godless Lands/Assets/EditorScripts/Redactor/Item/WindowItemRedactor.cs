@@ -1,11 +1,12 @@
 ﻿#if UNITY_EDITOR
+using Items;
 using Redactor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Items
+namespace ItemsRedactor
 {
     public class WindowItemRedactor : EditorWindow
     {

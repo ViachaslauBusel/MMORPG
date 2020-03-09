@@ -7,8 +7,8 @@ public class Equipment
 {
    public static bool Is(Item item)
     {
-        if (item.use == ItemUse.Weapon) return true;
-        if (item.use == ItemUse.Armor) return true;
+        if (item.type == ItemType.Weapon) return true;
+        if (item.type == ItemType.Armor) return true;
         return false;
     }
 }

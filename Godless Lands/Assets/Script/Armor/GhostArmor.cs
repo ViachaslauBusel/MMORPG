@@ -30,7 +30,7 @@ public class GhostArmor : MonoBehaviour{
 
     public void UpdateArmor(NetworkWriter nw)
     {
-        ItemUse part = (ItemUse)nw.ReadInt();
+        ItemType part = (ItemType)nw.ReadInt();
         int item_id = nw.ReadInt();
 
         Item item = itemsList.CreateItem(item_id);

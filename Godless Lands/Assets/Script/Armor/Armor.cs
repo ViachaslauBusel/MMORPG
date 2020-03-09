@@ -18,14 +18,14 @@ public class Armor : MonoBehaviour
        animator = GetComponent<Animator>();
        weapon_parent = weapon_back;
     }
-    public void PutItem(ItemUse part, Item item)
+    public void PutItem(ItemType part, Item item)
     {
         switch (part)
         {
-            case ItemUse.Weapon:
+            case ItemType.Weapon:
                 DressWeapon(item);
                 break;
-            case ItemUse.Pickaxe:
+            case ItemType.Pickaxe:
                 DressPickaxe(item);
                 break;
         }

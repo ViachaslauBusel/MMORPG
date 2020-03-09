@@ -51,7 +51,7 @@ public class ActionCell : ItemCell
 
     }
 
-    public override void PutItem(Item item, int count)
+    public override void PutItem(Item item)
     {
         
         this.item = item;
@@ -61,7 +61,7 @@ public class ActionCell : ItemCell
             HideIcon();
             return;
         }
-        item.count = count;
+      //  item.count = count;
         ShowIcon();
         icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
     }

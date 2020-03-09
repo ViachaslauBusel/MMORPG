@@ -55,7 +55,7 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
         armor.Init();
         while (nw.AvailableBytes >= 8)
         {
-            ItemUse part = (ItemUse)nw.ReadInt();
+            ItemType part = (ItemType)nw.ReadInt();
             int id_item = nw.ReadInt();
             Item _item = Inventory.CreateItem(id_item);
             armor.PutItem(part, _item);
@@ -63,7 +63,7 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
     }
     public void UpdateArmor(NetworkWriter nw)
     {
-        ItemUse part = (ItemUse)nw.ReadInt();
+        ItemType part = (ItemType)nw.ReadInt();
         int id_item = nw.ReadInt();
         Item _item = Inventory.CreateItem(id_item);
         armor.PutItem(part, _item);

@@ -46,18 +46,18 @@ public class Trade : MonoBehaviour
             int count = nw.ReadInt();//Количество предметов
             bool mine = nw.ReadBool();//true - предмет принадлежит этому игроку
           //  print("Mine?: " + mine);
-            if (mine) PutMyOfferItem(id, count);
+            if (mine) PutMyOfferItem(id);
             else PutOtherOfferItem(id, count);
         }
     }
 
-    private void PutMyOfferItem(int id, int count)
+    private void PutMyOfferItem(int id)
     {
-        myOfferItems[myIndex++].PutItem(inventory.itemsList.CreateItem(id), count);
+        myOfferItems[myIndex++].PutItem(inventory.itemsList.CreateItem(id));
     }
     private void PutOtherOfferItem(int id, int count)
     {
-        otherOfferItem[otherIndex++].PutItem(inventory.itemsList.CreateItem(id), count);
+        otherOfferItem[otherIndex++].PutItem(inventory.itemsList.CreateItem(id));
     }
 
     private void ClearMyTradeCell()//Очистить все ячейки этого игрока
@@ -65,7 +65,7 @@ public class Trade : MonoBehaviour
         myIndex = 0;
         for (int i = 0; i < myOfferItems.Length; i++)
         {
-            myOfferItems[i].PutItem(null, 0);
+            myOfferItems[i].PutItem(null);
         }
 
       
@@ -75,7 +75,7 @@ public class Trade : MonoBehaviour
         otherIndex = 0;
         for (int i = 0; i < otherOfferItem.Length; i++)
         {
-            otherOfferItem[i].PutItem(null, 0);
+            otherOfferItem[i].PutItem(null);
         }
     }
 
@@ -180,7 +180,7 @@ public class Trade : MonoBehaviour
                 GameObject _obj = Instantiate(offerCell);
                 _obj.transform.SetParent(parent_myOffer);
                 OfferCell _offerCell = _obj.GetComponent<OfferCell>();
-                _offerCell.PutItem(null, 0);
+                _offerCell.PutItem(null);
                 _offerCell.SetOpen(true);
                 myOfferItems[i] = _offerCell;
             }

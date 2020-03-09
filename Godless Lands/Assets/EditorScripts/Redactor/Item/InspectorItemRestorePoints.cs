@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Items;
 
-namespace Items
+namespace ItemsRedactor
 {
     public class InspectorItemRestorePoints
     {

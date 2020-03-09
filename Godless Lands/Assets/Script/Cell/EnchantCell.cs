@@ -18,21 +18,22 @@ namespace Cells
         }
         public override void Put(Cell cell)
         {
-            if (cell.GetType() != typeof(ItemCell) && cell.GetType() != typeof(ArmorCell)) return;
+
 
             ItemCell itemCell = cell as ItemCell;
+            if (itemCell == null) return;
 
             if (cell.IsEmpty() || !Equipment.Is(itemCell.GetItem())) return;
 
-            PutItem(itemCell.GetItem(), itemCell.GetCount());
-            objectID = itemCell.GetObjectID();
+            PutItem(itemCell.GetItem());
+
         }
 
 
         internal void Refresh()//Вызывается из инвентаря при обновлении предметов
         {
-            Item item = Inventory.GetItem(objectID);
-            PutItem(item, (item == null) ? 0 : item.count);
+            Item item = Inventory.GetItemByObjectID(GetObjectID());
+            PutItem(item);
         }
     }
 }

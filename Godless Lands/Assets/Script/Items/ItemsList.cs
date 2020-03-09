@@ -62,7 +62,7 @@ namespace Items
             {
                 if (_item.id == id) return new Item(_item);
             }
-            return null;
+            return new Item();
         }
         public Item GetItem(int id)
         {

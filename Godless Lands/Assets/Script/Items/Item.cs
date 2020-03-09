@@ -11,7 +11,9 @@ namespace Items
     public class Item
     {
         [NonSerialized]
-        public int count;
+        public int objectID = 0;
+        [NonSerialized]
+        public int count = 0;
         [NonSerialized]
         public int enchant_level;
         [NonSerialized]
@@ -20,18 +22,17 @@ namespace Items
         public int maxDurability;
 
         public int id;
-        public int objectID;
         public string nameItem;
         public Texture2D texture;
         public string description;
         public bool stack;
         public int weight;
         public GameObject prefab;
-        public ItemUse use;
+        public ItemType type;
         [SerializeField]
         private string _serializableObj;
         [SerializeField]
-        private string type;
+        private string typeObject;
 
         public Item(Item item)
         {
@@ -42,46 +43,46 @@ namespace Items
             stack = item.stack;
             weight = item.weight;
             prefab = item.prefab;
-            use = item.use;
-            _serializableObj = item._serializableObj;
             type = item.type;
+            _serializableObj = item._serializableObj;
+            typeObject = item.typeObject;
         }
         public Item()
         {
-
+            id = 0;
         }
 
-        public bool IsEmpty()
+        public bool IsExist()
         {
-            if (id < 1) return true;
+            if (id > 0) return true;
             return false;
         }
         public System.Object serializableObj
         {
             get
             {
-                if (_serializableObj == null || _serializableObj.Length == 0 || string.IsNullOrEmpty(type)) return null;
+                if (_serializableObj == null || _serializableObj.Length == 0 || string.IsNullOrEmpty(typeObject)) return null;
                
-                return JsonUtility.FromJson(_serializableObj, Type.GetType(type));
+                return JsonUtility.FromJson(_serializableObj, Type.GetType(typeObject));
             }
             set
             {
                 if (value == null) { _serializableObj = null; return; }
 
                 _serializableObj = JsonUtility.ToJson(value);
-                type = value.GetType().ToString();
+                typeObject = value.GetType().ToString();
             }
         }
 
-        public static ItemUse GetUse(System.Object Obj)
+        public static ItemType GetUse(System.Object Obj)
         {
-             if (Obj == null) return ItemUse.None;
+             if (Obj == null) return ItemType.None;
             Type type = Obj.GetType();
-            if (type == typeof(WeaponItem)) return ItemUse.Weapon;
-            if (type == typeof(WeaponItem)) return ItemUse.Armor;
-            if (type == typeof(RestorePointsItem)) return ItemUse.RestorePoints;
-            if (type == typeof(RecipesItem)) return ItemUse.Recipes;
-            return ItemUse.None;
+            if (type == typeof(WeaponItem)) return ItemType.Weapon;
+            if (type == typeof(WeaponItem)) return ItemType.Armor;
+            if (type == typeof(RestorePointsItem)) return ItemType.RestorePoints;
+            if (type == typeof(RecipesItem)) return ItemType.Recipes;
+            return ItemType.None;
         }
     }
 

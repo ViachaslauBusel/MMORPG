@@ -1,10 +1,11 @@
-﻿using Recipes;
+﻿using Items;
+using Recipes;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace Items
+namespace ItemsRedactor
 {
     public class ItemsExport
     {
@@ -15,14 +16,14 @@ namespace Items
             {
                 foreach (Item _item in items)
                 {
-                    stream_out.Write((int)_item.use);
+                    stream_out.Write((int)_item.type);
                     stream_out.Write(_item.id);
                     stream_out.Write(_item.stack);
                     stream_out.Write(_item.weight);
                    
-                    switch (_item.use)
+                    switch (_item.type)
                     {
-                        case ItemUse.Weapon:
+                        case ItemType.Weapon:
                             WeaponItem weapon = _item.serializableObj as WeaponItem;
                             stream_out.Write(weapon.minDamege);
                             stream_out.Write(weapon.maxDamage);
@@ -34,7 +35,7 @@ namespace Items
                                 stream_out.Write(piece.count);
                             }
                             break;
-                        case ItemUse.RestorePoints:
+                        case ItemType.RestorePoints:
                             RestorePointsItem pointsItem = _item.serializableObj as RestorePointsItem;
                             stream_out.Write(pointsItem.hp);
                             stream_out.Write(pointsItem.mp);

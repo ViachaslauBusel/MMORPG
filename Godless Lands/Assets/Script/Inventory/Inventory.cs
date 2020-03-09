@@ -40,7 +40,7 @@ public class Inventory : MonoBehaviour {
 
     private void UpdateItem(NetworkWriter nw)
     {
-        Item item = GetItem(nw.ReadInt());
+        Item item = GetItemByObjectID(nw.ReadInt());
         if (item != null) item.durability = nw.ReadInt();
     }
 
@@ -54,28 +54,28 @@ public class Inventory : MonoBehaviour {
     {
        return Instance.itemsList.CreateItem(id);
     }
-    public static Item GetItem(int key)
+    public static Item GetItemByObjectID(int objectID)
     {
-        if (Instance.bag.items == null || Instance.backpack.items == null) return null;
-        foreach (ItemCell itemCell in Instance.bag.items)
+        if (Instance.bag.cells == null || Instance.backpack.cells == null) return null;
+        foreach (ItemCell itemCell in Instance.bag.cells)
         {
-            if (itemCell.GetObjectID() == key) return itemCell.GetItem();
+            if (itemCell.GetObjectID() == objectID) return itemCell.GetItem();
         }
-        foreach (ItemCell itemCell in Instance.backpack.items)
+        foreach (ItemCell itemCell in Instance.backpack.cells)
         {
-            if (itemCell.GetObjectID() == key) return itemCell.GetItem();
+            if (itemCell.GetObjectID() == objectID) return itemCell.GetItem();
         }
 
-        return Instance.armor.GetItem(key);
+        return Instance.armor.GetItem(objectID);
     }
     public static int GetCount(int key)
     {
-        if (Instance.bag.items == null || Instance.backpack.items == null) return 0;
-       foreach(ItemCell itemCell in Instance.bag.items)
+        if (Instance.bag.cells == null || Instance.backpack.cells == null) return 0;
+       foreach(ItemCell itemCell in Instance.bag.cells)
         {
             if (itemCell.GetObjectID() == key) return itemCell.GetCount();
         }
-        foreach (ItemCell itemCell in Instance.backpack.items)
+        foreach (ItemCell itemCell in Instance.backpack.cells)
         {
             if (itemCell.GetObjectID() == key) return itemCell.GetCount();
         }
@@ -86,11 +86,11 @@ public class Inventory : MonoBehaviour {
     public static int GetAllCount(int id)
     {
         int allCount = 0;
-        foreach (ItemCell itemCell in Instance.bag.items)
+        foreach (ItemCell itemCell in Instance.bag.cells)
         {
             if (itemCell.ID() == id) allCount += itemCell.GetCount();
         }
-        foreach (ItemCell itemCell in Instance.backpack.items)
+        foreach (ItemCell itemCell in Instance.backpack.cells)
         {
             if (itemCell.ID() == id) allCount += itemCell.GetCount();
         }
@@ -112,9 +112,9 @@ public class Inventory : MonoBehaviour {
 
     public ItemCell[] GetCellItems()
     {
-        ItemCell[] items = new ItemCell[bag.items.Count + backpack.items.Count];
-        bag.items.CopyTo(items, 0);
-        backpack.items.CopyTo(items, bag.items.Count);
+        ItemCell[] items = new ItemCell[bag.cells.Count + backpack.cells.Count];
+        bag.cells.CopyTo(items, 0);
+        backpack.cells.CopyTo(items, bag.cells.Count);
         return items;
     }
 
@@ -140,20 +140,6 @@ public class Inventory : MonoBehaviour {
         if (refreshCount != null) refreshCount();
     }
 
-  /*  private void LoadingInventory(NetworkWriter nw)
-    {
-        switch (nw.ReadByte())
-        {
-            case 3:
-                bag.LoadingInventory(nw, itemsList);
-                break;
-            case 1:
-                backpack.LoadingInventory(nw, itemsList);
-                break;
-        }
-
-        if (refreshCount != null) refreshCount();
-    }*/
 
     
 

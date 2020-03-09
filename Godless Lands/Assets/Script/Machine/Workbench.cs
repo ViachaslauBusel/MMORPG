@@ -58,12 +58,12 @@ namespace Machines
         {
         }
 
-        public void PutComponent(int index, Item item, int count)
+        public void UpdateComponent(int index, Item item)
         {
         //    recipeCell.PutItem(item, count);
         }
 
-        public void PutFuel(int index, Item item, int count)
+        public void UpdateFuel(int index, Item item)
         {
             throw new System.NotImplementedException();
         }

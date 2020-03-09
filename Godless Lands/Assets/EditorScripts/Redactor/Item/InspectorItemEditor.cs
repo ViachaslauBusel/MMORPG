@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using Items;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-namespace Items
+namespace ItemsRedactor
 {
     [CustomEditor(typeof(ItemEditor))]
     [CanEditMultipleObjects]
@@ -37,24 +38,24 @@ namespace Items
             _item.weight = EditorGUILayout.IntField("Вес:", _item.weight);
             _item.prefab = EditorGUILayout.ObjectField("Префаб: ", _item.prefab, typeof(GameObject), false) as GameObject;
             //  EditorGUILayout.EndScrollView();
-            _item.use = (ItemUse)EditorGUILayout.EnumPopup("Используется?", _item.use);
+            _item.type = (ItemType)EditorGUILayout.EnumPopup("Используется?", _item.type);
 
 
             //Если используемый тип предмета не соответствует созданому классу для сохранения данных.
-                if (Item.GetUse(itemEditor.serializableObject) != _item.use)
+                if (Item.GetUse(itemEditor.serializableObject) != _item.type)
                 {
-                switch (_item.use)
+                switch (_item.type)
                 {
-                    case ItemUse.None:
+                    case ItemType.None:
                         _item.serializableObj = null;
                         return;
-                    case ItemUse.Weapon:
+                    case ItemType.Weapon:
                         _item.serializableObj = new WeaponItem();
                         break;
-                    case ItemUse.RestorePoints:
+                    case ItemType.RestorePoints:
                         _item.serializableObj = new RestorePointsItem();
                         break;
-                    case ItemUse.Recipes:
+                    case ItemType.Recipes:
                         _item.serializableObj = new RecipesItem();
                         break;
                     default: return;
@@ -63,18 +64,18 @@ namespace Items
                 }
 
 
-            switch (_item.use)
+            switch (_item.type)
             {
-                case ItemUse.Weapon:
+                case ItemType.Weapon:
                     InspectorItemWeapon.Draw(itemEditor.serializableObject);
                     break;
-                case ItemUse.Armor:
+                case ItemType.Armor:
                     InspectorItemArmor.Draw(itemEditor.serializableObject);
                     break;
-                case ItemUse.RestorePoints:
+                case ItemType.RestorePoints:
                     InspectorItemRestorePoints.Draw(itemEditor.serializableObject);
                     break;
-                case ItemUse.Recipes:
+                case ItemType.Recipes:
                     InspectorRecipes.Draw(itemEditor.serializableObject);
                     break;
             }

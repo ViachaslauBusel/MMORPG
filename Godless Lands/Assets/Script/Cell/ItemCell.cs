@@ -13,7 +13,7 @@ namespace Cells
     {
         protected Item item;
         protected int index;
-        protected int objectID;
+     //   protected int objectID;
         protected Text countTxt;
 
 
@@ -31,75 +31,91 @@ namespace Cells
             return false;
         }
 
+        /// <summary>
+        /// использовать предмет
+        /// </summary>
         public override void Use()
         {
             if (IsEmpty()) return;
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);
             nw.SetTypePack(Types.UseItem);
-            nw.write(objectID);
+            nw.write(item.objectID);
             nw.write(item.id);
             NetworkManager.Send(nw);
         }
 
+        /// <summary>
+        /// Рюкзак -> сумка -> рюкзак
+        /// </summary>
         public void Move()
         {
             if (IsEmpty()) return;
             NetworkWriter nw = new NetworkWriter(Channels.Reliable);
             nw.SetTypePack(Types.ItemMove);
-            nw.write(objectID);
+            nw.write(item.objectID);
             NetworkManager.Send(nw);
         }
 
-        public virtual void PutItem(Item item, int count)
+        /// <summary>
+        /// Положить предмет в ячейку
+        /// </summary>
+        /// <param name="item"></param>
+        public virtual void PutItem(Item item)
         {
            
             this.item = item;
-            if (IsEmpty())
+            if (IsEmpty() || !item.IsExist())//Если предмет не существует
             {
                 if (countTxt != null)
                     countTxt.text = "";
                 HideIcon();
                 return;
             }
-            item.count = count;
+           // item.count = count;
             ShowIcon();
             icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
             if (countTxt != null)
             {
                 if (item.stack)
-                    countTxt.text = count.ToString();
+                    countTxt.text = item.count.ToString();
                 else countTxt.text = "";
             }
         }
 
-        public void Refresh(Item item, int count, int key)
-        { 
-            PutItem(item, count);
-            this.objectID = key;
+        /* public void Refresh(Item item, int key)
+          { 
+              PutItem(item);
+              item.objectID = key;
 
-        }
+          }*/
 
+        /// <summary>
+        /// wrap поменять содержимое ячеек местами
+        /// </summary>
+        /// <param name="cell"></param>
         public override void Put(Cell cell)
         {
             if (cell == null) return;
-            if(cell.GetType() == typeof(ArmorCell))
+            if(cell.GetType() == typeof(ArmorCell))//Если вторая ячейка ячейка экепировки
             {
                 cell.Use();
             }
-            if (cell.GetType() != typeof(ItemCell)) return;
+  
             ItemCell itemCell = cell as ItemCell;
+            if (itemCell == null || itemCell.IsEmpty()) return;
+
             NetworkWriter writer = new NetworkWriter(Channels.Reliable);
             writer.SetTypePack(Types.WrapItem);
-            writer.write(itemCell.objectID);
-            writer.write((byte)index);
+            writer.write(itemCell.item.objectID);//Предмет который надо переместить
+            writer.write(index);//в ячейку индекс
             NetworkManager.Send(writer);
 
         }
 
-        public void SetObjectID(int objetcID)
-        {
-            this.objectID = objetcID;
-        }
+       // public void SetObjectID(int objetcID)
+       // {
+       //     item.objectID = objetcID;
+       // }
 
         public void SetIndex(int index)
         {
@@ -126,7 +142,8 @@ namespace Cells
         }
         public int GetObjectID()
         {
-            return objectID;
+            if (IsEmpty()) return 0;
+            return item.objectID;
         }
 
         public void SetEnchantLevel(int level)

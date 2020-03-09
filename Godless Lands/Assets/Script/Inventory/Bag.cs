@@ -14,7 +14,7 @@ public class Bag : MonoBehaviour
     public GameObject itemCell;
     private int maxCell;
     [HideInInspector]
-    public List<ItemCell> items;
+    public List<ItemCell> cells;
 
 
     public void UpdateInventory(NetworkWriter nw)//Обновление содержимого ячейки
@@ -23,7 +23,7 @@ public class Bag : MonoBehaviour
         int filling = nw.ReadInt();//Заполнение рюкзака
         maxCell = nw.ReadInt();//Всего ячеек
 
-        if (items == null || items.Count != maxCell)
+        if (cells == null || cells.Count != maxCell)
         {
             UpdateCellsCount();
            
@@ -37,51 +37,34 @@ public class Bag : MonoBehaviour
 
         while (nw.AvailableBytes > 0)
         {
+            int index = nw.ReadInt();
+            Item item = nw.ReadItem();
 
-            int index = nw.ReadInt();//Индекс изменившейся ячейки
-            int itemID = nw.ReadInt();//ид предмета
-
-            if (index >= 0 && index < items.Count)
+            if (index >= 0 && index < cells.Count)
             {
-
-                if (itemID == 0) { items[index].PutItem(null, 0); continue; }
-            }
-            else continue;
-
-
-            int objectID = nw.ReadInt();//Индекс нового предмета в этой ячейке
-            int itemCount = nw.ReadInt();
-
-            items[index].SetObjectID(objectID);
-            items[index].PutItem(Inventory.Instance.itemsList.CreateItem(itemID), itemCount);
-
-            if (nw.ReadBool())//Если предмет элемент экеперовки
-            {
-                items[index].SetEnchantLevel(nw.ReadInt());
-                items[index].SetDurabilty(nw.ReadInt());
-                items[index].SetMaxDurabilty(nw.ReadInt());
+                cells[index].PutItem(item);  
             }
         }
     }
 
     private void UpdateCellsCount()
     {
-        if (items == null)
-            items = new List<ItemCell>();
+        if (cells == null)
+            cells = new List<ItemCell>();
 
         //Создать пустые ячейки
-        for (int i=items.Count; i<maxCell; i++)
+        for (int i=cells.Count; i<maxCell; i++)
         {
             GameObject _obj = Instantiate(itemCell);
             _obj.transform.SetParent(content);
-            items.Add(_obj.GetComponent<ItemCell>());
-            items[i].SetIndex(i);
+            cells.Add(_obj.GetComponent<ItemCell>());
+            cells[i].SetIndex(i);
         }
         //Удалить ячейки
-        for(int i=items.Count-1; i>=maxCell; i--)
+        for(int i=cells.Count-1; i>=maxCell; i--)
         {
-            Destroy(items[i].gameObject);
-            items.RemoveAt(i);
+            Destroy(cells[i].gameObject);
+            cells.RemoveAt(i);
         }
     }
 
