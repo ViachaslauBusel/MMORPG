@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 9220267665469820699}
   - component: {fileID: 9220267665469820698}
   - component: {fileID: 6541522652243551727}
-  - component: {fileID: 1308063179}
+  - component: {fileID: 5325175041146901095}
   m_Layer: 5
   m_Name: ItemCell
   m_TagString: Cell
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
---- !u!114 &1308063179
+--- !u!114 &5325175041146901095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9220267665469820703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06542c31eb3fc14a8ad5f22970b5a75, type: 3}
+  m_Script: {fileID: 11500000, guid: 556f13baf278a94469148f6bc3e9eb4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9220267666211038271

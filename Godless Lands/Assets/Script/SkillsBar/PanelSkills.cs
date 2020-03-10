@@ -2,6 +2,7 @@
 using Items;
 using RUCP;
 using RUCP.Handler;
+using Skills;
 using SkillsRedactor;
 using System;
 using System.Collections;
@@ -23,49 +24,41 @@ namespace SkillsBar
                 barCells[i].SetIndex(i);
             }
          
-            RegisteredTypes.RegisterTypes(Types.loadBar, loadBar);
+    
             RegisteredTypes.RegisterTypes(Types.updateBarCell, updateBarCell);
            
         }
         private void Start()
         {
-            Inventory.RegisterCount(RefreshCount);
+            Inventory.RegisterUpdate(UpdateInventory);
         }
 
-        private void RefreshCount()
+        private void UpdateInventory()
         {
             foreach(BarCell cell in barCells)
             {
                 cell.Refresh();
             }
         }
-        private void loadBar(NetworkWriter nw)
-        {
-            while(nw.AvailableBytes > 0)
-            {
-                updateBarCell(nw);
-            }
-        }
+
 
         private void updateBarCell(NetworkWriter nw)
         {
-            int cell = nw.ReadByte();
-            int type = nw.ReadInt();
-            int id = nw.ReadInt();
-            int key = nw.ReadInt();
-            switch (type)
+            while(nw.AvailableBytes > 0)
             {
-                case -1://Очистить ячейку
-                    barCells[cell].SetEmpty();
-                    break;
-                case 0://skill
-                    Skill skill = skillsList.GetSkill(id);
-                    if (skill == null) return;
-                    barCells[cell].SetSkill(skill);
-                    break;
-                case 1://item
-                    barCells[cell].SetItem(id, key);
-                    break;
+                int index = nw.ReadByte();
+                SkillbarType type = (SkillbarType)nw.ReadInt();
+                int uniqueID = nw.ReadInt();
+                if(index >= 0 && index < barCells.Length)
+                {
+                    Cell cell = null;
+                    if (type == SkillbarType.Item)
+                        cell = Inventory.GetItemCellByObjectID(uniqueID);
+                    else if (type == SkillbarType.Skill)
+                        cell = SkillsBook.GetSkillCellByID(uniqueID);
+
+                    barCells[index].InsertCell(cell);
+                }
             }
         }
 
@@ -80,7 +73,7 @@ namespace SkillsBar
         private void OnDestroy()
         {
             RegisteredTypes.UnregisterTypes(Types.updateBarCell);
-            Inventory.UnregisterCount(RefreshCount);
+            Inventory.UnregisterUpdate(UpdateInventory);
         }
     }
 }

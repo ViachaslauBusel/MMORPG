@@ -96,14 +96,17 @@ namespace Cells
         public override void Put(Cell cell)
         {
             if (cell == null) return;
-            if(cell.GetType() == typeof(ArmorCell))//Если вторая ячейка ячейка экепировки
+           /* if(cell.GetType() == typeof(ArmorCell))//Если вторая ячейка ячейка экепировки
             {
+                UnityEngine.Debug.Log("armor cell");
                 cell.Use();
-            }
+                return;
+            }*/
   
             ItemCell itemCell = cell as ItemCell;
             if (itemCell == null || itemCell.IsEmpty()) return;
 
+            UnityEngine.Debug.Log("wrap object ID: " + itemCell.item.objectID);
             NetworkWriter writer = new NetworkWriter(Channels.Reliable);
             writer.SetTypePack(Types.WrapItem);
             writer.write(itemCell.item.objectID);//Предмет который надо переместить
@@ -140,10 +143,16 @@ namespace Cells
         {
             return index;
         }
-        public int GetObjectID()
+        public override int GetObjectID()
         {
             if (IsEmpty()) return 0;
             return item.objectID;
+        }
+
+        public override string GetText()
+        {
+            if(!IsEmpty() && item.stack) return GetCount().ToString();
+            return base.GetText();
         }
 
         public void SetEnchantLevel(int level)

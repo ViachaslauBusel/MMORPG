@@ -89,6 +89,7 @@ public class NetworkManager : MonoBehaviour {
     }
     public static void Send(NetworkWriter net_writer)
     {
+
         client.SendWriter(net_writer);
     }
     private void OnDestroy()

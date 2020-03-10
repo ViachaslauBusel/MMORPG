@@ -50,5 +50,12 @@ namespace Cells
         {
             return skill;
         }
+
+        public override int GetObjectID()
+        {
+            if(IsEmpty()) return base.GetObjectID();
+            return skill.id;
+
+        }
     }
 }

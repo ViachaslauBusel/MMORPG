@@ -9,6 +9,7 @@ namespace Skills
 {
     public class SkillsBook : MonoBehaviour
     {
+        public static SkillsBook Instance { get; private set; }
         public GameObject prefSkillCell;
         public SkillsList skillsList;
         public SkillBranch branchFirst;
@@ -20,12 +21,16 @@ namespace Skills
         public Transform parentSkillFirst;
         public Transform parentSkillSecond;
 
-        private List<GameObject> skillFirst;
-        private List<GameObject> skillSecond;
+        private List<SkillCell> skillFirst;
+        private List<SkillCell> skillSecond;
 
         private Canvas skillsBook;
         private UISort uISort;
 
+        private void Awake()
+        {
+            Instance = this;
+        }
         private void Start()
         {
             skillsBook = GetComponent<Canvas>();
@@ -33,17 +38,27 @@ namespace Skills
             uISort = GetComponentInParent<UISort>();
 
             //Заполнить первую ветку умений
-            FillBranch(branchFirst, weaponFirstTitle, parentSkillFirst, skillFirst);
+            skillFirst = FillBranch(branchFirst, weaponFirstTitle, parentSkillFirst, skillFirst);
 
             //Заполнить вторую ветку умений, если вторая ветка соответствует первой очистить
             if (branchFirst != branchSecond)
             {
-                FillBranch(branchSecond, weaponSecondTitle, parentSkillSecond, skillSecond);
+                skillSecond = FillBranch(branchSecond, weaponSecondTitle, parentSkillSecond, skillSecond);
             }
             else
             {
                 ClearBranch(weaponSecondTitle, skillSecond);
             }
+        }
+
+        public static SkillCell GetSkillCellByID(int id)
+        {
+            foreach(SkillCell cell in Instance.skillFirst)
+            {
+                if (cell.GetObjectID() == id)
+                    return cell;
+            }
+            return null;
         }
 
         public void OpenCloseSkillsbook()
@@ -54,15 +69,15 @@ namespace Skills
             if (skillsBook.enabled) uISort.PickUp(skillsBook);
         }
 
-        private void ClearBranch(Text text, List<GameObject> list)
+        private void ClearBranch(Text text, List<SkillCell> list)
         {
             if (list != null) DestroySkill(list);
             text.text = "";
         }
-        private void FillBranch(SkillBranch branch, Text text, Transform parent, List<GameObject> list)
+        private List<SkillCell> FillBranch(SkillBranch branch, Text text, Transform parent, List<SkillCell> list)
         {
             if (list != null) DestroySkill(list);
-            else list = new List<GameObject>();
+            else list = new List<SkillCell>();
 
             switch (branch)
             {
@@ -82,15 +97,16 @@ namespace Skills
                     obj.transform.SetParent(parent);
                     SkillCell skillCell = obj.GetComponent<SkillCell>();
                     skillCell.PutSkill(skill);
-                    list.Add(obj);
+                    list.Add(skillCell);
                 }
             }
+            return list;
         }
 
 
-        private void DestroySkill(List<GameObject> list)
+        private void DestroySkill(List<SkillCell> list)
         {
-            foreach (GameObject obj in list) Destroy(obj);
+            foreach (SkillCell obj in list) Destroy(obj.gameObject);
             list.Clear();
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +33,10 @@ namespace Cells
         {
            return icon.sprite.texture;
         }
+        public Sprite GetSprite()//Возвращает иконку предмета\Умения
+        {
+            return icon.sprite;
+        }
 
         public virtual void HideIcon()
         {
@@ -46,6 +51,20 @@ namespace Cells
         public virtual void Abort()
         {
 
+        }
+
+        public virtual string GetText()
+        {
+            return "";
+        }
+
+        /// <summary>
+        /// Уникальный ИД содержимого ячейки
+        /// </summary>
+        /// <returns></returns>
+        public virtual int GetObjectID()
+        {
+            return 0;
         }
     }
 }

@@ -46,4 +46,10 @@ public class InventoryArmor : MonoBehaviour
         if (pickaxe.GetObjectID() == key) return pickaxe.GetItem();
         return null;
     }
+    internal ItemCell GetItemCell(int objectID)
+    {
+        if (weapon.GetObjectID() == objectID) return weapon;
+        if (pickaxe.GetObjectID() == objectID) return pickaxe;
+        return null;
+    }
 }

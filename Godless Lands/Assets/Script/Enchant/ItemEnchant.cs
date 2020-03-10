@@ -31,20 +31,24 @@ public class ItemEnchant : MonoBehaviour
 
     private void Enchant(NetworkWriter nw)
     {
-        switch (nw.ReadByte())
+        switch ((EnchantCommand) nw.ReadByte())
         {
-            case 1://Open Enchant
+            case EnchantCommand.OpenGUI://Open Enchant
+                enchantCell.Clear();//Очистить ячейку
                 Open();
                 break;
-            case 2://Close Enchant
+            case EnchantCommand.CloseGUI://Close Enchant
                 Close();
                 break;
-            case 3://Результат заточки
+            case EnchantCommand.Continue:
+                Open();
+                break;
+            case EnchantCommand.Completed://Результат заточки
                 int answer = nw.ReadByte();
                 if (answer > 0) textInfo.text = "Вы успешно улучшили предмет до +" + answer;
                 else textInfo.text = "Неудачная попытка модификации предмета";
-                button.onClick.RemoveAllListeners();
-                button.onClick.AddListener(Next);
+                button.onClick.RemoveAllListeners();//Очистить кнопку
+                button.onClick.AddListener(Next);//Назначить метод продолжить
                 button.interactable = true;
                 textButton.text = "Продолжить";
                 break;
@@ -58,19 +62,20 @@ public class ItemEnchant : MonoBehaviour
 
     private void Open()
     {
-        if (!canvas.enabled) Inventory.RegisterCount(Refresh);
+        if (!canvas.enabled) Inventory.RegisterUpdate(Refresh);
         canvas.enabled = true;
               uISort.PickUp(canvas);
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(Sharpen);
         button.interactable = true;
+        
         textButton.text = "Заточить";
         textInfo.text = "";
         indicator.SetActive(false);
     }
     private void Close()
     {
-        if (canvas.enabled) Inventory.UnregisterCount(Refresh);
+        if (canvas.enabled) Inventory.UnregisterUpdate(Refresh);
         canvas.enabled = false;
         enchantCell.PutItem(null);
     }
@@ -101,7 +106,7 @@ public class ItemEnchant : MonoBehaviour
 
         NetworkWriter nw = new NetworkWriter(Channels.Reliable | Channels.Discard);
         nw.SetTypePack(Types.ItemEnchant);
-        nw.write((byte)3);//Заточить
+        nw.write((byte)EnchantCommand.Completed);//Заточить
         nw.write(enchantCell.GetObjectID());
         NetworkManager.Send(nw);
     }
@@ -111,7 +116,7 @@ public class ItemEnchant : MonoBehaviour
 
         NetworkWriter nw = new NetworkWriter(Channels.Reliable | Channels.Discard);
         nw.SetTypePack(Types.ItemEnchant);
-        nw.write((byte)4);//Продолжить
+        nw.write((byte)EnchantCommand.Continue);//Продолжить
         NetworkManager.Send(nw);
 
         button.interactable = false;
@@ -121,7 +126,7 @@ public class ItemEnchant : MonoBehaviour
     {
         NetworkWriter nw = new NetworkWriter(Channels.Reliable | Channels.Discard);
         nw.SetTypePack(Types.ItemEnchant);
-        nw.write((byte)2);//Закрыть интерфейс заточки
+        nw.write((byte)EnchantCommand.CloseGUI);//Закрыть интерфейс заточки
         NetworkManager.Send(nw);
     }
 

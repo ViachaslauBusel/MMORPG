@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using Cells;
 using Items;
 
-public delegate void RefreshCount();
+public delegate void Update();
 public class Inventory : MonoBehaviour {
 
     public static Inventory Instance;
@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour {
     private InventoryArmor armor;
 
     private UISort uISort;
-    private RefreshCount refreshCount;
+    private event Update update;
 
 
 
@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour {
         if (Instance != null) Destroy(gameObject);
         Instance = this;
         armor = GetComponentInChildren<InventoryArmor>();
-     //   RegisteredTypes.RegisterTypes(Types.LoadInventory, LoadingInventory);
+
         RegisteredTypes.RegisterTypes(Types.UpdateInventory, UpdateInventory);
         RegisteredTypes.RegisterTypes(Types.UpdateItem, UpdateItem);
     }
@@ -46,7 +46,7 @@ public class Inventory : MonoBehaviour {
 
     internal void Refresh()//Вызывается из ячеек экипировки при их обновлении
     {
-        refreshCount();
+     ///   update();
     }
 
     //Создает предмет по ид
@@ -67,6 +67,20 @@ public class Inventory : MonoBehaviour {
         }
 
         return Instance.armor.GetItem(objectID);
+    }
+    public static ItemCell GetItemCellByObjectID(int objectID)
+    {
+        if (Instance.bag.cells == null || Instance.backpack.cells == null) return null;
+        foreach (ItemCell itemCell in Instance.bag.cells)
+        {
+            if (itemCell.GetObjectID() == objectID) return itemCell;
+        }
+        foreach (ItemCell itemCell in Instance.backpack.cells)
+        {
+            if (itemCell.GetObjectID() == objectID) return itemCell;
+        }
+
+        return Instance.armor.GetItemCell(objectID);
     }
     public static int GetCount(int key)
     {
@@ -96,18 +110,13 @@ public class Inventory : MonoBehaviour {
         }
         return allCount;
     }
-    public static void RegisterCount(RefreshCount refresh)
+    public static void RegisterUpdate(Update refresh)
     {
-        if(Instance.refreshCount == null)
-            Instance.refreshCount = refresh;
-        else
-            Instance.refreshCount += refresh;
+        Instance.update += refresh;
     }
-    public static void UnregisterCount(RefreshCount refresh)
+    public static void UnregisterUpdate(Update refresh)
     {
-        if (Instance.refreshCount == null) return;
-
-        Instance.refreshCount -= refresh;
+        Instance.update -= refresh;
     }
 
     public ItemCell[] GetCellItems()
@@ -137,7 +146,8 @@ public class Inventory : MonoBehaviour {
                 backpack.UpdateInventory(nw);
                 break;
         }
-        if (refreshCount != null) refreshCount();
+
+        update();
     }
 
 

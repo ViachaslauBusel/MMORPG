@@ -16,17 +16,21 @@ namespace Cells
 
         public override void ShowInfo()
         {
+
             if (cell.IsEmpty() || locker) return;
 
             BarCell barCell = cell as BarCell;
             if (barCell == null) return;
-            if (barCell.GetSkill() != null)
+
+            Cell targetCell = barCell.GetCell();
+            if (targetCell == null) return;
+            if (targetCell is SkillCell)
             {
-                informer = SkillCellEvent.SkillInfo(barCell.GetSkill(), cellParent.parent);
+                informer = SkillCellEvent.SkillInfo((targetCell as SkillCell).GetSkill(), cellParent.parent);
             }
-            else if(barCell.GetItem() != null)
+            else if(targetCell is ItemCell)
             {
-                informer = ItemCellEvent.ItemInfo(cellParent.parent, barCell.GetItem());
+                informer = ItemCellEvent.ItemInfo(cellParent.parent, (targetCell as ItemCell).GetItem());
             }
             //    (cell as BarCell).GetTargetCell().GetComponent<CellEvent>().ShowInfo();
         }

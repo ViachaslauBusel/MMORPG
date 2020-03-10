@@ -86,7 +86,7 @@ namespace Cells
                 Cell resultCell = raycastResult.resultObj.GetComponent<Cell>();
                 resultCell.Put(cell);
             }
-            cell.Abort();
+            else cell.Abort();
          //   return false;
         }
 
