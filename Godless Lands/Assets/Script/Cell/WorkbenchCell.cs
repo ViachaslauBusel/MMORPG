@@ -28,7 +28,7 @@ namespace Cells
 
         }
 
-        public void PutItem(Item item)
+        public override void PutItem(Item item)
         {
             this.item = item;
             if (IsEmpty())

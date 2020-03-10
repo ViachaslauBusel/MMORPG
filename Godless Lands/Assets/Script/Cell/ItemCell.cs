@@ -102,11 +102,16 @@ namespace Cells
                 cell.Use();
                 return;
             }*/
-  
+            if(cell is ActionCell || cell is WorkbenchCell)
+            {
+                cell.Abort();
+                return;
+            }
+
             ItemCell itemCell = cell as ItemCell;
             if (itemCell == null || itemCell.IsEmpty()) return;
 
-            UnityEngine.Debug.Log("wrap object ID: " + itemCell.item.objectID);
+
             NetworkWriter writer = new NetworkWriter(Channels.Reliable);
             writer.SetTypePack(Types.WrapItem);
             writer.write(itemCell.item.objectID);//Предмет который надо переместить

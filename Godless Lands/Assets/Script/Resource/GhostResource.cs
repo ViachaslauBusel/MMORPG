@@ -9,11 +9,11 @@ public class GhostResource : MonoBehaviour, Action
     public GameObject lod;
     public GameObject fragments;
     private Animator animator;
-    private BoxCollider collider;
+    private BoxCollider _collider;
 
     private void Awake()
     {
-        collider = GetComponent<BoxCollider>();
+        _collider = GetComponent<BoxCollider>();
         animator = GetComponent<Animator>();
         fragments.SetActive(false);
         ActionListener.Add(this);
@@ -49,7 +49,7 @@ public class GhostResource : MonoBehaviour, Action
 
     public void DestroyAnim()
     {
-        collider.enabled = false;
+        _collider.enabled = false;
         lod.SetActive(false);
         fragments.SetActive(true);
         animator.SetTrigger("destroy");

@@ -174,10 +174,10 @@ namespace QuestsRedactor
 
             GUI.changed = true;
         }
-        private static bool guiChanged = false;
+      //  private static bool guiChanged = false;
         public static void ProcessStageEvents(Event e)
         {
-            guiChanged = false;
+          //  guiChanged = false;
             if (selectQuest.stages != null)
             {
                 for (int i = selectQuest.stages.Count - 1; i >= 0; i--)
