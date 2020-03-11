@@ -54,7 +54,7 @@ public class Armor : MonoBehaviour
         {
             Destroy(pickaxe);
         }
-        if (_item != null)//Если есть новое оружие надеть
+        if (_item != null && _item.IsExist())//Если есть новое оружие надеть
         {
 
             pickaxe = Instantiate(_item.prefab);

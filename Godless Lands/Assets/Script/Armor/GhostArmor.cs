@@ -10,7 +10,7 @@ public class GhostArmor : MonoBehaviour{
     public Transform weapon_sheath;
     private Transform weapon_parent;
     private GameObject weapon_obj;
-    private ItemsList itemsList;
+ //   private ItemsList itemsList;
     private Animator animator;
     private bool combatState = false;
     private int weaponType = 0;
@@ -21,10 +21,10 @@ public class GhostArmor : MonoBehaviour{
         animator = GetComponent<Animator>();
        
         weapon_parent = weapon_sheath;
-        itemsList = Resources.Load("Inventory/ItemList") as ItemsList;
+       // itemsList = Resources.Load("Inventory/ItemList") as ItemsList;
         //weapon
         int item_id = nw.ReadInt();
-        Item item = itemsList.CreateItem(item_id);
+        Item item = Inventory.CreateItem(item_id);
         PutOnWeapon(item);
     }
 
@@ -33,7 +33,7 @@ public class GhostArmor : MonoBehaviour{
         ItemType part = (ItemType)nw.ReadInt();
         int item_id = nw.ReadInt();
 
-        Item item = itemsList.CreateItem(item_id);
+        Item item = Inventory.CreateItem(item_id);
         PutOnWeapon(item);
     }
 

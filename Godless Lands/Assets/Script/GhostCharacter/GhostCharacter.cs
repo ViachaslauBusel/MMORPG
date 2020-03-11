@@ -1,11 +1,10 @@
 ﻿using Items;
 using RUCP;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GhostCharacter : MonoBehaviour, TargetObject {
+public class GhostCharacter : MonoBehaviour, TargetObject
+{
 
     public float smooth_rotation = 0.03f;
     private Text text_name;
@@ -55,18 +54,16 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
         armor.Init();
         while (nw.AvailableBytes >= 8)
         {
-            ItemType part = (ItemType)nw.ReadInt();
-            int id_item = nw.ReadInt();
-            Item _item = Inventory.CreateItem(id_item);
-            armor.PutItem(part, _item);
+            UpdateArmor(nw);
         }
     }
     public void UpdateArmor(NetworkWriter nw)
     {
-        ItemType part = (ItemType)nw.ReadInt();
+        ItemType type = (ItemType)nw.ReadInt();
+        ArmorPart part = (ArmorPart)nw.ReadInt();
         int id_item = nw.ReadInt();
         Item _item = Inventory.CreateItem(id_item);
-        armor.PutItem(part, _item);
+        armor.PutItem(type, _item);
     }
 
 
@@ -76,49 +73,49 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
         text_name.text = char_name;
     }
 
-   /* private void OnDrawGizmos()
-    {
-        for(int i=0; i<trackServer.Count-1; i++)
-        {
-            //if(i%2 == 0) Gizmos.color = Color.blue;
-            // else 
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(trackServer[i], trackServer[i+1]);
-        }
-        for (int i = 0; i < trackMove.Count - 1; i++)
-        {
-            //if(i%2 == 0) Gizmos.color = Color.blue;
-            // else 
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(trackMove[i], trackMove[i + 1]);
-        }
-    }*/
-  //  private List<Vector3> trackServer = new List<Vector3>();
-  //  private List<Vector3> trackMove = new List<Vector3>();
+    /* private void OnDrawGizmos()
+     {
+         for(int i=0; i<trackServer.Count-1; i++)
+         {
+             //if(i%2 == 0) Gizmos.color = Color.blue;
+             // else 
+             Gizmos.color = Color.red;
+             Gizmos.DrawLine(trackServer[i], trackServer[i+1]);
+         }
+         for (int i = 0; i < trackMove.Count - 1; i++)
+         {
+             //if(i%2 == 0) Gizmos.color = Color.blue;
+             // else 
+             Gizmos.color = Color.blue;
+             Gizmos.DrawLine(trackMove[i], trackMove[i + 1]);
+         }
+     }*/
+    //  private List<Vector3> trackServer = new List<Vector3>();
+    //  private List<Vector3> trackMove = new List<Vector3>();
     public void NextPosition(Vector3 _next, byte indicator, byte moveIndex)
     {
         if (this.indicator != indicator) return;//Отбрасываются пакеты отправленные до того как игрок остановился
         int compare = NumberUtils.ByteCompare(moveIndex, this.moveIndex);
         if (compare <= 0) { print("Устаревший пакет отброшен"); return; }
         this.moveIndex = moveIndex;
-       
-    /*    if (end_point)
-        {
-            trackServer.Clear();
-            trackMove.Clear();
-        }
-        trackServer.Add(_next);
-        trackMove.Add(transform.position);*/
+
+        /*    if (end_point)
+            {
+                trackServer.Clear();
+                trackMove.Clear();
+            }
+            trackServer.Add(_next);
+            trackMove.Add(transform.position);*/
         direction = (_next - transform.position).normalized;
         speed = (_next - transform.position).magnitude * 2.5f * compare;//for 0.4s
         next_position = _next;
         target_point = true;
         end_point = false;
         CalculateAnimation();
-       animator.SetFloat("speedRun", speed / 3.5f);
+        animator.SetFloat("speedRun", speed / 3.5f);
 
         //Если игрок застрял, телепортироват в точку
-        if(Vector3.Distance(transform.position, next_position) > 3.0f)
+        if (Vector3.Distance(transform.position, next_position) > 3.0f)
         {
             character.transform.position = next_position;
         }
@@ -136,18 +133,18 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
     public void NextRotation(float _next)
     {
         next_rotation = Quaternion.Euler(0.0f, _next, 0.0f);
-      
+
     }
 
     private void CalculateAnimation()
     {
 
         Vector3 animDirection = new Vector3(direction.x, 0.0f, direction.z);
-        float vertical = 1.0f - ( 2.0f * (Vector3.Angle(animDirection, transform.forward) / 180.0f));
+        float vertical = 1.0f - (2.0f * (Vector3.Angle(animDirection, transform.forward) / 180.0f));
         float horizontal = 1.0f - (2.0f * (Vector3.Angle(animDirection, transform.right) / 180.0f));
         animator.SetFloat("vertical", vertical);
         animator.SetFloat("horizontal", horizontal);
-       // print("Speed: " + speed + " vertical: " + vertical + " horizontal: " + horizontal);
+        // print("Speed: " + speed + " vertical: " + vertical + " horizontal: " + horizontal);
     }
 
     private void Update()
@@ -155,14 +152,15 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
         if (transform.rotation != next_rotation)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, next_rotation, smooth_rotation);
-            if(!end_point || target_point) CalculateAnimation();//Если игрок не остановился или не достиг конечной точки, расчитать направление анимации бега
+            if (!end_point || target_point) CalculateAnimation();//Если игрок не остановился или не достиг конечной точки, расчитать направление анимации бега
         }
 
         if (end_point && target_point)//Если игрок остановился и конечная точка не достигнута
         {
             float _distance = Vector3.Distance(transform.position, next_position);
-            if (_distance > 0.1f){
-          //      print("Dif position = " +_distance);
+            if (_distance > 0.1f)
+            {
+                //      print("Dif position = " +_distance);
                 direction = (next_position - transform.position).normalized;
                 moveDirection = direction * speed * Time.deltaTime;
                 //Если новая позиция пересекла точку next_position
@@ -172,19 +170,19 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
             }
             else
             {
-             //   print("End move");
+                //   print("End move");
                 target_point = false;
                 animator.SetFloat("speedRun", 1.0f);
                 animator.SetFloat("vertical", 0.0f);
                 animator.SetFloat("horizontal", 0.0f);
             }
         }
-        if(!end_point)//Если игрок не остановился
+        if (!end_point)//Если игрок не остановился
         {
             moveDirection = direction * speed * Time.deltaTime;
             moveDirection.y -= gravity * Time.deltaTime;
             character.Move(moveDirection);
-        }       
+        }
     }
 
 
@@ -195,12 +193,12 @@ public class GhostCharacter : MonoBehaviour, TargetObject {
 
     public void OnTarget()
     {
-       
+
     }
 
     public void OffTarget()
     {
-       
+
     }
 
     public string GetName()

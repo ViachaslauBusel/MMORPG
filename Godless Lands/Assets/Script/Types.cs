@@ -57,7 +57,7 @@ public class Types {
     public const short MonsterMove = 51;
     public const short MonsterEndMove = 52;
     public const short PlayAnimSkill = 53;
-    public const short loadBar = 54;
+    public const short loadBar = 54;//Не используется
     public const short updateBarCell = 55;
     public const short CharacterDead = 56;
     public const short WrapBarCell = 57;
@@ -65,7 +65,7 @@ public class Types {
     public const short ResourceCreate = 59;//S-C отправка на клиент данных для создания ресурса
     public const short ResourceDelete = 60;//S-C отправка на клиент данных для удаление ресурса
     public const short ResourceUse = 61;
-    public const short LoadArmor = 62;
+    public const short LoadArmor = 62;//Не используется
     public const short RecipeUse = 63;
     public const short MachineUse = 64;
     public const short MachineCreate = 65;

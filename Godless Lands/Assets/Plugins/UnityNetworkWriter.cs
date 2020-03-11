@@ -1,6 +1,4 @@
 ﻿using RUCP;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class UnityNetworkWriter
@@ -39,4 +37,6 @@ public static class UnityNetworkWriter
 
         return new Quaternion(x, y, z, w);
     }
+
+
 }

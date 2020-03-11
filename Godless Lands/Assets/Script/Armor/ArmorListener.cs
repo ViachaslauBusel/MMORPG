@@ -19,7 +19,7 @@ public class ArmorListener : MonoBehaviour {
         armor.Init();
         RegisteredTypes.RegisterTypes(Types.CombatState, CombatState);
         RegisteredTypes.RegisterTypes(Types.UpdateArmor, UpdateArmor);
-        RegisteredTypes.RegisterTypes(Types.LoadArmor, LoadArmor);
+      //  RegisteredTypes.RegisterTypes(Types.LoadArmor, LoadArmor);
     }
     
     private void CombatState(NetworkWriter nw)
@@ -37,14 +37,14 @@ public class ArmorListener : MonoBehaviour {
 
     private void UpdateArmor(NetworkWriter nw)
     {
-        ItemType part = (ItemType)nw.ReadInt();
-        int itemID = nw.ReadInt();
-        Item item = null;
-        if (itemID != 0) item = ReadItem(nw, itemID);
+        ItemType type = (ItemType)nw.ReadInt();
+        ArmorPart part = (ArmorPart)nw.ReadInt();
+        Item item = nw.ReadItem();
+
        
 
-        inventoryArmor.PutItem(part, item);//Отоброзить иконку в инвентаре
-        armor.PutItem(part, item);
+        inventoryArmor.PutItem(type, item);//Отоброзить иконку в инвентаре
+        armor.PutItem(type, item);
     }
 
     private Item ReadItem(NetworkWriter nw, int itemID)
@@ -82,6 +82,6 @@ public class ArmorListener : MonoBehaviour {
     {
         RegisteredTypes.UnregisterTypes(Types.UpdateArmor);
         RegisteredTypes.UnregisterTypes(Types.CombatState);
-        RegisteredTypes.UnregisterTypes(Types.LoadArmor);
+      //  RegisteredTypes.UnregisterTypes(Types.LoadArmor);
     }
 }
