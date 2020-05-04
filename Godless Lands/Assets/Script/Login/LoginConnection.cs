@@ -37,7 +37,7 @@ public class LoginConnection : MonoBehaviour {
     private IEnumerator IEConnectionServer(short types)
     {
         NetworkManager.Connection(loginServer, 3737);
-        while (NetworkManager.GetConnection() == -1)
+        while (NetworkManager.GetConnection() == NetworkStatus.LISTENING)
         {
             yield return null;
         }

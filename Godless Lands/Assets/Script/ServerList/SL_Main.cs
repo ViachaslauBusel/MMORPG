@@ -56,7 +56,7 @@ public class SL_Main : MonoBehaviour {
         new_client.Connection(nw);
 
         //Ожидания подключения
-        while (new_client.GetConnection() == -1)
+        while (new_client.GetNetworkStatus() == NetworkStatus.LISTENING)
         {
             yield return null;
         }

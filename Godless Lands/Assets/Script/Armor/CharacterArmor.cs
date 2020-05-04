@@ -105,7 +105,7 @@ public class CharacterArmor : MonoBehaviour
 
     private void SendState()
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable | Channels.Discard);
+        NetworkWriter nw = new NetworkWriter(Channels.Discard);
         nw.SetTypePack(Types.CombatState);
         nw.write(combatState);
         NetworkManager.Send(nw);

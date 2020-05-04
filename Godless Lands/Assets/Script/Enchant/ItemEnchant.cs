@@ -104,7 +104,7 @@ public class ItemEnchant : MonoBehaviour
             bar.fillAmount =  time;
         }
 
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable | Channels.Discard);
+        NetworkWriter nw = new NetworkWriter(Channels.Discard);
         nw.SetTypePack(Types.ItemEnchant);
         nw.write((byte)EnchantCommand.Completed);//Заточить
         nw.write(enchantCell.GetObjectID());
@@ -114,7 +114,7 @@ public class ItemEnchant : MonoBehaviour
     public void Next()
     {
 
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable | Channels.Discard);
+        NetworkWriter nw = new NetworkWriter(Channels.Discard);
         nw.SetTypePack(Types.ItemEnchant);
         nw.write((byte)EnchantCommand.Continue);//Продолжить
         NetworkManager.Send(nw);
@@ -124,7 +124,7 @@ public class ItemEnchant : MonoBehaviour
 
     public void Exit()
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable | Channels.Discard);
+        NetworkWriter nw = new NetworkWriter(Channels.Discard);
         nw.SetTypePack(Types.ItemEnchant);
         nw.write((byte)EnchantCommand.CloseGUI);//Закрыть интерфейс заточки
         NetworkManager.Send(nw);

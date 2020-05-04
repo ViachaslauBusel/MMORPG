@@ -32,9 +32,9 @@ public class NetworkMonitor : MonoBehaviour {
             client_txt.text += "ms\n";
 
             client_txt.text += "Lost[";
-            client_txt.text += NetworkManager.Socket.GetLost().resend.ToString();
+            client_txt.text += NetworkManager.Socket.GetNetworkInfo().resend.ToString();
             client_txt.text += '/';
-            client_txt.text += NetworkManager.Socket.GetLost().send.ToString();
+            client_txt.text += NetworkManager.Socket.GetNetworkInfo().send.ToString();
             client_txt.text += ']';
         }
         else

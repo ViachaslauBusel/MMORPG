@@ -6,10 +6,9 @@ using UnityEngine;
 
 public class NetworkManager : MonoBehaviour {
 
-    private static NetworkManager manager = null;
+    public static NetworkManager Instance { get; private set; }
 
     private static Client client = null;
-    private RegisteredTypes registered_types;
 
     private static int sessionkey;
     private static int login_id;
@@ -47,23 +46,22 @@ public class NetworkManager : MonoBehaviour {
 
     private void Awake()
     {
-        if (manager != null) Destroy(this);
+        if (Instance != null) Destroy(this);
         else
         {
-            manager = this;
+            Instance = this;
             DontDestroyOnLoad(this);
         }
-        registered_types = RegisteredTypes.Instance();
+
+        RegisteredTypes.RegisterUnknown(Unknown);
         enabled = false;
     }
-    public static NetworkManager Instance
-    {
-        get { return manager; }
-    }
+
     public static void Connection(string ip, int port)
     {
         client = new Client(ip, port);
         client.Connection();
+        NetworkManager.Instance.enabled = true;
     }
 
 
@@ -73,9 +71,9 @@ public class NetworkManager : MonoBehaviour {
         if (client == null) return false;
         return client.IsConnection();
     }
-    public static int GetConnection()
+    public static NetworkStatus GetConnection()
     {
-        return client.GetConnection();
+        return client.GetNetworkStatus();
     }
 
     void Update()
@@ -84,13 +82,24 @@ public class NetworkManager : MonoBehaviour {
         NetworkWriter p = client.GetPack();
         if (p != null)
         {
-            registered_types[p.GetTypePack()](p);
+            RegisteredTypes.Read(p.GetTypePack())(p);
         }
     }
-    public static void Send(NetworkWriter net_writer)
+    private void Unknown(NetworkWriter nw)
     {
-
-        client.SendWriter(net_writer);
+        UnityEngine.Debug.Log("Тип пакета не распознан: " + nw.GetTypePack());
+    }
+    public static bool Send(NetworkWriter net_writer)
+    {
+        try
+        {
+            client.SendWriter(net_writer);
+            return true;
+        } catch(BufferOverflowException e)
+        {
+            UnityEngine.Debug.LogError(e);
+        }
+        return false;
     }
     private void OnDestroy()
     {

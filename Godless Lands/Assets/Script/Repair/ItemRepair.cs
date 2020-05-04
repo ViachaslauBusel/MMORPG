@@ -80,7 +80,7 @@ public class ItemRepair : MonoBehaviour
     }
     public void Exit()
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable | Channels.Discard);
+        NetworkWriter nw = new NetworkWriter(Channels.Discard);
         nw.SetTypePack(Types.ItemRepair);
         nw.write((byte)2);//Закрыть интерфейс заточки
         NetworkManager.Send(nw);
@@ -88,7 +88,7 @@ public class ItemRepair : MonoBehaviour
 
     public void RepairItem(int object_id)
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable | Channels.Discard);
+        NetworkWriter nw = new NetworkWriter(Channels.Discard);
         nw.SetTypePack(Types.ItemRepair);
         nw.write((byte)3);//Закрыть интерфейс заточки
         nw.write(object_id);

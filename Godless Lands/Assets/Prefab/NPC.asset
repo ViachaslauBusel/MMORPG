@@ -15,4 +15,4 @@ MonoBehaviour:
   npcList:
   - id: 1
     prefabPath: NPC/SKELETON NPC
-    name: NPC
+    name: Skeleton
