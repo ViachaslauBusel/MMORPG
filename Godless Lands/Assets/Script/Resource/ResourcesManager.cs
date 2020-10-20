@@ -1,5 +1,6 @@
 ﻿using RUCP;
 using RUCP.Handler;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +17,8 @@ namespace Resource
 
         private void Awake()
         {
-            RegisteredTypes.RegisterTypes(Types.ResourceCreate, ResourceCreate);
-            RegisteredTypes.RegisterTypes(Types.ResourceDelete, ResourceDelete);
+            HandlersStorage.RegisterHandler(Types.ResourceCreate, ResourceCreate);
+            HandlersStorage.RegisterHandler(Types.ResourceDelete, ResourceDelete);
         }
 
 
@@ -38,7 +39,7 @@ namespace Resource
         }
 
 
-        private void ResourceDelete(NetworkWriter nw)
+        private void ResourceDelete(Packet nw)
         {
             int id = nw.ReadInt();
             if (resources.ContainsKey(id))
@@ -48,11 +49,11 @@ namespace Resource
             }
         }
 
-        private void ResourceCreate(NetworkWriter nw)
+        private void ResourceCreate(Packet nw)
         {
             int id = nw.ReadInt();
             int idSkin = nw.ReadInt();
-            Vector3 postion = nw.ReadVec3();
+            Vector3 postion = nw.ReadVector3();
             float rotation = nw.ReadFloat();
             if (resources.ContainsKey(id)) { print("error create resource"); return; } //Если монстр с таким ид уже создан
 
@@ -73,8 +74,8 @@ namespace Resource
 
         private void OnDestroy()
         {
-            RegisteredTypes.UnregisterTypes(Types.ResourceCreate);
-            RegisteredTypes.UnregisterTypes(Types.ResourceDelete);
+            HandlersStorage.UnregisterHandler(Types.ResourceCreate);
+            HandlersStorage.UnregisterHandler(Types.ResourceDelete);
         }
     }
 }

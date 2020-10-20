@@ -1,5 +1,7 @@
 ﻿using Items;
 using RUCP;
+using RUCP.Packets;
+using RUCP.Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,10 +26,10 @@ public class GhostCharacter : MonoBehaviour, TargetObject
     private bool target_point = false;//Точка назначения, если достигнута true
     private bool end_point = true;//Движение в точку где остановился игрок
 
-    private byte indicator;
-    private byte moveIndex;
+    private int indicator;
+    private int moveIndex;
 
-    public void SetStartPosition(Vector3 pos, byte indicator, byte moveIndex)
+    public void SetStartPosition(Vector3 pos, int indicator, int moveIndex)
     {
         animationSkill = GetComponent<AnimationSkill>();
         animator = GetComponent<Animator>();
@@ -48,7 +50,7 @@ public class GhostCharacter : MonoBehaviour, TargetObject
     {
         armor.SetCombatstate(state);
     }
-    public void SetArmor(NetworkWriter nw)
+    public void SetArmor(Packet nw)
     {
         armor = GetComponent<Armor>();
         armor.Init();
@@ -57,7 +59,7 @@ public class GhostCharacter : MonoBehaviour, TargetObject
             UpdateArmor(nw);
         }
     }
-    public void UpdateArmor(NetworkWriter nw)
+    public void UpdateArmor(Packet nw)
     {
         ItemType type = (ItemType)nw.ReadInt();
         ArmorPart part = (ArmorPart)nw.ReadInt();
@@ -92,10 +94,10 @@ public class GhostCharacter : MonoBehaviour, TargetObject
      }*/
     //  private List<Vector3> trackServer = new List<Vector3>();
     //  private List<Vector3> trackMove = new List<Vector3>();
-    public void NextPosition(Vector3 _next, byte indicator, byte moveIndex)
+    public void NextPosition(Vector3 _next, int indicator, int moveIndex)
     {
         if (this.indicator != indicator) return;//Отбрасываются пакеты отправленные до того как игрок остановился
-        int compare = NumberUtils.ByteCompare(moveIndex, this.moveIndex);
+        int compare = NumberUtils.ByteCompare((byte)moveIndex, (byte)this.moveIndex);
         if (compare <= 0) { print("Устаревший пакет отброшен"); return; }
         this.moveIndex = moveIndex;
 
@@ -120,7 +122,7 @@ public class GhostCharacter : MonoBehaviour, TargetObject
             character.transform.position = next_position;
         }
     }
-    public void EndPosition(Vector3 _next, byte indicator)
+    public void EndPosition(Vector3 _next, int indicator)
     {
 
         this.indicator = indicator;

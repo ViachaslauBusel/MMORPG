@@ -1,5 +1,6 @@
 ﻿using Items;
 using RUCP;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class GhostArmor : MonoBehaviour{
     private int weaponType = 0;
 
 
-    public void ReadArmor(NetworkWriter nw)
+    public void ReadArmor(Packet nw)
     {
         animator = GetComponent<Animator>();
        
@@ -28,7 +29,7 @@ public class GhostArmor : MonoBehaviour{
         PutOnWeapon(item);
     }
 
-    public void UpdateArmor(NetworkWriter nw)
+    public void UpdateArmor(Packet nw)
     {
         ItemType part = (ItemType)nw.ReadInt();
         int item_id = nw.ReadInt();

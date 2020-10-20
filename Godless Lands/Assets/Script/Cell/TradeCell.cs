@@ -1,4 +1,6 @@
 ﻿using RUCP;
+using RUCP.Network;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,9 +22,9 @@ namespace Cells
 
         private IEnumerator IEOffer()
         {
-            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-            nw.SetTypePack(Types.ItemTrade);
-            nw.write(item.objectID);
+            Packet nw = new Packet(Channel.Reliable);
+            nw.WriteType(Types.ItemTrade);
+            nw.WriteInt(item.objectID);
             int input_count = -1;
             if (item.stack)
             {
@@ -32,7 +34,7 @@ namespace Cells
                     input_count = SelectCount.Count;//Открыть окно для ввода количества предметов
                 }
                 if (input_count < 1) yield break;
-                nw.write(input_count);
+                nw.WriteInt(input_count);
             }
             NetworkManager.Send(nw);
 

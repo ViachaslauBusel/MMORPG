@@ -5,6 +5,8 @@ using UnityEngine;
 using RUCP;
 using System;
 using Items;
+using RUCP.Packets;
+using RUCP.Network;
 
 public class ArmorListener : MonoBehaviour {
 
@@ -17,17 +19,17 @@ public class ArmorListener : MonoBehaviour {
         inventoryArmor = GameObject.Find("Inventory").GetComponentInChildren<InventoryArmor>();
         armor = GetComponent<Armor>();
         armor.Init();
-        RegisteredTypes.RegisterTypes(Types.CombatState, CombatState);
-        RegisteredTypes.RegisterTypes(Types.UpdateArmor, UpdateArmor);
+        HandlersStorage.RegisterHandler(Types.CombatState, CombatState);
+        HandlersStorage.RegisterHandler(Types.UpdateArmor, UpdateArmor);
       //  RegisteredTypes.RegisterTypes(Types.LoadArmor, LoadArmor);
     }
     
-    private void CombatState(NetworkWriter nw)
+    private void CombatState(Packet nw)
     {
         armor.SetCombatstate(nw.ReadBool());
     }
 
-    private void LoadArmor(NetworkWriter nw)
+    private void LoadArmor(Packet nw)
     {
        while(nw.AvailableBytes >= 8)
         {
@@ -35,7 +37,7 @@ public class ArmorListener : MonoBehaviour {
         }
     }
 
-    private void UpdateArmor(NetworkWriter nw)
+    private void UpdateArmor(Packet nw)
     {
         ItemType type = (ItemType)nw.ReadInt();
         ArmorPart part = (ArmorPart)nw.ReadInt();
@@ -47,7 +49,7 @@ public class ArmorListener : MonoBehaviour {
         armor.PutItem(type, item);
     }
 
-    private Item ReadItem(NetworkWriter nw, int itemID)
+    private Item ReadItem(Packet nw, int itemID)
     {
         Item _item = Inventory.CreateItem(itemID);
         _item.objectID = nw.ReadInt();
@@ -72,16 +74,16 @@ public class ArmorListener : MonoBehaviour {
 
     private void SendState()
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Discard);
-        nw.SetTypePack(Types.CombatState);
-        nw.write(combatState);
+        Packet nw = new Packet(Channel.Discard);
+        nw.WriteType(Types.CombatState);
+        nw.WriteBool(combatState);
         NetworkManager.Send(nw);
     }
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.UpdateArmor);
-        RegisteredTypes.UnregisterTypes(Types.CombatState);
+        HandlersStorage.UnregisterHandler(Types.UpdateArmor);
+        HandlersStorage.UnregisterHandler(Types.CombatState);
       //  RegisteredTypes.UnregisterTypes(Types.LoadArmor);
     }
 }

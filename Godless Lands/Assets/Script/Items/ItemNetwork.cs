@@ -1,5 +1,6 @@
 ﻿using Items;
 using RUCP;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace Items
 {
     public static class ItemNetwork
     {
-        public static Item ReadItem(this NetworkWriter nw)
+        public static Item ReadItem(this Packet nw)
         {
             Item item = Inventory.CreateItem(nw.ReadInt());//Создаем предмет по ид предмета, если такого предмета нет пустой итем обьект
 

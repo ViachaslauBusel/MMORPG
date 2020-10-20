@@ -1,5 +1,7 @@
 ﻿using RUCP;
 using RUCP.Handler;
+using RUCP.Network;
+using RUCP.Packets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,15 +16,15 @@ public class TestRay : MonoBehaviour
 
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.TestRay, VoidTestRay);
+        HandlersStorage.RegisterHandler(Types.TestRay, VoidTestRay);
         hitPoints = new Queue<Vector3>();
     }
 
-    private void VoidTestRay(NetworkWriter nw)
+    private void VoidTestRay(Packet nw)
     {
         if (nw.ReadBool())
         {
-            hitPoints.Enqueue(nw.ReadVec3());
+            hitPoints.Enqueue(nw.ReadVector3());
         }
         else
         {
@@ -45,8 +47,8 @@ public class TestRay : MonoBehaviour
             if(timer < 0)
             {
                 timer = timeSend;
-                NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-                nw.SetTypePack(Types.TestRay);
+                Packet nw = new Packet(Channel.Reliable);
+                nw.WriteType(Types.TestRay);
                 nw.write(transform.position + (Vector3.up * 1000));
               //  nw.write(transform.position + (Vector3.down * 300));
 
@@ -70,8 +72,8 @@ public class TestRay : MonoBehaviour
             for (int x = 0; x < 10; x++)
             {
                 Vector3 vector = new Vector3(startX + x, transform.position.y + 10, startZ + y);
-                NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-                nw.SetTypePack(Types.TestRay);
+                Packet nw = new Packet(Channel.Reliable);
+                nw.WriteType(Types.TestRay);
                 nw.write(vector);
                 //  nw.write(transform.position + (Vector3.down * 300));
 
@@ -96,6 +98,6 @@ public class TestRay : MonoBehaviour
     private void OnDestroy()
     {
 
-        RegisteredTypes.UnregisterTypes(Types.TestRay);
+        HandlersStorage.UnregisterHandler(Types.TestRay);
     }
 }

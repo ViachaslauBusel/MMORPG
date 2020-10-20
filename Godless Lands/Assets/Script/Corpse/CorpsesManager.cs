@@ -1,6 +1,7 @@
 ﻿using Items;
 using RUCP;
 using RUCP.Handler;
+using RUCP.Packets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,15 +17,15 @@ public class CorpsesManager : MonoBehaviour, Manager
     {
      //   unconfirmedBody = new Dictionary<int, GameObject>();
         corpses = new Dictionary<int, GameObject>();
-        RegisteredTypes.RegisterTypes(Types.CorpseCreate, CorpseCreate);
-        RegisteredTypes.RegisterTypes(Types.CorpseDelete, CorpseDelete);
-        RegisteredTypes.RegisterTypes(Types.CorpseUpdate, CorpseUpdate);
+        HandlersStorage.RegisterHandler(Types.CorpseCreate, CorpseCreate);
+        HandlersStorage.RegisterHandler(Types.CorpseDelete, CorpseDelete);
+        HandlersStorage.RegisterHandler(Types.CorpseUpdate, CorpseUpdate);
     }
 
-    private void CorpseUpdate(NetworkWriter nw)
+    private void CorpseUpdate(Packet nw)
     {
         int corpse_id = nw.ReadInt();
-        int leftTime = nw.ReadInt() - (int)NetworkManager.Socket.GetPing();
+        int leftTime = nw.ReadInt() - (int)NetworkManager.Socket.NetworkInfo.Ping;
         print("left time: " + ((leftTime / 1000.0f) / 60.0f) + "min");
         if (corpses.ContainsKey(corpse_id))
         {
@@ -34,23 +35,23 @@ public class CorpsesManager : MonoBehaviour, Manager
        
     }
 
-    private void CorpseDelete(NetworkWriter nw)
+    private void CorpseDelete(Packet nw)
     {
         int corpse_id = nw.ReadInt();
         Destroy(corpses[corpse_id]);
         corpses.Remove(corpse_id);
     }
 
-    private void CorpseCreate(NetworkWriter nw)
+    private void CorpseCreate(Packet nw)
     {
         print("create body");
         int corpse_id = nw.ReadInt();
         int char_id = nw.ReadInt();
         string char_name = nw.ReadString();
-        Vector3 position = nw.ReadVec3();
+        Vector3 position = nw.ReadVector3();
         float rotation = nw.ReadFloat();
         int weapon = nw.ReadInt();
-        int leftTime = nw.ReadInt() - (int)NetworkManager.Socket.GetPing();
+        int leftTime = nw.ReadInt() - (int)NetworkManager.Socket.NetworkInfo.Ping;
         print("left time: " + ((leftTime / 1000.0f) / 60.0f) + "min");
         /*  List<Item> items = new List<Item>();
           while(nw.AvailableBytes >= 4)
@@ -126,7 +127,7 @@ public class CorpsesManager : MonoBehaviour, Manager
 
     private void OnDestroy()
     { 
-        RegisteredTypes.UnregisterTypes(Types.CorpseCreate);
-        RegisteredTypes.UnregisterTypes(Types.CorpseDelete);
+        HandlersStorage.UnregisterHandler(Types.CorpseCreate);
+        HandlersStorage.UnregisterHandler(Types.CorpseDelete);
     }
 }

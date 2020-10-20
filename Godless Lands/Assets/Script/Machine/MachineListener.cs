@@ -1,6 +1,7 @@
 ﻿using Items;
 using RUCP;
 using RUCP.Handler;
+using RUCP.Packets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,12 +19,12 @@ namespace Machines
 
         private void Awake()
         {
-            RegisteredTypes.RegisterTypes(Types.MachineUse, MachineUseVoid);
-            RegisteredTypes.RegisterTypes(Types.MachineAddComponent, MachineComponent);
-            RegisteredTypes.RegisterTypes(Types.MachineClose, MachineClose);
+            HandlersStorage.RegisterHandler(Types.MachineUse, MachineUseVoid);
+            HandlersStorage.RegisterHandler(Types.MachineAddComponent, MachineComponent);
+            HandlersStorage.RegisterHandler(Types.MachineClose, MachineClose);
         }
 
-        private void MachineClose(NetworkWriter nw)
+        private void MachineClose(Packet nw)
         {
             if (selectMachine == null) return;
             selectMachine.Hide();
@@ -39,7 +40,7 @@ namespace Machines
                selectMachine.PutFuel(index, item, count);
            }*/
 
-        private void MachineComponent(NetworkWriter nw)
+        private void MachineComponent(Packet nw)
         {
             if (selectMachine == null) return;
             bool component = nw.ReadBool();
@@ -53,7 +54,7 @@ namespace Machines
             }
         }
 
-        private void MachineUseVoid(NetworkWriter nw)
+        private void MachineUseVoid(Packet nw)
         {
             selectMachine = null;
             MachineUse machineUse = (MachineUse) nw.ReadByte();
@@ -78,9 +79,9 @@ namespace Machines
 
         private void OnDestroy()
         {
-            RegisteredTypes.UnregisterTypes(Types.MachineUse);
-            RegisteredTypes.UnregisterTypes(Types.MachineAddComponent);
-            RegisteredTypes.UnregisterTypes(Types.MachineClose);
+            HandlersStorage.UnregisterHandler(Types.MachineUse);
+            HandlersStorage.UnregisterHandler(Types.MachineAddComponent);
+            HandlersStorage.UnregisterHandler(Types.MachineClose);
         }
     }
 }

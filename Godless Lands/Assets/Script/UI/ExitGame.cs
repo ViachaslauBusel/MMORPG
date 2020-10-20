@@ -1,5 +1,7 @@
 ﻿using RUCP;
 using RUCP.Handler;
+using RUCP.Network;
+using RUCP.Packets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,10 +17,10 @@ public class ExitGame : MonoBehaviour {
 
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.LobbyReload, LobbyReload);
+        HandlersStorage.RegisterHandler(Types.LobbyReload, LobbyReload);
     }
 
-    private void LobbyReload(NetworkWriter nw)//Успешный выход в лобби на сервере
+    private void LobbyReload(Packet nw)//Успешный выход в лобби на сервере
     {
      //   print("Load lobby");
         SceneManager.LoadScene("Lobby");
@@ -58,8 +60,8 @@ public class ExitGame : MonoBehaviour {
             return;
         }
 
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-        nw.SetTypePack(Types.LobbyReload);
+        Packet nw = new Packet(Channel.Reliable);
+        nw.WriteType(Types.LobbyReload);
         NetworkManager.Send(nw);
     }
 
@@ -70,6 +72,6 @@ public class ExitGame : MonoBehaviour {
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.LobbyReload);
+        HandlersStorage.UnregisterHandler(Types.LobbyReload);
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 using RUCP;
 using RUCP.Handler;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +17,8 @@ namespace NPCs
 
         private void Awake()
         {
-            RegisteredTypes.RegisterTypes(Types.NpcCreate, NPCCreate);
-            RegisteredTypes.RegisterTypes(Types.NpcDelete, NPCDelet);
+            HandlersStorage.RegisterHandler(Types.NpcCreate, NPCCreate);
+            HandlersStorage.RegisterHandler(Types.NpcDelete, NPCDelet);
         }
 
         public void AllDestroy()
@@ -34,7 +35,7 @@ namespace NPCs
             npc = new Dictionary<int, NPC>();
         }
 
-        private void NPCDelet(NetworkWriter nw)
+        private void NPCDelet(Packet nw)
         {
             int id = nw.ReadInt();
             if (npc.ContainsKey(id))
@@ -44,11 +45,11 @@ namespace NPCs
             }
         }
 
-        private void NPCCreate(NetworkWriter nw)
+        private void NPCCreate(Packet nw)
         {
             int id = nw.ReadInt();
             int idSkin = nw.ReadInt();
-            Vector3 postion = nw.ReadVec3();
+            Vector3 postion = nw.ReadVector3();
             float rotation = nw.ReadFloat();
 
             if (npc.ContainsKey(id)) { print("error create NPC"); return; } //Если NPC с таким ид уже создан
@@ -78,8 +79,8 @@ namespace NPCs
 
         private void OnDestroy()
         {
-            RegisteredTypes.UnregisterTypes(Types.NpcCreate);
-            RegisteredTypes.UnregisterTypes(Types.NpcDelete);
+            HandlersStorage.UnregisterHandler(Types.NpcCreate);
+            HandlersStorage.UnregisterHandler(Types.NpcDelete);
         }
 
 

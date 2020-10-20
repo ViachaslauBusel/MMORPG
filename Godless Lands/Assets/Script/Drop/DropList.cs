@@ -5,6 +5,8 @@ using UnityEngine;
 using RUCP;
 using System;
 using Items;
+using RUCP.Packets;
+using RUCP.Network;
 
 public class DropList : MonoBehaviour {
 
@@ -20,10 +22,10 @@ public class DropList : MonoBehaviour {
 
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.FindDrop, FindDrop);
+        HandlersStorage.RegisterHandler(Types.FindDrop, FindDrop);
     }
 
-    private void FindDrop(NetworkWriter nw)
+    private void FindDrop(Packet nw)
     {
         ClearDropList();
         monster_layer = nw.ReadInt();
@@ -63,11 +65,11 @@ public class DropList : MonoBehaviour {
 
     public void TakeDrop(int id_item)
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-        nw.SetTypePack(Types.TakeDrop);
-        nw.write(monster_layer);
-        nw.write(monster_id);
-        nw.write(id_item);
+        Packet nw = new Packet(Channel.Reliable);
+        nw.WriteType(Types.TakeDrop);
+        nw.WriteInt(monster_layer);
+        nw.WriteInt(monster_id);
+        nw.WriteInt(id_item);
 
         NetworkManager.Send(nw);
 
@@ -76,6 +78,6 @@ public class DropList : MonoBehaviour {
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.FindDrop);
+        HandlersStorage.UnregisterHandler(Types.FindDrop);
     }
 }

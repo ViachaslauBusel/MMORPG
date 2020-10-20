@@ -21,11 +21,11 @@ public class GhostMove : MonoBehaviour
     private bool target_point = false;//Точка назначения, если достигнута true
     private bool end_point = true;//Движение в точку где остановился игрок
 
-    private byte indicator;
-    private byte moveIndex;
+    private int indicator;
+    private int moveIndex;
 
 
-    public void SetStartPosition(Vector3 pos, byte indicator, byte moveIndex)
+    public void SetStartPosition(Vector3 pos, int indicator, byte moveIndex)
     {
         animator = GetComponent<Animator>();
         character = GetComponent<CharacterController>();
@@ -60,7 +60,7 @@ public class GhostMove : MonoBehaviour
      }*/
     //  private List<Vector3> trackServer = new List<Vector3>();
     //  private List<Vector3> trackMove = new List<Vector3>();
-    public void NextPosition(Vector3 _next, byte indicator)
+    public void NextPosition(Vector3 _next, int indicator)
     {
         if (this.indicator != indicator) return;//Отбрасываются пакеты отправленные до того как игрок остановился
      //   int compare = NumberUtils.ByteCompare(moveIndex, this.moveIndex);
@@ -82,7 +82,7 @@ public class GhostMove : MonoBehaviour
         CalculateAnimation();
         animator.SetFloat("speedRun", speed / 2.0f);
     }
-    public void EndPosition(Vector3 _next, byte indicator)
+    public void EndPosition(Vector3 _next, int indicator)
     {
 
         this.indicator = indicator;

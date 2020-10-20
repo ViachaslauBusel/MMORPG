@@ -1,4 +1,6 @@
 ﻿using RUCP;
+using RUCP.Network;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,9 +43,9 @@ public class GhostResource : MonoBehaviour, Action
 
     public void Use()
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-        nw.SetTypePack(Types.ResourceUse);
-        nw.write(ID);
+        Packet nw = new Packet(Channel.Reliable);
+        nw.WriteType(Types.ResourceUse);
+        nw.WriteInt(ID);
         NetworkManager.Send(nw);
     }
 

@@ -1,4 +1,6 @@
 ﻿using RUCP;
+using RUCP.Network;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,11 +38,11 @@ namespace Cells
             }
 
 
-            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-            nw.SetTypePack(Types.DeletItem);
+            Packet nw = new Packet(Channel.Reliable);
+            nw.WriteType(Types.DeletItem);
        //     print("Del index: " + index);
-            nw.write(itemCell.GetObjectID());
-            nw.write(itemCell.GetItem().id);
+            nw.WriteInt(itemCell.GetObjectID());
+            nw.WriteInt(itemCell.GetItem().id);
             if (itemCell.GetItem().stack)
             {
                 int count = -1;
@@ -50,7 +52,7 @@ namespace Cells
                     count = SelectCount.Count;
                 }
                 if (count < 1) yield break;
-                nw.write(count);
+                nw.WriteInt(count);
             }
 
             NetworkManager.Send(nw);

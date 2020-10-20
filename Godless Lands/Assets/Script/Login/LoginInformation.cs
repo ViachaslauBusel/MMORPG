@@ -25,6 +25,9 @@ public class LoginInformation : MonoBehaviour {
     {
         switch (id)
         {
+            case 0:
+                info_text.text = "Ожидание подключения";
+                break;
             case 1:
                 info_text.text = "Не удалось установить соеденение";
                 break;

@@ -1,6 +1,8 @@
 ﻿using Cells;
 using RUCP;
 using RUCP.Handler;
+using RUCP.Network;
+using RUCP.Packets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,10 +28,10 @@ public class ItemEnchant : MonoBehaviour
         enchantCell = GetComponentInChildren<EnchantCell>();
         indicator.SetActive(false);
 
-        RegisteredTypes.RegisterTypes(Types.ItemEnchant, Enchant);
+        HandlersStorage.RegisterHandler(Types.ItemEnchant, Enchant);
     }
 
-    private void Enchant(NetworkWriter nw)
+    private void Enchant(Packet nw)
     {
         switch ((EnchantCommand) nw.ReadByte())
         {
@@ -104,19 +106,19 @@ public class ItemEnchant : MonoBehaviour
             bar.fillAmount =  time;
         }
 
-        NetworkWriter nw = new NetworkWriter(Channels.Discard);
-        nw.SetTypePack(Types.ItemEnchant);
-        nw.write((byte)EnchantCommand.Completed);//Заточить
-        nw.write(enchantCell.GetObjectID());
+        Packet nw = new Packet(Channel.Discard);
+        nw.WriteType(Types.ItemEnchant);
+        nw.WriteByte((byte)EnchantCommand.Completed);//Заточить
+        nw.WriteInt(enchantCell.GetObjectID());
         NetworkManager.Send(nw);
     }
 
     public void Next()
     {
 
-        NetworkWriter nw = new NetworkWriter(Channels.Discard);
-        nw.SetTypePack(Types.ItemEnchant);
-        nw.write((byte)EnchantCommand.Continue);//Продолжить
+        Packet nw = new Packet(Channel.Discard);
+        nw.WriteType(Types.ItemEnchant);
+        nw.WriteByte((byte)EnchantCommand.Continue);//Продолжить
         NetworkManager.Send(nw);
 
         button.interactable = false;
@@ -124,14 +126,14 @@ public class ItemEnchant : MonoBehaviour
 
     public void Exit()
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Discard);
-        nw.SetTypePack(Types.ItemEnchant);
-        nw.write((byte)EnchantCommand.CloseGUI);//Закрыть интерфейс заточки
+        Packet nw = new Packet(Channel.Discard);
+        nw.WriteType(Types.ItemEnchant);
+        nw.WriteByte((byte)EnchantCommand.CloseGUI);//Закрыть интерфейс заточки
         NetworkManager.Send(nw);
     }
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.ItemEnchant);
+        HandlersStorage.UnregisterHandler(Types.ItemEnchant);
     }
 }

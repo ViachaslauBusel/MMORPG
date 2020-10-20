@@ -6,6 +6,7 @@ using RUCP;
 using System;
 using System.Text;
 using Items;
+using RUCP.Packets;
 
 public class CharactersManager : MonoBehaviour, Manager {
 
@@ -14,14 +15,14 @@ public class CharactersManager : MonoBehaviour, Manager {
 
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.CharacterCreate, CharacterCreate);
-        RegisteredTypes.RegisterTypes(Types.CharacterMove, CharacterMove);
-        RegisteredTypes.RegisterTypes(Types.CharacterDelete, CharacterDelete);
-        RegisteredTypes.RegisterTypes(Types.CharacterAnim, CharacterAnim);
-        RegisteredTypes.RegisterTypes(Types.GhostUpdateArmor, GhostUpdateArmor);
-        RegisteredTypes.RegisterTypes(Types.CharacterRotation, CharacterRotation);
-        RegisteredTypes.RegisterTypes(Types.CharacterEndMove, CharacterEndMove);
-        RegisteredTypes.RegisterTypes(Types.CharacterCombatState, CharacterCombatState);
+        HandlersStorage.RegisterHandler(Types.CharacterCreate, CharacterCreate);
+        HandlersStorage.RegisterHandler(Types.CharacterMove, CharacterMove);
+        HandlersStorage.RegisterHandler(Types.CharacterDelete, CharacterDelete);
+        HandlersStorage.RegisterHandler(Types.CharacterAnim, CharacterAnim);
+        HandlersStorage.RegisterHandler(Types.GhostUpdateArmor, GhostUpdateArmor);
+        HandlersStorage.RegisterHandler(Types.CharacterRotation, CharacterRotation);
+        HandlersStorage.RegisterHandler(Types.CharacterEndMove, CharacterEndMove);
+        HandlersStorage.RegisterHandler(Types.CharacterCombatState, CharacterCombatState);
       //  RegisteredTypes.RegisterTypes(Types.CharacterDead, CharacterDead);
     }
 
@@ -60,7 +61,7 @@ public class CharactersManager : MonoBehaviour, Manager {
         characters.Clear();
        
     }
-    private void CharacterCombatState(NetworkWriter nw)
+    private void CharacterCombatState(Packet nw)
     {
 
         int id_login = nw.ReadInt();
@@ -71,14 +72,14 @@ public class CharactersManager : MonoBehaviour, Manager {
         }
     }
 
-    private void CharacterEndMove(NetworkWriter nw)
+    private void CharacterEndMove(Packet nw)
     {
         int id_login = nw.ReadInt();
 
         if (characters.ContainsKey(id_login))
         {
-            Vector3 pos = nw.ReadVec3();
-            byte indicator = nw.ReadByte();
+            Vector3 pos = nw.ReadVector3();
+            int indicator = nw.ReadByte();
             float rot = nw.ReadFloat();
 
             characters[id_login].EndPosition(pos, indicator);
@@ -88,15 +89,15 @@ public class CharactersManager : MonoBehaviour, Manager {
 
         }
     }
-    private void CharacterMove(NetworkWriter nw)
+    private void CharacterMove(Packet nw)
     {
         int id_login = nw.ReadInt();
 
         if (characters.ContainsKey(id_login))
         {
-            Vector3 pos = nw.ReadVec3();
-            byte indicator = nw.ReadByte();
-            byte moveIndex = nw.ReadByte();
+            Vector3 pos = nw.ReadVector3();
+            int indicator = nw.ReadByte();
+            int moveIndex = nw.ReadByte();
             float rot = nw.ReadFloat();
           
             characters[id_login].NextPosition(pos, indicator, moveIndex);
@@ -110,7 +111,7 @@ public class CharactersManager : MonoBehaviour, Manager {
             print("delet character not found: " + id_login);
         }
     }
-    private void CharacterRotation(NetworkWriter nw)
+    private void CharacterRotation(Packet nw)
     {
         int id_login = nw.ReadInt();
 
@@ -122,7 +123,7 @@ public class CharactersManager : MonoBehaviour, Manager {
         }
     }
 
-    private void GhostUpdateArmor(NetworkWriter nw)
+    private void GhostUpdateArmor(Packet nw)
     {
         int id_login = nw.ReadInt();
 
@@ -132,7 +133,7 @@ public class CharactersManager : MonoBehaviour, Manager {
         }
     }
 
-    private void CharacterAnim(NetworkWriter nw)
+    private void CharacterAnim(Packet nw)
     {
         int id_login = nw.ReadInt();
 //print("use anim");
@@ -171,7 +172,7 @@ public class CharactersManager : MonoBehaviour, Manager {
         else return null;
     }
 
-    private void CharacterCreate(NetworkWriter nw)
+    private void CharacterCreate(Packet nw)
     {
         int login_id = nw.ReadInt();
         string char_name = nw.ReadString();
@@ -184,7 +185,7 @@ public class CharactersManager : MonoBehaviour, Manager {
                 GameObject obj = Instantiate(shipObject, Vector3.zero, Quaternion.identity);
             obj.transform.SetParent(transform);
             GhostCharacter ship_obj = obj.GetComponent<GhostCharacter>();
-            ship_obj.SetStartPosition(nw.ReadVec3(), nw.ReadByte(), nw.ReadByte());
+            ship_obj.SetStartPosition(nw.ReadVector3(), nw.ReadByte(), nw.ReadByte());
             ship_obj.NextRotation(nw.ReadFloat());
                  ship_obj.SetName(char_name);
                  ship_obj.ID = login_id;
@@ -200,7 +201,7 @@ public class CharactersManager : MonoBehaviour, Manager {
         }
     }
 
-    private void CharacterDelete(NetworkWriter nw)
+    private void CharacterDelete(Packet nw)
     {
         int login_id = nw.ReadInt();
         print("Delet: " + login_id);
@@ -215,14 +216,14 @@ public class CharactersManager : MonoBehaviour, Manager {
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.CharacterCreate);
-        RegisteredTypes.UnregisterTypes(Types.CharacterMove);
-        RegisteredTypes.UnregisterTypes(Types.CharacterDelete);
-        RegisteredTypes.UnregisterTypes(Types.CharacterAnim);
-        RegisteredTypes.UnregisterTypes(Types.GhostUpdateArmor);
-        RegisteredTypes.UnregisterTypes(Types.CharacterRotation);
-        RegisteredTypes.UnregisterTypes(Types.CharacterEndMove);
-        RegisteredTypes.UnregisterTypes(Types.CharacterCombatState);
+        HandlersStorage.UnregisterHandler(Types.CharacterCreate);
+        HandlersStorage.UnregisterHandler(Types.CharacterMove);
+        HandlersStorage.UnregisterHandler(Types.CharacterDelete);
+        HandlersStorage.UnregisterHandler(Types.CharacterAnim);
+        HandlersStorage.UnregisterHandler(Types.GhostUpdateArmor);
+        HandlersStorage.UnregisterHandler(Types.CharacterRotation);
+        HandlersStorage.UnregisterHandler(Types.CharacterEndMove);
+        HandlersStorage.UnregisterHandler(Types.CharacterCombatState);
     }
 
    

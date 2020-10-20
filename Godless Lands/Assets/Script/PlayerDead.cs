@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using RUCP;
 using System;
+using RUCP.Packets;
+using RUCP.Network;
 
 public class PlayerDead : MonoBehaviour {
 
@@ -22,20 +24,20 @@ public class PlayerDead : MonoBehaviour {
 
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.PlayerDead, PlayerDeadVoid);
-        RegisteredTypes.RegisterTypes(Types.PlayerResurrection, PlayerResurrection);
+        HandlersStorage.RegisterHandler(Types.PlayerDead, PlayerDeadVoid);
+        HandlersStorage.RegisterHandler(Types.PlayerResurrection, PlayerResurrection);
     }
 
-    private void PlayerResurrection(NetworkWriter nw)
+    private void PlayerResurrection(Packet nw)
     {
-        transform.position = nw.ReadVec3();
+        transform.position = nw.ReadVector3();
 
         animationSkill.UseAnimState(5);
 
         controller.enabled = true;
     }
 
-    private void PlayerDeadVoid(NetworkWriter nw)//Пакет 
+    private void PlayerDeadVoid(Packet nw)//Пакет 
     {
         animationSkill.DeadOn();
         controller.enabled = false;
@@ -47,14 +49,14 @@ public class PlayerDead : MonoBehaviour {
     {
         canvas_dead.enabled = false;
 
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-        nw.SetTypePack(Types.PlayerResurrection);
+        Packet nw = new Packet(Channel.Reliable);
+        nw.WriteType(Types.PlayerResurrection);
         NetworkManager.Send(nw);
     }
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.PlayerDead);
-        RegisteredTypes.UnregisterTypes(Types.PlayerResurrection);
+        HandlersStorage.UnregisterHandler(Types.PlayerDead);
+        HandlersStorage.UnregisterHandler(Types.PlayerResurrection);
     }
 }

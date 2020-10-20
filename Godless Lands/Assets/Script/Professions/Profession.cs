@@ -1,4 +1,5 @@
 ﻿using RUCP;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class Profession : MonoBehaviour
         point.text = exp.ToString() + '/' + allExp.ToString();
     }
 
-    public void UpdatePruf(NetworkWriter nw)
+    public void UpdatePruf(Packet nw)
     {
         int level = nw.ReadInt();
         int exp = nw.ReadInt();

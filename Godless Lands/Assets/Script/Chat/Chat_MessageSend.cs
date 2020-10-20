@@ -1,4 +1,6 @@
 ﻿using RUCP;
+using RUCP.Network;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,9 +19,9 @@ public class Chat_MessageSend : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Return))
         {
-            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-            nw.SetTypePack(Types.ChatMessage);
-            nw.write(inputField.text);
+            Packet nw = new Packet(Channel.Reliable);
+            nw.WriteType(Types.ChatMessage);
+            nw.WriteString(inputField.text);
 
             NetworkManager.Send(nw);
             inputField.text = "";

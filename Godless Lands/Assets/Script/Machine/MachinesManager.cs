@@ -1,6 +1,7 @@
 ﻿using Machines;
 using RUCP;
 using RUCP.Handler;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +18,8 @@ public class MachinesManager : MonoBehaviour, Manager
 
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.MachineCreate, MachineCreate);
-        RegisteredTypes.RegisterTypes(Types.MachineDelete, MachineDelete);
+        HandlersStorage.RegisterHandler(Types.MachineCreate, MachineCreate);
+        HandlersStorage.RegisterHandler(Types.MachineDelete, MachineDelete);
     }
 
 
@@ -37,7 +38,7 @@ public class MachinesManager : MonoBehaviour, Manager
 
     }
 
-    private void MachineDelete(NetworkWriter nw)
+    private void MachineDelete(Packet nw)
     {
         int id = nw.ReadInt();
         if (machines.ContainsKey(id))
@@ -47,12 +48,12 @@ public class MachinesManager : MonoBehaviour, Manager
         }
     }
 
-    private void MachineCreate(NetworkWriter nw)
+    private void MachineCreate(Packet nw)
     {
         int id = nw.ReadInt();
         MachineUse machineUse = (MachineUse) nw.ReadByte();
-        Vector3 postion = nw.ReadVec3();
-        Vector3 rotation = nw.ReadVec3();
+        Vector3 postion = nw.ReadVector3();
+        Vector3 rotation = nw.ReadVector3();
         if (machines.ContainsKey(id)) { print("error create machine"); return; } //Если монстр с таким ид уже создан
 
 
@@ -89,7 +90,7 @@ public class MachinesManager : MonoBehaviour, Manager
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.MachineCreate);
-        RegisteredTypes.UnregisterTypes(Types.MachineDelete);
+        HandlersStorage.UnregisterHandler(Types.MachineCreate);
+        HandlersStorage.UnregisterHandler(Types.MachineDelete);
     }
 }

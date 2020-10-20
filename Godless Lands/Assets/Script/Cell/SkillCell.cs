@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SkillsRedactor;
+using RUCP.Network;
+using RUCP.Packets;
 
 namespace Cells
 {
@@ -24,13 +26,13 @@ namespace Cells
 
         public override void Use()
         {
-            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-            nw.SetTypePack(Types.Skill);
-            nw.write(skill.id);
+            Packet nw = new Packet(Channel.Reliable);
+            nw.WriteType(Types.Skill);
+            nw.WriteInt(skill.id);
           //  float angle = Vector2.Angle(new Vector2(playerTransform.forward.x, playerTransform.forward.z), Vector2.up);
        //     print("angle: " + angle + "pi: "+ (Mathf.Deg2Rad * 180.0f));
-            nw.write(playerTransform.forward.x);//Направление игрока
-            nw.write(playerTransform.forward.z);
+            nw.WriteFloat(playerTransform.forward.x);//Направление игрока
+            nw.WriteFloat(playerTransform.forward.z);
             NetworkManager.Send(nw);
         }
 

@@ -21,20 +21,20 @@ public class NetworkMonitor : MonoBehaviour {
 
     private void OnGUI()
     {
-        if (NetworkManager.IsConnection())
+        if (NetworkManager.Socket.IsConnected())
         {
             float fps = deltaTime * 1000.0f;
             float msec = 1.0f / deltaTime;
             string text = string.Format("{1:0.} ({0:0.0} ms)", fps, msec);
             client_txt.text = "FPS: "+text+'\n';
             client_txt.text += "Ping: ";
-            client_txt.text += NetworkManager.Socket.GetPing().ToString();
+            client_txt.text += NetworkManager.Socket.NetworkInfo.Ping.ToString();
             client_txt.text += "ms\n";
 
             client_txt.text += "Lost[";
-            client_txt.text += NetworkManager.Socket.GetNetworkInfo().resend.ToString();
+            client_txt.text += NetworkManager.Socket.NetworkInfo.Resend.ToString();
             client_txt.text += '/';
-            client_txt.text += NetworkManager.Socket.GetNetworkInfo().send.ToString();
+            client_txt.text += NetworkManager.Socket.NetworkInfo.Send.ToString();
             client_txt.text += ']';
         }
         else

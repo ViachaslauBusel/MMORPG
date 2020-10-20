@@ -6,6 +6,7 @@ using RUCP;
 using System;
 using Monsters;
 using MonsterRedactor;
+using RUCP.Packets;
 
 namespace Monsters
 {
@@ -17,11 +18,11 @@ namespace Monsters
 
         private void Awake()
         {
-            RegisteredTypes.RegisterTypes(Types.MonsterCreate, MonsterCreate);
-            RegisteredTypes.RegisterTypes(Types.MonsterDelete, MonsterDelete);
-            RegisteredTypes.RegisterTypes(Types.MonsterAnim, MonsterAnim);
-            RegisteredTypes.RegisterTypes(Types.MonsterMove, MonsterMove);
-            RegisteredTypes.RegisterTypes(Types.MonsterEndMove, MonsterEndMove);
+            HandlersStorage.RegisterHandler(Types.MonsterCreate, MonsterCreate);
+            HandlersStorage.RegisterHandler(Types.MonsterDelete, MonsterDelete);
+            HandlersStorage.RegisterHandler(Types.MonsterAnim, MonsterAnim);
+            HandlersStorage.RegisterHandler(Types.MonsterMove, MonsterMove);
+            HandlersStorage.RegisterHandler(Types.MonsterEndMove, MonsterEndMove);
         }
 
         public void AllDestroy()
@@ -32,15 +33,15 @@ namespace Monsters
     
         }
 
-        private void MonsterEndMove(NetworkWriter nw)
+        private void MonsterEndMove(Packet nw)
         {
            // print("Monster Endmove");
             int id = nw.ReadInt();
 
             if (monsters.ContainsKey(id))
             {
-                Vector3 pos = nw.ReadVec3();
-                byte indicator = nw.ReadByte();
+                Vector3 pos = nw.ReadVector3();
+                int indicator = nw.ReadByte();
                 //   float rot = nw.ReadFloat();
                 GhostMove ghost = monsters[id].controller();
                 ghost.EndPosition(pos, indicator);
@@ -51,15 +52,15 @@ namespace Monsters
             }
         }
 
-        private void MonsterMove(NetworkWriter nw)
+        private void MonsterMove(Packet nw)
         {
         //    print("Monster move");
             int id = nw.ReadInt();
 
             if (monsters.ContainsKey(id))
             {
-                Vector3 pos = nw.ReadVec3();
-                byte indicator = nw.ReadByte();
+                Vector3 pos = nw.ReadVector3();
+                int indicator = nw.ReadByte();
                 //   byte moveIndex = nw.ReadByte();
                 //  float rot = nw.ReadFloat();
                 GhostMove ghost = monsters[id].controller();
@@ -71,7 +72,7 @@ namespace Monsters
             }
         }
 
-        private void MonsterAnim(NetworkWriter nw)
+        private void MonsterAnim(Packet nw)
         {
             int id_login = nw.ReadInt();
 
@@ -98,7 +99,7 @@ namespace Monsters
             monsters = new Dictionary<int, Monster>();
         }
 
-        private void MonsterDelete(NetworkWriter nw)
+        private void MonsterDelete(Packet nw)
         {
             int id = nw.ReadInt();
             if (monsters.ContainsKey(id))
@@ -108,13 +109,13 @@ namespace Monsters
             }
         }
 
-        private void MonsterCreate(NetworkWriter nw)
+        private void MonsterCreate(Packet nw)
         {
             int id = nw.ReadInt();
             int idSkin = nw.ReadInt();
-            Vector3 postion = nw.ReadVec3();
+            Vector3 postion = nw.ReadVector3();
             float rotation = nw.ReadFloat();
-            byte indicator = nw.ReadByte();
+            int indicator = nw.ReadByte();
             if (monsters.ContainsKey(id)) { print("error create monster"); return; } //Если монстр с таким ид уже создан
 
 
@@ -144,11 +145,11 @@ namespace Monsters
 
         private void OnDestroy()
         {
-            RegisteredTypes.UnregisterTypes(Types.MonsterCreate);
-            RegisteredTypes.UnregisterTypes(Types.MonsterDelete);
-            RegisteredTypes.UnregisterTypes(Types.MonsterAnim);
-            RegisteredTypes.UnregisterTypes(Types.MonsterMove);
-            RegisteredTypes.UnregisterTypes(Types.MonsterEndMove);
+            HandlersStorage.UnregisterHandler(Types.MonsterCreate);
+            HandlersStorage.UnregisterHandler(Types.MonsterDelete);
+            HandlersStorage.UnregisterHandler(Types.MonsterAnim);
+            HandlersStorage.UnregisterHandler(Types.MonsterMove);
+            HandlersStorage.UnregisterHandler(Types.MonsterEndMove);
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using Animation;
 using RUCP;
 using RUCP.Handler;
+using RUCP.Packets;
 using SkillsBar;
 using System;
 using System.Collections;
@@ -12,7 +13,7 @@ public class AnimationListener : MonoBehaviour
     private AnimationSkill animationSkill;
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.PlayerAnim, PlayerAnim);
+        HandlersStorage.RegisterHandler(Types.PlayerAnim, PlayerAnim);
       //  RegisteredTypes.RegisterTypes(Types.PlayAnimSkill, PlayAnimSkill);
     }
 
@@ -30,7 +31,7 @@ public class AnimationListener : MonoBehaviour
         animationSkill = GetComponent<AnimationSkill>();
     }
 
-    private void PlayerAnim(NetworkWriter nw)
+    private void PlayerAnim(Packet nw)
     {
        
        
@@ -41,7 +42,7 @@ public class AnimationListener : MonoBehaviour
             case 1: //layer 1 = Проиграть анимацию умений с контролем времени
                 int milliseconds = nw.ReadInt();
 
-                PanelSkills.Hide((milliseconds - NetworkManager.Socket.GetPing()) / 1000.0f);
+                PanelSkills.Hide((milliseconds - NetworkManager.Socket.NetworkInfo.Ping) / 1000.0f);
                 animationSkill.UseAnimationSkill(animation, (milliseconds / 1000.0f));
                 break;
             case 2: //layer 2 = Проиграть анимацию состояния без контроля времени
@@ -49,7 +50,7 @@ public class AnimationListener : MonoBehaviour
                 break;
             case 3: //layer 3 = Проиграть анимацию состояния с контролем времени
                 int timeMilli = nw.ReadInt();
-                PanelSkills.Hide((timeMilli - NetworkManager.Socket.GetPing()) / 1000.0f);
+                PanelSkills.Hide((timeMilli - NetworkManager.Socket.NetworkInfo.Ping) / 1000.0f);
                 animationSkill.UseAnimState(animation, (timeMilli / 1000.0f));
                 break;
         }
@@ -58,7 +59,7 @@ public class AnimationListener : MonoBehaviour
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.PlayerAnim);
+        HandlersStorage.UnregisterHandler(Types.PlayerAnim);
        // RegisteredTypes.UnregisterTypes(Types.PlayAnimSkill);
     }
 }

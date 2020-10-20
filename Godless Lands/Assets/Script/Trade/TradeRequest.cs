@@ -1,4 +1,6 @@
 ﻿using RUCP;
+using RUCP.Network;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,9 +23,9 @@ public class TradeRequest : MonoBehaviour
 
     public void ConfirmTrade()
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-        nw.SetTypePack(Types.OfferTrade);
-        nw.write((byte)2);
+        Packet nw = new Packet(Channel.Reliable);
+        nw.WriteType(Types.OfferTrade);
+        nw.WriteByte((byte)2);
         NetworkManager.Send(nw);
     }
 

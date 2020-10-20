@@ -5,6 +5,8 @@ using UnityEngine;
 using Recipes;
 using RUCP;
 using UnityEngine.UI;
+using RUCP.Network;
+using RUCP.Packets;
 
 namespace Machines
 {
@@ -73,8 +75,8 @@ namespace Machines
         }
         public void Close()
         {
-            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-            nw.SetTypePack(Types.MachineClose);
+            Packet nw = new Packet(Channel.Reliable);
+            nw.WriteType(Types.MachineClose);
             NetworkManager.Send(nw);
         }
 
@@ -156,9 +158,9 @@ namespace Machines
         public void Create()
         {
             if (selectRecipe == null) return;
-            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-            nw.SetTypePack(Types.RecipeUse);
-            nw.write(selectRecipe.id);
+            Packet nw = new Packet(Channel.Reliable);
+            nw.WriteType(Types.RecipeUse);
+            nw.WriteInt(selectRecipe.id);
             NetworkManager.Send(nw);
         }
 

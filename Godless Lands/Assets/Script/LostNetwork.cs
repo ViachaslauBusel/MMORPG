@@ -14,7 +14,7 @@ public class LostNetwork : MonoBehaviour {
 
     private void Update()
     {
-        canvas.enabled = !NetworkManager.IsConnection();
+        canvas.enabled = !NetworkManager.Socket.IsConnected();
     }
 
     public void ExitGame()

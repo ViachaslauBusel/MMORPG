@@ -4,6 +4,8 @@ using Cells;
 using Items;
 using Recipes;
 using RUCP;
+using RUCP.Network;
+using RUCP.Packets;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -71,10 +73,10 @@ namespace Machines
         public void Create()
         {
             if (selectRecipe == null) return;
-            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-            nw.SetTypePack(Types.WorkbenchRecipeUse);
-            nw.write(selectRecipe.id);
-            nw.write(machineID);
+            Packet nw = new Packet(Channel.Reliable);
+            nw.WriteType(Types.WorkbenchRecipeUse);
+            nw.WriteInt(selectRecipe.id);
+            nw.WriteInt(machineID);
             NetworkManager.Send(nw);
         }
 

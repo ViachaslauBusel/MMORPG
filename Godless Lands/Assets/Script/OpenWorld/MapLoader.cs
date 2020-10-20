@@ -160,6 +160,11 @@ namespace OpenWorld
             Resources.UnloadUnusedAssets();
         }
 
+        public void LoadMap(Vector3 vector)
+        {
+            trackingObj.position = vector;
+            LoadMap();
+        }
         public void LoadMap()
         {
             RenderSettings.fog = true;

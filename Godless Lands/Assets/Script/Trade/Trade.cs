@@ -1,6 +1,8 @@
 ﻿using Cells;
 using RUCP;
 using RUCP.Handler;
+using RUCP.Network;
+using RUCP.Packets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,12 +33,12 @@ public class Trade : MonoBehaviour
 
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.OfferTrade, OfferTrade);
-        RegisteredTypes.RegisterTypes(Types.ConfirmTrade, ConfirmTrade);
-        RegisteredTypes.RegisterTypes(Types.ItemTrade, ItemTrade);
+        HandlersStorage.RegisterHandler(Types.OfferTrade, OfferTrade);
+        HandlersStorage.RegisterHandler(Types.ConfirmTrade, ConfirmTrade);
+        HandlersStorage.RegisterHandler(Types.ItemTrade, ItemTrade);
     }
 
-    private void ItemTrade(NetworkWriter nw)//Список предметов предложеных на обмен
+    private void ItemTrade(Packet nw)//Список предметов предложеных на обмен
     {
         ClearMyTradeCell(); ClearOtherTradeCell();//Очистить все ячейки
 
@@ -94,16 +96,16 @@ public class Trade : MonoBehaviour
     //2 - Отменить обмен
     private void SendTradeCommand(byte command)
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-        nw.SetTypePack(Types.ConfirmTrade);
-        nw.write((byte)command);
+        Packet nw = new Packet(Channel.Reliable);
+        nw.WriteType(Types.ConfirmTrade);
+        nw.WriteByte((byte)command);
         NetworkManager.Send(nw);
     }
 
     //1 - открыть окно обмена
     //2 - подтверждение обмена от другого игрока
     //3 - Закрытие окна обмена
-    private void ConfirmTrade(NetworkWriter nw)//Подтверждение о начале обмена, или подтверждение об завершении или отмене обмена
+    private void ConfirmTrade(Packet nw)//Подтверждение о начале обмена, или подтверждение об завершении или отмене обмена
     {
         int comand = nw.ReadByte();
         switch (comand)
@@ -127,7 +129,7 @@ public class Trade : MonoBehaviour
         }
     }
 
-    private void OfferTrade(NetworkWriter nw)//Открытие окна запроса на обмен
+    private void OfferTrade(Packet nw)//Открытие окна запроса на обмен
     {
         float timeOffer = nw.ReadFloat();
         string offerName = nw.ReadString();
@@ -210,16 +212,16 @@ public class Trade : MonoBehaviour
 
     public void UseSkill()
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-        nw.SetTypePack(Types.OfferTrade);
-        nw.write((byte)1);
+        Packet nw = new Packet(Channel.Reliable);
+        nw.WriteType(Types.OfferTrade);
+        nw.WriteByte((byte)1);
         NetworkManager.Send(nw);
     }
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.OfferTrade);
-        RegisteredTypes.UnregisterTypes(Types.ConfirmTrade);
-        RegisteredTypes.UnregisterTypes(Types.ItemTrade);
+        HandlersStorage.UnregisterHandler(Types.OfferTrade);
+        HandlersStorage.UnregisterHandler(Types.ConfirmTrade);
+        HandlersStorage.UnregisterHandler(Types.ItemTrade);
     }
 }

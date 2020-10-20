@@ -1,5 +1,7 @@
 ﻿using Items;
 using RUCP;
+using RUCP.Network;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,10 +39,10 @@ namespace Cells
         public override void Use()
         {
             if (IsEmpty()) return;
-            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-            nw.SetTypePack(Types.UseItem);
-            nw.write(item.objectID);
-            nw.write(item.id);
+            Packet nw = new Packet(Channel.Reliable);
+            nw.WriteType(Types.UseItem);
+            nw.WriteInt(item.objectID);
+            nw.WriteInt(item.id);
             NetworkManager.Send(nw);
         }
 
@@ -50,9 +52,9 @@ namespace Cells
         public void Move()
         {
             if (IsEmpty()) return;
-            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-            nw.SetTypePack(Types.ItemMove);
-            nw.write(item.objectID);
+            Packet nw = new Packet(Channel.Reliable);
+            nw.WriteType(Types.ItemMove);
+            nw.WriteInt(item.objectID);
             NetworkManager.Send(nw);
         }
 
@@ -112,10 +114,10 @@ namespace Cells
             if (itemCell == null || itemCell.IsEmpty()) return;
 
 
-            NetworkWriter writer = new NetworkWriter(Channels.Reliable);
-            writer.SetTypePack(Types.WrapItem);
-            writer.write(itemCell.item.objectID);//Предмет который надо переместить
-            writer.write(index);//в ячейку индекс
+            Packet writer = new Packet(Channel.Reliable);
+            writer.WriteType(Types.WrapItem);
+            writer.WriteInt(itemCell.item.objectID);//Предмет который надо переместить
+            writer.WriteInt(index);//в ячейку индекс
             NetworkManager.Send(writer);
 
         }

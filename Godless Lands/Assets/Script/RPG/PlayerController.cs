@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using OpenWorld;
+using RUCP.Packets;
+using RUCP.Network;
 
 public class PlayerController : MonoBehaviour {
 
@@ -26,14 +28,14 @@ public class PlayerController : MonoBehaviour {
     private void Awake()
     {
         enabled = false;
-        RegisteredTypes.RegisterTypes(Types.MapEntrance, MyCharacter);
-        RegisteredTypes.RegisterTypes(Types.TeleportToPoint, TeleportToPoint);
+      //  
+        HandlersStorage.RegisterHandler(Types.TeleportToPoint, TeleportToPoint);
     }
 
-    private void TeleportToPoint(NetworkWriter nw)
+    private void TeleportToPoint(Packet nw)
     {
         
-        transform.position = nw.ReadVec3();
+        transform.position = nw.ReadVector3();
         if (gameLoader != null) Destroy(gameLoader.gameObject);
         gameLoader = Instantiate(prefGameLoader).GetComponent<GameLoader>();
         gameLoader.LoadPoint();
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour {
         get { return character.transform; }
     }
 
-    private void MyCharacter(NetworkWriter nw)
+   /* private void MyCharacter(Packet nw)
     {
 
         int login_id = nw.ReadInt();
@@ -69,7 +71,7 @@ public class PlayerController : MonoBehaviour {
         transform.position = nw.ReadVec3();
 
         enabled = true;
-    }
+    }*/
 
 
 
@@ -125,12 +127,12 @@ public class PlayerController : MonoBehaviour {
         {
             lastSendingPosition = transform.position;
             lastSendRotation = transform.rotation.eulerAngles.y;
-            NetworkWriter nw = new NetworkWriter(Channels.Unreliable);
-            nw.SetTypePack(Types.Move);
+            Packet nw = new Packet(Channel.Unreliable);
+            nw.WriteType(Types.Move);
             nw.write(lastSendingPosition);
-            nw.write(lastSendRotation);
-            nw.write(indicator);
-            nw.write(moveIndex++);
+            nw.WriteFloat(lastSendRotation);
+            nw.WriteByte(indicator);
+            nw.WriteInt(moveIndex++);
             NetworkManager.Send(nw);
             endMove = true;
             return;
@@ -139,11 +141,11 @@ public class PlayerController : MonoBehaviour {
         {
             lastSendingPosition = transform.position;
             lastSendRotation = transform.rotation.eulerAngles.y;
-            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-            nw.SetTypePack(Types.EndMove);
+            Packet nw = new Packet(Channel.Reliable);
+            nw.WriteType(Types.EndMove);
             nw.write(lastSendingPosition);
-            nw.write(lastSendRotation);
-            nw.write(++indicator);
+            nw.WriteFloat(lastSendRotation);
+            nw.WriteInt(++indicator);
             NetworkManager.Send(nw);
             endMove = false;
             return;
@@ -151,9 +153,9 @@ public class PlayerController : MonoBehaviour {
         if (Mathf.Abs(Mathf.DeltaAngle(lastSendRotation, transform.rotation.eulerAngles.y)) > 0.5f){
 
             lastSendRotation = transform.rotation.eulerAngles.y;
-            NetworkWriter nw = new NetworkWriter(Channels.Unreliable);
-            nw.SetTypePack(Types.Rotation);
-            nw.write(lastSendRotation);
+            Packet nw = new Packet(Channel.Unreliable);
+            nw.WriteType(Types.Rotation);
+            nw.WriteFloat(lastSendRotation);
 
             NetworkManager.Send(nw);
         }
@@ -164,7 +166,7 @@ public class PlayerController : MonoBehaviour {
     private void OnDestroy()
     {
 
-        RegisteredTypes.UnregisterTypes(Types.MapEntrance);
-        RegisteredTypes.UnregisterTypes(Types.TeleportToPoint);
+   //     HandlersStorage.UnregisterHandler(Types.MapEntrance);
+        HandlersStorage.UnregisterHandler(Types.TeleportToPoint);
     }
     }

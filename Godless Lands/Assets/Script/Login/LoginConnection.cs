@@ -1,9 +1,7 @@
-﻿using RUCP;
-using System;
+﻿using RUCP.Network;
+using RUCP.Packets;
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
+using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,26 +22,27 @@ public class LoginConnection : MonoBehaviour {
 
     public void Connectionlogin()
     {
-        if (!NetworkManager.IsConnection()) StartCoroutine(IEConnectionServer(Types.Login));
+        if (!NetworkManager.isConnected) StartCoroutine(IEConnectionServer(Types.Login));
         else SendLoginOrReg(Types.Login);
     }
     public void ConnectionReg()
     {
-        if (!NetworkManager.IsConnection()) StartCoroutine(IEConnectionServer(Types.Registration));
+        if (!NetworkManager.isConnected) StartCoroutine(IEConnectionServer(Types.Registration));
         else SendLoginOrReg(Types.Registration);
     }
 
 
     private IEnumerator IEConnectionServer(short types)
     {
+        print("Cоеденение с сервером");
         NetworkManager.Connection(loginServer, 3737);
-        while (NetworkManager.GetConnection() == NetworkStatus.LISTENING)
+   
+        while (NetworkManager.Socket.NetworkStatus == NetworkStatus.LISTENING)
         {
             yield return null;
         }
-        if (NetworkManager.IsConnection()) //Если удалось соедениться с сервером
+        if (NetworkManager.isConnected) //Если удалось соедениться с сервером
         {
-            NetworkManager.Instance.enabled = true;
             SendLoginOrReg(types);//Отпровляем данные на логин или регистрацию
         }
         else
@@ -56,44 +55,20 @@ public class LoginConnection : MonoBehaviour {
     {
    
         if (input_login.text.Length > 30 || input_login.text.Length < 3) { LoginInformation.ShowInfo(2); return; }
-       // byte[] _pass;//= Encoding.ASCII.GetBytes(input_pass.text);
+
         if (input_pass.text.Length > 30 || input_pass.text.Length < 3) { LoginInformation.ShowInfo(3); return; }
 
-        string hash_pass;
-        using (MD5 md5Hash = MD5.Create())
-        {
-            hash_pass = GetMd5Hash(md5Hash, input_pass.text);
-        }
+        string hash_pass = MD5Crypto.GetMd5Hash(input_pass.text);
 
-
-
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-        nw.write(version);
-        nw.write(input_login.text);
-        nw.write(hash_pass);
-        nw.SetTypePack(types);
+        Packet nw = new Packet(Channel.Reliable);
+        nw.WriteType(types);
+        nw.WriteShort(version);
+        nw.WriteString(input_login.text);
+        nw.WriteString(hash_pass);
+       
         NetworkManager.Send(nw);
     }
-    static string GetMd5Hash(MD5 md5Hash, string input)
-    {
-
-        // Convert the input string to a byte array and compute the hash.
-        byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-        // Create a new Stringbuilder to collect the bytes
-        // and create a string.
-        StringBuilder sBuilder = new StringBuilder();
-
-        // Loop through each byte of the hashed data 
-        // and format each one as a hexadecimal string.
-        for (int i = 0; i < data.Length; i++)
-        {
-            sBuilder.Append(data[i].ToString("x2"));
-        }
-
-        // Return the hexadecimal string.
-        return sBuilder.ToString();
-    }
+   
 
     public void Exit()
     {

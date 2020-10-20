@@ -7,6 +7,7 @@ using System;
 using UnityEngine.UI;
 using Cells;
 using Items;
+using RUCP.Packets;
 
 public delegate void Update();
 public class Inventory : MonoBehaviour {
@@ -34,11 +35,11 @@ public class Inventory : MonoBehaviour {
         Instance = this;
         armor = GetComponentInChildren<InventoryArmor>();
 
-        RegisteredTypes.RegisterTypes(Types.UpdateInventory, UpdateInventory);
-        RegisteredTypes.RegisterTypes(Types.UpdateItem, UpdateItem);
+        HandlersStorage.RegisterHandler(Types.UpdateInventory, UpdateInventory);
+        HandlersStorage.RegisterHandler(Types.UpdateItem, UpdateItem);
     }
 
-    private void UpdateItem(NetworkWriter nw)
+    private void UpdateItem(Packet nw)
     {
         Item item = GetItemByObjectID(nw.ReadInt());
         if (item != null) item.durability = nw.ReadInt();
@@ -134,7 +135,7 @@ public class Inventory : MonoBehaviour {
         canvasInventory.enabled = false;
     }
 
-    private void UpdateInventory(NetworkWriter nw)//Обновление содержимого ячейки
+    private void UpdateInventory(Packet nw)//Обновление содержимого ячейки
     {
 
         switch (nw.ReadByte())
@@ -166,7 +167,10 @@ public class Inventory : MonoBehaviour {
     private void OnDestroy()
     {
      //   RegisteredTypes.UnregisterTypes(Types.LoadInventory);
-        RegisteredTypes.UnregisterTypes(Types.UpdateInventory);
-        RegisteredTypes.UnregisterTypes(Types.UpdateItem);
+        HandlersStorage.UnregisterHandler(Types.UpdateInventory);
+        HandlersStorage.UnregisterHandler(Types.UpdateItem);
     }
+
+
 }
+

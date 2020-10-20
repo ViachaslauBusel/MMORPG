@@ -1,4 +1,6 @@
 ﻿using RUCP;
+using RUCP.Network;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,11 +25,11 @@ public class Interaction : MonoBehaviour
 
     public void Teleport()
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-        nw.SetTypePack(Types.Skill);
-        nw.write(-1);
-        nw.write(PlayerController.Transform.forward.x);//Направление игрока
-        nw.write(PlayerController.Transform.forward.z);
+        Packet nw = new Packet(Channel.Reliable);
+        nw.WriteType(Types.Skill);
+        nw.WriteInt(-1);
+        nw.WriteFloat(PlayerController.Transform.forward.x);//Направление игрока
+        nw.WriteFloat(PlayerController.Transform.forward.z);
         NetworkManager.Send(nw);
     }
 }

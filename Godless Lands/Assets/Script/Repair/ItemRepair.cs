@@ -1,6 +1,8 @@
 ﻿using Cells;
 using RUCP;
 using RUCP.Handler;
+using RUCP.Network;
+using RUCP.Packets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,11 +22,11 @@ public class ItemRepair : MonoBehaviour
         cursorManager = GameObject.Find("Cursor").GetComponent<CursorManager>();
         cellParent = transform.GetComponentInParent<CellParent>();
         m_EventSystem = EventSystem.current;
-        RegisteredTypes.RegisterTypes(Types.ItemRepair, Repair);
+        HandlersStorage.RegisterHandler(Types.ItemRepair, Repair);
         enabled = false;
     }
 
-    private void Repair(NetworkWriter nw)
+    private void Repair(Packet nw)
     {
         switch (nw.ReadByte())
         {
@@ -80,23 +82,23 @@ public class ItemRepair : MonoBehaviour
     }
     public void Exit()
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Discard);
-        nw.SetTypePack(Types.ItemRepair);
-        nw.write((byte)2);//Закрыть интерфейс заточки
+        Packet nw = new Packet(Channel.Discard);
+        nw.WriteType(Types.ItemRepair);
+        nw.WriteByte((byte)2);//Закрыть интерфейс заточки
         NetworkManager.Send(nw);
     }
 
     public void RepairItem(int object_id)
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Discard);
-        nw.SetTypePack(Types.ItemRepair);
-        nw.write((byte)3);//Закрыть интерфейс заточки
-        nw.write(object_id);
+        Packet nw = new Packet(Channel.Discard);
+        nw.WriteType(Types.ItemRepair);
+        nw.WriteByte((byte)3);//Закрыть интерфейс заточки
+        nw.WriteInt(object_id);
         NetworkManager.Send(nw);
     }
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.ItemRepair);
+        HandlersStorage.UnregisterHandler(Types.ItemRepair);
     }
 }

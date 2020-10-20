@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using RUCP.Packets;
 
 public class Stats : MonoBehaviour {
 
@@ -21,11 +22,11 @@ public class Stats : MonoBehaviour {
 
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.LoadStats, LoadingStats);
-        RegisteredTypes.RegisterTypes(Types.UpdateStats, UpdateStats);
+        HandlersStorage.RegisterHandler(Types.LoadStats, LoadingStats);
+        HandlersStorage.RegisterHandler(Types.UpdateStats, UpdateStats);
     }
 
-    private void UpdateStats(NetworkWriter nw)
+    private void UpdateStats(Packet nw)
     {
         minPattack = nw.ReadInt();
         maxPattack = nw.ReadInt();
@@ -34,7 +35,7 @@ public class Stats : MonoBehaviour {
         Redraw();
     }
 
-    private void LoadingStats(NetworkWriter nw)
+    private void LoadingStats(Packet nw)
     {
         char_name = nw.ReadString();
         minPattack = nw.ReadInt();
@@ -75,7 +76,7 @@ public class Stats : MonoBehaviour {
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.LoadStats);
-        RegisteredTypes.UnregisterTypes(Types.UpdateStats);
+        HandlersStorage.UnregisterHandler(Types.LoadStats);
+        HandlersStorage.UnregisterHandler(Types.UpdateStats);
     }
 }

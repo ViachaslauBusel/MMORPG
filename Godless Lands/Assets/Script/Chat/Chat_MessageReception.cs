@@ -6,6 +6,7 @@ using RUCP;
 using System;
 using UnityEngine.UI;
 using Items;
+using RUCP.Packets;
 
 public class Chat_MessageReception : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class Chat_MessageReception : MonoBehaviour
 
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.ChatMessage, ChatMessage);
+        HandlersStorage.RegisterHandler(Types.ChatMessage, ChatMessage);
     }
 
     private void Start()
@@ -32,7 +33,7 @@ public class Chat_MessageReception : MonoBehaviour
         //messages = new GameObject[max_message];
     }
 
-    private void ChatMessage(NetworkWriter nw)
+    private void ChatMessage(Packet nw)
     {
        
 
@@ -45,7 +46,7 @@ public class Chat_MessageReception : MonoBehaviour
 		chat.ReceiveMessage(_message, character, layer);
     }
 
-    private string ReplaceSpecial(string msg, NetworkWriter nw)
+    private string ReplaceSpecial(string msg, Packet nw)
     {
         if (nw.AvailableBytes < 4) return msg;
         Item _item = itemsList.GetItem(nw.ReadInt());
@@ -55,6 +56,6 @@ public class Chat_MessageReception : MonoBehaviour
     private void OnDestroy()
     {
 
-        RegisteredTypes.UnregisterTypes(Types.ChatMessage);
+        HandlersStorage.UnregisterHandler(Types.ChatMessage);
     }
 }

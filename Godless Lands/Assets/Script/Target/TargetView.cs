@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using RUCP;
 using System;
 using Monsters;
+using RUCP.Packets;
 
 public class TargetView : MonoBehaviour
 {
@@ -19,8 +20,8 @@ public class TargetView : MonoBehaviour
 
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.Target, Target);
-        RegisteredTypes.RegisterTypes(Types.TargetUpdate, TargetUpdate);
+        HandlersStorage.RegisterHandler(Types.Target, Target);
+        HandlersStorage.RegisterHandler(Types.TargetUpdate, TargetUpdate);
     }
 
     
@@ -33,7 +34,7 @@ public class TargetView : MonoBehaviour
         targetView.SetActive(false);
     }
 
-    private void Target(NetworkWriter nw)
+    private void Target(Packet nw)
     {
         if(targetCircle_obj != null)
         {
@@ -65,7 +66,7 @@ public class TargetView : MonoBehaviour
         targetView.SetActive(true);
     }
 
-    private void TargetUpdate(NetworkWriter nw)
+    private void TargetUpdate(Packet nw)
     {
         int layer = nw.ReadInt();
         int id = nw.ReadInt();
@@ -92,7 +93,7 @@ public class TargetView : MonoBehaviour
     private void OnDestroy()
     {
 
-        RegisteredTypes.UnregisterTypes(Types.Target);
-        RegisteredTypes.UnregisterTypes(Types.TargetUpdate);
+        HandlersStorage.UnregisterHandler(Types.Target);
+        HandlersStorage.UnregisterHandler(Types.TargetUpdate);
     }
 }

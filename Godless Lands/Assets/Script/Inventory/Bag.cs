@@ -1,6 +1,7 @@
 ﻿using Cells;
 using Items;
 using RUCP;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class Bag : MonoBehaviour
     public List<ItemCell> cells;
 
 
-    public void UpdateInventory(NetworkWriter nw)//Обновление содержимого ячейки
+    public void UpdateInventory(Packet nw)//Обновление содержимого ячейки
     {
 
         int filling = nw.ReadInt();//Заполнение рюкзака

@@ -1,5 +1,6 @@
 ﻿using RUCP;
 using RUCP.Handler;
+using RUCP.Packets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,10 +16,10 @@ public class ProfessionManager : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
         canvas.enabled = false;
-        RegisteredTypes.RegisterTypes(Types.ProfessionUpdate, ProfessionUpdate);
+        HandlersStorage.RegisterHandler(Types.ProfessionUpdate, ProfessionUpdate);
     }
 
-    private void ProfessionUpdate(NetworkWriter nw)
+    private void ProfessionUpdate(Packet nw)
     {
         ProfessionEnum profession = (ProfessionEnum)nw.ReadInt();
         switch (profession)
@@ -42,6 +43,6 @@ public class ProfessionManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.ProfessionUpdate);
+        HandlersStorage.UnregisterHandler(Types.ProfessionUpdate);
     }
 }

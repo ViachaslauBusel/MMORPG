@@ -1,6 +1,8 @@
 ﻿using Items;
 using RUCP;
 using RUCP.Handler;
+using RUCP.Network;
+using RUCP.Packets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,10 +20,10 @@ public class CharacterArmor : MonoBehaviour
 
     private void Awake()
     {
-        RegisteredTypes.RegisterTypes(Types.CombatState, CombatState);
+        HandlersStorage.RegisterHandler(Types.CombatState, CombatState);
     }
 
-    private void CombatState(NetworkWriter nw)
+    private void CombatState(Packet nw)
     {
 
         if (nw.ReadBool())
@@ -105,9 +107,9 @@ public class CharacterArmor : MonoBehaviour
 
     private void SendState()
     {
-        NetworkWriter nw = new NetworkWriter(Channels.Discard);
-        nw.SetTypePack(Types.CombatState);
-        nw.write(combatState);
+        Packet nw = new Packet(Channel.Discard);
+        nw.WriteType(Types.CombatState);
+        nw.WriteBool(combatState);
         NetworkManager.Send(nw);
     }
 
@@ -124,6 +126,6 @@ public class CharacterArmor : MonoBehaviour
 
     private void OnDestroy()
     {
-        RegisteredTypes.UnregisterTypes(Types.CombatState);
+        HandlersStorage.UnregisterHandler(Types.CombatState);
     }
 }

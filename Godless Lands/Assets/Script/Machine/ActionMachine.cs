@@ -1,4 +1,6 @@
 ﻿using RUCP;
+using RUCP.Network;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,9 +34,9 @@ namespace Machines
         public void Use()
         {
             //smelter.Open();
-            NetworkWriter nw = new NetworkWriter(Channels.Reliable);
-            nw.SetTypePack(Types.MachineUse);
-            nw.write(id);
+            Packet nw = new Packet(Channel.Reliable);
+            nw.WriteType(Types.MachineUse);
+            nw.WriteInt(id);
             NetworkManager.Send(nw);
         }
 

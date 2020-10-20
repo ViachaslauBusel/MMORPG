@@ -2,6 +2,7 @@
 using Items;
 using RUCP;
 using RUCP.Handler;
+using RUCP.Packets;
 using Skills;
 using SkillsRedactor;
 using System;
@@ -25,7 +26,7 @@ namespace SkillsBar
             }
          
     
-            RegisteredTypes.RegisterTypes(Types.updateBarCell, updateBarCell);
+            HandlersStorage.RegisterHandler(Types.updateBarCell, updateBarCell);
            
         }
         private void Start()
@@ -42,7 +43,7 @@ namespace SkillsBar
         }
 
 
-        private void updateBarCell(NetworkWriter nw)
+        private void updateBarCell(Packet nw)
         {
             while(nw.AvailableBytes > 0)
             {
@@ -72,7 +73,7 @@ namespace SkillsBar
 
         private void OnDestroy()
         {
-            RegisteredTypes.UnregisterTypes(Types.updateBarCell);
+            HandlersStorage.UnregisterHandler(Types.updateBarCell);
             Inventory.UnregisterUpdate(UpdateInventory);
         }
     }

@@ -10,7 +10,7 @@ public class Ping : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        ping_txt = NetworkManager.Socket.GetPing().ToString();
+        ping_txt = NetworkManager.Socket.NetworkInfo.Ping.ToString();
     }
 
     void OnGUI()
