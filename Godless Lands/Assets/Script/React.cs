@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Action
+public interface React
 {
     void Use();
     Vector3 position { get; }

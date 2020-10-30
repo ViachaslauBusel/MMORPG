@@ -1,11 +1,11 @@
 ﻿using RUCP.Packets;
 using UnityEngine;
 
-public static class UnityNetworkWriter
+public static class UnityNetworkRW
 {
 
 
-    public static void write(this Packet nw, Vector3 vec)
+    public static void WriteVector3(this Packet nw, Vector3 vec)
     {
         nw.WriteFloat(vec.x);
         nw.WriteFloat(vec.y);

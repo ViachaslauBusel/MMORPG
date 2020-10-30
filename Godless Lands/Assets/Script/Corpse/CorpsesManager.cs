@@ -1,4 +1,5 @@
-﻿using Items;
+﻿using Characters;
+using Items;
 using RUCP;
 using RUCP.Handler;
 using RUCP.Packets;
@@ -76,14 +77,14 @@ public class CorpsesManager : MonoBehaviour, Manager
             if (Vector3.Distance(obj.transform.position, position) > 1.5f)
                 obj.transform.position = position;
         }
-        obj.GetComponent<GhostCharacter>().SetName(char_name);
+        obj.GetComponent<Character>().SetName(char_name);
         InitBody(obj);
         corpses.Add(corpse_id, obj);
 
         obj.transform.SetParent(transform);
         obj.layer = 14;//Cursor take drop
 
-        Destroy(obj.GetComponent<GhostCharacter>());
+        Destroy(obj.GetComponent<Character>());
         Corpse corpse = obj.AddComponent<Corpse>();
         corpse.id = corpse_id;
         corpse.SetEndTime(leftTime);

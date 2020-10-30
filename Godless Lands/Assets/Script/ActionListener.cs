@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ActionListener : MonoBehaviour
 {
-    private static List<Action> actions = new List<Action>();
+    private static List<React> actions = new List<React>();
 
     public Text F;
     private Transform player;
@@ -15,18 +15,18 @@ public class ActionListener : MonoBehaviour
         player = GameObject.Find("Player").transform;
     }
 
-    public static void Add(Action action)
+    public static void Add(React action)
     {
         actions.Add(action);
     }
-    public static void Remove(Action action)
+    public static void Remove(React action)
     {
         actions.Remove(action);
     }
 
     private void Update()
     {
-        foreach (Action action in actions)
+        foreach (React action in actions)
         {
             if (Vector3.Distance(player.position, action.position) < action.distance)
             {

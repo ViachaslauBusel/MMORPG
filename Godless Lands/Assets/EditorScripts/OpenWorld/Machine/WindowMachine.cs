@@ -66,7 +66,7 @@ namespace OpenWorldEditor
             {
                 _editableObject = Selection.activeObject as GameObject;
 
-                if(_editableObject.GetComponent<Action>() == null)
+                if(_editableObject.GetComponent<React>() == null)
                 {
                     _editableObject = null;
                     return;

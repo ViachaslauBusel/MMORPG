@@ -7,6 +7,7 @@ using System;
 using Monsters;
 using MonsterRedactor;
 using RUCP.Packets;
+using Walkers;
 
 namespace Monsters
 {
@@ -22,7 +23,6 @@ namespace Monsters
             HandlersStorage.RegisterHandler(Types.MonsterDelete, MonsterDelete);
             HandlersStorage.RegisterHandler(Types.MonsterAnim, MonsterAnim);
             HandlersStorage.RegisterHandler(Types.MonsterMove, MonsterMove);
-            HandlersStorage.RegisterHandler(Types.MonsterEndMove, MonsterEndMove);
         }
 
         public void AllDestroy()
@@ -33,24 +33,7 @@ namespace Monsters
     
         }
 
-        private void MonsterEndMove(Packet nw)
-        {
-           // print("Monster Endmove");
-            int id = nw.ReadInt();
 
-            if (monsters.ContainsKey(id))
-            {
-                Vector3 pos = nw.ReadVector3();
-                int indicator = nw.ReadByte();
-                //   float rot = nw.ReadFloat();
-                GhostMove ghost = monsters[id].controller();
-                ghost.EndPosition(pos, indicator);
-
-              //  ghost.NextRotation(Quaternion.LookRotation(pos - ghost.transform.position).eulerAngles.y);
-
-
-            }
-        }
 
         private void MonsterMove(Packet nw)
         {
@@ -63,10 +46,10 @@ namespace Monsters
                 int indicator = nw.ReadByte();
                 //   byte moveIndex = nw.ReadByte();
                 //  float rot = nw.ReadFloat();
-                GhostMove ghost = monsters[id].controller();
-                ghost.NextPosition(pos, indicator);
+                MovementController ghost = monsters[id].controller();
+               // ghost.SyncPosition(pos, indicator);
 
-                ghost.NextRotation(Quaternion.LookRotation(pos - ghost.transform.position).eulerAngles.y);
+                ghost.SyncRotation(Quaternion.LookRotation(pos - ghost.transform.position).eulerAngles.y);
 
 
             }
@@ -130,8 +113,8 @@ namespace Monsters
             _monster.ID = id;
             _monster.SetName(monstersList.GetMonster(idSkin).name);
 
-            GhostMove ghost = _monster.controller();
-            ghost.SetStartPosition(postion, indicator, 0);
+            MovementController ghost = _monster.controller();
+        //    ghost.SetStartPosition(postion, indicator, 0);
 
             monsters.Add(_monster.ID, _monster);
         }
@@ -149,7 +132,7 @@ namespace Monsters
             HandlersStorage.UnregisterHandler(Types.MonsterDelete);
             HandlersStorage.UnregisterHandler(Types.MonsterAnim);
             HandlersStorage.UnregisterHandler(Types.MonsterMove);
-            HandlersStorage.UnregisterHandler(Types.MonsterEndMove);
+
         }
 
 

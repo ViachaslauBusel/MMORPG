@@ -1,29 +1,31 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Walkers;
 
-namespace NPCs
+namespace Monsters
 {
-    public class NPC : MonoBehaviour, TargetObject
+    public class Monster : MonoBehaviour, TargetObject
     {
 
         public int ID;
 
         private Animator animator;
         private bool alive = true;
-        private GhostMove ghostMove;
+        private MovementController ghostMove;
 
         private Text name_txt;
 
 
-        public void StartNPC()
+        public void StartMonster()
         {
             animator = GetComponent<Animator>();
-            ghostMove = GetComponent<GhostMove>();
+            ghostMove = GetComponent<MovementController>();
         }
 
-        public GhostMove controller()
+        public MovementController controller()
         {
             return ghostMove;
         }
@@ -79,7 +81,7 @@ namespace NPCs
                 animator.SetTrigger("dead");
             }
             else if (anim == 2) animator.SetTrigger("hit");
-            else if (anim == 3) animator.SetTrigger("idle");
+            else if(anim == 3) animator.SetTrigger("idle");
 
         }
 
@@ -97,7 +99,5 @@ namespace NPCs
         {
             return ID;
         }
-
-
     }
 }

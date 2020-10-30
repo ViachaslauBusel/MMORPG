@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostResource : MonoBehaviour, Action
+public class GhostResource : MonoBehaviour, React
 {
     public int ID;
     public GameObject lod;

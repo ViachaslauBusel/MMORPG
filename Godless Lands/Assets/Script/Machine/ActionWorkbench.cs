@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionWorkbench : MonoBehaviour, Action
+public class ActionWorkbench : MonoBehaviour, React
 {
     private Workbench workbench;
     private int ID;

@@ -9,6 +9,9 @@ using RUCP.Packets;
 
 public class Stats : MonoBehaviour {
 
+    public static Stats Instance { get; private set; }
+    public event Action Update; 
+
     public Text left_txt;
     private Canvas stats;
     private UISort uISort;
@@ -19,9 +22,11 @@ public class Stats : MonoBehaviour {
     public int maxPattack;
     public int physical_defense;
     private float attack_speed; 
+    public float MoveSpeed { get; private set; }
 
     private void Awake()
     {
+        Instance = this;
         HandlersStorage.RegisterHandler(Types.LoadStats, LoadingStats);
         HandlersStorage.RegisterHandler(Types.UpdateStats, UpdateStats);
     }
@@ -32,16 +37,21 @@ public class Stats : MonoBehaviour {
         maxPattack = nw.ReadInt();
         physical_defense = nw.ReadInt();
         attack_speed = nw.ReadFloat();
+        MoveSpeed = nw.ReadFloat();
         Redraw();
+        Update?.Invoke();
     }
 
     private void LoadingStats(Packet nw)
     {
         char_name = nw.ReadString();
+        HPView.Instance.SetName(char_name);
+
         minPattack = nw.ReadInt();
         maxPattack = nw.ReadInt();
         physical_defense = nw.ReadInt();
         attack_speed = nw.ReadFloat();
+        MoveSpeed = nw.ReadFloat();
         Redraw();
     }
 

@@ -7,6 +7,7 @@ using RUCP;
 using System;
 using Monsters;
 using RUCP.Packets;
+using Characters;
 
 public class TargetView : MonoBehaviour
 {

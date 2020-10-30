@@ -22,6 +22,7 @@ namespace OpenWorld
         private GameObject[,] terrainMap;
         private Vector4 border;
         private Material waterMaterial;
+        public bool Ready { get; private set; } = false;
 
         private void Awake()
         {
@@ -35,11 +36,15 @@ namespace OpenWorld
             _detailDensity = PlayerPrefs.GetFloat("DetailDensity", 1.0f);
 
 
-            enabled = false;
+           
            
         }
 
-
+        private void Start()
+        {
+            Ready = true;
+            enabled = false;
+        }
         public float DetailDistance
         {
             set
@@ -162,6 +167,7 @@ namespace OpenWorld
 
         public void LoadMap(Vector3 vector)
         {
+            print("Load map in " + vector);
             trackingObj.position = vector;
             LoadMap();
         }

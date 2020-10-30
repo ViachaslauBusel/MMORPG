@@ -22,7 +22,7 @@ namespace OpenWorldEditor
             rotation = gameObject.transform.rotation.eulerAngles;
             scale = gameObject.transform.localScale;
             this.prefab = prefab;
-            Action machine = gameObject.GetComponent<Action>();
+            React machine = gameObject.GetComponent<React>();
              machineUse = machine.GetMachine();
         }
     }

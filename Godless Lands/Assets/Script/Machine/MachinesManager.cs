@@ -82,7 +82,7 @@ public class MachinesManager : MonoBehaviour, Manager
         GameObject _obj = Instantiate(prefab, postion, Quaternion.Euler(rotation));
         _obj.transform.SetParent(transform);
 
-        Action action = _obj.GetComponent<Action>();
+        React action = _obj.GetComponent<React>();
         action.SetID(id);
         machines.Add(id, _obj);
     }

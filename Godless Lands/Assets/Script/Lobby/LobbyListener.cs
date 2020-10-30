@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RUCP.Packets;
 using RUCP.Network;
+using Loader;
 
 namespace Lobby
 {

@@ -9,6 +9,7 @@ using RUCP.Packets;
 
 public class HPView : MonoBehaviour {
 
+    public static HPView Instance { get; private set; }
     public Text name_txt;
     public Image hp_bar;
     public Text hp_txt;
@@ -19,36 +20,40 @@ public class HPView : MonoBehaviour {
 
     private void Awake()
     {
+        Instance = this;
         HandlersStorage.RegisterHandler(Types.HPViewUpdate, HPViewUpdate);//byte 0-load name hp mp stamina/ 1 - hp mp stamina / 2 - hp/ 3 - mp/ 4 - stamina
     }
 
     private void HPViewUpdate(Packet nw)
     {
-        int layer = nw.ReadByte();
-        switch (layer)
-        {
-            case 0://load
-                SetName(nw.ReadString());
-                UpdateHP(nw);
-                UpdateMP(nw);
-                UpdateStamina(nw);
-                break;
-            case 1://update
-                UpdateHP(nw);
-                UpdateMP(nw);
-                UpdateStamina(nw);
-                break;
-            case 2://updateHP  
-                UpdateHP(nw);
-                break;
-            case 3:
-                UpdateMP(nw);
-                break;
-            case 4:
-                UpdateStamina(nw);
-                break;
-        }
-        
+        UpdateHP(nw);
+        UpdateMP(nw);
+        UpdateStamina(nw);
+        /*   int layer = nw.ReadByte();
+           switch (layer)
+           {
+               case 0://load
+                   SetName(nw.ReadString());
+                   UpdateHP(nw);
+                   UpdateMP(nw);
+                   UpdateStamina(nw);
+                   break;
+               case 1://update
+                   UpdateHP(nw);
+                   UpdateMP(nw);
+                   UpdateStamina(nw);
+                   break;
+               case 2://updateHP  
+                   UpdateHP(nw);
+                   break;
+               case 3:
+                   UpdateMP(nw);
+                   break;
+               case 4:
+                   UpdateStamina(nw);
+                   break;
+           }*/
+
     }
 
     public void SetName(string _name)
@@ -56,21 +61,21 @@ public class HPView : MonoBehaviour {
         name_txt.text = _name;
     }
 
-    public void UpdateHP(Packet nw)
+    private void UpdateHP(Packet nw)
     {
         int hp = nw.ReadInt();
         int max_hp = nw.ReadInt();
         hp_bar.fillAmount = hp / (float)max_hp;
         hp_txt.text = hp + "/" + max_hp;
     }
-    public void UpdateMP(Packet nw)
+    private void UpdateMP(Packet nw)
     {
         int mp = nw.ReadInt();
         int maxMp = nw.ReadInt();
         mp_bar.fillAmount = mp / (float)maxMp;
         mp_txt.text = mp + "/" + maxMp;
     }
-    public void UpdateStamina(Packet nw)
+    private void UpdateStamina(Packet nw)
     {
         int stamina = nw.ReadInt();
         int maxStamina = nw.ReadInt();

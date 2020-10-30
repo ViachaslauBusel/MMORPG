@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Machines
 {
-    public class ActionMachine : MonoBehaviour, Action
+    public class ActionMachine : MonoBehaviour, React
     {
         // private Smelter smelter;
         public MachineUse machineUse;

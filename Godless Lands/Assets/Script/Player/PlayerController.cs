@@ -7,10 +7,12 @@ using System;
 using OpenWorld;
 using RUCP.Packets;
 using RUCP.Network;
+using Loader;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
-    public float speed = 5.0f;
+
     public GameObject prefGameLoader;
 
     private static CharacterController character;
@@ -28,25 +30,29 @@ public class PlayerController : MonoBehaviour {
     private void Awake()
     {
         enabled = false;
-      //  
+        //  
         HandlersStorage.RegisterHandler(Types.TeleportToPoint, TeleportToPoint);
+        animationSkill = GetComponent<AnimationSkill>();
+        character = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+
+        Stats.Instance.Update += UpdateStats;
+    }
+
+    private void UpdateStats()
+    {
+        animator.SetFloat("speedRun", Stats.Instance.MoveSpeed / 3.5f);
     }
 
     private void TeleportToPoint(Packet nw)
     {
-        
+
         transform.position = nw.ReadVector3();
+        lastSentPosition = transform.position;
+        lastSentRotation = transform.rotation.eulerAngles.y;
         if (gameLoader != null) Destroy(gameLoader.gameObject);
         gameLoader = Instantiate(prefGameLoader).GetComponent<GameLoader>();
         gameLoader.LoadPoint();
-    }
-
-    void Start () {
-        animationSkill = GetComponent<AnimationSkill>();
-        character = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
-        animator.SetFloat("speedRun", speed / 3.5f);
-        
     }
 
     public static AnimationSkill PlayerAnim()
@@ -63,28 +69,19 @@ public class PlayerController : MonoBehaviour {
         get { return character.transform; }
     }
 
-   /* private void MyCharacter(Packet nw)
+
+
+    void Update()
     {
-
-        int login_id = nw.ReadInt();
-
-        transform.position = nw.ReadVec3();
-
-        enabled = true;
-    }*/
-
-
-
-    void Update () {
         if (character.isGrounded)
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            if ((moveDirection.x + moveDirection.z) > 1.0f)
+            if (new Vector2(moveDirection.x, moveDirection.z).magnitude > 1.0f)
             {
                 moveDirection.Normalize();
             }
             moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= speed;
+            moveDirection *= Stats.Instance.MoveSpeed;
         }
         // Apply gravity
         moveDirection.y -= gravity * Time.deltaTime;
@@ -92,81 +89,74 @@ public class PlayerController : MonoBehaviour {
         character.Move(moveDirection * Time.deltaTime);
 
         Animation();
-	}
+    }
 
     private void FixedUpdate()
     {
         if (cicle-- <= 0)
         {
             cicle = send_cicle;
-            SendMove();
+            SyncPosition();
         }
 
-       
+
     }
 
     private void Animation()
     {
         if (character.isGrounded)
         {
-            
+
             animator.SetFloat("vertical", Input.GetAxis("Vertical"));
             animator.SetFloat("horizontal", Input.GetAxis("Horizontal"));
 
         }
     }
 
-    private Vector3 lastSendingPosition = Vector3.zero;
-    private float lastSendRotation = 0.0f;
-    private byte indicator = 0;
+    private Vector3 lastSentPosition = Vector3.zero;
+    private float lastSentRotation = 0.0f;
     private bool endMove = false;
-    private byte moveIndex = 0;
-    private void SendMove()
+
+    private void SyncPosition()
     {
-        if (Vector3.Distance(lastSendingPosition, transform.position) > 0.1f)
+        if (Vector3.Distance(lastSentPosition, transform.position) > 0.1f)
         {
-            lastSendingPosition = transform.position;
-            lastSendRotation = transform.rotation.eulerAngles.y;
-            Packet nw = new Packet(Channel.Unreliable);
-            nw.WriteType(Types.Move);
-            nw.write(lastSendingPosition);
-            nw.WriteFloat(lastSendRotation);
-            nw.WriteByte(indicator);
-            nw.WriteInt(moveIndex++);
-            NetworkManager.Send(nw);
             endMove = true;
+            SendPosition();
             return;
         }
+
         if (endMove)
+        { endMove = false; SendPosition(); }
+
+        if (Mathf.Abs(Mathf.DeltaAngle(lastSentRotation, transform.rotation.eulerAngles.y)) > 0.5f)
         {
-            lastSendingPosition = transform.position;
-            lastSendRotation = transform.rotation.eulerAngles.y;
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.EndMove);
-            nw.write(lastSendingPosition);
-            nw.WriteFloat(lastSendRotation);
-            nw.WriteInt(++indicator);
-            NetworkManager.Send(nw);
-            endMove = false;
-            return;
-        }
-        if (Mathf.Abs(Mathf.DeltaAngle(lastSendRotation, transform.rotation.eulerAngles.y)) > 0.5f){
 
-            lastSendRotation = transform.rotation.eulerAngles.y;
-            Packet nw = new Packet(Channel.Unreliable);
+            lastSentRotation = transform.rotation.eulerAngles.y;
+            Packet nw = new Packet(Channel.Discard);
             nw.WriteType(Types.Rotation);
-            nw.WriteFloat(lastSendRotation);
+            nw.WriteFloat(lastSentRotation);
 
             NetworkManager.Send(nw);
         }
-      
+
     }
 
+    private void SendPosition()
+    {
+        lastSentPosition = transform.position;
+        lastSentRotation = transform.rotation.eulerAngles.y;
+        Packet nw = new Packet(Channel.Discard);
+        nw.WriteType(Types.Move);
+        nw.WriteVector3(lastSentPosition);
+        nw.WriteFloat(lastSentRotation);
+        nw.WriteBool(!endMove);
+        NetworkManager.Send(nw);
+    }
 
     private void OnDestroy()
     {
-
-   //     HandlersStorage.UnregisterHandler(Types.MapEntrance);
         HandlersStorage.UnregisterHandler(Types.TeleportToPoint);
+        Stats.Instance.Update -= UpdateStats;
     }
-    }
+}

@@ -49,7 +49,7 @@ public class TestRay : MonoBehaviour
                 timer = timeSend;
                 Packet nw = new Packet(Channel.Reliable);
                 nw.WriteType(Types.TestRay);
-                nw.write(transform.position + (Vector3.up * 1000));
+                nw.WriteVector3(transform.position + (Vector3.up * 1000));
               //  nw.write(transform.position + (Vector3.down * 300));
 
                 NetworkManager.Send(nw);
@@ -74,7 +74,7 @@ public class TestRay : MonoBehaviour
                 Vector3 vector = new Vector3(startX + x, transform.position.y + 10, startZ + y);
                 Packet nw = new Packet(Channel.Reliable);
                 nw.WriteType(Types.TestRay);
-                nw.write(vector);
+                nw.WriteVector3(vector);
                 //  nw.write(transform.position + (Vector3.down * 300));
 
                 NetworkManager.Send(nw);
