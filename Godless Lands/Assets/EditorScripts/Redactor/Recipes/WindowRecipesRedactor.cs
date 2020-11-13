@@ -10,7 +10,7 @@ namespace Recipes
     public class WindowRecipesRedactor : Window
     {
         private RecipeEditor selectEditor;
-        private ItemsList items;
+        private ItemsContainer items;
 
         [MenuItem("Window/Recipes")]
         public static void ShowWindow()
@@ -26,7 +26,7 @@ namespace Recipes
             objectList = AssetDatabase.LoadAssetAtPath<RecipesList>(path);
 
             path = PlayerPrefs.GetString("RedactorItemsList");
-            items = AssetDatabase.LoadAssetAtPath<ItemsList>(path);
+            items = AssetDatabase.LoadAssetAtPath<ItemsContainer>(path);
         }
         protected override void CreateObject()
         {
@@ -54,7 +54,7 @@ namespace Recipes
         protected override void EditableObject()
         {
             objectList = EditorGUILayout.ObjectField(objectList, typeof(RecipesList), false) as ObjectList;
-            items = EditorGUILayout.ObjectField(items, typeof(ItemsList), false) as ItemsList;
+            items = EditorGUILayout.ObjectField(items, typeof(ItemsContainer), false) as ItemsContainer;
         }
 
         protected override object GetSelectObject()

@@ -18,44 +18,30 @@ namespace Cells
         {
             if (cell == null) return;
             if (cell.GetType() != typeof(ItemCell)) return;
-            StartCoroutine(IEConfirmDelet(cell as ItemCell));
+            ItemCell itemCell = cell as ItemCell;
+
+            SelectQuantity.Instance.Subscribe(
+            "Сколько штук переместить?",
+            (count) =>
+            {
+                             Confirm.Instance.Subscribe(
+                             "Вы действительно хотите удалить предмет?",
+                             () =>
+                             {
+                             Packet nw = new Packet(Channel.Reliable);
+                             nw.WriteType(Types.DeletItem);
+                             nw.WriteInt(itemCell.GetObjectID());
+                             nw.WriteInt(itemCell.GetItem().id);
+                             nw.WriteInt(count);
+                             NetworkManager.Send(nw);
+                             },
+                             () => { } );
+            },
+            () => { }
+            );
+
+            
         }
 
-        public IEnumerator IEConfirmDelet(ItemCell itemCell)
-        {
-            if (itemCell.IsEmpty()) yield break;
-            Confirm confirm = Confirm.instant;
-            confirm.SetTitle("Вы действительно хотите удалить предмет?");
-            int answer = confirm.IsConfirm();
-            while (answer < 0)
-            {
-                yield return 0;
-                answer = confirm.IsConfirm();
-            }
-            if (answer == 0)//No
-            {
-                yield break;
-            }
-
-
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.DeletItem);
-       //     print("Del index: " + index);
-            nw.WriteInt(itemCell.GetObjectID());
-            nw.WriteInt(itemCell.GetItem().id);
-            if (itemCell.GetItem().stack)
-            {
-                int count = -1;
-                while (count < 0)
-                {
-                    yield return null;
-                    count = SelectCount.Count;
-                }
-                if (count < 1) yield break;
-                nw.WriteInt(count);
-            }
-
-            NetworkManager.Send(nw);
-        }
     }
 }

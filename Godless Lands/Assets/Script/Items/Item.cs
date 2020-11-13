@@ -36,6 +36,7 @@ namespace Items
 
         public Item(Item item)
         {
+            if(item == null) { id = 0; return; }
             id = item.id;
             nameItem = item.nameItem;
             texture = item.texture;

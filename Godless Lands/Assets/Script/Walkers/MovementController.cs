@@ -1,4 +1,7 @@
 ﻿using RUCP;
+using RUCP.Packets;
+using RUCP.Tools;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,15 +25,17 @@ namespace Walkers
         private Vector3 step = Vector3.zero;
         private bool target_point = false;//Точка назначения, если достигнута true
         private bool endMove = true;//Движение в точку где остановился игрок
+        private short syncNumber;
 
 
-        public void SetStartPosition(Vector3 position)
+        public void Initialize(Packet packet)
         {
             animator = GetComponent<Animator>();
             character = GetComponent<CharacterController>();
 
-            transform.position = destination = position;
-
+            syncNumber = packet.ReadShort();
+            transform.position = destination = packet.ReadVector3();
+            transform.rotation = Quaternion.Euler(0.0f, packet.ReadFloat(), 0.0f);
 
 
             animator.SetFloat("speedRun", 1.0f);
@@ -57,16 +62,28 @@ namespace Walkers
          }*/
         //  private List<Vector3> trackServer = new List<Vector3>();
         //  private List<Vector3> trackMove = new List<Vector3>();
-        public void SyncPosition(Vector3 destination, float speed, bool endMove)
+        /// <summary>
+        /// Проверка пришел ли этот пакет следующим
+        /// </summary>
+        internal bool Sync(short syncNumber)
+        {
+           if(NumberUtils.ShortCompare(syncNumber, this.syncNumber) > 0)
+            {
+                this.syncNumber = syncNumber;
+                return true;
+            }
+            return false;
+        }
+        public void SyncPosition(Vector3 destination, bool endMove)
         {
 
             direction = (destination - transform.position).normalized;
-            this.speed = speed;
+            this.speed = (destination - transform.position).magnitude * 2.4f;
             this.destination = destination;
             target_point = true;
             this.endMove = endMove;
 
-            animator.SetFloat("speedRun", speed / 2.0f);
+            animator.SetFloat("speedRun", speed / 3.5f);
         }
 
         public void SyncRotation(float _next)
@@ -85,6 +102,8 @@ namespace Walkers
             animator.SetFloat("horizontal", horizontal);
             // print("Speed: " + speed + " vertical: " + vertical + " horizontal: " + horizontal);
         }
+
+       
 
         private void Update()
         {

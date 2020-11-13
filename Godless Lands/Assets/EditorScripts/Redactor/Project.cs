@@ -9,7 +9,7 @@ public class Project
 {
    // private static ItemsList _itemsList;
 
-    public static ItemsList ItemsList
+    public static ItemsContainer ItemsList
     {
         get {
          //   if(_itemsList == null)
@@ -17,7 +17,7 @@ public class Project
                 string path = PlayerPrefs.GetString("settingItemsList");
             //   _itemsList =
             //   }
-            return AssetDatabase.LoadAssetAtPath<ItemsList>(path);
+            return AssetDatabase.LoadAssetAtPath<ItemsContainer>(path);
         }
         set
         {

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Cells {
     public class TestCell : MonoBehaviour
     {
-        public ItemsList itemsList;
+        public ItemsContainer itemsList;
         public ItemCell itemCell_0;
         public ItemCell itemCell_1;
         public TradeCell itemCell_2;

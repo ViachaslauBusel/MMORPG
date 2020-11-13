@@ -37,7 +37,7 @@ namespace OpenWorldEditor
         public static ResourceList ResourcesList { get { return _resourceList.Save as ResourceList; } }
         public static WorldResourcesList WorldResourcesList { get { return _worldResourcesList.Save as WorldResourcesList; } }
         public static MachineList MachineList { get { return _machineList.Save as MachineList; } }
-        public static ItemsList ItemsList { get { return _itemsList.Save as ItemsList; } }
+        public static ItemsContainer ItemsList { get { return _itemsList.Save as ItemsContainer; } }
 
         private static Vector2 vSbarValue = Vector2.zero;
 
@@ -84,7 +84,7 @@ namespace OpenWorldEditor
 
             GUILayout.Space(15.0f);
             GUILayout.Label("Список предметов"); GUILayout.Space(5.0f);
-            _itemsList.DontSave = EditorGUILayout.ObjectField(_itemsList.DontSave, typeof(ItemsList), false) as ItemsList;
+            _itemsList.DontSave = EditorGUILayout.ObjectField(_itemsList.DontSave, typeof(ItemsContainer), false) as ItemsContainer;
 
             GUILayout.Space(20.0f);
             GUI.enabled = dontSaveAreaVisible != _areaViseble || editMap.IsDontSave() || _monstersList.IsDontSave() || _worldMonstrList.IsDontSave()

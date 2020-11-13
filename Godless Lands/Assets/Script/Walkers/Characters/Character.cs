@@ -12,9 +12,9 @@ namespace Characters
     {
 
         private Text text_name;
-        public int ID;
+        public int ID { get; private set; }
 
-        private Armor armor;
+        public CharacterArmor Armor { get; private set; }
 
         private AnimationSkill animationSkill;
 
@@ -22,45 +22,23 @@ namespace Characters
 
         public MovementController Controller { get; private set; }
 
-        public void Initialize()
+        public void Initialize(string charName, int charID)
         {
+            SetName(charName);
+
+            ID = charID;
+
             animationSkill = GetComponent<AnimationSkill>();
-
             Controller = GetComponent<MovementController>();
-
-        }
-
-        public void SetCombatState(bool state)
-        {
-            armor.SetCombatstate(state);
-        }
-        public void SetArmor(Packet nw)
-        {
-            armor = GetComponent<Armor>();
-            armor.Init();
-            while (nw.AvailableBytes >= 8)
-            {
-                UpdateArmor(nw);
-            }
-        }
-        public void UpdateArmor(Packet nw)
-        {
-            ItemType type = (ItemType)nw.ReadInt();
-            ArmorPart part = (ArmorPart)nw.ReadInt();
-            int id_item = nw.ReadInt();
-            Item _item = Inventory.CreateItem(id_item);
-            armor.PutItem(type, _item);
+            Armor = GetComponent<CharacterArmor>();
         }
 
 
-        public void SetName(string char_name)
+        public void SetName(string charName)
         {
             text_name = GetComponentInChildren<Text>();
-            text_name.text = char_name;
+            text_name.text = charName;
         }
-
-     
-
 
         public void OnTarget()
         {

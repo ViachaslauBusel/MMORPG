@@ -55,11 +55,11 @@ public class Trade : MonoBehaviour
 
     private void PutMyOfferItem(int id)
     {
-        myOfferItems[myIndex++].PutItem(inventory.itemsList.CreateItem(id));
+        myOfferItems[myIndex++].PutItem(inventory.itemsList.GetDuplicateItem(id));
     }
     private void PutOtherOfferItem(int id, int count)
     {
-        otherOfferItem[otherIndex++].PutItem(inventory.itemsList.CreateItem(id));
+        otherOfferItem[otherIndex++].PutItem(inventory.itemsList.GetDuplicateItem(id));
     }
 
     private void ClearMyTradeCell()//Очистить все ячейки этого игрока

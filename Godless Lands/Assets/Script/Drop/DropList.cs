@@ -10,7 +10,7 @@ using RUCP.Network;
 
 public class DropList : MonoBehaviour {
 
-    public ItemsList itemsList;
+    public ItemsContainer itemsList;
     public GameObject cellItemDrop;
     public Transform contentParent;
 

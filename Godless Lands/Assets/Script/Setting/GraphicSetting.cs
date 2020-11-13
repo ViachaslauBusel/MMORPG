@@ -103,23 +103,16 @@ public class GraphicSetting : MonoBehaviour
         {
             postProfiles.Profile = dropdownPostProfile.value;
         }
-        if (restart) StartCoroutine(IERestart());
-    }
 
-    private IEnumerator IERestart()
-    {
-        Confirm confirm = Confirm.instant;
-        confirm.SetTitle("Чтобы изменения вступили в силу, нужно перезагрузить игру");
-        int answer = confirm.IsConfirm();
-        while (answer < 0)
-        {
-            yield return 0;
-            answer = confirm.IsConfirm();
-        }
-        if (answer == 1)//Yes
-        {
-            GameLoader gameLoader = Instantiate(prefGameLoader).GetComponent<GameLoader>();
-            gameLoader.LoadPoint();
-        }
+        if (restart)
+            Confirm.Instance.Subscribe(
+              "Чтобы изменения вступили в силу, нужно перезагрузить игру",
+              () =>
+              {
+                  GameLoader gameLoader = Instantiate(prefGameLoader).GetComponent<GameLoader>();
+                  gameLoader.LoadPoint();
+              },
+              () => { }
+              );
     }
 }

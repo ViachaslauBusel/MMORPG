@@ -13,7 +13,7 @@ namespace Characters
     public class CharactersManager : MonoBehaviour, Manager
     {
 
-        public GameObject shipObject;
+        public GameObject characterPrefab;
         private static Dictionary<int, Character> characters; //Ид персонажа, персонаж
 
         private void Awake()
@@ -70,7 +70,7 @@ namespace Characters
 
             if (characters.ContainsKey(id_login))
             {
-                characters[id_login].SetCombatState(nw.ReadBool());
+                characters[id_login].Armor.SetCombatstate(nw.ReadBool());
             }
         }
 
@@ -81,18 +81,20 @@ namespace Characters
 
             if (characters.ContainsKey(charID))
             {
+                short syncNumber = nw.ReadShort();
+                if (!characters[charID].Controller.Sync(syncNumber)) return;
+
                 Vector3 position = nw.ReadVector3();
                 float rotation = nw.ReadFloat();
-                float speed = nw.ReadFloat();
                 bool endMove = nw.ReadBool();
 
-                characters[charID].Controller.SyncPosition(position, speed, endMove);
+                characters[charID].Controller.SyncPosition(position, endMove);
 
                 characters[charID].Controller.SyncRotation(rotation);
             }
             else
             {
-                print("delet character not found: " + charID);
+                print("Move character not found: " + charID);
             }
         }
         private void CharacterRotation(Packet nw)
@@ -107,7 +109,7 @@ namespace Characters
             }
             else
             {
-                print("delet character not found: " + charID);
+                print("Rotation character not found: " + charID);
             }
         }
 
@@ -117,7 +119,7 @@ namespace Characters
 
             if (characters.ContainsKey(id_login))
             {
-                characters[id_login].UpdateArmor(nw);
+                characters[id_login].Armor.UpdateArmor(nw);
             }
         }
 
@@ -161,46 +163,47 @@ namespace Characters
             else return null;
         }
 
-        private void CharacterCreate(Packet nw)
+        private void CharacterCreate(Packet packet)
         {
-            int charID = nw.ReadInt();
-            string char_name = nw.ReadString();
+            int charID = packet.ReadInt();
+            string char_name = packet.ReadString();
 
-            print("Character create: " + char_name);
+            print("Character create: " + char_name+ ": "+charID);
 
             if (!characters.ContainsKey(charID))
             {
 
-                GameObject obj = Instantiate(shipObject, Vector3.zero, Quaternion.identity);
+                GameObject obj = Instantiate(characterPrefab, Vector3.zero, Quaternion.identity);
                 obj.transform.SetParent(transform);
-                Character charOBJ = obj.GetComponent<Character>();
-                charOBJ.Initialize();
-                charOBJ.ID = charID;
-                charOBJ.SetName(char_name);
-                charOBJ.Controller.SetStartPosition(nw.ReadVector3());
-                charOBJ.Controller.SyncRotation(nw.ReadFloat());
-                charOBJ.SetArmor(nw);
+                Character charComponent = obj.GetComponent<Character>();
 
-                charOBJ.SetCombatState(nw.ReadBool());
+                charComponent.Initialize(char_name, charID);
+       
 
-                characters.Add(charID, charOBJ);
+                charComponent.Controller.Initialize(packet);
+
+                charComponent.Armor.Initialize(packet);
+
+                charComponent.Armor.SetCombatstate(packet.ReadBool());
+
+                characters.Add(charID, charComponent);
             }
             else
             {
-                print(char_name + " персонаж уже был загружен");
+                print(char_name + ": " + charID + " персонаж уже был загружен");
             }
         }
 
         private void CharacterDelete(Packet nw)
         {
-            int login_id = nw.ReadInt();
-            print("Delet: " + login_id);
-            if (characters.ContainsKey(login_id))
+            int charID = nw.ReadInt();
+            print("Delet: " + charID);
+            if (characters.ContainsKey(charID))
             {
-                GameObject.Destroy(characters[login_id].gameObject);
-                characters.Remove(login_id);
+                GameObject.Destroy(characters[charID].gameObject);
+                characters.Remove(charID);
             }
-            else { print("Error not found character"); }
+            else { print("Error not found character " + charID); }
         }
 
 

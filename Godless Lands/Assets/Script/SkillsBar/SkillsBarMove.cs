@@ -66,7 +66,6 @@ namespace SkillsBar
 
         public override void OnPointerUp(PointerEventData eventData)//Сохронение положение панели
         {
-            print("pos: " + window.position);
             PlayerPrefs.SetFloat("SkillsBarX", window.position.x);
             PlayerPrefs.SetFloat("SkillsBarY", window.position.y);
         }

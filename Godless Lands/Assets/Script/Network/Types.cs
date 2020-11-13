@@ -44,7 +44,7 @@ public class Types {
     public const short UpdateStats = 38;
     public const short Rotation = 39; //C->S Вращение персонажа на карте
     public const short CharacterRotation = 40; //S->C Вращение других игроков
-    public const short EndMove = 41; // Free
+    public const short MoveCorrection = 41; //// S->C Корекция позиции игрока на стороне клиента
     public const short CharacterEndMove = 42; //S->C Точка в которой остановились другие игроки
     public const short CombatState = 43; //Переключение боевого состояния 
     public const short CharacterCombatState = 44;

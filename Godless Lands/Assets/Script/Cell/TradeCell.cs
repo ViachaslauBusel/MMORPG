@@ -17,40 +17,22 @@ namespace Cells
         public override void Use()
          {
             if (IsEmpty()) return;
-            StartCoroutine(IEOffer());
-         }
-
-        private IEnumerator IEOffer()
-        {
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.ItemTrade);
-            nw.WriteInt(item.objectID);
-            int input_count = -1;
-            if (item.stack)
-            {
-                while (input_count < 0)
+            //Открыть окно для ввода количества предметов
+            SelectQuantity.Instance.Subscribe(
+                "Сколько штук переместить?",
+                (count) =>
                 {
-                    yield return null;
-                    input_count = SelectCount.Count;//Открыть окно для ввода количества предметов
-                }
-                if (input_count < 1) yield break;
-                nw.WriteInt(input_count);
-            }
-            NetworkManager.Send(nw);
-
-            /*if (item.stack)
-            {
-                item.count -= input_count;
-                if (item.count < 1) PutItem(null, 0);
-                else PutItem(item, item.count);
-            }
-            else
-            {
-                PutItem(null, 0);
-            }*/ 
-            //TODO sync trade
+                    Packet nw = new Packet(Channel.Reliable);
+                    nw.WriteType(Types.ItemTrade);
+                    nw.WriteInt(item.objectID);
+                    nw.WriteInt(count);
+                    NetworkManager.Send(nw);
+                },
+                () => { }
+                );
         }
 
+        
         public void PutItemCell(ItemCell itemCell)
         {
             index = itemCell.GetIndex();

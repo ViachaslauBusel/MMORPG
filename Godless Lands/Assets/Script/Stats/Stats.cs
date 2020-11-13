@@ -21,8 +21,9 @@ public class Stats : MonoBehaviour {
     private int minPattack;
     public int maxPattack;
     public int physical_defense;
-    private float attack_speed; 
-    public float MoveSpeed { get; private set; }
+    private float attack_speed;
+    [SerializeField] float moveSpeed = 0;
+    public float MoveSpeed { get { return moveSpeed; } }
 
     private void Awake()
     {
@@ -37,7 +38,7 @@ public class Stats : MonoBehaviour {
         maxPattack = nw.ReadInt();
         physical_defense = nw.ReadInt();
         attack_speed = nw.ReadFloat();
-        MoveSpeed = nw.ReadFloat();
+        moveSpeed = nw.ReadFloat();
         Redraw();
         Update?.Invoke();
     }
@@ -51,7 +52,7 @@ public class Stats : MonoBehaviour {
         maxPattack = nw.ReadInt();
         physical_defense = nw.ReadInt();
         attack_speed = nw.ReadFloat();
-        MoveSpeed = nw.ReadFloat();
+        moveSpeed = nw.ReadFloat();
         Redraw();
     }
 
@@ -64,7 +65,8 @@ public class Stats : MonoBehaviour {
 
         left_txt.text += "Физ. Защита - " + physical_defense + '\n'; //p.def.
 
-        left_txt.text += "Скор. Атаки - " + attack_speed.ToString("0.00") + '\n';  //attack speed
+        left_txt.text += "Скор. Атаки - " + attack_speed.ToString("00.00") + '\n';  //attack speed
+        left_txt.text += "Скорость - " + attack_speed.ToString("00.00") + '\n';
     }
 
     private void Start()

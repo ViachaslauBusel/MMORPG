@@ -18,7 +18,6 @@ public class ArmorListener : MonoBehaviour {
     {
         inventoryArmor = GameObject.Find("Inventory").GetComponentInChildren<InventoryArmor>();
         armor = GetComponent<Armor>();
-        armor.Init();
         HandlersStorage.RegisterHandler(Types.CombatState, CombatState);
         HandlersStorage.RegisterHandler(Types.UpdateArmor, UpdateArmor);
       //  RegisteredTypes.RegisterTypes(Types.LoadArmor, LoadArmor);

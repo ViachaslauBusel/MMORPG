@@ -6,6 +6,7 @@ using RUCP;
 using System;
 using RUCP.Packets;
 using RUCP.Network;
+using Player;
 
 public class PlayerDead : MonoBehaviour {
 

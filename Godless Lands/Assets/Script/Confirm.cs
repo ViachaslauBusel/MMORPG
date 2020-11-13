@@ -1,58 +1,40 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Confirm : MonoBehaviour
 {
-    public bool butYes = false;
-    public bool butNo = false;
-    public Text text;
+    public static Confirm Instance { get; private set; }
+    [SerializeField] Text description;
+    [SerializeField] Button buttonYES, buttonNO;
     private Canvas canvas;
 
-    public static Confirm instant;
 
-    private void Start()
+
+    private void Awake()
     {
-        if (instant != null) Destroy(gameObject);
-        instant = this;
+        Instance = this;
 
         canvas = GetComponent<Canvas>();
         canvas.enabled = false;
     }
 
-    public void SetTitle(string title)
-    {
-        text.text = title;
-    }
-
-    /// <summary>
-    /// Возвращает 1 - при нажатии на кнопку да, 0 - нет, -1 кнопка еще не нажата
-    /// </summary>
-    /// <returns></returns>
-    public int IsConfirm()
+    public void Subscribe(string description, Action callYES, Action callNO)
     {
         canvas.enabled = true;
-        if (butYes) { Reset(); return 1; }
-        if (butNo) { Reset(); return 0; }
-        return -1;
-    }
+        this.description.text = description;
+        buttonYES.onClick.RemoveAllListeners();
+        buttonYES.onClick.AddListener(() => { callYES?.Invoke(); canvas.enabled = false; });
 
-    private void Reset()
-    {
-        canvas.enabled = false;
-        butNo = false;
-        butYes = false;
-    }
-
-    public void ButtonYes()
-    {
-        butYes = true;
-    }
-
-    public void ButtonNo()
-    {
-        butNo = true;
+        buttonNO.gameObject.SetActive(true);
+        buttonNO.onClick.RemoveAllListeners();
+        if (callNO != null)
+            buttonNO.onClick.AddListener(() => { callNO?.Invoke(); canvas.enabled = false; });
+        else
+            buttonNO.gameObject.SetActive(false);
     }
 
 }

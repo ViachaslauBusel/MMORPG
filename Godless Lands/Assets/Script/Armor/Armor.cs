@@ -1,4 +1,5 @@
 ﻿using Items;
+using RUCP.Packets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,13 @@ public class Armor : MonoBehaviour
     private bool combatState = false;
     private Animator animator;
 
-    public void Init()
+    public void Initialize()
     {
        animator = GetComponent<Animator>();
        weapon_parent = weapon_back;
     }
+
+   
     public void PutItem(ItemType part, Item item)
     {
         switch (part)
@@ -36,7 +39,7 @@ public class Armor : MonoBehaviour
         {
             Destroy(weapon);
         }
-        if (_item != null)//Если есть новое оружие надеть
+        if (_item?.IsExist() ?? false)//Если есть новое оружие надеть
         {
 
             weapon = Instantiate(_item.prefab);

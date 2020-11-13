@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour {
 
     public static Inventory Instance;
 
-    public ItemsList itemsList;
+    public ItemsContainer itemsList;
    // public Transform bag;
     public GameObject itemCell;
     //public Text text_filling;
@@ -53,7 +53,7 @@ public class Inventory : MonoBehaviour {
     //Создает предмет по ид
     public static Item CreateItem(int id)
     {
-       return Instance.itemsList.CreateItem(id);
+       return Instance.itemsList.GetDuplicateItem(id);
     }
     public static Item GetItemByObjectID(int objectID)
     {

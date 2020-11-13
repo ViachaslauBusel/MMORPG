@@ -11,7 +11,7 @@ namespace Resource
     [CanEditMultipleObjects]
     public class ResourceInspector : Editor
     {
-        private static ItemsList itemsList;
+        private static ItemsContainer itemsList;
         public override void OnInspectorGUI()
         {
             Fabric resource = ((ResourceEditor)target).GetSelectObject() as Fabric;

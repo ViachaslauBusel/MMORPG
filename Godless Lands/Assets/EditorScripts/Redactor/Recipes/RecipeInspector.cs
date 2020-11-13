@@ -11,7 +11,7 @@ namespace Recipes
     [CanEditMultipleObjects]
     public class RecipeInspector : Editor
     {
-        private static ItemsList itemsList;
+        private static ItemsContainer itemsList;
 
 
         public override void OnInspectorGUI()
