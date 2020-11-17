@@ -22,7 +22,8 @@ namespace OpenWorldEditor
             {
                 int maxTile = map.mapSize * map.blocksCount;
                 float maxProgress = maxTile * maxTile;
-                stream_out.Write(maxTile);//Max tile
+                stream_out.Write(map.mapSize);//Max tile
+                stream_out.Write(map.blocksCount);//Блоков на километр
 
                 for (int y = 0; y < maxTile; y++)
                 {
@@ -54,23 +55,16 @@ namespace OpenWorldEditor
 
             if (mapElement != null)
             {
-                // stream_out.Write(xKM * map.blocksCount + x);//Позиция по Х
-                //   stream_out.Write(yKM * map.blocksCount + y);//Позиция по Y
-                int size = (mapElement.terrainData.heightmapResolution * mapElement.terrainData.heightmapResolution) * 4;
+                int size = (mapElement.terrainData.heightmapResolution * mapElement.terrainData.heightmapResolution) * 8;
                 stream_out.Write(size);//Размер массива высот
                 float[,] heights = mapElement.terrainData.GetHeights(0, 0, mapElement.terrainData.heightmapResolution, mapElement.terrainData.heightmapResolution);
                 for (int i = 0; i < mapElement.terrainData.heightmapResolution; i++)
                 {
                     for (int j = 0; j < mapElement.terrainData.heightmapResolution; j++)
                     {
-                        //   stream_out.Write(mapElement.terrainData.size.y * heights[i, j]);//Точка высоты 
-                        byte[] _data = BitConverter.GetBytes(mapElement.terrainData.size.y * heights[i, j]);
-                        byte[] damp = new byte[4];
-                        damp[0] = _data[3];
-                        damp[1] = _data[2]; 
-                        damp[2] = _data[1];
-                        damp[3] = _data[0];
-                        stream_out.Write(damp, 0, damp.Length);
+                     //   byte[] data = BitConverter.GetBytes();
+     
+                        stream_out.Write((double)(0.0));
                     }
                 }
                 Resources.UnloadAsset(mapElement);
