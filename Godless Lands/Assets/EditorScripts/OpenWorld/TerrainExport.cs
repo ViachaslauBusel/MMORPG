@@ -1,8 +1,5 @@
 ﻿#if UNITY_EDITOR
 using OpenWorld;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -52,19 +49,18 @@ namespace OpenWorldEditor
 
                     string path = folder + "/TRBlock_" + xTR + '_' + yTR;
                     MapElement mapElement = Resources.Load<MapElement>(path);
-
+           
             if (mapElement != null)
             {
-                int size = (mapElement.terrainData.heightmapResolution * mapElement.terrainData.heightmapResolution) * 8;
+              //  Debug.Log(mapElement.terrainData.heightmapResolution);
+                int size = (mapElement.terrainData.heightmapResolution * mapElement.terrainData.heightmapResolution) * sizeof(float);
                 stream_out.Write(size);//Размер массива высот
                 float[,] heights = mapElement.terrainData.GetHeights(0, 0, mapElement.terrainData.heightmapResolution, mapElement.terrainData.heightmapResolution);
                 for (int i = 0; i < mapElement.terrainData.heightmapResolution; i++)
                 {
                     for (int j = 0; j < mapElement.terrainData.heightmapResolution; j++)
                     {
-                     //   byte[] data = BitConverter.GetBytes();
-     
-                        stream_out.Write((double)(0.0));
+                        stream_out.Write(heights[i, j] * mapElement.terrainData.size.y);
                     }
                 }
                 Resources.UnloadAsset(mapElement);

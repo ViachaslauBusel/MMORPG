@@ -9,6 +9,7 @@ using UnityEngine;
 
 public class TestRay : MonoBehaviour
 {
+    [SerializeField] Transform target;
     public bool activeted = false;
     public float timeSend = 2.0f;
     private float timer;
@@ -22,16 +23,19 @@ public class TestRay : MonoBehaviour
 
     private void VoidTestRay(Packet nw)
     {
-        if (nw.ReadBool())
+        while (nw.AvailableBytes > 0)
         {
-            hitPoints.Enqueue(nw.ReadVector3());
-        }
-        else
-        {
-            print("dont hit");
-        }
+            if (nw.ReadBool())
+            {
+                hitPoints.Enqueue(nw.ReadVector3());
+            }
+            else
+            {
+                print("dont hit");
+            }
 
-        if (hitPoints.Count > 1100) hitPoints.Dequeue();
+            if (hitPoints.Count > 1100) hitPoints.Dequeue();
+        }
     }
 
     private void Start()
@@ -41,20 +45,6 @@ public class TestRay : MonoBehaviour
 
     private void Update()
     {
-        if (false)
-        {
-            timer -= Time.deltaTime;
-            if(timer < 0)
-            {
-                timer = timeSend;
-                Packet nw = new Packet(Channel.Reliable);
-                nw.WriteType(Types.TestRay);
-                nw.WriteVector3(transform.position + (Vector3.up * 1000));
-              //  nw.write(transform.position + (Vector3.down * 300));
-
-                NetworkManager.Send(nw);
-            }
-        }
         if (Input.GetButton("Jump") && isSend)
         {
             isSend = false;
@@ -63,25 +53,25 @@ public class TestRay : MonoBehaviour
         }
     }
      bool isSend = true;
-    IEnumerator send()
+    private IEnumerator send()
     {
-        int startX = (int)(transform.position.x) - 5;
-        int startZ = (int)(transform.position.z) - 5;
+        Packet nw = new Packet(Channel.Reliable);
+        nw.WriteType(Types.TestRay);
+        int startX = (int)(target.position.x) - 5;
+        int startZ = (int)(target.position.z) - 5;
         for (int y = 0; y < 10; y++)
         {
             for (int x = 0; x < 10; x++)
             {
-                Vector3 vector = new Vector3(startX + x, transform.position.y + 10, startZ + y);
-                Packet nw = new Packet(Channel.Reliable);
-                nw.WriteType(Types.TestRay);
-                nw.WriteVector3(vector);
-                //  nw.write(transform.position + (Vector3.down * 300));
 
-                NetworkManager.Send(nw);
-                yield return new WaitForSeconds(0.01f);
+                Vector3 vector = new Vector3(startX + x, target.position.y, startZ + y);
+                nw.WriteVector3(vector);
             }
         }
+        NetworkManager.Send(nw);
+        yield return new WaitForSeconds(1.0f);
         isSend = true;
+       
     }
 
     private void OnDrawGizmos()
