@@ -1,13 +1,10 @@
 ﻿using Cells;
 using RUCP;
 using RUCP.Handler;
-using RUCP.Network;
-using RUCP.Packets;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class ItemEnchant : MonoBehaviour
 {
@@ -19,6 +16,14 @@ public class ItemEnchant : MonoBehaviour
     private Canvas canvas;
     private EnchantCell enchantCell;
     private UISort uISort;
+    private NetworkManager networkManager;
+
+    [Inject]
+    private void Construct(NetworkManager networkManager)
+    {
+        this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.ItemEnchant, Enchant);
+    }
 
     private void Awake()
     {
@@ -28,7 +33,7 @@ public class ItemEnchant : MonoBehaviour
         enchantCell = GetComponentInChildren<EnchantCell>();
         indicator.SetActive(false);
 
-        HandlersStorage.RegisterHandler(Types.ItemEnchant, Enchant);
+       
     }
 
     private void Enchant(Packet nw)
@@ -105,35 +110,36 @@ public class ItemEnchant : MonoBehaviour
             time += Time.deltaTime;
             bar.fillAmount =  time;
         }
-
-        Packet nw = new Packet(Channel.Discard);
-        nw.WriteType(Types.ItemEnchant);
-        nw.WriteByte((byte)EnchantCommand.Completed);//Заточить
-        nw.WriteInt(enchantCell.GetObjectID());
-        NetworkManager.Send(nw);
+        //TODO msg
+        //Packet nw = new Packet(Channel.Discard);
+        //nw.WriteType(Types.ItemEnchant);
+        //nw.WriteByte((byte)EnchantCommand.Completed);//Заточить
+        //nw.WriteInt(enchantCell.GetObjectID());
+        //NetworkManager.Send(nw);
     }
 
     public void Next()
     {
-
-        Packet nw = new Packet(Channel.Discard);
-        nw.WriteType(Types.ItemEnchant);
-        nw.WriteByte((byte)EnchantCommand.Continue);//Продолжить
-        NetworkManager.Send(nw);
+    //TODO msg
+        //Packet nw = new Packet(Channel.Discard);
+        //nw.WriteType(Types.ItemEnchant);
+        //nw.WriteByte((byte)EnchantCommand.Continue);//Продолжить
+        //NetworkManager.Send(nw);
 
         button.interactable = false;
     }
 
     public void Exit()
     {
-        Packet nw = new Packet(Channel.Discard);
-        nw.WriteType(Types.ItemEnchant);
-        nw.WriteByte((byte)EnchantCommand.CloseGUI);//Закрыть интерфейс заточки
-        NetworkManager.Send(nw);
+    //TODO msg
+        //Packet nw = new Packet(Channel.Discard);
+        //nw.WriteType(Types.ItemEnchant);
+        //nw.WriteByte((byte)EnchantCommand.CloseGUI);//Закрыть интерфейс заточки
+        //NetworkManager.Send(nw);
     }
 
     private void OnDestroy()
     {
-        HandlersStorage.UnregisterHandler(Types.ItemEnchant);
+        networkManager?.UnregisterHandler(Types.ItemEnchant);
     }
 }

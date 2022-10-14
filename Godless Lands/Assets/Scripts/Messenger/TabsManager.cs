@@ -41,7 +41,7 @@ namespace Messenger {
             }
             tabsContainer = container;
             if (!Directory.Exists(Path.GetDirectoryName(path)))
-            { Directory.CreateDirectory(path); }
+            { Directory.CreateDirectory(Path.GetDirectoryName(path)); }
             File.WriteAllText(path, JsonUtility.ToJson(container));
             update?.Invoke();
         }

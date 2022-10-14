@@ -1,13 +1,9 @@
 ﻿using RUCP;
 using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using System;
 using UnityEngine.SceneManagement;
-using RUCP.Packets;
-using RUCP.Network;
+using UnityEngine.UI;
+using Zenject;
 
 namespace Lobby
 {
@@ -17,6 +13,14 @@ namespace Lobby
         private Canvas canvas_main, canvas_character_cretor;
         private InputField input_name;
         private Button but_create_char;
+        private NetworkManager networkManager;
+
+        [Inject]
+        private void Construct(NetworkManager networkManager)
+        {
+            this.networkManager = networkManager;
+            networkManager.RegisterHandler(Types.OwnCharacterCreate, OwnCharacterCreate);
+        }
 
         private void Start()
         {
@@ -27,7 +31,7 @@ namespace Lobby
 
             input_name = GameObject.Find("InputName").GetComponent<InputField>();
 
-            HandlersStorage.RegisterHandler(Types.OwnCharacterCreate, OwnCharacterCreate);
+          
         }
 
         private void OwnCharacterCreate(Packet nw)
@@ -44,17 +48,23 @@ namespace Lobby
             if (input_name.text.Length <= 3 || input_name.text.Length > 30) { ErrorCreator.ShowError(1); return; }
             but_create_char.interactable = false;
 
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.OwnCharacterCreate);
-            nw.WriteString(input_name.text);
+            //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.OwnCharacterCreate);
+            //nw.WriteString(input_name.text);
 
-            NetworkManager.Send(nw);
+            //NetworkManager.Send(nw);
         }
 
         public void ExitCreator()
         {
             canvas_main.enabled = true;
             canvas_character_cretor.enabled = false;
+        }
+
+        private void OnDestroy()
+        {
+            networkManager.UnregisterHandler(Types.OwnCharacterCreate);
         }
     }
 }

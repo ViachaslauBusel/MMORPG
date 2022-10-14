@@ -1,11 +1,8 @@
-﻿using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
+﻿using RUCP;
+using RUCP.Handler;
 using UnityEngine;
 using UnityEngine.UI;
-using RUCP;
-using System;
-using RUCP.Packets;
+using Zenject;
 
 public class HPView : MonoBehaviour {
 
@@ -17,11 +14,18 @@ public class HPView : MonoBehaviour {
     public Text mp_txt;
     public Image stamina_bar;
     public Text stamina_txt;
+    private NetworkManager networkManager;
 
+    [Inject]
+    private void Construct(NetworkManager networkManager)
+    {
+        this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.HPViewUpdate, HPViewUpdate);//byte 0-load name hp mp stamina/ 1 - hp mp stamina / 2 - hp/ 3 - mp/ 4 - stamina
+    }
     private void Awake()
     {
         Instance = this;
-        HandlersStorage.RegisterHandler(Types.HPViewUpdate, HPViewUpdate);//byte 0-load name hp mp stamina/ 1 - hp mp stamina / 2 - hp/ 3 - mp/ 4 - stamina
+       
     }
 
     private void HPViewUpdate(Packet nw)
@@ -85,6 +89,6 @@ public class HPView : MonoBehaviour {
 
     private void OnDestroy()
     {
-        HandlersStorage.UnregisterHandler(Types.HPViewUpdate);
+        networkManager?.UnregisterHandler(Types.HPViewUpdate);
     }
 }

@@ -1,9 +1,4 @@
 ﻿using RUCP;
-using RUCP.Network;
-using RUCP.Packets;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Cells
 {
@@ -28,12 +23,13 @@ namespace Cells
                              "Вы действительно хотите удалить предмет?",
                              () =>
                              {
-                             Packet nw = new Packet(Channel.Reliable);
-                             nw.WriteType(Types.DeletItem);
-                             nw.WriteInt(itemCell.GetObjectID());
-                             nw.WriteInt(itemCell.GetItem().id);
-                             nw.WriteInt(count);
-                             NetworkManager.Send(nw);
+                             //TODO msg
+                             //Packet nw = new Packet(Channel.Reliable);
+                             //nw.WriteType(Types.DeletItem);
+                             //nw.WriteInt(itemCell.GetObjectID());
+                             //nw.WriteInt(itemCell.GetItem().id);
+                             //nw.WriteInt(count);
+                             //NetworkManager.Send(nw);
                              },
                              () => { } );
             },

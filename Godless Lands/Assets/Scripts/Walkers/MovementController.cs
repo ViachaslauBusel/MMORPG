@@ -1,11 +1,6 @@
 ﻿using RUCP;
-using RUCP.Packets;
 using RUCP.Tools;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Walkers
 {
@@ -67,7 +62,7 @@ namespace Walkers
         /// </summary>
         internal bool Sync(short syncNumber)
         {
-           if(NumberUtils.ShortCompare(syncNumber, this.syncNumber) > 0)
+           if(NumberUtils.UshortCompare(syncNumber, this.syncNumber) > 0)
             {
                 this.syncNumber = syncNumber;
                 return true;

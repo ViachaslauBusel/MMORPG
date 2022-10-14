@@ -1,9 +1,4 @@
 ﻿using RUCP;
-using RUCP.Network;
-using RUCP.Packets;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Cells
 {
@@ -22,11 +17,12 @@ namespace Cells
                 "Сколько штук переместить?",
                 (count) =>
                 {
-                    Packet nw = new Packet(Channel.Reliable);
-                    nw.WriteType(Types.ItemTrade);
-                    nw.WriteInt(item.objectID);
-                    nw.WriteInt(count);
-                    NetworkManager.Send(nw);
+                //TODO msg
+                    //Packet nw = new Packet(Channel.Reliable);
+                    //nw.WriteType(Types.ItemTrade);
+                    //nw.WriteInt(item.objectID);
+                    //nw.WriteInt(count);
+                    //NetworkManager.Send(nw);
                 },
                 () => { }
                 );

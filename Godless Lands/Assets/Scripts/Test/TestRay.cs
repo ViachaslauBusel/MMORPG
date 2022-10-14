@@ -1,11 +1,9 @@
 ﻿using RUCP;
 using RUCP.Handler;
-using RUCP.Network;
-using RUCP.Packets;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class TestRay : MonoBehaviour
 {
@@ -15,15 +13,23 @@ public class TestRay : MonoBehaviour
     private float timer;
     private Queue<Vector3> hitPoints;
 
+
+    [Inject]
+    private void Construct(NetworkManager networkManager)
+    {
+        this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.TestRay, VoidTestRay);
+    }
+
     private void Awake()
     {
-        HandlersStorage.RegisterHandler(Types.TestRay, VoidTestRay);
+        
         hitPoints = new Queue<Vector3>();
     }
 
     private void VoidTestRay(Packet nw)
     {
-        while (nw.AvailableBytes > 0)
+        while (nw.AvailableBytesForReading > 0)
         {
             if (nw.ReadBool())
             {
@@ -53,22 +59,25 @@ public class TestRay : MonoBehaviour
         }
     }
      bool isSend = true;
+    private NetworkManager networkManager;
+
     private IEnumerator send()
     {
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(Types.TestRay);
-        int startX = (int)(target.position.x) - 5;
-        int startZ = (int)(target.position.z) - 5;
-        for (int y = 0; y < 10; y++)
-        {
-            for (int x = 0; x < 10; x++)
-            {
+    //TODO msg
+        //Packet nw = new Packet(Channel.Reliable);
+        //nw.WriteType(Types.TestRay);
+        //int startX = (int)(target.position.x) - 5;
+        //int startZ = (int)(target.position.z) - 5;
+        //for (int y = 0; y < 10; y++)
+        //{
+        //    for (int x = 0; x < 10; x++)
+        //    {
 
-                Vector3 vector = new Vector3(startX + x, target.position.y, startZ + y);
-                nw.WriteVector3(vector);
-            }
-        }
-        NetworkManager.Send(nw);
+        //        Vector3 vector = new Vector3(startX + x, target.position.y, startZ + y);
+        //        nw.WriteVector3(vector);
+        //    }
+        //}
+        //NetworkManager.Send(nw);
         yield return new WaitForSeconds(1.0f);
         isSend = true;
        
@@ -77,17 +86,17 @@ public class TestRay : MonoBehaviour
     private void OnDrawGizmos()
     {
     //   print("draw f");
-        foreach(Vector3 hit in hitPoints)
+    /*    foreach(Vector3 hit in hitPoints)
         {
         //    print("Draw: " + hit);
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(hit, 0.2f);
-        }
+        }*/
     }
 
     private void OnDestroy()
     {
 
-        HandlersStorage.UnregisterHandler(Types.TestRay);
+        networkManager?.UnregisterHandler(Types.TestRay);
     }
 }

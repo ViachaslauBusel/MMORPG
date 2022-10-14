@@ -1,4 +1,4 @@
-﻿using RUCP.Packets;
+﻿using RUCP;
 using UnityEngine;
 
 public static class UnityNetworkRW

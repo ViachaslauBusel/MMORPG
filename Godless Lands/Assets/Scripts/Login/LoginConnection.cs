@@ -1,72 +1,89 @@
-﻿using RUCP.Network;
-using RUCP.Packets;
+﻿using Cysharp.Threading.Tasks;
+using Protocol.Data;
+using Protocol.MSG.Login;
 using System.Collections;
 using Tools;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class LoginConnection : MonoBehaviour {
-    public string loginServer = "127.0.0.1";
-    public bool localhost = false;
-    public short version = 5;
+    private const int LOGIN_SERVER_PORT = 3737;
+    [SerializeField] string loginServerIP = "127.0.0.1";
+    [SerializeField] bool localhost = false;
+    [SerializeField] short version = 5;
 
     private InputField input_login;
     private InputField input_pass;
+    private NetworkManager networkManager;
+    private LoginInformationWindow m_informationWindow;
 
+    [Inject]
+    private void Construct(NetworkManager networkManager, LoginInformationWindow loginInformation)
+    {
+        this.networkManager = networkManager;
+        this.m_informationWindow = loginInformation;
+    }
     private void Awake()
     {
-        if (localhost) loginServer = "127.0.0.1";
+        if (localhost) loginServerIP = "127.0.0.1";
         input_login = GameObject.Find("InputFieldLogin").GetComponent<InputField>();
         input_pass = GameObject.Find("InputFieldPassword").GetComponent<InputField>();
     }
 
-    public void Connectionlogin()
-    {
-        if (!NetworkManager.isConnected) StartCoroutine(IEConnectionServer(Types.Login));
-        else SendLoginOrReg(Types.Login);
-    }
-    public void ConnectionReg()
-    {
-        if (!NetworkManager.isConnected) StartCoroutine(IEConnectionServer(Types.Registration));
-        else SendLoginOrReg(Types.Registration);
-    }
 
 
-    private IEnumerator IEConnectionServer(short types)
+    public async void AuthorizationRequest()
     {
-        print("Cоеденение с сервером");
-        NetworkManager.Connection(loginServer, 3737);
-   
-        while (NetworkManager.Socket.NetworkStatus == NetworkStatus.LISTENING)
+        m_informationWindow.Wait("connection waiting");
+        bool connected = await ConnectToLoginServer();
+        if (connected)
         {
-            yield return null;
-        }
-        if (NetworkManager.isConnected) //Если удалось соедениться с сервером
-        {
-            SendLoginOrReg(types);//Отпровляем данные на логин или регистрацию
-        }
-        else
-        {
-            LoginInformation.ShowInfo(1);
+            if (input_login.text.Length > 30 || input_login.text.Length < 3) { m_informationWindow.ShowInfo(LoginInformationCode.WrongLogin); return; }
+
+            if (input_pass.text.Length > 30 || input_pass.text.Length < 3) { m_informationWindow.ShowInfo(LoginInformationCode.WrongPassword); return; }
+
+            string hash_pass = MD5Crypto.GetMd5Hash(input_pass.text);
+
+            MSG_AUTHORIZATION_Request request = new MSG_AUTHORIZATION_Request();
+            request.Version = version;
+            request.Login = input_login.text;
+            request.Password = hash_pass;
+            networkManager.Client.Send(request);
         }
     }
-
-    private void SendLoginOrReg(short types)
+    public async void RegistrationRequest()
     {
-   
-        if (input_login.text.Length > 30 || input_login.text.Length < 3) { LoginInformation.ShowInfo(2); return; }
+        m_informationWindow.Wait("connection waiting");
+        bool connected = await ConnectToLoginServer();
+        if (connected)
+        {
+            if (input_login.text.Length > 30 || input_login.text.Length < 3) { m_informationWindow.ShowInfo(LoginInformationCode.WrongLogin); return; }
 
-        if (input_pass.text.Length > 30 || input_pass.text.Length < 3) { LoginInformation.ShowInfo(3); return; }
+            if (input_pass.text.Length > 30 || input_pass.text.Length < 3) { m_informationWindow.ShowInfo(LoginInformationCode.WrongPassword); return; }
 
-        string hash_pass = MD5Crypto.GetMd5Hash(input_pass.text);
+            
+            string hash_pass = MD5Crypto.GetMd5Hash(input_pass.text);
 
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(types);
-        nw.WriteShort(version);
-        nw.WriteString(input_login.text);
-        nw.WriteString(hash_pass);
-       
-        NetworkManager.Send(nw);
+            MSG_REGISTRATION_Request request = new MSG_REGISTRATION_Request();
+            request.Version = version;
+            request.Login = input_login.text;
+            request.Password = hash_pass;
+            networkManager.Client.Send(request);
+        }
+    }
+
+    private async UniTask<bool> ConnectToLoginServer()
+    {
+        if (!networkManager.IsConnectedTo(loginServerIP, LOGIN_SERVER_PORT))
+        {
+            bool result = await networkManager.ConnectTo(loginServerIP, LOGIN_SERVER_PORT);
+
+            if(!result){ m_informationWindow.ShowInfo(LoginInformationCode.ConnectionFail); }
+
+            return result;
+        }
+        return true;
     }
    
 

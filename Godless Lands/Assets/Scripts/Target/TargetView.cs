@@ -1,13 +1,10 @@
-﻿using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Characters;
+using Monsters;
+using RUCP;
+using RUCP.Handler;
 using UnityEngine;
 using UnityEngine.UI;
-using RUCP;
-using System;
-using Monsters;
-using RUCP.Packets;
-using Characters;
+using Zenject;
 
 public class TargetView : MonoBehaviour
 {
@@ -18,12 +15,16 @@ public class TargetView : MonoBehaviour
     private Image hp;
     private GameObject targetView;
     public static TargetObject target_obj;
+    private NetworkManager networkManager;
 
-    private void Awake()
+    [Inject]
+    private void Construct(NetworkManager networkManager)
     {
-        HandlersStorage.RegisterHandler(Types.Target, Target);
-        HandlersStorage.RegisterHandler(Types.TargetUpdate, TargetUpdate);
+        this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.Target, Target);
+        networkManager.RegisterHandler(Types.TargetUpdate, TargetUpdate);
     }
+
 
     
 
@@ -94,7 +95,7 @@ public class TargetView : MonoBehaviour
     private void OnDestroy()
     {
 
-        HandlersStorage.UnregisterHandler(Types.Target);
-        HandlersStorage.UnregisterHandler(Types.TargetUpdate);
+        networkManager?.UnregisterHandler(Types.Target);
+        networkManager?.UnregisterHandler(Types.TargetUpdate);
     }
 }

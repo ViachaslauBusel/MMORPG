@@ -1,8 +1,5 @@
 ﻿using RUCP;
-using RUCP.Network;
-using RUCP.Packets;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -70,23 +67,24 @@ public class TargetTaking : MonoBehaviour {
     /// <param name="id_target"></param>
     private void SetTarget(byte layer, int id_target)
     {
+    //TODO msg
+        //Packet nw = new Packet(Channel.Reliable);
+        //nw.WriteType(Types.Target);
+        //nw.WriteByte(layer);
+        //nw.WriteInt(id_target);
 
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(Types.Target);
-        nw.WriteByte(layer);
-        nw.WriteInt(id_target);
-
-        NetworkManager.Send(nw);
+        //NetworkManager.Send(nw);
     }
 
     private void FindDrop(byte layer, int id_target)
     {
+    //TOD msg
 
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(Types.FindDrop);
-        nw.WriteByte(layer);
-        nw.WriteInt(id_target);
+        //Packet nw = new Packet(Channel.Reliable);
+        //nw.WriteType(Types.FindDrop);
+        //nw.WriteByte(layer);
+        //nw.WriteInt(id_target);
 
-        NetworkManager.Send(nw);
+        //NetworkManager.Send(nw);
     }
 }

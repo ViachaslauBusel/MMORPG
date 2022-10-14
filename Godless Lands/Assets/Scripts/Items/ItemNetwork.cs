@@ -1,9 +1,4 @@
-﻿using Items;
-using RUCP;
-using RUCP.Packets;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using RUCP;
 
 namespace Items
 {

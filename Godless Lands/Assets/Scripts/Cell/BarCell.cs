@@ -1,16 +1,9 @@
-﻿using Items;
-using RUCP;
-using RUCP.Network;
-using RUCP.Packets;
+﻿using RUCP;
 using Skills;
 using SkillsBar;
-using SkillsRedactor;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Debug = UnityEngine.Debug;
 
 namespace Cells
 {
@@ -87,39 +80,40 @@ namespace Cells
 
             if(cell.GetType() == typeof(BarCell))//Поменять местами содержимое ячейки
             {
-                Packet writer = new Packet(Channel.Reliable);
-                writer.WriteType(Types.WrapBarCell);
-                writer.WriteByte((byte)index);//Номер ячейки на панели
-                writer.WriteByte((byte)(cell as BarCell).index);//Номер ячейки на панели
-                NetworkManager.Send(writer);
+            //TODO msg
+                //Packet writer = new Packet(Channel.Reliable);
+                //writer.WriteType(Types.WrapBarCell);
+                //writer.WriteByte((byte)index);//Номер ячейки на панели
+                //writer.WriteByte((byte)(cell as BarCell).index);//Номер ячейки на панели
+                //NetworkManager.Send(writer);
                  return;
             }
 
-     
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.updateBarCell);
-            nw.WriteByte((byte)index);//Номер ячейки на панели
+     //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.updateBarCell);
+            //nw.WriteByte((byte)index);//Номер ячейки на панели
 
       
-            if (cell.GetType() == typeof(SkillCell))
-            {
-                nw.WriteInt((int)SkillbarType.Skill);//type
-                nw.WriteInt((cell as SkillCell).GetSkill().id);
-            }
-            else if (cell.GetType() == typeof(ItemCell))
-            {
-                ItemCell item = cell as ItemCell;
-                nw.WriteInt((int)SkillbarType.Item);//type
-                nw.WriteInt(item.GetObjectID());
-            }
-            else if (cell.GetType() == typeof(ArmorCell))
-            {
-                ArmorCell item = cell as ArmorCell;
-                nw.WriteInt((int)SkillbarType.Item);//type
-                nw.WriteInt(item.GetObjectID());
-            }
-            else return;
-            NetworkManager.Send(nw);
+            //if (cell.GetType() == typeof(SkillCell))
+            //{
+            //    nw.WriteInt((int)SkillbarType.Skill);//type
+            //    nw.WriteInt((cell as SkillCell).GetSkill().id);
+            //}
+            //else if (cell.GetType() == typeof(ItemCell))
+            //{
+            //    ItemCell item = cell as ItemCell;
+            //    nw.WriteInt((int)SkillbarType.Item);//type
+            //    nw.WriteInt(item.GetObjectID());
+            //}
+            //else if (cell.GetType() == typeof(ArmorCell))
+            //{
+            //    ArmorCell item = cell as ArmorCell;
+            //    nw.WriteInt((int)SkillbarType.Item);//type
+            //    nw.WriteInt(item.GetObjectID());
+            //}
+            //else return;
+            //NetworkManager.Send(nw);
         }
 
 
@@ -200,11 +194,12 @@ namespace Cells
         }
         public override void Abort()
         {
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.updateBarCell);
-            nw.WriteByte((byte)index);//Номер ячейки на панели
-            nw.WriteInt((int)SkillbarType.None);//type
-            NetworkManager.Send(nw);
+        //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.updateBarCell);
+            //nw.WriteByte((byte)index);//Номер ячейки на панели
+            //nw.WriteInt((int)SkillbarType.None);//type
+            //NetworkManager.Send(nw);
         }
 
         public void SetIndex(int index)

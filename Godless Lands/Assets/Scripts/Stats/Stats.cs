@@ -1,11 +1,9 @@
 ﻿using RUCP;
 using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
-using RUCP.Packets;
+using Zenject;
 
 public class Stats : MonoBehaviour {
 
@@ -23,13 +21,23 @@ public class Stats : MonoBehaviour {
     public int physical_defense;
     private float attack_speed;
     [SerializeField] float moveSpeed = 0;
+    private NetworkManager networkManager;
+
     public float MoveSpeed { get { return moveSpeed; } }
+
+
+    [Inject]
+    private void Construct(NetworkManager networkManager)
+    {
+        this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.LoadStats, LoadingStats);
+        networkManager.RegisterHandler(Types.UpdateStats, UpdateStats);
+    }
 
     private void Awake()
     {
         Instance = this;
-        HandlersStorage.RegisterHandler(Types.LoadStats, LoadingStats);
-        HandlersStorage.RegisterHandler(Types.UpdateStats, UpdateStats);
+       
     }
 
     private void UpdateStats(Packet nw)
@@ -88,7 +96,7 @@ public class Stats : MonoBehaviour {
 
     private void OnDestroy()
     {
-        HandlersStorage.UnregisterHandler(Types.LoadStats);
-        HandlersStorage.UnregisterHandler(Types.UpdateStats);
+        networkManager?.UnregisterHandler(Types.LoadStats);
+        networkManager?.UnregisterHandler(Types.UpdateStats);
     }
 }

@@ -1,10 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class LostNetwork : MonoBehaviour {
 
     private Canvas canvas;
+    private NetworkManager networkManager;
+
+    [Inject]
+    private void Construct(NetworkManager networkManager)
+    {
+        this.networkManager = networkManager;
+    }
 
     private void Start()
     {
@@ -14,7 +22,7 @@ public class LostNetwork : MonoBehaviour {
 
     private void Update()
     {
-        canvas.enabled = !NetworkManager.Socket.IsConnected();
+        canvas.enabled = !networkManager.isConnected;
     }
 
     public void ExitGame()

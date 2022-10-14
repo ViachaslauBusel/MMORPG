@@ -1,14 +1,10 @@
 ﻿using Cells;
-using Items;
 using RUCP;
 using RUCP.Handler;
-using RUCP.Packets;
 using Skills;
 using SkillsRedactor;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace SkillsBar
 {
@@ -16,6 +12,14 @@ namespace SkillsBar
     {
         public SkillsList skillsList;
         private static BarCell[] barCells;
+        private NetworkManager networkManager;
+
+        [Inject]
+        private void Construct(NetworkManager networkManager)
+        {
+            this.networkManager = networkManager;
+            networkManager.RegisterHandler(Types.updateBarCell, updateBarCell);
+        }
 
         private void Awake()
         {
@@ -26,7 +30,7 @@ namespace SkillsBar
             }
          
     
-            HandlersStorage.RegisterHandler(Types.updateBarCell, updateBarCell);
+           
            
         }
         private void Start()
@@ -45,7 +49,7 @@ namespace SkillsBar
 
         private void updateBarCell(Packet nw)
         {
-            while(nw.AvailableBytes > 0)
+            while(nw.AvailableBytesForReading > 0)
             {
                 int index = nw.ReadByte();
                 SkillbarType type = (SkillbarType)nw.ReadInt();
@@ -73,7 +77,7 @@ namespace SkillsBar
 
         private void OnDestroy()
         {
-            HandlersStorage.UnregisterHandler(Types.updateBarCell);
+            networkManager?.UnregisterHandler(Types.updateBarCell);
             Inventory.UnregisterUpdate(UpdateInventory);
         }
     }

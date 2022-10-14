@@ -1,13 +1,9 @@
-﻿using RUCP;
+﻿using Loader;
+using RUCP;
 using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
-using OpenWorld;
-using RUCP.Packets;
-using RUCP.Network;
-using Loader;
+using UnityEngine;
+using Zenject;
 
 namespace Player
 {
@@ -31,11 +27,19 @@ namespace Player
 
         private GameLoader gameLoader;
 
+
+        [Inject]
+        private void Construct(NetworkManager networkManager)
+        {
+            this.networkManager = networkManager;
+            networkManager.RegisterHandler(Types.TeleportToPoint, TeleportToPoint);
+        }
+
         private void Awake()
         {
             enabled = false;
             //  
-            HandlersStorage.RegisterHandler(Types.TeleportToPoint, TeleportToPoint);
+           
             animationSkill = GetComponent<AnimationSkill>();
             character = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
@@ -56,7 +60,6 @@ namespace Player
 
         private void TeleportToPoint(Packet nw)
         {
-
             transform.position = nw.ReadVector3();
             lastSentPosition = transform.position;
             lastSentRotation = transform.rotation.eulerAngles.y;
@@ -143,15 +146,18 @@ namespace Player
             {
 
                 lastSentRotation = transform.rotation.eulerAngles.y;
-                Packet nw = new Packet(Channel.Discard);
-                nw.WriteType(Types.Rotation);
-                nw.WriteFloat(lastSentRotation);
+                //TODO msg
+                //Packet nw = new Packet(Channel.Discard);
+                //nw.WriteType(Types.Rotation);
+                //nw.WriteFloat(lastSentRotation);
 
-                NetworkManager.Send(nw);
+                //NetworkManager.Send(nw);
             }
 
         }
         private long timeStamp;
+        private NetworkManager networkManager;
+
         private void SendPosition(bool endMove)
         {
             float speed = Vector3.Distance(transform.position.ClearY(), lastSentPosition.ClearY()) / ((DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - timeStamp) / 1000.0f);
@@ -159,18 +165,19 @@ namespace Player
 
             lastSentPosition = transform.position;
             lastSentRotation = transform.rotation.eulerAngles.y;
-            Packet nw = new Packet(endMove ? Channel.Reliable : Channel.Unreliable);
-            nw.WriteType(Types.Move);
-            nw.WriteShort(syncNumber++);
-            nw.WriteVector3(lastSentPosition);
-            nw.WriteFloat(lastSentRotation);
-            nw.WriteBool(endMove);
-            NetworkManager.Send(nw);
+            //TODO msg
+            //Packet nw = new Packet(endMove ? Channel.Reliable : Channel.Unreliable);
+            //nw.WriteType(Types.Move);
+            //nw.WriteShort(syncNumber++);
+            //nw.WriteVector3(lastSentPosition);
+            //nw.WriteFloat(lastSentRotation);
+            //nw.WriteBool(endMove);
+            //NetworkManager.Send(nw);
         }
 
         private void OnDestroy()
         {
-            HandlersStorage.UnregisterHandler(Types.TeleportToPoint);
+            networkManager?.UnregisterHandler(Types.TeleportToPoint);
             Stats.Instance.Update -= UpdateStats;
         }
     }

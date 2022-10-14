@@ -1,14 +1,9 @@
-﻿using RUCP;
+﻿using Loader;
+using RUCP;
 using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using RUCP.Packets;
-using RUCP.Network;
-using Loader;
+using Zenject;
 
 namespace Lobby
 {
@@ -19,11 +14,14 @@ namespace Lobby
         public Text text_info;
         //  private bool order = false;
         private Character[] characters;
+        private NetworkManager networkManager;
 
-        private void Awake()
+        [Inject]
+        private void Construct(NetworkManager networkManager)
         {
-            HandlersStorage.RegisterHandler(Types.MyCharacters, MyCharacters);
-            HandlersStorage.RegisterHandler(Types.SelectCharacter, SelectCharacter);
+            this.networkManager = networkManager;
+            networkManager.RegisterHandler(Types.MyCharacters, MyCharacters);
+            networkManager.RegisterHandler(Types.SelectCharacter, SelectCharacter);
         }
 
         private void SelectCharacter(Packet nw)
@@ -57,7 +55,7 @@ namespace Lobby
             {
                 int ID = -1;
                 string charName = "Создать персонажа";
-                if (nw.AvailableBytes >= 8)
+                if (nw.AvailableBytesForReading >= 8)
                 {
                     ID = nw.ReadInt();
                     charName = nw.ReadString();
@@ -71,8 +69,8 @@ namespace Lobby
 
         private void OnDestroy()
         {
-            HandlersStorage.UnregisterHandler(Types.MyCharacters);
-            HandlersStorage.UnregisterHandler(Types.SelectCharacter);
+            networkManager?.UnregisterHandler(Types.MyCharacters);
+            networkManager?.UnregisterHandler(Types.SelectCharacter);
         }
     }
 }

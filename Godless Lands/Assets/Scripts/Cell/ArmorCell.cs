@@ -1,9 +1,5 @@
 ﻿using Items;
 using RUCP;
-using RUCP.Network;
-using RUCP.Packets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,10 +20,11 @@ namespace Cells
         public override void Use()
         {
             if (IsEmpty()) return;
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.TakeOffArmor);
-            nw.WriteInt((int)GetItem().type);
-            NetworkManager.Send(nw);
+            //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.TakeOffArmor);
+            //nw.WriteInt((int)GetItem().type);
+            //NetworkManager.Send(nw);
         }
 
         public override void HideIcon()

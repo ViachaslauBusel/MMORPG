@@ -1,17 +1,13 @@
-﻿using Monsters;
-using OpenWorld;
+﻿using OpenWorld;
+using Player;
 using RUCP;
+using RUCP.Handler;
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Linq;
-using RUCP.Network;
-using RUCP.Packets;
-using RUCP.Handler;
-using System;
-using Player;
+using Zenject;
 
 namespace Loader
 {
@@ -19,10 +15,18 @@ namespace Loader
     {
         private MapLoader mapLoader;
         public Image progressBar;
+        private NetworkManager networkManager;
+
+        [Inject]
+        private void Construct(NetworkManager networkManager)
+        {
+            this.networkManager = networkManager;
+            networkManager.RegisterHandler(Types.MapEntrance, MapEntrance);
+        }
 
         private void Awake()
         {
-            HandlersStorage.RegisterHandler(Types.MapEntrance, MapEntrance);
+          
             progressBar.fillAmount = 0.0f;
             DontDestroyOnLoad(gameObject);
             //Отключить физику
@@ -33,7 +37,7 @@ namespace Loader
         private void MapEntrance(Packet packet)
         {
             mapLoader = GameObject.Find("Map").GetComponent<MapLoader>();
-            mapLoader.LoadMap(packet.ReadVector3());
+           //TODO mapLoader.LoadMap(packet.ReadVector3());
         }
 
         public void LoadGame()
@@ -70,9 +74,10 @@ namespace Loader
                 progressBar.fillAmount = mapLoader.progress;
             }
 
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.MapEntrance);
-            NetworkManager.Send(nw);
+            //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.MapEntrance);
+            //NetworkManager.Send(nw);
 
             Time.timeScale = 1.0f;//Включить физику
             player.enabled = true;
@@ -96,9 +101,10 @@ namespace Loader
             while (!mapLoader.Ready)
                 yield return null;
 
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.MapEntrance);
-            NetworkManager.Send(nw);
+                //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.MapEntrance);
+            //NetworkManager.Send(nw);
 
 
 
@@ -121,5 +127,9 @@ namespace Loader
 
         }
 
+        private void OnDestroy()
+        {
+            networkManager?.UnregisterHandler(Types.MapEntrance);
+        }
     }
 }

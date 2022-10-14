@@ -1,13 +1,9 @@
-﻿using RUCP.Handler;
-using System.Collections;
+﻿using RUCP;
+using RUCP.Handler;
 using System.Collections.Generic;
 using UnityEngine;
-using RUCP;
-using System;
 using UnityEngine.UI;
-using System.Text;
-using RUCP.Packets;
-using RUCP.Network;
+using Zenject;
 
 namespace ServerList
 {
@@ -17,12 +13,20 @@ namespace ServerList
         [SerializeField] Dropdown dropdown;
         private List<string> ip;
         private List<int> port;
+        private NetworkManager networkManager;
+
+        [Inject]
+        private void Construct(NetworkManager networkManager)
+        {
+            this.networkManager = networkManager;
+            networkManager.RegisterHandler(Types.ServersList, ServersList);
+        }
 
         void Start()
         {
             ip = new List<string>();
             port = new List<int>();
-            HandlersStorage.RegisterHandler(Types.ServersList, ServersList);
+           
             GetServersList();
         }
 
@@ -30,9 +34,10 @@ namespace ServerList
         private void GetServersList()
         {
             // print("Get list");
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.ServersList);
-            NetworkManager.Send(nw);
+            //TODO MSg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.ServersList);
+            //NetworkManager.Send(nw);
         }
 
 
@@ -40,7 +45,7 @@ namespace ServerList
         {
             //  print(nw.AvailableBytes);
             List<string> names = new List<string>(10);
-            while (nw.AvailableBytes > 0)
+            while (nw.AvailableBytesForReading > 0)
             {
                 //  print("create");
 
@@ -65,7 +70,7 @@ namespace ServerList
 
         private void OnDestroy()
         {
-            HandlersStorage.UnregisterHandler(Types.ServersList);
+            networkManager?.UnregisterHandler(Types.ServersList);
         }
     }
 }

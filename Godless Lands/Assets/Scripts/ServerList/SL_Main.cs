@@ -1,8 +1,5 @@
 ﻿using RUCP;
-using RUCP.Network;
-using RUCP.Packets;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -50,33 +47,34 @@ namespace ServerList
             info.text = "Подключение к ..." + ip + " : " + port;
             button_start.interactable = false;
 
-            ServerSocket new_client = new ServerSocket(ip, port);
-            Packet nw = new Packet(Channel.Connection);
-            nw.WriteInt(NetworkManager.LoginID);
-            nw.WriteInt(NetworkManager.Sessionkey);
-            new_client.Connection(nw);
+            //TODO msg
+            //ServerSocket new_client = new ServerSocket(ip, port);
+            //Packet nw = new Packet(Channel.Connection);
+            //nw.WriteInt(NetworkManager.LoginID);
+            //nw.WriteInt(NetworkManager.Sessionkey);
+            //new_client.Connection(nw);
 
-            //Ожидания подключения
-            while (new_client.NetworkStatus == NetworkStatus.LISTENING)
-            {
-                yield return null;
-            }
-            if (new_client.IsConnected())//Успешное подключение
-            {
-                ServerSocket old_client = NetworkManager.Socket;
-                NetworkManager.Socket = new_client;
-                old_client.Close();
-                SceneManager.LoadScene("Lobby");
-            }
-            else//Подключиться не удалось
-            {
-                new_client.Close();
+            ////Ожидания подключения
+            //while (new_client.NetworkStatus == NetworkStatus.LISTENING)
+            //{
+            //    yield return null;
+            //}
+            //if (new_client.IsConnected())//Успешное подключение
+            //{
+            //    ServerSocket old_client = NetworkManager.Client;
+            //    NetworkManager.Client = new_client;
+            //    old_client.Close();
+            //    SceneManager.LoadScene("Lobby");
+            //}
+            //else//Подключиться не удалось
+            //{
+            //    new_client.Close();
 
 
-                info.text = "Не удалось подключиться к серверу. Выберите другой сервер или попробуйте позже ..."; //Показать ошибку не удалось подключиться к серверу
-                                                                                                                  //Включаем кнопки подключения к серверу
-                button_start.interactable = true;
-            }
+            //    info.text = "Не удалось подключиться к серверу. Выберите другой сервер или попробуйте позже ..."; //Показать ошибку не удалось подключиться к серверу
+            //                                                                                                      //Включаем кнопки подключения к серверу
+            //    button_start.interactable = true;
+            //}
         }
     }
 }

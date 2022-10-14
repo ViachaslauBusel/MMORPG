@@ -1,14 +1,9 @@
 ﻿using Cells;
 using Items;
-using Machines;
 using Recipes;
 using RUCP;
-using RUCP.Network;
-using RUCP.Packets;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ActionCell : ItemCell
 {
@@ -44,12 +39,14 @@ public class ActionCell : ItemCell
         if (itemCell == null || itemCell.IsEmpty()) return;
         //  if (components.ConstainsItem(itemCell.GetItem().id)) return;//Если этот предмет уже есть в списке
         //   PutItem(itemCell.GetItem(), itemCell.GetCount(), itemCell.GetKey());//Установить иконку
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(Types.MachineAddComponent);
-        nw.WriteBool(fuel);
-        nw.WriteInt(index);
-        nw.WriteInt(itemCell.GetObjectID());
-        NetworkManager.Send(nw);
+
+        //TODO msg
+        //Packet nw = new Packet(Channel.Reliable);
+        //nw.WriteType(Types.MachineAddComponent);
+        //nw.WriteBool(fuel);
+        //nw.WriteInt(index);
+        //nw.WriteInt(itemCell.GetObjectID());
+        //NetworkManager.Send(nw);
 
     }
 
@@ -104,10 +101,11 @@ public class ActionCell : ItemCell
     }*/
     public override void Abort()
     {
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(Types.MachineRemoveComponent);
-        nw.WriteBool(fuel);
-        nw.WriteInt(index);
-        NetworkManager.Send(nw);
+    //TODO msg
+        //Packet nw = new Packet(Channel.Reliable);
+        //nw.WriteType(Types.MachineRemoveComponent);
+        //nw.WriteBool(fuel);
+        //nw.WriteInt(index);
+        //NetworkManager.Send(nw);
     }
 }

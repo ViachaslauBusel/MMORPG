@@ -1,16 +1,12 @@
 ﻿using Items;
 using RUCP;
-using RUCP.Network;
-using RUCP.Packets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Cells
 {
-  
-    
+
+
     public class ItemCell : Cell
     {
         protected Item item;
@@ -39,11 +35,12 @@ namespace Cells
         public override void Use()
         {
             if (IsEmpty()) return;
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.UseItem);
-            nw.WriteInt(item.objectID);
-            nw.WriteInt(item.id);
-            NetworkManager.Send(nw);
+            //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.UseItem);
+            //nw.WriteInt(item.objectID);
+            //nw.WriteInt(item.id);
+            //NetworkManager.Send(nw);
         }
 
         /// <summary>
@@ -52,10 +49,11 @@ namespace Cells
         public void Move()
         {
             if (IsEmpty()) return;
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.ItemMove);
-            nw.WriteInt(item.objectID);
-            NetworkManager.Send(nw);
+            //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.ItemMove);
+            //nw.WriteInt(item.objectID);
+            //NetworkManager.Send(nw);
         }
 
         /// <summary>
@@ -113,12 +111,12 @@ namespace Cells
             ItemCell itemCell = cell as ItemCell;
             if (itemCell == null || itemCell.IsEmpty()) return;
 
-
-            Packet writer = new Packet(Channel.Reliable);
-            writer.WriteType(Types.WrapItem);
-            writer.WriteInt(itemCell.item.objectID);//Предмет который надо переместить
-            writer.WriteInt(index);//в ячейку индекс
-            NetworkManager.Send(writer);
+            //TODO msg
+            //Packet writer = new Packet(Channel.Reliable);
+            //writer.WriteType(Types.WrapItem);
+            //writer.WriteInt(itemCell.item.objectID);//Предмет который надо переместить
+            //writer.WriteInt(index);//в ячейку индекс
+            //NetworkManager.Send(writer);
 
         }
 

@@ -1,12 +1,8 @@
-﻿using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Player;
 using RUCP;
-using System;
-using RUCP.Packets;
-using RUCP.Network;
-using Player;
+using RUCP.Handler;
+using UnityEngine;
+using Zenject;
 
 public class PlayerDead : MonoBehaviour {
 
@@ -14,6 +10,15 @@ public class PlayerDead : MonoBehaviour {
 
     private PlayerController controller;
     private AnimationSkill animationSkill;
+    private NetworkManager networkManager;
+
+    [Inject]
+   private void Construct(NetworkManager networkManager)
+   {
+        this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.PlayerDead, PlayerDeadVoid);
+        networkManager.RegisterHandler(Types.PlayerResurrection, PlayerResurrection);
+    }
 
 
     private void Start()
@@ -22,13 +27,6 @@ public class PlayerDead : MonoBehaviour {
         animationSkill = GetComponent<AnimationSkill>();
         canvas_dead.enabled = false;
     }
-
-    private void Awake()
-    {
-        HandlersStorage.RegisterHandler(Types.PlayerDead, PlayerDeadVoid);
-        HandlersStorage.RegisterHandler(Types.PlayerResurrection, PlayerResurrection);
-    }
-
     private void PlayerResurrection(Packet nw)
     {
         transform.position = nw.ReadVector3();
@@ -49,15 +47,15 @@ public class PlayerDead : MonoBehaviour {
     public void PlayerRes()
     {
         canvas_dead.enabled = false;
-
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(Types.PlayerResurrection);
-        NetworkManager.Send(nw);
+        //TODO msg
+        //Packet nw = new Packet(Channel.Reliable);
+        //nw.WriteType(Types.PlayerResurrection);
+        //NetworkManager.Send(nw);
     }
 
     private void OnDestroy()
     {
-        HandlersStorage.UnregisterHandler(Types.PlayerDead);
-        HandlersStorage.UnregisterHandler(Types.PlayerResurrection);
+        networkManager?.UnregisterHandler(Types.PlayerDead);
+        networkManager?.UnregisterHandler(Types.PlayerResurrection);
     }
 }

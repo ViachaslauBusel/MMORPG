@@ -1,8 +1,6 @@
 ﻿using Cells;
 using Items;
 using RUCP;
-using RUCP.Packets;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,7 +34,7 @@ public class Bag : MonoBehaviour
         //текущий и максимальный вес
         weight.UpdateWeight(nw.ReadInt(), nw.ReadInt());
 
-        while (nw.AvailableBytes > 0)
+        while (nw.AvailableBytesForReading > 0)
         {
             int index = nw.ReadInt();
             Item item = nw.ReadItem();

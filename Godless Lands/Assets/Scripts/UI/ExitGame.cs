@@ -1,20 +1,19 @@
 ﻿using RUCP;
 using RUCP.Handler;
-using RUCP.Network;
-using RUCP.Packets;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using Zenject;
 
 public class ExitGame : MonoBehaviour {
+    private NetworkManager networkManager;
 
-    private void Awake()
+    [Inject]
+    private void Construct(NetworkManager networkManager)
     {
-        HandlersStorage.RegisterHandler(Types.LobbyReload, LobbyReload);
+        this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.LobbyReload, LobbyReload);
     }
+
 
     private void LobbyReload(Packet nw)//Успешный выход в лобби на сервере
     {
@@ -36,9 +35,10 @@ public class ExitGame : MonoBehaviour {
         Confirm.Instance.Subscribe(
         "Вы действительно хотите выйти в комнату выбора персонажа?",
         () => {
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.LobbyReload);
-            NetworkManager.Send(nw);
+        //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.LobbyReload);
+            //NetworkManager.Send(nw);
         },
         () => { }
         );
@@ -47,6 +47,6 @@ public class ExitGame : MonoBehaviour {
 
     private void OnDestroy()
     {
-        HandlersStorage.UnregisterHandler(Types.LobbyReload);
+        networkManager?.UnregisterHandler(Types.LobbyReload);
     }
 }

@@ -1,7 +1,4 @@
 ﻿using Items;
-using RUCP.Packets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Armor : MonoBehaviour

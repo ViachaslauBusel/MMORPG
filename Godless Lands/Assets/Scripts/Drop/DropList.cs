@@ -1,12 +1,9 @@
-﻿using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Items;
 using RUCP;
-using System;
-using Items;
-using RUCP.Packets;
-using RUCP.Network;
+using RUCP.Handler;
+using System.Collections;
+using UnityEngine;
+using Zenject;
 
 public class DropList : MonoBehaviour {
 
@@ -19,11 +16,15 @@ public class DropList : MonoBehaviour {
 
     private int monster_layer;
     private int monster_id;
+    private NetworkManager networkManager;
 
-    private void Awake()
+    [Inject]
+    private void Construct(NetworkManager networkManager)
     {
-        HandlersStorage.RegisterHandler(Types.FindDrop, FindDrop);
+        this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.FindDrop, FindDrop);
     }
+
 
     private void FindDrop(Packet nw)
     {
@@ -31,7 +32,7 @@ public class DropList : MonoBehaviour {
         monster_layer = nw.ReadInt();
         monster_id = nw.ReadInt();
     //    print("monster id: " + monster_id + " monster layer: " + monster_layer);
-        while (nw.AvailableBytes > 0)
+        while (nw.AvailableBytesForReading > 0)
         {
             int id_item = nw.ReadInt();
             GameObject _obj = Instantiate(cellItemDrop);
@@ -65,19 +66,20 @@ public class DropList : MonoBehaviour {
 
     public void TakeDrop(int id_item)
     {
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(Types.TakeDrop);
-        nw.WriteInt(monster_layer);
-        nw.WriteInt(monster_id);
-        nw.WriteInt(id_item);
+    //TODO msg
+        //Packet nw = new Packet(Channel.Reliable);
+        //nw.WriteType(Types.TakeDrop);
+        //nw.WriteInt(monster_layer);
+        //nw.WriteInt(monster_id);
+        //nw.WriteInt(id_item);
 
-        NetworkManager.Send(nw);
+        //NetworkManager.Send(nw);
 
         if (id_item == -1) Close();//-1 take all drop and close window
     }
 
     private void OnDestroy()
     {
-        HandlersStorage.UnregisterHandler(Types.FindDrop);
+        networkManager?.UnregisterHandler(Types.FindDrop);
     }
 }

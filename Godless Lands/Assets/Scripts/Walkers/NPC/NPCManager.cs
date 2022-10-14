@@ -1,11 +1,9 @@
 ﻿
 using RUCP;
 using RUCP.Handler;
-using RUCP.Packets;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Zenject;
 
 namespace NPCs
 {
@@ -14,12 +12,17 @@ namespace NPCs
 
         public NPCList npcList;
         private static Dictionary<int, NPC> npc;
+        private NetworkManager networkManager;
 
-        private void Awake()
+        [Inject]
+        private void Construct(NetworkManager networkManager)
         {
-            HandlersStorage.RegisterHandler(Types.NpcCreate, NPCCreate);
-            HandlersStorage.RegisterHandler(Types.NpcDelete, NPCDelet);
+            this.networkManager = networkManager;
+
+            networkManager.RegisterHandler(Types.NpcCreate, NPCCreate);
+            networkManager.RegisterHandler(Types.NpcDelete, NPCDelet);
         }
+
 
         public void AllDestroy()
         {
@@ -79,8 +82,8 @@ namespace NPCs
 
         private void OnDestroy()
         {
-            HandlersStorage.UnregisterHandler(Types.NpcCreate);
-            HandlersStorage.UnregisterHandler(Types.NpcDelete);
+            networkManager?.UnregisterHandler(Types.NpcCreate);
+            networkManager?.UnregisterHandler(Types.NpcDelete);
         }
 
 

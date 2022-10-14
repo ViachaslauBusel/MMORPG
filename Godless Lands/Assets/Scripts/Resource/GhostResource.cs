@@ -1,8 +1,4 @@
 ﻿using RUCP;
-using RUCP.Network;
-using RUCP.Packets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GhostResource : MonoBehaviour, React
@@ -43,10 +39,11 @@ public class GhostResource : MonoBehaviour, React
 
     public void Use()
     {
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(Types.ResourceUse);
-        nw.WriteInt(ID);
-        NetworkManager.Send(nw);
+    //TODO msg
+        //Packet nw = new Packet(Channel.Reliable);
+        //nw.WriteType(Types.ResourceUse);
+        //nw.WriteInt(ID);
+        //NetworkManager.Send(nw);
     }
 
     public void DestroyAnim()

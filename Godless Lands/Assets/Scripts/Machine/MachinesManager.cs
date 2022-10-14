@@ -1,10 +1,8 @@
-﻿using Machines;
-using RUCP;
+﻿using RUCP;
 using RUCP.Handler;
-using RUCP.Packets;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class MachinesManager : MonoBehaviour, Manager
 {
@@ -13,15 +11,15 @@ public class MachinesManager : MonoBehaviour, Manager
     public GameObject workbenchPref;
     public GameObject tanneryPref;
     private static Dictionary<int, GameObject> machines;
+    private NetworkManager networkManager;
 
-
-
-    private void Awake()
+    [Inject]
+    private void Construct(NetworkManager networkManager)
     {
-        HandlersStorage.RegisterHandler(Types.MachineCreate, MachineCreate);
-        HandlersStorage.RegisterHandler(Types.MachineDelete, MachineDelete);
+        this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.MachineCreate, MachineCreate);
+        networkManager.RegisterHandler(Types.MachineDelete, MachineDelete);
     }
-
 
 
     private void Start()
@@ -52,8 +50,8 @@ public class MachinesManager : MonoBehaviour, Manager
     {
         int id = nw.ReadInt();
         MachineUse machineUse = (MachineUse) nw.ReadByte();
-        Vector3 postion = nw.ReadVector3();
-        Vector3 rotation = nw.ReadVector3();
+        Vector3 postion = Vector3.zero;//TODO nw.ReadVector3();
+        Vector3 rotation = Vector3.zero; //TODO nw.ReadVector3();
         if (machines.ContainsKey(id)) { print("error create machine"); return; } //Если монстр с таким ид уже создан
 
 
@@ -90,7 +88,7 @@ public class MachinesManager : MonoBehaviour, Manager
 
     private void OnDestroy()
     {
-        HandlersStorage.UnregisterHandler(Types.MachineCreate);
-        HandlersStorage.UnregisterHandler(Types.MachineDelete);
+        networkManager?.UnregisterHandler(Types.MachineCreate);
+        networkManager?.UnregisterHandler(Types.MachineDelete);
     }
 }

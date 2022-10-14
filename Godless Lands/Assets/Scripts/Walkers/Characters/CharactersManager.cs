@@ -1,12 +1,8 @@
-﻿using RUCP.Handler;
-using System.Collections;
+﻿using RUCP;
+using RUCP.Handler;
 using System.Collections.Generic;
 using UnityEngine;
-using RUCP;
-using System;
-using System.Text;
-using Items;
-using RUCP.Packets;
+using Zenject;
 
 namespace Characters
 {
@@ -15,18 +11,22 @@ namespace Characters
 
         public GameObject characterPrefab;
         private static Dictionary<int, Character> characters; //Ид персонажа, персонаж
+        private NetworkManager networkManager;
 
-        private void Awake()
+        [Inject]
+        private void Construct(NetworkManager networkManager)
         {
-            HandlersStorage.RegisterHandler(Types.CharacterCreate, CharacterCreate);
-            HandlersStorage.RegisterHandler(Types.CharacterMove, CharacterMove);
-            HandlersStorage.RegisterHandler(Types.CharacterDelete, CharacterDelete);
-            HandlersStorage.RegisterHandler(Types.CharacterAnim, CharacterAnim);
-            HandlersStorage.RegisterHandler(Types.GhostUpdateArmor, GhostUpdateArmor);
-            HandlersStorage.RegisterHandler(Types.CharacterRotation, CharacterRotation);
-            HandlersStorage.RegisterHandler(Types.CharacterCombatState, CharacterCombatState);
-            //  RegisteredTypes.RegisterTypes(Types.CharacterDead, CharacterDead);
+            this.networkManager = networkManager;
+
+            networkManager.RegisterHandler(Types.CharacterCreate, CharacterCreate);
+            networkManager.RegisterHandler(Types.CharacterMove, CharacterMove);
+            networkManager.RegisterHandler(Types.CharacterDelete, CharacterDelete);
+            networkManager.RegisterHandler(Types.CharacterAnim, CharacterAnim);
+            networkManager.RegisterHandler(Types.GhostUpdateArmor, GhostUpdateArmor);
+            networkManager.RegisterHandler(Types.CharacterRotation, CharacterRotation);
+            networkManager.RegisterHandler(Types.CharacterCombatState, CharacterCombatState);
         }
+
 
         /* private void CharacterDead(NetworkWriter nw)
          {
@@ -210,13 +210,13 @@ namespace Characters
 
         private void OnDestroy()
         {
-            HandlersStorage.UnregisterHandler(Types.CharacterCreate);
-            HandlersStorage.UnregisterHandler(Types.CharacterMove);
-            HandlersStorage.UnregisterHandler(Types.CharacterDelete);
-            HandlersStorage.UnregisterHandler(Types.CharacterAnim);
-            HandlersStorage.UnregisterHandler(Types.GhostUpdateArmor);
-            HandlersStorage.UnregisterHandler(Types.CharacterRotation);
-            HandlersStorage.UnregisterHandler(Types.CharacterCombatState);
+            networkManager?.UnregisterHandler(Types.CharacterCreate);
+            networkManager?.UnregisterHandler(Types.CharacterMove);
+            networkManager?.UnregisterHandler(Types.CharacterDelete);
+            networkManager?.UnregisterHandler(Types.CharacterAnim);
+            networkManager?.UnregisterHandler(Types.GhostUpdateArmor);
+            networkManager?.UnregisterHandler(Types.CharacterRotation);
+            networkManager?.UnregisterHandler(Types.CharacterCombatState);
         }
 
 

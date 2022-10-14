@@ -1,10 +1,8 @@
 ﻿using RUCP;
 using RUCP.Handler;
-using RUCP.Packets;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Zenject;
 
 namespace Resource
 {
@@ -12,14 +10,16 @@ namespace Resource
     {
         public ResourceList resourceList;
         private static Dictionary<int, GhostResource> resources;
+        private NetworkManager networkManager;
 
-
-
-        private void Awake()
+        [Inject]
+        private void Construct(NetworkManager networkManager)
         {
-            HandlersStorage.RegisterHandler(Types.ResourceCreate, ResourceCreate);
-            HandlersStorage.RegisterHandler(Types.ResourceDelete, ResourceDelete);
+            this.networkManager = networkManager;
+            networkManager.RegisterHandler(Types.ResourceCreate, ResourceCreate);
+            networkManager.RegisterHandler(Types.ResourceDelete, ResourceDelete);
         }
+
 
 
 
@@ -74,8 +74,8 @@ namespace Resource
 
         private void OnDestroy()
         {
-            HandlersStorage.UnregisterHandler(Types.ResourceCreate);
-            HandlersStorage.UnregisterHandler(Types.ResourceDelete);
+            networkManager?.UnregisterHandler(Types.ResourceCreate);
+            networkManager?.UnregisterHandler(Types.ResourceDelete);
         }
     }
 }

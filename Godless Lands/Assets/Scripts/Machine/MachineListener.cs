@@ -1,11 +1,8 @@
 ﻿using Items;
 using RUCP;
 using RUCP.Handler;
-using RUCP.Packets;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Machines
 {
@@ -16,13 +13,17 @@ namespace Machines
         public Smelter tannery;
         public Workbench workbench;
         private Machine selectMachine;
+        private NetworkManager networkManager;
 
-        private void Awake()
+        [Inject]
+        private void Construct(NetworkManager networkManager)
         {
-            HandlersStorage.RegisterHandler(Types.MachineUse, MachineUseVoid);
-            HandlersStorage.RegisterHandler(Types.MachineAddComponent, MachineComponent);
-            HandlersStorage.RegisterHandler(Types.MachineClose, MachineClose);
+            this.networkManager = networkManager;
+            networkManager.RegisterHandler(Types.MachineUse, MachineUseVoid);
+            networkManager.RegisterHandler(Types.MachineAddComponent, MachineComponent);
+            networkManager.RegisterHandler(Types.MachineClose, MachineClose);
         }
+
 
         private void MachineClose(Packet nw)
         {
@@ -44,7 +45,7 @@ namespace Machines
         {
             if (selectMachine == null) return;
             bool component = nw.ReadBool();
-            while (nw.AvailableBytes > 0)
+            while (nw.AvailableBytesForReading > 0)
             {
                 int index = nw.ReadInt();
                 Item item = nw.ReadItem();
@@ -79,9 +80,9 @@ namespace Machines
 
         private void OnDestroy()
         {
-            HandlersStorage.UnregisterHandler(Types.MachineUse);
-            HandlersStorage.UnregisterHandler(Types.MachineAddComponent);
-            HandlersStorage.UnregisterHandler(Types.MachineClose);
+            networkManager?.UnregisterHandler(Types.MachineUse);
+            networkManager?.UnregisterHandler(Types.MachineAddComponent);
+            networkManager?.UnregisterHandler(Types.MachineClose);
         }
     }
 }

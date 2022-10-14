@@ -1,13 +1,10 @@
-﻿using RUCP.Handler;
-using System.Collections;
+﻿using MonsterRedactor;
+using RUCP;
+using RUCP.Handler;
 using System.Collections.Generic;
 using UnityEngine;
-using RUCP;
-using System;
-using Monsters;
-using MonsterRedactor;
-using RUCP.Packets;
 using Walkers;
+using Zenject;
 
 namespace Monsters
 {
@@ -16,14 +13,19 @@ namespace Monsters
 
         public MonstersList monstersList;
         private static Dictionary<int, Monster> monsters;
+        private NetworkManager networkManager;
 
-        private void Awake()
+        [Inject]
+        private void Construct(NetworkManager networkManager)
         {
-            HandlersStorage.RegisterHandler(Types.MonsterCreate, MonsterCreate);
-            HandlersStorage.RegisterHandler(Types.MonsterDelete, MonsterDelete);
-            HandlersStorage.RegisterHandler(Types.MonsterAnim, MonsterAnim);
-            HandlersStorage.RegisterHandler(Types.MonsterMove, MonsterMove);
+            this.networkManager = networkManager;
+
+            networkManager.RegisterHandler(Types.MonsterCreate, MonsterCreate);
+            networkManager.RegisterHandler(Types.MonsterDelete, MonsterDelete);
+            networkManager.RegisterHandler(Types.MonsterAnim, MonsterAnim);
+            networkManager.RegisterHandler(Types.MonsterMove, MonsterMove);
         }
+
 
         public void AllDestroy()
         {
@@ -65,7 +67,7 @@ namespace Monsters
                 int anim = nw.ReadInt();
                 //print("monster anim: " + anim);
                 TargetObject target = null;
-                if (nw.AvailableBytes > 0)
+                if (nw.AvailableBytesForReading > 0)
                 {
                     int target_layer = nw.ReadInt();
                     int target_id = nw.ReadInt();
@@ -128,10 +130,10 @@ namespace Monsters
 
         private void OnDestroy()
         {
-            HandlersStorage.UnregisterHandler(Types.MonsterCreate);
-            HandlersStorage.UnregisterHandler(Types.MonsterDelete);
-            HandlersStorage.UnregisterHandler(Types.MonsterAnim);
-            HandlersStorage.UnregisterHandler(Types.MonsterMove);
+            networkManager?.UnregisterHandler(Types.MonsterCreate);
+            networkManager?.UnregisterHandler(Types.MonsterDelete);
+            networkManager?.UnregisterHandler(Types.MonsterAnim);
+            networkManager?.UnregisterHandler(Types.MonsterMove);
 
         }
 

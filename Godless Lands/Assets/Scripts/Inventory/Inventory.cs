@@ -1,13 +1,9 @@
-﻿using RUCP;
-using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using UnityEngine.UI;
-using Cells;
+﻿using Cells;
 using Items;
-using RUCP.Packets;
+using RUCP;
+using RUCP.Handler;
+using UnityEngine;
+using Zenject;
 
 public delegate void Update();
 public class Inventory : MonoBehaviour {
@@ -25,9 +21,19 @@ public class Inventory : MonoBehaviour {
     private InventoryArmor armor;
 
     private UISort uISort;
+    private NetworkManager networkManager;
+
     private event Update update;
 
 
+    [Inject]
+    private void Construct(NetworkManager networkManager)
+    {
+        this.networkManager = networkManager;
+
+        networkManager.RegisterHandler(Types.UpdateInventory, UpdateInventory);
+        networkManager.RegisterHandler(Types.UpdateItem, UpdateItem);
+    }
 
     private void Awake()
     {
@@ -35,8 +41,7 @@ public class Inventory : MonoBehaviour {
         Instance = this;
         armor = GetComponentInChildren<InventoryArmor>();
 
-        HandlersStorage.RegisterHandler(Types.UpdateInventory, UpdateInventory);
-        HandlersStorage.RegisterHandler(Types.UpdateItem, UpdateItem);
+
     }
 
     private void UpdateItem(Packet nw)
@@ -166,9 +171,9 @@ public class Inventory : MonoBehaviour {
 
     private void OnDestroy()
     {
-     //   RegisteredTypes.UnregisterTypes(Types.LoadInventory);
-        HandlersStorage.UnregisterHandler(Types.UpdateInventory);
-        HandlersStorage.UnregisterHandler(Types.UpdateItem);
+        //   RegisteredTypes.UnregisterTypes(Types.LoadInventory);
+        networkManager?.UnregisterHandler(Types.UpdateInventory);
+        networkManager?.UnregisterHandler(Types.UpdateItem);
     }
 
 

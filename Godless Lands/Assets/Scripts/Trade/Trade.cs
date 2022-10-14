@@ -1,13 +1,9 @@
 ﻿using Cells;
 using RUCP;
 using RUCP.Handler;
-using RUCP.Network;
-using RUCP.Packets;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class Trade : MonoBehaviour
 {
@@ -30,19 +26,25 @@ public class Trade : MonoBehaviour
     private OfferCell[] otherOfferItem;
     private int myIndex = 0;
     private int otherIndex = 0;
+    private NetworkManager networkManager;
 
-    private void Awake()
+    [Inject]
+    private void Construt(NetworkManager networkManager)
     {
-        HandlersStorage.RegisterHandler(Types.OfferTrade, OfferTrade);
-        HandlersStorage.RegisterHandler(Types.ConfirmTrade, ConfirmTrade);
-        HandlersStorage.RegisterHandler(Types.ItemTrade, ItemTrade);
+        this.networkManager = networkManager;
+
+        networkManager.RegisterHandler(Types.OfferTrade, OfferTrade);
+        networkManager.RegisterHandler(Types.ConfirmTrade, ConfirmTrade);
+        networkManager.RegisterHandler(Types.ItemTrade, ItemTrade);
     }
+
+
 
     private void ItemTrade(Packet nw)//Список предметов предложеных на обмен
     {
         ClearMyTradeCell(); ClearOtherTradeCell();//Очистить все ячейки
 
-        while(nw.AvailableBytes > 0)
+        while(nw.AvailableBytesForReading > 0)
         {
             int id = nw.ReadInt();//ID предмета
             int count = nw.ReadInt();//Количество предметов
@@ -96,10 +98,11 @@ public class Trade : MonoBehaviour
     //2 - Отменить обмен
     private void SendTradeCommand(byte command)
     {
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(Types.ConfirmTrade);
-        nw.WriteByte((byte)command);
-        NetworkManager.Send(nw);
+    //TODO msg
+        //Packet nw = new Packet(Channel.Reliable);
+        //nw.WriteType(Types.ConfirmTrade);
+        //nw.WriteByte((byte)command);
+        //NetworkManager.Send(nw);
     }
 
     //1 - открыть окно обмена
@@ -212,16 +215,17 @@ public class Trade : MonoBehaviour
 
     public void UseSkill()
     {
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(Types.OfferTrade);
-        nw.WriteByte((byte)1);
-        NetworkManager.Send(nw);
+    //TODO msg
+        //Packet nw = new Packet(Channel.Reliable);
+        //nw.WriteType(Types.OfferTrade);
+        //nw.WriteByte((byte)1);
+        //NetworkManager.Send(nw);
     }
 
     private void OnDestroy()
     {
-        HandlersStorage.UnregisterHandler(Types.OfferTrade);
-        HandlersStorage.UnregisterHandler(Types.ConfirmTrade);
-        HandlersStorage.UnregisterHandler(Types.ItemTrade);
+        networkManager?.UnregisterHandler(Types.OfferTrade);
+        networkManager?.UnregisterHandler(Types.ConfirmTrade);
+        networkManager?.UnregisterHandler(Types.ItemTrade);
     }
 }

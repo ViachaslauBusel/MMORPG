@@ -1,12 +1,6 @@
-﻿using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
+﻿using RUCP;
 using UnityEngine;
 using UnityEngine.UI;
-using RUCP;
-using System;
-using RUCP.Network;
-using RUCP.Packets;
 
 namespace Lobby
 {
@@ -41,10 +35,11 @@ namespace Lobby
         {
             if (id == -1) { OpenCharCreator(); return; } //Если персонаж не создан
 
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.SelectCharacter);
-            nw.WriteInt(id);
-            NetworkManager.Send(nw);
+            //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.SelectCharacter);
+            //nw.WriteInt(id);
+            //NetworkManager.Send(nw);
 
 
         }

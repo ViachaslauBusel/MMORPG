@@ -31,13 +31,13 @@ namespace QuestsRedactor
                 2f
             );
 
-            if (Handles.Button((inPoint.Position + outPoint.Position) * 0.5f, Quaternion.identity, 4, 8, Handles.RectangleCap))
+          /*  if (Handles.Button((inPoint.Position + outPoint.Position) * 0.5f, Quaternion.identity, 4, 8, Handles.CapFunction))
             {
                 if (OnClickRemoveConnection != null)
                 {
                     OnClickRemoveConnection(this);
                 }
-            }
+            }*/
         }
     }
 }

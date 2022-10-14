@@ -1,14 +1,11 @@
 ﻿using Cells;
 using RUCP;
 using RUCP.Handler;
-using RUCP.Network;
-using RUCP.Packets;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Zenject;
 
 public class ItemRepair : MonoBehaviour
 {
@@ -16,13 +13,20 @@ public class ItemRepair : MonoBehaviour
     private CellParent cellParent;
     private PointerEventData m_PointerEventData;
     private EventSystem m_EventSystem;
+    private NetworkManager networkManager;
 
+    [Inject]
+    private void Construct(NetworkManager networkManager)
+    {
+       this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.ItemRepair, Repair);
+    }
     private void Awake()
     {
         cursorManager = GameObject.Find("Cursor").GetComponent<CursorManager>();
         cellParent = transform.GetComponentInParent<CellParent>();
         m_EventSystem = EventSystem.current;
-        HandlersStorage.RegisterHandler(Types.ItemRepair, Repair);
+       
         enabled = false;
     }
 
@@ -82,23 +86,25 @@ public class ItemRepair : MonoBehaviour
     }
     public void Exit()
     {
-        Packet nw = new Packet(Channel.Discard);
-        nw.WriteType(Types.ItemRepair);
-        nw.WriteByte((byte)2);//Закрыть интерфейс заточки
-        NetworkManager.Send(nw);
+    //TODO msg
+        //Packet nw = new Packet(Channel.Discard);
+        //nw.WriteType(Types.ItemRepair);
+        //nw.WriteByte((byte)2);//Закрыть интерфейс заточки
+        //NetworkManager.Send(nw);
     }
 
     public void RepairItem(int object_id)
     {
-        Packet nw = new Packet(Channel.Discard);
-        nw.WriteType(Types.ItemRepair);
-        nw.WriteByte((byte)3);//Закрыть интерфейс заточки
-        nw.WriteInt(object_id);
-        NetworkManager.Send(nw);
+    //TODO msg
+        //Packet nw = new Packet(Channel.Discard);
+        //nw.WriteType(Types.ItemRepair);
+        //nw.WriteByte((byte)3);//Закрыть интерфейс заточки
+        //nw.WriteInt(object_id);
+        //NetworkManager.Send(nw);
     }
 
     private void OnDestroy()
     {
-        HandlersStorage.UnregisterHandler(Types.ItemRepair);
+        networkManager?.UnregisterHandler(Types.ItemRepair);
     }
 }

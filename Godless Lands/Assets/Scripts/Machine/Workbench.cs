@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Cells;
+﻿using Cells;
 using Items;
 using Recipes;
 using RUCP;
-using RUCP.Network;
-using RUCP.Packets;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -73,11 +69,12 @@ namespace Machines
         public void Create()
         {
             if (selectRecipe == null) return;
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.WorkbenchRecipeUse);
-            nw.WriteInt(selectRecipe.id);
-            nw.WriteInt(machineID);
-            NetworkManager.Send(nw);
+            //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.WorkbenchRecipeUse);
+            //nw.WriteInt(selectRecipe.id);
+            //nw.WriteInt(machineID);
+            //NetworkManager.Send(nw);
         }
 
         public void Refresh(Item item)

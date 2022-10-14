@@ -1,9 +1,7 @@
-﻿using RUCP;
-using RUCP.BufferChannels;
-using RUCP.Debugger;
-using RUCP.Handler;
-using RUCP.Packets;
-using System.Net.Sockets;
+﻿using Cysharp.Threading.Tasks;
+using RUCP;
+using RUCP.Channels;
+using System;
 using UnityEngine;
 using UnityDebug = UnityEngine.Debug;
 
@@ -11,15 +9,15 @@ public class NetworkManager : MonoBehaviour {
 
     public static NetworkManager Instance { get; private set; }
 
-    public static int Sessionkey { get; set; }
-    public static int LoginID { get; set; }
-
-    private static DebugBuffer debugBuffer;
+    public int Sessionkey { get; set; }
+    public int LoginID { get; set; }
 
 
-    public static ServerSocket Socket { get; set; }
+    public Client Client { get; private set; }
+    public UnityProfile profile = new UnityProfile();
 
-    public static bool isConnected => (Socket != null) && Socket.IsConnected();
+
+    public bool isConnected => (Client != null) && Client.Status == NetworkStatus.CONNECTED;
 
     private void Awake()
     {
@@ -30,41 +28,42 @@ public class NetworkManager : MonoBehaviour {
             DontDestroyOnLoad(this);
         }
 
-        RUCP.Debug.Start();
-        debugBuffer = RUCP.Debug.Object as DebugBuffer;
-
-        HandlersStorage.RegisterUnknown(Unknown);
-        enabled = false;
     }
-
-    public static void Connection(string ip, int port)
+    internal bool IsConnectedTo(string ip, int port)
     {
-        Socket = new ServerSocket(ip, port);
-        Socket.Connection();
-        Instance.enabled = true;
+        if (!isConnected) return false;
+
+        return Client.RemoteAddress.Address.ToString().Equals(ip) && Client.RemoteAddress.Port == port;
+    }
+    public void RegisterHandler(short type, Action<Packet> method)
+    {
+        profile.Handlers.RegisterHandler(type, method);
+    }
+    public void UnregisterHandler(short type)
+    {
+        profile.Handlers.UnregisterHandler(type);
+    }
+    public async UniTask<bool> ConnectTo(string ip, int port)
+    {
+        Client?.Close();
+        Client = new Client();
+        Client.SetHandler(() => profile);
+        Client.ConnectTo(ip, port);
+
+        await UniTask.WaitWhile(() => Client.Status == NetworkStatus.LISTENING);
+
+        return Client.Status == NetworkStatus.CONNECTED;
     }
 
     void Update()
     {
-        string message = debugBuffer?.GetMessage();
-        if (!string.IsNullOrEmpty(message))
-            UnityDebug.Log(message);
-
-        var error = debugBuffer?.GetError();
-        if (!string.IsNullOrEmpty(error.Value.message))
-            UnityDebug.LogError(error.Value.className + " : " + error.Value.message + " : " + error.Value.stackTrace);
-
-        Socket.ProcessPacket(10);
+        profile.ProcessPacket(10);
     }
-    private void Unknown(Packet nw)
-    {
-        UnityDebug.Log("Тип пакета не распознан: " + nw.ReadType());
-    }
-    public static bool Send(Packet net_writer)
+    public bool Send(Packet net_writer)
     {
         try
         {
-            Socket.Send(net_writer);
+            Client.Send(net_writer);
             return true;
         } catch(BufferOverflowException e)
         {
@@ -75,6 +74,8 @@ public class NetworkManager : MonoBehaviour {
     private void OnDestroy()
     {
         print("Close socket");
-        Socket?.Close();
+        Client?.Close();
     }
+
+   
 }

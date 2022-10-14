@@ -44,6 +44,7 @@ namespace OpenWorld
         {
             Ready = true;
             enabled = false;
+            LoadMap();
         }
         public float DetailDistance
         {

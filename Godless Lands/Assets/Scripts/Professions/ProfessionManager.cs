@@ -1,22 +1,27 @@
 ﻿using RUCP;
 using RUCP.Handler;
-using RUCP.Packets;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class ProfessionManager : MonoBehaviour
 {
     public Profession blacksmith;
     public Profession tanner;
     private Canvas canvas;
+    private NetworkManager networkManager;
+
+    [Inject]
+    private void Construct(NetworkManager networkManager)
+    {
+        this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.ProfessionUpdate, ProfessionUpdate);
+    }
 
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
         canvas.enabled = false;
-        HandlersStorage.RegisterHandler(Types.ProfessionUpdate, ProfessionUpdate);
+       
     }
 
     private void ProfessionUpdate(Packet nw)
@@ -43,6 +48,6 @@ public class ProfessionManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        HandlersStorage.UnregisterHandler(Types.ProfessionUpdate);
+        networkManager?.UnregisterHandler(Types.ProfessionUpdate);
     }
 }

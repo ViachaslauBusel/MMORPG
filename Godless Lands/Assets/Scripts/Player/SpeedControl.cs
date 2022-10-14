@@ -1,17 +1,21 @@
-﻿using RUCP.Handler;
-using RUCP.Packets;
-using System.Collections;
-using System.Collections.Generic;
+﻿using RUCP;
+using RUCP.Handler;
 using UnityEngine;
+using Zenject;
 
 namespace Player
 {
     public class SpeedControl : MonoBehaviour
     {
-        private void Awake()
+        private NetworkManager networkManager;
+
+        [Inject]
+        private void Construct(NetworkManager networkManager)
         {
-            HandlersStorage.RegisterHandler(Types.MoveCorrection, MoveCorrection);
+            this.networkManager = networkManager;
+            networkManager.RegisterHandler(Types.MoveCorrection, MoveCorrection);
         }
+
         private void MoveCorrection(Packet packet)
         {
             Vector3 cast = packet.ReadVector3();
@@ -20,7 +24,7 @@ namespace Player
         }
         private void OnDestroy()
         {
-            HandlersStorage.UnregisterHandler(Types.MoveCorrection);
+            networkManager?.UnregisterHandler(Types.MoveCorrection);
         }
     }
 }

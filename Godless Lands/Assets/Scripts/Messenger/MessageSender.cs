@@ -1,11 +1,4 @@
-﻿using RUCP.Network;
-using RUCP.Packets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Messenger
@@ -36,12 +29,13 @@ namespace Messenger
                             layer = MsgLayer.AroundMsg;
                             break;
                     }
-                    Packet nw = new Packet(Channel.Reliable);
-                    nw.WriteType(Types.ChatMessage);
-                    nw.WriteByte((byte)layer);
-                    nw.WriteString(inputField.text);
+                    //TODO msg
+                    //Packet nw = new Packet(Channel.Reliable);
+                    //nw.WriteType(Types.ChatMessage);
+                    //nw.WriteByte((byte)layer);
+                    //nw.WriteString(inputField.text);
 
-                    NetworkManager.Send(nw);
+                //    NetworkManager.Send(nw);
                     inputField.text = "";
                 }
                 else

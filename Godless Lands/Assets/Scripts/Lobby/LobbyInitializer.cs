@@ -1,8 +1,4 @@
-﻿using RUCP.Network;
-using RUCP.Packets;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LobbyInitializer : MonoBehaviour
 {
@@ -14,8 +10,9 @@ public class LobbyInitializer : MonoBehaviour
 
     private void ConnectionLobby()
     {
-        Packet nw = new Packet(Channel.Reliable);
-        nw.WriteType(Types.LobbyEntrance);
-        NetworkManager.Send(nw);
+    //TODO msg
+        //Packet nw = new Packet(Channel.Reliable);
+        //nw.WriteType(Types.LobbyEntrance);
+        //NetworkManager.Send(nw);
     }
 }

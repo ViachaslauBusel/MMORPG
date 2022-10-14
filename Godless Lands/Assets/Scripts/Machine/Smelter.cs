@@ -1,12 +1,9 @@
 ﻿using Items;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Recipes;
 using RUCP;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-using RUCP.Network;
-using RUCP.Packets;
 
 namespace Machines
 {
@@ -75,9 +72,10 @@ namespace Machines
         }
         public void Close()
         {
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.MachineClose);
-            NetworkManager.Send(nw);
+        //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.MachineClose);
+            //NetworkManager.Send(nw);
         }
 
         public void Hide()
@@ -158,10 +156,11 @@ namespace Machines
         public void Create()
         {
             if (selectRecipe == null) return;
-            Packet nw = new Packet(Channel.Reliable);
-            nw.WriteType(Types.RecipeUse);
-            nw.WriteInt(selectRecipe.id);
-            NetworkManager.Send(nw);
+            //TODO msg
+            //Packet nw = new Packet(Channel.Reliable);
+            //nw.WriteType(Types.RecipeUse);
+            //nw.WriteInt(selectRecipe.id);
+            //NetworkManager.Send(nw);
         }
 
         public void Clear()

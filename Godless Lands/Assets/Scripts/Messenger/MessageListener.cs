@@ -1,24 +1,23 @@
-﻿using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using RUCP;
+﻿using RUCP;
+using RUCP.Handler;
 using System;
-using UnityEngine.UI;
-using Items;
-using RUCP.Packets;
-using System.Linq;
 using System.Text.RegularExpressions;
+using UnityEngine;
+using Zenject;
 
 namespace Messenger
 {
     public class MessageListener : MonoBehaviour
     {
+        private NetworkManager networkManager;
 
-        private void Awake()
+        [Inject]
+        private void Constrcut(NetworkManager networkManager)
         {
-            HandlersStorage.RegisterHandler(Types.ChatMessage, Receiving);
+            this.networkManager = networkManager;
+            networkManager.RegisterHandler(Types.ChatMessage, Receiving);
         }
+
 
 
         private void Receiving(Packet nw)
@@ -55,7 +54,7 @@ namespace Messenger
         private void OnDestroy()
         {
 
-            HandlersStorage.UnregisterHandler(Types.ChatMessage);
+            networkManager?.UnregisterHandler(Types.ChatMessage);
         }
     }
 }

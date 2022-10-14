@@ -1,25 +1,28 @@
-﻿using RUCP.Handler;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Items;
 using RUCP;
-using System;
-using Items;
-using RUCP.Packets;
-using RUCP.Network;
+using RUCP.Handler;
+using UnityEngine;
+using Zenject;
 
 public class ArmorListener : MonoBehaviour {
 
     private InventoryArmor inventoryArmor;
     private Armor armor;
     private bool combatState = false;
+    private NetworkManager networkManager;
 
+    [Inject]
+    private void Constructor(NetworkManager networkManager)
+    {
+        this.networkManager = networkManager;
+        networkManager.RegisterHandler(Types.CombatState, CombatState);
+        networkManager.RegisterHandler(Types.UpdateArmor, UpdateArmor);
+    }
     private void Awake()
     {
         inventoryArmor = GameObject.Find("Inventory").GetComponentInChildren<InventoryArmor>();
         armor = GetComponent<Armor>();
-        HandlersStorage.RegisterHandler(Types.CombatState, CombatState);
-        HandlersStorage.RegisterHandler(Types.UpdateArmor, UpdateArmor);
+       
       //  RegisteredTypes.RegisterTypes(Types.LoadArmor, LoadArmor);
     }
     
@@ -30,7 +33,7 @@ public class ArmorListener : MonoBehaviour {
 
     private void LoadArmor(Packet nw)
     {
-       while(nw.AvailableBytes >= 8)
+       while(nw.AvailableBytesForReading >= 8)
         {
             UpdateArmor(nw);
         }
@@ -73,16 +76,17 @@ public class ArmorListener : MonoBehaviour {
 
     private void SendState()
     {
-        Packet nw = new Packet(Channel.Discard);
-        nw.WriteType(Types.CombatState);
-        nw.WriteBool(combatState);
-        NetworkManager.Send(nw);
+    //TODO msg
+        //Packet nw = new Packet(Channel.Discard);
+        //nw.WriteType(Types.CombatState);
+        //nw.WriteBool(combatState);
+        //NetworkManager.Send(nw);
     }
 
     private void OnDestroy()
     {
-        HandlersStorage.UnregisterHandler(Types.UpdateArmor);
-        HandlersStorage.UnregisterHandler(Types.CombatState);
+        networkManager?.UnregisterHandler(Types.UpdateArmor);
+        networkManager?.UnregisterHandler(Types.CombatState);
       //  RegisteredTypes.UnregisterTypes(Types.LoadArmor);
     }
 }

@@ -1,8 +1,5 @@
 ﻿using Items;
 using RUCP;
-using RUCP.Packets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GhostArmor : MonoBehaviour{

@@ -75,7 +75,7 @@ namespace OpenWorldEditor
             Transform target = FindTarget();
             if (target == null) return null;
 
-            GameObject obj = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/Map.prefab"));
+            GameObject obj = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Map.prefab"));
             obj.name = "MapEditor";
             MapLoader mapLoader = obj.GetComponent<MapLoader>();
             mapLoader.trackingObj = target;
