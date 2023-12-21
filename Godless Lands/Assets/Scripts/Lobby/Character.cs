@@ -1,18 +1,25 @@
-﻿using RUCP;
+﻿using Protocol.MSG.Game;
+using RUCP;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Lobby
 {
     public class Character : MonoBehaviour
     {
-
-
         private Text txt_name;
         private int id;
 
         private Canvas canvas_main, canvas_character_cretor;
         private Button button;
+        private NetworkManager m_networkManager;
+
+        [Inject]
+        private void Construct(NetworkManager networkManager)
+        {
+            m_networkManager = networkManager;
+        }
 
         private void Awake()
         {
@@ -35,13 +42,9 @@ namespace Lobby
         {
             if (id == -1) { OpenCharCreator(); return; } //Если персонаж не создан
 
-            //TODO msg
-            //Packet nw = new Packet(Channel.Reliable);
-            //nw.WriteType(Types.SelectCharacter);
-            //nw.WriteInt(id);
-            //NetworkManager.Send(nw);
-
-
+            MSG_SELECT_CHARACTER_CS request = new MSG_SELECT_CHARACTER_CS();
+            request.CharacterID = id;
+            m_networkManager.Client.Send(request);
         }
 
 

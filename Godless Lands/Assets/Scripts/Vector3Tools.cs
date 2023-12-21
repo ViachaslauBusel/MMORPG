@@ -9,4 +9,8 @@ public static class Vector3Tools
         vector.y = 0.0f;
         return vector;
     }
+    public static Vector3 GetClearY(this Vector3 vector)
+    {
+        return new Vector3(vector.x, 0.0f, vector.z);
+    }
 }

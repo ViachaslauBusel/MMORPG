@@ -9,20 +9,29 @@
     ".NETStandard,Version=v2.1/": {
       "Protocol/1.0.0": {
         "dependencies": {
-          "RUCP": "1.5.0"
+          "RUCP": "1.5.3",
+          "RUCP.MessagePack.Generator": "1.2.5"
         },
         "runtime": {
           "Protocol.dll": {}
         }
       },
-      "RUCP/1.5.0": {
+      "RUCP/1.5.3": {
         "dependencies": {
           "System.Memory": "4.5.4"
         },
         "runtime": {
           "lib/netstandard2.1/RUCP.dll": {
-            "assemblyVersion": "1.5.0.0",
-            "fileVersion": "1.5.0.0"
+            "assemblyVersion": "1.5.3.0",
+            "fileVersion": "1.5.3.0"
+          }
+        }
+      },
+      "RUCP.MessagePack.Generator/1.2.5": {
+        "runtime": {
+          "lib/netstandard2.0/RUCP.MessagePack.Generator.dll": {
+            "assemblyVersion": "1.2.5.0",
+            "fileVersion": "1.2.5.0"
           }
         }
       },
@@ -71,12 +80,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "RUCP/1.5.0": {
+    "RUCP/1.5.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-NEnn6splNep+w8GCv4UGI65nCwGYjH53bdAdq9uC4VxDHMKXQs3HifmIFdbx+evrSlT8rAaUjvz4QEh+g0fTDA==",
-      "path": "rucp/1.5.0",
-      "hashPath": "rucp.1.5.0.nupkg.sha512"
+      "sha512": "sha512-1BcqJX8ht5loiiH5aF389w2kT9XX88Upni9NU9d1Lq0KVWShriUyd9SpSoBGlPzz+k3PhcW08F9iSm8LcMfRqQ==",
+      "path": "rucp/1.5.3",
+      "hashPath": "rucp.1.5.3.nupkg.sha512"
+    },
+    "RUCP.MessagePack.Generator/1.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ku+ohVHhyvg+iyuNpK6Lo5VCiCRYal58k5XMnR87qaZRGiCy+zDSS3LamfrT5zgxZexunjKWQ+rSbIamKdn6KQ==",
+      "path": "rucp.messagepack.generator/1.2.5",
+      "hashPath": "rucp.messagepack.generator.1.2.5.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",

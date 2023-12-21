@@ -1,4 +1,6 @@
 ﻿using Loader;
+using Protocol;
+using Protocol.MSG.Game;
 using RUCP;
 using RUCP.Handler;
 using UnityEngine;
@@ -14,21 +16,33 @@ namespace Lobby
         public Text text_info;
         //  private bool order = false;
         private Character[] characters;
-        private NetworkManager networkManager;
+        private NetworkManager m_networkManager;
+        private DiContainer m_diContainer;
+        private SessionManagmentService m_sessionManagment;
 
         [Inject]
-        private void Construct(NetworkManager networkManager)
+        private void Construct(NetworkManager networkManager, DiContainer diContainer, SessionManagmentService sessionManagment)
         {
-            this.networkManager = networkManager;
-            networkManager.RegisterHandler(Types.MyCharacters, MyCharacters);
-            networkManager.RegisterHandler(Types.SelectCharacter, SelectCharacter);
+            m_networkManager = networkManager;
+            m_diContainer = diContainer;
+            m_sessionManagment = sessionManagment;
+        }
+        void Awake()
+        {
+            characters = GetComponentsInChildren<Character>();
+
+            m_networkManager.RegisterHandler(Opcode.MSG_CHARACTERS_LIST, GetMyCharacters);
+            m_networkManager.RegisterHandler(Opcode.MSG_SELECT_CHARACTER, SelectCharacter);
         }
 
-        private void SelectCharacter(Packet nw)
+        private void SelectCharacter(Packet packet)
         {
-            if (nw.ReadByte() == 0) //Если выбор персонажа прошел успешно
+            packet.Read(out MSG_SELECT_CHARACTER_SC response);
+
+            if (response.InformationCode == Protocol.Data.LoginInformationCode.AuthorizationSuccessful) //Если выбор персонажа прошел успешно
             {
-                Instantiate(gameLoader).GetComponent<GameLoader>().LoadGame();//Загрузка карты
+                m_sessionManagment.SetCharacterObjectID(response.CharacterObjectID);
+                m_diContainer.InstantiatePrefab(gameLoader).GetComponent<GameLoader>().LoadGame();//Вызов скрипта который выполняет вход в мир
             }
             else
             {
@@ -36,29 +50,22 @@ namespace Lobby
             }
         }
 
-        void Start()
-        {
-            characters = GetComponentsInChildren<Character>();
-         
-
-        }
-
 
         /// <summary>
         /// Получение списка персонажей ид + имя
         /// </summary>
-        /// <param name="nw"></param>
-        private void MyCharacters(Packet nw)
+        /// <param name="packet"></param>
+        private void GetMyCharacters(Packet packet)
         {
-            print("Пакет получен");
+            packet.Read(out MSG_CHARACTERS_LIST_SC response);
             for (int i = 0; i < characters.Length; i++)
             {
                 int ID = -1;
                 string charName = "Создать персонажа";
-                if (nw.AvailableBytesForReading >= 8)
+                if (i < response.CharacterDatas.Length)
                 {
-                    ID = nw.ReadInt();
-                    charName = nw.ReadString();
+                    ID = response.CharacterDatas[i].CharacterID;
+                    charName = response.CharacterDatas[i].CharacterName;
                 }
                 characters[i].SetCharacter(ID, charName);
             }
@@ -69,8 +76,8 @@ namespace Lobby
 
         private void OnDestroy()
         {
-            networkManager?.UnregisterHandler(Types.MyCharacters);
-            networkManager?.UnregisterHandler(Types.SelectCharacter);
+            m_networkManager?.UnregisterHandler(Opcode.MSG_CHARACTERS_LIST);
+            m_networkManager?.UnregisterHandler(Opcode.MSG_SELECT_CHARACTER);
         }
     }
 }

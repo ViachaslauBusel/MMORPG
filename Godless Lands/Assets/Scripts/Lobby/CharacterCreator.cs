@@ -1,4 +1,6 @@
-﻿using RUCP;
+﻿using Protocol;
+using Protocol.MSG.Game;
+using RUCP;
 using RUCP.Handler;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,13 +15,15 @@ namespace Lobby
         private Canvas canvas_main, canvas_character_cretor;
         private InputField input_name;
         private Button but_create_char;
-        private NetworkManager networkManager;
+        private NetworkManager m_networkManager;
+        private ZenjectSceneLoader m_sceneLoader;
 
         [Inject]
-        private void Construct(NetworkManager networkManager)
+        private void Construct(NetworkManager networkManager, ZenjectSceneLoader sceneLoader)
         {
-            this.networkManager = networkManager;
-            networkManager.RegisterHandler(Types.OwnCharacterCreate, OwnCharacterCreate);
+            m_networkManager = networkManager;
+            m_sceneLoader = sceneLoader;
+            networkManager.RegisterHandler(Opcode.MSG_CREATE_CHARACTER, CharacterCreationEvent);
         }
 
         private void Start()
@@ -34,12 +38,20 @@ namespace Lobby
           
         }
 
-        private void OwnCharacterCreate(Packet nw)
+        private void CharacterCreationEvent(Packet packet)
         {
-            int code = nw.ReadInt();
-            if (code == 10) { SceneManager.LoadScene("Lobby"); return; }//ok TODO
-            else { ErrorCreator.ShowError(code); }
-            but_create_char.interactable = true;
+            packet.Read(out MSG_CREATE_CHARACTER_SC response);
+
+            switch (response.InformationCode)
+            {
+                case Protocol.Data.LoginInformationCode.AuthorizationSuccessful:
+                    m_sceneLoader.LoadSceneAsync("Lobby");
+                    break;
+                default:
+                    ErrorCreator.ShowError(response.InformationCode);
+                    but_create_char.interactable = true;
+                    break;
+            }
         }
 
         public void CreateCharacter()
@@ -47,13 +59,11 @@ namespace Lobby
 
             if (input_name.text.Length <= 3 || input_name.text.Length > 30) { ErrorCreator.ShowError(1); return; }
             but_create_char.interactable = false;
+            
 
-            //TODO msg
-            //Packet nw = new Packet(Channel.Reliable);
-            //nw.WriteType(Types.OwnCharacterCreate);
-            //nw.WriteString(input_name.text);
-
-            //NetworkManager.Send(nw);
+            MSG_CREATE_CHARACTER_CS request = new MSG_CREATE_CHARACTER_CS();
+            request.Name = input_name.text;
+            m_networkManager.Client.Send(request);
         }
 
         public void ExitCreator()
@@ -64,7 +74,7 @@ namespace Lobby
 
         private void OnDestroy()
         {
-            networkManager.UnregisterHandler(Types.OwnCharacterCreate);
+            m_networkManager.UnregisterHandler(Opcode.MSG_CREATE_CHARACTER);
         }
     }
 }

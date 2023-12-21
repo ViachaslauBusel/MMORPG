@@ -93,11 +93,15 @@ namespace Skills
             {
                 if(skill.branch == branch)
                 {
-                    GameObject obj = Instantiate(prefSkillCell);
-                    obj.transform.SetParent(parent);
-                    SkillCell skillCell = obj.GetComponent<SkillCell>();
-                    skillCell.PutSkill(skill);
-                    list.Add(skillCell);
+                    if (prefSkillCell != null)
+                    {
+                        GameObject obj = Instantiate(prefSkillCell);
+                        obj.transform.SetParent(parent);
+                        SkillCell skillCell = obj.GetComponent<SkillCell>();
+                        skillCell.PutSkill(skill);
+                        list.Add(skillCell);
+                    }
+                    else Debug.LogError("error");
                 }
             }
             return list;

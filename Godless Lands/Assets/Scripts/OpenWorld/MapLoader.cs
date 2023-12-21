@@ -22,6 +22,7 @@ namespace OpenWorld
         private GameObject[,] terrainMap;
         private Vector4 border;
         private Material waterMaterial;
+        private Transform m_fakeTrackingObject;
         public bool Ready { get; private set; } = false;
 
         private void Awake()
@@ -35,8 +36,8 @@ namespace OpenWorld
             _detailDistance = PlayerPrefs.GetFloat("DetailDistance", 80.0f);
             _detailDensity = PlayerPrefs.GetFloat("DetailDensity", 1.0f);
 
-
-           
+            m_fakeTrackingObject = new GameObject().transform;
+            m_fakeTrackingObject.SetParent(transform);
            
         }
 
@@ -169,6 +170,10 @@ namespace OpenWorld
         public void LoadMap(Vector3 vector)
         {
             print("Load map in " + vector);
+            if(trackingObj == null)
+            {
+                trackingObj = m_fakeTrackingObject;
+            }
             trackingObj.position = vector;
             LoadMap();
         }

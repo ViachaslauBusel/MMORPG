@@ -12,7 +12,7 @@ namespace Cells
         private new void Awake()
         {
             base.Awake();
-            playerTransform = GameObject.Find("Player").transform;
+          //  playerTransform = GameObject.Find("Player").transform;
         }
 
         public override bool IsEmpty()

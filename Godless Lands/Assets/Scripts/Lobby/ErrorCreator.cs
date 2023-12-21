@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Protocol.Data;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,9 +31,14 @@ namespace Lobby
                     txt_error.text = "Имя уже используется";
                     break;
                 case 3:
-                    txt_error.text = "Ошибка выбора корабля";
+                    txt_error.text = "Ошибка выбора персонажа";
                     break;
             }
+        }
+
+        internal static void ShowError(LoginInformationCode informationCode)
+        {
+            txt_error.text = informationCode.ToString();
         }
     }
 }

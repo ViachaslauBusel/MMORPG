@@ -1,11 +1,12 @@
-﻿using OpenWorld;
-using Player;
+﻿using DynamicsObjects.Player;
+using Helpers;
+using OpenWorld;
+using Protocol;
+using Protocol.MSG.Game;
 using RUCP;
-using RUCP.Handler;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
@@ -13,26 +14,39 @@ namespace Loader
 {
     public class GameLoader : MonoBehaviour
     {
+        private static GameLoader m_instance;
         private MapLoader mapLoader;
         public Image progressBar;
-        private NetworkManager networkManager;
+        private NetworkManager m_networkManager;
+        private ZenjectSceneLoader m_sceneLoader;
 
         [Inject]
-        private void Construct(NetworkManager networkManager)
+        private void Construct(NetworkManager networkManager, ZenjectSceneLoader sceneLoader)
         {
-            this.networkManager = networkManager;
+            m_networkManager = networkManager;
+            m_sceneLoader = sceneLoader;
             networkManager.RegisterHandler(Types.MapEntrance, MapEntrance);
+            m_networkManager.RegisterHandler(Opcode.MSG_WORLD_ENTRANCE, WorldEntrance);
         }
 
         private void Awake()
         {
-          
+            if (m_instance != null)
+            {
+                Debug.LogError("GameLoader: Two versions of an instance cannot run at the same time");
+                Destroy(gameObject);
+                return;
+            }
+            else { m_instance = this; }
+
+         
             progressBar.fillAmount = 0.0f;
             DontDestroyOnLoad(gameObject);
             //Отключить физику
             Time.timeScale = 0.0f;
-            // Debug.Log("awake");
         }
+
+       
 
         private void MapEntrance(Packet packet)
         {
@@ -42,9 +56,13 @@ namespace Loader
 
         public void LoadGame()
         {
-            StartCoroutine(IELoadGame());
+            Debug.Log($"LOAD GAME:{Time.frameCount}");
+            StartCoroutine(IELoadGame_part1());
         }
-
+        //private void Update()
+        //{
+        //    Debug.Log($"Update:{Time.frameCount}");
+        //}
         public void LoadPoint()
         {
             StartCoroutine(IELoadPoint());
@@ -84,9 +102,9 @@ namespace Loader
             Destroy(gameObject);
 
         }
-        private IEnumerator IELoadGame()
+        private IEnumerator IELoadGame_part1()
         {
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Map");
+            AsyncOperation asyncLoad = m_sceneLoader.LoadSceneAsync("Map");
 
             // Wait until the asynchronous scene fully loads
             while (!asyncLoad.isDone)
@@ -101,17 +119,20 @@ namespace Loader
             while (!mapLoader.Ready)
                 yield return null;
 
-                //TODO msg
-            //Packet nw = new Packet(Channel.Reliable);
-            //nw.WriteType(Types.MapEntrance);
-            //NetworkManager.Send(nw);
+            //Дождаться загрузки сцены с картой, и отправить запрос на сервер для того что бы начать получения данных
+            MSG_WORLD_ENTRANCE_CS entrance_request = new MSG_WORLD_ENTRANCE_CS();
+            m_networkManager.Client.Send(entrance_request);
+        }
 
-
-
-           
-
-
-
+        private void WorldEntrance(Packet packet)
+        {
+            packet.Read(out MSG_WORLD_ENTRANCE_SC response);
+            StartCoroutine(IELoadGame_part2(response.EntryPoint.ToUnity()));
+        }
+        private IEnumerator IELoadGame_part2(Vector3 point)
+        {
+            Debug.Log($"Load map in point:{point}");
+            mapLoader.LoadMap(point);
             while (!mapLoader.isDone)
             {
                 yield return null;
@@ -120,16 +141,16 @@ namespace Loader
 
 
 
-            GameObject.Find("Player").GetComponent<PlayerController>().enabled = true;
+           // GameObject.Find("Player").GetComponent<PlayerController>().enabled = true;
             Time.timeScale = 1.0f;//Включить физику
 
             Destroy(gameObject);
-
         }
 
         private void OnDestroy()
         {
-            networkManager?.UnregisterHandler(Types.MapEntrance);
+            m_networkManager?.UnregisterHandler(Types.MapEntrance);
+            m_instance = null;
         }
     }
 }

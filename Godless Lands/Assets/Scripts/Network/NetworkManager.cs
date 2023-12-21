@@ -14,7 +14,7 @@ public class NetworkManager : MonoBehaviour {
 
 
     public Client Client { get; private set; }
-    public UnityProfile profile = new UnityProfile();
+    public UnityProfile Profile { get; } = new UnityProfile();
 
 
     public bool isConnected => (Client != null) && Client.Status == NetworkStatus.CONNECTED;
@@ -37,27 +37,32 @@ public class NetworkManager : MonoBehaviour {
     }
     public void RegisterHandler(short type, Action<Packet> method)
     {
-        profile.Handlers.RegisterHandler(type, method);
+        Profile.Handlers.RegisterHandler(type, method);
     }
     public void UnregisterHandler(short type)
     {
-        profile.Handlers.UnregisterHandler(type);
+        Profile.Handlers.UnregisterHandler(type);
     }
     public async UniTask<bool> ConnectTo(string ip, int port)
     {
         Client?.Close();
         Client = new Client();
-        Client.SetHandler(() => profile);
+        Client.SetHandler(() => Profile);
         Client.ConnectTo(ip, port);
 
         await UniTask.WaitWhile(() => Client.Status == NetworkStatus.LISTENING);
 
         return Client.Status == NetworkStatus.CONNECTED;
     }
+    public void ConnectTo(Client client)
+    {
+        Client?.Close();
+        Client = client;
+    }
 
     void Update()
     {
-        profile.ProcessPacket(10);
+        Profile.ProcessPacket(10);
     }
     public bool Send(Packet net_writer)
     {
@@ -74,7 +79,7 @@ public class NetworkManager : MonoBehaviour {
     private void OnDestroy()
     {
         print("Close socket");
-        Client?.Close();
+      //  Client?.Close();
     }
 
    

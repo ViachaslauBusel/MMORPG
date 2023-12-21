@@ -17,7 +17,7 @@ public class Types {
     public const short LoginOk = 11; //S->C Логин успешен
     public const short ServersList = 12; //C->S запрос на получение списка серверов S->C Список серверов
     public const short Move = 13;  //C->S Передвижение персонажа на карте
-    public const short CharacterMove = 14; //S->C Передвижение других игроков
+  //  public const short CharacterMove = 14; //S->C Передвижение других игроков
     public const short CharacterDelete = 15; //S->C Отпровляет ид с отключенным клиентом
     public const short ChatMessage = 16; // C-S отправка сообщение на сервер S->C рассылка всем игрокам
     public const short Target = 17;//C->S Запрос на взятие цели по ид. S->C ответ о возможности взять в цель

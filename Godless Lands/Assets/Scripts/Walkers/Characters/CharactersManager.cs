@@ -19,7 +19,7 @@ namespace Characters
             this.networkManager = networkManager;
 
             networkManager.RegisterHandler(Types.CharacterCreate, CharacterCreate);
-            networkManager.RegisterHandler(Types.CharacterMove, CharacterMove);
+            //networkManager.RegisterHandler(Types.CharacterMove, CharacterMove);
             networkManager.RegisterHandler(Types.CharacterDelete, CharacterDelete);
             networkManager.RegisterHandler(Types.CharacterAnim, CharacterAnim);
             networkManager.RegisterHandler(Types.GhostUpdateArmor, GhostUpdateArmor);
@@ -211,7 +211,7 @@ namespace Characters
         private void OnDestroy()
         {
             networkManager?.UnregisterHandler(Types.CharacterCreate);
-            networkManager?.UnregisterHandler(Types.CharacterMove);
+            //networkManager?.UnregisterHandler(Types.CharacterMove);
             networkManager?.UnregisterHandler(Types.CharacterDelete);
             networkManager?.UnregisterHandler(Types.CharacterAnim);
             networkManager?.UnregisterHandler(Types.GhostUpdateArmor);

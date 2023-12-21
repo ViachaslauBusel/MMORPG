@@ -22,11 +22,11 @@ public class PostProfiles : MonoBehaviour
 
     public string[] GetProfiles()
     {
-        string[] names = new string[profiles.Length];
-        for (int i = 0; i < profiles.Length; i++)
-        {
-            names[i] = profiles[i].name;
-        }
+        string[] names = new string[0];
+        //for (int i = 0; i < profiles.Length; i++)
+        //{
+        //    names[i] = profiles[i].name;
+        //}
         return names;
     }
 

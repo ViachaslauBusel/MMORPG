@@ -15,13 +15,13 @@ public class LoginConnection : MonoBehaviour {
 
     private InputField input_login;
     private InputField input_pass;
-    private NetworkManager networkManager;
+    private NetworkManager m_networkManager;
     private LoginInformationWindow m_informationWindow;
 
     [Inject]
     private void Construct(NetworkManager networkManager, LoginInformationWindow loginInformation)
     {
-        this.networkManager = networkManager;
+        this.m_networkManager = networkManager;
         this.m_informationWindow = loginInformation;
     }
     private void Awake()
@@ -45,11 +45,11 @@ public class LoginConnection : MonoBehaviour {
 
             string hash_pass = MD5Crypto.GetMd5Hash(input_pass.text);
 
-            MSG_AUTHORIZATION_Request request = new MSG_AUTHORIZATION_Request();
+            MSG_AUTHORIZATION_CS request = new MSG_AUTHORIZATION_CS();
             request.Version = version;
             request.Login = input_login.text;
             request.Password = hash_pass;
-            networkManager.Client.Send(request);
+            m_networkManager.Client.Send(request);
         }
     }
     public async void RegistrationRequest()
@@ -65,19 +65,19 @@ public class LoginConnection : MonoBehaviour {
             
             string hash_pass = MD5Crypto.GetMd5Hash(input_pass.text);
 
-            MSG_REGISTRATION_Request request = new MSG_REGISTRATION_Request();
+            MSG_REGISTRATION_CS request = new MSG_REGISTRATION_CS();
             request.Version = version;
             request.Login = input_login.text;
             request.Password = hash_pass;
-            networkManager.Client.Send(request);
+            m_networkManager.Client.Send(request);
         }
     }
 
     private async UniTask<bool> ConnectToLoginServer()
     {
-        if (!networkManager.IsConnectedTo(loginServerIP, LOGIN_SERVER_PORT))
+        if (!m_networkManager.IsConnectedTo(loginServerIP, LOGIN_SERVER_PORT))
         {
-            bool result = await networkManager.ConnectTo(loginServerIP, LOGIN_SERVER_PORT);
+            bool result = await m_networkManager.ConnectTo(loginServerIP, LOGIN_SERVER_PORT);
 
             if(!result){ m_informationWindow.ShowInfo(LoginInformationCode.ConnectionFail); }
 

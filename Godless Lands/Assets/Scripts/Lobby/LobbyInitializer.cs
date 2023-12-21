@@ -1,18 +1,24 @@
-﻿using UnityEngine;
+﻿using Protocol.MSG.Game;
+using UnityEngine;
+using Zenject;
 
 public class LobbyInitializer : MonoBehaviour
 {
-   
+    private NetworkManager m_networkManager;
+
+    [Inject]
+    private void Consruct(NetworkManager networkManager)
+    {
+        m_networkManager = networkManager;
+    }
     void Start()
     {
-        ConnectionLobby();
+        ConnectToLobby();
     }
 
-    private void ConnectionLobby()
+    private void ConnectToLobby()
     {
-    //TODO msg
-        //Packet nw = new Packet(Channel.Reliable);
-        //nw.WriteType(Types.LobbyEntrance);
-        //NetworkManager.Send(nw);
+       MSG_LOBBY_ENTRANCE_CS request = new MSG_LOBBY_ENTRANCE_CS();
+       m_networkManager.Client.Send(request);
     }
 }
