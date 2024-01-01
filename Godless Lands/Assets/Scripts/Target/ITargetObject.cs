@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface TargetObject {
+public interface ITargetObject {
 
     Vector3 GetPosition();
     void OnTarget();

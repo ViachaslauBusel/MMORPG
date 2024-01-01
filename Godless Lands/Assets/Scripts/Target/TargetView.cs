@@ -11,91 +11,40 @@ public class TargetView : MonoBehaviour
 
     public GameObject targetCircle;
     private GameObject targetCircle_obj;
-    private Text name_txt;
-    private Image hp;
+    [SerializeField]
+    private Text m_nameLabel;
+    [SerializeField]
+    private Image m_hpBar;
     private GameObject targetView;
-    public static TargetObject target_obj;
-    private NetworkManager networkManager;
+    public static ITargetObject target_obj;
 
-    [Inject]
-    private void Construct(NetworkManager networkManager)
-    {
-        this.networkManager = networkManager;
-        networkManager.RegisterHandler(Types.Target, Target);
-        networkManager.RegisterHandler(Types.TargetUpdate, TargetUpdate);
-    }
-
-
-    
 
     private void Start()
     {
-        name_txt = GetComponentInChildren<Text>();
-        hp = transform.Find("ImageTarget/HP/HPBar").GetComponent<Image>();
+        m_nameLabel = GetComponentInChildren<Text>();
         targetView = transform.Find("ImageTarget").gameObject;
         targetView.SetActive(false);
     }
 
-    private void Target(Packet nw)
+    public void SetTarget(string name, int hp, int maxHp)
     {
-        if(targetCircle_obj != null)
-        {
-            Destroy(targetCircle_obj);
-        }
-        int layer = nw.ReadInt();
-        int id = nw.ReadInt();
+        //if(targetCircle_obj != null)
+        //{
+        //    Destroy(targetCircle_obj);
+        //}
 
-        float hp = nw.ReadInt();
-        float max_hp = nw.ReadInt();
-        this.hp.fillAmount = hp / max_hp;
+        UpdateTarget(hp, maxHp);
+        m_nameLabel.text = name;
 
-
-            target_obj = FindTarget(layer, id);
-            if(target_obj == null)
-            {
-                targetView.SetActive(false);
-                return;
-            }
-            name_txt.text = target_obj.GetName();
-
-        targetCircle_obj = Instantiate(targetCircle);
-        targetCircle_obj.transform.SetParent(target_obj.GetTransform());
-        targetCircle_obj.transform.localPosition = Vector3.zero;
-        targetCircle_obj.transform.localScale = Vector3.one;
-
-
-
+        //targetCircle_obj = Instantiate(targetCircle);
+        //targetCircle_obj.transform.SetParent(target_obj.GetTransform());
+        //targetCircle_obj.transform.localPosition = Vector3.zero;
+        //targetCircle_obj.transform.localScale = Vector3.one;
         targetView.SetActive(true);
     }
 
-    private void TargetUpdate(Packet nw)
+    public void UpdateTarget(int hp, int maxHP)
     {
-        int layer = nw.ReadInt();
-        int id = nw.ReadInt();
-
-        if (target_obj != null || target_obj.Layer() == layer || target_obj.Id() == id)
-        {
-            float hp = nw.ReadInt();
-            float max_hp = nw.ReadInt();
-            this.hp.fillAmount = hp / max_hp;
-        }
-    }
-
-    public static TargetObject FindTarget(int layer, int id)
-    {
-        if (layer == 2)
-        {
-            return MonstersManager.GetMonster(id);
-        }
-        if (layer == 1) return CharactersManager.GetCharacter(id);
-        return null;
-
-    }
-
-    private void OnDestroy()
-    {
-
-        networkManager?.UnregisterHandler(Types.Target);
-        networkManager?.UnregisterHandler(Types.TargetUpdate);
+        m_hpBar.fillAmount = hp / (float)maxHP;
     }
 }

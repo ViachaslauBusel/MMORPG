@@ -12,7 +12,8 @@ namespace QuestsRedactor
     public class WindowQuests : Window
     {
         //  private RecipeEditor selectEditor;
-        public Quest selectQuest;
+        public 
+            Quest selectQuest;
         private float scale = 1.0f;
         
         public static WindowQuests Instance { get; private set; }

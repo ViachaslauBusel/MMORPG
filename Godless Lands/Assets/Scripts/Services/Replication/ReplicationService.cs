@@ -1,3 +1,4 @@
+using DynamicsObjects;
 using Protocol;
 using Protocol.MSG.Game;
 using RUCP;
@@ -58,8 +59,10 @@ namespace Services.Replication
             {
                 GameObject obj = m_container.CreateEmptyGameObject($"network object {id}");
 
+                
                 var component = m_container.InstantiateComponent<NetworkComponentsProvider>(obj);
                 component.Init(id);
+                m_container.InstantiateComponent<DynamicObject>(obj);
 
                 m_objects.Add(id, component);
             }

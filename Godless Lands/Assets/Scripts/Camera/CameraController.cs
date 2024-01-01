@@ -12,9 +12,16 @@ namespace MCamera
         private float speed_rotation = 100.0f;
         [SerializeField]
         private float m_height = 2.5f;
+        private Camera m_camera;
 
         private Vector3 rotation;
 
+        public Camera Camera { get => m_camera; }
+
+        private void Awake()
+        {
+            m_camera = GetComponentInChildren<Camera>();
+        }
         private void Start()
         {
             //If the tracking point is not set, disable the script
@@ -92,8 +99,6 @@ namespace MCamera
             //}
 
             transform.position = m_trackingPoint.position + new Vector3(0, m_height, 0);
-
-         
         }
     }
 }

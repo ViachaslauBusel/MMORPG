@@ -74,5 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bcdb58700c78ed40b0e3f950aa57c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkManagerPrefab: {fileID: 6561685783524695692, guid: 52bf120c38ba5b54fb2d7eb036df60d3,
+  m_networkManagerPrefab: {fileID: 6561685783524695692, guid: 52bf120c38ba5b54fb2d7eb036df60d3,
+    type: 3}
+  m_loadingScreenPrefab: {fileID: 3293151056368997480, guid: 0ce2371e58bf71e4fa2ff034adf90716,
     type: 3}

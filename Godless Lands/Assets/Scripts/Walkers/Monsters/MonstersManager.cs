@@ -66,13 +66,13 @@ namespace Monsters
 
                 int anim = nw.ReadInt();
                 //print("monster anim: " + anim);
-                TargetObject target = null;
+                ITargetObject target = null;
                 if (nw.AvailableBytesForReading > 0)
                 {
                     int target_layer = nw.ReadInt();
                     int target_id = nw.ReadInt();
 
-                    target = TargetView.FindTarget(target_layer, target_id);
+                   // target = TargetView.FindTarget(target_layer, target_id);
                 }
                 monsters[id_login].SkillAnim(anim, target);
 

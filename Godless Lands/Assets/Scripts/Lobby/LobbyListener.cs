@@ -18,14 +18,14 @@ namespace Lobby
         private Character[] characters;
         private NetworkManager m_networkManager;
         private DiContainer m_diContainer;
-        private SessionManagmentService m_sessionManagment;
+        private SceneLoader m_sceneLoader;
 
         [Inject]
-        private void Construct(NetworkManager networkManager, DiContainer diContainer, SessionManagmentService sessionManagment)
+        private void Construct(NetworkManager networkManager, DiContainer diContainer, SceneLoader sceneLoader)
         {
             m_networkManager = networkManager;
             m_diContainer = diContainer;
-            m_sessionManagment = sessionManagment;
+            m_sceneLoader = sceneLoader;
         }
         void Awake()
         {
@@ -41,8 +41,10 @@ namespace Lobby
 
             if (response.InformationCode == Protocol.Data.LoginInformationCode.AuthorizationSuccessful) //Если выбор персонажа прошел успешно
             {
-                m_sessionManagment.SetCharacterObjectID(response.CharacterObjectID);
-                m_diContainer.InstantiatePrefab(gameLoader).GetComponent<GameLoader>().LoadGame();//Вызов скрипта который выполняет вход в мир
+                //m_sessionManagment.SetCharacterObjectID(response.CharacterObjectID);
+          
+                m_sceneLoader.LoadScene("Map", 0.2f);
+                //m_diContainer.InstantiatePrefab(gameLoader).GetComponent<GameLoader>().LoadGame();//Вызов скрипта который выполняет вход в мир
             }
             else
             {

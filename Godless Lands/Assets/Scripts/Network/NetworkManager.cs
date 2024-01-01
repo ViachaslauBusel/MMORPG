@@ -79,7 +79,7 @@ public class NetworkManager : MonoBehaviour {
     private void OnDestroy()
     {
         print("Close socket");
-      //  Client?.Close();
+        Client?.Close();
     }
 
    

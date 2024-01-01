@@ -6,7 +6,7 @@ using Walkers;
 
 namespace NPCs
 {
-    public class NPC : MonoBehaviour, TargetObject
+    public class NPC : MonoBehaviour, ITargetObject
     {
 
         public int ID;
@@ -66,7 +66,7 @@ namespace NPCs
             throw new System.NotImplementedException();
         }
 
-        public void SkillAnim(int anim, TargetObject target)
+        public void SkillAnim(int anim, ITargetObject target)
         {
             if (!alive) return;
             if (target != null)

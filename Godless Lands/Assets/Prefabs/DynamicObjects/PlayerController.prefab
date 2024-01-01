@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8389959765582252099}
   - component: {fileID: 8389959765582252098}
   - component: {fileID: 5209187669141840598}
+  - component: {fileID: 6523664338032658551}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -47,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 6
-  m_jumpForce: 10
 --- !u!114 &8389959765582252098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,5 +70,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ac766ad7dfa472458bcc8f8dfb92a65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6523664338032658551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8389959765582252097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e694507663711d046bef2db3989f049e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
