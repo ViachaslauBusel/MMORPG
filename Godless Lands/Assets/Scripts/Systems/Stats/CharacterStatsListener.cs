@@ -1,4 +1,5 @@
 ﻿using Protocol;
+using Protocol.Data.Stats;
 using Protocol.MSG.Game.ToClient.Stats;
 using RUCP;
 using System;
@@ -20,12 +21,26 @@ namespace Systems.Stats
         private void Construct(NetworkManager networkManager)
         {
             m_networkManager = networkManager;
-            m_networkManager.RegisterHandler(Opcode.MSG_UPDATE_STATS, UpdateStats);
         }
 
         private void Awake()
         {
             m_characterStatsHolder = GetComponent<CharacterStatsHolder>();
+            m_networkManager.RegisterHandler(Opcode.MSG_UPDATE_STATS, UpdateStats);
+            m_networkManager.RegisterHandler(Opcode.MSG_LOAD_STATES, LoadStats);
+        }
+
+        private void LoadStats(Packet packet)
+        {
+            packet.Read(out MSG_LOAD_STATES loadStates);
+
+            m_characterStatsHolder.SetStat(StatCode.Name, loadStates.CharacterName);
+
+            foreach(var stat in loadStates.Stats)
+            {
+                m_characterStatsHolder.SetStat(stat.Code, stat.Value);
+            }
+            m_characterStatsHolder.CallStatsUpdateEvent();
         }
 
         private void UpdateStats(Packet packet)
@@ -42,6 +57,7 @@ namespace Systems.Stats
         private void OnDestroy()
         {
             m_networkManager.UnregisterHandler(Opcode.MSG_UPDATE_STATS);
+            m_networkManager.UnregisterHandler(Opcode.MSG_LOAD_STATES);
         }
     }
 }

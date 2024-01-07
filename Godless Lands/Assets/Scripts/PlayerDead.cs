@@ -17,7 +17,7 @@ public class PlayerDead : MonoBehaviour {
    private void Construct(NetworkManager networkManager)
    {
         this.networkManager = networkManager;
-        networkManager.RegisterHandler(Types.PlayerDead, PlayerDeadVoid);
+       // networkManager.RegisterHandler(Types.PlayerDead, PlayerDeadVoid);
         networkManager.RegisterHandler(Types.PlayerResurrection, PlayerResurrection);
     }
 
@@ -56,7 +56,7 @@ public class PlayerDead : MonoBehaviour {
 
     private void OnDestroy()
     {
-        networkManager?.UnregisterHandler(Types.PlayerDead);
+        //networkManager?.UnregisterHandler(Types.PlayerDead);
         networkManager?.UnregisterHandler(Types.PlayerResurrection);
     }
 }

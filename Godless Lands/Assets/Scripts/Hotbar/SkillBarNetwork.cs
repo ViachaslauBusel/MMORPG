@@ -1,6 +1,6 @@
 ﻿using RUCP;
 
-namespace SkillsBar
+namespace Hotbar
 {
     public static class SkillBarNetwork
     {

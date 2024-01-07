@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SkillsBar
+namespace Hotbar
 {
     public class LockInfo : Tools
     {

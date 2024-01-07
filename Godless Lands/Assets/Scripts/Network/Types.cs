@@ -32,14 +32,14 @@ public class Types {
     public const short PlayerDead = 26;//S->C отпрвка игроку
     public const short PlayerResurrection = 27;
     public const short LoadInventory = 28;//C->S запрос на получение содержимого сумки S->C содержимое сумки
-    public const short FindDrop = 29;
+    public const short FindDrop = 293;
     public const short TakeDrop = 30;
     public const short LoadStats = 31;
     public const short UpdateInventory = 32;
     public const short UseItem = 33;
     public const short UpdateArmor = 34;
     public const short TakeOffArmor = 35;
-    public const short GhostUpdateArmor = 36;
+    public const short GhostUpdateArmor = 36; 
     public const short DeletItem = 37;
     public const short UpdateStats = 38;
     public const short Rotation = 39; //C->S Вращение персонажа на карте

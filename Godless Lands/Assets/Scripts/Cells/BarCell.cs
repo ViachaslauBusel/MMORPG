@@ -1,59 +1,74 @@
-﻿using RUCP;
+﻿using Protocol.MSG.Game.Hotbar;
+using RUCP;
 using Skills;
-using SkillsBar;
+using Hotbar;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Cells
 {
     public class BarCell : Cell
     {
-        private Image hide;
-        private Text help;
-        private Token token;
-        private Coroutine coroutineHide;
-        private Cell cell;
-        private int cellID;
-        private int index;//Номер этой ячейки
-        private Text countTxt;
-     //   private int count;
+        private CellContentToRenderConverter _conventer;
+        private NetworkManager _networkManager;
+        private Image _hide;
+        private Text _help;
+        private Token _token;
+        private Coroutine _coroutineHide;
+        private CellContentInfo _contentInfo;
+        private CellRenderInfo _celllRenderInfo;
+        private int _index;//Номер этой ячейки
+        private Text _countTxt;
+        private SkillUsageRequestSender _skillController;
+      
+
+        //   private int count;
+
+        [Inject]
+        private void Construct(NetworkManager networkManager, CellContentToRenderConverter converter, SkillUsageRequestSender skillUsageRequestSender)
+        {
+            _networkManager = networkManager;
+            _conventer = converter;
+            _skillController = skillUsageRequestSender;
+        }
 
         private new void Awake()
         {
-            countTxt = transform.Find("Count").GetComponent<Text>();
+            _countTxt = transform.Find("Count").GetComponent<Text>();
             base.Awake();
-            hide = transform.Find("Hide").GetComponent<Image>();
-            hide.enabled = false;
-            help = transform.Find("help").GetComponent<Text>();
+            _hide = transform.Find("Hide").GetComponent<Image>();
+            _hide.enabled = false;
+            _help = transform.Find("help").GetComponent<Text>();
            
         
         }
 
         internal ItemCell GetItemCell()
         {
-            return cell as ItemCell;
+            return null;
         }
 
         internal Cell GetCell()
         {
-            return cell;
+            return null;
         }
 
         public bool IsUse(Token _token)
         {
-            if (token != null && token.Equals(_token)) return true;
+            if (this._token != null && this._token.Equals(_token)) return true;
             return false;
         }
         public void SetToken(Token token)
         {
-            this.token = token;
-            help.text = token.name;
+            this._token = token;
+            _help.text = token.name;
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(token.key))
+            if (Input.GetKeyDown(_token.key))
             {
                 Use();
             }
@@ -61,14 +76,23 @@ namespace Cells
 
         public override bool IsEmpty()
         {
-            return cell == null || cell.IsEmpty();
+            return _contentInfo == null;
         }
 
         public override void Use()
         {
-            if (cell != null)
-                cell.Use();
-
+            if(_contentInfo != null)
+            {
+                switch(_contentInfo.Type)
+                {
+                    case CellContentType.Skill:
+                        _skillController.SendSkillUsageRequest(_contentInfo.ID);
+                        break;
+                    case CellContentType.Item:
+                       // UseItem();
+                        break;
+                }
+            }
         }
 
         public override void Put(Cell cell)
@@ -89,12 +113,23 @@ namespace Cells
                  return;
             }
 
-     //TODO msg
+            MSG_HOTBAR_SET_CELL_VALUE_CS msg = new MSG_HOTBAR_SET_CELL_VALUE_CS();
+            msg.CellIndex = (byte)_index;
+            msg.CellType = cell switch
+            {
+                SkillCell => HotbarCellType.Skill,
+                ItemCell => HotbarCellType.Item,
+                _ => HotbarCellType.Unknown,
+            };
+            msg.CellValue = (short)cell.GetObjectID();
+            _networkManager.Client.Send(msg);
+
+            //TODO msg
             //Packet nw = new Packet(Channel.Reliable);
             //nw.WriteType(Types.updateBarCell);
             //nw.WriteByte((byte)index);//Номер ячейки на панели
 
-      
+
             //if (cell.GetType() == typeof(SkillCell))
             //{
             //    nw.WriteInt((int)SkillbarType.Skill);//type
@@ -117,81 +152,66 @@ namespace Cells
         }
 
 
-
-        public void InsertCell(Cell cell)
+        public void SetContent(CellContentInfo contentInfo)
         {
-            this.cell = cell;
-            if (cell != null)
-            { cellID = cell.GetObjectID(); }
-            else cellID = 0;
-
-            UpdateCell();
-
+            _contentInfo = contentInfo;
         }
 
-        private void UpdateCell()
+
+        public void Redraw()
         {
-           // Debug.Log("update: " + cell?.GetType() + ": " + cell?.GetObjectID());
-            if (cell == null)
-            { HideIcon(); }
+            CellRenderInfo cellRenderInfo =  _conventer.Convert(_contentInfo);
+
+            if(_celllRenderInfo == cellRenderInfo)
+            {
+                return;
+            }
+            _celllRenderInfo = cellRenderInfo;
+
+            if (cellRenderInfo == null)
+            {
+                HideIcon();
+            }
             else
             {
                 ShowIcon();
-                icon.sprite = cell.GetSprite();
-                countTxt.text = cell.GetText();
-            }
-        }
-
-
-        //Обновилось количество какого то предмета в инвентаре
-        public void Refresh()
-        {
-            //   print("refresh");
-            if (cell is ItemCell)
-            {
-                cell = Inventory.GetItemCellByObjectID(cellID);
-                UpdateCell();
-            } else if(cell is SkillCell)
-            {
-                cell = SkillsBook.GetSkillCellByID(cellID);
-                UpdateCell();
+                icon.sprite = cellRenderInfo.CreateSprite();
+                _countTxt.text = cellRenderInfo.CreateCountTxt();
             }
         }
  
 
         public void Hide(float time)
         {
-           if (coroutineHide != null) StopCoroutine(coroutineHide);
-          coroutineHide = StartCoroutine(IEHide(time));
+           if (_coroutineHide != null) StopCoroutine(_coroutineHide);
+          _coroutineHide = StartCoroutine(IEHide(time));
         }
         IEnumerator IEHide(float time)
         {
             float allTime = time;
-            hide.fillAmount = 1.0f;
-           hide.enabled = true;
+            _hide.fillAmount = 1.0f;
+           _hide.enabled = true;
             while(time > 0.0f)
             {
-                hide.fillAmount = time / allTime;
+                _hide.fillAmount = time / allTime;
                 yield return 0;
                 time -= Time.deltaTime;
             }
-            hide.enabled = false;
+            _hide.enabled = false;
         }
 
-        /*  public System.Object GetTargetCell()
-          {
-              return targetCell;
-          }*/
         public override void HideIcon()
         {
             base.HideIcon();
-            countTxt.enabled = false;
+            _countTxt.enabled = false;
         }
+
         public override void ShowIcon()
         {
             base.ShowIcon();
-            countTxt.enabled = true;
+            _countTxt.enabled = true;
         }
+
         public override void Abort()
         {
         //TODO msg
@@ -204,7 +224,7 @@ namespace Cells
 
         public void SetIndex(int index)
         {
-            this.index = index;
+            this._index = index;
         }
     }
 }

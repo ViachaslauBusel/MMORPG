@@ -1,5 +1,5 @@
 ﻿using RUCP;
-using SkillsBar;
+using Hotbar;
 using UnityEngine;
 using Zenject;
 
@@ -45,7 +45,7 @@ public class AnimationListener : MonoBehaviour
             case 1: //layer 1 = Проиграть анимацию умений с контролем времени
                 int milliseconds = nw.ReadInt();
 
-                PanelSkills.Hide((milliseconds - networkManager.Client.Statistic.Ping) / 1000.0f);
+                HotbarListener.Hide((milliseconds - networkManager.Client.Statistic.Ping) / 1000.0f);
                 animationSkill.UseAnimationSkill(animation, (milliseconds / 1000.0f));
                 break;
             case 2: //layer 2 = Проиграть анимацию состояния без контроля времени
@@ -53,7 +53,7 @@ public class AnimationListener : MonoBehaviour
                 break;
             case 3: //layer 3 = Проиграть анимацию состояния с контролем времени
                 int timeMilli = nw.ReadInt();
-                PanelSkills.Hide((timeMilli - networkManager.Client.Statistic.Ping) / 1000.0f);
+                HotbarListener.Hide((timeMilli - networkManager.Client.Statistic.Ping) / 1000.0f);
                 animationSkill.UseAnimState(animation, (timeMilli / 1000.0f));
                 break;
         }

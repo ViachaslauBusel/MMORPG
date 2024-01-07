@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using DataFileProtocol.Skills;
+using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -9,20 +11,25 @@ namespace SkillsRedactor
     {
         public static void Export(SkillsList skillsList)
         {
-            using (BinaryWriter stream_out = new BinaryWriter(File.Open(@"Export/skills.dat", FileMode.Create)))
-            {
+          
+               SkillsContainer skillsContainer = new SkillsContainer();
                 foreach (Skill skill in skillsList.skills)
                 {
-                    stream_out.Write((byte)skill.skillType);
-                    stream_out.Write((byte)skill.branch);
-                    stream_out.Write(skill.id);
-                    stream_out.Write((int)(skill.applyingTime * 1000));
-                    stream_out.Write((int)(skill.reuseTime * 1000));
-                    stream_out.Write(skill.useAfter);
-                    stream_out.Write((byte)skill.animationType);
-                   
+                    SkillData skillData = skill.skillType switch
+                    {
+                        SkillType.Melee => new MelleSkillData(),
+                        _ => new SkillData(),
+                    };
 
-                    if(skill.skillType == SkillType.Melee)
+                    skillData.id = skill.id;
+                    skillData.skillType = (DataFileProtocol.Skills.SkillType)skill.skillType;
+                    skillData.branch = (DataFileProtocol.Skills.SkillBranch)skill.branch;
+                    skillData.applyingTime = skill.applyingTime;
+                    skillData.reuseTime = skill.reuseTime;
+                    skillData.useAfter = skill.useAfter;
+                    skillData.animationId = (short)skill.animationType;
+
+                    if(skillData is MelleSkillData melleSkillData)
                     {
                         MelleSkill melleSkill = skill.GetMelleSkill();
                         if(melleSkill == null)
@@ -30,16 +37,19 @@ namespace SkillsRedactor
                             Debug.LogError("Ошибка экспорта skills.dat - MelleSkill не найден");
                             return;
                         }
-                        stream_out.Write(melleSkill.damage);
-                        stream_out.Write(melleSkill.prickingDamage);
-                        stream_out.Write(melleSkill.crushingDamage);
-                        stream_out.Write(melleSkill.choppingDamage);
-                        stream_out.Write(melleSkill.range);
-                        stream_out.Write(melleSkill.angle * Mathf.Deg2Rad);
-                        stream_out.Write(melleSkill.stamina);
+
+                        melleSkillData.damage = (int)melleSkill.damage;
+                        melleSkillData.prickingDamage = (int)melleSkill.prickingDamage;
+                        melleSkillData.crushingDamage = (int)melleSkill.crushingDamage;
+                        melleSkillData.choppingDamage = (int)melleSkill.choppingDamage;
+                        melleSkillData.range = melleSkill.range;
+                        melleSkillData.angle = melleSkill.angle * Mathf.Deg2Rad;
+                        melleSkillData.staminaCost = melleSkill.stamina;
                     }
+                    skillsContainer.Add(skillData);
                 }
-            }
+                 
+                File.WriteAllText(@"Export/skills.dat", JsonConvert.SerializeObject(skillsContainer));
         }
     }
 }

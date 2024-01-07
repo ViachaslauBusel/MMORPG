@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cells;
+using Skills;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +15,19 @@ namespace Infrastructure
     {
         [SerializeField]
         private CharacterStatsHolder _characterStatsHolder;
+        [SerializeField]
+        private PlayerSkillsHolder _playerSkillsHolder;
+        [SerializeField]
+        private CellContentToRenderConverter _cellContentToRenderConverter;
+        [SerializeField]
+        private SkillUsageRequestSender _skillUsageRequestSender;
 
         public override void InstallBindings()
         {
             Container.Bind<CharacterStatsHolder>().FromInstance(_characterStatsHolder).AsSingle();
+            Container.Bind<PlayerSkillsHolder>().FromInstance(_playerSkillsHolder).AsSingle();
+            Container.Bind<CellContentToRenderConverter>().FromInstance(_cellContentToRenderConverter).AsSingle();
+            Container.Bind<SkillUsageRequestSender>().FromInstance(_skillUsageRequestSender).AsSingle();
         }
     }
 }

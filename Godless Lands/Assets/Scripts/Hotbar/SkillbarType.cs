@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SkillsBar
+namespace Hotbar
 {
     public enum SkillbarType: int
     {

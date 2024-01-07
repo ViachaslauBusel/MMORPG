@@ -11,9 +11,18 @@ namespace Systems.Stats
     internal class CharacterStatsHolder : MonoBehaviour
     {
         private Dictionary<StatCode, int> m_stats = new Dictionary<StatCode, int>();
+        private string m_name;
 
 
         public event Action OnUpdateStats;
+
+        public void SetStat(StatCode key, string value)
+        {
+            if(key == StatCode.Name)
+            {
+               m_name = value;
+            }
+        }
 
         internal void SetStat(StatCode key, int value)
         {
@@ -37,6 +46,11 @@ namespace Systems.Stats
             {
                 return 0;
             }
+        }
+
+        public string GetName()
+        {
+            return m_name;
         }
 
         public void CallStatsUpdateEvent()

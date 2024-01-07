@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SkillsBar
+namespace Hotbar
 {
     public class Tools : MonoBehaviour
     {

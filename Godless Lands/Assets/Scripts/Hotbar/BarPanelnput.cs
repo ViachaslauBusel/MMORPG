@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using InpuPanelBar;
 
-namespace SkillsBar
+namespace Hotbar
 {
     public class BarPanelnput : MonoBehaviour
     {

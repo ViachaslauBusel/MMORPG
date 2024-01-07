@@ -47,7 +47,7 @@ namespace Services.Replication
                     Debug.LogError($"[{objectID}]Error destroy game object, specified ID not found");
                     continue;
                 }
-                Destroy(m_objects[objectID]);
+                Destroy(m_objects[objectID].gameObject);
                 m_objects.Remove(objectID);
             }
         }

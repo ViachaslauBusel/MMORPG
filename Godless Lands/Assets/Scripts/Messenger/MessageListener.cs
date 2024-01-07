@@ -1,4 +1,6 @@
-﻿using RUCP;
+﻿using Protocol;
+using Protocol.MSG.Game.Messenger;
+using RUCP;
 using RUCP.Handler;
 using System;
 using System.Text.RegularExpressions;
@@ -15,18 +17,18 @@ namespace Messenger
         private void Constrcut(NetworkManager networkManager)
         {
             this.networkManager = networkManager;
-            networkManager.RegisterHandler(Types.ChatMessage, Receiving);
+            networkManager.RegisterHandler(Opcode.MSG_MESSAGE_SC, Receiving);
         }
 
 
 
-        private void Receiving(Packet nw)
+        private void Receiving(Packet packet)
         {
-
+            packet.Read(out MSG_MESSAGE_SC msg);
             Message message = new Message();
-            message.Layer = (MsgLayer)nw.ReadByte();
-            message.CharName = nw.ReadString();
-            message.Msg = nw.ReadString();
+            message.Layer = msg.Layer;
+            message.CharName = msg.SenderName;
+            message.Msg = msg.Message;
 
             //    if (_message.Contains("%item:")) _message.Where((a))
             message.Msg = ReplaceItem(message.Msg);

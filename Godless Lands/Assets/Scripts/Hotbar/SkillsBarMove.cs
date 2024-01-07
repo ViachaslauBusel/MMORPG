@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace SkillsBar
+namespace Hotbar
 {
     
     public class SkillsBarMove : EventTrigger

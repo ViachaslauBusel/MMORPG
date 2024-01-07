@@ -1,63 +1,42 @@
-﻿using RUCP;
+﻿using Protocol.Data.Stats;
+using RUCP;
 using RUCP.Handler;
+using System;
+using Systems.Stats;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 public class HPView : MonoBehaviour {
 
-    public static HPView Instance { get; private set; }
-    public Text name_txt;
-    public Image hp_bar;
-    public Text hp_txt;
-    public Image mp_bar;
-    public Text mp_txt;
-    public Image stamina_bar;
-    public Text stamina_txt;
-    private NetworkManager networkManager;
+    [SerializeField] Text name_txt;
+    [SerializeField] Image hp_bar;
+    [SerializeField] Text hp_txt;
+    [SerializeField] Image mp_bar;
+    [SerializeField] Text mp_txt;
+    [SerializeField] Image stamina_bar;
+    [SerializeField] Text stamina_txt;
+    private CharacterStatsHolder _statsHolder;
+
 
     [Inject]
-    private void Construct(NetworkManager networkManager)
+    private void Construct(CharacterStatsHolder characterStatsHolder)
     {
-        this.networkManager = networkManager;
-        networkManager.RegisterHandler(Types.HPViewUpdate, HPViewUpdate);//byte 0-load name hp mp stamina/ 1 - hp mp stamina / 2 - hp/ 3 - mp/ 4 - stamina
-    }
-    private void Awake()
-    {
-        Instance = this;
-       
+        _statsHolder = characterStatsHolder;
     }
 
-    private void HPViewUpdate(Packet nw)
+    private void Start()
     {
-        UpdateHP(nw);
-        UpdateMP(nw);
-        UpdateStamina(nw);
-        /*   int layer = nw.ReadByte();
-           switch (layer)
-           {
-               case 0://load
-                   SetName(nw.ReadString());
-                   UpdateHP(nw);
-                   UpdateMP(nw);
-                   UpdateStamina(nw);
-                   break;
-               case 1://update
-                   UpdateHP(nw);
-                   UpdateMP(nw);
-                   UpdateStamina(nw);
-                   break;
-               case 2://updateHP  
-                   UpdateHP(nw);
-                   break;
-               case 3:
-                   UpdateMP(nw);
-                   break;
-               case 4:
-                   UpdateStamina(nw);
-                   break;
-           }*/
+        _statsHolder.OnUpdateStats += UpdateStats;
+        UpdateStats();
+    }
 
+    private void UpdateStats()
+    {
+        SetName(_statsHolder.GetName());
+        UpdateHP(_statsHolder.GetStat(StatCode.HP), _statsHolder.GetStat(StatCode.MaxHP));
+        UpdateMP(_statsHolder.GetStat(StatCode.MP), _statsHolder.GetStat(StatCode.MaxMP));
+        UpdateStamina(_statsHolder.GetStat(StatCode.Stamina), _statsHolder.GetStat(StatCode.MaxStamina));
     }
 
     public void SetName(string _name)
@@ -65,30 +44,24 @@ public class HPView : MonoBehaviour {
         name_txt.text = _name;
     }
 
-    private void UpdateHP(Packet nw)
+    private void UpdateHP(int hp, int max_hp)
     {
-        int hp = nw.ReadInt();
-        int max_hp = nw.ReadInt();
         hp_bar.fillAmount = hp / (float)max_hp;
         hp_txt.text = hp + "/" + max_hp;
     }
-    private void UpdateMP(Packet nw)
+    private void UpdateMP(int mp, int maxMp)
     {
-        int mp = nw.ReadInt();
-        int maxMp = nw.ReadInt();
         mp_bar.fillAmount = mp / (float)maxMp;
         mp_txt.text = mp + "/" + maxMp;
     }
-    private void UpdateStamina(Packet nw)
+    private void UpdateStamina(int stamina, int maxStamina)
     {
-        int stamina = nw.ReadInt();
-        int maxStamina = nw.ReadInt();
         stamina_bar.fillAmount = stamina / (float)maxStamina;
         stamina_txt.text = stamina + "/" + maxStamina;
     }
 
     private void OnDestroy()
     {
-        networkManager?.UnregisterHandler(Types.HPViewUpdate);
+       _statsHolder.OnUpdateStats -= UpdateStats;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Messenger;
+using Protocol.MSG.Game.Messenger;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

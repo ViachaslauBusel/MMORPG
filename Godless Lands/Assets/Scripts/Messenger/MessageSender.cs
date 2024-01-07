@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using Protocol.MSG.Game.Messenger;
+using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Messenger
 {
@@ -7,7 +9,14 @@ namespace Messenger
     {
         [SerializeField] InputField inputField;
         [SerializeField] Dropdown dropdown;
+        private NetworkManager _networkManager;
 
+
+        [Inject]
+        private void Construct(NetworkManager networkManager)
+        {
+            _networkManager = networkManager;
+        }
 
         private void Update()
         {
@@ -16,26 +25,17 @@ namespace Messenger
                 if (inputField.isFocused)
                 {
                     if (inputField.text.Length == 0) return;
-                    MsgLayer layer;
-                    switch (dropdown.value)
+                    MsgLayer layer = dropdown.value switch
                     {
-                        case 0:
-                            layer = MsgLayer.AroundMsg;
-                            break;
-                        case 1:
-                            layer = MsgLayer.AllMsg;
-                            break;
-                        default:
-                            layer = MsgLayer.AroundMsg;
-                            break;
-                    }
-                    //TODO msg
-                    //Packet nw = new Packet(Channel.Reliable);
-                    //nw.WriteType(Types.ChatMessage);
-                    //nw.WriteByte((byte)layer);
-                    //nw.WriteString(inputField.text);
+                        0 => MsgLayer.AroundMsg,
+                        1 => MsgLayer.AllMsg,
+                        _ => MsgLayer.AroundMsg,
+                    };
+                    MSG_MESSAGE_CS msg = new MSG_MESSAGE_CS();
+                    msg.Layer = layer;
+                    msg.Message = inputField.text;
+                    _networkManager.Client.Send(msg);
 
-                //    NetworkManager.Send(nw);
                     inputField.text = "";
                 }
                 else
