@@ -9,66 +9,26 @@
     ".NETStandard,Version=v2.1/": {
       "Protocol/1.0.0": {
         "dependencies": {
-          "RUCP": "1.5.3",
-          "RUCP.MessagePack.Generator": "1.2.5"
+          "RUCP.MessagePack.Generator": "1.2.6",
+          "RUCP": "1.5.5.0"
         },
         "runtime": {
           "Protocol.dll": {}
         }
       },
-      "RUCP/1.5.3": {
-        "dependencies": {
-          "System.Memory": "4.5.4"
-        },
-        "runtime": {
-          "lib/netstandard2.1/RUCP.dll": {
-            "assemblyVersion": "1.5.3.0",
-            "fileVersion": "1.5.3.0"
-          }
-        }
-      },
-      "RUCP.MessagePack.Generator/1.2.5": {
+      "RUCP.MessagePack.Generator/1.2.6": {
         "runtime": {
           "lib/netstandard2.0/RUCP.MessagePack.Generator.dll": {
-            "assemblyVersion": "1.2.5.0",
-            "fileVersion": "1.2.5.0"
+            "assemblyVersion": "1.2.6.0",
+            "fileVersion": "1.2.6.0"
           }
         }
       },
-      "System.Buffers/4.5.1": {
+      "RUCP/1.5.5.0": {
         "runtime": {
-          "lib/netstandard2.0/System.Buffers.dll": {
-            "assemblyVersion": "4.0.3.0",
-            "fileVersion": "4.6.28619.1"
-          }
-        }
-      },
-      "System.Memory/4.5.4": {
-        "dependencies": {
-          "System.Buffers": "4.5.1",
-          "System.Numerics.Vectors": "4.4.0",
-          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Memory.dll": {
-            "assemblyVersion": "4.0.1.1",
-            "fileVersion": "4.6.28619.1"
-          }
-        }
-      },
-      "System.Numerics.Vectors/4.4.0": {
-        "runtime": {
-          "lib/netstandard2.0/System.Numerics.Vectors.dll": {
-            "assemblyVersion": "4.1.3.0",
-            "fileVersion": "4.6.25519.3"
-          }
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/4.5.3": {
-        "runtime": {
-          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "assemblyVersion": "4.0.4.1",
-            "fileVersion": "4.6.28619.1"
+          "RUCP.dll": {
+            "assemblyVersion": "1.5.5.0",
+            "fileVersion": "1.5.5.0"
           }
         }
       }
@@ -80,47 +40,17 @@
       "serviceable": false,
       "sha512": ""
     },
-    "RUCP/1.5.3": {
+    "RUCP.MessagePack.Generator/1.2.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-1BcqJX8ht5loiiH5aF389w2kT9XX88Upni9NU9d1Lq0KVWShriUyd9SpSoBGlPzz+k3PhcW08F9iSm8LcMfRqQ==",
-      "path": "rucp/1.5.3",
-      "hashPath": "rucp.1.5.3.nupkg.sha512"
+      "sha512": "sha512-BVpx0drZ0H0oiRQ4X/LO8pNc8TJ1pEkqim1Q2FD8j5Ep+XQ2DgvGk3+1/jdQ0sTociZjYmOWazfJz44GbO+EGg==",
+      "path": "rucp.messagepack.generator/1.2.6",
+      "hashPath": "rucp.messagepack.generator.1.2.6.nupkg.sha512"
     },
-    "RUCP.MessagePack.Generator/1.2.5": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ku+ohVHhyvg+iyuNpK6Lo5VCiCRYal58k5XMnR87qaZRGiCy+zDSS3LamfrT5zgxZexunjKWQ+rSbIamKdn6KQ==",
-      "path": "rucp.messagepack.generator/1.2.5",
-      "hashPath": "rucp.messagepack.generator.1.2.5.nupkg.sha512"
-    },
-    "System.Buffers/4.5.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg==",
-      "path": "system.buffers/4.5.1",
-      "hashPath": "system.buffers.4.5.1.nupkg.sha512"
-    },
-    "System.Memory/4.5.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
-      "path": "system.memory/4.5.4",
-      "hashPath": "system.memory.4.5.4.nupkg.sha512"
-    },
-    "System.Numerics.Vectors/4.4.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-UiLzLW+Lw6HLed1Hcg+8jSRttrbuXv7DANVj0DkL9g6EnnzbL75EB7EWsw5uRbhxd/4YdG8li5XizGWepmG3PQ==",
-      "path": "system.numerics.vectors/4.4.0",
-      "hashPath": "system.numerics.vectors.4.4.0.nupkg.sha512"
-    },
-    "System.Runtime.CompilerServices.Unsafe/4.5.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-3TIsJhD1EiiT0w2CcDMN/iSSwnNnsrnbzeVHSKkaEgV85txMprmuO+Yq2AdSbeVGcg28pdNDTPK87tJhX7VFHw==",
-      "path": "system.runtime.compilerservices.unsafe/4.5.3",
-      "hashPath": "system.runtime.compilerservices.unsafe.4.5.3.nupkg.sha512"
+    "RUCP/1.5.5.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

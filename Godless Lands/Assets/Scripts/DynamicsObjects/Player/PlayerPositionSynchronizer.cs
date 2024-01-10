@@ -111,5 +111,5 @@ namespace Player
 
             m_networkManager.Client.Send(playerInput);
         }
-    }
+    } 
 }

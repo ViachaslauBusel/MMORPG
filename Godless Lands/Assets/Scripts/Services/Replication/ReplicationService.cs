@@ -34,6 +34,7 @@ namespace Services.Replication
             packet.Read(out MSG_GAMEOBJECT_UPDATE_SC gameobject_update);
            // Debug.Log($"network object updated:{gameobject_update.GameobjectID}");
             NetworkComponentsProvider componentProvider = GetObject(gameobject_update.GameobjectID);
+            foreach (var updatedComponent in gameobject_update.UpdatedComponents) { componentProvider.CheckOrCreateComponent(updatedComponent); }
             foreach (var updatedComponent in gameobject_update.UpdatedComponents) { componentProvider.UpdateComponent(updatedComponent); }
             foreach (var removaedComponent in gameobject_update.RemovedComponents) { componentProvider.RemoveComponent(removaedComponent); }
         }

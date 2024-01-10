@@ -5,6 +5,7 @@ using UnityEngine;
 namespace SkillsRedactor {
     public class SkillsList : ScriptableObject
     {
+        [SerializeReference]
         public List<Skill> skills;
 
         public void Add(Skill skill)

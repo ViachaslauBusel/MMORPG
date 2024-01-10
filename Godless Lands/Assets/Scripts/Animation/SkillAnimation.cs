@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Animation;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class SkillAnimation : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        float time = animator.GetComponent<AnimationSkill>().GetSpeedAnim();
+        float time = animator.GetComponent<NetworkAnimator>().GetPlaybackTime();
 
         float speedUse = stateInfo.length / time;
         if (float.IsInfinity(speedUse))

@@ -28,8 +28,7 @@ namespace Services.Replication
             NetworkGameObjectID = id;
         }
        
-
-        internal void UpdateComponent(IReplicationData updatedData)
+        public void CheckOrCreateComponent(IReplicationData updatedData)
         {
             int dataID = updatedData.GetID();
             if (!m_components.ContainsKey(dataID))
@@ -38,8 +37,16 @@ namespace Services.Replication
                 if (dataHandler == null) return;
                 m_components.Add(dataID, dataHandler);
             }
+        }
 
-            m_components[dataID].UpdateData(updatedData);
+        internal void UpdateComponent(IReplicationData updatedData)
+        {
+            int dataID = updatedData.GetID();
+
+            if(m_components.ContainsKey(dataID))
+            {
+                m_components[dataID].UpdateData(updatedData);
+            }
         }
 
         internal void RemoveComponent(int removaedComponent)
