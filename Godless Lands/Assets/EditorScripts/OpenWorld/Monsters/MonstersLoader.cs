@@ -18,7 +18,7 @@ namespace OpenWorldEditor
 
         public void Start()
         {
-            trackingObj = GetComponent<MapLoader>().trackingObj;
+            trackingObj = GetComponent<MapLoader>().m_trackingObj;
             _monsters = new List<MonsterDrawGizmos>();
             CalculateBorder();
             CalculeteVisibleMonster();

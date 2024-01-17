@@ -2,6 +2,7 @@
 using MCamera;
 using Protocol.MSG.Game.ToServer;
 using RUCP;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +14,7 @@ public class UnitTargetRequestSender : MonoBehaviour {
     private float sleep = 0.050f;//ms
     private CameraController m_cameraController;
     private NetworkManager m_networkManager;
+    private long m_lastTime = 0;
 
 
     [Inject]
@@ -32,6 +34,9 @@ public class UnitTargetRequestSender : MonoBehaviour {
         if (Input.GetButton("MouseLeft"))
         {
             if (EventSystem.current.IsPointerOverGameObject()) return;
+
+            long cooldown = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - m_lastTime;
+            if (cooldown < 100) return;
 
             StartCoroutine(Sleep());
             RaycastHit hit;
@@ -63,11 +68,12 @@ public class UnitTargetRequestSender : MonoBehaviour {
     }
 
 
-    private void SetTarget(int gameObjectId)
+    public void SetTarget(int gameObjectId)
     {
         MSG_UNIT_TARGET_REQUEST_CS targetRequest = new MSG_UNIT_TARGET_REQUEST_CS();
         targetRequest.GameObjectId = gameObjectId;
         m_networkManager.Client.Send(targetRequest);
+        m_lastTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
     }
 
     private void FindDrop(byte layer, int id_target)

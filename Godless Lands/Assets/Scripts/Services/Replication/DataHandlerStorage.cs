@@ -1,6 +1,7 @@
 using Animation;
 using Assets.Scripts.Physics.Dynamic;
 using DynamicsObjects.TransformHandlers;
+using Nickname;
 using Protocol.Data.Replicated;
 using Protocol.Data.Replicated.Animation;
 using Protocol.Data.Replicated.Skins;
@@ -31,7 +32,8 @@ namespace Services.Replication
             m_handlers.Add(typeof(DynamicObjectData), typeof(DynamicObjectDataHandler));
             m_handlers.Add(typeof(TransformEvents), typeof(TransformEventsHandler));
             m_handlers.Add(typeof(AnimationPlaybackBuffer), typeof(AnimationPlaybackBufferHandler));
-
+            m_handlers.Add(typeof(UnitName), typeof(UnitNameHandler));
+            m_handlers.Add(typeof(AnimationStateData), typeof(AnimationStateDataHandler));
         }
 
         public INetworkDataHandler CreateDataHandler(GameObject gameObject, IReplicationData data)

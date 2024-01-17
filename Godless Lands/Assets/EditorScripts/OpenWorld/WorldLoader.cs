@@ -51,7 +51,7 @@ namespace OpenWorldEditor
         {
             if (mapLoader != null)
             {
-                Transform tracking = mapLoader.trackingObj;
+                Transform tracking = mapLoader.m_trackingObj;
                 GameObject.DestroyImmediate(mapLoader.gameObject);
                 mapLoader = Map;
             }
@@ -78,7 +78,7 @@ namespace OpenWorldEditor
             GameObject obj = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Map.prefab"));
             obj.name = "MapEditor";
             MapLoader mapLoader = obj.GetComponent<MapLoader>();
-            mapLoader.trackingObj = target;
+            mapLoader.m_trackingObj = target;
             mapLoader.map = WindowSetting.Map;
             mapLoader.areaVisible = WindowSetting.areaVisible;
             mapLoader.LoadMap();
@@ -99,11 +99,11 @@ namespace OpenWorldEditor
         internal static void Update()
         {
             MapLoader mapLoader = Map;
-            if(mapLoader.trackingObj == null)//Если карта потеряла обьект слежения
+            if(mapLoader.m_trackingObj == null)//Если карта потеряла обьект слежения
             {
                 Transform target = FindTarget();
                 if (target == null) return;
-                mapLoader.trackingObj = target;
+                mapLoader.m_trackingObj = target;
             }
             mapLoader.ChangeBlock();
         }

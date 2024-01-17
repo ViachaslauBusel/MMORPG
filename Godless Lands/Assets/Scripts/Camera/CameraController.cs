@@ -7,7 +7,7 @@ namespace MCamera
     public class CameraController : MonoBehaviour
     {
         [SerializeField]
-        private Transform m_trackingPoint;
+        private CharacterController m_trackingCharacter;
         [SerializeField]
         private float speed_rotation = 100.0f;
         [SerializeField]
@@ -25,15 +25,15 @@ namespace MCamera
         private void Start()
         {
             //If the tracking point is not set, disable the script
-            if (m_trackingPoint == null)
+            if (m_trackingCharacter == null)
             { enabled = false; }
         }
 
-        public void SetTrackingPoint(Transform point)
+        public void SetTrackingCharacter(CharacterController characterController)
         {
-            m_trackingPoint = point;
+            m_trackingCharacter = characterController;
 
-            enabled = m_trackingPoint != null;
+            enabled = m_trackingCharacter != null;
         }
 
         private void LateUpdate()
@@ -58,11 +58,16 @@ namespace MCamera
                      {
                          transform.localRotation = Quaternion.Euler(Vector3.zero);
                      }*/
-                    Vector3 targetRotation = m_trackingPoint.rotation.eulerAngles;
-                    targetRotation.y += (Input.GetAxis("Mouse X") * speed_rotation) * Time.deltaTime;
-                    m_trackingPoint.rotation = Quaternion.Euler(targetRotation);
+                    Vector3 targetRotation = m_trackingCharacter.transform.rotation.eulerAngles;
+                    targetRotation.y = transform.rotation.eulerAngles.y + (Input.GetAxis("Mouse X") * speed_rotation) * Time.deltaTime;
 
+                    // Rotate the character around horizaontal axis using mouse axis X
+                    if (m_trackingCharacter != null && m_trackingCharacter.enabled)
+                    {
+                        m_trackingCharacter.transform.rotation = Quaternion.Euler(targetRotation);
+                    }
 
+                    // Rotate the camera around vertical axis using mouse axis Y
                     rotation = transform.localRotation.eulerAngles;
                     rotation.y = targetRotation.y;
                     rotation.x -= (Input.GetAxis("Mouse Y") * speed_rotation) * Time.deltaTime;
@@ -72,11 +77,11 @@ namespace MCamera
                     transform.rotation = Quaternion.Euler(rotation);
                 }
             }
-            else 
+            // Return camera to the back
+            else if (m_trackingCharacter != null && m_trackingCharacter.enabled)
             {
-                //Возврат камеры за спину
                 rotation = transform.rotation.eulerAngles;
-                rotation.y = Mathf.MoveTowardsAngle(rotation.y, m_trackingPoint.rotation.eulerAngles.y, speed_rotation * Time.deltaTime);
+                rotation.y = Mathf.MoveTowardsAngle(rotation.y, m_trackingCharacter.transform.rotation.eulerAngles.y, speed_rotation * Time.deltaTime);
                 transform.rotation = Quaternion.Euler(rotation);
             }
           
@@ -98,7 +103,7 @@ namespace MCamera
             //    transform.rotation = Quaternion.Euler(rotation);
             //}
 
-            transform.position = m_trackingPoint.position + new Vector3(0, m_height, 0);
+            transform.position = m_trackingCharacter.transform.position + new Vector3(0, m_height, 0);
         }
     }
 }

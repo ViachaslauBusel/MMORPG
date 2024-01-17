@@ -69,7 +69,7 @@ namespace DynamicsObjects
 
             m_pathStepCalculator.SetDestionationPoint(m_transformData.Position, m_transformData.Version);
 
-            //If object has stopped
+            //If the object has stopped
             if (!m_transformData.InMove
             //And destination point behind -> stop the object immediately
             && m_pathStepCalculator.IsTargetPointPassed())
@@ -99,9 +99,10 @@ namespace DynamicsObjects
 
         public void TeleportTo(Vector3 position)
         {
+            bool enabledTemp = m_characterController.enabled;
             m_characterController.enabled = false;
             m_characterController.transform.position = (position);
-            m_characterController.enabled = true;
+            m_characterController.enabled = enabledTemp;
         }
 
         private void UpdatePositionInMove()
@@ -129,6 +130,10 @@ namespace DynamicsObjects
 
         private void Update()
         {
+            if(m_characterController == null || m_characterController.enabled == false)
+            {
+                return;
+            }
             m_updatePosition?.Invoke();
         }
 

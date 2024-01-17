@@ -11,7 +11,7 @@ namespace OpenWorld
     {
 
         
-        public Transform trackingObj;
+        public Transform m_trackingObj;
         public Map map;
         private int _areaVisible;
         private int _basemapDistance = 50;
@@ -45,7 +45,7 @@ namespace OpenWorld
         {
             Ready = true;
             enabled = false;
-            LoadMap();
+          //  LoadMap();
         }
         public float DetailDistance
         {
@@ -127,6 +127,10 @@ namespace OpenWorld
                 return tileDone / (float)tileCount;
             } }
 
+        public void SetTrackingTransform(Transform trackingTransform)
+        {
+            m_trackingObj = trackingTransform;
+        }
         private int GetTileDone()
         {
             int tileDone = 0;//Уже загруженные тайлы
@@ -170,11 +174,11 @@ namespace OpenWorld
         public void LoadMap(Vector3 vector)
         {
             print("Load map in " + vector);
-            if(trackingObj == null)
+            if(m_trackingObj == null)
             {
-                trackingObj = m_fakeTrackingObject;
+                m_trackingObj = m_fakeTrackingObject;
             }
-            trackingObj.position = vector;
+            m_trackingObj.position = vector;
             LoadMap();
         }
         public void LoadMap()
@@ -218,7 +222,7 @@ namespace OpenWorld
 
             CalculateBorder();
 
-            Vector3 startPosition = trackingObj.position;
+            Vector3 startPosition = m_trackingObj.position;
             if (startPosition.x < 0.0f) startPosition.x = 0.0f;
             if (startPosition.x > map.mapSize * 1000.0f) startPosition.x = map.mapSize * 1000.0f;
             if (startPosition.z < 0.0f) startPosition.z = 0.0f;
@@ -264,14 +268,14 @@ namespace OpenWorld
         private void CalculateBorderX()
         {
         //    Debug.Log("Border X");
-            border.w = (trackingObj.position.x - (trackingObj.position.x % map.blockSize)) - map.blockSize * 0.1f;//Left
-            border.y = (trackingObj.position.x - (trackingObj.position.x % map.blockSize)) + map.blockSize + map.blockSize * 0.1f;//Right
+            border.w = (m_trackingObj.position.x - (m_trackingObj.position.x % map.blockSize)) - map.blockSize * 0.1f;//Left
+            border.y = (m_trackingObj.position.x - (m_trackingObj.position.x % map.blockSize)) + map.blockSize + map.blockSize * 0.1f;//Right
         }
         private void CalculateBorderY()
         {
          //   Debug.Log("Border Y");
-            border.x = (trackingObj.position.z - (trackingObj.position.z % map.blockSize)) - map.blockSize * 0.1f;//Down
-            border.z = (trackingObj.position.z - (trackingObj.position.z % map.blockSize)) + map.blockSize + map.blockSize * 0.1f;//Up
+            border.x = (m_trackingObj.position.z - (m_trackingObj.position.z % map.blockSize)) - map.blockSize * 0.1f;//Down
+            border.z = (m_trackingObj.position.z - (m_trackingObj.position.z % map.blockSize)) + map.blockSize + map.blockSize * 0.1f;//Up
         }
 
         private void Update()
@@ -282,13 +286,13 @@ namespace OpenWorld
         public void ChangeBlock()
         {
 #if UNITY_EDITOR
-            if (trackingObj.position.x < 0.0f) return;
-            if (trackingObj.position.x > map.mapSize * 1000.0f) return;
-            if (trackingObj.position.z < 0.0f) return;
-            if (trackingObj.position.z > map.mapSize * 1000.0f) return;
+            if (m_trackingObj.position.x < 0.0f) return;
+            if (m_trackingObj.position.x > map.mapSize * 1000.0f) return;
+            if (m_trackingObj.position.z < 0.0f) return;
+            if (m_trackingObj.position.z > map.mapSize * 1000.0f) return;
 #endif
 
-            if (trackingObj.position.x < border.w)//left
+            if (m_trackingObj.position.x < border.w)//left
             {
                 //      Debug.Log("left");
                 
@@ -307,7 +311,7 @@ namespace OpenWorld
                 }
             //    Resources.UnloadUnusedAssets();
             }
-            else if(trackingObj.position.x > border.y)//right
+            else if(m_trackingObj.position.x > border.y)//right
             {
                 //    Debug.Log("right");
                
@@ -326,7 +330,7 @@ namespace OpenWorld
                 }
               //  Resources.UnloadUnusedAssets();
             }
-            else if(trackingObj.position.z < border.x)//up
+            else if(m_trackingObj.position.z < border.x)//up
             {
                 //  Debug.Log("down");
                
@@ -345,7 +349,7 @@ namespace OpenWorld
                 }
             //    Resources.UnloadUnusedAssets();
             }
-            else if(trackingObj.position.z > border.z)//down
+            else if(m_trackingObj.position.z > border.z)//down
             {
                 //    Debug.Log("up");
                

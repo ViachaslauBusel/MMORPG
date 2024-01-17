@@ -8,7 +8,7 @@ using Zenject;
 
 public class TargetView : MonoBehaviour
 {
-
+    private UnitTargetRequestSender m_unitTargetRequestSender;
     public GameObject targetCircle;
     private GameObject targetCircle_obj;
     [SerializeField]
@@ -18,6 +18,11 @@ public class TargetView : MonoBehaviour
     private GameObject targetView;
     public static ITargetObject target_obj;
 
+    [Inject]
+    public void Construct(UnitTargetRequestSender unitTargetRequestSender)
+    {
+        m_unitTargetRequestSender = unitTargetRequestSender;
+    }
 
     private void Start()
     {
@@ -26,25 +31,39 @@ public class TargetView : MonoBehaviour
         targetView.SetActive(false);
     }
 
-    public void SetTarget(string name, int hp, int maxHp)
+    public void SetTarget(string name, int percentHP)
     {
         //if(targetCircle_obj != null)
         //{
         //    Destroy(targetCircle_obj);
         //}
 
-        UpdateTarget(hp, maxHp);
+       
+
+        UpdateTarget(percentHP);
         m_nameLabel.text = name;
 
         //targetCircle_obj = Instantiate(targetCircle);
         //targetCircle_obj.transform.SetParent(target_obj.GetTransform());
         //targetCircle_obj.transform.localPosition = Vector3.zero;
         //targetCircle_obj.transform.localScale = Vector3.one;
-        targetView.SetActive(true);
+        if (percentHP == -1 && string.IsNullOrEmpty(name))
+        {
+            targetView.SetActive(false);
+        }
+        else
+        {
+            targetView.SetActive(true);
+        }
     }
 
-    public void UpdateTarget(int hp, int maxHP)
+    public void CancelTarget()
     {
-        m_hpBar.fillAmount = hp / (float)maxHP;
+        m_unitTargetRequestSender.SetTarget(0);
+    }
+
+    public void UpdateTarget(int percentHP)
+    {
+        m_hpBar.fillAmount = percentHP / 100.0f;
     }
 }

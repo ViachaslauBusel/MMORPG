@@ -35,13 +35,14 @@ namespace MCamera
 
         private void SetCameraTrackingPoint(GameObject trackingPoint)
         {
-            m_cameraController.SetTrackingPoint(trackingPoint.transform);
+            CharacterController characterController = trackingPoint.GetComponent<CharacterController>();
+            m_cameraController.SetTrackingCharacter(characterController);
         }
 
         private void OnDestroy()
         {
             m_skinObjectHolder.updateSkinObject -= SetCameraTrackingPoint;
-            m_cameraController.SetTrackingPoint(null);
+            m_cameraController.SetTrackingCharacter(null);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Player
                   mapLoader.DestroyMap();
                   mapLoader.LoadMap();
               }*/
-            WorldLoader.Map.trackingObj = transform;
+            WorldLoader.Map.m_trackingObj = transform;
         }
 
         void Start()

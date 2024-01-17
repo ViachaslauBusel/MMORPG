@@ -52,7 +52,9 @@ namespace OpenWorldEditor
            
             if (mapElement != null)
             {
+                stream_out.Write(true);
               //  Debug.Log(mapElement.terrainData.heightmapResolution);
+              stream_out.Write(mapElement.terrainData.heightmapResolution);//Разрешение карты высот (должно быть кратно 2
                 int size = (mapElement.terrainData.heightmapResolution * mapElement.terrainData.heightmapResolution) * sizeof(float);
                 stream_out.Write(size);//Размер массива высот
                 float[,] heights = mapElement.terrainData.GetHeights(0, 0, mapElement.terrainData.heightmapResolution, mapElement.terrainData.heightmapResolution);
@@ -65,6 +67,7 @@ namespace OpenWorldEditor
                 }
                 Resources.UnloadAsset(mapElement);
             }
+            else stream_out.Write(false);
            
         }
     }

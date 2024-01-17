@@ -45,6 +45,11 @@ namespace DynamicsObjects.Player
 
         void Update()
         {
+            if(m_characterController == null || m_characterController.enabled == false)
+            {
+                return;
+            }
+
             if (m_characterController.isGrounded)
             {
                 m_moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));

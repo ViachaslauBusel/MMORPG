@@ -46,6 +46,8 @@ namespace WorldScene
             m_loadingScreenDisplay.Show();
             packet.Read(out MSG_PREPARE_SCENE_SC prepareScene);
 
+            m_mapLoader.DestroyMap();
+
             m_sessionManagment.SetCharacterObjectID(prepareScene.GameObjectCharacterID);
 
             m_mapLoader.LoadMap(prepareScene.EntryPoint.ToUnity());

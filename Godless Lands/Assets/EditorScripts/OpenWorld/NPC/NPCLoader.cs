@@ -22,7 +22,7 @@ namespace OpenWorldEditor
 
         public void Start()
         {
-            trackingObj = GetComponent<MapLoader>().trackingObj;
+            trackingObj = GetComponent<MapLoader>().m_trackingObj;
             npcVisible = new List<NPCDraw>();
             CalculateBorder();
             CalculeteVisibleNPC();
