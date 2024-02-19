@@ -1,4 +1,8 @@
 ﻿#if UNITY_EDITOR
+using DataFileProtocol.Skills;
+using Helpers;
+using Newtonsoft.Json;
+using Protocol.Data.Monsters;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -9,19 +13,21 @@ namespace MonsterRedactor {
     {
         public static void Export(WorldMonstersList worldMonstersList, MonstersList monstersList)
         {
-            using (BinaryWriter stream_out = new BinaryWriter(File.Open(@"Export/monsters.dat", FileMode.Create)))
+           
+            List<MonsterData> monsterDataList = new List<MonsterData>();
+            foreach (WorldMonster worldMonster in worldMonstersList.worldMonsters)
             {
-                foreach (WorldMonster worldMonster in worldMonstersList.worldMonsters)
-                {
-                    Monster monster = monstersList.GetMonster(worldMonster.id);
-                    stream_out.Write(worldMonster.id);//ID
-                    stream_out.Write(monster.hp);
-                    stream_out.Write(worldMonster.point.x);
-                    stream_out.Write(worldMonster.point.y);
-                    stream_out.Write(worldMonster.point.z);
-                    stream_out.Write(worldMonster.radius);
-                }
+                Monster monster = monstersList.GetMonster(worldMonster.id);
+                MonsterData monsterData = new MonsterData();
+                monsterData.SkinID = worldMonster.id;
+                monsterData.Name = monster.name;
+                monsterData.HP = monster.hp;
+                monsterData.SpawnPosition = worldMonster.point.ToNumeric();
+                monsterData.SpawnRadius = worldMonster.radius;
+                monsterDataList.Add(monsterData);
             }
+
+            File.WriteAllText(@"Export/monsters.dat", JsonConvert.SerializeObject(monsterDataList));
         }
     }
 }
