@@ -10,6 +10,7 @@ using Skins;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Walkers.Monsters;
 using Zenject;
 
 namespace Services.Replication
@@ -34,6 +35,7 @@ namespace Services.Replication
             m_handlers.Add(typeof(AnimationPlaybackBuffer), typeof(AnimationPlaybackBufferHandler));
             m_handlers.Add(typeof(UnitName), typeof(UnitNameHandler));
             m_handlers.Add(typeof(AnimationStateData), typeof(AnimationStateDataHandler));
+            m_handlers.Add(typeof(MonsterSkinData), typeof(MonsterViewDataHandler));
         }
 
         public INetworkDataHandler CreateDataHandler(GameObject gameObject, IReplicationData data)

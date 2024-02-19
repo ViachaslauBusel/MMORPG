@@ -5,10 +5,10 @@ using Zenject;
 
 public class LoginInstaller : MonoInstaller
 {
-    [SerializeField] GameObject m_informationWindow;
+    [SerializeField] LoginInformationWindow m_informationWindow;
     public override void InstallBindings()
     {
 
-        Container.Bind<LoginInformationWindow>().FromComponentOn(m_informationWindow).AsSingle();
+        Container.Bind<LoginInformationWindow>().FromInstance(m_informationWindow).AsSingle();
     }
 }
