@@ -39,7 +39,7 @@ namespace Animation
         private void OnAnimationPlay(AnimationData data)
         {
 
-            m_playbackTime = data.PlaybackTime != 0 ? data.PlaybackTime / 1_000f : 1.0f;
+            m_playbackTime = data.PlaybackTime != 0 ? (data.PlaybackTime / 1_000f) : 1.0f;
 
             switch (data.AnimationLayer)
             {
