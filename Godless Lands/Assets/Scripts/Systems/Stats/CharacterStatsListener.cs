@@ -7,11 +7,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UI.PlayerCharacterDead;
 using UnityEngine;
 using Zenject;
 
 namespace Systems.Stats
 {
+
+    /// <summary>
+    /// Listens for server messages to synchronize the player character's stats.
+    /// </summary>
     internal class CharacterStatsListener : MonoBehaviour
     {
         private NetworkManager m_networkManager;
