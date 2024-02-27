@@ -1,55 +1,81 @@
-﻿using Protocol.Data.Replicated.Animation;
+﻿using Helpers;
+using NetworkObjectVisualization;
+using Protocol.Data.Replicated.Animation;
 using System;
 using UnityEngine;
 
 namespace Animation
 {
-    public class NetworkAnimator : MonoBehaviour
+    public class NetworkAnimator : MonoBehaviour, IVisualObjectScript
     {
-        private Animator m_animator;
-        private AnimationPlaybackBufferHandler m_animationPlaybackBufferHandler;
-        private AnimationStateDataHandler m_animationStateDataHandler;
-        private float m_playbackTime = 1.0f;
+        private Animator _animator;
+        private AnimationPlaybackBufferHandler _animationPlaybackBufferHandler;
+        private AnimationStateDataHandler _animationStateDataHandler;
+        private float _playbackTime = 1.0f;
 
         public float GetPlaybackTime()
         {
-            return m_playbackTime;
+            return _playbackTime;
+        }
+
+        public void SubscribeToNetworkObject(GameObject networkObjectOwner)
+        {
+            UnsubscribeFromNetworkObject();
+
+            _animationPlaybackBufferHandler = networkObjectOwner.GetComponent<AnimationPlaybackBufferHandler>();
+            _animationStateDataHandler = networkObjectOwner.GetComponent<AnimationStateDataHandler>();
+
+            if(_animationPlaybackBufferHandler != null)
+            {
+                _animationPlaybackBufferHandler.OnAnimationPlay += OnAnimationPlay;
+            }
+
+            if(_animationStateDataHandler != null)
+            {
+                _animationStateDataHandler.OnAnimationStateChange += OnAnimationStateChange;
+                OnAnimationStateChange(_animationStateDataHandler.ActiveStateID);
+            }
+        }
+
+        public void UnsubscribeFromNetworkObject()
+        {
+            if (_animationPlaybackBufferHandler != null)
+            {
+                _animationPlaybackBufferHandler.OnAnimationPlay -= OnAnimationPlay;
+                _animationPlaybackBufferHandler = null;
+            }
+            if (_animationStateDataHandler != null)
+            {
+                _animationStateDataHandler.OnAnimationStateChange -= OnAnimationStateChange;
+                _animationStateDataHandler = null;
+            }
         }
 
         private void Awake()
         {
-            m_animator = GetComponent<Animator>();
-            m_animationPlaybackBufferHandler = GetComponentInParent<AnimationPlaybackBufferHandler>();
-            m_animationStateDataHandler = GetComponentInParent<AnimationStateDataHandler>();
-        }
-
-        private void OnEnable()
-        {
-            m_animationPlaybackBufferHandler.OnAnimationPlay += OnAnimationPlay;
-            m_animationStateDataHandler.OnAnimationStateChange += OnAnimationStateChange;
-            OnAnimationStateChange(m_animationStateDataHandler.ActiveStateID);
-        }
-
-        private void OnDisable()
-        {
-            m_animationPlaybackBufferHandler.OnAnimationPlay -= OnAnimationPlay;
-            m_animationStateDataHandler.OnAnimationStateChange -= OnAnimationStateChange;
+            _animator = GetComponent<Animator>();
         }
 
         private void OnAnimationPlay(AnimationData data)
         {
+            _playbackTime = data.PlaybackTime != 0 ? (data.PlaybackTime / 1_000f) : 1.0f;
 
-            m_playbackTime = data.PlaybackTime != 0 ? (data.PlaybackTime / 1_000f) : 1.0f;
+            if(data.Direction != null)
+            {
+                Vector3 direction = data.Direction.Value.ToUnity();
+                direction.y = 0;
+                transform.LookAt(transform.position + direction);
+            }
 
             switch (data.AnimationLayer)
             {
                 case AnimationLayer.TimeAnimation:
-                    m_animator.SetInteger("AttackType", (int)data.AnimationID);
-                    m_animator.SetTrigger("atack");
+                    _animator.SetInteger("AttackType", (int)data.AnimationID);
+                    _animator.SetTrigger("atack");
                     break;
                 case AnimationLayer.InstantAnimation:
-                    m_animator.SetInteger("AttackType", (int)data.AnimationID);
-                    m_animator.SetTrigger("skill");
+                    _animator.SetInteger("AttackType", (int)data.AnimationID);
+                    _animator.SetTrigger("skill");
                     break;
                 case AnimationLayer.StateAnimation:
                   
@@ -63,9 +89,14 @@ namespace Animation
 
         private void OnAnimationStateChange(AnimationStateID state)
         {
-            m_animator.SetInteger("stateIndex", (int)state);
+            _animator.SetInteger("stateIndex", (int)state);
             if (state != AnimationStateID.None)
-            { m_animator.SetTrigger("State"); }
+            { _animator.SetTrigger("State"); }
+        }
+
+        private void OnDestroy()
+        {
+            UnsubscribeFromNetworkObject();
         }
     }
 }

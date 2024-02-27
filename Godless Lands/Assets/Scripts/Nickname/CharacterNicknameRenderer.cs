@@ -38,6 +38,12 @@ namespace Nickname
                 return;
             }
 
+            if(m_unitNameHandler == null)
+            {
+                Debug.LogError("UnitNameHandler not found");
+                return;
+            }
+
             m_unitNameHandler.OnNameChanged += OnNameChanged;
             OnNameChanged(m_unitNameHandler.UnitName);
         }

@@ -2,7 +2,7 @@
 using Protocol.Data;
 using Protocol.Data.Replicated.Transform;
 using RUCP;
-using Skins;
+using NetworkObjectVisualization;
 using System;
 using UnityEngine;
 using Zenject;
@@ -13,7 +13,7 @@ namespace DynamicsObjects.Player
     {
         [SerializeField]
         private float m_speed = 6.0f;
-        private ISkinObject m_skinObjectHolder;
+        private IVisualRepresentation m_skinObjectHolder;
         private CharacterController m_characterController;
         private Vector3 m_moveDirection = Vector3.zero;
         private long m_lastJumpTime = 0;
@@ -23,15 +23,15 @@ namespace DynamicsObjects.Player
 
         private void Awake()
         {
-            m_skinObjectHolder = GetComponentInParent<ISkinObject>();
+            m_skinObjectHolder = GetComponentInParent<IVisualRepresentation>();
             m_characterController = GetComponent<CharacterController>();
          
         }
 
         private void Start()
         {
-            m_skinObjectHolder.updateSkinObject += AssignComponents;
-            AssignComponents(m_skinObjectHolder.SkinObject);
+            m_skinObjectHolder.OnVisualObjectUpdated += AssignComponents;
+            AssignComponents(m_skinObjectHolder.VisualObject);
         }
 
         private void AssignComponents(GameObject skinObject)
@@ -108,7 +108,7 @@ namespace DynamicsObjects.Player
     
         private void OnDestroy()
         {
-            m_skinObjectHolder.updateSkinObject -= AssignComponents;
+            m_skinObjectHolder.OnVisualObjectUpdated -= AssignComponents;
         }
 
         internal MoveFlag TakeFlag()

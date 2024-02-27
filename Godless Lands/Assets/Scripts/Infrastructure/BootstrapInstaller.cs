@@ -1,4 +1,5 @@
 using Loader;
+using Player;
 using Services.Replication;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,5 +19,7 @@ public class BootstrapInstaller : MonoInstaller
         Container.Bind<SessionManagmentService>().AsSingle().NonLazy();
         Container.Bind<ServerSettingsProvider>().AsSingle().NonLazy();
         Container.Bind<SceneLoader>().AsSingle().NonLazy();
+        Container.Bind<InputManager>().AsSingle().NonLazy();
+
     }
 }

@@ -7,7 +7,12 @@ public class StateAnimation : StateMachineBehaviour
     private float animTimer;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        animTimer = animator.GetComponent<AnimationSkill>().GetSpeedAnim();
+        AnimationSkill animationSkill = animator.GetComponent<AnimationSkill>();
+        if (animationSkill != null) 
+        {
+            animTimer = animationSkill.GetSpeedAnim();
+        }
+       
     }
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {

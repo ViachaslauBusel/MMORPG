@@ -14,7 +14,7 @@ public class GhostResource : MonoBehaviour, React
         _collider = GetComponent<BoxCollider>();
         animator = GetComponent<Animator>();
         fragments.SetActive(false);
-        ActionListener.Add(this);
+       //ActionListener.Add(this);
     }
     public Vector3 position
     {
@@ -61,7 +61,7 @@ public class GhostResource : MonoBehaviour, React
 
     private void OnDestroy()
     {
-        ActionListener.Remove(this);
+       // ActionListener.Remove(this);
     }
 
     public MachineUse GetMachine()

@@ -2,7 +2,7 @@
 using DynamicsObjects.TransformHandlers;
 using Helpers;
 using Protocol.Data.Replicated.Transform;
-using Skins;
+using NetworkObjectVisualization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace DynamicsObjects
     {
         private TransfromDataHandler m_transformData;
         private TransformEventsHandler m_transformEvents;
-        private ISkinObject m_dynamicObjectHolder;
+        private IVisualRepresentation m_dynamicObjectHolder;
         private CharacterController m_characterController;
         private ServerSettingsProvider m_serverSettings;
         private Animator m_animator;
@@ -29,6 +29,7 @@ namespace DynamicsObjects
        // private float m_gravity = 0f;
         private Action m_updatePosition = null;
         public Vector3 TEST_STEP;
+        private bool _isHaveVisuaslObject;
 
         [Inject]
         private void Construct(ServerSettingsProvider serverSettings)
@@ -44,9 +45,9 @@ namespace DynamicsObjects
             m_transformEvents = GetComponentInParent<TransformEventsHandler>();
             m_transformEvents.OnServerReceivedEvent += ReceiveEvent;
 
-            m_dynamicObjectHolder = GetComponentInParent<ISkinObject>();
-            m_dynamicObjectHolder.updateSkinObject += AssignComponents;
-            AssignComponents(m_dynamicObjectHolder.SkinObject);
+            m_dynamicObjectHolder = GetComponentInParent<IVisualRepresentation>();
+            m_dynamicObjectHolder.OnVisualObjectUpdated += AssignComponents;
+            AssignComponents(m_dynamicObjectHolder.VisualObject);
         }
 
         private void ReceiveEvent(TransformEvent @event)
@@ -57,6 +58,17 @@ namespace DynamicsObjects
 
         private void AssignComponents(GameObject dynamicObjectView)
         {
+            _isHaveVisuaslObject = dynamicObjectView != null;
+
+            if (_isHaveVisuaslObject == false)
+            {
+                m_characterController = null;
+                m_animator = null;
+                m_pathStepCalculator.SetTransform(null);
+                m_pathStepCalculator.SetCharacterController(null);
+                m_pathStepCalculator.SetAnimator(null);
+                return;
+            }
             m_characterController = dynamicObjectView.GetComponent<CharacterController>();
             m_animator = dynamicObjectView.GetComponent<Animator>();
             m_pathStepCalculator.SetTransform(m_characterController.transform);
@@ -66,6 +78,7 @@ namespace DynamicsObjects
 
         private void UpdateTrnsformData()
         {
+            if(_isHaveVisuaslObject == false) return;
 
             m_pathStepCalculator.SetDestionationPoint(m_transformData.Position, m_transformData.Version);
 
@@ -99,6 +112,8 @@ namespace DynamicsObjects
 
         public void TeleportTo(Vector3 position)
         {
+            if(_isHaveVisuaslObject == false) return;
+
             bool enabledTemp = m_characterController.enabled;
             m_characterController.enabled = false;
             m_characterController.transform.position = (position);
@@ -107,6 +122,7 @@ namespace DynamicsObjects
 
         private void UpdatePositionInMove()
         {
+
             Step step = m_pathStepCalculator.MakeStep();
             m_characterController.Move(step.delta);
         }

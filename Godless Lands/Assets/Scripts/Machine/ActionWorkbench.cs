@@ -11,7 +11,7 @@ public class ActionWorkbench : MonoBehaviour, React
     private void Start()
     {
         workbench = GameObject.Find("WorkbenchGUI").GetComponent<Workbench>();
-        ActionListener.Add(this);
+        //ActionListener.Add(this);
     }
 
     public Vector3 position { get { return transform.position; } }
@@ -41,6 +41,6 @@ public class ActionWorkbench : MonoBehaviour, React
 
     private void OnDestroy()
     {
-        ActionListener.Remove(this);
+       // ActionListener.Remove(this);
     }
 }

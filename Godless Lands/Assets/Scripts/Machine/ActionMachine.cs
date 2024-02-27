@@ -12,7 +12,7 @@ namespace Machines
         private void Awake()
         {
         //    smelter = GameObject.Find("SmelterGUI").GetComponent<Smelter>();
-            ActionListener.Add(this);
+            //ActionListener.Add(this);
         }
 
         public Vector3 position
@@ -39,7 +39,7 @@ namespace Machines
 
         private void OnDestroy()
         {
-            ActionListener.Remove(this);
+            //ActionListener.Remove(this);
         }
 
         public void SetID(int id)

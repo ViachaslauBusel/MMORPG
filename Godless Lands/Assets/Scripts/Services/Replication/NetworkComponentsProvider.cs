@@ -1,3 +1,4 @@
+using Assets.Scripts.Services.Replication;
 using Protocol.Data.Replicated;
 using System;
 using System.Collections;
@@ -57,8 +58,16 @@ namespace Services.Replication
                 return;
             }
 
+            (m_components[removaedComponent] as IDestroyNotifier)?.NotifyPreDestroy();
             Destroy(m_components[removaedComponent] as MonoBehaviour);
             m_components.Remove(removaedComponent);
+        }
+        internal void NotifyComponentsPreDestroy()
+        {
+            foreach (var component in m_components.Values)
+            {
+                (component as IDestroyNotifier)?.NotifyPreDestroy();
+            }
         }
     }
 }

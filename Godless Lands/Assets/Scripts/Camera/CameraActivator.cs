@@ -1,5 +1,5 @@
 ﻿using Player;
-using Skins;
+using NetworkObjectVisualization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace MCamera
 {
     public class CameraActivator : MonoBehaviour
     {
-        private ISkinObject m_skinObjectHolder;
+        private IVisualRepresentation m_skinObjectHolder;
         private CameraController m_cameraController;
 
         [Inject]
@@ -23,14 +23,14 @@ namespace MCamera
 
         private void Awake()
         {
-            m_skinObjectHolder = GetComponentInParent<ISkinObject>();
+            m_skinObjectHolder = GetComponentInParent<IVisualRepresentation>();
         }
 
         private void Start()
         {
-            SetCameraTrackingPoint(m_skinObjectHolder.SkinObject);
+            SetCameraTrackingPoint(m_skinObjectHolder.VisualObject);
 
-            m_skinObjectHolder.updateSkinObject += SetCameraTrackingPoint;
+            m_skinObjectHolder.OnVisualObjectUpdated += SetCameraTrackingPoint;
         }
 
         private void SetCameraTrackingPoint(GameObject trackingPoint)
@@ -41,7 +41,7 @@ namespace MCamera
 
         private void OnDestroy()
         {
-            m_skinObjectHolder.updateSkinObject -= SetCameraTrackingPoint;
+            m_skinObjectHolder.OnVisualObjectUpdated -= SetCameraTrackingPoint;
             m_cameraController.SetTrackingCharacter(null);
         }
     }

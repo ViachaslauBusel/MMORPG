@@ -1,4 +1,4 @@
-﻿using Skins;
+﻿using NetworkObjectVisualization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace OpenWorld
 {
     public class MapActivator : MonoBehaviour
     {
-        private ISkinObject m_skinObjectHolder;
+        private IVisualRepresentation m_skinObjectHolder;
         private MapLoader m_mapLoader;
 
         [Inject]
@@ -22,13 +22,13 @@ namespace OpenWorld
 
         private void Awake()
         {
-            m_skinObjectHolder = GetComponentInParent<ISkinObject>();
+            m_skinObjectHolder = GetComponentInParent<IVisualRepresentation>();
         }
 
         private void Start()
         {
-            m_skinObjectHolder.updateSkinObject += SetMapTrackingTransform;
-            SetMapTrackingTransform(m_skinObjectHolder.SkinObject);
+            m_skinObjectHolder.OnVisualObjectUpdated += SetMapTrackingTransform;
+            SetMapTrackingTransform(m_skinObjectHolder.VisualObject);
         }
 
         private void SetMapTrackingTransform(GameObject @object)

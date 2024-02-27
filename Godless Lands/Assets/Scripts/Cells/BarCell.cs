@@ -6,6 +6,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.InputSystem;
 
 namespace Cells
 {
@@ -15,7 +16,7 @@ namespace Cells
         private NetworkManager _networkManager;
         private Image _hide;
         private Text _help;
-        private Token _token;
+        private InputAction _input;
         private Coroutine _coroutineHide;
         private CellContentInfo _contentInfo;
         private CellRenderInfo _celllRenderInfo;
@@ -57,21 +58,14 @@ namespace Cells
 
         public bool IsUse(Token _token)
         {
-            if (this._token != null && this._token.Equals(_token)) return true;
+            if (this._input != null && this._input.Equals(_token)) return true;
             return false;
         }
-        public void SetToken(Token token)
+        public void SetToken(InputAction input)
         {
-            this._token = token;
-            _help.text = token.name;
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(_token.key))
-            {
-                Use();
-            }
+            _input = input;
+            _help.text = input.name;
+            _input.performed += (context) => Use();
         }
 
         public override bool IsEmpty()

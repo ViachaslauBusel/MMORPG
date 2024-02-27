@@ -3,7 +3,7 @@ using Helpers;
 using Loader;
 using Protocol.MSG.Game;
 using RUCP;
-using Skins;
+using NetworkObjectVisualization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,7 @@ namespace Player
         private NetworkManager m_networkManager;
         private Transform m_character;
         private PlayerController m_controller;
-        private ISkinObject m_skinObjectHolder;
+        private IVisualRepresentation m_skinObjectHolder;
 
 
 
@@ -40,13 +40,13 @@ namespace Player
 
         private void Awake()
         {
-            m_skinObjectHolder = GetComponentInParent<ISkinObject>();
+            m_skinObjectHolder = GetComponentInParent<IVisualRepresentation>();
             m_controller = GetComponent<PlayerController>();
         }
         private void Start()
         {
-            m_skinObjectHolder.updateSkinObject += AssignCharacterController;
-            AssignCharacterController(m_skinObjectHolder.SkinObject);
+            m_skinObjectHolder.OnVisualObjectUpdated += AssignCharacterController;
+            AssignCharacterController(m_skinObjectHolder.VisualObject);
         }
 
         private void AssignCharacterController(GameObject character)

@@ -15,7 +15,7 @@ public class CharactersFactory : MonoBehaviour
         m_container = container;
     }
 
-    public GameObject CreateHumanFemale(Transform parent, Vector3 position)
+    public GameObject CreateHumanMale(Transform parent, Vector3 position)
     {
         Debug.Log($"spawn in {position}");
         return m_container.InstantiatePrefab(m_humanMalePrefab, position, Quaternion.identity, parent);

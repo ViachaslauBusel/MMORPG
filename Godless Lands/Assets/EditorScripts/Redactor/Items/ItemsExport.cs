@@ -1,5 +1,8 @@
 ﻿using Items;
+using Newtonsoft.Json;
+using Protocol.Data.Items;
 using Recipes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -12,38 +15,42 @@ namespace ItemsRedactor
 
         public static void Export(IEnumerable<Item> items)
         {
-            using (BinaryWriter stream_out = new BinaryWriter(File.Open(@"Export/items.dat", FileMode.Create)))
+            List<ItemData> itemsData = new List<ItemData>();
+
+            foreach (Item _item in items)
             {
-                foreach (Item _item in items)
+                ItemData itemData = _item.type switch
                 {
-                    stream_out.Write((int)_item.type);
-                    stream_out.Write(_item.id);
-                    stream_out.Write(_item.stack);
-                    stream_out.Write(_item.weight);
-                   
-                    switch (_item.type)
-                    {
-                        case ItemType.Weapon:
-                            WeaponItem weapon = _item.serializableObj as WeaponItem;
-                            stream_out.Write(weapon.minDamege);
-                            stream_out.Write(weapon.maxDamage);
-                            stream_out.Write(weapon.speed);
-                            stream_out.Write(weapon.pieces.Count);
-                            foreach(Piece piece in weapon.pieces)
-                            {
-                                stream_out.Write(piece.ID);
-                                stream_out.Write(piece.count);
-                            }
-                            break;
-                        case ItemType.RestorePoints:
-                            RestorePointsItem pointsItem = _item.serializableObj as RestorePointsItem;
-                            stream_out.Write(pointsItem.hp);
-                            stream_out.Write(pointsItem.mp);
-                            stream_out.Write(pointsItem.stamina);
-                            break;
-                    }
-                }
+                    ItemType.Weapon => CreateWeaponData(_item),
+                    ItemType.RestorePoints => CreateRestorePointsItemData(_item),
+                    _ => new ItemData(_item.id, _item.stack, _item.weight)
+                };
+                itemsData.Add(itemData);
             }
+
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            };
+            File.WriteAllText(@"Export/items.dat", JsonConvert.SerializeObject(itemsData, settings));
+        }
+
+        private static ItemData CreateRestorePointsItemData(Item item)
+        {
+            if (item.serializableObj is RestorePointsItem restorePoints)
+            {
+                return new RestorePointsItemData(item.id, item.stack, item.weight, restorePoints.hp, restorePoints.mp, restorePoints.stamina);
+            }
+            throw new ArgumentException("Item is not a restore points item");
+        }
+
+        private static ItemData CreateWeaponData(Item item)
+        {
+            if (item.serializableObj is WeaponItem weapon)
+            {
+                return new WeaponItemData(item.id, item.stack, item.weight, weapon.minDamege, weapon.maxDamage, (int)(weapon.speed * 1_000));
+            }
+           throw new ArgumentException("Item is not a weapon");
         }
     }
 }
