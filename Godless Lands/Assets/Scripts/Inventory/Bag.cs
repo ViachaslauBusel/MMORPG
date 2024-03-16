@@ -1,69 +1,72 @@
-﻿using Cells;
-using Items;
-using RUCP;
+﻿using Items;
+using Protocol.Data.Items.Network;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Bag : MonoBehaviour
+public class Bag
 {
-    public Transform content;
-    public Text text_filling;
-    public BarWeight weight;
-    public GameObject itemCell;
-    private int maxCell;
-    [HideInInspector]
-    public List<ItemCell> cells;
+    private ItemNetworkData[] _items;
+    private int _currentWeight;
+    private int _maxWeight;
 
+    public event Action OnCapacityChanged;
+    public event Action OnWeightChanged;
+    public event Action OnItemsChanged;
 
-    public void UpdateInventory(Packet nw)//Обновление содержимого ячейки
+    public int MaxCells => _items.Length;
+    public int CurrentWeight => _currentWeight;
+    public int MaxWeight => _maxWeight;
+
+    public IReadOnlyCollection<ItemNetworkData> Items => _items;
+
+    internal void UpdateCapacity(int maxCells)
     {
-
-        int filling = nw.ReadInt();//Заполнение рюкзака
-        maxCell = nw.ReadInt();//Всего ячеек
-
-        if (cells == null || cells.Count != maxCell)
+        Debug.Log($"UpdateCapacity {maxCells}");
+        
+        if (_items == null || _items.Length != maxCells)
         {
-            UpdateCellsCount();
-           
-        }
-
-        text_filling.text = filling + "/" + this.maxCell;
-
-
-        //текущий и максимальный вес
-        weight.UpdateWeight(nw.ReadInt(), nw.ReadInt());
-
-        while (nw.AvailableBytesForReading > 0)
-        {
-            int index = nw.ReadInt();
-            Item item = nw.ReadItem();
-
-            if (index >= 0 && index < cells.Count)
+            var newItems = new ItemNetworkData[maxCells];
+            for (int i = 0; i < maxCells; i++)
             {
-                cells[index].PutItem(item);  
+                if (_items != null && i < _items.Length)
+                {
+                    newItems[i] = _items[i];
+                }
+                else
+                {
+                    newItems[i] = new ItemNetworkData();
+                }
             }
+            _items = newItems;
         }
+        OnCapacityChanged?.Invoke();
     }
 
-    private void UpdateCellsCount()
+    internal void UpdateWeight(int currentWeight, int maxWeight)
     {
-        if (cells == null)
-            cells = new List<ItemCell>();
+        _currentWeight = currentWeight;
+        _maxWeight = maxWeight;
+        OnWeightChanged?.Invoke();
+    }
 
-        //Создать пустые ячейки
-        for (int i=cells.Count; i<maxCell; i++)
+    internal void UpdateItems(List<ItemSyncData> items)
+    {
+        if (_items == null)
         {
-            GameObject _obj = Instantiate(itemCell);
-            _obj.transform.SetParent(content);
-            cells.Add(_obj.GetComponent<ItemCell>());
-            cells[i].SetIndex(i);
+            Debug.LogError("Items is null");
+            return;
         }
-        //Удалить ячейки
-        for(int i=cells.Count-1; i>=maxCell; i--)
+
+        foreach (var item in items)
         {
-            Destroy(cells[i].gameObject);
-            cells.RemoveAt(i);
+            if (item.SlotIndex >= 0 && item.SlotIndex < _items.Length)
+            {
+                Debug.Log($"UpdateItems {item.SlotIndex}:{item.ItemID}");
+                _items[item.SlotIndex] = new ItemNetworkData(item);
+            } 
+            else Debug.LogError($"Slot index {item.SlotIndex} is out of range");
         }
+        OnItemsChanged?.Invoke();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Cells;
+using Items;
 using RUCP;
 using RUCP.Handler;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class Trade : MonoBehaviour
 {
     
    
-    public Inventory inventory;
+    public InventoryWindow inventory;
     public GameObject tradeCell;//Префаб ячейки
     public GameObject offerCell;
     public Transform parent_myBag;
@@ -27,11 +28,13 @@ public class Trade : MonoBehaviour
     private int myIndex = 0;
     private int otherIndex = 0;
     private NetworkManager networkManager;
+    private ItemsFactory _itemsFactory;
 
     [Inject]
-    private void Construt(NetworkManager networkManager)
+    private void Construt(NetworkManager networkManager, ItemsFactory itemsFactory)
     {
         this.networkManager = networkManager;
+        _itemsFactory = itemsFactory;
 
         networkManager.RegisterHandler(Types.OfferTrade, OfferTrade);
         networkManager.RegisterHandler(Types.ConfirmTrade, ConfirmTrade);
@@ -57,11 +60,11 @@ public class Trade : MonoBehaviour
 
     private void PutMyOfferItem(int id)
     {
-        myOfferItems[myIndex++].PutItem(inventory.itemsList.GetDuplicateItem(id));
+        myOfferItems[myIndex++].PutItem(_itemsFactory.CreateItem(id));
     }
     private void PutOtherOfferItem(int id, int count)
     {
-        otherOfferItem[otherIndex++].PutItem(inventory.itemsList.GetDuplicateItem(id));
+        otherOfferItem[otherIndex++].PutItem(_itemsFactory.CreateItem(id));
     }
 
     private void ClearMyTradeCell()//Очистить все ячейки этого игрока
@@ -158,7 +161,7 @@ public class Trade : MonoBehaviour
     {
         if(items != null) CleatTrade();//Удалить все ячейки инвенторя
         //Заполнить левый Scroll view  содержимым инвентаря ->
-        ItemCell[] inventoryItems = inventory.GetCellItems();
+        ItemCell[] inventoryItems = null;// inventory.GetCellItems();
         items = new TradeCell[inventoryItems.Length];
 
         for(int i=0; i<items.Length; i++)

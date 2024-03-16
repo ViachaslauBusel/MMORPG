@@ -40,7 +40,7 @@ namespace Machines
         public void SetRecipe(Recipe recipe)
         {
             this.recipe = recipe;
-            PutItem(Inventory.CreateItem(recipe.result));
+           //TODO PutItem(InventoryWindow.CreateItem(recipe.result));
         }
 
         public Recipe GetRecipe()

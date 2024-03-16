@@ -93,7 +93,7 @@ public class ItemRepair : MonoBehaviour
         //NetworkManager.Send(nw);
     }
 
-    public void RepairItem(int object_id)
+    public void RepairItem(long object_id)
     {
     //TODO msg
         //Packet nw = new Packet(Channel.Discard);

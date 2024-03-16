@@ -1,4 +1,5 @@
-﻿using Player;
+﻿using ObjectInteraction.UI;
+using Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,22 +8,26 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace GameWorldInteractions
+namespace ObjectInteraction
 {
+    /// <summary>
+    /// Activates the interaction indicator when the player is close to an interactable object.
+    /// </summary>
     public class InteractionTrigger : MonoBehaviour
     {
         private InteractableObjectsRegistry _interactableObjectsRegistry;
         private InteractionIndicator _interactionIndicator;
         private PlayerCharacterVisualEventNotifier _playerCharacterEvent;
-        private InputManager _inputManager;
+        private InteractionObjectInputHandler _inputHandler;
         private GameObject _playerCharacterVisual;
 
         [Inject]
-        private void Construct(InteractableObjectsRegistry interactableObjectsRegistry, InteractionIndicator interactionIndicator, InputManager inputManager, PlayerCharacterVisualEventNotifier playerCharacterEvent)
+        private void Construct(InteractableObjectsRegistry interactableObjectsRegistry, InteractionIndicator interactionIndicator,
+                               InteractionObjectInputHandler inputHandler, PlayerCharacterVisualEventNotifier playerCharacterEvent)
         {
             _interactableObjectsRegistry = interactableObjectsRegistry;
             _interactionIndicator = interactionIndicator;
-            _inputManager = inputManager;
+            _inputHandler = inputHandler;
             _playerCharacterEvent = playerCharacterEvent;
 
             _playerCharacterEvent.OnPlayerCharacterVisualSpawned += HandlePlayerCharacterSpawned;
@@ -43,10 +48,13 @@ namespace GameWorldInteractions
         {
           if (_playerCharacterVisual == null) return;
 
-            GameObject interactableObject = _interactableObjectsRegistry.GetClosestInteractableObject(_playerCharacterVisual.transform.position, 2f);
+            var interactableObject = _interactableObjectsRegistry.GetClosestInteractableObject(_playerCharacterVisual.transform.position, 2f);
 
             // Make indicator visible if there is an interactable object in range.
-            _interactionIndicator.SetVisible(interactableObject != null);
+            _interactionIndicator.SetVisible(interactableObject.NetworkGameObjectID != 0);
+
+            // Handle input
+            _inputHandler.HandleInput(interactableObject.NetworkGameObjectID);
         }
     }
 }

@@ -62,7 +62,7 @@ namespace Cells
         /// Уникальный ИД содержимого ячейки
         /// </summary>
         /// <returns></returns>
-        public virtual int GetObjectID()
+        public virtual long GetObjectID()
         {
             return 0;
         }

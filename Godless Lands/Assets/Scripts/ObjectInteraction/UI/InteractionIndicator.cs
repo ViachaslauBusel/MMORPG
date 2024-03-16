@@ -6,23 +6,13 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GameWorldInteractions
+namespace ObjectInteraction.UI
 {
     public class InteractionIndicator : MonoBehaviour
     {
 
         [SerializeField]
         private Text _interactionText;
-
-        //public void Show()
-        //{
-        //    _interactionText.gameObject.SetActive(true);
-        //}
-
-        //public void Hide()
-        //{
-        //    _interactionText.gameObject.SetActive(false);
-        //}
 
         internal void SetVisible(bool visible)
         {

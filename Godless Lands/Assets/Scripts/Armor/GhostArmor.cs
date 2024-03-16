@@ -1,6 +1,7 @@
 ﻿using Items;
 using RUCP;
 using UnityEngine;
+using Zenject;
 
 public class GhostArmor : MonoBehaviour{
 
@@ -12,7 +13,13 @@ public class GhostArmor : MonoBehaviour{
     private Animator animator;
     private bool combatState = false;
     private int weaponType = 0;
+    private ItemsFactory _itemsFactory;
 
+    [Inject]
+    private void Construct(ItemsFactory itemsFactory)
+    {
+        _itemsFactory = itemsFactory;
+    }
 
     public void ReadArmor(Packet nw)
     {
@@ -22,7 +29,7 @@ public class GhostArmor : MonoBehaviour{
        // itemsList = Resources.Load("Inventory/ItemList") as ItemsList;
         //weapon
         int item_id = nw.ReadInt();
-        Item item = Inventory.CreateItem(item_id);
+        Item item = _itemsFactory.CreateItem(item_id);
         PutOnWeapon(item);
     }
 
@@ -31,7 +38,7 @@ public class GhostArmor : MonoBehaviour{
         ItemType part = (ItemType)nw.ReadInt();
         int item_id = nw.ReadInt();
 
-        Item item = Inventory.CreateItem(item_id);
+        Item item = _itemsFactory.CreateItem(item_id);
         PutOnWeapon(item);
     }
 

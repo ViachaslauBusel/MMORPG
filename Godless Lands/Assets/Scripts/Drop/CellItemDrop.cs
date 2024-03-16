@@ -1,4 +1,5 @@
-﻿using Items;
+﻿using Drop;
+using Items;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,8 +32,8 @@ public class CellItemDrop : MonoBehaviour {
 
     public void Take()
     {
-        DropList dropList = GameObject.Find("CanvasDrop").GetComponentInChildren<DropList>();
-        dropList.TakeDrop(item_id);
-        Destroy(gameObject);
+        //DropWindow dropList = GameObject.Find("CanvasDrop").GetComponentInChildren<DropWindow>();
+        //dropList.TakeDrop(item_id);
+        //Destroy(gameObject);
     }
 }

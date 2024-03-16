@@ -10,10 +10,11 @@ namespace Services.Replication
 {
     public class NetworkComponentsProvider : MonoBehaviour
     {
+        private int _networkGameObjectID;
         private Dictionary<int, INetworkDataHandler> m_components = new Dictionary<int, INetworkDataHandler>();
         private DataHandlerStorage m_dataHandlerStorage;
         
-        public int NetworkGameObjectID { get; private set; }
+        public int NetworkGameObjectID => _networkGameObjectID;
 
         [Inject]
         private void Construct(DataHandlerStorage dataHandlerStorage)
@@ -26,7 +27,7 @@ namespace Services.Replication
             {
                 Debug.LogError($"Attempt to reinitialize a network object:{NetworkGameObjectID} -> {id}");
             }
-            NetworkGameObjectID = id;
+            _networkGameObjectID = id;
         }
        
         public void CheckOrCreateComponent(IReplicationData updatedData)

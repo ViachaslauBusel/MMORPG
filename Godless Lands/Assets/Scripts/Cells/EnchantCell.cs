@@ -3,14 +3,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Cells
 {
    
     public class EnchantCell : ItemCell
     {
+        private InventoryWindow _inventoryWindow;
         private ItemEnchant enchant;
-        private int objectID = 0;
+        private long objectID = 0;
+
+        [Inject]
+        private void Construct(InventoryWindow inventoryWindow)
+        {
+            _inventoryWindow = inventoryWindow;
+        }
 
         private new void Awake()
         {
@@ -43,8 +51,8 @@ namespace Cells
         }
         internal void Refresh()//Вызывается из инвентаря при обновлении предметов
         {
-       
-            Item item = Inventory.GetItemByObjectID(objectID);
+
+            Item item =  _inventoryWindow.GetItemByObjectID(objectID);
 
             PutItem(item);
         }

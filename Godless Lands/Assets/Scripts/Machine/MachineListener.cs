@@ -48,7 +48,7 @@ namespace Machines
             while (nw.AvailableBytesForReading > 0)
             {
                 int index = nw.ReadInt();
-                Item item = nw.ReadItem();
+                Item item = null;// nw.ReadItem();
 
                 if (component) selectMachine.UpdateComponent(index, item);
                 else selectMachine.UpdateFuel(index, item); 

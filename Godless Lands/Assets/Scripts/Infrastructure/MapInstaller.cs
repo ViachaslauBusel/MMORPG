@@ -1,8 +1,8 @@
-using GameWorldInteractions;
+using Inventory;
 using MCamera;
+using ObjectInteraction;
 using OpenWorld;
 using Player;
-using Services.Replication;
 using Skills;
 using UnitVisualCache;
 using UnityEngine;
@@ -23,8 +23,12 @@ public class MapInstaller : MonoInstaller
 
 
         Container.Bind<InteractableObjectsRegistry>().FromNew().AsSingle();
+        Container.Bind<InteractionObjectInputHandler>().AsSingle().NonLazy();
         Container.Bind<PlayerCharacterNetworkObjecEventNotifier>().AsSingle().NonLazy();
         Container.Bind<PlayerCharacterVisualEventNotifier>().AsSingle().NonLazy();
-        Container.Bind<UnitVisualCacheService>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<UnitVisualCacheService>().AsSingle().NonLazy();
+
+        Container.Bind<InventoryModel>().AsSingle().NonLazy();
+        Container.Bind<InventoryListener>().AsSingle().NonLazy();
     }
 }

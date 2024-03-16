@@ -148,7 +148,7 @@ namespace Cells
         {
             return index;
         }
-        public override int GetObjectID()
+        public override long GetObjectID()
         {
             if (IsEmpty()) return 0;
             return item.objectID;

@@ -9,11 +9,11 @@ public class InventoryArmor : MonoBehaviour
 {
     public ArmorCell weapon;
     public ArmorCell pickaxe;
-    private Inventory inventory;
+    private InventoryWindow inventory;
 
     private void Awake()
     {
-        inventory = GetComponentInParent<Inventory>();
+        inventory = GetComponentInParent<InventoryWindow>();
     }
 
     public void PutItem(ItemType use, Item item)
@@ -28,7 +28,7 @@ public class InventoryArmor : MonoBehaviour
                 pickaxe.PutItem(item);
                 break;
         }
-        inventory.Refresh();
+       // inventory.Refresh();
     }
 
     public int GetCount(int key)
@@ -46,7 +46,7 @@ public class InventoryArmor : MonoBehaviour
         if (pickaxe.GetObjectID() == key) return pickaxe.GetItem();
         return null;
     }
-    internal ItemCell GetItemCell(int objectID)
+    internal ItemCell GetItemCell(long objectID)
     {
         if (weapon.GetObjectID() == objectID) return weapon;
         if (pickaxe.GetObjectID() == objectID) return pickaxe;

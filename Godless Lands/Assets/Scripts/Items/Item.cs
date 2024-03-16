@@ -11,7 +11,7 @@ namespace Items
     public class Item
     {
         [NonSerialized]
-        public int objectID = 0;
+        public long objectID = 0;
         [NonSerialized]
         public int count = 0;
         [NonSerialized]
@@ -84,6 +84,11 @@ namespace Items
             if (type == typeof(RestorePointsItem)) return ItemType.RestorePoints;
             if (type == typeof(RecipesItem)) return ItemType.Recipes;
             return ItemType.None;
+        }
+
+        internal Item Clone()
+        {
+            return new Item(this);
         }
     }
 

@@ -43,14 +43,14 @@ namespace Machines
         {
             canvas.enabled = false;
             Clear();
-            Inventory.UnregisterUpdate(Refresh);
+            InventoryWindow.UnregisterUpdate(Refresh);
         }
 
         public void Open(int id)
         {
             machineID = id;
             canvas.enabled = true;
-            Inventory.RegisterUpdate(Refresh);
+            InventoryWindow.RegisterUpdate(Refresh);
         }
         public void Open()
         {

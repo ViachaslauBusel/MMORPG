@@ -1,9 +1,11 @@
-﻿using Items;
+﻿using Inventory;
+using Items;
 using Recipes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Machines
 {
@@ -25,7 +27,16 @@ namespace Machines
         private List<RecipeComponent> children;
         private bool child = false;
         private Camera mainCamera;
+        private InventoryModel _inventory;
+        private ItemsFactory _itemsFactory;
         public bool active = false;
+
+        [Inject]
+        public void Construct(InventoryModel inventory, ItemsFactory itemsFactory)
+        {
+            _inventory = inventory;
+            _itemsFactory = itemsFactory;
+        }
 
         public void Start()
         {
@@ -72,7 +83,7 @@ namespace Machines
 
         public void Refresh()
         {
-            allCount = Inventory.GetAllCount(item.id);
+            allCount = _inventory.GetAllCount(item.id);
             if (item.count != 0)
                 countTxt.text = " (" + item.count + "/" + allCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
             foreach (RecipeComponent component in children)
@@ -119,7 +130,7 @@ namespace Machines
 
         public void SetPiece(Piece piece,LayoutElement parenlayout = null, bool fuel = false)
         {
-            item = Inventory.CreateItem(piece.ID);
+            item = _itemsFactory.CreateItem(piece.ID);
             if (parenlayout != null)//Если есть потомок
             {
                 element.minWidth = parenlayout.minWidth + 45.0f;
@@ -130,7 +141,7 @@ namespace Machines
             if (nextRecipe != null)//Если состоит
                 expandTxt.text = "+";
 
-            allCount = Inventory.GetAllCount(piece.ID);
+            allCount = _inventory.GetAllCount(piece.ID);
             item.count = piece.count;
             if (item.count != 0)
                  countTxt.text = " (" + allCount + "/" + item.count + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке

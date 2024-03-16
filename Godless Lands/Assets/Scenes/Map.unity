@@ -1095,13 +1095,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18861397}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -598.995, y: -309.925, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1960262273}
-  m_RootOrder: 2
+  m_Father: {fileID: 1851500503}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &18861399
 MonoBehaviour:
@@ -8465,6 +8465,7 @@ MonoBehaviour:
   - {fileID: 1960262274}
   - {fileID: 301751773}
   - {fileID: 1101813799}
+  - {fileID: 1851500502}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -9374,7 +9375,7 @@ GameObject:
   - component: {fileID: 296087254}
   - component: {fileID: 296087257}
   m_Layer: 0
-  m_Name: Scroll Bag
+  m_Name: PrimaryBag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9479,15 +9480,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 296087252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a849d62816bb7f343ab47e0183326c1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 94e05bba242b2d445a3d41813fcff752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  content: {fileID: 1384538098}
+  _content: {fileID: 1384538098}
   text_filling: {fileID: 1343535078}
   weight: {fileID: 2057121441}
   itemCell: {fileID: 9220267665469820703, guid: d342902318d5a0e438b7b8e276fad610,
     type: 3}
-  cells: []
 --- !u!1 &297413522
 GameObject:
   m_ObjectHideFlags: 0
@@ -16716,7 +16716,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 902921738}
   m_HandleRect: {fileID: 902921737}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -18069,14 +18069,26 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1745702299}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: TakeDrop
-        m_Mode: 3
+      - m_Target: {fileID: 1745702300}
+        m_TargetAssemblyTypeName: Drop.DropWindowInputHandler, Assembly-CSharp
+        m_MethodName: TakeAllDrop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1745702299}
+        m_TargetAssemblyTypeName: Drop.DropWindow, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -19035,13 +19047,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563775173}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -598.995, y: -309.925, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1960262273}
-  m_RootOrder: 5
+  m_Father: {fileID: 1851500503}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &563775175
 MonoBehaviour:
@@ -19507,7 +19519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -274.99847}
+  m_AnchoredPosition: {x: 0, y: -275.12418}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580182927
@@ -21710,7 +21722,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1188274068}
   m_HandleRect: {fileID: 1188274067}
   m_Direction: 2
-  m_Value: 0.9999995
+  m_Value: 1
   m_Size: 0.86556274
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -23194,12 +23206,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695650854}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -598.995, y: -309.925, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1960262273}
+  m_Father: {fileID: 1851500503}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &695650856
@@ -26086,7 +26098,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1960262273}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &796358935
 MonoBehaviour:
@@ -27516,6 +27528,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837384614}
   m_CullTransparentMesh: 0
+--- !u!1 &838801875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 838801877}
+  - component: {fileID: 838801876}
+  m_Layer: 0
+  m_Name: ItemsFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &838801876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838801875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 214a37039cddb0e4f946bc5aa8d1131e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemsContainer: {fileID: 11400000, guid: 569b3ab916d874c4fb08a30178cb5c13, type: 2}
+--- !u!4 &838801877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838801875}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1851500503}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &842453807
 GameObject:
   m_ObjectHideFlags: 0
@@ -33840,7 +33897,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 432143221}
   m_HandleRect: {fileID: 432143220}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -34082,6 +34139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCharacterDeadWindow: {fileID: 203655391}
   _interactionIndicator: {fileID: 459444152}
+  _dropWindow: {fileID: 1745702299}
+  _inventoryWindow: {fileID: 1112741367}
 --- !u!1 &1104977488
 GameObject:
   m_ObjectHideFlags: 0
@@ -34545,7 +34604,7 @@ GameObject:
   - component: {fileID: 1112741368}
   - component: {fileID: 1112741369}
   m_Layer: 0
-  m_Name: Inventory
+  m_Name: InventoryWinddow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34642,14 +34701,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1112741362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b2c02eded4b0184f9c1b8414b83d059, type: 3}
+  m_Script: {fileID: 11500000, guid: b8a3ebafb9f8b1d4c881450c2c4bf257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsList: {fileID: 11400000, guid: 569b3ab916d874c4fb08a30178cb5c13, type: 2}
-  itemCell: {fileID: 9220267665469820703, guid: d342902318d5a0e438b7b8e276fad610,
+  _itemCellPrefab: {fileID: 9220267665469820703, guid: d342902318d5a0e438b7b8e276fad610,
     type: 3}
-  bag: {fileID: 296087257}
-  backpack: {fileID: 1537362239}
+  _primaryBag: {fileID: 296087257}
+  _secondaryBag: {fileID: 1537362239}
 --- !u!114 &1112741368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38628,7 +38686,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 591603737}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.88454145
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -47723,7 +47781,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1798750378}
   m_HandleRect: {fileID: 1798750377}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -48855,7 +48913,7 @@ GameObject:
   - component: {fileID: 1537362236}
   - component: {fileID: 1537362239}
   m_Layer: 0
-  m_Name: Scroll Backpack
+  m_Name: SecondaryBag(Backpack)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48960,15 +49018,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1537362234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a849d62816bb7f343ab47e0183326c1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 94e05bba242b2d445a3d41813fcff752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  content: {fileID: 1070764573}
+  _content: {fileID: 1070764573}
   text_filling: {fileID: 2048170003}
   weight: {fileID: 513069984}
   itemCell: {fileID: 9220267665469820703, guid: d342902318d5a0e438b7b8e276fad610,
     type: 3}
-  cells: []
 --- !u!1 &1542468628
 GameObject:
   m_ObjectHideFlags: 0
@@ -49106,7 +49163,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1960262273}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1547898157
 MonoBehaviour:
@@ -49395,8 +49452,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2097489665}
   m_HandleRect: {fileID: 2097489664}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.9999999
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -55047,8 +55104,9 @@ GameObject:
   - component: {fileID: 1745702297}
   - component: {fileID: 1745702296}
   - component: {fileID: 1745702299}
+  - component: {fileID: 1745702300}
   m_Layer: 0
-  m_Name: CanvasDrop
+  m_Name: DropWindoow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55145,13 +55203,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745702294}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 819b77c2222266747924eaad81d80b86, type: 3}
+  m_Script: {fileID: 11500000, guid: f8a9cfd856c8fc44cb55e2cbba13a28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsList: {fileID: 11400000, guid: 569b3ab916d874c4fb08a30178cb5c13, type: 2}
-  cellItemDrop: {fileID: 1093198207861534, guid: 29da890a5a6e5ad4aaac2f7a76cbbabd,
+  _cellItemDropPrefab: {fileID: 1093198207861534, guid: 29da890a5a6e5ad4aaac2f7a76cbbabd,
     type: 3}
-  contentParent: {fileID: 1928116413}
+  _contentParent: {fileID: 1928116413}
+--- !u!114 &1745702300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745702294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d342b7bf32957834ebd023f00ced0d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1746671054
 GameObject:
   m_ObjectHideFlags: 0
@@ -55878,8 +55947,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1745702300}
+        m_TargetAssemblyTypeName: Drop.DropWindowInputHandler, Assembly-CSharp
+        m_MethodName: EndInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1745702299}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: Drop.DropWindow, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
         m_Arguments:
@@ -58637,6 +58718,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850801723}
   m_CullTransparentMesh: 0
+--- !u!1 &1851500501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1851500503}
+  - component: {fileID: 1851500502}
+  m_Layer: 0
+  m_Name: Factories
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1851500502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851500501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6021c28fb532c6b499076fb5d97094c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemsFactory: {fileID: 838801876}
+  _charactersFactory: {fileID: 695650856}
+  _monstersFactory: {fileID: 563775175}
+  _dynamicObjectControllersFactory: {fileID: 18861399}
+--- !u!4 &1851500503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851500501}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 598.995, y: 309.925, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 18861398}
+  - {fileID: 695650855}
+  - {fileID: 563775174}
+  - {fileID: 838801877}
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1852926313
 GameObject:
   m_ObjectHideFlags: 0
@@ -61289,11 +61422,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1973565012}
-  - {fileID: 695650855}
-  - {fileID: 18861398}
   - {fileID: 1547898156}
   - {fileID: 796358934}
-  - {fileID: 563775174}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -61310,9 +61440,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_replicationServiceObj: {fileID: 1973565013}
-  m_charactersFactoryObj: {fileID: 695650856}
-  m_objectControllersFactoryObj: {fileID: 18861399}
-  m_monstersFactoryObj: {fileID: 563775175}
 --- !u!1 &1961870002
 GameObject:
   m_ObjectHideFlags: 0
@@ -68811,7 +68938,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7554969778485494246}
   m_HandleRect: {fileID: 7554969778485494247}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

@@ -15,8 +15,8 @@ public class ArmorListener : MonoBehaviour {
     private void Constructor(NetworkManager networkManager)
     {
         this.networkManager = networkManager;
-        networkManager.RegisterHandler(Types.CombatState, CombatState);
-        networkManager.RegisterHandler(Types.UpdateArmor, UpdateArmor);
+        //networkManager.RegisterHandler(Types.CombatState, CombatState);
+        //networkManager.RegisterHandler(Types.UpdateArmor, UpdateArmor);
     }
     private void Awake()
     {
@@ -43,7 +43,7 @@ public class ArmorListener : MonoBehaviour {
     {
         ItemType type = (ItemType)nw.ReadInt();
         ArmorPart part = (ArmorPart)nw.ReadInt();
-        Item item = nw.ReadItem();
+        Item item = null;// nw.ReadItem();
 
        
 
@@ -53,7 +53,7 @@ public class ArmorListener : MonoBehaviour {
 
     private Item ReadItem(Packet nw, int itemID)
     {
-        Item _item = Inventory.CreateItem(itemID);
+        Item _item = null;// InventoryWindow.CreateItem(itemID);
         _item.objectID = nw.ReadInt();
         _item.count = nw.ReadInt();
         _item.enchant_level = nw.ReadInt();
@@ -85,8 +85,8 @@ public class ArmorListener : MonoBehaviour {
 
     private void OnDestroy()
     {
-        networkManager?.UnregisterHandler(Types.UpdateArmor);
-        networkManager?.UnregisterHandler(Types.CombatState);
+        //networkManager?.UnregisterHandler(Types.UpdateArmor);
+        //networkManager?.UnregisterHandler(Types.CombatState);
       //  RegisteredTypes.UnregisterTypes(Types.LoadArmor);
     }
 }

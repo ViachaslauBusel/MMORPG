@@ -1,7 +1,5 @@
-﻿using GameWorldInteractions;
-using NetworkObjectVisualization;
+﻿using NetworkObjectVisualization;
 using Protocol.Data.Replicated;
-using Protocol.Data.Replicated.Drop;
 using Services.Replication;
 using System;
 using System.Collections.Generic;
@@ -11,10 +9,14 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Drop
+namespace ObjectInteraction
 {
-    public class LootableUnitDataHandler : MonoBehaviour, INetworkDataHandler
+    /// <summary>
+    /// Registers visual object as interactable object
+    /// </summary>
+    public class InteractionObjectDataHandler : MonoBehaviour, INetworkDataHandler
     {
+        private NetworkComponentsProvider _networkComponentsProvider;
         private InteractableObjectsRegistry _interactableObjectsRegistry;
         private IVisualRepresentation _visualRepresentation;
         private GameObject _visualObject;
@@ -27,6 +29,7 @@ namespace Drop
 
         private void Awake()
         {
+            _networkComponentsProvider = GetComponent<NetworkComponentsProvider>();
             _visualRepresentation = GetComponent<IVisualRepresentation>();
         }
 
@@ -45,31 +48,32 @@ namespace Drop
         {
         }
 
+        /// <summary>
+        /// Registers visual object as interactable object
+        /// Also unregisters previous object if it was registered
+        /// </summary>
+        /// <param name="visualObject"></param>
         private void RegisterInteractableObject(GameObject visualObject)
         {
-            if(visualObject == _visualObject) return;
+            // Make sure to unregister the previous object
+            UnregisterInteractableObject();
 
-            if (_visualObject != null)
-            {
-                _interactableObjectsRegistry.UnregisterInteractableObject(_visualObject);
-            }
             _visualObject = visualObject;
+            if (_visualObject == null) return;
 
-            if(_visualObject == null) return;
-
-            _interactableObjectsRegistry.RegisterInteractableObject(visualObject);
+            _interactableObjectsRegistry.RegisterInteractableObject(_networkComponentsProvider.NetworkGameObjectID, visualObject);
         }
 
         private void UnregisterInteractableObject()
         {
             if (_visualObject == null) return;
-            _interactableObjectsRegistry.UnregisterInteractableObject(_visualObject);
+            _interactableObjectsRegistry.UnregisterInteractableObject(_networkComponentsProvider.NetworkGameObjectID);
             _visualObject = null;
         }
 
         private void OnDestroy()
         {
-           UnregisterInteractableObject();
+            UnregisterInteractableObject();
         }
     }
 }

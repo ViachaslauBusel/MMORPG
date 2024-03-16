@@ -20,8 +20,8 @@ public class CharacterArmor : Armor
         ArmorPart part = (ArmorPart)packet.ReadInt();
         int id_item = packet.ReadInt();
 
-        Item _item = Inventory.CreateItem(id_item);
+      //TODO  Item _item = InventoryWindow.CreateItem(id_item);
 
-        PutItem(type, _item);
+       //TODO PutItem(type, _item);
     }
 }

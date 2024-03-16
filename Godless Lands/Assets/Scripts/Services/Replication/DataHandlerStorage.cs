@@ -1,18 +1,17 @@
 using Animation;
 using Assets.Scripts.Physics.Dynamic;
-using Drop;
 using DynamicsObjects.TransformHandlers;
+using NetworkObjectVisualization;
 using Nickname;
+using ObjectInteraction;
 using Protocol.Data.Replicated;
 using Protocol.Data.Replicated.Animation;
-using Protocol.Data.Replicated.Drop;
+using Protocol.Data.Replicated.ObjectInteraction;
 using Protocol.Data.Replicated.Skins;
 using Protocol.Data.Replicated.Transform;
-using NetworkObjectVisualization;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Walkers.Monsters;
 using Zenject;
 
 namespace Services.Replication
@@ -38,7 +37,7 @@ namespace Services.Replication
             _handlers.Add(typeof(UnitName), typeof(UnitNameHandler));
             _handlers.Add(typeof(AnimationStateData), typeof(AnimationStateDataHandler));
             _handlers.Add(typeof(MonsterSkinData), typeof(MonsterViewDataHandler));
-            _handlers.Add(typeof(LootableUnitData), typeof(LootableUnitDataHandler));
+            _handlers.Add(typeof(InteractionObjectData), typeof(InteractionObjectDataHandler));
         }
 
         public INetworkDataHandler CreateDataHandler(GameObject gameObject, IReplicationData data)

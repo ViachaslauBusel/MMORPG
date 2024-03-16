@@ -66,7 +66,7 @@ namespace UnitVisualCache
         {
             foreach (var entry in _cache)
             {
-                if (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - entry.Value.TimeStamp > 6_000)
+                if ((DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - entry.Value.TimeStamp) > 3_000)
                 {
                     _needRemoveVisual.Add(entry.Key);
                 }

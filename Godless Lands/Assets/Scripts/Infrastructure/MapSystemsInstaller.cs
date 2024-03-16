@@ -1,4 +1,5 @@
 ﻿using Cells;
+using Drop;
 using Skills;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,8 @@ namespace Infrastructure
             Container.Bind<CellContentToRenderConverter>().FromInstance(_cellContentToRenderConverter).AsSingle();
             Container.Bind<SkillUsageRequestSender>().FromInstance(_skillUsageRequestSender).AsSingle();
             Container.Bind<UnitTargetRequestSender>().FromInstance(_unitTargetRequestSender).AsSingle();
+
+            Container.Bind<DropListener>().FromNew().AsSingle().NonLazy();
         }
     }
 }
