@@ -43,7 +43,7 @@ public class Bag
                 }
                 else
                 {
-                    newItems[i] = null;
+                    newItems[i] = _itemsFactory.CreateEmptyItem(slotIndex: i);
                 }
             }
             _items = newItems;

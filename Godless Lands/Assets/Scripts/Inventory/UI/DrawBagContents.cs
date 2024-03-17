@@ -17,12 +17,12 @@ namespace Inventory.UI
         public GameObject itemCell;
         private List<ItemCell> _cells;
         private Bag _bag;
-        private ItemsFactory _itemsFactory;
+        private DiContainer _diContainer;
 
         [Inject]
-        private void Construct(ItemsFactory itemsFactory)
+        private void Construct(DiContainer diContainer)
         {
-            _itemsFactory = itemsFactory;
+            _diContainer = diContainer;
         }
 
         public void Init(Bag bag)
@@ -67,7 +67,7 @@ namespace Inventory.UI
             //Create empty cells
             for (int i = _cells.Count; i < maxCell; i++)
             {
-                GameObject _obj = Instantiate(itemCell, _content);
+                GameObject _obj = _diContainer.InstantiatePrefab(itemCell, _content);
                 var itemCellComponent = _obj.GetComponent<ItemCell>();
                 itemCellComponent.SetIndex(i);
                 _cells.Add(itemCellComponent);

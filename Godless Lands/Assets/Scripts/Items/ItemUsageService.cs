@@ -11,6 +11,11 @@ namespace Items
     {
         private NetworkManager _networkManager;
 
+        public ItemUsageService(NetworkManager networkManager)
+        {
+            _networkManager = networkManager;
+        }
+
         public void UseItem(long objectID)
         {
             MSG_USE_ITEM msg = new MSG_USE_ITEM();
