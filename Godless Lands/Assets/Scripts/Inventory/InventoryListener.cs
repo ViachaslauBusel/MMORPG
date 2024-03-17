@@ -42,7 +42,7 @@ namespace Inventory
                 return;
             }
 
-            bag.UpdateCapacity(data.MaxCells);
+            bag.UpdateCapacity(data.CurrentItemsCount, data.MaxItemsCount);
             bag.UpdateWeight(data.CurrentWeight, data.MaxWeight);
             bag.UpdateItems(data.Items);
         }

@@ -35,7 +35,7 @@ namespace Inventory.UI
 
         private void UpdateWeght()
         {
-            text_filling.text = _bag.CurrentWeight + "/" + _bag.MaxWeight;
+          
             weight.UpdateWeight(_bag.CurrentWeight, _bag.MaxWeight);
         }
 
@@ -64,8 +64,10 @@ namespace Inventory.UI
 
         private void UpdateCellsCount()
         {
+            text_filling.text = _bag.CurrentItemsCount + "/" + _bag.MaxItemsCount;
+
             _cells ??= new List<ItemCell>();
-            int maxCell = _bag.MaxCells;
+            int maxCell = _bag.MaxItemsCount;
             //Create empty cells
             for (int i = _cells.Count; i < maxCell; i++)
             {
