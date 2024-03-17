@@ -43,7 +43,7 @@ public class Bag
                 }
                 else
                 {
-                    newItems[i] = _itemsFactory.CreateEmptyItem(slotIndex: i);
+                    newItems[i] = null;
                 }
             }
             _items = newItems;
@@ -70,12 +70,19 @@ public class Bag
         {
             if (item.SlotIndex >= 0 && item.SlotIndex < _items.Length)
             {
-                if (_items[item.SlotIndex].UniqueID != item.UniqueID
-                 || _items[item.SlotIndex].Count != item.Count)
-                { _items[item.SlotIndex] = _itemsFactory.CreateItem(item); }
+                if (ShouldUpdateItem(_items[item.SlotIndex], item))
+                {
+                    _items[item.SlotIndex] = _itemsFactory.CreateItem(item);
+                }
             }
             else Debug.LogError($"Slot index {item.SlotIndex} is out of range");
         }
         OnItemsChanged?.Invoke();
+    }
+    private bool ShouldUpdateItem(Item existingItem, ItemSyncData newItem)
+    {
+        return existingItem == null
+            || existingItem.UniqueID != newItem.UniqueID
+            || existingItem.Count != newItem.Count;
     }
 }

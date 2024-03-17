@@ -11,7 +11,7 @@ namespace Items
     {
         private NetworkManager _networkManager;
 
-        public void UseItem(int objectID)
+        public void UseItem(long objectID)
         {
             MSG_USE_ITEM msg = new MSG_USE_ITEM();
             msg.ItemUID = objectID;

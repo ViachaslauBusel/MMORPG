@@ -31,7 +31,7 @@ namespace Cells
         
         public void PutItemCell(ItemCell itemCell)
         {
-            index = itemCell.GetIndex();
+            _index = itemCell.GetIndex();
             PutItem(itemCell.GetItem());
         }
 

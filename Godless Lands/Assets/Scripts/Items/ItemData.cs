@@ -10,17 +10,6 @@ namespace Items
     [System.Serializable]
     public class ItemData
     {
-        [NonSerialized]
-        public long objectID = 0;
-        [NonSerialized]
-        public int count = 0;
-        [NonSerialized]
-        public int enchant_level;
-        [NonSerialized]
-        public int durability;
-        [NonSerialized]
-        public int maxDurability;
-
         public int id;
         public string nameItem;
         public Texture2D texture;
@@ -84,11 +73,6 @@ namespace Items
             if (type == typeof(RestorePointsItem)) return ItemType.RestorePoints;
             if (type == typeof(RecipesItem)) return ItemType.Recipes;
             return ItemType.None;
-        }
-
-        internal ItemData Clone()
-        {
-            return new ItemData(this);
         }
     }
 

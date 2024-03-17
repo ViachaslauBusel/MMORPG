@@ -11,9 +11,8 @@ namespace Cells
     public class ItemCell : Cell
     {
         protected Item _item;
-        protected int index;
-     //   protected int objectID;
-        protected Text countTxt;
+        protected int _index;
+        protected Text _countTxt;
         private ItemUsageService _itemUsageService;
 
 
@@ -26,14 +25,12 @@ namespace Cells
         protected new void Awake()
         {
             base.Awake();
-            countTxt = transform.Find("Count").GetComponent<Text>();
+            _countTxt = transform.Find("Count").GetComponent<Text>();
         }
 
         public override bool IsEmpty()
         {
-            if (_item == null) return true;
-            if (_item.IsEmpty) return true;
-            return false;
+            return _item == null || _item.IsEmpty;
         }
 
         /// <summary>
@@ -42,7 +39,7 @@ namespace Cells
         public override void Use()
         {
             if (IsEmpty()) return;
-           // _itemUsageService.UseItem(_item.objectID);
+            _itemUsageService.UseItem(_item.UniqueID);
         }
 
         /// <summary>
@@ -67,17 +64,17 @@ namespace Cells
             _item = item;
             if (IsEmpty())//If the cell is empty
             {
-                if (countTxt != null)
-                    countTxt.text = "";
+                if (_countTxt != null)
+                    _countTxt.text = "";
                 HideIcon();
                 return;
             }
 
             ShowIcon();
             UpdateIcon();
-            if (countTxt != null)
+            if (_countTxt != null)
             {
-                countTxt.text = _item.Data.stack ? _item.Count.ToString() : "";
+                _countTxt.text = _item.Data.stack ? _item.Count.ToString() : "";
             }
         }
 
@@ -131,7 +128,7 @@ namespace Cells
 
         public void SetIndex(int index)
         {
-            this.index = index;
+            this._index = index;
         }
 
         public Item GetItem()
@@ -150,7 +147,7 @@ namespace Cells
         }
         public int GetIndex()
         {
-            return index;
+            return _index;
         }
         public override long GetObjectID()
         {
@@ -174,7 +171,7 @@ namespace Cells
         }
         public void SetMaxDurabilty(int durability)
         {
-            _item.Data.maxDurability = durability;
+          //  _item.Data.maxDurability = durability;
         }
     }
 }

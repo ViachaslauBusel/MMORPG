@@ -73,9 +73,9 @@ public class ActionCell : ItemCell
             {
                 if (piece.ID == _item.Data.id)
                 {
-                    if (piece.count <= _item.Count) countTxt.color = Color.green;
-                    else countTxt.color = Color.red;
-                    countTxt.text = _item.Count.ToString() + '/' + piece.count.ToString();
+                    if (piece.count <= _item.Count) _countTxt.color = Color.green;
+                    else _countTxt.color = Color.red;
+                    _countTxt.text = _item.Count.ToString() + '/' + piece.count.ToString();
                     return;
                 }
             }
@@ -85,13 +85,13 @@ public class ActionCell : ItemCell
 
     public void ClearCount()
     {
-        countTxt.color = Color.white;
+        _countTxt.color = Color.white;
         if (!IsEmpty() && _item.Data.stack)
         {
-            countTxt.text = _item.Count.ToString()+"/0";
+            _countTxt.text = _item.Count.ToString()+"/0";
         }
         else
-            countTxt.text = "";
+            _countTxt.text = "";
     }
 
    /* public int ID()
