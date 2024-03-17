@@ -30,7 +30,7 @@ namespace Cells
 
         public override void PutItem(Item item)
         {
-            this.item = item;
+            this._item = item;
             if (IsEmpty())
             {
                 HideIcon();

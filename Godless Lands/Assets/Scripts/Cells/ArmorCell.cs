@@ -44,8 +44,8 @@ namespace Cells
 
         public override void ShowIcon()
         {
-            if(item != null)
-            icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+            if(_item != null)
+            icon.sprite = Sprite.Create(_item.texture, new Rect(0.0f, 0.0f, _item.texture.width, _item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
     }
 }

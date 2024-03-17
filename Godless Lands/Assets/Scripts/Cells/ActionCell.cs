@@ -53,7 +53,7 @@ public class ActionCell : ItemCell
     public override void PutItem(Item item)
     {
         
-        this.item = item;
+        this._item = item;
         ClearCount();
         if (IsEmpty())
         {
@@ -67,15 +67,15 @@ public class ActionCell : ItemCell
 
     public void SetCount(List<Piece> pieces)
     {
-        if (!IsEmpty() && item.stack)
+        if (!IsEmpty() && _item.stack)
         {
             foreach (Piece piece in pieces)
             {
-                if (piece.ID == item.id)
+                if (piece.ID == _item.id)
                 {
-                    if (piece.count <= item.count) countTxt.color = Color.green;
+                    if (piece.count <= _item.count) countTxt.color = Color.green;
                     else countTxt.color = Color.red;
-                    countTxt.text = item.count.ToString() + '/' + piece.count.ToString();
+                    countTxt.text = _item.count.ToString() + '/' + piece.count.ToString();
                     return;
                 }
             }
@@ -86,9 +86,9 @@ public class ActionCell : ItemCell
     public void ClearCount()
     {
         countTxt.color = Color.white;
-        if (!IsEmpty() && item.stack)
+        if (!IsEmpty() && _item.stack)
         {
-            countTxt.text = item.count.ToString()+"/0";
+            countTxt.text = _item.count.ToString()+"/0";
         }
         else
             countTxt.text = "";

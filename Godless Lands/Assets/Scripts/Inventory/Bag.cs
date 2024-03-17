@@ -24,7 +24,6 @@ public class Bag
 
     internal void UpdateCapacity(int currentItemsCount, int maxItemsCount)
     {
-        Debug.Log($"UpdateCapacity {maxItemsCount}");
         _currentItemsCount = currentItemsCount;
         
         if (_items == null || _items.Length != maxItemsCount)
@@ -65,7 +64,6 @@ public class Bag
         {
             if (item.SlotIndex >= 0 && item.SlotIndex < _items.Length)
             {
-                Debug.Log($"UpdateItems {item.SlotIndex}:{item.ItemID}");
                 _items[item.SlotIndex] = new ItemNetworkData(item);
             } 
             else Debug.LogError($"Slot index {item.SlotIndex} is out of range");

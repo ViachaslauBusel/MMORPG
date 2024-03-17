@@ -2,6 +2,7 @@
 using RUCP;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Cells
 {
@@ -9,12 +10,18 @@ namespace Cells
 
     public class ItemCell : Cell
     {
-        protected Item item;
+        protected Item _item;
         protected int index;
      //   protected int objectID;
         protected Text countTxt;
+        private ItemUsageService _itemUsageService;
 
 
+        [Inject]
+        public void Construct(ItemUsageService itemUsageService)
+        {
+            _itemUsageService = itemUsageService;
+        }
 
         protected new void Awake()
         {
@@ -24,23 +31,18 @@ namespace Cells
 
         public override bool IsEmpty()
         {
-            if (item == null) return true;
-            if (item.id <= 0) return true;
+            if (_item == null) return true;
+            if (_item.id <= 0) return true;
             return false;
         }
 
         /// <summary>
-        /// использовать предмет
+        /// Send command to the server to use the item
         /// </summary>
         public override void Use()
         {
             if (IsEmpty()) return;
-            //TODO msg
-            //Packet nw = new Packet(Channel.Reliable);
-            //nw.WriteType(Types.UseItem);
-            //nw.WriteInt(item.objectID);
-            //nw.WriteInt(item.id);
-            //NetworkManager.Send(nw);
+           // _itemUsageService.UseItem(_item.objectID);
         }
 
         /// <summary>
@@ -63,7 +65,7 @@ namespace Cells
         public virtual void PutItem(Item item)
         {
            
-            this.item = item;
+            this._item = item;
             if (IsEmpty() || !item.IsExist())//Если предмет не существует
             {
                 if (countTxt != null)
@@ -132,17 +134,17 @@ namespace Cells
 
         public Item GetItem()
         {
-            return item;
+            return _item;
         }
         public int ID()
         {
             if (IsEmpty()) return -1;
-            return item.id;
+            return _item.id;
         }
         public int GetCount()
         {
             if (IsEmpty()) return 0;
-            return item.count;
+            return _item.count;
         }
         public int GetIndex()
         {
@@ -151,26 +153,26 @@ namespace Cells
         public override long GetObjectID()
         {
             if (IsEmpty()) return 0;
-            return item.objectID;
+            return _item.objectID;
         }
 
         public override string GetText()
         {
-            if(!IsEmpty() && item.stack) return GetCount().ToString();
+            if(!IsEmpty() && _item.stack) return GetCount().ToString();
             return base.GetText();
         }
 
         public void SetEnchantLevel(int level)
         {
-            item.enchant_level = level;
+            _item.enchant_level = level;
         }
         public void SetDurabilty(int durability)
         {
-            item.durability = durability;
+            _item.durability = durability;
         }
         public void SetMaxDurabilty(int durability)
         {
-            item.maxDurability = durability;
+            _item.maxDurability = durability;
         }
     }
 }

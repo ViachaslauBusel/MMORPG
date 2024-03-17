@@ -1,4 +1,5 @@
 using Inventory;
+using Items;
 using MCamera;
 using ObjectInteraction;
 using OpenWorld;
@@ -30,5 +31,6 @@ public class MapInstaller : MonoInstaller
 
         Container.Bind<InventoryModel>().AsSingle().NonLazy();
         Container.Bind<InventoryListener>().AsSingle().NonLazy();
+        Container.Bind<ItemUsageService>().AsSingle().NonLazy();
     }
 }
