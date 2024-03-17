@@ -13,5 +13,5 @@ public class ItemsManager : MonoBehaviour
         Instance = this;
     }
 
-    public static Item Create(int id) => Instance.items.GetDuplicateItem(id); 
+    public static ItemData Create(int id) => Instance.items.GetDuplicateItem(id); 
 }

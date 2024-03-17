@@ -32,7 +32,7 @@ namespace Cells
         public override bool IsEmpty()
         {
             if (_item == null) return true;
-            if (_item.id <= 0) return true;
+            if (_item.IsEmpty) return true;
             return false;
         }
 
@@ -59,29 +59,31 @@ namespace Cells
         }
 
         /// <summary>
-        /// Положить предмет в ячейку
+        /// Draw the icon and the count of the item
         /// </summary>
         /// <param name="item"></param>
         public virtual void PutItem(Item item)
         {
-           
-            this._item = item;
-            if (IsEmpty() || !item.IsExist())//Если предмет не существует
+            _item = item;
+            if (IsEmpty())//If the cell is empty
             {
                 if (countTxt != null)
                     countTxt.text = "";
                 HideIcon();
                 return;
             }
-           // item.count = count;
+
             ShowIcon();
-            icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+            UpdateIcon();
             if (countTxt != null)
             {
-                if (item.stack)
-                    countTxt.text = item.count.ToString();
-                else countTxt.text = "";
+                countTxt.text = _item.Data.stack ? _item.Count.ToString() : "";
             }
+        }
+
+        protected void UpdateIcon()
+        {
+            icon.sprite = Sprite.Create(_item.Data.texture, new Rect(0.0f, 0.0f, _item.Data.texture.width, _item.Data.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
         /* public void Refresh(Item item, int key)
@@ -139,12 +141,12 @@ namespace Cells
         public int ID()
         {
             if (IsEmpty()) return -1;
-            return _item.id;
+            return _item.Data.id;
         }
         public int GetCount()
         {
             if (IsEmpty()) return 0;
-            return _item.count;
+            return _item.Count;
         }
         public int GetIndex()
         {
@@ -153,26 +155,26 @@ namespace Cells
         public override long GetObjectID()
         {
             if (IsEmpty()) return 0;
-            return _item.objectID;
+            return _item.UniqueID;
         }
 
         public override string GetText()
         {
-            if(!IsEmpty() && _item.stack) return GetCount().ToString();
+            if(!IsEmpty() && _item.Data.stack) return GetCount().ToString();
             return base.GetText();
         }
 
         public void SetEnchantLevel(int level)
         {
-            _item.enchant_level = level;
+            _item.EnchantLevel = level;
         }
         public void SetDurabilty(int durability)
         {
-            _item.durability = durability;
+            _item.Durability = durability;
         }
         public void SetMaxDurabilty(int durability)
         {
-            _item.maxDurability = durability;
+            _item.Data.maxDurability = durability;
         }
     }
 }

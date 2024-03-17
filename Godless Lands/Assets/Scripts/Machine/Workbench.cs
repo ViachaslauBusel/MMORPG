@@ -79,11 +79,11 @@ namespace Machines
 
         public void Refresh(Item item)
         {
-            RecipesItem recipesItem = (RecipesItem) item.serializableObj;
+            RecipesItem recipesItem = (RecipesItem) item.Data.serializableObj;
             if (recipesItem == null) return;
             selectRecipe = recipesList.GetRecipe(recipesItem.recipeID);
             if (selectRecipe == null) return;
-            recName.text = item.nameItem;
+            recName.text = item.Data.nameItem;
            // foreach (Piece piece in recipe.component)
           //  {
                 GameObject obj = Instantiate(recipeComponentPref);

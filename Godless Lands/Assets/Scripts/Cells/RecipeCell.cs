@@ -48,7 +48,7 @@ namespace Machines
             return recipe;
         }
 
-        public void PutItem(Item item)
+        public void PutItem(ItemData item)
         {
             if (item == null)
             {

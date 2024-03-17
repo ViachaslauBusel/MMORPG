@@ -21,7 +21,7 @@ namespace ItemsRedactor
             //  serializedObject.Update();
             //     EditorGUILayout.HelpBox("id error", MessageType.Error);
             ItemEditor itemEditor = (ItemEditor)target;
-            Item _item = itemEditor._item;
+            ItemData _item = itemEditor._item;
 
             EditorGUILayout.LabelField("ID: " + _item.id);
             _item.texture = EditorGUILayout.ObjectField("Icon", _item.texture, typeof(Texture2D), false) as Texture2D;
@@ -42,7 +42,7 @@ namespace ItemsRedactor
 
 
             //Если используемый тип предмета не соответствует созданому классу для сохранения данных.
-                if (Item.GetUse(itemEditor.serializableObject) != _item.type)
+                if (ItemData.GetUse(itemEditor.serializableObject) != _item.type)
                 {
                 switch (_item.type)
                 {

@@ -83,9 +83,9 @@ namespace Machines
 
         public void Refresh()
         {
-            allCount = _inventory.GetAllCount(item.id);
-            if (item.count != 0)
-                countTxt.text = " (" + item.count + "/" + allCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
+            allCount = _inventory.GetAllCount(item.Data.id);
+            if (item.Count != 0)
+                countTxt.text = " (" + item.Count + "/" + allCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
             foreach (RecipeComponent component in children)
             {
                 component.Refresh();
@@ -142,14 +142,15 @@ namespace Machines
                 expandTxt.text = "+";
 
             allCount = _inventory.GetAllCount(piece.ID);
-            item.count = piece.count;
-            if (item.count != 0)
-                 countTxt.text = " (" + allCount + "/" + item.count + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
+            int itemCount = piece.count;
+            if (itemCount != 0)
+                 countTxt.text = " (" + allCount + "/" + itemCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
             else countTxt.text = " ";
 
            
-            icon.sprite = Sprite.Create(item.texture, new Rect(0.0f, 0.0f, item.texture.width, item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
-            nameTxt.text = item.nameItem;
+            
+            icon.sprite = Sprite.Create(item.Data.texture, new Rect(0.0f, 0.0f, item.Data.texture.width, item.Data.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+            nameTxt.text = item.Data.nameItem;
 
             if(fuel) nameTxt.text += " (топливо)";
 

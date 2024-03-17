@@ -78,7 +78,7 @@ public class GhostArmor : MonoBehaviour{
         if (_item != null)//Если есть новое оружие надеть
         {
 
-            weapon_obj = Instantiate(_item.prefab);
+            weapon_obj = Instantiate(_item.Data.prefab);
             weapon_obj.transform.SetParent(weapon_parent);
             weapon_obj.transform.localPosition = Vector3.zero;
             weapon_obj.transform.localRotation = Quaternion.identity;

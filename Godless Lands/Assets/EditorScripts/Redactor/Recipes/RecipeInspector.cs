@@ -81,7 +81,7 @@ namespace Recipes
                 itemsList = Project.ItemsList;
               //  return false;
             }
-            Item item = itemsList.GetItem(id);
+            ItemData item = itemsList.GetItem(id);
             GUILayout.BeginHorizontal();
             if (item != null)
             {
@@ -100,7 +100,7 @@ namespace Recipes
         private void DrawItem(int id)
         {
             if (itemsList == null) return;
-            Item item = itemsList.GetItem(id);
+            ItemData item = itemsList.GetItem(id);
             if (item != null)
             {
                 GUILayout.BeginHorizontal();

@@ -41,25 +41,21 @@ namespace Inventory.UI
 
         public void UpdateItems()
         {
-            foreach (var itemData in _bag.Items)
+            foreach (var item in _bag.Items)
             {
-                if (itemData.SlotIndex >= 0 && itemData.SlotIndex < _cells.Count)
+                if (item.SlotIndex >= 0 && item.SlotIndex < _cells.Count)
                 {
-                    if (itemData.SlotIndex >= 0 && IsNeedUpdate(itemData, _cells[itemData.SlotIndex].GetItem())) continue;
-                    Debug.Log($"[DrawBag] UpdateItems: {itemData.SlotIndex}:{itemData.ItemID}");
-                    Item newItem = itemData.ItemID != 0 ? _itemsFactory.CreateItem(itemData) : null;
-                    _cells[itemData.SlotIndex].PutItem(newItem);
+                    if (IsNeedUpdate(item, _cells[item.SlotIndex].GetItem()) == false) continue;
+                    Debug.Log($"[DrawBag] UpdateItems: {item.SlotIndex}:{item.UniqueID}");
+                    _cells[item.SlotIndex].PutItem(item);
                 }
                 else Debug.LogError("Index out of range");
             }
         }
 
-        private bool IsNeedUpdate(ItemNetworkData itemData, Item item)
+        private bool IsNeedUpdate(Item itemData, Item item)
         {
-            int itemId = item?.id ?? 0;
-            int itemCount = item?.count ?? 0;
-            long itemUniqueId = item?.objectID ?? 0;
-            return itemData.ItemID == itemId && itemData.Count == itemCount && itemData.UniqueID == itemUniqueId;
+            return itemData != item;
         }
 
         private void UpdateCellsCount()
@@ -87,9 +83,9 @@ namespace Inventory.UI
             Debug.Log($"[DrawBag] UpdateCellsCount:{_cells.Count}");
         }
 
-        internal bool TryGetItemCellByObjectId(long objectId, out ItemCell item)
+        internal bool TryGetItemCellByItemUID(long itemUID, out ItemCell item)
         {
-            int itemIndex = _cells.FindIndex(cell => cell.GetItem() is Item item && item.objectID == objectId);
+            int itemIndex = _cells.FindIndex(cell => cell.GetItem() is Item item && item.UniqueID == itemUID);
             item = itemIndex >= 0 ? _cells[itemIndex] : null;
             return itemIndex >= 0;
         }

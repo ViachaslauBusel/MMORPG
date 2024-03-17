@@ -38,14 +38,14 @@ namespace Cells
             if (cell.GetType() != typeof(ItemCell) || cell.IsEmpty()) return;//Если ячейка не для предметов или пустая
 
             ItemCell itemCell = cell as ItemCell;
-            if (itemCell.GetItem().type != use) return;//Если тип предмета не соответствует ячейке
+            if (itemCell.GetItem().Data.type != use) return;//Если тип предмета не соответствует ячейке
             cell.Use();//Использовать предмет
         }
 
         public override void ShowIcon()
         {
             if(_item != null)
-            icon.sprite = Sprite.Create(_item.texture, new Rect(0.0f, 0.0f, _item.texture.width, _item.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+                UpdateIcon();
         }
     }
 }

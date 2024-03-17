@@ -44,8 +44,8 @@ public class InventoryWindow : MonoBehaviour
     
     public ItemCell GetItemCellByObjectID(long objectID)
     {
-        if (_primaryBag.TryGetItemCellByObjectId(objectID, out ItemCell itemCell)
-        || _secondaryBag.TryGetItemCellByObjectId(objectID, out itemCell))
+        if (_primaryBag.TryGetItemCellByItemUID(objectID, out ItemCell itemCell)
+        || _secondaryBag.TryGetItemCellByItemUID(objectID, out itemCell))
         {
             return itemCell;
         }

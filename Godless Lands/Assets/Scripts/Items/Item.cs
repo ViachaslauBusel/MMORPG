@@ -1,96 +1,40 @@
-﻿using System;
-using System.Collections;
+﻿using Protocol.Data.Items.Network;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Items
 {
-    [System.Serializable]
     public class Item
     {
-        [NonSerialized]
-        public long objectID = 0;
-        [NonSerialized]
-        public int count = 0;
-        [NonSerialized]
-        public int enchant_level;
-        [NonSerialized]
-        public int durability;
-        [NonSerialized]
-        public int maxDurability;
+        private readonly long _uniqueId;
+        private readonly int _count;
+        private readonly int _slotIndex;
+        private readonly ItemData _data;
 
-        public int id;
-        public string nameItem;
-        public Texture2D texture;
-        public string description;
-        public bool stack;
-        public int weight;
-        public GameObject prefab;
-        public ItemType type;
-        [SerializeField]
-        private string _serializableObj;
-        [SerializeField]
-        private string typeObject;
+        public long UniqueID => _uniqueId;
+        public int Count => _count;
+        public int SlotIndex => _slotIndex;
+        public ItemData Data => _data;
+        public bool IsEmpty => _data == null;
 
-        public Item(Item item)
-        {
-            if(item == null) { id = 0; return; }
-            id = item.id;
-            nameItem = item.nameItem;
-            texture = item.texture;
-            description = item.description;
-            stack = item.stack;
-            weight = item.weight;
-            prefab = item.prefab;
-            type = item.type;
-            _serializableObj = item._serializableObj;
-            typeObject = item.typeObject;
-        }
+        public int EnchantLevel { get; internal set; }
+        public int Durability { get; internal set; }
+        public int MaxDurability { get; internal set; }
+
         public Item()
         {
-            id = 0;
+            _slotIndex = -1;
         }
 
-        public bool IsExist()
+        public Item(long uniqueId, int count, int slotIndex, ItemData data)
         {
-            if (id > 0) return true;
-            return false;
-        }
-        public System.Object serializableObj
-        {
-            get
-            {
-                if (_serializableObj == null || _serializableObj.Length == 0 || string.IsNullOrEmpty(typeObject)) return null;
-               
-                return JsonUtility.FromJson(_serializableObj, Type.GetType(typeObject));
-            }
-            set
-            {
-                if (value == null) { _serializableObj = null; return; }
-
-                _serializableObj = JsonUtility.ToJson(value);
-                typeObject = value.GetType().ToString();
-            }
-        }
-
-        public static ItemType GetUse(System.Object Obj)
-        {
-             if (Obj == null) return ItemType.None;
-            Type type = Obj.GetType();
-            if (type == typeof(WeaponItem)) return ItemType.Weapon;
-            if (type == typeof(WeaponItem)) return ItemType.Armor;
-            if (type == typeof(RestorePointsItem)) return ItemType.RestorePoints;
-            if (type == typeof(RecipesItem)) return ItemType.Recipes;
-            return ItemType.None;
-        }
-
-        internal Item Clone()
-        {
-            return new Item(this);
+            _uniqueId = uniqueId;
+            _count = count;
+            _slotIndex = slotIndex;
+            _data = data;
         }
     }
-
-    
 }

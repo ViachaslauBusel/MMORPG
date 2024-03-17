@@ -41,7 +41,7 @@ namespace Recipes
             Recipe recipe = obj as Recipe;
             if (recipe == null) return;
 
-            Item item = items.GetItem(recipe.result);
+            ItemData item = items.GetItem(recipe.result);
             if(item != null)
             GUILayout.Label(item.texture, GUILayout.Width(90), GUILayout.Height(90));
 

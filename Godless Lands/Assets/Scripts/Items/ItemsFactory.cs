@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Protocol.Data.Items.Network;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,24 +13,30 @@ namespace Items
         [SerializeField]
         private ItemsContainer _itemsContainer;
 
-        internal Item CreateItem(ItemNetworkData itemData)
+        internal Item CreateEmptyItem(long uid = 0, int count = 0, int slotIndex = -1)
         {
-            Item item = CreateItem(itemData.ItemID);
-            if (item == null) return null;
-            item.objectID = itemData.UniqueID;
-            item.count = itemData.Count;
-            return item;
+            return new Item(uid, count, slotIndex, null);
         }
+
+        //internal ItemData CreateItem(Item itemData)
+        //{
+        //    ItemData item = CreateItem(itemData.ItemID);
+        //    if (item == null) return null;
+        //    item.objectID = itemData.UniqueID;
+        //    item.count = itemData.Count;
+        //    return item;
+        //}
 
         internal Item CreateItem(int id)
         {
-           Item item = _itemsContainer.GetItem(id);
-            if (item == null)
-            {
-                Debug.LogError("Item with id " + id + " not found");
-                return null;
-            }
-            return item.Clone();
+           ItemData item = _itemsContainer.GetItem(id);
+            return new Item(0, 0, -1, item);
+        }
+
+        internal Item CreateItem(ItemSyncData item)
+        {
+            ItemData data = _itemsContainer.GetItem(item.ItemID);
+            return new Item(item.UniqueID, item.Count, item.SlotIndex, data);
         }
     }
 }

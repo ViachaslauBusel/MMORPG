@@ -68,7 +68,7 @@ namespace Resource
         private bool DrawItemComponent(int id)
         {
             if (itemsList == null) return false;
-            Item item = itemsList.GetItem(id);
+            ItemData item = itemsList.GetItem(id);
             GUILayout.BeginHorizontal();
             if (item != null)
             {

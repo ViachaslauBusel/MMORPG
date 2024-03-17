@@ -114,7 +114,7 @@ namespace ItemsRedactor
                 for (hor_i = 0; hor_i < horizontal_element; hor_i++)
                 {
                     if (itemsList.Count <= index) goto off;
-                    Item _item = itemsList[index++];
+                    ItemData _item = itemsList[index++];
                     DrawItemArea(_item, ver_i, hor_i, horizontal_space, vertical_space);
 
                 }
@@ -127,7 +127,7 @@ namespace ItemsRedactor
                                         height_item * ver_i + vertical_space * ver_i + 38 + menu_height,
                                                      64, 64), "", redactorStyle.Plus))
                 {
-                    Item _item = itemsList.Add();
+                    ItemData _item = itemsList.Add();
                     SelectItem(_item);
                     
 
@@ -137,14 +137,14 @@ namespace ItemsRedactor
         }
 
 
-        private void SelectItem(Item _item)
+        private void SelectItem(ItemData _item)
         {
             if(select_editor == null) select_editor = ScriptableObject.CreateInstance<ItemEditor>();
             select_editor.Select(_item);
             Selection.activeObject = select_editor;
         }
 
-        private void DrawItemArea(Item _item, int ver_i, int hor_i, float horizontal_space, float vertical_space)
+        private void DrawItemArea(ItemData _item, int ver_i, int hor_i, float horizontal_space, float vertical_space)
         {
             GUILayout.BeginArea(new Rect(width_item * hor_i + horizontal_space * hor_i,
                                          height_item * ver_i + vertical_space * ver_i + menu_height,

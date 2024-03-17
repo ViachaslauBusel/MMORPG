@@ -36,10 +36,10 @@ public class Armor : MonoBehaviour
         {
             Destroy(weapon);
         }
-        if (_item?.IsExist() ?? false)//Если есть новое оружие надеть
+        if (_item != null && _item.IsEmpty == false)//Если есть новое оружие надеть
         {
 
-            weapon = Instantiate(_item.prefab);
+            weapon = Instantiate(_item.Data.prefab);
             weapon.transform.SetParent(weapon_parent);
             weapon.transform.localPosition = Vector3.zero;
             weapon.transform.localRotation = Quaternion.identity;
@@ -54,10 +54,10 @@ public class Armor : MonoBehaviour
         {
             Destroy(pickaxe);
         }
-        if (_item != null && _item.IsExist())//Если есть новое оружие надеть
+        if (_item != null && _item.Data.IsExist())//Если есть новое оружие надеть
         {
 
-            pickaxe = Instantiate(_item.prefab);
+            pickaxe = Instantiate(_item.Data.prefab);
             pickaxe.transform.SetParent(weapon_hand);
             pickaxe.transform.localPosition = Vector3.zero;
             pickaxe.transform.localRotation = Quaternion.identity;

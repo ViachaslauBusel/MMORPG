@@ -51,9 +51,9 @@ public class ArmorListener : MonoBehaviour {
         armor.PutItem(type, item);
     }
 
-    private Item ReadItem(Packet nw, int itemID)
+    private ItemData ReadItem(Packet nw, int itemID)
     {
-        Item _item = null;// InventoryWindow.CreateItem(itemID);
+        ItemData _item = null;// InventoryWindow.CreateItem(itemID);
         _item.objectID = nw.ReadInt();
         _item.count = nw.ReadInt();
         _item.enchant_level = nw.ReadInt();

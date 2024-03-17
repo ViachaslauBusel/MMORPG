@@ -10,10 +10,10 @@ namespace ItemsRedactor
     public class ItemEditor : ScriptableObject
     {
 
-        public Item _item;
+        public ItemData _item;
         public System.Object serializableObject;
 
-       public void Select(Item item)
+       public void Select(ItemData item)
         {
             _item = item;
             serializableObject = item.serializableObj;

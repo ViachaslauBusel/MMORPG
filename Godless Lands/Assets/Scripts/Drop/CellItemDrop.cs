@@ -20,10 +20,10 @@ public class CellItemDrop : MonoBehaviour {
 
     public void SetItem(Item _item)
     {
-        item_icon.sprite = Sprite.Create(_item.texture, new Rect(0, 0, _item.texture.width, _item.texture.height), new Vector2(0.5f, 0.5f));
-        item_name.text = _item.nameItem;
+        item_icon.sprite = Sprite.Create(_item.Data.texture, new Rect(0, 0, _item.Data.texture.width, _item.Data.texture.height), new Vector2(0.5f, 0.5f));
+        item_name.text = _item.Data.nameItem;
 
-        item_id = _item.id;
+        item_id = _item.Data.id;
 
         item_take.onClick.AddListener(() => Take());
 

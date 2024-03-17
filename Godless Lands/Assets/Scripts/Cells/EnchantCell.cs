@@ -40,7 +40,7 @@ namespace Cells
             if (itemCell.IsEmpty() || !Equipment.Is(itemCell.GetItem())) return;
 
             PutItem(itemCell.GetItem());
-            objectID = _item.objectID;
+            objectID = _item.UniqueID;
 
         }
 

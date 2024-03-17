@@ -56,37 +56,37 @@ namespace Cells
             _informer.Initial(Input.mousePosition, parent);
 
 
-            _informer.SetIcon(item.texture);
+            _informer.SetIcon(item.Data.texture);
 
-            if (item.type == ItemType.Weapon || item.type == ItemType.Armor)
-                _informer.SetName(item.enchant_level, item.nameItem, item.count, item.durability);
-            else _informer.SetName(item.nameItem);
+            if (item.Data.type == ItemType.Weapon || item.Data.type == ItemType.Armor)
+                _informer.SetName(item.EnchantLevel, item.Data.nameItem, item.Count, item.Durability);
+            else _informer.SetName(item.Data.nameItem);
 
-            if (item.stack) _informer.SetCount(item.count);
-            switch (item.type)
+            if (item.Data.stack) _informer.SetCount(item.Count);
+            switch (item.Data.type)
             {
                 case ItemType.Weapon:
-                    WeaponItem weapon = item.serializableObj as WeaponItem;
+                    WeaponItem weapon = item.Data.serializableObj as WeaponItem;
                     if (weapon == null) break;
                     _informer.SetLevel(weapon.weaponType);
                     _informer.SetSpeedAtack(weapon.speed);
-                    _informer.SetAtack(weapon.minDamege, weapon.maxDamage, item.count, item.enchant_level);
-                    _informer.SetDurability(item.durability, item.maxDurability);
+                    _informer.SetAtack(weapon.minDamege, weapon.maxDamage, item.Count, item.EnchantLevel);
+                    _informer.SetDurability(item.Durability, item.MaxDurability);
                 
                 //    if (weapon.prickingDamage > 0) _informer.SetPrickingDamage(weapon.prickingDamage, count);
                 //    if (weapon.crushingDamage > 0) _informer.SetCrushingDamage(weapon.crushingDamage, count);
                  //   if (weapon.choppingDamage > 0) _informer.SetChoppingDamage(weapon.choppingDamage, count);
                     break;
                 case ItemType.RestorePoints:
-                    RestorePointsItem restorePoints = item.serializableObj as RestorePointsItem;
+                    RestorePointsItem restorePoints = item.Data.serializableObj as RestorePointsItem;
                     if (restorePoints == null) break;
                     if (restorePoints.hp > 0) _informer.SetHP(restorePoints.hp);
                     if (restorePoints.mp > 0) _informer.SetMP(restorePoints.mp);
                     if (restorePoints.stamina > 0) _informer.SetStamina(restorePoints.stamina);
                     break;
             }
-            _informer.setDescription(item.description);
-            _informer.setWeight(item.weight);
+            _informer.setDescription(item.Data.description);
+            _informer.setWeight(item.Data.weight);
             return obj;
         }
     }

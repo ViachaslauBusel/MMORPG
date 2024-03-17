@@ -13,17 +13,17 @@ namespace ItemsRedactor
     public class ItemsExport
     {
 
-        public static void Export(IEnumerable<Item> items)
+        public static void Export(IEnumerable<Items.ItemData> items)
         {
-            List<ItemData> itemsData = new List<ItemData>();
+            List<Protocol.Data.Items.ItemData> itemsData = new List<Protocol.Data.Items.ItemData>();
 
-            foreach (Item _item in items)
+            foreach (Items.ItemData _item in items)
             {
-                ItemData itemData = _item.type switch
+                Protocol.Data.Items.ItemData itemData = _item.type switch
                 {
                     ItemType.Weapon => CreateWeaponData(_item),
                     ItemType.RestorePoints => CreateRestorePointsItemData(_item),
-                    _ => new ItemData(_item.id, _item.stack, _item.weight)
+                    _ => new Protocol.Data.Items.ItemData(_item.id, _item.stack, _item.weight)
                 };
                 itemsData.Add(itemData);
             }
@@ -35,7 +35,7 @@ namespace ItemsRedactor
             File.WriteAllText(@"Export/items.dat", JsonConvert.SerializeObject(itemsData, settings));
         }
 
-        private static ItemData CreateRestorePointsItemData(Item item)
+        private static Protocol.Data.Items.ItemData CreateRestorePointsItemData(Items.ItemData item)
         {
             if (item.serializableObj is RestorePointsItem restorePoints)
             {
@@ -44,7 +44,7 @@ namespace ItemsRedactor
             throw new ArgumentException("Item is not a restore points item");
         }
 
-        private static ItemData CreateWeaponData(Item item)
+        private static Protocol.Data.Items.ItemData CreateWeaponData(Items.ItemData item)
         {
             if (item.serializableObj is WeaponItem weapon)
             {
