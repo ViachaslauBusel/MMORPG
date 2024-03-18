@@ -35,7 +35,6 @@ namespace Inventory.UI
 
         private void UpdateWeght()
         {
-          
             weight.UpdateWeight(_bag.CurrentWeight, _bag.MaxWeight);
         }
 

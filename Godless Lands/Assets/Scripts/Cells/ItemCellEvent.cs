@@ -33,7 +33,7 @@ namespace Cells
                 CellMenu menu = Objmenu.GetComponent<CellMenu>();
                 menu.Initial(cellParent.parent);
                 menu.use.onClick.AddListener(itemCell.Use);
-                menu.move.onClick.AddListener(itemCell.Move);
+                menu.move.onClick.AddListener(itemCell.TransferItemToAnotherBag);
                 //   Button use =
             }
             else cell.Use();

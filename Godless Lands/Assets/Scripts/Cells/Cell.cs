@@ -18,6 +18,7 @@ namespace Cells
             icon = transform.Find("Icon").GetComponent<Image>();
             HideIcon();
         }
+
         protected void Start()
         {
            
@@ -48,7 +49,7 @@ namespace Cells
         public virtual void ShowIcon()
         {
             if(!IsEmpty())
-            icon.enabled = true;
+            if (icon != null) icon.enabled = true;
         }
 
         public virtual void Abort()

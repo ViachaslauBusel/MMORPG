@@ -16,6 +16,7 @@ namespace Windows
                 tab.button.onClick.AddListener(() =>
                 {
                     HideAll();
+                    tab.button.interactable = false;
                     foreach (GameObject obj in tab.elements)
                         obj.SetActive(true);
                 });

@@ -46,14 +46,11 @@ namespace Cells
         /// <summary>
         /// Рюкзак -> сумка -> рюкзак
         /// </summary>
-        public void Move()
+        public void TransferItemToAnotherBag()
         {
             if (IsEmpty()) return;
-            //TODO msg
-            //Packet nw = new Packet(Channel.Reliable);
-            //nw.WriteType(Types.ItemMove);
-            //nw.WriteInt(item.objectID);
-            //NetworkManager.Send(nw);
+
+            _itemUsageService.TransferItemToAnotherBag(_item.UniqueID);
         }
 
         /// <summary>
@@ -81,6 +78,7 @@ namespace Cells
 
         protected void UpdateIcon()
         {
+            if(icon == null) return;
             icon.sprite = Sprite.Create(_item.Data.texture, new Rect(0.0f, 0.0f, _item.Data.texture.width, _item.Data.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
@@ -115,7 +113,7 @@ namespace Cells
                 MSG_SWAMP_ITEMS swamp_command = new MSG_SWAMP_ITEMS();
                 swamp_command.ItemUID = itemCell.GetItemUID();
                 swamp_command.ToCellIndex = _index;
-                _itemUsageService.ExecuteCommand(swamp_command);
+                _itemUsageService.SwampItem(swamp_command);
             }
         }
 

@@ -7010,7 +7010,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112741368}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: OnBag
         m_Mode: 1
@@ -11511,7 +11511,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1575304206}
   m_HandleRect: {fileID: 1575304205}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -15859,7 +15859,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1594853}
   m_HandleRect: {fileID: 1594852}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -19519,7 +19519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -275.12503}
+  m_AnchoredPosition: {x: 0, y: -275.1248}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580182927
@@ -34601,7 +34601,6 @@ GameObject:
   - component: {fileID: 1112741365}
   - component: {fileID: 1112741364}
   - component: {fileID: 1112741367}
-  - component: {fileID: 1112741368}
   - component: {fileID: 1112741369}
   m_Layer: 0
   m_Name: InventoryWinddow
@@ -34706,26 +34705,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _primaryBag: {fileID: 296087257}
   _secondaryBag: {fileID: 1537362239}
---- !u!114 &1112741368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112741362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60cdc490984153347a546dfa2bbdb34f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bag: {fileID: 296087252}
-  packback: {fileID: 1537362234}
-  but_bag: {fileID: 213393360}
-  but_packback: {fileID: 1733310189}
-  txt_bag: {fileID: 1343535078}
-  txt_packback: {fileID: 2048170003}
-  weightBag: {fileID: 2057121437}
-  weightPackback: {fileID: 513069980}
 --- !u!114 &1112741369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38684,7 +38663,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 591603737}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99113274
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -49450,7 +49429,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2097489665}
   m_HandleRect: {fileID: 2097489664}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -54711,7 +54690,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112741368}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: OnPackback
         m_Mode: 1

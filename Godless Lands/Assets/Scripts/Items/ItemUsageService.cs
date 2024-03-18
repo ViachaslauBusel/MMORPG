@@ -23,9 +23,15 @@ namespace Items
             _networkManager.Client.Send(msg);
         }
 
-        internal void ExecuteCommand(MSG_SWAMP_ITEMS swamp_command)
+        internal void SwampItem(MSG_SWAMP_ITEMS swamp_command)
         {
             _networkManager.Client.Send(swamp_command);
+        }
+        public void TransferItemToAnotherBag(long itemUID)
+        {
+            MSG_TRANSFER_ITEM_TO_ANOTHER_BAG msg = new MSG_TRANSFER_ITEM_TO_ANOTHER_BAG();
+            msg.ItemUID = itemUID;
+            _networkManager.Client.Send(msg);
         }
     }
 }
