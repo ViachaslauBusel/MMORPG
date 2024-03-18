@@ -33,23 +33,23 @@ public class InventoryArmor : MonoBehaviour
 
     public int GetCount(int key)
     {
-        if (weapon.GetObjectID() == key) return weapon.GetCount();
-        if (pickaxe.GetObjectID() == key) return pickaxe.GetCount();
+        if (weapon.GetItemUID() == key) return weapon.GetCount();
+        if (pickaxe.GetItemUID() == key) return pickaxe.GetCount();
         print("Key not found: " + key);
-        print("Key weapon: " + weapon.GetObjectID());
+        print("Key weapon: " + weapon.GetItemUID());
         return 0;
     }
 
     internal Item GetItem(int key)
     {
-        if (weapon.GetObjectID() == key) return weapon.GetItem();
-        if (pickaxe.GetObjectID() == key) return pickaxe.GetItem();
+        if (weapon.GetItemUID() == key) return weapon.GetItem();
+        if (pickaxe.GetItemUID() == key) return pickaxe.GetItem();
         return null;
     }
     internal ItemCell GetItemCell(long objectID)
     {
-        if (weapon.GetObjectID() == objectID) return weapon;
-        if (pickaxe.GetObjectID() == objectID) return pickaxe;
+        if (weapon.GetItemUID() == objectID) return weapon;
+        if (pickaxe.GetItemUID() == objectID) return pickaxe;
         return null;
     }
 }

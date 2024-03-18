@@ -22,5 +22,10 @@ namespace Items
             msg.ItemUID = objectID;
             _networkManager.Client.Send(msg);
         }
+
+        internal void ExecuteCommand(MSG_SWAMP_ITEMS swamp_command)
+        {
+            _networkManager.Client.Send(swamp_command);
+        }
     }
 }

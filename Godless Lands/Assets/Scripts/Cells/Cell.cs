@@ -40,7 +40,10 @@ namespace Cells
 
         public virtual void HideIcon()
         {
-            icon.enabled = false;
+            if (icon != null)
+            {
+                icon.enabled = false;
+            }
         }
         public virtual void ShowIcon()
         {
@@ -62,7 +65,7 @@ namespace Cells
         /// Уникальный ИД содержимого ячейки
         /// </summary>
         /// <returns></returns>
-        public virtual long GetObjectID()
+        public virtual long GetItemUID()
         {
             return 0;
         }

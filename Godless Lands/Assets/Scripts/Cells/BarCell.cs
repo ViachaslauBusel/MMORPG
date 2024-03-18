@@ -115,7 +115,7 @@ namespace Cells
                 ItemCell => HotbarCellType.Item,
                 _ => HotbarCellType.Unknown,
             };
-            msg.CellValue = (short)cell.GetObjectID();
+            msg.CellValue = (short)cell.GetItemUID();
             _networkManager.Client.Send(msg);
 
             //TODO msg

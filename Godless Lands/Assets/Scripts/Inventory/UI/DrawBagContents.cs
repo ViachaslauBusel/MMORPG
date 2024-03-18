@@ -46,12 +46,10 @@ namespace Inventory.UI
                 if (item.SlotIndex >= 0 && item.SlotIndex < _cells.Count)
                 {
                     var existingItem = _cells[item.SlotIndex].GetItem();
-                    if (ShouldUpdateItem(item, existingItem) == false)
+                    if (ShouldUpdateItem(item, existingItem))
                     {
-                        continue;
+                        _cells[item.SlotIndex].PutItem(item);
                     }
-
-                    _cells[item.SlotIndex].PutItem(item);
                 }
                 else Debug.LogError("Index out of range");
             }

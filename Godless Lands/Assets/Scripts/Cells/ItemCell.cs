@@ -1,4 +1,5 @@
 ﻿using Items;
+using Protocol.MSG.Game.Inventory;
 using RUCP;
 using UnityEngine;
 using UnityEngine.UI;
@@ -97,28 +98,25 @@ namespace Cells
         public override void Put(Cell cell)
         {
             if (cell == null) return;
-           /* if(cell.GetType() == typeof(ArmorCell))//Если вторая ячейка ячейка экепировки
-            {
-                UnityEngine.Debug.Log("armor cell");
-                cell.Use();
-                return;
-            }*/
-            if(cell is ActionCell || cell is WorkbenchCell)
+            /* if(cell.GetType() == typeof(ArmorCell))//Если вторая ячейка ячейка экепировки
+             {
+                 UnityEngine.Debug.Log("armor cell");
+                 cell.Use();
+                 return;
+             }*/
+            if (cell is ActionCell || cell is WorkbenchCell)
             {
                 cell.Abort();
                 return;
             }
 
-            ItemCell itemCell = cell as ItemCell;
-            if (itemCell == null || itemCell.IsEmpty()) return;
-
-            //TODO msg
-            //Packet writer = new Packet(Channel.Reliable);
-            //writer.WriteType(Types.WrapItem);
-            //writer.WriteInt(itemCell.item.objectID);//Предмет который надо переместить
-            //writer.WriteInt(index);//в ячейку индекс
-            //NetworkManager.Send(writer);
-
+            if (cell is ItemCell itemCell && itemCell.IsEmpty() == false)
+            {
+                MSG_SWAMP_ITEMS swamp_command = new MSG_SWAMP_ITEMS();
+                swamp_command.ItemUID = itemCell.GetItemUID();
+                swamp_command.ToCellIndex = _index;
+                _itemUsageService.ExecuteCommand(swamp_command);
+            }
         }
 
        // public void SetObjectID(int objetcID)
@@ -149,7 +147,7 @@ namespace Cells
         {
             return _index;
         }
-        public override long GetObjectID()
+        public override long GetItemUID()
         {
             if (IsEmpty()) return 0;
             return _item.UniqueID;
