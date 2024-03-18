@@ -45,15 +45,19 @@ namespace Inventory.UI
             {
                 if (item.SlotIndex >= 0 && item.SlotIndex < _cells.Count)
                 {
-                    if (IsNeedUpdate(item, _cells[item.SlotIndex].GetItem()) == false) continue;
-                    Debug.Log($"[DrawBag] UpdateItems: {item.SlotIndex}:{item.UniqueID}");
+                    var existingItem = _cells[item.SlotIndex].GetItem();
+                    if (ShouldUpdateItem(item, existingItem) == false)
+                    {
+                        continue;
+                    }
+
                     _cells[item.SlotIndex].PutItem(item);
                 }
                 else Debug.LogError("Index out of range");
             }
         }
 
-        private bool IsNeedUpdate(Item itemData, Item item)
+        private bool ShouldUpdateItem(Item itemData, Item item)
         {
             return itemData != item;
         }
