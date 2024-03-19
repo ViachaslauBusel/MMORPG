@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Player
 {
-    public class PlayerCharacterVisualEventNotifier
+    public class PlayerCharacterVisualEventNotifier : IDisposable
     {
         private PlayerCharacterNetworkObjecEventNotifier _networkEventNotifier;
         private IVisualRepresentation _playerCharacterVisualRepresentation;
@@ -68,6 +68,12 @@ namespace Player
 
             _playerCharacterVisualObject = @object;
             OnPlayerCharacterVisualSpawned?.Invoke(_playerCharacterVisualObject);
+        }
+
+        public void Dispose()
+        {
+            _networkEventNotifier.OnPlayerCharacterObjectSpawned -= OnPlayerCharacterObjectSpawned;
+            _networkEventNotifier.OnPlayerCharacterObjectDestroyed -= OnPlayerCharacterObjectDestroyed;
         }
     }
 }

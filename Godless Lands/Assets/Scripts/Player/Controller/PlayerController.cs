@@ -7,7 +7,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-namespace DynamicsObjects.Player
+namespace Player.Controller
 {
     public class PlayerController : MonoBehaviour
     {

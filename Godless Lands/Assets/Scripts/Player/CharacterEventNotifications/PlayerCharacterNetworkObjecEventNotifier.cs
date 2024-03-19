@@ -10,7 +10,7 @@ using Zenject;
 
 namespace Player
 {
-    public class PlayerCharacterNetworkObjecEventNotifier
+    public class PlayerCharacterNetworkObjecEventNotifier : IDisposable
     {
         private SessionManagmentService _sessionManagementService;
         private ReplicationService _replicationService;
@@ -65,6 +65,13 @@ namespace Player
             {
                 Debug.LogError("Player character object ID changed while the character object is spawned");
             }
+        }
+
+        public void Dispose()
+        {
+            _sessionManagementService.OnCharacterObjectIDChanged -= HandleCharacterObjectIdChanged;
+            _replicationService.OnNetworkObjectSpawned -= HandleNetworkObjectSpawned;
+            _replicationService.OnNetworkObjectDestroyed -= HandleNetworkObjectDestroyed;
         }
     }
 }

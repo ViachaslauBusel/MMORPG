@@ -1,28 +1,21 @@
-﻿using Protocol.Data.Replicated.Skins;
-using Protocol.Data.Replicated;
+﻿using Assets.Scripts.Services.Replication;
 using Services.Replication;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnitVisualCache;
 using UnityEngine;
-using Walkers.Monsters;
 using Zenject;
-using Assets.Scripts.Services.Replication;
 
 namespace NetworkObjectVisualization
 {
     public abstract class NetworkObjectVisualHandler : MonoBehaviour, IVisualRepresentation, IDestroyNotifier
     {
-        private GameObject _unitObject;
+        private GameObject _visualObject;
         private UnitVisualCacheService _visualCacheService;
         private NetworkComponentsProvider _networkComponentsProvider;
 
         public event Action<GameObject> OnVisualObjectUpdated;
 
-        public GameObject VisualObject => _unitObject;
+        public GameObject VisualObject => _visualObject;
 
         [Inject]
         private void Construct(UnitVisualCacheService visualCacheService)
@@ -37,38 +30,42 @@ namespace NetworkObjectVisualization
 
         private void CacheVisual()
         {
-            if (_unitObject == null) return;
+            if (_visualObject == null) return;
 
-            _visualCacheService.Add(_networkComponentsProvider.NetworkGameObjectID, _unitObject);
-            _unitObject = null;
+            // Caching the visual object for later use as a corpse
+            _visualCacheService.Add(_networkComponentsProvider.NetworkGameObjectID, _visualObject);
+            _visualObject = null;
             OnVisualObjectUpdated?.Invoke(null);
         }
 
-        protected void UpdateVisualObject (int visualObjectId)
+        protected void DestroyExistingUnitObject()
         {
-            DestroyExistingUnitObject();
+            if (_visualObject != null)
+            {
+                Destroy(_visualObject);
+            }
+        }
 
-            _unitObject = GetCachedVisualObject(visualObjectId) ?? CreateNewUnit();
+        protected void SetVisualObject(GameObject visualObject)
+        {
+            _visualObject = visualObject;
 
-            var visualObjectScript = _unitObject.GetComponentsInChildren<IVisualObjectScript>();
+            var visualObjectScript = _visualObject.GetComponentsInChildren<IVisualObjectScript>();
 
             foreach (var script in visualObjectScript)
             {
                 script.SubscribeToNetworkObject(gameObject);
             }
 
-            OnVisualObjectUpdated?.Invoke(_unitObject);
+            OnVisualObjectUpdated?.Invoke(_visualObject);
         }
 
-        private void DestroyExistingUnitObject()
-        {
-            if (_unitObject != null)
-            {
-                Destroy(_unitObject);
-            }
-        }
-
-        private GameObject GetCachedVisualObject(int visualObjectId)
+        /// <summary>
+        ///  Attempt to get the visual object from the cache
+        /// </summary>
+        /// <param name="visualObjectId"></param>
+        /// <returns></returns>
+        protected GameObject GetCachedVisualObject(int visualObjectId)
         {
             if (visualObjectId != 0)
             {
@@ -78,8 +75,7 @@ namespace NetworkObjectVisualization
             return null;
         }
 
-        protected abstract GameObject CreateNewUnit();
-
+        // This method is called just before the object is destroyed
         public void NotifyPreDestroy()
         {
             if (true)

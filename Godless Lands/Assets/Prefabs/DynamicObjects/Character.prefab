@@ -298,6 +298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 843674735450997264}
+  - component: {fileID: 3363940521038711425}
   m_Layer: 9
   m_Name: RightWeapon
   m_TagString: Untagged
@@ -320,6 +321,18 @@ Transform:
   m_Father: {fileID: 2007912706609317996}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -11.88, y: 15.35, z: 144.70601}
+--- !u!114 &3363940521038711425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843674735450997267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181972a216813a04eac50f6e157eef2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &970730778759363866
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,6 +2104,7 @@ GameObject:
   - component: {fileID: 5526784322625365483}
   - component: {fileID: 5104452197197689324}
   - component: {fileID: 3279425741124275067}
+  - component: {fileID: 6972222762112653945}
   m_Layer: 9
   m_Name: Character
   m_TagString: Untagged
@@ -2179,6 +2193,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407676acb59cdda49ba044940eb06094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6972222762112653945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5526784322625365482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb808bf4100be04e8233b502ba61472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponPart: {fileID: 3363940521038711425}
+  _headPart: {fileID: 0}
 --- !u!1 &5560466346471761827
 GameObject:
   m_ObjectHideFlags: 0

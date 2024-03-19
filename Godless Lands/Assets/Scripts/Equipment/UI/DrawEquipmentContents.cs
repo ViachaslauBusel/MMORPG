@@ -72,7 +72,7 @@ public class DrawEquipmentContents : MonoBehaviour
             EquipmentType eqType = (EquipmentType)item.SlotIndex;
             if(_armorCells.ContainsKey(eqType) == false)
             {
-                Debug.LogError($"[{eqType}] Armor cell not found");
+                //Debug.LogError($"[{eqType}] Armor cell not found");
                 continue;
             }
             _armorCells[eqType].PutItem(item);

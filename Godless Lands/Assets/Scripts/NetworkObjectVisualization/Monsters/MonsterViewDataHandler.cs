@@ -38,7 +38,16 @@ namespace NetworkObjectVisualization
             UpdateVisualObject(_visualData.VisualChaneObjectId);
         }
 
-        protected override GameObject CreateNewUnit()
+        protected void UpdateVisualObject(int visualObjectId)
+        {
+            DestroyExistingUnitObject();
+
+            GameObject visualObject = GetCachedVisualObject(visualObjectId) ?? CreateNewUnit();
+
+            SetVisualObject(visualObject);
+        }
+
+        private GameObject CreateNewUnit()
         {
             return _monstersFactory.CreateMonster(_visualData.SkinID, transform, _networkTransform.Position);
         }

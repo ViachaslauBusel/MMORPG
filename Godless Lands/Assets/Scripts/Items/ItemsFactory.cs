@@ -18,15 +18,6 @@ namespace Items
             return new Item(uid, count, slotIndex, null);
         }
 
-        //internal ItemData CreateItem(Item itemData)
-        //{
-        //    ItemData item = CreateItem(itemData.ItemID);
-        //    if (item == null) return null;
-        //    item.objectID = itemData.UniqueID;
-        //    item.count = itemData.Count;
-        //    return item;
-        //}
-
         internal Item CreateItem(int id, long uid = 0, int count = 0, int slotIndex = -1)
         {
            ItemData item = _itemsContainer.GetItem(id);
@@ -37,6 +28,11 @@ namespace Items
         {
             ItemData data = _itemsContainer.GetItem(item.ItemID);
             return new Item(item.UniqueID, item.Count, item.SlotIndex, data);
+        }
+
+        public ItemData GetItemData(int id)
+        {
+            return _itemsContainer.GetItem(id);
         }
     }
 }

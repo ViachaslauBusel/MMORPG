@@ -1,18 +1,11 @@
-﻿using DynamicsObjects.Player;
-using Helpers;
-using Loader;
-using Protocol.MSG.Game;
-using RUCP;
+﻿using Helpers;
 using NetworkObjectVisualization;
+using Protocol.MSG.Game;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Player
+namespace Player.Controller
 {
     public class PlayerPositionSynchronizer : MonoBehaviour
     {

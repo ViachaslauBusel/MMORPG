@@ -2,6 +2,7 @@ using Equipment;
 using Inventory;
 using Items;
 using MCamera;
+using NetworkObjectVisualization.Characters;
 using ObjectInteraction;
 using OpenWorld;
 using Player;
@@ -9,7 +10,6 @@ using Skills;
 using UnitVisualCache;
 using UnityEngine;
 using Zenject;
-using Equipment;
 
 public class MapInstaller : MonoInstaller
 {
@@ -29,7 +29,7 @@ public class MapInstaller : MonoInstaller
         Container.Bind<InteractionObjectInputHandler>().AsSingle().NonLazy();
         Container.Bind<PlayerCharacterNetworkObjecEventNotifier>().AsSingle().NonLazy();
         Container.Bind<PlayerCharacterVisualEventNotifier>().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<UnitVisualCacheService>().AsSingle().NonLazy();
+       
 
         Container.Bind<InventoryModel>().AsSingle().NonLazy();
         Container.Bind<InventoryListener>().AsSingle().NonLazy();
@@ -38,5 +38,9 @@ public class MapInstaller : MonoInstaller
         //Equipment
         Container.Bind<EquipmentListener>().AsSingle().NonLazy();
         Container.Bind<EquipmentModel>().AsSingle().NonLazy();
+
+        // Unit visualisation
+        Container.BindInterfacesAndSelfTo<UnitVisualCacheService>().AsSingle().NonLazy();
+        Container.Bind<CharacterMeshProviderService>().AsSingle().NonLazy();
     }
 }

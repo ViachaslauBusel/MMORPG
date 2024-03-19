@@ -2,8 +2,6 @@
 using Inventory;
 using Inventory.UI;
 using Items;
-using RUCP;
-using RUCP.Handler;
 using UnityEngine;
 using Zenject;
 
@@ -16,9 +14,7 @@ public class InventoryWindow : MonoBehaviour
     [SerializeField]
     private DrawBagContents _secondaryBag;
     private Canvas _canvasInventory;
-    private InventoryArmor _armor;
     private InventoryModel _inventory;
-
     private UISort _uISort;
 
 
@@ -30,7 +26,6 @@ public class InventoryWindow : MonoBehaviour
 
     private void Awake()
     {
-        _armor = GetComponentInChildren<InventoryArmor>();
         _uISort = GetComponentInParent<UISort>();
         _canvasInventory = GetComponent<Canvas>();
 
@@ -50,7 +45,7 @@ public class InventoryWindow : MonoBehaviour
             return itemCell;
         }
 
-        return _armor.GetItemCell(objectID);
+        return null;// _armor.GetItemCell(objectID);
     }
 
     public static void RegisterUpdate(Update refresh)

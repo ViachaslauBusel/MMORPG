@@ -1,12 +1,11 @@
 ﻿using Items;
 using RUCP;
-using RUCP.Handler;
 using UnityEngine;
 using Zenject;
 
 public class ArmorListener : MonoBehaviour {
 
-    private InventoryArmor inventoryArmor;
+   // private InventoryArmor inventoryArmor;
     private Armor armor;
     private bool combatState = false;
     private NetworkManager networkManager;
@@ -20,7 +19,7 @@ public class ArmorListener : MonoBehaviour {
     }
     private void Awake()
     {
-        inventoryArmor = GameObject.Find("Inventory").GetComponentInChildren<InventoryArmor>();
+     //   inventoryArmor = GameObject.Find("Inventory").GetComponentInChildren<InventoryArmor>();
         armor = GetComponent<Armor>();
        
       //  RegisteredTypes.RegisterTypes(Types.LoadArmor, LoadArmor);
@@ -47,7 +46,7 @@ public class ArmorListener : MonoBehaviour {
 
        
 
-        inventoryArmor.PutItem(type, item);//Отоброзить иконку в инвентаре
+      //  inventoryArmor.PutItem(type, item);//Отоброзить иконку в инвентаре
         armor.PutItem(type, item);
     }
 

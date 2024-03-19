@@ -2,6 +2,7 @@ using Animation;
 using Assets.Scripts.Physics.Dynamic;
 using DynamicsObjects.TransformHandlers;
 using NetworkObjectVisualization;
+using NetworkObjectVisualization.Characters;
 using Nickname;
 using ObjectInteraction;
 using Protocol.Data.Replicated;

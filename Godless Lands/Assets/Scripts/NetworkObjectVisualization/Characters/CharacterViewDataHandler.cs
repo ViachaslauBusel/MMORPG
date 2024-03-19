@@ -1,4 +1,5 @@
-﻿using Protocol.Data.Replicated;
+﻿using NetworkObjectVisualization.Characters;
+using Protocol.Data.Replicated;
 using Protocol.Data.Replicated.Skins;
 using Services.Replication;
 using System;
@@ -10,13 +11,13 @@ using UnitVisualCache;
 using UnityEngine;
 using Zenject;
 
-namespace NetworkObjectVisualization
+namespace NetworkObjectVisualization.Characters
 {
     internal class CharacterViewDataHandler : NetworkObjectVisualHandler, INetworkDataHandler
     {
         private CharactersFactory _charatersFactory;
-        private CharacterSkinData _visualData;
         private TransfromDataHandler _networkTransform;
+        private CharacterBodyPartsController _bodyPartsController;
 
         [Inject]
         private void Construct(CharactersFactory charactersFactory)
@@ -32,11 +33,25 @@ namespace NetworkObjectVisualization
 
         public void UpdateData(IReplicationData updatedData)
         {
-            _visualData = (CharacterSkinData)updatedData;
-            UpdateVisualObject(0);
+            CharacterSkinData visualData = (CharacterSkinData)updatedData;
+
+            if(_bodyPartsController == null)
+            {
+                GameObject characterObj = CreateNewUnit();
+                _bodyPartsController = characterObj.GetComponent<CharacterBodyPartsController>();
+                if(_bodyPartsController == null)
+                {
+                    Debug.LogError("CharacterViewDataHandler: UpdateData: CharacterBodyPartsController not found");
+                    return;
+                }
+                SetVisualObject(characterObj);
+            }
+           
+            _bodyPartsController.UpdateWeapon(visualData.WeaponId);
+            _bodyPartsController.UpdateHead(visualData.HeadId);
         }
 
-        protected override GameObject CreateNewUnit()
+        protected GameObject CreateNewUnit()
         {
             return _charatersFactory.CreateHumanMale(transform, _networkTransform.Position);
         }
