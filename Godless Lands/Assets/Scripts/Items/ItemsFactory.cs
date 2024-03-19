@@ -27,10 +27,10 @@ namespace Items
         //    return item;
         //}
 
-        internal Item CreateItem(int id)
+        internal Item CreateItem(int id, long uid = 0, int count = 0, int slotIndex = -1)
         {
            ItemData item = _itemsContainer.GetItem(id);
-            return new Item(0, 0, -1, item);
+            return new Item(uid, count, slotIndex, item);
         }
 
         internal Item CreateItem(ItemSyncData item)

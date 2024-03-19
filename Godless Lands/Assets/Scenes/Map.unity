@@ -11511,7 +11511,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1575304206}
   m_HandleRect: {fileID: 1575304205}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -15859,7 +15859,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1594853}
   m_HandleRect: {fileID: 1594852}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -34602,6 +34602,7 @@ GameObject:
   - component: {fileID: 1112741364}
   - component: {fileID: 1112741367}
   - component: {fileID: 1112741369}
+  - component: {fileID: 1112741370}
   m_Layer: 0
   m_Name: InventoryWinddow
   m_TagString: Untagged
@@ -34728,6 +34729,18 @@ MonoBehaviour:
     - {fileID: 1537362234}
     - {fileID: 2048170002}
     - {fileID: 513069980}
+--- !u!114 &1112741370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112741362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca52c84bf7ae8ba41bc2b2decb6495ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1112769857
 GameObject:
   m_ObjectHideFlags: 0
@@ -38663,7 +38676,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 591603737}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99113274
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -49429,7 +49442,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2097489665}
   m_HandleRect: {fileID: 2097489664}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:

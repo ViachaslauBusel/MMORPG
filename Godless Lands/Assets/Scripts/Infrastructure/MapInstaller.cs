@@ -1,3 +1,4 @@
+using Equipment;
 using Inventory;
 using Items;
 using MCamera;
@@ -8,6 +9,7 @@ using Skills;
 using UnitVisualCache;
 using UnityEngine;
 using Zenject;
+using Equipment;
 
 public class MapInstaller : MonoInstaller
 {
@@ -32,5 +34,9 @@ public class MapInstaller : MonoInstaller
         Container.Bind<InventoryModel>().AsSingle().NonLazy();
         Container.Bind<InventoryListener>().AsSingle().NonLazy();
         Container.Bind<ItemUsageService>().AsSingle().NonLazy();
+
+        //Equipment
+        Container.Bind<EquipmentListener>().AsSingle().NonLazy();
+        Container.Bind<EquipmentModel>().AsSingle().NonLazy();
     }
 }
