@@ -12,7 +12,7 @@ using Zenject;
 
 namespace Equipment
 {
-    public class EquipmentListener
+    public class EquipmentListener : IDisposable
     {
         private NetworkManager _networkManager;
         private EquipmentModel _equipmentModel;
@@ -30,8 +30,12 @@ namespace Equipment
         {
             packet.Read(out MSG_EQUIPMENT_SYNC_SC data);
 
-
             _equipmentModel.UpdateItems(data.Items);
+        }
+
+        public void Dispose()
+        {
+            _networkManager.UnregisterHandler(Opcode.MSG_EQUIPMENT_SYNC);
         }
     }
 }

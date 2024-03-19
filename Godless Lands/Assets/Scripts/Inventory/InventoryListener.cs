@@ -11,7 +11,7 @@ using Zenject;
 
 namespace Inventory
 {
-    public class InventoryListener
+    public class InventoryListener : IDisposable
     {
         private NetworkManager _networkManager;
         private InventoryModel _inventoryModel;
@@ -45,6 +45,11 @@ namespace Inventory
             bag.UpdateCapacity(data.CurrentItemsCount, data.MaxItemsCount);
             bag.UpdateWeight(data.CurrentWeight, data.MaxWeight);
             bag.UpdateItems(data.Items);
+        }
+
+        public void Dispose()
+        {
+            _networkManager.UnregisterHandler(Opcode.MSG_INVENTORY_SYNC);
         }
     }
 }
