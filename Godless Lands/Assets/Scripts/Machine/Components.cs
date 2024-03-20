@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Protocol.Data.Items;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class Components : MonoBehaviour
         cells = GetComponentsInChildren<ActionCell>();
         for(int i=0; i<cells.Length; i++)
         {
-            cells[i].SetIndex(i);
+            cells[i].Init(ItemStorageType.None, i);
             cells[i].fuel = fuel;
         }
     }

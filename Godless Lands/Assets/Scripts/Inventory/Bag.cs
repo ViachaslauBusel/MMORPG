@@ -1,4 +1,5 @@
 ﻿using Items;
+using Protocol.Data.Items;
 using Protocol.Data.Items.Network;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using UnityEngine;
 
 public class Bag
 {
+    private ItemStorageType _storageType;
     private ItemsFactory _itemsFactory;
     private Item[] _items;
     private int _currentWeight;
@@ -20,11 +22,12 @@ public class Bag
     public int MaxItemsCount => _items.Length;
     public int CurrentWeight => _currentWeight;
     public int MaxWeight => _maxWeight;
-
+    public ItemStorageType StorageType => _storageType;
     public IReadOnlyCollection<Item> Items => _items;
 
-    public Bag(ItemsFactory itemsFactory)
+    public Bag(ItemsFactory itemsFactory, ItemStorageType storageType)
     {
+        _storageType = storageType;
         _itemsFactory = itemsFactory;
     }
 

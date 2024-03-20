@@ -1,4 +1,5 @@
 ﻿using Items;
+using Protocol.Data.Items;
 using System;
 
 namespace Inventory
@@ -11,8 +12,8 @@ namespace Inventory
 
         public InventoryModel(ItemsFactory itemsFactory)
         {
-            PrimaryBag = new Bag(itemsFactory);
-            SecondaryBag = new Bag(itemsFactory);
+            PrimaryBag = new Bag(itemsFactory, ItemStorageType.PrimaryBag);
+            SecondaryBag = new Bag(itemsFactory, ItemStorageType.SecondaryBag);
         }
 
         internal int GetAllCount(int id)

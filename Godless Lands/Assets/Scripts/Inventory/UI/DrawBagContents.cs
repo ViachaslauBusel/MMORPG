@@ -70,7 +70,7 @@ namespace Inventory.UI
             {
                 GameObject _obj = _diContainer.InstantiatePrefab(itemCell, _content);
                 var itemCellComponent = _obj.GetComponent<ItemCell>();
-                itemCellComponent.SetIndex(i);
+                itemCellComponent.Init(_bag.StorageType, i);
                 _cells.Add(itemCellComponent);
             }
 

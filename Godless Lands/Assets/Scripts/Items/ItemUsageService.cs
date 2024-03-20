@@ -1,4 +1,6 @@
-﻿using Protocol.MSG.Game.Inventory;
+﻿using Protocol.Data.Items;
+using Protocol.MSG.Game.Equipment.MSG;
+using Protocol.MSG.Game.Inventory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +33,15 @@ namespace Items
         {
             MSG_TRANSFER_ITEM_TO_ANOTHER_BAG msg = new MSG_TRANSFER_ITEM_TO_ANOTHER_BAG();
             msg.ItemUID = itemUID;
+            _networkManager.Client.Send(msg);
+        }
+
+        internal void TakeFromEquipAndPutInBag(ItemStorageType storageType, int index, long itemUID)
+        {
+            MSG_UNEQUIP_ITEM_TO_INVENTORY_CS msg = new MSG_UNEQUIP_ITEM_TO_INVENTORY_CS();
+            msg.ItemUID = itemUID;
+            msg.ToStorageType = storageType;
+            msg.ToCellIndex = index;
             _networkManager.Client.Send(msg);
         }
     }

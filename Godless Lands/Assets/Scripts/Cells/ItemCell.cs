@@ -1,4 +1,5 @@
 ﻿using Items;
+using Protocol.Data.Items;
 using Protocol.MSG.Game.Inventory;
 using RUCP;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Cells
     public class ItemCell : Cell
     {
         protected Item _item;
+        protected ItemStorageType _storageType;
         protected int _index;
         protected Text _countTxt;
         private ItemUsageService _itemUsageService;
@@ -27,6 +29,12 @@ namespace Cells
         {
             base.Awake();
             _countTxt = transform.Find("Count").GetComponent<Text>();
+        }
+
+        public void Init(ItemStorageType storageType, int index)
+        {
+            _storageType = storageType;
+            _index = index;
         }
 
         public override bool IsEmpty()
@@ -96,12 +104,14 @@ namespace Cells
         public override void Put(Cell cell)
         {
             if (cell == null) return;
-            /* if(cell.GetType() == typeof(ArmorCell))//Если вторая ячейка ячейка экепировки
-             {
-                 UnityEngine.Debug.Log("armor cell");
-                 cell.Use();
-                 return;
-             }*/
+            if (cell.GetType() == typeof(ArmorCell))//If the second cell is an equipment cell,
+                                                    //take item from cell and put it in the backpack in the specified cell.
+            {
+                if (cell.IsEmpty()) return;
+                _itemUsageService.TakeFromEquipAndPutInBag(_storageType, _index, cell.GetItemUID());
+                return;
+            }
+
             if (cell is ActionCell || cell is WorkbenchCell)
             {
                 cell.Abort();
@@ -122,10 +132,7 @@ namespace Cells
        //     item.objectID = objetcID;
        // }
 
-        public void SetIndex(int index)
-        {
-            this._index = index;
-        }
+        
 
         public Item GetItem()
         {
