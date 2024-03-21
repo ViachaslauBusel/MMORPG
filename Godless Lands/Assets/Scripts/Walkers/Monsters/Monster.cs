@@ -7,7 +7,7 @@ using Walkers;
 
 namespace Monsters
 {
-    public class Monster : MonoBehaviour, ITargetObject
+    public class Monster : MonoBehaviour, ITargetObjectLegacy
     {
 
         public int ID;
@@ -67,7 +67,7 @@ namespace Monsters
             throw new System.NotImplementedException();
         }
 
-        public void SkillAnim(int anim, ITargetObject target)
+        public void SkillAnim(int anim, ITargetObjectLegacy target)
         {
             if (!alive) return;
             if (target != null)

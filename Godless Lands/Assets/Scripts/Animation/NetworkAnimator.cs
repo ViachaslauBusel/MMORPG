@@ -18,10 +18,8 @@ namespace Animation
             return _playbackTime;
         }
 
-        public void SubscribeToNetworkObject(GameObject networkObjectOwner)
+        public void AttachToNetworkObject(GameObject networkObjectOwner)
         {
-            UnsubscribeFromNetworkObject();
-
             _animationPlaybackBufferHandler = networkObjectOwner.GetComponent<AnimationPlaybackBufferHandler>();
             _animationStateDataHandler = networkObjectOwner.GetComponent<AnimationStateDataHandler>();
 
@@ -37,7 +35,7 @@ namespace Animation
             }
         }
 
-        public void UnsubscribeFromNetworkObject()
+        public void DetachFromNetworkObject()
         {
             if (_animationPlaybackBufferHandler != null)
             {
@@ -92,11 +90,6 @@ namespace Animation
             _animator.SetInteger("stateIndex", (int)state);
             if (state != AnimationStateID.None)
             { _animator.SetTrigger("State"); }
-        }
-
-        private void OnDestroy()
-        {
-            UnsubscribeFromNetworkObject();
         }
     }
 }

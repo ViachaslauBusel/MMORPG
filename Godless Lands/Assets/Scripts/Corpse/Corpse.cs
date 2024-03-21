@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Corpse : MonoBehaviour, ITargetObject
+public class Corpse : MonoBehaviour, ITargetObjectLegacy
 {
     public int id;
     private float endTime;

@@ -156,7 +156,7 @@ namespace Characters
 
         }
 
-        public static ITargetObject GetCharacter(int id)
+        public static ITargetObjectLegacy GetCharacter(int id)
         {
             if (characters.ContainsKey(id))
                 return characters[id];

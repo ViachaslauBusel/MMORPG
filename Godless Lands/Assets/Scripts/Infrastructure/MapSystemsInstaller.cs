@@ -22,8 +22,7 @@ namespace Infrastructure
         private CellContentToRenderConverter _cellContentToRenderConverter;
         [SerializeField]
         private SkillUsageRequestSender _skillUsageRequestSender;
-        [SerializeField]
-        private UnitTargetRequestSender _unitTargetRequestSender;
+
 
         public override void InstallBindings()
         {
@@ -31,7 +30,6 @@ namespace Infrastructure
             Container.Bind<PlayerSkillsHolder>().FromInstance(_playerSkillsHolder).AsSingle();
             Container.Bind<CellContentToRenderConverter>().FromInstance(_cellContentToRenderConverter).AsSingle();
             Container.Bind<SkillUsageRequestSender>().FromInstance(_skillUsageRequestSender).AsSingle();
-            Container.Bind<UnitTargetRequestSender>().FromInstance(_unitTargetRequestSender).AsSingle();
 
             Container.Bind<DropListener>().FromNew().AsSingle().NonLazy();
         }

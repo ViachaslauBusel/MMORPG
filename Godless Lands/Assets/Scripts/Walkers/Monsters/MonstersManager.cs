@@ -66,7 +66,7 @@ namespace Monsters
 
                 int anim = nw.ReadInt();
                 //print("monster anim: " + anim);
-                ITargetObject target = null;
+                ITargetObjectLegacy target = null;
                 if (nw.AvailableBytesForReading > 0)
                 {
                     int target_layer = nw.ReadInt();

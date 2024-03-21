@@ -40,11 +40,6 @@ namespace UnitVisualCache
                 GameObject.Destroy(existingVisual.Visual);
             }
 
-            foreach (var script in visualObject.GetComponentsInChildren<IVisualObjectScript>())
-            {
-                script.UnsubscribeFromNetworkObject();
-            }
-
             visualObject.transform.SetParent(_visualChaceHolder.transform);
             _cache[id] = new VisualCacheEntry(visualObject); // Use indexer to add or update the value
         }

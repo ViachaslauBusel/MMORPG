@@ -1,15 +1,15 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public interface ITargetObject {
-
-    Vector3 GetPosition();
-    void OnTarget();
-    void OffTarget();
-    string GetName();
-    Transform GetTransform();
-    int Layer();
-    int Id();
-    bool IsAlive();
+namespace Target
+{
+    public interface ITargetObject
+    {
+        public int ID { get; }
+        Transform Transform { get; }
+    }
 }

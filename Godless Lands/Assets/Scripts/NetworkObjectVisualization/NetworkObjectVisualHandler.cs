@@ -12,9 +12,9 @@ namespace NetworkObjectVisualization
         private GameObject _visualObject;
         private UnitVisualCacheService _visualCacheService;
         private NetworkComponentsProvider _networkComponentsProvider;
+        protected bool _isNeedChaceVisual;
 
         public event Action<GameObject> OnVisualObjectUpdated;
-
         public GameObject VisualObject => _visualObject;
 
         [Inject]
@@ -32,6 +32,8 @@ namespace NetworkObjectVisualization
         {
             if (_visualObject == null) return;
 
+            DetachVisualObjectScript();
+
             // Caching the visual object for later use as a corpse
             _visualCacheService.Add(_networkComponentsProvider.NetworkGameObjectID, _visualObject);
             _visualObject = null;
@@ -42,7 +44,22 @@ namespace NetworkObjectVisualization
         {
             if (_visualObject != null)
             {
+                DetachVisualObjectScript();
+
                 Destroy(_visualObject);
+                _visualObject = null;
+            }
+        }
+
+        private void DetachVisualObjectScript()
+        {
+            if (_visualObject == null) return;
+
+            var visualObjectScript = _visualObject.GetComponentsInChildren<IVisualObjectScript>();
+
+            foreach (var script in visualObjectScript)
+            {
+                script.DetachFromNetworkObject();
             }
         }
 
@@ -54,7 +71,7 @@ namespace NetworkObjectVisualization
 
             foreach (var script in visualObjectScript)
             {
-                script.SubscribeToNetworkObject(gameObject);
+                script.AttachToNetworkObject(gameObject);
             }
 
             OnVisualObjectUpdated?.Invoke(_visualObject);
@@ -78,11 +95,8 @@ namespace NetworkObjectVisualization
         // This method is called just before the object is destroyed
         public void NotifyPreDestroy()
         {
-            if (true)
-            {
-                CacheVisual();
-                return;
-            }
+            if(_isNeedChaceVisual) CacheVisual();
+            else DestroyExistingUnitObject();
         }
     }
 }

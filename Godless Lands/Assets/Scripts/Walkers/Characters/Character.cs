@@ -4,7 +4,7 @@ using Walkers;
 
 namespace Characters
 {
-    public class Character : MonoBehaviour, ITargetObject
+    public class Character : MonoBehaviour, ITargetObjectLegacy
     {
 
         private Text text_name;

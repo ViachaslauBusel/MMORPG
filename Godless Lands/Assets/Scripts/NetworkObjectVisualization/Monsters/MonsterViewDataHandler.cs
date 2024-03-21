@@ -16,6 +16,7 @@ namespace NetworkObjectVisualization
         private MonsterSkinData _visualData;
         private TransfromDataHandler _networkTransform;
 
+      
 
         [Inject]
         private void Construct(MonstersFactory monstersFactory)
@@ -34,7 +35,7 @@ namespace NetworkObjectVisualization
             _visualData = (MonsterSkinData)updatedData;
 
             Debug.Log("MonsterViewDataHandler: UpdateData: " + _visualData.InNeedChaceVisual);
-
+            _isNeedChaceVisual = _visualData.InNeedChaceVisual;
             UpdateVisualObject(_visualData.VisualChaneObjectId);
         }
 
