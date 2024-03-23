@@ -7,12 +7,10 @@ namespace Cells
     public class SkillCell : Cell
     {
         private Skill skill;
-        private Transform playerTransform;
 
-        private new void Awake()
+        private void Awake()
         {
-            base.Awake();
-          //  playerTransform = GameObject.Find("Player").transform;
+           Init();
         }
 
         public override bool IsEmpty()

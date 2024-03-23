@@ -6,6 +6,7 @@ namespace Cells
     {
         private new void Start()
         {
+            Init();
             base.Start();
             icon.enabled = true;
         }

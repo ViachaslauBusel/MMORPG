@@ -22,7 +22,7 @@ namespace Cells
 
         private new void Awake()
         {
-            base.Awake();
+           // base.Awake();
             enchant = GetComponentInParent<ItemEnchant>();
         }
         public override void Put(Cell cell)

@@ -25,16 +25,14 @@ namespace Cells
             _itemUsageService = itemUsageService;
         }
 
-        protected new void Awake()
-        {
-            base.Awake();
-            _countTxt = transform.Find("Count").GetComponent<Text>();
-        }
-
         public void Init(ItemStorageType storageType, int index)
         {
             _storageType = storageType;
             _index = index;
+
+            base.Init();
+
+            _countTxt = transform.Find("Count").GetComponent<Text>();
         }
 
         public override bool IsEmpty()

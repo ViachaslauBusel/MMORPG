@@ -35,15 +35,13 @@ namespace Cells
             _skillController = skillUsageRequestSender;
         }
 
-        private new void Awake()
+        private void Awake()
         {
             _countTxt = transform.Find("Count").GetComponent<Text>();
-            base.Awake();
+            Init();
             _hide = transform.Find("Hide").GetComponent<Image>();
             _hide.enabled = false;
             _help = transform.Find("help").GetComponent<Text>();
-           
-        
         }
 
         internal ItemCell GetItemCell()
@@ -58,7 +56,7 @@ namespace Cells
 
         public bool IsUse(Token _token)
         {
-            if (this._input != null && this._input.Equals(_token)) return true;
+            if (_input != null && _input.Equals(_token)) return true;
             return false;
         }
         public void SetToken(InputAction input)

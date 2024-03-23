@@ -15,7 +15,7 @@ namespace Cells
         private new void Awake()
         {
             workbench = GetComponentInParent<Workbench>();
-            base.Awake();
+           // base.Awake();
         }
         public override void Put(Cell cell)
         {

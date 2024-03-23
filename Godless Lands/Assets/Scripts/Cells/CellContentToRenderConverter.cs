@@ -5,13 +5,12 @@ using Zenject;
 
 namespace Cells
 {
-    public class CellContentToRenderConverter : MonoBehaviour
+    public class CellContentToRenderConverter
     {
-       
         private PlayerSkillsHolder _playerSkillsHolder;
 
-        [Inject]
-        private void Construct(PlayerSkillsHolder playerSkillsHolder)
+        
+        public CellContentToRenderConverter(PlayerSkillsHolder playerSkillsHolder)
         {
             _playerSkillsHolder = playerSkillsHolder;
         }
@@ -31,7 +30,6 @@ namespace Cells
            };
 
             return cellRenderInfo;
-
         }
 
         private CellRenderInfo FromSkillID(int skillID)

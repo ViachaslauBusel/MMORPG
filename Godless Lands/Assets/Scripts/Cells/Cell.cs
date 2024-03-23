@@ -11,17 +11,14 @@ namespace Cells
  
         protected Image icon;
 
-
-        protected void Awake()
+        internal void Init()
         {
-        
             icon = transform.Find("Icon").GetComponent<Image>();
             HideIcon();
         }
 
         protected void Start()
         {
-           
             transform.localScale = Vector3.one;
         }
 
@@ -70,5 +67,7 @@ namespace Cells
         {
             return 0;
         }
+
+       
     }
 }

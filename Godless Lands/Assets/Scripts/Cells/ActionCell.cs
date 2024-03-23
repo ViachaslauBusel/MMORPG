@@ -15,9 +15,9 @@ public class ActionCell : ItemCell
    // protected Text countTxt;
   //  protected Item item;
 
-    private new void Awake()
+    private void Awake()
     {
-        base.Awake();
+       // base.Awake();
     //    machine = GetComponentInParent<Machine>();
     //    components = GetComponentInParent<Components>();
     }

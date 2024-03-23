@@ -1,3 +1,4 @@
+using Cells;
 using Equipment;
 using Inventory;
 using Items;
@@ -23,8 +24,11 @@ public class MapInstaller : MonoInstaller
         Container.Bind<MapLoader>().FromInstance(m_mapLoaderObj).AsSingle();
         Container.Bind<SkillsBook>().FromInstance(m_skillsBookObj).AsSingle();
 
+
+        Container.BindInterfacesAndSelfTo<CellContentToRenderConverter>().FromNew().AsSingle().NonLazy();
+
         // Object interaction
-        Container.BindInterfacesAndSelfTo<InteractableObjectsRegistry>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<InteractableObjectsRegistry>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<InteractionObjectInputHandler>().FromNew().AsSingle().NonLazy();
 
         // Player character

@@ -21,6 +21,9 @@ namespace Windows
                         obj.SetActive(true);
                 });
             }
+
+            if (tabs.Count > 0)
+                tabs[0].button.onClick.Invoke();
         }
 
         private void HideAll()
