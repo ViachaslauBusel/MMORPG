@@ -62,6 +62,15 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchCombat"",
+                    ""type"": ""Button"",
+                    ""id"": ""239510f5-43ef-4f5b-8231-3783612231ef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -108,6 +117,17 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""action"": ""Hotbar_F3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7da7529e-8831-42da-82f8-6127d69f8019"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""SwitchCombat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -137,6 +157,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         m_Keyboard_Hotbar_F1 = m_Keyboard.FindAction("Hotbar_F1", throwIfNotFound: true);
         m_Keyboard_Hotbar_F2 = m_Keyboard.FindAction("Hotbar_F2", throwIfNotFound: true);
         m_Keyboard_Hotbar_F3 = m_Keyboard.FindAction("Hotbar_F3", throwIfNotFound: true);
+        m_Keyboard_SwitchCombat = m_Keyboard.FindAction("SwitchCombat", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -200,6 +221,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Hotbar_F1;
     private readonly InputAction m_Keyboard_Hotbar_F2;
     private readonly InputAction m_Keyboard_Hotbar_F3;
+    private readonly InputAction m_Keyboard_SwitchCombat;
     public struct KeyboardActions
     {
         private @InputManager m_Wrapper;
@@ -208,6 +230,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         public InputAction @Hotbar_F1 => m_Wrapper.m_Keyboard_Hotbar_F1;
         public InputAction @Hotbar_F2 => m_Wrapper.m_Keyboard_Hotbar_F2;
         public InputAction @Hotbar_F3 => m_Wrapper.m_Keyboard_Hotbar_F3;
+        public InputAction @SwitchCombat => m_Wrapper.m_Keyboard_SwitchCombat;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -229,6 +252,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Hotbar_F3.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F3;
                 @Hotbar_F3.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F3;
                 @Hotbar_F3.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F3;
+                @SwitchCombat.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnSwitchCombat;
+                @SwitchCombat.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnSwitchCombat;
+                @SwitchCombat.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnSwitchCombat;
             }
             m_Wrapper.m_KeyboardActionsCallbackInterface = instance;
             if (instance != null)
@@ -245,6 +271,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Hotbar_F3.started += instance.OnHotbar_F3;
                 @Hotbar_F3.performed += instance.OnHotbar_F3;
                 @Hotbar_F3.canceled += instance.OnHotbar_F3;
+                @SwitchCombat.started += instance.OnSwitchCombat;
+                @SwitchCombat.performed += instance.OnSwitchCombat;
+                @SwitchCombat.canceled += instance.OnSwitchCombat;
             }
         }
     }
@@ -264,5 +293,6 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         void OnHotbar_F1(InputAction.CallbackContext context);
         void OnHotbar_F2(InputAction.CallbackContext context);
         void OnHotbar_F3(InputAction.CallbackContext context);
+        void OnSwitchCombat(InputAction.CallbackContext context);
     }
 }

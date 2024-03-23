@@ -1,4 +1,5 @@
 using Cells;
+using CombatMode;
 using Equipment;
 using Inventory;
 using Items;
@@ -53,5 +54,8 @@ public class MapInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<UnitTargetRequestSender>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<TargetObjectRegistry>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<TargetObjectProvider>().FromNew().AsSingle().NonLazy();
+
+        // Combat mode
+        Container.BindInterfacesAndSelfTo<CombatModeController>().FromNew().AsSingle().NonLazy();
     }
 }

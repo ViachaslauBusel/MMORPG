@@ -1,5 +1,6 @@
 using Animation;
 using Assets.Scripts.Physics.Dynamic;
+using CombatMode;
 using DynamicsObjects.TransformHandlers;
 using NetworkObjectVisualization;
 using NetworkObjectVisualization.Characters;
@@ -10,6 +11,7 @@ using Protocol.Data.Replicated.Animation;
 using Protocol.Data.Replicated.ObjectInteraction;
 using Protocol.Data.Replicated.Skins;
 using Protocol.Data.Replicated.Transform;
+using Protocol.MSG.Game.CombatMode;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,6 +41,7 @@ namespace Services.Replication
             _handlers.Add(typeof(AnimationStateData), typeof(AnimationStateDataHandler));
             _handlers.Add(typeof(MonsterSkinData), typeof(MonsterViewDataHandler));
             _handlers.Add(typeof(InteractionObjectData), typeof(InteractionObjectDataHandler));
+            _handlers.Add(typeof(CombotModeData), typeof(CombatModeDataHandler));
         }
 
         public INetworkDataHandler CreateDataHandler(GameObject gameObject, IReplicationData data)

@@ -17,6 +17,7 @@ namespace NetworkObjectVisualization.Characters
         private BodyPart _headPart;
 
         private CharacterMeshProviderService _meshProviderService;
+        private Animator _animator;
         private int _weaponId;
         private int _headId;
 
@@ -24,6 +25,11 @@ namespace NetworkObjectVisualization.Characters
         private void Construct(CharacterMeshProviderService meshProviderService)
         {
             _meshProviderService = meshProviderService;
+        }
+
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
         }
 
         internal void UpdateHead(int headId)
@@ -38,6 +44,8 @@ namespace NetworkObjectVisualization.Characters
             if (_weaponId == weaponId) return;
 
             _weaponId = weaponId;
+
+            _animator.SetInteger("weaponType", _weaponId != 0 ? 1 : 0);
 
             UpdatePart(_weaponPart, _weaponId);
         }
