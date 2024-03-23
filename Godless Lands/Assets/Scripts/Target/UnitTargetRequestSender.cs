@@ -33,7 +33,7 @@ namespace Target
                 if (EventSystem.current.IsPointerOverGameObject()) return;
 
                 long cooldown = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - _lastRequestTime;
-                if (cooldown < 100) return;
+                if (cooldown < 200) return;
 
                 RaycastHit hit;
                 Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -59,6 +59,7 @@ namespace Target
 
         private void SetTarget(int gameObjectId)
         {
+            Debug.Log($"UnitTargetRequestSender.SetTarget: {gameObjectId}");
             MSG_UNIT_TARGET_REQUEST_CS targetRequest = new MSG_UNIT_TARGET_REQUEST_CS();
             targetRequest.GameObjectId = gameObjectId;
             _networkManager.Client.Send(targetRequest);

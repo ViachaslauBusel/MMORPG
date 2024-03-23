@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using Zenject;
 
 namespace Target
@@ -11,7 +12,6 @@ namespace Target
     {
         private TargetObjectRegistry _targetObjectRegistry;
         private TargetInformationService _targetInformationService;
-        private ITargetObject _targetObject;
         private int _targetObjectID;
 
         public event Action<ITargetObject> OnTargetObjectChanged;
@@ -29,26 +29,27 @@ namespace Target
 
         private void TargetObjectChanged(int objectID, string nickname, float percentHp)
         {
-            _targetObjectRegistry.TryGetTargetObject(objectID, out _targetObject);
+            _targetObjectID = objectID;
+            _targetObjectRegistry.TryGetTargetObject(objectID, out ITargetObject targetObject);
 
-             OnTargetObjectChanged?.Invoke(_targetObject);
+             OnTargetObjectChanged?.Invoke(targetObject);
         }
 
         private void OnTargetObjectUnregistered(ITargetObject @object)
         {
+            Debug.Log($"Unregistered target object: {@object.ID} curT:{_targetObjectID}");
             if(@object.ID == _targetObjectID)
             {
-                _targetObject = null;
+                _targetObjectID = 0;
                 OnTargetObjectChanged?.Invoke(null);
             }
         }
 
         private void OnTargetObjectRegistered(ITargetObject @object)
         {
-            if(@object.ID == _targetObjectID && _targetObject == null)
+            if(@object.ID == _targetObjectID)
             {
-                _targetObject = @object;
-                OnTargetObjectChanged?.Invoke(_targetObject);
+                OnTargetObjectChanged?.Invoke(@object);
             }
         }
     }

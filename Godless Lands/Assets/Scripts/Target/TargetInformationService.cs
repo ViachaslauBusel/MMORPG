@@ -44,7 +44,7 @@ namespace Target
         {
             packet.Read(out MSG_UNIT_TARGET_FULL_SC targetState);
 
-            Debug.Log($"TargetStateReceiverService.OnTargetState: {targetState}");
+            Debug.Log($"TargetStateReceiverService.OnTargetState: {targetState.TargetObjectID}");
 
             _targetInfo.objectId = targetState.TargetObjectID;
             _targetInfo.TargetName = targetState.TargetName;
