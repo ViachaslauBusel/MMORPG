@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Walkers.Monsters
+namespace Factories
 {
     public class MonstersFactory : MonoBehaviour
     {

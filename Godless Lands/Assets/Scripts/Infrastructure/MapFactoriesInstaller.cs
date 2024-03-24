@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zenject;
-using UnityEngine;
+﻿using Factories;
 using Items;
-using Walkers.Monsters;
 using Physic.Dynamic;
+using UnityEngine;
+using Zenject;
 
 namespace Infrastructure
 {
@@ -20,6 +15,8 @@ namespace Infrastructure
         [SerializeField]
         private MonstersFactory _monstersFactory;
         [SerializeField]
+        private MiningStonesFactory _miningStonesFactory;
+        [SerializeField]
         private DynamicObjectControllersFactory _dynamicObjectControllersFactory;
 
         public override void InstallBindings()
@@ -27,6 +24,7 @@ namespace Infrastructure
             Container.Bind<ItemsFactory>().FromInstance(_itemsFactory).AsSingle();
             Container.Bind<CharactersFactory>().FromInstance(_charactersFactory).AsSingle();
             Container.Bind<MonstersFactory>().FromInstance(_monstersFactory).AsSingle();
+            Container.Bind<MiningStonesFactory>().FromInstance(_miningStonesFactory).AsSingle();
             Container.Bind<DynamicObjectControllersFactory>().FromInstance(_dynamicObjectControllersFactory).AsSingle();
         }
     }

@@ -8288,6 +8288,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248032100}
   m_CullTransparentMesh: 0
+--- !u!1 &248777593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 248777594}
+  - component: {fileID: 248777595}
+  m_Layer: 0
+  m_Name: MiningStonesFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &248777594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248777593}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1851500503}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &248777595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248777593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52db3ca12c908f41b4b568e54ab4b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resourcesData: {fileID: 11400000, guid: 1caf7180c073d8f449789b24f6eab76e, type: 2}
 --- !u!1 &251173894
 GameObject:
   m_ObjectHideFlags: 0
@@ -19561,7 +19606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -275.12485}
+  m_AnchoredPosition: {x: 0, y: -275.1251}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580182927
@@ -38634,8 +38679,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 591603738}
   m_HandleRect: {fileID: 591603737}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99486226
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -58609,6 +58654,7 @@ MonoBehaviour:
   _itemsFactory: {fileID: 838801876}
   _charactersFactory: {fileID: 695650856}
   _monstersFactory: {fileID: 563775175}
+  _miningStonesFactory: {fileID: 248777595}
   _dynamicObjectControllersFactory: {fileID: 18861399}
 --- !u!4 &1851500503
 Transform:
@@ -58626,6 +58672,7 @@ Transform:
   - {fileID: 695650855}
   - {fileID: 563775174}
   - {fileID: 838801877}
+  - {fileID: 248777594}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -68796,7 +68843,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7554969778485494246}
   m_HandleRect: {fileID: 7554969778485494247}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

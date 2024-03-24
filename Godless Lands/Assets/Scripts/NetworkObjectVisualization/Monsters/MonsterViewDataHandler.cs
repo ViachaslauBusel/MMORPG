@@ -1,11 +1,8 @@
-﻿using DataFileProtocol.Skills;
+﻿using Factories;
 using Protocol.Data.Replicated;
 using Protocol.Data.Replicated.Skins;
 using Services.Replication;
-using System;
-using UnitVisualCache;
 using UnityEngine;
-using Walkers.Monsters;
 using Zenject;
 
 namespace NetworkObjectVisualization
@@ -16,7 +13,6 @@ namespace NetworkObjectVisualization
         private MonsterSkinData _visualData;
         private TransfromDataHandler _networkTransform;
 
-      
 
         [Inject]
         private void Construct(MonstersFactory monstersFactory)

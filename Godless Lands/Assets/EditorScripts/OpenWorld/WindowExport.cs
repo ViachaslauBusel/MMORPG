@@ -67,11 +67,11 @@ namespace OpenWorldEditor {
                 NPCExport.Export(WindowSetting.WorldNPCList, WindowSetting.NPCList);
                 EditorUtility.DisplayDialog("Export npc.dat", "Экспорт выполнен", "ok");
             }
-            if (GUILayout.Button("Export resources.dat"))
+            if (GUILayout.Button("Export miningStones.dat"))
             {
                 if (WindowSetting.WorldResourcesList == null || WindowSetting.ResourcesList == null)
                 {
-                    EditorUtility.DisplayDialog("Export resources.dat", "Ошибка экспорта", "ok");
+                    EditorUtility.DisplayDialog("Export miningStones.dat", "Ошибка экспорта", "ok");
                     return;
                 }
                 ResourcesExport.Export(WindowSetting.WorldResourcesList, WindowSetting.ResourcesList);

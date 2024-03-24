@@ -4,6 +4,7 @@ using CombatMode;
 using DynamicsObjects.TransformHandlers;
 using NetworkObjectVisualization;
 using NetworkObjectVisualization.Characters;
+using NetworkObjectVisualization.MiningStones;
 using Nickname;
 using ObjectInteraction;
 using Protocol.Data.Replicated;
@@ -40,6 +41,7 @@ namespace Services.Replication
             _handlers.Add(typeof(UnitName), typeof(UnitNameHandler));
             _handlers.Add(typeof(AnimationStateData), typeof(AnimationStateDataHandler));
             _handlers.Add(typeof(MonsterSkinData), typeof(MonsterViewDataHandler));
+            _handlers.Add(typeof(MiningStoneSkinData), typeof(MiningStoneSkinDataHandler));
             _handlers.Add(typeof(InteractionObjectData), typeof(InteractionObjectDataHandler));
             _handlers.Add(typeof(CombotModeData), typeof(CombatModeDataHandler));
         }
