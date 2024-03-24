@@ -70,7 +70,7 @@ namespace Characters
 
             if (characters.ContainsKey(id_login))
             {
-                characters[id_login].Armor.SetCombatstate(nw.ReadBool());
+              //  characters[id_login].Armor.SetCombatstate(nw.ReadBool());
             }
         }
 
@@ -119,7 +119,7 @@ namespace Characters
 
             if (characters.ContainsKey(id_login))
             {
-                characters[id_login].Armor.UpdateArmor(nw);
+              //  characters[id_login].Armor.UpdateArmor(nw);
             }
         }
 
@@ -182,9 +182,9 @@ namespace Characters
 
                 charComponent.Controller.Initialize(packet);
 
-                charComponent.Armor.Initialize(packet);
+               // charComponent.Armor.Initialize(packet);
 
-                charComponent.Armor.SetCombatstate(packet.ReadBool());
+              //  charComponent.Armor.SetCombatstate(packet.ReadBool());
 
                 characters.Add(charID, charComponent);
             }

@@ -10,7 +10,6 @@ namespace Characters
         private Text text_name;
         public int ID { get; private set; }
 
-        public CharacterArmor Armor { get; private set; }
 
         private AnimationSkill animationSkill;
 
@@ -26,7 +25,6 @@ namespace Characters
 
             animationSkill = GetComponent<AnimationSkill>();
             Controller = GetComponent<MovementController>();
-            Armor = GetComponent<CharacterArmor>();
         }
 
 
