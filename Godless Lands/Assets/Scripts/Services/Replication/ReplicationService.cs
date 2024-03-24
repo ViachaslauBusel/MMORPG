@@ -5,6 +5,7 @@ using RUCP;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -46,16 +47,21 @@ namespace Services.Replication
             packet.Read(out MSG_GAMEOBJECT_DESTROY_SC gameobject_destroy);
             foreach (int objectID in gameobject_destroy.DestroyedObjects)
             {
-                if (m_objects.ContainsKey(objectID) == false)
-                {
-                    Debug.LogError($"[{objectID}]Error destroy game object, specified ID not found");
-                    continue;
-                }
-                m_objects[objectID].NotifyComponentsPreDestroy();
-                OnNetworkObjectDestroyed?.Invoke(m_objects[objectID].gameObject);
-                Destroy(m_objects[objectID].gameObject);
-                m_objects.Remove(objectID);
+                DestroyNetworkObject(objectID);
             }
+        }
+
+        private void DestroyNetworkObject(int objectID)
+        {
+            if (m_objects.ContainsKey(objectID) == false)
+            {
+                Debug.LogError($"[{objectID}]Error destroy game object, specified ID not found");
+                return;
+            }
+            m_objects[objectID].NotifyComponentsPreDestroy();
+            OnNetworkObjectDestroyed?.Invoke(m_objects[objectID].gameObject);
+            Destroy(m_objects[objectID].gameObject);
+            m_objects.Remove(objectID);
         }
 
         private NetworkComponentsProvider GetObject(int id, out bool isNewObject)
@@ -75,6 +81,14 @@ namespace Services.Replication
             }
 
             return m_objects[id];
+        }
+
+        public void Clear()
+        {
+            foreach (var obj in m_objects.Keys.ToArray())
+            {
+                DestroyNetworkObject(obj);
+            }
         }
 
         private void OnDestroy()

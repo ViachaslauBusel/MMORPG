@@ -1,7 +1,9 @@
 ﻿#if UNITY_EDITOR
+using Assets.EditorScripts;
 using MonsterRedactor;
 using NPCRedactor;
 using OpenWorld;
+using Protocol.Data.SpawnPoints;
 using Resource;
 using System.Collections;
 using System.Collections.Generic;
@@ -232,15 +234,14 @@ namespace OpenWorldEditor {
 
         private static void Export(List<Vector3> spawnPoint)
         {
-            using (BinaryWriter stream_out = new BinaryWriter(File.Open(@"Export/spawnPoint.dat", FileMode.Create)))
+            List<RespawnPointData>  spawnPoints = new List<RespawnPointData>();
+            foreach (Vector3 point in spawnPoint)
             {
-                foreach (Vector3 point in spawnPoint)
-                {
-                    stream_out.Write(point.x);
-                    stream_out.Write(point.y);
-                    stream_out.Write(point.z);
-                }
+                RespawnPointData data = new RespawnPointData();
+                data.Position = new System.Numerics.Vector3(point.x, point.y, point.z);
+                spawnPoints.Add(data);
             }
+            ExportHelper.Write("spawnPoints", spawnPoints);
         }
         private static List<Vector3> GetPoint(string folder)
         {

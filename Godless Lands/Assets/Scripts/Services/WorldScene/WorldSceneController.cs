@@ -7,6 +7,7 @@ using Protocol.MSG.Game;
 using Protocol.MSG.Game.ToClient;
 using Protocol.MSG.Game.ToServer;
 using RUCP;
+using Services.Replication;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -19,14 +20,18 @@ namespace WorldScene
         private MapLoader m_mapLoader;
         private SessionManagmentService m_sessionManagment;
         private LoadingScreenDisplay m_loadingScreenDisplay;
+        private ReplicationService m_replicationService;
 
         [Inject]
-        public void Construct(NetworkManager networkManager, MapLoader mapLoader, SessionManagmentService sessionManagment, LoadingScreenDisplay loadingScreenDisplay)
+        public void Construct(NetworkManager networkManager, MapLoader mapLoader,
+            SessionManagmentService sessionManagment, LoadingScreenDisplay loadingScreenDisplay,
+            ReplicationService replicationService)
         {
             m_networkManager = networkManager;
             m_mapLoader = mapLoader;
             m_sessionManagment = sessionManagment;
             m_loadingScreenDisplay = loadingScreenDisplay;
+            m_replicationService = replicationService;
         }
 
         private void Awake()
@@ -40,13 +45,19 @@ namespace WorldScene
             MSG_WORLD_ENTRANCE_CS entrance_request = new MSG_WORLD_ENTRANCE_CS();
             m_networkManager.Client.Send(entrance_request);
         }
-
+        /// <summary>
+        /// Handling the request to prepare the scene
+        /// Loading the map
+        /// </summary>
+        /// <param name="packet"></param>
         private async void PreapareScene(Packet packet)
         {
             m_loadingScreenDisplay.Show();
             packet.Read(out MSG_PREPARE_SCENE_SC prepareScene);
 
+            m_replicationService.Clear();
             m_mapLoader.DestroyMap();
+            m_mapLoader.SetTrackingTransform(null);
 
             m_sessionManagment.SetCharacterObjectID(prepareScene.GameObjectCharacterID);
 

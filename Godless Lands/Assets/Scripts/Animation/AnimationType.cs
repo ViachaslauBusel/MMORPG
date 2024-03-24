@@ -7,9 +7,10 @@ namespace Animation
     public enum AnimationType:byte
     {
 
-        Atack0 = 0,
-        Atack1 = 1,
-        Atack2 = 2,
-        Atack3 = 3
+        Attack0 = 0,
+        Attack1 = 1,
+        Attack2 = 2,
+        Attack3 = 3,
+        CastSpell = 5,
     }
 }
