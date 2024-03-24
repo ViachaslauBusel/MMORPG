@@ -47775,7 +47775,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1798750378}
   m_HandleRect: {fileID: 1798750377}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -49402,7 +49402,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2097489665}
   m_HandleRect: {fileID: 2097489664}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -55140,7 +55140,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
@@ -68843,7 +68843,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7554969778485494246}
   m_HandleRect: {fileID: 7554969778485494247}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
