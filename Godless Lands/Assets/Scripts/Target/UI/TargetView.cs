@@ -47,7 +47,7 @@ namespace Target.UI
 
         private void UpdateTargetHp(float percentHP)
         {
-            _hpBar.fillAmount = percentHP;
+            _hpBar.fillAmount = percentHP / 100f;
         }
 
         public void CancelTarget()

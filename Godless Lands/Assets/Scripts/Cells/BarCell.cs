@@ -59,10 +59,10 @@ namespace Cells
             if (_input != null && _input.Equals(_token)) return true;
             return false;
         }
-        public void SetToken(InputAction input)
+        public void SetToken(InputAction input, string name)
         {
             _input = input;
-            _help.text = input.name;
+            _help.text = name;
             _input.performed += (context) => Use();
         }
 

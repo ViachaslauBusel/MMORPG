@@ -64,6 +64,51 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Hotbar_F4"",
+                    ""type"": ""Button"",
+                    ""id"": ""a076a2dd-77a1-49c2-8d8d-c5ef5aefb849"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar_F5"",
+                    ""type"": ""Button"",
+                    ""id"": ""a843b4c7-7b2a-4d9b-bd5b-1e28d9a0da51"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar_F6"",
+                    ""type"": ""Button"",
+                    ""id"": ""c72e8017-304a-4a73-a084-f6420abacbc2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar_F7"",
+                    ""type"": ""Button"",
+                    ""id"": ""53575888-9663-4272-b06b-34cd3710abff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar_F8"",
+                    ""type"": ""Button"",
+                    ""id"": ""33d76eba-e2bd-46ee-b6e7-607b4c778067"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""SwitchCombat"",
                     ""type"": ""Button"",
                     ""id"": ""239510f5-43ef-4f5b-8231-3783612231ef"",
@@ -128,6 +173,61 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""action"": ""SwitchCombat"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b85fef1c-1161-4ef2-abb0-6131875717e0"",
+                    ""path"": ""<Keyboard>/f4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hotbar_F4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1bb91f0a-197e-4ec5-a62e-916c7b063b8a"",
+                    ""path"": ""<Keyboard>/f5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hotbar_F5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5027608d-6acd-4ee5-9726-0e0b54c365c1"",
+                    ""path"": ""<Keyboard>/f6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hotbar_F6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9054f2c-d5b5-4287-92c1-ee4c810f452d"",
+                    ""path"": ""<Keyboard>/f7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hotbar_F7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8cad38c4-b028-47bd-882e-beb246cd7201"",
+                    ""path"": ""<Keyboard>/f8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hotbar_F8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -157,6 +257,11 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         m_Keyboard_Hotbar_F1 = m_Keyboard.FindAction("Hotbar_F1", throwIfNotFound: true);
         m_Keyboard_Hotbar_F2 = m_Keyboard.FindAction("Hotbar_F2", throwIfNotFound: true);
         m_Keyboard_Hotbar_F3 = m_Keyboard.FindAction("Hotbar_F3", throwIfNotFound: true);
+        m_Keyboard_Hotbar_F4 = m_Keyboard.FindAction("Hotbar_F4", throwIfNotFound: true);
+        m_Keyboard_Hotbar_F5 = m_Keyboard.FindAction("Hotbar_F5", throwIfNotFound: true);
+        m_Keyboard_Hotbar_F6 = m_Keyboard.FindAction("Hotbar_F6", throwIfNotFound: true);
+        m_Keyboard_Hotbar_F7 = m_Keyboard.FindAction("Hotbar_F7", throwIfNotFound: true);
+        m_Keyboard_Hotbar_F8 = m_Keyboard.FindAction("Hotbar_F8", throwIfNotFound: true);
         m_Keyboard_SwitchCombat = m_Keyboard.FindAction("SwitchCombat", throwIfNotFound: true);
     }
 
@@ -221,6 +326,11 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Hotbar_F1;
     private readonly InputAction m_Keyboard_Hotbar_F2;
     private readonly InputAction m_Keyboard_Hotbar_F3;
+    private readonly InputAction m_Keyboard_Hotbar_F4;
+    private readonly InputAction m_Keyboard_Hotbar_F5;
+    private readonly InputAction m_Keyboard_Hotbar_F6;
+    private readonly InputAction m_Keyboard_Hotbar_F7;
+    private readonly InputAction m_Keyboard_Hotbar_F8;
     private readonly InputAction m_Keyboard_SwitchCombat;
     public struct KeyboardActions
     {
@@ -230,6 +340,11 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         public InputAction @Hotbar_F1 => m_Wrapper.m_Keyboard_Hotbar_F1;
         public InputAction @Hotbar_F2 => m_Wrapper.m_Keyboard_Hotbar_F2;
         public InputAction @Hotbar_F3 => m_Wrapper.m_Keyboard_Hotbar_F3;
+        public InputAction @Hotbar_F4 => m_Wrapper.m_Keyboard_Hotbar_F4;
+        public InputAction @Hotbar_F5 => m_Wrapper.m_Keyboard_Hotbar_F5;
+        public InputAction @Hotbar_F6 => m_Wrapper.m_Keyboard_Hotbar_F6;
+        public InputAction @Hotbar_F7 => m_Wrapper.m_Keyboard_Hotbar_F7;
+        public InputAction @Hotbar_F8 => m_Wrapper.m_Keyboard_Hotbar_F8;
         public InputAction @SwitchCombat => m_Wrapper.m_Keyboard_SwitchCombat;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
@@ -252,6 +367,21 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Hotbar_F3.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F3;
                 @Hotbar_F3.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F3;
                 @Hotbar_F3.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F3;
+                @Hotbar_F4.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F4;
+                @Hotbar_F4.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F4;
+                @Hotbar_F4.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F4;
+                @Hotbar_F5.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F5;
+                @Hotbar_F5.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F5;
+                @Hotbar_F5.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F5;
+                @Hotbar_F6.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F6;
+                @Hotbar_F6.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F6;
+                @Hotbar_F6.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F6;
+                @Hotbar_F7.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F7;
+                @Hotbar_F7.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F7;
+                @Hotbar_F7.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F7;
+                @Hotbar_F8.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F8;
+                @Hotbar_F8.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F8;
+                @Hotbar_F8.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnHotbar_F8;
                 @SwitchCombat.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnSwitchCombat;
                 @SwitchCombat.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnSwitchCombat;
                 @SwitchCombat.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnSwitchCombat;
@@ -271,6 +401,21 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Hotbar_F3.started += instance.OnHotbar_F3;
                 @Hotbar_F3.performed += instance.OnHotbar_F3;
                 @Hotbar_F3.canceled += instance.OnHotbar_F3;
+                @Hotbar_F4.started += instance.OnHotbar_F4;
+                @Hotbar_F4.performed += instance.OnHotbar_F4;
+                @Hotbar_F4.canceled += instance.OnHotbar_F4;
+                @Hotbar_F5.started += instance.OnHotbar_F5;
+                @Hotbar_F5.performed += instance.OnHotbar_F5;
+                @Hotbar_F5.canceled += instance.OnHotbar_F5;
+                @Hotbar_F6.started += instance.OnHotbar_F6;
+                @Hotbar_F6.performed += instance.OnHotbar_F6;
+                @Hotbar_F6.canceled += instance.OnHotbar_F6;
+                @Hotbar_F7.started += instance.OnHotbar_F7;
+                @Hotbar_F7.performed += instance.OnHotbar_F7;
+                @Hotbar_F7.canceled += instance.OnHotbar_F7;
+                @Hotbar_F8.started += instance.OnHotbar_F8;
+                @Hotbar_F8.performed += instance.OnHotbar_F8;
+                @Hotbar_F8.canceled += instance.OnHotbar_F8;
                 @SwitchCombat.started += instance.OnSwitchCombat;
                 @SwitchCombat.performed += instance.OnSwitchCombat;
                 @SwitchCombat.canceled += instance.OnSwitchCombat;
@@ -293,6 +438,11 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         void OnHotbar_F1(InputAction.CallbackContext context);
         void OnHotbar_F2(InputAction.CallbackContext context);
         void OnHotbar_F3(InputAction.CallbackContext context);
+        void OnHotbar_F4(InputAction.CallbackContext context);
+        void OnHotbar_F5(InputAction.CallbackContext context);
+        void OnHotbar_F6(InputAction.CallbackContext context);
+        void OnHotbar_F7(InputAction.CallbackContext context);
+        void OnHotbar_F8(InputAction.CallbackContext context);
         void OnSwitchCombat(InputAction.CallbackContext context);
     }
 }

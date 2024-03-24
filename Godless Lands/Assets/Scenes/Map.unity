@@ -9777,7 +9777,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterStatsHolder: {fileID: 808079773}
   _playerSkillsHolder: {fileID: 932704240}
-  _cellContentToRenderConverter: {fileID: 0}
   _skillUsageRequestSender: {fileID: 932704241}
 --- !u!1 &303445983
 GameObject:
@@ -16759,7 +16758,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 902921738}
   m_HandleRect: {fileID: 902921737}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -19562,7 +19561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -275.125}
+  m_AnchoredPosition: {x: 0, y: -275.12485}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580182927
@@ -21765,8 +21764,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1188274068}
   m_HandleRect: {fileID: 1188274067}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.8655628
+  m_Value: 0.9999995
+  m_Size: 0.86556274
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28605,7 +28604,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1477581803}
   m_HandleRect: {fileID: 1477581802}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -30303,7 +30302,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 202517618}
   m_HandleRect: {fileID: 202517617}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -33857,7 +33856,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 432143221}
   m_HandleRect: {fileID: 432143220}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -38636,7 +38635,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 591603737}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999977
+  m_Size: 0.99486226
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -42272,7 +42271,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 999945741}
   m_HandleRect: {fileID: 999945740}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -49359,7 +49358,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2097489664}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -68465,7 +68464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
+  m_HorizontalFit: 2
   m_VerticalFit: 2
 --- !u!114 &6227621058777355269
 MonoBehaviour:
@@ -68480,7 +68479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 10
     m_Right: 0
     m_Top: 0
     m_Bottom: 0

@@ -42,6 +42,51 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Hotbar_F4",
+                    "type": "Button",
+                    "id": "a076a2dd-77a1-49c2-8d8d-c5ef5aefb849",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hotbar_F5",
+                    "type": "Button",
+                    "id": "a843b4c7-7b2a-4d9b-bd5b-1e28d9a0da51",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hotbar_F6",
+                    "type": "Button",
+                    "id": "c72e8017-304a-4a73-a084-f6420abacbc2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hotbar_F7",
+                    "type": "Button",
+                    "id": "53575888-9663-4272-b06b-34cd3710abff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hotbar_F8",
+                    "type": "Button",
+                    "id": "33d76eba-e2bd-46ee-b6e7-607b4c778067",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "SwitchCombat",
                     "type": "Button",
                     "id": "239510f5-43ef-4f5b-8231-3783612231ef",
@@ -104,6 +149,61 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "SwitchCombat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b85fef1c-1161-4ef2-abb0-6131875717e0",
+                    "path": "<Keyboard>/f4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar_F4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1bb91f0a-197e-4ec5-a62e-916c7b063b8a",
+                    "path": "<Keyboard>/f5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar_F5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5027608d-6acd-4ee5-9726-0e0b54c365c1",
+                    "path": "<Keyboard>/f6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar_F6",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9054f2c-d5b5-4287-92c1-ee4c810f452d",
+                    "path": "<Keyboard>/f7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar_F7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8cad38c4-b028-47bd-882e-beb246cd7201",
+                    "path": "<Keyboard>/f8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar_F8",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

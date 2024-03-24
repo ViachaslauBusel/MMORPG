@@ -34,7 +34,7 @@ namespace Hotbar
                 string actionName = $"Hotbar_F{i + 1}";
                 InputAction input = _inputManager.FindAction(actionName);
                 if (input == null) continue;
-                _barCells[i].SetToken(input);
+                _barCells[i].SetToken(input, (i+1).ToString());
             }
         }
 
