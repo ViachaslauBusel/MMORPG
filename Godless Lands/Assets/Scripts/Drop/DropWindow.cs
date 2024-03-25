@@ -48,7 +48,7 @@ namespace Drop
         {
             GameObject _obj = Instantiate(_cellItemDropPrefab);
             _obj.transform.SetParent(_contentParent);
-            _obj.GetComponent<CellItemDrop>().SetItem(_itemsFactory.CreateItem(item.ItemID, count: item.Count));
+            _obj.GetComponent<CellItemDrop>().SetItem(_itemsFactory.CreateItem(item.ItemID, count: item.Count, slotIndex: item.SlotIndex));
             _dropList.Add(_obj);
         }
 

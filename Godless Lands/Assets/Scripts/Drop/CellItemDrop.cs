@@ -15,11 +15,12 @@ public class CellItemDrop : MonoBehaviour {
     private Button _item_take_btn;
     [SerializeField]
     private Text _countTxt;
-    private int item_id;
-
+    private int _itemSlotIndex;
+    private DropWindowInputHandler _dropWindowInputHandler;
 
     private void Start()
     {
+        _dropWindowInputHandler = GetComponentInParent<DropWindowInputHandler>();
         transform.localScale = Vector3.one;
     }
 
@@ -30,15 +31,13 @@ public class CellItemDrop : MonoBehaviour {
 
         _countTxt.text = _item.Data.stack ? _item.Count.ToString() : "";
 
-        item_id = _item.Data.id;
+        _itemSlotIndex = _item.SlotIndex;
 
         _item_take_btn.onClick.AddListener(() => Take());
     }
 
     public void Take()
     {
-        //DropWindow dropList = GameObject.Find("CanvasDrop").GetComponentInChildren<DropWindow>();
-        //dropList.TakeDrop(item_id);
-        //Destroy(gameObject);
+        _dropWindowInputHandler.TakeItem(_itemSlotIndex);
     }
 }

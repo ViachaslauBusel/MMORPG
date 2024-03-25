@@ -24,7 +24,14 @@ namespace Drop
             MSG_DROP_COMMAND_CS request = new MSG_DROP_COMMAND_CS();
             request.CommandType = DropCommandType.TakeAllItems;
             _networkManager.Client.Send(request);
-            Debug.Log("Take all drop");
+        }
+
+        public void TakeItem(int itemIndex)
+        {
+            MSG_DROP_COMMAND_CS request = new MSG_DROP_COMMAND_CS();
+            request.CommandType = DropCommandType.TakeItem;
+            request.DropIndex = itemIndex;
+            _networkManager.Client.Send(request);
         }
 
         public void EndInteraction()
