@@ -14,8 +14,10 @@ namespace NetworkObjectVisualization.Characters
         [SerializeField]
         private BodyPart _weaponPart;
         [SerializeField]
+        private BodyPart _pickaxePart;
+        [SerializeField]
         private BodyPart _headPart;
-
+      
         private CharacterMeshProviderService _meshProviderService;
         private Animator _animator;
         private int _weaponId;

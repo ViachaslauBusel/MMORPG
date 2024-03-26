@@ -1,55 +1,149 @@
 fileFormatVersion: 2
 guid: 7bc0dac98fbf56e4ab38738d2871ae48
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: rockLP001
-    100004: rockLP002
-    100006: rockLP005_frag_001
-    100008: rockLP005_frag_002
-    100010: rockLP005_frag_003
-    100012: rockLP005_frag_004
-    100014: rockLP005_frag_005
-    100016: rockLP005_frag_006
-    400000: //RootNode
-    400002: rockLP001
-    400004: rockLP002
-    400006: rockLP005_frag_001
-    400008: rockLP005_frag_002
-    400010: rockLP005_frag_003
-    400012: rockLP005_frag_004
-    400014: rockLP005_frag_005
-    400016: rockLP005_frag_006
-    2100000: Standardmaterial
-    2100002: 'Standardmaterial Slot #2'
-    2300000: rockLP001
-    2300002: rockLP002
-    2300004: rockLP005_frag_001
-    2300006: rockLP005_frag_002
-    2300008: rockLP005_frag_003
-    2300010: rockLP005_frag_004
-    2300012: rockLP005_frag_005
-    2300014: rockLP005_frag_006
-    3300000: rockLP001
-    3300002: rockLP002
-    3300004: rockLP005_frag_001
-    3300006: rockLP005_frag_002
-    3300008: rockLP005_frag_003
-    3300010: rockLP005_frag_004
-    3300012: rockLP005_frag_005
-    3300014: rockLP005_frag_006
-    4300000: rockLP001
-    4300002: rockLP002
-    4300004: rockLP005_frag_001
-    4300006: rockLP005_frag_002
-    4300008: rockLP005_frag_003
-    4300010: rockLP005_frag_004
-    4300012: rockLP005_frag_005
-    4300014: rockLP005_frag_006
-    7400000: Take 001
-    9500000: //RootNode
-    2186277476908879412: ImportLogs
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: rockLP001
+  - first:
+      1: 100004
+    second: rockLP002
+  - first:
+      1: 100006
+    second: rockLP005_frag_001
+  - first:
+      1: 100008
+    second: rockLP005_frag_002
+  - first:
+      1: 100010
+    second: rockLP005_frag_003
+  - first:
+      1: 100012
+    second: rockLP005_frag_004
+  - first:
+      1: 100014
+    second: rockLP005_frag_005
+  - first:
+      1: 100016
+    second: rockLP005_frag_006
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: rockLP001
+  - first:
+      4: 400004
+    second: rockLP002
+  - first:
+      4: 400006
+    second: rockLP005_frag_001
+  - first:
+      4: 400008
+    second: rockLP005_frag_002
+  - first:
+      4: 400010
+    second: rockLP005_frag_003
+  - first:
+      4: 400012
+    second: rockLP005_frag_004
+  - first:
+      4: 400014
+    second: rockLP005_frag_005
+  - first:
+      4: 400016
+    second: rockLP005_frag_006
+  - first:
+      21: 2100000
+    second: Standardmaterial
+  - first:
+      21: 2100002
+    second: Standardmaterial Slot #2
+  - first:
+      23: 2300000
+    second: rockLP001
+  - first:
+      23: 2300002
+    second: rockLP002
+  - first:
+      23: 2300004
+    second: rockLP005_frag_001
+  - first:
+      23: 2300006
+    second: rockLP005_frag_002
+  - first:
+      23: 2300008
+    second: rockLP005_frag_003
+  - first:
+      23: 2300010
+    second: rockLP005_frag_004
+  - first:
+      23: 2300012
+    second: rockLP005_frag_005
+  - first:
+      23: 2300014
+    second: rockLP005_frag_006
+  - first:
+      33: 3300000
+    second: rockLP001
+  - first:
+      33: 3300002
+    second: rockLP002
+  - first:
+      33: 3300004
+    second: rockLP005_frag_001
+  - first:
+      33: 3300006
+    second: rockLP005_frag_002
+  - first:
+      33: 3300008
+    second: rockLP005_frag_003
+  - first:
+      33: 3300010
+    second: rockLP005_frag_004
+  - first:
+      33: 3300012
+    second: rockLP005_frag_005
+  - first:
+      33: 3300014
+    second: rockLP005_frag_006
+  - first:
+      43: 4300000
+    second: rockLP001
+  - first:
+      43: 4300002
+    second: rockLP002
+  - first:
+      43: 4300004
+    second: rockLP005_frag_001
+  - first:
+      43: 4300006
+    second: rockLP005_frag_002
+  - first:
+      43: 4300008
+    second: rockLP005_frag_003
+  - first:
+      43: 4300010
+    second: rockLP005_frag_004
+  - first:
+      43: 4300012
+    second: rockLP005_frag_005
+  - first:
+      43: 4300014
+    second: rockLP005_frag_006
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -59,10 +153,10 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 'Standardmaterial Slot #2'
+      name: Standardmaterial Slot #2
     second: {fileID: 2100000, guid: 5f34ce66a30732448a82dff0898097d2, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -71,6 +165,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -92,6 +187,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Take 001
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 100
       wrapMode: 0
@@ -120,6 +216,20 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0
+        functionName: NewEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: OnStartPlatDestroyAnimation
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -131,25 +241,34 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.0254
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -158,10 +277,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -171,13 +290,18 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

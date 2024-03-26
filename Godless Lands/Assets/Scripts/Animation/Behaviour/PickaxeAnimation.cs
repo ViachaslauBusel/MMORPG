@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using Equipment;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PickaxeAnimation : StateMachineBehaviour
 {
-    //private Armor armor;
+     private EquipmentModel _equipmentModel;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         //armor = animator.GetComponent<Armor>();

@@ -38,7 +38,7 @@ public class CharacterStatsUiDisplay : MonoBehaviour
     {
         m_leftTxt.text = "Имя - " + m_stats.GetStat(StatCode.Name) + '\n'; //name
 
-        m_leftTxt.text += "Сила Атаки - " + m_stats.GetStat(StatCode.MinPattack) + " - " + m_stats.GetStat(StatCode.MaxPAttack) + '\n';//p. attack
+        m_leftTxt.text += "Сила Атаки - " + m_stats.GetStat(StatCode.MinPattack) + " - " + m_stats.GetStat(StatCode.MaxPattack) + '\n';//p. attack
 
 
         m_leftTxt.text += "Физ. Защита - " + m_stats.GetStat(StatCode.PhysicalDefense) + '\n'; //p.def.
