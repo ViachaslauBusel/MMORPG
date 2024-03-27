@@ -23,6 +23,7 @@ namespace ItemsRedactor
                 {
                     ItemType.Weapon => CreateWeaponData(_item),
                     ItemType.RestorePoints => CreateRestorePointsItemData(_item),
+                    ItemType.Pickaxe => CreatePickaxeItemData(_item),
                     _ => new Protocol.Data.Items.ItemData(_item.id, _item.stack, _item.weight)
                 };
                 itemsData.Add(itemData);
@@ -33,6 +34,11 @@ namespace ItemsRedactor
                 TypeNameHandling = TypeNameHandling.Auto
             };
             File.WriteAllText(@"Export/items.dat", JsonConvert.SerializeObject(itemsData, settings));
+        }
+
+        private static Protocol.Data.Items.ItemData CreatePickaxeItemData(Items.ItemData item)
+        {
+            return new PickaxeItemData(item.id, item.stack, item.weight);
         }
 
         private static Protocol.Data.Items.ItemData CreateRestorePointsItemData(Items.ItemData item)

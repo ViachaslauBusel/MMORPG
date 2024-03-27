@@ -1,19 +1,30 @@
 ﻿using Equipment;
+using NetworkObjectVisualization.Characters;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PickaxeAnimation : StateMachineBehaviour
 {
-     private EquipmentModel _equipmentModel;
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    private CharacterBodyPartsController _characterBodyPartsController;
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //armor = animator.GetComponent<Armor>();
-       // armor.OnPickaxe();
+        if (layerIndex == 0) return;
+        _characterBodyPartsController = animator.GetComponent<CharacterBodyPartsController>();
+        if(_characterBodyPartsController != null)
+        {
+            _characterBodyPartsController.Pickaxe.IsVisible = true;
+            _characterBodyPartsController.Weapon.IsVisible = false;
+        }
     }
 
-    public override void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       // armor.OffPickaxe();
+        if(layerIndex == 0) return;
+        if (_characterBodyPartsController != null)
+        {
+            _characterBodyPartsController.Pickaxe.IsVisible = false;
+            _characterBodyPartsController.Weapon.IsVisible = true;
+        }
     }
 }

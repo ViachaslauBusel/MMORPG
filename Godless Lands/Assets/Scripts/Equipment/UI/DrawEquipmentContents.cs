@@ -55,6 +55,7 @@ public class DrawEquipmentContents : MonoBehaviour
             //ItemType.Legs => EquipmentType.ArmorLegs,
             //ItemType.Feet => EquipmentType.ArmorFeet,
            // ItemType.Pickaxe => EquipmentType.PickaxeTool,
+            ItemType.Pickaxe => EquipmentType.PickaxeTool,
             ItemType.Weapon => EquipmentType.WeaponRightHand,
             _ => EquipmentType.None
         };

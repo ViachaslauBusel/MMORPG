@@ -14,14 +14,19 @@ namespace NetworkObjectVisualization.Characters
         [SerializeField]
         private BodyPart _weaponPart;
         [SerializeField]
-        private BodyPart _pickaxePart;
+        private BodyPart _toolPart;
         [SerializeField]
         private BodyPart _headPart;
       
         private CharacterMeshProviderService _meshProviderService;
         private Animator _animator;
         private int _weaponId;
+        private int _toolId;
         private int _headId;
+
+        public BodyPart Pickaxe => _toolPart;
+        public BodyPart Weapon => _weaponPart;
+
 
         [Inject]
         private void Construct(CharacterMeshProviderService meshProviderService)
@@ -52,6 +57,16 @@ namespace NetworkObjectVisualization.Characters
             UpdatePart(_weaponPart, _weaponId);
         }
 
+        internal void UpdateTool(int toolId)
+        {
+            if (_toolId == toolId) return;
+
+            _toolId = toolId;
+
+            UpdatePart(_toolPart, _toolId);
+
+        }
+
         private void UpdatePart(BodyPart part, int partId)
         {
             part.ClearPart();
@@ -66,5 +81,7 @@ namespace NetworkObjectVisualization.Characters
 
             part.UpdatePart(partMesh);
         }
+
+       
     }
 }
