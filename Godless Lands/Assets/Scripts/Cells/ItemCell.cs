@@ -16,8 +16,9 @@ namespace Cells
         protected ItemStorageType _storageType;
         protected int _index;
         protected Text _countTxt;
-        private ItemUsageService _itemUsageService;
+        protected ItemUsageService _itemUsageService;
 
+        public ItemStorageType StorageType => _storageType;
 
         [Inject]
         public void Construct(ItemUsageService itemUsageService)
@@ -32,7 +33,7 @@ namespace Cells
 
             base.Init();
 
-            _countTxt = transform.Find("Count").GetComponent<Text>();
+            _countTxt = transform.Find("Count")?.GetComponent<Text>();
         }
 
         public override bool IsEmpty()
@@ -87,13 +88,6 @@ namespace Cells
             if(icon == null) return;
             icon.sprite = Sprite.Create(_item.Data.texture, new Rect(0.0f, 0.0f, _item.Data.texture.width, _item.Data.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
-
-        /* public void Refresh(Item item, int key)
-          { 
-              PutItem(item);
-              item.objectID = key;
-
-          }*/
 
         /// <summary>
         /// wrap поменять содержимое ячеек местами

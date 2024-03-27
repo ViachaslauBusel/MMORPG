@@ -44,5 +44,19 @@ namespace Items
             msg.ToCellIndex = index;
             _networkManager.Client.Send(msg);
         }
+
+        internal void DestroyInventoryItem(long uniqueID)
+        {
+            MSG_DESTROY_ITEM_INVENTORY_CS msg = new MSG_DESTROY_ITEM_INVENTORY_CS();
+            msg.ItemUID = uniqueID;
+            _networkManager.Client.Send(msg);
+        }
+
+        internal void DestroyEquipmentItem(long uniqueID)
+        {
+            MSG_DESTROY_ITEM_EQUIPMENT_CS msg = new MSG_DESTROY_ITEM_EQUIPMENT_CS();
+            msg.ItemUID = uniqueID;
+            _networkManager.Client.Send(msg);
+        }
     }
 }

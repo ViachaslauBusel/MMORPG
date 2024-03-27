@@ -27,14 +27,11 @@ namespace ObjectInteraction
             _interactableObjectsRegistry = interactableObjectsRegistry;
         }
 
-        private void Awake()
+        private void Start()
         {
             _networkComponentsProvider = GetComponent<NetworkComponentsProvider>();
             _visualRepresentation = GetComponent<IVisualRepresentation>();
-        }
 
-        private void Start()
-        {
             OnVisualObjectUpdated(_visualRepresentation.VisualObject);
             _visualRepresentation.OnVisualObjectUpdated += OnVisualObjectUpdated;
         }
