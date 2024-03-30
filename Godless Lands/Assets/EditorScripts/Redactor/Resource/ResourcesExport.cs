@@ -37,7 +37,7 @@ namespace Resource
                 };
                 data.Add(miningStoneData);
             }
-            ExportHelper.Write("miningStones", data);
+            ExportHelper.WriteToFile("miningStones", data);
         }
 
         private static List<DropItemData> GetDrops(in List<Drop> drops, Fabric fabric)

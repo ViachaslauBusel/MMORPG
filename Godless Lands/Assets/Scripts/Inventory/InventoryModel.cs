@@ -9,6 +9,7 @@ namespace Inventory
         public Bag PrimaryBag { get; } 
         public Bag SecondaryBag { get; }
 
+        public event Action OnInventoryUpdate;
 
         public InventoryModel(ItemsFactory itemsFactory)
         {
@@ -16,9 +17,24 @@ namespace Inventory
             SecondaryBag = new Bag(itemsFactory, ItemStorageType.SecondaryBag);
         }
 
-        internal int GetAllCount(int id)
+        internal void SignalInventoryUpdate()
         {
-            throw new NotImplementedException();
+            OnInventoryUpdate?.Invoke();
+        }
+
+        internal Item FindItem(long uniqueID)
+        {
+           if(PrimaryBag.TryFindItem(uniqueID, out Item item))
+            {
+                return item;
+            }
+
+            if(SecondaryBag.TryFindItem(uniqueID, out item))
+            {
+                return item;
+            }
+
+            return null;
         }
     }
 }

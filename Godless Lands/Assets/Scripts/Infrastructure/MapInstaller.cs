@@ -8,10 +8,12 @@ using NetworkObjectVisualization.Characters;
 using ObjectInteraction;
 using OpenWorld;
 using Player;
+using Recipes;
 using Skills;
 using Target;
 using UnitVisualCache;
 using UnityEngine;
+using Workbench;
 using Zenject;
 
 public class MapInstaller : MonoInstaller
@@ -57,5 +59,13 @@ public class MapInstaller : MonoInstaller
 
         // Combat mode
         Container.BindInterfacesAndSelfTo<CombatModeController>().FromNew().AsSingle().NonLazy();
+
+        //Recipes
+        Container.BindInterfacesAndSelfTo<RecipeComponentMatcherService>().FromNew().AsSingle().NonLazy();
+
+        //Workbench
+        Container.BindInterfacesAndSelfTo<WorkbenchListener>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<SmelterModel>().FromNew().AsSingle().NonLazy();
+     
     }
 }

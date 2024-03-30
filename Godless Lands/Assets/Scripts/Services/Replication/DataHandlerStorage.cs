@@ -1,4 +1,5 @@
 using Animation;
+using Assets.Scripts.NetworkObjectVisualization.Workbenches;
 using Assets.Scripts.Physics.Dynamic;
 using CombatMode;
 using DynamicsObjects.TransformHandlers;
@@ -44,6 +45,7 @@ namespace Services.Replication
             _handlers.Add(typeof(MiningStoneSkinData), typeof(MiningStoneSkinDataHandler));
             _handlers.Add(typeof(InteractionObjectData), typeof(InteractionObjectDataHandler));
             _handlers.Add(typeof(CombotModeData), typeof(CombatModeDataHandler));
+            _handlers.Add(typeof(WorkbenchSkinData), typeof(WorkbenchViewDataHandler));
         }
 
         public INetworkDataHandler CreateDataHandler(GameObject gameObject, IReplicationData data)

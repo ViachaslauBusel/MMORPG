@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class ActionWorkbench : MonoBehaviour, React
 {
-    private Workbench workbench;
+    private WorkbenchLegacy workbench;
     private int ID;
 
     private void Start()
     {
-        workbench = GameObject.Find("WorkbenchGUI").GetComponent<Workbench>();
+        workbench = GameObject.Find("WorkbenchGUI").GetComponent<WorkbenchLegacy>();
         //ActionListener.Add(this);
     }
 

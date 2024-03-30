@@ -241,7 +241,7 @@ namespace OpenWorldEditor {
                 data.Position = new System.Numerics.Vector3(point.x, point.y, point.z);
                 spawnPoints.Add(data);
             }
-            ExportHelper.Write("spawnPoints", spawnPoints);
+            ExportHelper.WriteToFile("spawnPoints", spawnPoints);
         }
         private static List<Vector3> GetPoint(string folder)
         {

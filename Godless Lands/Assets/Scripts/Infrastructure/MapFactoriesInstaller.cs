@@ -1,6 +1,7 @@
 ﻿using Factories;
 using Items;
 using Physic.Dynamic;
+using Recipes;
 using UnityEngine;
 using Zenject;
 
@@ -17,7 +18,11 @@ namespace Infrastructure
         [SerializeField]
         private MiningStonesFactory _miningStonesFactory;
         [SerializeField]
+        private WorkbenchesFactory _workbenchesFactory;
+        [SerializeField]
         private DynamicObjectControllersFactory _dynamicObjectControllersFactory;
+        [SerializeField]
+        private RecipesDataHolder _recipesDataHolder;
 
         public override void InstallBindings()
         {
@@ -25,7 +30,9 @@ namespace Infrastructure
             Container.Bind<CharactersFactory>().FromInstance(_charactersFactory).AsSingle();
             Container.Bind<MonstersFactory>().FromInstance(_monstersFactory).AsSingle();
             Container.Bind<MiningStonesFactory>().FromInstance(_miningStonesFactory).AsSingle();
+            Container.Bind<WorkbenchesFactory>().FromInstance(_workbenchesFactory).AsSingle();
             Container.Bind<DynamicObjectControllersFactory>().FromInstance(_dynamicObjectControllersFactory).AsSingle();
+            Container.Bind<RecipesDataHolder>().FromInstance(_recipesDataHolder).AsSingle();
         }
     }
 }

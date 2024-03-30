@@ -10,11 +10,11 @@ namespace Cells
 {
     public class WorkbenchCell : ItemCell
     {
-        private Workbench workbench;
+        private WorkbenchLegacy workbench;
 
         private new void Awake()
         {
-            workbench = GetComponentInParent<Workbench>();
+            workbench = GetComponentInParent<WorkbenchLegacy>();
            // base.Awake();
         }
         public override void Put(Cell cell)

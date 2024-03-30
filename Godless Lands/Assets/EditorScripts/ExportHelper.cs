@@ -11,7 +11,7 @@ namespace Assets.EditorScripts
     internal class ExportHelper
     {
 
-        public static void Write(string file, object value)
+        public static void WriteToFile(string file, object value)
         {
             File.WriteAllText($"Export/{file}.dat", JsonConvert.SerializeObject(value));
         }

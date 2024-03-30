@@ -88,4 +88,10 @@ public class Bag
             || existingItem.UniqueID != newItem.UniqueID
             || existingItem.Count != newItem.Count;
     }
+
+    internal bool TryFindItem(long uniqueID, out Item item)
+    {
+        item = Array.Find(_items, i => i != null && i.UniqueID == uniqueID);
+        return item != null;
+    }
 }

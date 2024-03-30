@@ -104,7 +104,7 @@ namespace Cells
                 return;
             }
 
-            if (cell is ActionCell || cell is WorkbenchCell)
+            if (cell is SmelterCell || cell is WorkbenchCell)
             {
                 cell.Abort();
                 return;

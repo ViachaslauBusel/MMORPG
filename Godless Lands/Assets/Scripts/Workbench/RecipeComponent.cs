@@ -23,7 +23,7 @@ namespace Machines
         private int allCount;
       //  private int count;
         private Recipe nextRecipe;
-        private Workbench workbench;
+        private WorkbenchLegacy workbench;
         private List<RecipeComponent> children;
         private bool child = false;
         private Camera mainCamera;
@@ -43,7 +43,7 @@ namespace Machines
             if (active) return;
             children = new List<RecipeComponent>();
             transform.localScale = Vector3.one;
-            workbench = GetComponentInParent<Workbench>();
+            workbench = GetComponentInParent<WorkbenchLegacy>();
             mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             active = true;
         }
@@ -79,17 +79,6 @@ namespace Machines
             if (nextRecipe == null) return;
             if (expand) { expandTxt.text = "-"; CreateChilds(); }
             else { expandTxt.text = "+"; DestroyChilds(); }
-        }
-
-        public void Refresh()
-        {
-            allCount = _inventory.GetAllCount(item.Data.id);
-            if (item.Count != 0)
-                countTxt.text = " (" + item.Count + "/" + allCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
-            foreach (RecipeComponent component in children)
-            {
-                component.Refresh();
-            }
         }
 
         public void Destroy()
@@ -136,12 +125,12 @@ namespace Machines
                 element.minWidth = parenlayout.minWidth + 45.0f;
                 child = true;
             }
-            nextRecipe = Workbench.GetRecipeByResult(piece.ID);//Поиск состоит ли этот компонент из компонентов
+            nextRecipe = WorkbenchLegacy.GetRecipeByResult(piece.ID);//Поиск состоит ли этот компонент из компонентов
             
             if (nextRecipe != null)//Если состоит
                 expandTxt.text = "+";
 
-            allCount = _inventory.GetAllCount(piece.ID);
+            allCount = 0;// _inventory.GetAllCount(piece.ID);
             int itemCount = piece.count;
             if (itemCount != 0)
                  countTxt.text = " (" + allCount + "/" + itemCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке

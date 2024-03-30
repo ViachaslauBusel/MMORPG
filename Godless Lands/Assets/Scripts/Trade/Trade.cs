@@ -36,9 +36,9 @@ public class Trade : MonoBehaviour
         this.networkManager = networkManager;
         _itemsFactory = itemsFactory;
 
-        networkManager.RegisterHandler(Types.OfferTrade, OfferTrade);
-        networkManager.RegisterHandler(Types.ConfirmTrade, ConfirmTrade);
-        networkManager.RegisterHandler(Types.ItemTrade, ItemTrade);
+    ///    networkManager.RegisterHandler(Types.OfferTrade, OfferTrade);
+     //   networkManager.RegisterHandler(Types.ConfirmTrade, ConfirmTrade);
+     //   networkManager.RegisterHandler(Types.ItemTrade, ItemTrade);
     }
 
 
@@ -227,8 +227,8 @@ public class Trade : MonoBehaviour
 
     private void OnDestroy()
     {
-        networkManager?.UnregisterHandler(Types.OfferTrade);
-        networkManager?.UnregisterHandler(Types.ConfirmTrade);
-        networkManager?.UnregisterHandler(Types.ItemTrade);
+        //networkManager?.UnregisterHandler(Types.OfferTrade);
+        //networkManager?.UnregisterHandler(Types.ConfirmTrade);
+        //networkManager?.UnregisterHandler(Types.ItemTrade);
     }
 }

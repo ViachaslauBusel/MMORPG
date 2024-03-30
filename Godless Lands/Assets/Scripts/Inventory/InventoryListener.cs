@@ -2,10 +2,6 @@
 using Protocol.MSG.Game.Inventory;
 using RUCP;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -45,6 +41,8 @@ namespace Inventory
             bag.UpdateCapacity(data.CurrentItemsCount, data.MaxItemsCount);
             bag.UpdateWeight(data.CurrentWeight, data.MaxWeight);
             bag.UpdateItems(data.Items);
+
+            _inventoryModel.SignalInventoryUpdate();
         }
 
         public void Dispose()

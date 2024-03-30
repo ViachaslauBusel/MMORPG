@@ -1621,7 +1621,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &30895502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5527,6 +5526,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157581843}
   m_CullTransparentMesh: 0
+--- !u!1 &162346347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 162346348}
+  - component: {fileID: 162346349}
+  m_Layer: 0
+  m_Name: RecipesDataHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &162346348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162346347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1851500503}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &162346349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162346347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e207ccc1ad39e4d85a000eaaecccc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _recipesList: {fileID: 11400000, guid: 5d97fc17ed6262c43842c29b70a58ecf, type: 2}
 --- !u!1 &164278384
 GameObject:
   m_ObjectHideFlags: 0
@@ -5654,15 +5698,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 165038371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e40565e7a9ac434c9b41c6e216d530a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1af96880d01d5c2498fdb01d60cbcf44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipeComponentPref: {fileID: 1972705218119595247, guid: 96f717b615517b64c9513d37d091af91,
-    type: 3}
-  recipesList: {fileID: 11400000, guid: 5d97fc17ed6262c43842c29b70a58ecf, type: 2}
-  content: {fileID: 2106773803}
-  recName: {fileID: 1723513785}
-  cell: {fileID: 222347861}
+  recipeComponentPref: {fileID: 0}
+  recipesList: {fileID: 0}
+  content: {fileID: 0}
+  recName: {fileID: 0}
+  cell: {fileID: 0}
 --- !u!114 &165038374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9165,8 +9208,9 @@ GameObject:
   m_Component:
   - component: {fileID: 286233039}
   - component: {fileID: 286233040}
+  - component: {fileID: 286233041}
   m_Layer: 0
-  m_Name: Machine
+  m_Name: WorkbenchWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9205,13 +9249,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 286233038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c34e1bbe4a53854fa7aa56e4aaa6fb4, type: 3}
+  m_Script: {fileID: 11500000, guid: 58400e1ad8590894bbc9ee09cf4b4861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smelter: {fileID: 952514714}
-  grindstone: {fileID: 1246565220}
-  tannery: {fileID: 865370242}
-  workbench: {fileID: 165038373}
+  _smelter: {fileID: 952514714}
+  _grindstone: {fileID: 1246565220}
+  _tannery: {fileID: 865370242}
+--- !u!114 &286233041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286233038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51f1e78d0271504184f24fd9d623b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &291040033
 GameObject:
   m_ObjectHideFlags: 0
@@ -11552,7 +11607,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1575304206}
   m_HandleRect: {fileID: 1575304205}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -15012,7 +15067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &462166017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15946,7 +16000,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1594853}
   m_HandleRect: {fileID: 1594852}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -16267,7 +16321,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &479318459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16461,7 +16514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &483507643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16803,7 +16855,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 902921738}
   m_HandleRect: {fileID: 902921737}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -18322,7 +18374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &544525818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19606,7 +19657,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -275.1251}
+  m_AnchoredPosition: {x: 0, y: -275.125}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580182927
@@ -21809,8 +21860,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1188274068}
   m_HandleRect: {fileID: 1188274067}
   m_Direction: 2
-  m_Value: 0.9999995
-  m_Size: 0.86556274
+  m_Value: 1
+  m_Size: 0.8655628
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22402,7 +22453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &647865418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22742,7 +22792,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &670149435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23268,7 +23317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092073984a224734488d7878a158f5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 1
 --- !u!1 &695650854
 GameObject:
   m_ObjectHideFlags: 0
@@ -23962,7 +24010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &730041618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28260,13 +28307,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f0ba1e0a9b1ce42ac394d82c0cd216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  component: {fileID: 1426279837}
-  fuel: {fileID: 1926852400}
+  _component: {fileID: 1426279837}
+  _fuel: {fileID: 1926852400}
+  _createBut: {fileID: 366382295}
+  _workbenchType: 4
   recipesList: {fileID: 11400000, guid: 5d97fc17ed6262c43842c29b70a58ecf, type: 2}
   recipesParent: {fileID: 1976021509}
   RecipePrefab: {fileID: 7718812522471985615, guid: 013a32d59b7abfe4292c930198dd1fbc,
     type: 3}
-  createBut: {fileID: 366382295}
   machineUse: 4
 --- !u!114 &865370243
 MonoBehaviour:
@@ -29940,7 +29988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &916925574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30347,7 +30394,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 202517618}
   m_HandleRect: {fileID: 202517617}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -30731,13 +30778,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f0ba1e0a9b1ce42ac394d82c0cd216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  component: {fileID: 1133238133}
-  fuel: {fileID: 693283169}
+  _component: {fileID: 1133238133}
+  _fuel: {fileID: 693283169}
+  _createBut: {fileID: 1879823142}
+  _workbenchType: 1
   recipesList: {fileID: 11400000, guid: 5d97fc17ed6262c43842c29b70a58ecf, type: 2}
   recipesParent: {fileID: 878948308}
   RecipePrefab: {fileID: 7718812522471985615, guid: 013a32d59b7abfe4292c930198dd1fbc,
     type: 3}
-  createBut: {fileID: 1879823142}
   machineUse: 1
 --- !u!114 &952514715
 MonoBehaviour:
@@ -33901,7 +33949,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 432143221}
   m_HandleRect: {fileID: 432143220}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -35369,7 +35417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092073984a224734488d7878a158f5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!1 &1134892814
 GameObject:
   m_ObjectHideFlags: 0
@@ -37191,7 +37238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092073984a224734488d7878a158f5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1192231085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37347,7 +37393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1196525892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37960,7 +38005,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1211144961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38679,7 +38723,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 591603738}
   m_HandleRect: {fileID: 591603737}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -39630,13 +39674,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f0ba1e0a9b1ce42ac394d82c0cd216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  component: {fileID: 1192231084}
-  fuel: {fileID: 2019374218}
+  _component: {fileID: 1192231084}
+  _fuel: {fileID: 2019374218}
+  _createBut: {fileID: 368485329}
+  _workbenchType: 2
   recipesList: {fileID: 11400000, guid: 5d97fc17ed6262c43842c29b70a58ecf, type: 2}
   recipesParent: {fileID: 881352001}
   RecipePrefab: {fileID: 7718812522471985615, guid: 013a32d59b7abfe4292c930198dd1fbc,
     type: 3}
-  createBut: {fileID: 368485329}
   machineUse: 2
 --- !u!114 &1246565221
 MonoBehaviour:
@@ -40939,6 +40984,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295038895}
   m_CullTransparentMesh: 0
+--- !u!1 &1301090182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1301090183}
+  - component: {fileID: 1301090184}
+  m_Layer: 0
+  m_Name: WorkbenchesFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1301090183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301090182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1851500503}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1301090184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301090182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e40dd553ea0be104ba7c3403cd967c48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smelterPref: {fileID: 3933912921224244895, guid: fc763a89b14565e418bc2a081e2ed233,
+    type: 3}
+  grindstonePref: {fileID: 107654, guid: 0d6eeafbd2a04544c86ce51aa012bbf2, type: 3}
+  workbenchPref: {fileID: 198364, guid: 37718bf60b3f85c41b6e25a8f9abd017, type: 3}
+  tanneryPref: {fileID: 536365155, guid: 6a191037892da7e48b7839646f0f31a5, type: 3}
 --- !u!1 &1301546975
 GameObject:
   m_ObjectHideFlags: 0
@@ -42316,7 +42410,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 999945741}
   m_HandleRect: {fileID: 999945740}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -43742,7 +43836,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1395358428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44829,7 +44922,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1425745478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44900,7 +44992,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092073984a224734488d7878a158f5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1426279838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45381,7 +45472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1435756684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46559,7 +46649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1469710203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46665,7 +46754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1470173096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47020,9 +47108,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 286233041}
+        m_TargetAssemblyTypeName: Workbench.WorkbenchInputHandler, Assembly-CSharp
+        m_MethodName: CloseWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1246565220}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Close
+        m_TargetAssemblyTypeName: Machines.SmelterWindow, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -47305,7 +47405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1484913004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47653,7 +47752,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1487734254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47775,7 +47873,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1798750378}
   m_HandleRect: {fileID: 1798750377}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -48213,7 +48311,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1897570015}
   m_HandleRect: {fileID: 1897570014}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -49403,7 +49501,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2097489664}
   m_Direction: 0
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -50742,9 +50840,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 286233041}
+        m_TargetAssemblyTypeName: Workbench.WorkbenchInputHandler, Assembly-CSharp
+        m_MethodName: CloseWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 865370242}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Close
+        m_TargetAssemblyTypeName: Machines.SmelterWindow, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -52121,7 +52231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1662028139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53722,7 +53831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1696905151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53985,7 +54093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1700749312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55408,7 +55515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1751899529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58633,7 +58739,7 @@ GameObject:
   - component: {fileID: 1851500503}
   - component: {fileID: 1851500502}
   m_Layer: 0
-  m_Name: Factories
+  m_Name: FactoriesAndDataHolders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58655,7 +58761,9 @@ MonoBehaviour:
   _charactersFactory: {fileID: 695650856}
   _monstersFactory: {fileID: 563775175}
   _miningStonesFactory: {fileID: 248777595}
+  _workbenchesFactory: {fileID: 1301090184}
   _dynamicObjectControllersFactory: {fileID: 18861399}
+  _recipesDataHolder: {fileID: 162346349}
 --- !u!4 &1851500503
 Transform:
   m_ObjectHideFlags: 0
@@ -58673,6 +58781,8 @@ Transform:
   - {fileID: 563775174}
   - {fileID: 838801877}
   - {fileID: 248777594}
+  - {fileID: 1301090183}
+  - {fileID: 162346348}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -58895,7 +59005,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1863682625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60264,7 +60373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092073984a224734488d7878a158f5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 1
 --- !u!114 &1926852401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60920,9 +61028,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 286233041}
+        m_TargetAssemblyTypeName: Workbench.WorkbenchInputHandler, Assembly-CSharp
+        m_MethodName: CloseWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 952514714}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Close
+        m_TargetAssemblyTypeName: Machines.SmelterWindow, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -61756,7 +61876,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1970639112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62427,7 +62546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &1985672327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63916,7 +64034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092073984a224734488d7878a158f5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 1
 --- !u!114 &2019374219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65021,7 +65138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!114 &2059284781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67725,7 +67841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3627f3fde69b1849b232f08b9081d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 0
 --- !u!1 &2144494857
 GameObject:
   m_ObjectHideFlags: 0

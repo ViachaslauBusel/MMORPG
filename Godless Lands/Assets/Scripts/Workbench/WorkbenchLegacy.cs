@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Machines
 {
-    public class Workbench : MonoBehaviour, Machine
+    public class WorkbenchLegacy : MonoBehaviour, Machine
     {
         // public WorkbenchCell recipeCell;
         public GameObject recipeComponentPref;
@@ -16,7 +16,7 @@ namespace Machines
         public Text recName;
         public WorkbenchCell cell;
         private Canvas canvas;
-        private static Workbench workbench;
+        private static WorkbenchLegacy workbench;
         private RecipeComponent result;
         private int machineID;
         private Recipe selectRecipe;
@@ -119,7 +119,7 @@ namespace Machines
 
         public void Refresh()
         {
-            if (result != null) result.Refresh();
+           // if (result != null) result.Refresh();
         }
     }
 }

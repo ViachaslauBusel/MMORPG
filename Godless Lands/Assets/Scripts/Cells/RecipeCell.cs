@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Workbench.UI;
 
 namespace Machines
 {
@@ -13,7 +14,7 @@ namespace Machines
         private Text itemName;
         private Recipe recipe;
         private Button button;
-        private Machine machine;
+        private IWorkbenchWindow workbenchWindow;
 
         private void Awake()
         {
@@ -24,13 +25,13 @@ namespace Machines
         }
         private void Start()
         {
-            machine = GetComponentInParent<Machine>();
+            workbenchWindow = GetComponentInParent<IWorkbenchWindow>();
             transform.localScale = Vector3.one;
         }
         public void Select()
         {
             button.interactable = false;
-            machine.SelectRecipe(recipe);
+            workbenchWindow.SelectRecipe(recipe);
         }
         public void Reselect()
         {
