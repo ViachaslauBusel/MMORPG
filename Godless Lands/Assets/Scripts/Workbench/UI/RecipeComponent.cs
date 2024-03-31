@@ -1,6 +1,7 @@
 ﻿using Inventory;
 using Items;
 using Recipes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,19 +24,21 @@ namespace Machines
         private int allCount;
       //  private int count;
         private Recipe nextRecipe;
-        private WorkbenchLegacy workbench;
+        private RecipeCraftingWindow _craftingWindow;
         private List<RecipeComponent> children;
         private bool child = false;
         private Camera mainCamera;
         private InventoryModel _inventory;
         private ItemsFactory _itemsFactory;
+        private RecipesDataHolder _recipesDataHolder;
         public bool active = false;
 
         [Inject]
-        public void Construct(InventoryModel inventory, ItemsFactory itemsFactory)
+        public void Construct(InventoryModel inventory, ItemsFactory itemsFactory, RecipesDataHolder recipesDataHolder)
         {
             _inventory = inventory;
             _itemsFactory = itemsFactory;
+            _recipesDataHolder = recipesDataHolder;
         }
 
         public void Start()
@@ -43,7 +46,7 @@ namespace Machines
             if (active) return;
             children = new List<RecipeComponent>();
             transform.localScale = Vector3.one;
-            workbench = GetComponentInParent<WorkbenchLegacy>();
+            _craftingWindow = GetComponentInParent<RecipeCraftingWindow>();
             mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             active = true;
         }
@@ -86,6 +89,7 @@ namespace Machines
             DestroyChilds();
             Destroy(gameObject);
         }
+
         private void DestroyChilds()
         {
             foreach(RecipeComponent component in children)
@@ -94,12 +98,13 @@ namespace Machines
             }
             children.Clear();
         }
+
         private void CreateChilds()
         {
             int index = transform.GetSiblingIndex();
             foreach (Piece piece in nextRecipe.component)
             {
-                GameObject obj = Instantiate(workbench.recipeComponentPref);
+                GameObject obj = _craftingWindow.CreatePieceField();
                 obj.transform.SetParent(transform.parent);
                 obj.transform.SetSiblingIndex(++index);
                 RecipeComponent component = obj.GetComponent<RecipeComponent>();
@@ -108,7 +113,7 @@ namespace Machines
             }
             foreach (Piece piece in nextRecipe.fuel)
             {
-                GameObject obj = Instantiate(workbench.recipeComponentPref);
+                GameObject obj = _craftingWindow.CreatePieceField();
                 obj.transform.SetParent(transform.parent);
                 obj.transform.SetSiblingIndex(++index);
                 RecipeComponent component = obj.GetComponent<RecipeComponent>();
@@ -125,12 +130,12 @@ namespace Machines
                 element.minWidth = parenlayout.minWidth + 45.0f;
                 child = true;
             }
-            nextRecipe = WorkbenchLegacy.GetRecipeByResult(piece.ID);//Поиск состоит ли этот компонент из компонентов
+            nextRecipe = _recipesDataHolder.GetRecipeByResultItemId(piece.ID);//Поиск состоит ли этот компонент из компонентов
             
             if (nextRecipe != null)//Если состоит
                 expandTxt.text = "+";
 
-            allCount = 0;// _inventory.GetAllCount(piece.ID);
+            allCount = _inventory.GetItemCountByItemId(piece.ID);
             int itemCount = piece.count;
             if (itemCount != 0)
                  countTxt.text = " (" + allCount + "/" + itemCount + ") ";//Количество необходимое для создание предыдущего компонета, количество в рюкзаке
@@ -141,21 +146,20 @@ namespace Machines
             icon.sprite = Sprite.Create(item.Data.texture, new Rect(0.0f, 0.0f, item.Data.texture.width, item.Data.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
             nameTxt.text = item.Data.nameItem;
 
-            if(fuel) nameTxt.text += " (топливо)";
+            if(fuel) nameTxt.text += " (fuel)";
 
             if (nextRecipe != null)
             {
                 switch (nextRecipe.use)
                 {
                     case MachineUse.Smelter:
-                        nameTxt.text += " (плавильня)";
+                        nameTxt.text += " (smelter)";
                         break;
                     case MachineUse.Grindstone:
-                        nameTxt.text += " (точильный камень)";
+                        nameTxt.text += " (grindstone)";
                         break;
                 }
             }
-           
         }
     }
 }

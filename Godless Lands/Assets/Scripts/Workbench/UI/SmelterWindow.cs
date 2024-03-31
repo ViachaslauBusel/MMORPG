@@ -34,7 +34,7 @@ namespace Machines
 
         public Transform recipesParent;
         public GameObject RecipePrefab;
-        private List<RecipeCell> recipes = new List<RecipeCell>();
+        private List<SmelterRecipeCell> recipes = new List<SmelterRecipeCell>();
        
 
       
@@ -121,7 +121,7 @@ namespace Machines
         {
             if (recipe == null) return;
             if (recipes.Count < 1) SelectRecipe(null);
-            foreach (RecipeCell recipeCell in recipes)
+            foreach (SmelterRecipeCell recipeCell in recipes)
             {
                 if (recipeCell.GetRecipe().id == recipe.id) { recipeCell.Reselect(); return; }
             }
@@ -132,13 +132,13 @@ namespace Machines
         {
             GameObject obj = Instantiate(RecipePrefab);
             obj.transform.SetParent(recipesParent);
-            RecipeCell recipeCell = obj.GetComponent<RecipeCell>();
+            SmelterRecipeCell recipeCell = obj.GetComponent<SmelterRecipeCell>();
             recipeCell.SetRecipe(recipe);
             recipes.Add(recipeCell);
         }
         private void DestroyRecipes()
         {
-            foreach (RecipeCell obj in recipes)
+            foreach (SmelterRecipeCell obj in recipes)
                 Destroy(obj.gameObject);
             recipes.Clear();
         }

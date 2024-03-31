@@ -1,20 +1,17 @@
 ﻿using Items;
 using Recipes;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Workbench.UI;
 
 namespace Machines
 {
-    public class RecipeCell : MonoBehaviour
+    public class SmelterRecipeCell : MonoBehaviour
     {
         private Image icon;
         private Text itemName;
         private Recipe recipe;
         private Button button;
-        private IWorkbenchWindow workbenchWindow;
+        private SmelterWindow _smelterWindow;
 
         private void Awake()
         {
@@ -23,16 +20,19 @@ namespace Machines
             itemName = transform.Find("Name").GetComponent<Text>();
             button = GetComponent<Button>();
         }
+
         private void Start()
         {
-            workbenchWindow = GetComponentInParent<IWorkbenchWindow>();
+            _smelterWindow = GetComponentInParent<SmelterWindow>();
             transform.localScale = Vector3.one;
         }
+
         public void Select()
         {
             button.interactable = false;
-            workbenchWindow.SelectRecipe(recipe);
+            _smelterWindow.SelectRecipe(recipe);
         }
+
         public void Reselect()
         {
             button.interactable = false;

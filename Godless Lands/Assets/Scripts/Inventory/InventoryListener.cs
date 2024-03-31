@@ -1,4 +1,5 @@
 ﻿using Protocol;
+using Protocol.Data.Items;
 using Protocol.MSG.Game.Inventory;
 using RUCP;
 using System;
@@ -27,8 +28,8 @@ namespace Inventory
 
             Bag bag = data.Bag switch
             {
-                InventoryBagType.Primary => _inventoryModel.PrimaryBag,
-                InventoryBagType.Secondary => _inventoryModel.SecondaryBag,
+                ItemStorageType.PrimaryBag => _inventoryModel.PrimaryBag,
+                ItemStorageType.SecondaryBag => _inventoryModel.SecondaryBag,
                 _ => null
             };
 

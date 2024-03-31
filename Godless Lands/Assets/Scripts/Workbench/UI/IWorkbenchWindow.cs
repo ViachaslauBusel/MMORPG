@@ -14,6 +14,5 @@ namespace Workbench.UI
         void Open(bool isReadyForWork);
         void Close();
         void SetStatus(bool isReadyForWork);
-        void SelectRecipe(Recipe recipe);
     }
 }

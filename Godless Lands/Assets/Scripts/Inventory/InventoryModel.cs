@@ -36,5 +36,10 @@ namespace Inventory
 
             return null;
         }
+
+        internal int GetItemCountByItemId(int iD)
+        {
+            return PrimaryBag.GetItemCountByItemId(iD) + SecondaryBag.GetItemCountByItemId(iD);
+        }
     }
 }

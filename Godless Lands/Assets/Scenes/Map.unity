@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.77
-  m_AmbientMode: 0
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: e9705e00f62f62849b89fc9fd55aa0e3, type: 2}
   m_HaloStrength: 0.79
@@ -5662,7 +5662,7 @@ GameObject:
   - component: {fileID: 165038374}
   - component: {fileID: 165038373}
   m_Layer: 0
-  m_Name: WorkbenchGUI
+  m_Name: RecipeCraftingWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5698,14 +5698,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 165038371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1af96880d01d5c2498fdb01d60cbcf44, type: 3}
+  m_Script: {fileID: 11500000, guid: 309adbefdb6420a4c8a6b10024bc2d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipeComponentPref: {fileID: 0}
-  recipesList: {fileID: 0}
-  content: {fileID: 0}
-  recName: {fileID: 0}
-  cell: {fileID: 0}
+  _recipeCell: {fileID: 222347861}
+  _recipeComponentPref: {fileID: 1972705218119595247, guid: 96f717b615517b64c9513d37d091af91,
+    type: 3}
+  _content: {fileID: 2106773803}
+  _recipeName: {fileID: 1723513785}
 --- !u!114 &165038374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7339,7 +7339,7 @@ GameObject:
   - component: {fileID: 222347860}
   - component: {fileID: 222347861}
   m_Layer: 0
-  m_Name: ComponentCell
+  m_Name: RecipeInputCell
   m_TagString: Cell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7389,7 +7389,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 222347858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9c288a58601cf240ad502a713992558, type: 3}
+  m_Script: {fileID: 11500000, guid: d26d8f821cec609469c683ae44489d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &222347862
@@ -9252,9 +9252,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58400e1ad8590894bbc9ee09cf4b4861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smelter: {fileID: 952514714}
-  _grindstone: {fileID: 1246565220}
-  _tannery: {fileID: 865370242}
+  _smelterWindow: {fileID: 952514714}
+  _grindstoneWindow: {fileID: 1246565220}
+  _tanneryWindow: {fileID: 865370242}
+  _recipeCraftingWindow: {fileID: 165038373}
 --- !u!114 &286233041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11607,7 +11608,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1575304206}
   m_HandleRect: {fileID: 1575304205}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -14004,6 +14005,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 286233041}
+        m_TargetAssemblyTypeName: Workbench.WorkbenchInputHandler, Assembly-CSharp
+        m_MethodName: CloseWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 165038373}
         m_TargetAssemblyTypeName: 
         m_MethodName: Hide
@@ -16000,7 +16013,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1594853}
   m_HandleRect: {fileID: 1594852}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -19657,7 +19670,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -275.125}
+  m_AnchoredPosition: {x: 0, y: -275.1247}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580182927
@@ -21861,7 +21874,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1188274067}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.8655628
+  m_Size: 0.8655627
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28311,7 +28324,6 @@ MonoBehaviour:
   _fuel: {fileID: 1926852400}
   _createBut: {fileID: 366382295}
   _workbenchType: 4
-  recipesList: {fileID: 11400000, guid: 5d97fc17ed6262c43842c29b70a58ecf, type: 2}
   recipesParent: {fileID: 1976021509}
   RecipePrefab: {fileID: 7718812522471985615, guid: 013a32d59b7abfe4292c930198dd1fbc,
     type: 3}
@@ -30782,7 +30794,6 @@ MonoBehaviour:
   _fuel: {fileID: 693283169}
   _createBut: {fileID: 1879823142}
   _workbenchType: 1
-  recipesList: {fileID: 11400000, guid: 5d97fc17ed6262c43842c29b70a58ecf, type: 2}
   recipesParent: {fileID: 878948308}
   RecipePrefab: {fileID: 7718812522471985615, guid: 013a32d59b7abfe4292c930198dd1fbc,
     type: 3}
@@ -33949,7 +33960,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 432143221}
   m_HandleRect: {fileID: 432143220}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -38724,7 +38735,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 591603737}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999908
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -39678,7 +39689,6 @@ MonoBehaviour:
   _fuel: {fileID: 2019374218}
   _createBut: {fileID: 368485329}
   _workbenchType: 2
-  recipesList: {fileID: 11400000, guid: 5d97fc17ed6262c43842c29b70a58ecf, type: 2}
   recipesParent: {fileID: 881352001}
   RecipePrefab: {fileID: 7718812522471985615, guid: 013a32d59b7abfe4292c930198dd1fbc,
     type: 3}
@@ -48311,7 +48321,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1897570015}
   m_HandleRect: {fileID: 1897570014}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -49500,7 +49510,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2097489665}
   m_HandleRect: {fileID: 2097489664}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:

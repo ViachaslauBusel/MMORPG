@@ -3,6 +3,7 @@ using Protocol.Data.Items;
 using Protocol.Data.Items.Network;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Bag
@@ -93,5 +94,10 @@ public class Bag
     {
         item = Array.Find(_items, i => i != null && i.UniqueID == uniqueID);
         return item != null;
+    }
+
+    internal int GetItemCountByItemId(int itemId)
+    {
+        return _items.Where(i => i != null && i.Data != null && i.Data.id == itemId).Sum(i => i.Count);
     }
 }

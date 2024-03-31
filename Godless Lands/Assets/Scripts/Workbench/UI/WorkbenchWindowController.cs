@@ -8,11 +8,13 @@ namespace Workbench.UI
     public class WorkbenchWindowController : MonoBehaviour
     {
         [SerializeField]
-        private SmelterWindow _smelter;
+        private SmelterWindow _smelterWindow;
         [SerializeField]
-        private SmelterWindow _grindstone;
+        private SmelterWindow _grindstoneWindow;
         [SerializeField]
-        private SmelterWindow _tannery;
+        private SmelterWindow _tanneryWindow;
+        [SerializeField]
+        private RecipeCraftingWindow _recipeCraftingWindow;
         private IWorkbenchWindow _openedWindow;
         private WorkbenchListener _workbenchListener;
 
@@ -60,9 +62,10 @@ namespace Workbench.UI
 
         private IWorkbenchWindow GetWindow(WorkbenchType type) => type switch
         {
-            WorkbenchType.Smelter => _smelter,
-            WorkbenchType.Grindstone => _grindstone,
-            WorkbenchType.Tannery => _tannery,
+            WorkbenchType.Smelter => _smelterWindow,
+            WorkbenchType.Grindstone => _grindstoneWindow,
+            WorkbenchType.Tannery => _tanneryWindow,
+            WorkbenchType.Workbench => _recipeCraftingWindow,
             _ => null
         };
 

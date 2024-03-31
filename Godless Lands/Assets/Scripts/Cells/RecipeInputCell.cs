@@ -8,13 +8,14 @@ using UnityEngine;
 
 namespace Cells
 {
-    public class WorkbenchCell : ItemCell
+    public class RecipeInputCell : ItemCell
     {
-        private WorkbenchLegacy workbench;
+        private RecipeCraftingWindow workbench;
 
         private new void Awake()
         {
-            workbench = GetComponentInParent<WorkbenchLegacy>();
+            workbench = GetComponentInParent<RecipeCraftingWindow>();
+            Init();
            // base.Awake();
         }
         public override void Put(Cell cell)
@@ -30,20 +31,31 @@ namespace Cells
 
         public override void PutItem(Item item)
         {
-            _item = item;
+            if (item != null && item.Data != null && item.Data.serializableObj is RecipesItem recipesItem)
+            {
+                _item = item;
+                workbench.SelectRecipeItem(item, recipesItem);
+            }
+            else
+            {
+                _item = null;
+            }
+          
+            
             if (IsEmpty())
             {
                 HideIcon();
                 return;
             }
-           UpdateIcon();
+
+            UpdateIcon();
             ShowIcon();
-            workbench.Refresh(item);
+          
         }
 
         public override void Abort()
         {
-            workbench.Clear();
+            workbench.ResetCraftingWindow();
         }
     }
 }

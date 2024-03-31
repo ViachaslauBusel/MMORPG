@@ -13,5 +13,15 @@ namespace Recipes
         private RecipesList _recipesList;
 
         public List<Recipe> RecipesList => _recipesList.recipes;
+
+        public Recipe GetRecipeByResultItemId(int idItem)
+        {
+            return _recipesList.GetRecipeByResult(idItem);
+        }
+
+        public Recipe GetRecipeById(int id)
+        {
+            return _recipesList.GetRecipe(id);
+        }
     }
 }
