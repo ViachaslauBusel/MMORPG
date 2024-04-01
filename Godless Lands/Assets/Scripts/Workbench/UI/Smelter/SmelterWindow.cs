@@ -1,20 +1,14 @@
-﻿using Inventory;
-using Items;
-using Newtonsoft.Json.Linq;
+﻿using Cells;
 using Protocol.Data.Items;
 using Protocol.Data.Workbenches;
 using Recipes;
-using RUCP;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using Workbench;
-using Workbench.UI;
 using Zenject;
 
-namespace Machines
+namespace Workbench.UI.Smelter
 {
     public class SmelterWindow : MonoBehaviour, IWorkbenchWindow
     {
@@ -28,7 +22,7 @@ namespace Machines
         private WorkbenchType _workbenchType;
         private Canvas _canvas;
         private SmelterModel _smelterModel;
-
+        private DiContainer _diContainer;
         private Recipe _selectedRecipe;
         private WorkbenchInputHandler _workbenchInputHandler;
 
@@ -37,8 +31,6 @@ namespace Machines
         private List<SmelterRecipeCell> recipes = new List<SmelterRecipeCell>();
        
 
-      
-       
         public MachineUse machineUse;
         private bool _isReadyForWork;
 
@@ -46,9 +38,10 @@ namespace Machines
         public WorkbenchType WorkbenchType => _workbenchType;
 
         [Inject]
-        private void Construct(SmelterModel smelterModel)
+        private void Construct(SmelterModel smelterModel, DiContainer diContainer)
         {
             _smelterModel = smelterModel;
+            _diContainer = diContainer;
         }
 
         private void Awake()
@@ -130,7 +123,7 @@ namespace Machines
 
         private void CreateRecipe(Recipe recipe)
         {
-            GameObject obj = Instantiate(RecipePrefab);
+            GameObject obj = _diContainer.InstantiatePrefab(RecipePrefab);
             obj.transform.SetParent(recipesParent);
             SmelterRecipeCell recipeCell = obj.GetComponent<SmelterRecipeCell>();
             recipeCell.SetRecipe(recipe);

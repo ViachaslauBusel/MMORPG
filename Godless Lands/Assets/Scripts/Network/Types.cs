@@ -53,7 +53,7 @@ public class Types {
     public const short ConfirmTrade = 47;
     public const short ItemTrade = 48; //C1-S Выставить предмет на обмен S-C2 показать выставленные предметы
     public const short LobbyReload = 49; //Перезаходи в лобби
-    public const short TestRay = 50;
+   // public const short TestRay = 50;
     public const short MonsterMove = 51;
     public const short MonsterEndMove = 52;// Free
     public const short PlayAnimSkill = 53;

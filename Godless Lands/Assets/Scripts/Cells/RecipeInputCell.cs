@@ -1,22 +1,16 @@
 ﻿using Items;
-using Machines;
-using Recipes;
-using RUCP;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Workbench.UI.RecipeCrafting;
 
 namespace Cells
 {
     public class RecipeInputCell : ItemCell
     {
-        private RecipeCraftingWindow workbench;
+        private RecipeCraftingWindow _recipeCraftingWindow;
 
-        private new void Awake()
+        private void Awake()
         {
-            workbench = GetComponentInParent<RecipeCraftingWindow>();
+            _recipeCraftingWindow = GetComponentInParent<RecipeCraftingWindow>();
             Init();
-           // base.Awake();
         }
         public override void Put(Cell cell)
         {
@@ -34,7 +28,7 @@ namespace Cells
             if (item != null && item.Data != null && item.Data.serializableObj is RecipesItem recipesItem)
             {
                 _item = item;
-                workbench.SelectRecipeItem(item, recipesItem);
+                _recipeCraftingWindow.SelectRecipeItem(item, recipesItem);
             }
             else
             {
@@ -55,7 +49,7 @@ namespace Cells
 
         public override void Abort()
         {
-            workbench.ResetCraftingWindow();
+            _recipeCraftingWindow.ResetCraftingWindow();
         }
     }
 }

@@ -10,7 +10,7 @@ using Workbench;
 using Workbench.UI;
 using Zenject;
 
-namespace Machines
+namespace Workbench.UI.RecipeCrafting
 {
     public class RecipeCraftingWindow : MonoBehaviour, IWorkbenchWindow
     {

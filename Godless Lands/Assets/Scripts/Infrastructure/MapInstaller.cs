@@ -8,6 +8,7 @@ using NetworkObjectVisualization.Characters;
 using ObjectInteraction;
 using OpenWorld;
 using Player;
+using Professions;
 using Recipes;
 using Skills;
 using Target;
@@ -66,6 +67,10 @@ public class MapInstaller : MonoInstaller
         //Workbench
         Container.BindInterfacesAndSelfTo<WorkbenchListener>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<SmelterModel>().FromNew().AsSingle().NonLazy();
+
+        //Professions
+        Container.BindInterfacesAndSelfTo<ProfessionsModel>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<ProfessionsListener>().FromNew().AsSingle().NonLazy();
      
     }
 }

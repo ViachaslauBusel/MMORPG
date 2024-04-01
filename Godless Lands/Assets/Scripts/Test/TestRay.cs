@@ -18,7 +18,7 @@ public class TestRay : MonoBehaviour
     private void Construct(NetworkManager networkManager)
     {
         this.networkManager = networkManager;
-        networkManager.RegisterHandler(Types.TestRay, VoidTestRay);
+       // networkManager.RegisterHandler(Types.TestRay, VoidTestRay);
     }
 
     private void Awake()
@@ -97,6 +97,6 @@ public class TestRay : MonoBehaviour
     private void OnDestroy()
     {
 
-        networkManager?.UnregisterHandler(Types.TestRay);
+       // networkManager?.UnregisterHandler(Types.TestRay);
     }
 }

@@ -1,12 +1,8 @@
 ﻿#if UNITY_EDITOR
 using Assets.EditorScripts;
 using Helpers;
-using Machines;
 using Protocol.Data.Workbenches;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
 
 namespace OpenWorldEditor
 {

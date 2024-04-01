@@ -1,6 +1,7 @@
-﻿using Machines;
-using Protocol.Data.Workbenches;
+﻿using Protocol.Data.Workbenches;
 using UnityEngine;
+using Workbench.UI.RecipeCrafting;
+using Workbench.UI.Smelter;
 using Zenject;
 
 namespace Workbench.UI
