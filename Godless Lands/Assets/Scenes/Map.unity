@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0.8
+  m_ReflectionIntensity: 0.6
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1447086511}
-  m_IndirectSpecularColor: {r: 0.6878367, g: 0.7825836, b: 0.8949684, a: 0.8}
+  m_IndirectSpecularColor: {r: 0.60392433, g: 0.6879685, b: 0.78765804, a: 0.6}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8601,6 +8601,51 @@ MonoBehaviour:
   m_cameraControllerObj: {fileID: 1718542780339163736}
   m_mapLoaderObj: {fileID: 7714927018795543031}
   m_skillsBookObj: {fileID: 526809152}
+--- !u!1 &261398121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 261398122}
+  - component: {fileID: 261398123}
+  m_Layer: 0
+  m_Name: NPCsFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &261398122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261398121}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1851500503}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &261398123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261398121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a67027e9b2b0419b4a3edf52056f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcList: {fileID: 11400000, guid: 082e1236ca98daa419da1f87856f468a, type: 2}
 --- !u!1 &261857225
 GameObject:
   m_ObjectHideFlags: 0
@@ -11426,8 +11471,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355561015}
-  m_LocalRotation: {x: 0.1327347, y: 0.5830274, z: 0.09726669, w: -0.7956129}
-  m_LocalPosition: {x: 1183.9297, y: -191.73994, z: 1807.8689}
+  m_LocalRotation: {x: -0.024018941, y: 0.9750109, z: 0.17311493, w: 0.13714278}
+  m_LocalPosition: {x: 1344.1184, y: -253.61652, z: 1547.185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16868,7 +16913,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 902921738}
   m_HandleRect: {fileID: 902921737}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -19670,7 +19715,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -275.12503}
+  m_AnchoredPosition: {x: 0, y: -275.12445}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580182927
@@ -21873,7 +21918,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1188274068}
   m_HandleRect: {fileID: 1188274067}
   m_Direction: 2
-  m_Value: 0.99999905
+  m_Value: 0.9999995
   m_Size: 0.86556274
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -28709,7 +28754,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1477581803}
   m_HandleRect: {fileID: 1477581802}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -30406,7 +30451,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 202517618}
   m_HandleRect: {fileID: 202517617}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -33960,7 +34005,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 432143221}
   m_HandleRect: {fileID: 432143220}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -38735,7 +38780,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 591603737}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9981703
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -58774,6 +58819,7 @@ MonoBehaviour:
   _workbenchesFactory: {fileID: 1301090184}
   _dynamicObjectControllersFactory: {fileID: 18861399}
   _recipesDataHolder: {fileID: 162346349}
+  _npcsFactory: {fileID: 261398123}
 --- !u!4 &1851500503
 Transform:
   m_ObjectHideFlags: 0
@@ -58793,6 +58839,7 @@ Transform:
   - {fileID: 248777594}
   - {fileID: 1301090183}
   - {fileID: 162346348}
+  - {fileID: 261398122}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -68652,7 +68699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
+    m_Left: 3
     m_Right: 0
     m_Top: 0
     m_Bottom: 0

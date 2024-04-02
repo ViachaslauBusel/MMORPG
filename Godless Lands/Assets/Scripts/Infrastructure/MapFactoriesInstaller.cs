@@ -23,6 +23,8 @@ namespace Infrastructure
         private DynamicObjectControllersFactory _dynamicObjectControllersFactory;
         [SerializeField]
         private RecipesDataHolder _recipesDataHolder;
+        [SerializeField]
+        private NPCsFactory _npcsFactory;
 
         public override void InstallBindings()
         {
@@ -33,6 +35,7 @@ namespace Infrastructure
             Container.Bind<WorkbenchesFactory>().FromInstance(_workbenchesFactory).AsSingle();
             Container.Bind<DynamicObjectControllersFactory>().FromInstance(_dynamicObjectControllersFactory).AsSingle();
             Container.Bind<RecipesDataHolder>().FromInstance(_recipesDataHolder).AsSingle();
+            Container.Bind<NPCsFactory>().FromInstance(_npcsFactory).AsSingle();
         }
     }
 }

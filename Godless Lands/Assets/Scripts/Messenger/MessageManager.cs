@@ -27,6 +27,7 @@ namespace Messenger
         {
             GameObject obj = new GameObject();
             obj.transform.SetParent(content);
+            obj.transform.localScale = Vector3.one;
             Text text = obj.AddComponent<Text>();
             MessageSetting.Tune(text);
 

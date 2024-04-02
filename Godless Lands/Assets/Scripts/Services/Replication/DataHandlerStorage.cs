@@ -6,6 +6,7 @@ using DynamicsObjects.TransformHandlers;
 using NetworkObjectVisualization;
 using NetworkObjectVisualization.Characters;
 using NetworkObjectVisualization.MiningStones;
+using NetworkObjectVisualization.NPC;
 using Nickname;
 using ObjectInteraction;
 using Protocol.Data.Replicated;
@@ -46,6 +47,7 @@ namespace Services.Replication
             _handlers.Add(typeof(InteractionObjectData), typeof(InteractionObjectDataHandler));
             _handlers.Add(typeof(CombotModeData), typeof(CombatModeDataHandler));
             _handlers.Add(typeof(WorkbenchSkinData), typeof(WorkbenchViewDataHandler));
+            _handlers.Add(typeof(NpcSkinData), typeof(NpcViewDataHandler));   
         }
 
         public INetworkDataHandler CreateDataHandler(GameObject gameObject, IReplicationData data)

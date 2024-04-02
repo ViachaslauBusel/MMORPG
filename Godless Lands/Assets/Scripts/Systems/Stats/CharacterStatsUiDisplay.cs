@@ -36,7 +36,7 @@ public class CharacterStatsUiDisplay : MonoBehaviour
 
     private void Redraw()
     {
-        m_leftTxt.text = "Имя - " + m_stats.GetStat(StatCode.Name) + '\n'; //name
+        m_leftTxt.text = "Имя - " + m_stats.GetName() + '\n'; //name
 
         m_leftTxt.text += "Сила Атаки - " + m_stats.GetStat(StatCode.MinPattack) + " - " + m_stats.GetStat(StatCode.MaxPattack) + '\n';//p. attack
 
