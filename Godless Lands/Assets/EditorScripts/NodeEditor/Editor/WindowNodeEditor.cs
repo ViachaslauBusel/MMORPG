@@ -31,7 +31,7 @@ namespace NodeEditor
         }
         private void Initialize()
         {
-            m_zoomArea = new ZoomArea(new RectOffset(0, 0, 50, 0), new Vector2(5000.0f, 4000.0f));
+            m_zoomArea = new ZoomArea(new RectOffset(0, 0, 50, 0), new Vector2(10_000.0f, 4000.0f));
             m_nodes = new List<NodeDrawer>();
         }
 

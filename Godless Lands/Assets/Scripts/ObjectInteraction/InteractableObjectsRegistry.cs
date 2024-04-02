@@ -12,23 +12,17 @@ namespace ObjectInteraction
     /// </summary>
     internal class InteractableObjectsRegistry
     {
-        public struct InteractableObject
-        {
-            public int NetworkGameObjectID;
-            public GameObject GameObject;
-        }
-
-        private Dictionary<int, GameObject> _interactableObjects = new Dictionary<int, GameObject>(); 
+        private Dictionary<int, IInteractableObject> _interactableObjects = new Dictionary<int, IInteractableObject>(); 
 
         
-        internal void RegisterInteractableObject(int networkGameObjectID, GameObject gameObject)
+        internal void RegisterInteractableObject(int networkGameObjectID, IInteractableObject interactionObject)
         {
             if(_interactableObjects.ContainsKey(networkGameObjectID))
             {
                 Debug.LogError($"Interactable object with id {networkGameObjectID} already exists in the registry");
                 _interactableObjects.Remove(networkGameObjectID);
             }
-            _interactableObjects.Add(networkGameObjectID, gameObject);
+            _interactableObjects.Add(networkGameObjectID, interactionObject);
         }
 
         internal void UnregisterInteractableObject(int networkGameObjectID)
@@ -41,19 +35,18 @@ namespace ObjectInteraction
             _interactableObjects.Remove(networkGameObjectID);
         }
 
-        internal InteractableObject GetClosestInteractableObject(Vector3 position, float maxDistance = float.MaxValue)
+        internal IInteractableObject GetClosestInteractableObject(Vector3 position, float maxDistance = float.MaxValue)
         {
-            InteractableObject closestObject = new InteractableObject();
+            IInteractableObject closestObject = null;
             float closestDistance = maxDistance;
 
             foreach (var interactableObject in _interactableObjects)
             {
-                float distance = Vector3.Distance(position, interactableObject.Value.transform.position);
+                float distance = Vector3.Distance(position, interactableObject.Value.Position);
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
-                    closestObject.NetworkGameObjectID = interactableObject.Key;
-                    closestObject.GameObject = interactableObject.Value;
+                    closestObject = interactableObject.Value;
                 }
             }
 

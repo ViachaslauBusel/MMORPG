@@ -1,5 +1,6 @@
 ﻿using NetworkObjectVisualization;
 using Protocol.Data.Replicated;
+using Protocol.MSG.Game.ObjectInteraction;
 using Services.Replication;
 using System;
 using System.Collections.Generic;
@@ -14,63 +15,25 @@ namespace ObjectInteraction
     /// <summary>
     /// Registers visual object as interactable object
     /// </summary>
-    public class InteractionObjectDataHandler : MonoBehaviour, INetworkDataHandler
+    public class InteractionObjectDataHandler : InterableObject, INetworkDataHandler
     {
-        private NetworkComponentsProvider _networkComponentsProvider;
-        private InteractableObjectsRegistry _interactableObjectsRegistry;
-        private IVisualRepresentation _visualRepresentation;
-        private GameObject _visualObject;
+        private NetworkManager _networkManager;
 
         [Inject]
-        private void Construct(InteractableObjectsRegistry interactableObjectsRegistry)
+        private void Construct(NetworkManager networkManager)
         {
-            _interactableObjectsRegistry = interactableObjectsRegistry;
+            _networkManager = networkManager;
         }
 
-        private void Start()
+        public override void HandleInteraction()
         {
-            _networkComponentsProvider = GetComponent<NetworkComponentsProvider>();
-            _visualRepresentation = GetComponent<IVisualRepresentation>();
-
-            OnVisualObjectUpdated(_visualRepresentation.VisualObject);
-            _visualRepresentation.OnVisualObjectUpdated += OnVisualObjectUpdated;
-        }
-
-        private void OnVisualObjectUpdated(GameObject @object)
-        {
-            RegisterInteractableObject(@object);
+            MSG_OBJECT_INTERACTION_REQUEST_CS msg = new MSG_OBJECT_INTERACTION_REQUEST_CS();
+            msg.ObjectId = NetworkGameObjectID;
+            _networkManager.Client.Send(msg);
         }
 
         public void UpdateData(IReplicationData updatedData)
         {
-        }
-
-        /// <summary>
-        /// Registers visual object as interactable object
-        /// Also unregisters previous object if it was registered
-        /// </summary>
-        /// <param name="visualObject"></param>
-        private void RegisterInteractableObject(GameObject visualObject)
-        {
-            // Make sure to unregister the previous object
-            UnregisterInteractableObject();
-
-            _visualObject = visualObject;
-            if (_visualObject == null) return;
-
-            _interactableObjectsRegistry.RegisterInteractableObject(_networkComponentsProvider.NetworkGameObjectID, visualObject);
-        }
-
-        private void UnregisterInteractableObject()
-        {
-            if (_visualObject == null) return;
-            _interactableObjectsRegistry.UnregisterInteractableObject(_networkComponentsProvider.NetworkGameObjectID);
-            _visualObject = null;
-        }
-
-        private void OnDestroy()
-        {
-            UnregisterInteractableObject();
         }
     }
 }

@@ -51,10 +51,10 @@ namespace ObjectInteraction
             var interactableObject = _interactableObjectsRegistry.GetClosestInteractableObject(_playerCharacterVisual.transform.position, 2f);
 
             // Make indicator visible if there is an interactable object in range.
-            _interactionIndicator.SetVisible(interactableObject.NetworkGameObjectID != 0);
+            _interactionIndicator.SetVisible(interactableObject != null);
 
             // Handle input
-            _inputHandler.HandleInput(interactableObject.NetworkGameObjectID);
+            _inputHandler.HandleInput(interactableObject);
         }
     }
 }

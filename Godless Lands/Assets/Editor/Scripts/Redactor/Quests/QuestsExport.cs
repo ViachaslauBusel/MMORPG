@@ -30,32 +30,32 @@ namespace QuestsRedactor {
             Directory.CreateDirectory(path);
             path += "/";
 
-            foreach(Quest _q in questsList.quests)
-            {
-                Quests.Quest quest = new Quests.Quest();
-                quest.id = _q.id;
-                quest.title = _q.title;
-                foreach(QuestStage _s in _q.stages)
-                {
-                    Quests.Stage stage = new Quests.Stage();
-                    stage.id = _s.id;
-                    stage.title = _s.title;
-                    stage.descripton = _s.descripton;
-                    foreach(Answer _a in _s.answers)
-                    {
-                        stage.answers.Add(_a.idStage);
-                    }
-                    quest.stages.Add(stage);
-                }
-                SaveFile(folder, quest);
-            }
+            //foreach(Quest _q in questsList.quests)
+            //{
+            //    Quests.Quest quest = new Quests.Quest();
+            //    quest.id = _q.id;
+            //    quest.title = _q.title;
+            //    foreach(QuestStage _s in _q.stages)
+            //    {
+            //        Quests.Stage stage = new Quests.Stage();
+            //        stage.id = _s.id;
+            //        stage.title = _s.title;
+            //        stage.descripton = _s.descripton;
+            //        foreach(Answer _a in _s.answers)
+            //        {
+            //            stage.answers.Add(_a.idStage);
+            //        }
+            //        quest.stages.Add(stage);
+            //    }
+            //    SaveFile(folder, quest);
+            //}
         }
 
         public static void SaveFile(string path, Quests.Quest quest)
         {
            // Quests.Quest asset = ScriptableObject.CreateInstance<Quests.Quest>();
-            string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath("Assets"+path + "/" + quest.id + ".asset");
-            AssetDatabase.CreateAsset(quest, assetPathAndName);
+            //string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath("Assets"+path + "/" + quest.id + ".asset");
+           // AssetDatabase.CreateAsset(quest, assetPathAndName);
                 /*
             string file = JsonUtility.ToJson(quest);
 

@@ -1,0 +1,390 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8484819938665286081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5842c7d0ee7057428021458704b36aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 13
+  m_position: {x: 4391.1387, y: 284.8101}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 28456180601790102}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 6595967155741553987}
+  m_parentContainer: {fileID: 11400000}
+  m_quest: {fileID: 0}
+--- !u!114 &-5287670747002186409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 3
+  m_position: {x: 527, y: 182}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: 3203861903796704487}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: 'Greetings, traveler. '
+--- !u!114 &-3889833621701199168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d252a2a83d667409a90229f93422d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 11
+  m_position: {x: 4022.1392, y: 275.9493}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -8484819938665286081}
+  m_parentContainer: {fileID: 11400000}
+  m_next: {fileID: -8484819938665286081}
+  m_replica: ' I''ll head to the fields and bring you that pickaxe.'
+--- !u!114 &-2750531976782763812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d252a2a83d667409a90229f93422d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 15
+  m_position: {x: 5247.4316, y: 303.0001}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 3774249281245653968}
+  m_parentContainer: {fileID: 11400000}
+  m_next: {fileID: 0}
+  m_replica: ok
+--- !u!114 &-174113568685193513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d252a2a83d667409a90229f93422d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 4
+  m_position: {x: 1382.6582, y: 382.97467}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 2222063276747282356}
+  m_parentContainer: {fileID: 11400000}
+  m_next: {fileID: 2222063276747282356}
+  m_replica: Hello, hunter. I'm looking for someone who could teach me how to craft
+    weapons.
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66db89f98af8894a954c26394448e6b, type: 3}
+  m_Name: Hunter_dialog
+  m_EditorClassIdentifier: 
+  m_nodes:
+  - {fileID: 2454749454654031212}
+  - {fileID: -5287670747002186409}
+  - {fileID: -174113568685193513}
+  - {fileID: 2222063276747282356}
+  - {fileID: 630961161325715142}
+  - {fileID: 449591512431626284}
+  - {fileID: 3203861903796704487}
+  - {fileID: 1821548745250231587}
+  - {fileID: 2711210701207812637}
+  - {fileID: -3889833621701199168}
+  - {fileID: 28456180601790102}
+  - {fileID: -8484819938665286081}
+  - {fileID: 6595967155741553987}
+  - {fileID: -2750531976782763812}
+  - {fileID: 3774249281245653968}
+  m_generatorID: 17
+--- !u!114 &28456180601790102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 12
+  m_position: {x: 4785.533, y: 100.80081}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: -2750531976782763812}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: Be careful, my friend. Good luck, and return with the pickaxe.
+--- !u!114 &449591512431626284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 7
+  m_position: {x: 2706.4805, y: 275.87354}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: 1821548745250231587}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: Before I teach you, I need to ask you for a favor. Lately, skeletons
+    have been appearing in the fields outside the town. They were once miners and
+    they still have pickaxes they used for mining ore.
+--- !u!114 &630961161325715142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d252a2a83d667409a90229f93422d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 6
+  m_position: {x: 2263.4045, y: 296.3418}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 449591512431626284}
+  m_parentContainer: {fileID: 11400000}
+  m_next: {fileID: 449591512431626284}
+  m_replica: I'm ready to learn. What do I need to do?
+--- !u!114 &1821548745250231587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d252a2a83d667409a90229f93422d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 9
+  m_position: {x: 3124.8984, y: 318.9873}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 2711210701207812637}
+  m_parentContainer: {fileID: 11400000}
+  m_next: {fileID: 2711210701207812637}
+  m_replica: You want me to take one of those pickaxes?
+--- !u!114 &2222063276747282356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 5
+  m_position: {x: 1797.3544, y: 276.94937}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: 630961161325715142}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: ' You look like someone who''s not afraid of dangers. I can teach
+    you, if you''re willing to listen.'
+--- !u!114 &2454749454654031212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fa2281e27e4614ebd7c6b81dfbb272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 2
+  m_position: {x: 50, y: 100}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -5287670747002186409}
+  m_parentContainer: {fileID: 11400000}
+  m_next: {fileID: -5287670747002186409}
+--- !u!114 &2711210701207812637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 10
+  m_position: {x: 3577.1768, y: 246.83542}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: -3889833621701199168}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: Exactly. Bring me a pickaxe, and I'll teach you how to craft weapons.
+    But remember, skeletons can be dangerous.
+--- !u!114 &3203861903796704487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33bda2387dec81458b1a7d88ce1790f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 8
+  m_position: {x: 996.7593, y: 432.64545}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -174113568685193513}
+  m_parentContainer: {fileID: 11400000}
+  m_next: {fileID: -174113568685193513}
+  m_questData: {fileID: 0}
+  m_requiredQuestStageID: 0
+--- !u!114 &3774249281245653968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f524edd28b99b3469fcd54ea368e0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 16
+  m_position: {x: 5666.0366, y: 301.83728}
+  m_outputManager:
+    m_outputPorts: []
+  m_parentContainer: {fileID: 11400000}
+--- !u!114 &6595967155741553987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 14
+  m_position: {x: 4796.6016, y: 416.32666}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: -2750531976782763812}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: Something went wrong

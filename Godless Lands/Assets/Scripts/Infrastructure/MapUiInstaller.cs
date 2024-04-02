@@ -16,6 +16,8 @@ namespace Infrastructure
         private DropWindow _dropWindow;
         [SerializeField]
         private InventoryWindow _inventoryWindow;
+        [SerializeField]
+        private DialogWindow _dialogWindow;
 
         public override void InstallBindings()
         {
@@ -23,6 +25,7 @@ namespace Infrastructure
             Container.Bind<InteractionIndicator>().FromInstance(_interactionIndicator).AsSingle();
             Container.Bind<DropWindow>().FromInstance(_dropWindow).AsSingle();
             Container.Bind<InventoryWindow>().FromInstance(_inventoryWindow).AsSingle();
+            Container.Bind<DialogWindow>().FromInstance(_dialogWindow).AsSingle();
         }
     }
 }
