@@ -59,7 +59,7 @@ namespace Quests.Journal
                 return false;
             }
 
-            QuestStageNode nextNode = currentNode.Next as QuestStageNode;
+            QuestStageNode nextNode = currentNode.NextNode as QuestStageNode;
 
             return MoveToNextStage(currentNode, nextNode);
         }

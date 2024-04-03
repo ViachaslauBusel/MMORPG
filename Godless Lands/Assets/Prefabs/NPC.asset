@@ -15,4 +15,4 @@ MonoBehaviour:
   npcList:
   - id: 1
     prefabPath: NPC/Mesh_1
-    name: Skeleton
+    name: Hunter

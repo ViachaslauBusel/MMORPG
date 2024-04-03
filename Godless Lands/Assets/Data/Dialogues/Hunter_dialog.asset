@@ -25,7 +25,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 6595967155741553987}
   m_parentContainer: {fileID: 11400000}
-  m_quest: {fileID: 0}
+  m_quest: {fileID: 11400000, guid: 8e12702b676a4ea47b5c0aa4bece3043, type: 2}
 --- !u!114 &-5287670747002186409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 3774249281245653968}
   m_parentContainer: {fileID: 11400000}
-  m_next: {fileID: 0}
+  m_next: {fileID: 3774249281245653968}
   m_replica: ok
 --- !u!114 &-174113568685193513
 MonoBehaviour:
@@ -344,7 +344,7 @@ MonoBehaviour:
       - {fileID: -174113568685193513}
   m_parentContainer: {fileID: 11400000}
   m_next: {fileID: -174113568685193513}
-  m_questData: {fileID: 0}
+  m_questData: {fileID: 11400000, guid: 8e12702b676a4ea47b5c0aa4bece3043, type: 2}
   m_requiredQuestStageID: 0
 --- !u!114 &3774249281245653968
 MonoBehaviour:

@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2414030d1b478d94eb4ed6d9788e5b29, type: 3}
-  m_Name: find_pickaxe
+  m_Script: {fileID: 11500000, guid: 5809f46f3945aac44bff0046b16bddae, type: 3}
+  m_Name: QuestsDATA
   m_EditorClassIdentifier: 
-  m_nodes: []
-  m_generatorID: 2
-  m_name: 
-  m_description: 
-  m_isRenderableInJournal: 1
+  _objects:
+  - {fileID: 11400000, guid: 5dd25bcfea1c1d54c95fd5bc4373fd58, type: 2}
+  - {fileID: 11400000, guid: 27b4b031035ff7f458d76a1380d717dd, type: 2}
+  _generatorID: 6

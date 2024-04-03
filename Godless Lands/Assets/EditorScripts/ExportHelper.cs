@@ -13,7 +13,11 @@ namespace Assets.EditorScripts
 
         public static void WriteToFile(string file, object value)
         {
-            File.WriteAllText($"Export/{file}.dat", JsonConvert.SerializeObject(value));
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            };
+            File.WriteAllText($"Export/{file}.dat", JsonConvert.SerializeObject(value, settings));
         }
     }
 }

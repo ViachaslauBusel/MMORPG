@@ -1,23 +1,35 @@
 using Infrastructure;
 using NodeEditor;
-using NodeEditor.Data;
-using System.Collections;
-using System.Collections.Generic;
+using ObjectRegistryEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "QuestData", menuName = "ScriptableObjects/Quest Data", order = 1)]
 [NodeGroup(group: "Quests")]
 
-public class QuestData : ZenjectNodesContainer
+public class QuestData : ZenjectNodesContainer, IEditableObject
 {
+    [SerializeField, HideInInspector]
+    private int _id;
     [SerializeField]
-    private string m_name;
+    private string _name;
     [SerializeField]
-    private string m_description;
+    private string _description;
     [SerializeField]
-    private bool m_isRenderableInJournal = true;
+    private bool _isRenderableInJournal = true;
 
-    public string Name => m_name;
-    public string Description => m_description;
-    public bool IsRenderableInJournal => m_isRenderableInJournal;
+    public int ID => _id;
+    public string Name => _name;
+    public string Description => _description;
+    public bool IsRenderableInJournal => _isRenderableInJournal;
+
+   
+
+    public Texture Preview => null;
+
+
+    public void Initialize(int id)
+    {
+        if (_id != 0) Debug.LogError($"ID:{_id} already initialized -> {id}");
+        _id = id;
+    }
 }

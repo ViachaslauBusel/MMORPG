@@ -8,14 +8,16 @@ using UnityEngine;
 public class QuestStageNode : Node
 {
     [Port("out")]
-    private Node m_nextNode;
+    private Node _nextNode;
 
     [SerializeField]
-    private string m_name;
+    private string _name;
     [SerializeField, Multiline]
-    private string m_description;
+    private string _description;
 
-    public Node Next => m_nextNode;
-    public string Name => m_name;
-    public string Description => m_description;
+
+    public Node NextNode => _nextNode;
+    public int NextNodeId => _nextNode != null ? _nextNode.ID : 0;
+    public string Name => _name;
+    public string Description => _description;
 }
