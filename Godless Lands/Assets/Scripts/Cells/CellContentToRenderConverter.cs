@@ -1,5 +1,9 @@
-﻿using Skills;
+﻿using Equipment;
+using Inventory;
+using Items;
+using Skills;
 using SkillsRedactor;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -8,11 +12,15 @@ namespace Cells
     public class CellContentToRenderConverter
     {
         private PlayerSkillsHolder _playerSkillsHolder;
+        private InventoryModel _inventoryModel;
+        private EquipmentModel _equipmentModel;
 
         
-        public CellContentToRenderConverter(PlayerSkillsHolder playerSkillsHolder)
+        public CellContentToRenderConverter(PlayerSkillsHolder playerSkillsHolder, InventoryModel inventoryModel, EquipmentModel equipmentModel)
         {
             _playerSkillsHolder = playerSkillsHolder;
+            _inventoryModel = inventoryModel;
+            _equipmentModel = equipmentModel;
         }
 
         public CellRenderInfo Convert(CellContentInfo cellContentInfo)
@@ -24,12 +32,26 @@ namespace Cells
 
            CellRenderInfo cellRenderInfo = cellContentInfo.Type switch
            {
-               //CellContentType.Item => ConvertItem(cellContentInfo.ID),
+               CellContentType.Item => FromItemUID(cellContentInfo.ID),
                CellContentType.Skill => FromSkillID(cellContentInfo.ID),
                _ => null
            };
 
             return cellRenderInfo;
+        }
+
+        private CellRenderInfo FromItemUID(int itemUID)
+        {
+            Item item = _inventoryModel.FindItem(itemUID);
+            item ??= _equipmentModel.FindItem(itemUID);
+
+            if (item == null)
+            {
+                Debug.LogWarning($"CellContentToRenderConverter: Item with id {itemUID} not found");
+                return null;
+            }
+
+            return CellRenderInfo.CreateByItem(item);
         }
 
         private CellRenderInfo FromSkillID(int skillID)
@@ -38,7 +60,7 @@ namespace Cells
 
             if (skill == null)
             {
-                Debug.LogError($"CellContentToRenderConverter: Skill with id {skillID} not found");
+                Debug.LogWarning($"CellContentToRenderConverter: Skill with id {skillID} not found");
                 return null;
             }
 

@@ -1,4 +1,5 @@
-﻿using SkillsRedactor;
+﻿using Items;
+using SkillsRedactor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,11 @@ namespace Cells
         internal string CreateCountTxt()
         {
            return Count;
+        }
+
+        internal static CellRenderInfo CreateByItem(Item item)
+        {
+            return new CellRenderInfo(item.Data.texture, true, item.Count.ToString());
         }
     }
 }

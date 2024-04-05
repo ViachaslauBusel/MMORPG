@@ -87,15 +87,13 @@ namespace Cells
             if (cell == null || cell.IsEmpty()) {  return; }
 
 
-            if(cell.GetType() == typeof(BarCell))//Поменять местами содержимое ячейки
+            if (cell is BarCell barCell)//Поменять местами содержимое ячейки
             {
-            //TODO msg
-                //Packet writer = new Packet(Channel.Reliable);
-                //writer.WriteType(Types.WrapBarCell);
-                //writer.WriteByte((byte)index);//Номер ячейки на панели
-                //writer.WriteByte((byte)(cell as BarCell).index);//Номер ячейки на панели
-                //NetworkManager.Send(writer);
-                 return;
+                MSG_HOTBAT_SWAMP_CELLS_CS swamp_request = new MSG_HOTBAT_SWAMP_CELLS_CS();
+                swamp_request.FromCellIndex = (byte)_index;
+                swamp_request.ToCellIndex = (byte)barCell._index;
+                _networkManager.Client.Send(swamp_request);
+                return;
             }
 
             MSG_HOTBAR_SET_CELL_VALUE_CS msg = new MSG_HOTBAR_SET_CELL_VALUE_CS();
@@ -199,17 +197,16 @@ namespace Cells
 
         public override void Abort()
         {
-        //TODO msg
-            //Packet nw = new Packet(Channel.Reliable);
-            //nw.WriteType(Types.updateBarCell);
-            //nw.WriteByte((byte)index);//Номер ячейки на панели
-            //nw.WriteInt((int)SkillbarType.None);//type
-            //NetworkManager.Send(nw);
+            MSG_HOTBAR_SET_CELL_VALUE_CS msg = new MSG_HOTBAR_SET_CELL_VALUE_CS();
+            msg.CellIndex = (byte)_index;
+            msg.CellType = HotbarCellType.Unknown;
+            msg.CellValue = 0;
+            _networkManager.Client.Send(msg);
         }
 
         public void SetIndex(int index)
         {
-            this._index = index;
+            _index = index;
         }
     }
 }

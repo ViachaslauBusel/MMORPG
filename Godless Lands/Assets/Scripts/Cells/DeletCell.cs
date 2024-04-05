@@ -41,19 +41,19 @@ namespace Cells
                     "How many pieces to move?",
                     (count) =>
                     {
-                        DestroyItemRequest(itemCell.GetItem(), deletFrom);
+                        DestroyItemRequest(itemCell.GetItem(), deletFrom, count);
                     },
                     () => { }
                     );
                 }
                 else
                 {
-                    DestroyItemRequest(itemCell.GetItem(), deletFrom);
+                    DestroyItemRequest(itemCell.GetItem(), deletFrom, 1);
                 }
             }
         }
 
-        private void DestroyItemRequest(Item item, ItemStorageType deletFrom)
+        private void DestroyItemRequest(Item item, ItemStorageType deletFrom, int count)
         {
             Confirm.Instance.Subscribe(
                    "Do you really want to delete the item?",
@@ -63,7 +63,7 @@ namespace Cells
                        {
                            case ItemStorageType.PrimaryBag:
                            case ItemStorageType.SecondaryBag:
-                               _itemUsageService.DestroyInventoryItem(item.UniqueID);
+                               _itemUsageService.DestroyInventoryItem(item.UniqueID, count);
                                break;
                            case ItemStorageType.Equipment:
                                _itemUsageService.DestroyEquipmentItem(item.UniqueID);

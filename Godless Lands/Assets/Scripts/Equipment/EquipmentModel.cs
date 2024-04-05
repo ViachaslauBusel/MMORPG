@@ -4,6 +4,7 @@ using Protocol.MSG.Game.Equipment;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Equipment
 {
@@ -33,6 +34,11 @@ namespace Equipment
                 _equip[itemData.EquipmentType] = item;
             }
             OnItemsChanged?.Invoke();
+        }
+
+        internal Item FindItem(int itemUID)
+        {
+            return _equip.Values.FirstOrDefault(item => item.UniqueID == itemUID);
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Cells;
+using Equipment;
+using Inventory;
 using Protocol;
 using Protocol.MSG.Game.Hotbar;
 using RUCP;
@@ -16,12 +18,16 @@ namespace Hotbar
         private static BarCell[] _barCells;
         private NetworkManager _networkManager;
         private PlayerSkillsHolder _playerSkillsHolder;
+        private InventoryModel _inventoryModel;
+        private EquipmentModel _equipmentModel;
 
         [Inject]
-        private void Construct(NetworkManager networkManager, PlayerSkillsHolder playerSkillsHolder)
+        private void Construct(NetworkManager networkManager, PlayerSkillsHolder playerSkillsHolder, InventoryModel inventoryModel, EquipmentModel equipmentModel)
         {
             _networkManager = networkManager;
             _playerSkillsHolder = playerSkillsHolder;
+            _inventoryModel = inventoryModel;
+            _equipmentModel = equipmentModel;
         }
 
         private void Awake()
@@ -34,6 +40,8 @@ namespace Hotbar
 
             _networkManager.RegisterHandler(Opcode.MSG_HOTBAR_UPDATE, UpdateBarCell);
             _playerSkillsHolder.OnSkillsUpdate += RedrawCells;
+            _inventoryModel.OnInventoryUpdate += RedrawCells;
+            _equipmentModel.OnItemsChanged += RedrawCells;
         }
 
         private void RedrawCells()
@@ -77,6 +85,8 @@ namespace Hotbar
         {
             _networkManager?.UnregisterHandler(Opcode.MSG_HOTBAR_UPDATE);
             _playerSkillsHolder.OnSkillsUpdate -= RedrawCells;
+            _inventoryModel.OnInventoryUpdate -= RedrawCells;
+            _equipmentModel.OnItemsChanged -= RedrawCells;
         }
     }
 }

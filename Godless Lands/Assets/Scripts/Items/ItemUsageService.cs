@@ -45,10 +45,11 @@ namespace Items
             _networkManager.Client.Send(msg);
         }
 
-        internal void DestroyInventoryItem(long uniqueID)
+        internal void DestroyInventoryItem(long uniqueID, int count)
         {
             MSG_DESTROY_ITEM_INVENTORY_CS msg = new MSG_DESTROY_ITEM_INVENTORY_CS();
             msg.ItemUID = uniqueID;
+            msg.ItemCount = count;
             _networkManager.Client.Send(msg);
         }
 
