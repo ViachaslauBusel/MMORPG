@@ -22,5 +22,6 @@ namespace Quests.Nodes
 
         public int SuccesIdNode => _successNode != null ? _successNode.ID : 0;
         public int NPCID => _npcID;
+        public Node NextNode => _successNode;
     }
 }

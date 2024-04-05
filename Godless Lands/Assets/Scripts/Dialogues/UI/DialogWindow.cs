@@ -1,6 +1,9 @@
+using Cysharp.Threading.Tasks;
+using Dialogues;
 using Dialogues.Data;
 using Dialogues.Data.Nodes;
 using NodeEditor.Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,11 +20,14 @@ public class DialogWindow : MonoBehaviour
     private Canvas _canvas;
     private DiContainer _diContainer;
     private List<GameObject> _playerDialogue = new List<GameObject>();
+    private bool _blockingControl = false;
+    private DialogueNodeHandlerStorage _dialogueNodeHandlerStorage;
 
     [Inject]
-    private void Construct(DiContainer diContainer)
+    private void Construct(DiContainer diContainer, DialogueNodeHandlerStorage dialogueNodeHandlerStorage)
     {
-        _diContainer = diContainer; 
+        _diContainer = diContainer;
+        _dialogueNodeHandlerStorage = dialogueNodeHandlerStorage;
     }
 
     private void Awake()
@@ -36,6 +42,7 @@ public class DialogWindow : MonoBehaviour
 
     public void OpenDialog(Node node)
     {
+        if (_blockingControl) return;
         Clear();
         if (node == null)
         {
@@ -43,6 +50,25 @@ public class DialogWindow : MonoBehaviour
             Close();
             return;
         }
+        _canvas.enabled = true;
+        HandleNode(node);
+    }
+
+    private async void OpenNextDialogAsync(IExecutionNode executionNode)
+    {
+        _blockingControl = true;
+        Node nextNode = null;
+        if (_dialogueNodeHandlerStorage.TryGetExecutionHandler(executionNode, out IDialogExecutionNodeHandler handler))
+        {
+             nextNode = await handler.Execute(executionNode);
+        }
+        _blockingControl = false;
+        HandleNode(nextNode);
+    }
+
+    private void HandleNode(Node node)
+    {
+        if(node == null) { return; }
         switch (node)
         {
             case DialogNode dialogNode:
@@ -54,26 +80,13 @@ public class DialogWindow : MonoBehaviour
                 }
                 break;
             case IExecutionNode executionNode:
-                executionNode.Execute();
-                OpenDialog(executionNode.Next);
+                OpenNextDialogAsync(executionNode);
                 return;
             case DialogueExitNode:
                 Close();
                 return;
-            default:
-                Debug.LogError($"Invalid node type:{node.GetType()}");
-                break;
-        }
-
-        _canvas.enabled = true;
-    }
-
-    private void SetNpcReplica(Node node)
-    {
-        switch(node) 
-        {
-            case ReplicaNode replicaNode:
-                _npcDialog.text = replicaNode.Replica;
+                case ToStartNode toStartNode:
+                    HandleNode(toStartNode.ParentContainer.StartNode.Next);
                 break;
             default:
                 Debug.LogError($"Invalid node type:{node.GetType()}");
@@ -85,12 +98,18 @@ public class DialogWindow : MonoBehaviour
     {
         switch (node)
         {
-            case ReplicaNode replicaNode:
+            case PlayerDialogNode replicaNode:
                 AddPlayerDialogue(replicaNode.Replica, replicaNode.Next);
                 break;
                 case IConditionNode conditionNode:
-                if (conditionNode.CheckCondition())
-                { SetPlayerReplica(conditionNode.Next); }
+                if (_dialogueNodeHandlerStorage.TryGeConditionHandler(conditionNode, out IDialogConditionNodeHandler conditionHandler))
+                {
+                    Node nextNode = conditionHandler.CheckCondition(conditionNode);
+                    if (nextNode != null)
+                    {
+                        SetPlayerReplica(nextNode);
+                    }
+                }
                 break;
                 case ToStartNode:
                 if(node.ParentContainer.StartNode.Next is DialogNode dialogNode)
@@ -118,6 +137,7 @@ public class DialogWindow : MonoBehaviour
 
     public void Close() 
     {
+        if (_blockingControl) return;
         _canvas.enabled = false;
     }
 

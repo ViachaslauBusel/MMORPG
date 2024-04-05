@@ -6,24 +6,41 @@ using System.Threading.Tasks;
 
 namespace Quests
 {
-    public struct Quest
+    public class Quest
     {
-        private int _questID;
+        private readonly int _questID;
+        private readonly QuestData _questData;
         private int _currentStageID;
-        private QuestData _questData;
-        private IEnumerable<int> _stagesLog;
-
-        public Quest(int questID, QuestData questData, int currentStageID, List<int> stagesLog) 
-        {
-            _questID = questID;
-            _questData = questData;
-            _currentStageID = currentStageID;
-            _stagesLog = stagesLog;
-        }
 
         public int ID => _questID;
         public int CurrentStageID => _currentStageID;
         public QuestData Data => _questData;
-        public IEnumerable<int> StagesLog => _stagesLog;
+
+        public bool IsCompleted
+        {
+            get
+            {
+                QuestStageNode stageNode = GetCurrentStage();
+                return stageNode == null || stageNode.NextNode == null;
+            }
+           
+        }
+
+        public Quest(int questID, QuestData questData, int currentStageID) 
+        {
+            _questID = questID;
+            _questData = questData;
+            _currentStageID = currentStageID;
+        }
+
+        internal void UpdateStageId(int stageID)
+        {
+            _currentStageID = stageID;
+        }
+
+        internal QuestStageNode GetCurrentStage()
+        {
+           return (QuestStageNode)_questData.Nodes.FirstOrDefault(x => x.ID == _currentStageID);
+        }
     }
 }

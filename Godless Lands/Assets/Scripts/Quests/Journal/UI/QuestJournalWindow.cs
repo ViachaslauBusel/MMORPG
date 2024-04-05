@@ -1,16 +1,12 @@
-using Quests.Journal;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 public class QuestJournalWindow : MonoBehaviour
 {
-    private Canvas m_canvas;
+    private Canvas _canvas;
 
     private void Awake()
     {
-        m_canvas = GetComponent<Canvas>();
+        _canvas = GetComponent<Canvas>();
     }
 
     private void Start()
@@ -20,10 +16,11 @@ public class QuestJournalWindow : MonoBehaviour
 
     public void Open()
     {
-        m_canvas.enabled = true;
+        _canvas.enabled = true;
     }
+
     public void Close()
     {
-        m_canvas.enabled = false;
+        _canvas.enabled = false;
     }
 }

@@ -1,5 +1,74 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8784981910256865542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 23
+  m_position: {x: 1390.7892, y: 684.96674}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 5904229552817374988}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _replica: I got a pickaxe. I assembled it with one of the skeletons, as you asked.
+--- !u!114 &-8716077890004392106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 20
+  m_position: {x: 4008.6438, y: 332.53024}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -8484819938665286081}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: -8484819938665286081}
+  _replica: I'll head to the fields and bring you that pickaxe.
+--- !u!114 &-8644763139661342943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 43
+  m_position: {x: 1461.6687, y: 1486.3207}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 4937709938918001765}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _replica: I mined ore
 --- !u!114 &-8484819938665286081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25,7 +94,159 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 6595967155741553987}
   m_parentContainer: {fileID: 11400000}
-  m_quest: {fileID: 11400000, guid: 8e12702b676a4ea47b5c0aa4bece3043, type: 2}
+  _quest: {fileID: 11400000, guid: 6ee66308c239ceb418efa14b9952ef48, type: 2}
+--- !u!114 &-7920187059249691591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 40
+  m_position: {x: 3997.0952, y: 1120.3616}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -6149491629332490383}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _replica: ok
+--- !u!114 &-7887733273566006704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 21
+  m_position: {x: 5236.8726, y: 321.68683}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 3774249281245653968}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 3774249281245653968}
+  _replica: ok
+--- !u!114 &-6508597134489438511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 49
+  m_position: {x: 2759.6687, y: 1713.3207}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 1483296535767810432}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _replica: ok
+--- !u!114 &-6149491629332490383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f524edd28b99b3469fcd54ea368e0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 41
+  m_position: {x: 4428.264, y: 1212.5695}
+  m_outputManager:
+    m_outputPorts: []
+  m_parentContainer: {fileID: 11400000}
+--- !u!114 &-6093113184857596813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 27
+  m_position: {x: 2264.6226, y: 904.6582}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: -220589379934025540}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: You don't have a pickaxe
+--- !u!114 &-5849681826646275595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f524edd28b99b3469fcd54ea368e0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 52
+  m_position: {x: 1421.632, y: 152}
+  m_outputManager:
+    m_outputPorts: []
+  m_parentContainer: {fileID: 11400000}
+--- !u!114 &-5314860691513069162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33bda2387dec81458b1a7d88ce1790f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 22
+  m_position: {x: 984.2103, y: 674.4405}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -8784981910256865542}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _questData: {fileID: 11400000, guid: 6ee66308c239ceb418efa14b9952ef48, type: 2}
+  _requiredQuestStageID: 4
 --- !u!114 &-5287670747002186409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,8 +270,117 @@ MonoBehaviour:
       m_maxConnection: 10
       m_nextNodes:
       - {fileID: 3203861903796704487}
+      - {fileID: -5314860691513069162}
+      - {fileID: -1376854737696093941}
+      - {fileID: 749441316183118878}
+      - {fileID: 4506285588584539832}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: 'Greetings, traveler. '
+--- !u!114 &-5247212139885014078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c17c8cfc2278644f99f16e0603cc2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 47
+  m_position: {x: 3239.6687, y: 1535.3207}
+  m_outputManager:
+    m_outputPorts: []
+  m_parentContainer: {fileID: 11400000}
+--- !u!114 &-5055934467791071389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 36
+  m_position: {x: 2639.2651, y: 1259.5951}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 7548817798109653001}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _replica: Ok, I will do it
+--- !u!114 &-4509504042978466918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 38
+  m_position: {x: 3524.7517, y: 1092.6759}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: -7920187059249691591}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: Goodluck
+--- !u!114 &-4413366866235574049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c17c8cfc2278644f99f16e0603cc2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 29
+  m_position: {x: 3217.8804, y: 724.3244}
+  m_outputManager:
+    m_outputPorts: []
+  m_parentContainer: {fileID: 11400000}
+--- !u!114 &-4315894718486375870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 19
+  m_position: {x: 3153.0652, y: 401.20496}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 2711210701207812637}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 2711210701207812637}
+  _replica: You want me to take one of those pickaxes?
 --- !u!114 &-3889833621701199168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +404,29 @@ MonoBehaviour:
   m_parentContainer: {fileID: 11400000}
   m_next: {fileID: -8484819938665286081}
   m_replica: ' I''ll head to the fields and bring you that pickaxe.'
+--- !u!114 &-3848291675539078741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 46
+  m_position: {x: 2765.6687, y: 1505.3207}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -5247212139885014078}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _replica: Thank you
 --- !u!114 &-2750531976782763812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +450,70 @@ MonoBehaviour:
   m_parentContainer: {fileID: 11400000}
   m_next: {fileID: 3774249281245653968}
   m_replica: ok
+--- !u!114 &-1376854737696093941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33bda2387dec81458b1a7d88ce1790f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 32
+  m_position: {x: 998.90295, y: 1207.7416}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 8326858613297649056}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _questData: {fileID: 11400000, guid: 6ee66308c239ceb418efa14b9952ef48, type: 2}
+  _requiredQuestStageID: 7
+--- !u!114 &-1171665396128747163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c17c8cfc2278644f99f16e0603cc2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 31
+  m_position: {x: 3124.6223, y: 1010.42957}
+  m_outputManager:
+    m_outputPorts: []
+  m_parentContainer: {fileID: 11400000}
+--- !u!114 &-220589379934025540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 30
+  m_position: {x: 2737.2983, y: 970.99304}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -1171665396128747163}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _replica: Yes exactly
 --- !u!114 &-174113568685193513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,20 +553,75 @@ MonoBehaviour:
   m_nodes:
   - {fileID: 2454749454654031212}
   - {fileID: -5287670747002186409}
-  - {fileID: -174113568685193513}
   - {fileID: 2222063276747282356}
-  - {fileID: 630961161325715142}
   - {fileID: 449591512431626284}
   - {fileID: 3203861903796704487}
-  - {fileID: 1821548745250231587}
   - {fileID: 2711210701207812637}
-  - {fileID: -3889833621701199168}
   - {fileID: 28456180601790102}
   - {fileID: -8484819938665286081}
   - {fileID: 6595967155741553987}
-  - {fileID: -2750531976782763812}
   - {fileID: 3774249281245653968}
-  m_generatorID: 17
+  - {fileID: 7738582478631701874}
+  - {fileID: 4633326852979746115}
+  - {fileID: -4315894718486375870}
+  - {fileID: -8716077890004392106}
+  - {fileID: -7887733273566006704}
+  - {fileID: -5314860691513069162}
+  - {fileID: -8784981910256865542}
+  - {fileID: 5904229552817374988}
+  - {fileID: 20902397885018985}
+  - {fileID: -6093113184857596813}
+  - {fileID: 5401066382460674442}
+  - {fileID: -4413366866235574049}
+  - {fileID: -220589379934025540}
+  - {fileID: -1171665396128747163}
+  - {fileID: -1376854737696093941}
+  - {fileID: 8326858613297649056}
+  - {fileID: 4090117799082228601}
+  - {fileID: 310721837927062931}
+  - {fileID: -5055934467791071389}
+  - {fileID: 7548817798109653001}
+  - {fileID: -4509504042978466918}
+  - {fileID: 367282174168933435}
+  - {fileID: -7920187059249691591}
+  - {fileID: -6149491629332490383}
+  - {fileID: 749441316183118878}
+  - {fileID: -8644763139661342943}
+  - {fileID: 2357479360793305753}
+  - {fileID: 4937709938918001765}
+  - {fileID: -3848291675539078741}
+  - {fileID: -5247212139885014078}
+  - {fileID: 9160815509594166871}
+  - {fileID: -6508597134489438511}
+  - {fileID: 1483296535767810432}
+  - {fileID: 4506285588584539832}
+  - {fileID: -5849681826646275595}
+  m_generatorID: 53
+--- !u!114 &20902397885018985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 26
+  m_position: {x: 2261.5615, y: 629.1478}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: 5401066382460674442}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: Great, now you can mine the ore you need to create weapons.
 --- !u!114 &28456180601790102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,9 +644,57 @@ MonoBehaviour:
     - m_name: player
       m_maxConnection: 10
       m_nextNodes:
-      - {fileID: -2750531976782763812}
+      - {fileID: -7887733273566006704}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: Be careful, my friend. Good luck, and return with the pickaxe.
+--- !u!114 &310721837927062931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 35
+  m_position: {x: 1796.4648, y: 1226.4781}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 4090117799082228601}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 4090117799082228601}
+  _replica: Now I have a pickaxe, how can I use it?
+--- !u!114 &367282174168933435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 39
+  m_position: {x: 3489.617, y: 1300.7844}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: -7920187059249691591}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: Something went wrong
 --- !u!114 &449591512431626284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +717,7 @@ MonoBehaviour:
     - m_name: player
       m_maxConnection: 10
       m_nextNodes:
-      - {fileID: 1821548745250231587}
+      - {fileID: -4315894718486375870}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: Before I teach you, I need to ask you for a favor. Lately, skeletons
     have been appearing in the fields outside the town. They were once miners and
@@ -225,6 +745,47 @@ MonoBehaviour:
   m_parentContainer: {fileID: 11400000}
   m_next: {fileID: 449591512431626284}
   m_replica: I'm ready to learn. What do I need to do?
+--- !u!114 &749441316183118878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33bda2387dec81458b1a7d88ce1790f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 42
+  m_position: {x: 1007.23535, y: 1450.685}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -8644763139661342943}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _questData: {fileID: 11400000, guid: 8e7c9e84b3ae3ea40a213ec92add066f, type: 2}
+  _requiredQuestStageID: 4
+--- !u!114 &1483296535767810432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c17c8cfc2278644f99f16e0603cc2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 50
+  m_position: {x: 3226.1584, y: 1723.6317}
+  m_outputManager:
+    m_outputPorts: []
+  m_parentContainer: {fileID: 11400000}
 --- !u!114 &1821548745250231587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,10 +831,36 @@ MonoBehaviour:
     - m_name: player
       m_maxConnection: 10
       m_nextNodes:
-      - {fileID: 630961161325715142}
+      - {fileID: 4633326852979746115}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: ' You look like someone who''s not afraid of dangers. I can teach
     you, if you''re willing to listen.'
+--- !u!114 &2357479360793305753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 44
+  m_position: {x: 2337.6687, y: 1483.3207}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: -3848291675539078741}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: Great, you're making progress, here's a recipe that you can use to
+    create weapons
 --- !u!114 &2454749454654031212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +905,7 @@ MonoBehaviour:
     - m_name: player
       m_maxConnection: 10
       m_nextNodes:
-      - {fileID: -3889833621701199168}
+      - {fileID: -8716077890004392106}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: Exactly. Bring me a pickaxe, and I'll teach you how to craft weapons.
     But remember, skeletons can be dangerous.
@@ -341,11 +928,11 @@ MonoBehaviour:
     - m_name: out
       m_maxConnection: 1
       m_nextNodes:
-      - {fileID: -174113568685193513}
+      - {fileID: 7738582478631701874}
   m_parentContainer: {fileID: 11400000}
-  m_next: {fileID: -174113568685193513}
-  m_questData: {fileID: 11400000, guid: 8e12702b676a4ea47b5c0aa4bece3043, type: 2}
-  m_requiredQuestStageID: 0
+  _next: {fileID: 7738582478631701874}
+  _questData: {fileID: 11400000, guid: 6ee66308c239ceb418efa14b9952ef48, type: 2}
+  _requiredQuestStageID: 0
 --- !u!114 &3774249281245653968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +950,152 @@ MonoBehaviour:
   m_outputManager:
     m_outputPorts: []
   m_parentContainer: {fileID: 11400000}
+--- !u!114 &4090117799082228601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 34
+  m_position: {x: 2197.7651, y: 1237.0087}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: -5055934467791071389}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: Mine iron ore and coal from the Ining Stone nearby
+--- !u!114 &4506285588584539832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 51
+  m_position: {x: 1015.63196, y: 176}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -5849681826646275595}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _replica: Goodbye
+--- !u!114 &4633326852979746115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 18
+  m_position: {x: 2283.4634, y: 378.31332}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 449591512431626284}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 449591512431626284}
+  _replica: I'm ready to learn. What do I need to do?
+--- !u!114 &4937709938918001765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5842c7d0ee7057428021458704b36aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 45
+  m_position: {x: 1861.6687, y: 1515.3207}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 2357479360793305753}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 9160815509594166871}
+  m_parentContainer: {fileID: 11400000}
+  _quest: {fileID: 11400000, guid: 8e7c9e84b3ae3ea40a213ec92add066f, type: 2}
+--- !u!114 &5401066382460674442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 28
+  m_position: {x: 2830.097, y: 734.84314}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -4413366866235574049}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _replica: Sounds good
+--- !u!114 &5904229552817374988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5842c7d0ee7057428021458704b36aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 25
+  m_position: {x: 1812.9993, y: 665.3842}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 20902397885018985}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -6093113184857596813}
+  m_parentContainer: {fileID: 11400000}
+  _quest: {fileID: 11400000, guid: 6ee66308c239ceb418efa14b9952ef48, type: 2}
 --- !u!114 &6595967155741553987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +1118,105 @@ MonoBehaviour:
     - m_name: player
       m_maxConnection: 10
       m_nextNodes:
-      - {fileID: -2750531976782763812}
+      - {fileID: -7887733273566006704}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: Something went wrong
+--- !u!114 &7548817798109653001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5842c7d0ee7057428021458704b36aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 37
+  m_position: {x: 3030.4275, y: 1262.1085}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -4509504042978466918}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 367282174168933435}
+  m_parentContainer: {fileID: 11400000}
+  _quest: {fileID: 11400000, guid: 8e7c9e84b3ae3ea40a213ec92add066f, type: 2}
+--- !u!114 &7738582478631701874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 17
+  m_position: {x: 1390.4149, y: 447.6494}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 2222063276747282356}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 2222063276747282356}
+  _replica: Hello, hunter. I'm looking for someone who could teach me how to craft
+    weapons.
+--- !u!114 &8326858613297649056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33bda2387dec81458b1a7d88ce1790f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 33
+  m_position: {x: 1400.7429, y: 1216.8438}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 310721837927062931}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _questData: {fileID: 11400000, guid: 8e7c9e84b3ae3ea40a213ec92add066f, type: 2}
+  _requiredQuestStageID: 0
+--- !u!114 &9160815509594166871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 48
+  m_position: {x: 2333.6687, y: 1677.3207}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: -6508597134489438511}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: You don't have enough items

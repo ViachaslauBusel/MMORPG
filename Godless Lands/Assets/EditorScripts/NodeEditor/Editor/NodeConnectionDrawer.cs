@@ -46,7 +46,7 @@ namespace NodeEditor
                     for (int connectionIndex = 0; connectionIndex < currentNode.ConnectionManager.GetPortByIndex(port).ConnectionsCount; connectionIndex++)
                     {
                         // Get the ID of the connected node
-                        int nextNodeID = currentNode.ConnectionManager.GetPortByIndex(port).GetConnectedNode(connectionIndex).ID;
+                        int nextNodeID = currentNode.ConnectionManager.GetPortByIndex(port).GetConnectedNodeByIndex(connectionIndex).ID;
 
                         // Find the NodeDrawer for the connected node
                         NodeDrawer nextDrawer = nodes.Find((n) => n.Node.ID == nextNodeID);

@@ -1,4 +1,6 @@
-﻿using NodeEditor.Data;
+﻿using Cysharp.Threading.Tasks;
+using Dialogues.Data.Nodes;
+using NodeEditor.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +9,7 @@ using System.Threading.Tasks;
 
 namespace Dialogues.Data
 {
-    public interface IExecutionNode
+    internal interface IExecutionNode
     {
-        Node Next { get; }
-
-        void Execute();
     }
 }

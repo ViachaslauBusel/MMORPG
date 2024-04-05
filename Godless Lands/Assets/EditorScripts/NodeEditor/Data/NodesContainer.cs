@@ -59,6 +59,23 @@ namespace NodeEditor.Data
                     m_nodes.RemoveAt(i);
                     continue;
                 }
+                for(int j = 0; j < m_nodes[i].ConnectionManager.PortsCount; j++)
+                {
+                    Port port = m_nodes[i].ConnectionManager.GetPortByIndex(j);
+                    if (port == null)
+                    {
+                        Debug.LogError($"Error validating a container: a port at index {j} of the node at index {i} is null");
+                        continue;
+                    }
+
+                    for(int k=port.ConnectionsCount-1; k >= 0; k--)
+                    {
+                        if (port.GetConnectedNodeByIndex(k) == null)
+                        {
+                            port.RemoveLinkByIndex(k);
+                        }
+                    }
+                }
                 NodeHelper.ValidatePortCounts(m_nodes[i]);
             }
         }

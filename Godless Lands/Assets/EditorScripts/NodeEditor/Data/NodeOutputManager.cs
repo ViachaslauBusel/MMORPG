@@ -71,7 +71,7 @@ namespace NodeEditor.Data
         {
             foreach (Port port in m_outputPorts)
             {
-                port.RemoveLink(nodeID);
+                port.RemoveLinkById(nodeID);
             }
         }
 

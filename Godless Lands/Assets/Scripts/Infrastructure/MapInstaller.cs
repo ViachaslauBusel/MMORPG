@@ -1,5 +1,7 @@
 using Cells;
 using CombatMode;
+using Dialogues;
+using Dialogues.NodeHandlers;
 using Equipment;
 using Inventory;
 using Items;
@@ -9,6 +11,8 @@ using ObjectInteraction;
 using OpenWorld;
 using Player;
 using Professions;
+using Quests;
+using Quests.Journal;
 using Recipes;
 using Skills;
 using Target;
@@ -71,6 +75,19 @@ public class MapInstaller : MonoInstaller
         //Professions
         Container.BindInterfacesAndSelfTo<ProfessionsModel>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<ProfessionsListener>().FromNew().AsSingle().NonLazy();
+
+        //Quests
+        Container.BindInterfacesAndSelfTo<QuestsController>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<QuestsModel>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<QuestsListener>().FromNew().AsSingle().NonLazy();
+
+        //Quests Journal
+        Container.BindInterfacesAndSelfTo<QuestJournalModel>().FromNew().AsSingle().NonLazy();
+
+        //Dialogues
+        Container.BindInterfacesAndSelfTo<DialogueNodeHandlerStorage>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<QuestLevelCheckNodeHandler>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<QuestLevelUpNodeHandler>().FromNew().AsSingle().NonLazy();        
      
     }
 }

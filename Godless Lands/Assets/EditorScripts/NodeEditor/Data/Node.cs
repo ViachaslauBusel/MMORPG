@@ -66,7 +66,7 @@ namespace NodeEditor.Data
                 }
                 else
                 {
-                    object fieldValue = port.ConnectionsCount > 0 ? port.GetConnectedNode(0) : null;
+                    object fieldValue = port.ConnectionsCount > 0 ? port.GetConnectedNodeByIndex(0) : null;
 
                     field.Field.SetValue(this, fieldValue);
                 }

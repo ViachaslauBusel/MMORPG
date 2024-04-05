@@ -21,9 +21,13 @@ namespace Quests.Nodes
         private int _itemID;
         [SerializeField]
         private int _amount;
+        [SerializeField]
+        private string _conditionName;
 
         public int SuccesIdNode => _successNode != null ? _successNode.ID : 0;
         public int ItemID  => _itemID;
         public int ItemAvailableAmount => _amount;
+        public string ConditionName => _conditionName;
+        public Node NextNode => _successNode;
     }
 }

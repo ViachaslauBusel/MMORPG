@@ -37,7 +37,7 @@ namespace NodeEditor.Data
         /// </summary>
         /// <param name="connectionIndex">The index of the connection.</param>
         /// <returns>The connected node or null if the index is out of range.</returns>
-        public Node GetConnectedNode(int connectionIndex)
+        public Node GetConnectedNodeByIndex(int connectionIndex)
         {
             // Check if the connectionIndex is within a valid range
             if (connectionIndex >= 0 && connectionIndex < m_nextNodes.Count)
@@ -111,9 +111,14 @@ namespace NodeEditor.Data
         /// Remove a link based on the node's ID.
         /// </summary>
         /// <param name="nodeID">The ID of the node to unlink.</param>
-        public void RemoveLink(int nodeID)
+        public void RemoveLinkById(int nodeID)
         {
             m_nextNodes.RemoveAll((n) => n.ID == nodeID);
+        }
+
+        public void RemoveLinkByIndex(int index)
+        {
+            m_nextNodes.RemoveAt(index);
         }
 
         internal void SetMaxConnectionsCount(int count)

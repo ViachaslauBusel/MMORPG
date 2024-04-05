@@ -1,6 +1,7 @@
 ﻿using Factories;
 using Items;
 using Physic.Dynamic;
+using Quests.Data;
 using Recipes;
 using UnityEngine;
 using Zenject;
@@ -25,6 +26,8 @@ namespace Infrastructure
         private RecipesDataHolder _recipesDataHolder;
         [SerializeField]
         private NPCsFactory _npcsFactory;
+        [SerializeField]
+        private QuestDataHolder _questsDataHolder;
 
         public override void InstallBindings()
         {
@@ -36,6 +39,7 @@ namespace Infrastructure
             Container.Bind<DynamicObjectControllersFactory>().FromInstance(_dynamicObjectControllersFactory).AsSingle();
             Container.Bind<RecipesDataHolder>().FromInstance(_recipesDataHolder).AsSingle();
             Container.Bind<NPCsFactory>().FromInstance(_npcsFactory).AsSingle();
+            Container.Bind<QuestDataHolder>().FromInstance(_questsDataHolder).AsSingle();
         }
     }
 }
