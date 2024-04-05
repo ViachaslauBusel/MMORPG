@@ -1,10 +1,7 @@
 ﻿using Cells;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using InpuPanelBar;
-using Zenject;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace Hotbar
 {
@@ -36,21 +33,6 @@ namespace Hotbar
                 if (input == null) continue;
                 _barCells[i].SetToken(input, (i+1).ToString());
             }
-        }
-
-        private void Hotbar_F1_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        //Если какая то ячейка в панели использует эту клавишу true
-        public bool IsUse(Token token)
-        {
-            foreach(BarCell cell in _barCells)
-            {
-                if (cell.IsUse(token)) return true;
-            }
-            return false;
         }
     }
 }

@@ -121,7 +121,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 1314896437444206122}
   m_parentContainer: {fileID: 11400000}
-  m_next: {fileID: 0}
+  m_next: {fileID: 1314896437444206122}
 --- !u!114 &6247730144948398503
 MonoBehaviour:
   m_ObjectHideFlags: 0

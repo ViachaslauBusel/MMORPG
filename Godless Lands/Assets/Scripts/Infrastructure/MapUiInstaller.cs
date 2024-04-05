@@ -1,4 +1,4 @@
-﻿using Drop;
+﻿using Drop.UI;
 using ObjectInteraction.UI;
 using UI.PlayerCharacterDead;
 using UnityEngine;
@@ -18,6 +18,8 @@ namespace Infrastructure
         private InventoryWindow _inventoryWindow;
         [SerializeField]
         private DialogWindow _dialogWindow;
+        [SerializeField]
+        private SelectQuantityWindow _selectQuantityWindow;
 
         public override void InstallBindings()
         {
@@ -26,6 +28,7 @@ namespace Infrastructure
             Container.Bind<DropWindow>().FromInstance(_dropWindow).AsSingle();
             Container.Bind<InventoryWindow>().FromInstance(_inventoryWindow).AsSingle();
             Container.Bind<DialogWindow>().FromInstance(_dialogWindow).AsSingle();
+            Container.Bind<SelectQuantityWindow>().FromInstance(_selectQuantityWindow).AsSingle();
         }
     }
 }

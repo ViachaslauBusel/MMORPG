@@ -1,12 +1,10 @@
 ﻿using Protocol.MSG.Game.Hotbar;
-using RUCP;
 using Skills;
-using Hotbar;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Zenject;
-using UnityEngine.InputSystem;
 
 namespace Cells
 {
@@ -54,11 +52,6 @@ namespace Cells
             return null;
         }
 
-        public bool IsUse(Token _token)
-        {
-            if (_input != null && _input.Equals(_token)) return true;
-            return false;
-        }
         public void SetToken(InputAction input, string name)
         {
             _input = input;

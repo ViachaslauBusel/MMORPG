@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Drop
+namespace Drop.UI
 {
     public class DropWindow : MonoBehaviour
     {

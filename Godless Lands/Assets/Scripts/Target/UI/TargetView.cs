@@ -1,9 +1,4 @@
-﻿using Characters;
-using Monsters;
-using RUCP;
-using RUCP.Handler;
-using Target;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 

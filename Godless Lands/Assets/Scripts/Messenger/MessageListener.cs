@@ -1,4 +1,5 @@
-﻿using Protocol;
+﻿using Items;
+using Protocol;
 using Protocol.MSG.Game.Messenger;
 using RUCP;
 using RUCP.Handler;
@@ -11,12 +12,15 @@ namespace Messenger
 {
     public class MessageListener : MonoBehaviour
     {
-        private NetworkManager networkManager;
+        private NetworkManager _networkManager;
+        private ItemsFactory _itemsFactory;
 
         [Inject]
-        private void Constrcut(NetworkManager networkManager)
+        private void Constrcut(NetworkManager networkManager, ItemsFactory itemsFactory)
         {
-            this.networkManager = networkManager;
+            _networkManager = networkManager;
+            _itemsFactory = itemsFactory;
+
             networkManager.RegisterHandler(Opcode.MSG_MESSAGE_SC, Receiving);
         }
 
@@ -48,7 +52,7 @@ namespace Messenger
                 print("number: " + number);
                 msg = msg.Replace(
                     str.Value,
-                    ItemsManager.Create(Int32.Parse(number)).nameItem
+                    _itemsFactory.CreateItem(Int32.Parse(number)).Data.nameItem
                            );
             }
             return msg;
@@ -56,7 +60,7 @@ namespace Messenger
         private void OnDestroy()
         {
 
-            networkManager?.UnregisterHandler(Types.ChatMessage);
+            _networkManager?.UnregisterHandler(Types.ChatMessage);
         }
     }
 }

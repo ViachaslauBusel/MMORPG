@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class CursorManager : MonoBehaviour {
@@ -50,7 +48,7 @@ public class CursorManager : MonoBehaviour {
                     Cursor.SetCursor(cursorAtack, hotSpot, cursorMode);
                     break;
                 case 14://DeadCharacter
-                    DisplayInformer.On(hit.transform.gameObject);
+                    //DisplayInformer.On(hit.transform.gameObject);
                     Cursor.SetCursor(cursorDrop, hotSpot, cursorMode);
                     return;
                 case 10://DeadMobs
@@ -61,7 +59,7 @@ public class CursorManager : MonoBehaviour {
                     break;
             }
         }
-        DisplayInformer.Off();
+       // DisplayInformer.Off();
     }
 
     public void OnHammer()

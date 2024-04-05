@@ -10,7 +10,6 @@ namespace Lobby
     {
         private Text txt_name;
         private int id;
-
         private Canvas canvas_main, canvas_character_cretor;
         private Button button;
         private NetworkManager m_networkManager;

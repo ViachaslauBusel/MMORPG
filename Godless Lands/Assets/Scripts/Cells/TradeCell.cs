@@ -1,10 +1,17 @@
 ﻿using RUCP;
+using Zenject;
 
 namespace Cells
 {
     public class TradeCell : ItemCell
     {
+        private SelectQuantityWindow _selectQuantityWindow;
 
+        [Inject]
+        private void Construct(SelectQuantityWindow selectQuantityWindow)
+        {
+            _selectQuantityWindow = selectQuantityWindow;
+        }
 
         /// <summary>
         /// Предложить предмет на обмен
@@ -13,7 +20,7 @@ namespace Cells
          {
             if (IsEmpty()) return;
             //Открыть окно для ввода количества предметов
-            SelectQuantity.Instance.Subscribe(
+            _selectQuantityWindow.Subscribe(
                 "Сколько штук переместить?",
                 (count) =>
                 {

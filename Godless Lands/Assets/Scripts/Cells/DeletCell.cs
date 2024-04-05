@@ -9,11 +9,13 @@ namespace Cells
     public class DeletCell : Cell
     {
         private ItemUsageService _itemUsageService;
+        private SelectQuantityWindow _selectQuantityWindow;
 
         [Inject]
-        private void Construct(ItemUsageService itemUsageService)
+        private void Construct(ItemUsageService itemUsageService, SelectQuantityWindow selectQuantityWindow)
         {
             _itemUsageService = itemUsageService;
+            _selectQuantityWindow = selectQuantityWindow;
         }
 
         private new void Start()
@@ -35,7 +37,7 @@ namespace Cells
 
                 if (item.Data.stack)
                 {
-                    SelectQuantity.Instance.Subscribe(
+                    _selectQuantityWindow.Subscribe(
                     "How many pieces to move?",
                     (count) =>
                     {

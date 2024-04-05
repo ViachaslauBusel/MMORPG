@@ -70,17 +70,8 @@ namespace Loader
 
         private IEnumerator IELoadPoint()
         {
-
-            var managers = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<Manager>();
-
-            foreach (Manager manager in managers)
-            {
-                manager.AllDestroy();
-            }
-
             PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
             player.enabled = false;
-            player.GetComponent<AnimationSkill>().DeadOff();//Отключить намацию смерти
 
             mapLoader = GameObject.Find("Map").GetComponent<MapLoader>();
             mapLoader.DestroyMap();
