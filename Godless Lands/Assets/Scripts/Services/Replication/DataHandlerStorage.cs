@@ -5,6 +5,7 @@ using CombatMode;
 using DynamicsObjects.TransformHandlers;
 using NetworkObjectVisualization;
 using NetworkObjectVisualization.Characters;
+using NetworkObjectVisualization.Corpse;
 using NetworkObjectVisualization.MiningStones;
 using NetworkObjectVisualization.NPC;
 using Nickname;
@@ -47,7 +48,8 @@ namespace Services.Replication
             _handlers.Add(typeof(InteractionObjectData), typeof(InteractionObjectDataHandler));
             _handlers.Add(typeof(CombotModeData), typeof(CombatModeDataHandler));
             _handlers.Add(typeof(WorkbenchSkinData), typeof(WorkbenchViewDataHandler));
-            _handlers.Add(typeof(NpcSkinData), typeof(NpcViewDataHandler));   
+            _handlers.Add(typeof(NpcSkinData), typeof(NpcViewDataHandler));
+            _handlers.Add(typeof(CorpseSkinData), typeof(CorpseViewDataHandler));
         }
 
         public INetworkDataHandler CreateDataHandler(GameObject gameObject, IReplicationData data)

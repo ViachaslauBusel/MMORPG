@@ -7,12 +7,14 @@ using Zenject;
 
 namespace NetworkObjectVisualization
 {
-    internal class MonsterViewDataHandler : NetworkObjectVisualHandler, INetworkDataHandler
+    internal class MonsterViewDataHandler : CachedNetworkObjectVisualHandler, INetworkDataHandler
     {
         private MonstersFactory _monstersFactory;
         private MonsterSkinData _visualData;
         private TransfromDataHandler _networkTransform;
+        private int _skinID;
 
+        protected override bool IsNeedChaceVisual => _visualData.InNeedChaceVisual;
 
         [Inject]
         private void Construct(MonstersFactory monstersFactory)
@@ -24,6 +26,7 @@ namespace NetworkObjectVisualization
         {
             base.Awake();
             _networkTransform = GetComponent<TransfromDataHandler>();
+
         }
 
         public void UpdateData(IReplicationData updatedData)
@@ -31,17 +34,18 @@ namespace NetworkObjectVisualization
             _visualData = (MonsterSkinData)updatedData;
 
             Debug.Log("MonsterViewDataHandler: UpdateData: " + _visualData.InNeedChaceVisual);
-            _isNeedChaceVisual = _visualData.InNeedChaceVisual;
-            UpdateVisualObject(_visualData.VisualChaneObjectId);
+            UpdateVisualObject();
         }
 
-        protected void UpdateVisualObject(int visualObjectId)
+        protected void UpdateVisualObject()
         {
+            if (_skinID == _visualData.SkinID) return;
             DestroyExistingUnitObject();
 
-            GameObject visualObject = GetCachedVisualObject(visualObjectId) ?? CreateNewUnit();
+            GameObject visualObject = CreateNewUnit();
 
             SetVisualObject(visualObject);
+            _skinID = _visualData.SkinID;
         }
 
         private GameObject CreateNewUnit()

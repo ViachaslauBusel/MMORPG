@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Zenject;
 
 namespace Target
 {
@@ -37,7 +31,7 @@ namespace Target
 
         private void OnTargetObjectUnregistered(ITargetObject @object)
         {
-            Debug.Log($"Unregistered target object: {@object.ID} curT:{_targetObjectID}");
+            //Debug.Log($"Unregistered target object: {@object.ID} curT:{_targetObjectID}");
             if(@object.ID == _targetObjectID)
             {
                 _targetObjectID = 0;

@@ -82,10 +82,7 @@ namespace Cells
 
         public override void Put(Cell cell)
         {
-            
-
             if (cell == null || cell.IsEmpty()) {  return; }
-
 
             if (cell is BarCell barCell)//Поменять местами содержимое ячейки
             {

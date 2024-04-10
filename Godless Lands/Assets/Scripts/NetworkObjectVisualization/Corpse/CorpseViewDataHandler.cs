@@ -5,30 +5,32 @@ using Services.Replication;
 using UnityEngine;
 using Zenject;
 
-namespace NetworkObjectVisualization.MiningStones
+namespace NetworkObjectVisualization.Corpse
 {
-    internal class MiningStoneSkinDataHandler : NetworkObjectVisualHandler, INetworkDataHandler
+    internal class CorpseViewDataHandler : CachedNetworkObjectVisualHandler, INetworkDataHandler
     {
-        private MiningStonesFactory _miningStonesFactory;
-        private MiningStoneSkinData _visualData;
+        private MonstersFactory _monstersFactory;
+        private CorpseSkinData _visualData;
         private TransfromDataHandler _networkTransform;
 
+        protected override bool IsNeedChaceVisual => false;
 
         [Inject]
-        private void Construct(MiningStonesFactory miningStonesFactory)
+        private void Construct(MonstersFactory monstersFactory)
         {
-            _miningStonesFactory = miningStonesFactory;
+            _monstersFactory = monstersFactory;
         }
 
         private new void Awake()
         {
             base.Awake();
             _networkTransform = GetComponent<TransfromDataHandler>();
+
         }
 
         public void UpdateData(IReplicationData updatedData)
         {
-            _visualData = (MiningStoneSkinData)updatedData;
+            _visualData = (CorpseSkinData)updatedData;
 
             UpdateVisualObject();
         }
@@ -37,14 +39,15 @@ namespace NetworkObjectVisualization.MiningStones
         {
             DestroyExistingUnitObject();
 
-            GameObject visualObject = CreateNewUnit();
+            GameObject visualObject = GetCachedVisualObject(_visualData.CachedObjectId);
+            visualObject ??= CreateNewUnit();
 
             SetVisualObject(visualObject);
         }
 
         private GameObject CreateNewUnit()
         {
-            return _miningStonesFactory.CreateStone(_visualData.SkinID, transform, _networkTransform.Position);
+            return _monstersFactory.CreateMonster(_visualData.SkinID, transform, _networkTransform.Position);
         }
     }
 }

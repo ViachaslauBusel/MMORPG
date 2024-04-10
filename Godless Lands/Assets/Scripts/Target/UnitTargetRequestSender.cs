@@ -59,7 +59,7 @@ namespace Target
 
         private void SetTarget(int gameObjectId)
         {
-            Debug.Log($"UnitTargetRequestSender.SetTarget: {gameObjectId}");
+            //Debug.Log($"UnitTargetRequestSender.SetTarget: {gameObjectId}");
             MSG_UNIT_TARGET_REQUEST_CS targetRequest = new MSG_UNIT_TARGET_REQUEST_CS();
             targetRequest.GameObjectId = gameObjectId;
             _networkManager.Client.Send(targetRequest);

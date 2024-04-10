@@ -21,7 +21,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 5904229552817374988}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: 5904229552817374988}
   _replica: I got a pickaxe. I assembled it with one of the skeletons, as you asked.
 --- !u!114 &-8716077890004392106
 MonoBehaviour:
@@ -67,7 +67,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 4937709938918001765}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: 4937709938918001765}
   _replica: I mined ore
 --- !u!114 &-8484819938665286081
 MonoBehaviour:
@@ -116,7 +116,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: -6149491629332490383}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: -6149491629332490383}
   _replica: ok
 --- !u!114 &-7887733273566006704
 MonoBehaviour:
@@ -162,7 +162,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 1483296535767810432}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: 1483296535767810432}
   _replica: ok
 --- !u!114 &-6149491629332490383
 MonoBehaviour:
@@ -244,7 +244,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: -8784981910256865542}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: -8784981910256865542}
   _questData: {fileID: 11400000, guid: 6ee66308c239ceb418efa14b9952ef48, type: 2}
   _requiredQuestStageID: 4
 --- !u!114 &-5287670747002186409
@@ -274,6 +274,7 @@ MonoBehaviour:
       - {fileID: -1376854737696093941}
       - {fileID: 749441316183118878}
       - {fileID: 4506285588584539832}
+      - {fileID: 2875461727422722627}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: 'Greetings, traveler. '
 --- !u!114 &-5247212139885014078
@@ -314,7 +315,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 7548817798109653001}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: 7548817798109653001}
   _replica: Ok, I will do it
 --- !u!114 &-4509504042978466918
 MonoBehaviour:
@@ -425,7 +426,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: -5247212139885014078}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: -5247212139885014078}
   _replica: Thank you
 --- !u!114 &-2750531976782763812
 MonoBehaviour:
@@ -471,7 +472,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 8326858613297649056}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: 8326858613297649056}
   _questData: {fileID: 11400000, guid: 6ee66308c239ceb418efa14b9952ef48, type: 2}
   _requiredQuestStageID: 7
 --- !u!114 &-1171665396128747163
@@ -491,6 +492,30 @@ MonoBehaviour:
   m_outputManager:
     m_outputPorts: []
   m_parentContainer: {fileID: 11400000}
+--- !u!114 &-505191463438258573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33bda2387dec81458b1a7d88ce1790f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 55
+  m_position: {x: 1382.832, y: 1756.9415}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 3941450214946054812}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _questData: {fileID: 11400000, guid: 8e7c9e84b3ae3ea40a213ec92add066f, type: 2}
+  _requiredQuestStageID: 8
 --- !u!114 &-220589379934025540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,7 +537,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: -1171665396128747163}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: -1171665396128747163}
   _replica: Yes exactly
 --- !u!114 &-174113568685193513
 MonoBehaviour:
@@ -596,7 +621,11 @@ MonoBehaviour:
   - {fileID: 1483296535767810432}
   - {fileID: 4506285588584539832}
   - {fileID: -5849681826646275595}
-  m_generatorID: 53
+  - {fileID: 2875461727422722627}
+  - {fileID: -505191463438258573}
+  - {fileID: 3941450214946054812}
+  - {fileID: 5221122098343092865}
+  m_generatorID: 58
 --- !u!114 &20902397885018985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,7 +795,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: -8644763139661342943}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: -8644763139661342943}
   _questData: {fileID: 11400000, guid: 8e7c9e84b3ae3ea40a213ec92add066f, type: 2}
   _requiredQuestStageID: 4
 --- !u!114 &1483296535767810432
@@ -909,6 +938,30 @@ MonoBehaviour:
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: Exactly. Bring me a pickaxe, and I'll teach you how to craft weapons.
     But remember, skeletons can be dangerous.
+--- !u!114 &2875461727422722627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33bda2387dec81458b1a7d88ce1790f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 54
+  m_position: {x: 987.0654, y: 1704.4945}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -505191463438258573}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _questData: {fileID: 11400000, guid: 0b68959b2a5b0074b8bc5437239c035d, type: 2}
+  _requiredQuestStageID: 0
 --- !u!114 &3203861903796704487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,6 +1003,29 @@ MonoBehaviour:
   m_outputManager:
     m_outputPorts: []
   m_parentContainer: {fileID: 11400000}
+--- !u!114 &3941450214946054812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 56
+  m_position: {x: 1823.8057, y: 1880.9098}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 5221122098343092865}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _replica: What should I do with the mined ore?
 --- !u!114 &4090117799082228601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,7 +1072,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: -5849681826646275595}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: -5849681826646275595}
   _replica: Goodbye
 --- !u!114 &4633326852979746115
 MonoBehaviour:
@@ -1047,6 +1123,30 @@ MonoBehaviour:
       - {fileID: 9160815509594166871}
   m_parentContainer: {fileID: 11400000}
   _quest: {fileID: 11400000, guid: 8e7c9e84b3ae3ea40a213ec92add066f, type: 2}
+--- !u!114 &5221122098343092865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 57
+  m_position: {x: 2240.645, y: 1993.4856}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: 
 --- !u!114 &5401066382460674442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1068,7 +1168,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: -4413366866235574049}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: -4413366866235574049}
   _replica: Sounds good
 --- !u!114 &5904229552817374988
 MonoBehaviour:
@@ -1192,7 +1292,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 310721837927062931}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: 310721837927062931}
   _questData: {fileID: 11400000, guid: 8e7c9e84b3ae3ea40a213ec92add066f, type: 2}
   _requiredQuestStageID: 0
 --- !u!114 &9160815509594166871

@@ -13,9 +13,9 @@ namespace Services.Replication
 {
     public class ReplicationService : MonoBehaviour
     {
-        private NetworkManager m_networkManager;
-        private DiContainer m_container;
-        private Dictionary<int, NetworkComponentsProvider> m_objects = new Dictionary<int, NetworkComponentsProvider>();
+        private NetworkManager _networkManager;
+        private DiContainer _container;
+        private Dictionary<int, NetworkComponentsProvider> _objects = new Dictionary<int, NetworkComponentsProvider>();
 
         public event Action<GameObject> OnNetworkObjectSpawned;
         public event Action<GameObject> OnNetworkObjectDestroyed;
@@ -23,17 +23,17 @@ namespace Services.Replication
         [Inject]
         private void Construct(NetworkManager networkManager, DiContainer container)
         {
-            m_networkManager = networkManager;
-            m_container = container;
+            _networkManager = networkManager;
+            _container = container;
 
-            m_networkManager.RegisterHandler(Opcode.MSG_GAMEOBJECT_UPDATE, GameobjectUpdate);
-            m_networkManager.RegisterHandler(Opcode.MSG_GAMEOBJECT_DESTROY, GameobjectDestroy);
+            _networkManager.RegisterHandler(Opcode.MSG_GAMEOBJECT_UPDATE, GameobjectUpdate);
+            _networkManager.RegisterHandler(Opcode.MSG_GAMEOBJECT_DESTROY, GameobjectDestroy);
         }
 
         private void GameobjectUpdate(Packet packet)
         {
             packet.Read(out MSG_GAMEOBJECT_UPDATE_SC gameobject_update);
-           // Debug.Log($"network object updated:{gameobject_update.GameobjectID}");
+            // Debug.Log($"network object updated:{gameobject_update.GameobjectID}");
             NetworkComponentsProvider componentProvider = GetObject(gameobject_update.GameobjectID, out bool isNewObject);
             foreach (var updatedComponent in gameobject_update.UpdatedComponents) { componentProvider.CheckOrCreateComponent(updatedComponent); }
             foreach (var updatedComponent in gameobject_update.UpdatedComponents) { componentProvider.UpdateComponent(updatedComponent); }
@@ -53,39 +53,39 @@ namespace Services.Replication
 
         private void DestroyNetworkObject(int objectID)
         {
-            if (m_objects.ContainsKey(objectID) == false)
+            if (_objects.ContainsKey(objectID) == false)
             {
                 Debug.LogError($"[{objectID}]Error destroy game object, specified ID not found");
                 return;
             }
-            m_objects[objectID].NotifyComponentsPreDestroy();
-            OnNetworkObjectDestroyed?.Invoke(m_objects[objectID].gameObject);
-            Destroy(m_objects[objectID].gameObject);
-            m_objects.Remove(objectID);
+            _objects[objectID].NotifyComponentsPreDestroy();
+            OnNetworkObjectDestroyed?.Invoke(_objects[objectID].gameObject);
+            Destroy(_objects[objectID].gameObject);
+            _objects.Remove(objectID);
         }
 
         private NetworkComponentsProvider GetObject(int id, out bool isNewObject)
         {
-            isNewObject = m_objects.ContainsKey(id) == false;
+            isNewObject = _objects.ContainsKey(id) == false;
 
             if (isNewObject)
             {
-                GameObject obj = m_container.CreateEmptyGameObject($"network object {id}");
+                GameObject obj = _container.CreateEmptyGameObject($"network object {id}");
 
-                
-                var componentProvider = m_container.InstantiateComponent<NetworkComponentsProvider>(obj);
+
+                var componentProvider = _container.InstantiateComponent<NetworkComponentsProvider>(obj);
                 componentProvider.Init(id);
-                m_container.InstantiateComponent<DynamicObject>(obj);
+                _container.InstantiateComponent<DynamicObject>(obj);
 
-                m_objects.Add(id, componentProvider);
+                _objects.Add(id, componentProvider);
             }
 
-            return m_objects[id];
+            return _objects[id];
         }
 
         public void Clear()
         {
-            foreach (var obj in m_objects.Keys.ToArray())
+            foreach (var obj in _objects.Keys.ToArray())
             {
                 DestroyNetworkObject(obj);
             }
@@ -93,8 +93,8 @@ namespace Services.Replication
 
         private void OnDestroy()
         {
-            m_networkManager.UnregisterHandler(Opcode.MSG_GAMEOBJECT_UPDATE);
-            m_networkManager.UnregisterHandler(Opcode.MSG_GAMEOBJECT_DESTROY);
+            _networkManager.UnregisterHandler(Opcode.MSG_GAMEOBJECT_UPDATE);
+            _networkManager.UnregisterHandler(Opcode.MSG_GAMEOBJECT_DESTROY);
         }
     }
 }

@@ -27,7 +27,8 @@ namespace SkillsRedactor
 
             skill.name = EditorGUILayout.TextField("name:", skill.name);
             skill.branch = (SkillBranch)EditorGUILayout.EnumPopup("Branch: ", skill.branch);
-            skill.applyingTime = EditorGUILayout.FloatField("Use Time: ", skill.applyingTime);
+            skill.applyingTime = EditorGUILayout.FloatField("Apply Time: ", skill.applyingTime);
+            skill._usingTime = EditorGUILayout.FloatField("Using Time: ", skill._usingTime);
             skill.reuseTime = EditorGUILayout.FloatField("Reuse Time: ", skill.reuseTime);
             skill.useAfter = EditorGUILayout.Toggle("Use after?: ", skill.useAfter);
             skill.animationType = (AnimationType)EditorGUILayout.EnumPopup("Animation use: ", skill.animationType);

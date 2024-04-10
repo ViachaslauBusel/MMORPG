@@ -3,7 +3,6 @@ using Protocol.MSG.Game.ToClient;
 using Protocol.MSG.Game.ToClient.Target;
 using RUCP;
 using System;
-using UnityEngine;
 
 namespace Target
 {
@@ -34,7 +33,7 @@ namespace Target
         {
            packet.Read(out MSG_UNIT_TARGET_HP_SC targetHP);
 
-            Debug.Log($"TargetStateReceiverService.OnTargetChangeHP: {targetHP}");
+            //Debug.Log($"TargetStateReceiverService.OnTargetChangeHP: {targetHP}");
             _targetInfo.PercentHP = targetHP.PercentHP;
 
             OnTargetHPUpdated?.Invoke(_targetInfo.PercentHP);
@@ -44,7 +43,7 @@ namespace Target
         {
             packet.Read(out MSG_UNIT_TARGET_FULL_SC targetState);
 
-            Debug.Log($"TargetStateReceiverService.OnTargetState: {targetState.TargetObjectID}");
+            //Debug.Log($"TargetStateReceiverService.OnTargetState: {targetState.TargetObjectID}");
 
             _targetInfo.objectId = targetState.TargetObjectID;
             _targetInfo.TargetName = targetState.TargetName;

@@ -10,6 +10,7 @@ namespace Redactor
         {
 
         }
+
         public virtual int Count
         {
             get { return 0; }

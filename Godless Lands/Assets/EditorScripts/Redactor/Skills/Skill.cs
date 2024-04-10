@@ -15,6 +15,7 @@ namespace SkillsRedactor
         public string name;
         public SkillBranch branch;
         public float applyingTime;
+        public float _usingTime;
         public float reuseTime;
         public bool useAfter;
         public AnimationType animationType;
@@ -32,10 +33,17 @@ namespace SkillsRedactor
 
         public System.Object GetObject()
         {
-            if (serializableObj.Length == 0) return null;
-            BinaryFormatter formatter = new BinaryFormatter();
-            Stream stream = new MemoryStream(serializableObj);
-            return formatter.Deserialize(stream);
+            try
+            {
+                if (serializableObj.Length == 0) return null;
+                Stream stream = new MemoryStream(serializableObj);
+                return new BinaryFormatter().Deserialize(stream);
+            }
+            catch
+            {
+                serializableObj = null;
+                return null;
+            }
         }
 
     }

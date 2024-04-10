@@ -12,6 +12,7 @@ namespace Animation
         private AnimationPlaybackBufferHandler _animationPlaybackBufferHandler;
         private AnimationStateDataHandler _animationStateDataHandler;
         private float _playbackTime = 1.0f;
+        private AnimationStateID _currentSata;
 
         public float GetPlaybackTime()
         {
@@ -31,7 +32,8 @@ namespace Animation
             if(_animationStateDataHandler != null)
             {
                 _animationStateDataHandler.OnAnimationStateChange += OnAnimationStateChange;
-                OnAnimationStateChange(_animationStateDataHandler.ActiveStateID);
+                if (_animationStateDataHandler.IsInitialized)
+                { OnAnimationStateChange(_animationStateDataHandler.ActiveStateID); }
             }
         }
 
@@ -87,9 +89,12 @@ namespace Animation
 
         private void OnAnimationStateChange(AnimationStateID state)
         {
+            Debug.Log($"OnAnimationStateChange: {state}");
+
             _animator.SetInteger("stateIndex", (int)state);
-            if (state != AnimationStateID.None)
+            if (state != AnimationStateID.None && _currentSata != state)
             { _animator.SetTrigger("State"); }
+            _currentSata = state;
         }
     }
 }

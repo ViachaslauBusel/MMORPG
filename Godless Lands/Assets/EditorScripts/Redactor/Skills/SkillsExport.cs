@@ -24,8 +24,9 @@ namespace SkillsRedactor
                     skillData.id = skill.id;
                     skillData.skillType = (DataFileProtocol.Skills.SkillType)skill.skillType;
                     skillData.branch = (DataFileProtocol.Skills.SkillBranch)skill.branch;
-                    skillData.applyingTime = skill.applyingTime;
-                    skillData.reuseTime = skill.reuseTime;
+                    skillData.applyingTime = (int)(skill.applyingTime * 1000);
+                    skillData.usingTime = (int)(skill._usingTime * 1000);
+                    skillData.reuseTime = (int)(skill.reuseTime * 1000);
                     skillData.useAfter = skill.useAfter;
                     skillData.animationId = (short)skill.animationType;
 

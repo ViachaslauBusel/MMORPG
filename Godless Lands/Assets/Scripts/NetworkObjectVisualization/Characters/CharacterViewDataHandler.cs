@@ -40,7 +40,6 @@ namespace NetworkObjectVisualization.Characters
                 }
                 SetVisualObject(characterObj);
             }
-            _isNeedChaceVisual = visualData.InNeedChaceVisual;
             _bodyPartsController.UpdateWeapon(visualData.WeaponId);
             _bodyPartsController.UpdateTool(visualData.ToolId);
             _bodyPartsController.UpdateHead(visualData.HeadId);

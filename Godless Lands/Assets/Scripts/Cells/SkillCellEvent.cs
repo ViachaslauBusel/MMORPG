@@ -38,7 +38,7 @@ namespace Cells
 
             _informer.SetIcon(skill.icon);
             _informer.SetName(skill.name);
-            _informer.SetApplyTime(skill.applyingTime);
+            _informer.SetApplyTime(skill._usingTime);
             _informer.SetReuseTime(skill.reuseTime);
 
             MelleSkill melleSkill = skill.GetMelleSkill();

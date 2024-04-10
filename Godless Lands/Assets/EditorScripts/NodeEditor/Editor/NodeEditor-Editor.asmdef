@@ -1,8 +1,12 @@
 {
-    "name": "NodeEditor",
+    "name": "NodeEditor-Editor",
     "rootNamespace": "",
-    "references": [],
-    "includePlatforms": [],
+    "references": [
+        "GUID:50f9f3d8420374b4f8cd3d15e438ba08"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

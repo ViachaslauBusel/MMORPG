@@ -1,107 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7303628440206741240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b5fe446d0cfa243ba61bf4959c3940, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_id: 6
-  m_position: {x: 1797.5607, y: 234.1463}
-  m_outputManager:
-    m_outputPorts:
-    - m_name: succes
-      m_maxConnection: 1
-      m_nextNodes:
-      - {fileID: 6731823253316869461}
-    - m_name: fail
-      m_maxConnection: 1
-      m_nextNodes: []
-  m_parentContainer: {fileID: 11400000}
-  _itemID: 8
-  _amount: 50
-  _conditionName: coal
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e86ad9f2cf44443a3e59ebbc357adb, type: 3}
-  m_Name: QuestData_2
-  m_EditorClassIdentifier: 
-  m_nodes:
-  - {fileID: 2952118598917401675}
-  - {fileID: 1314896437444206122}
-  - {fileID: 2861085508612100889}
-  - {fileID: 8442433236354419288}
-  - {fileID: -7303628440206741240}
-  - {fileID: 6731823253316869461}
-  - {fileID: 6247730144948398503}
-  m_generatorID: 9
-  _id: 2
-  _name: ore mining
-  _description: ore mining
-  _isRenderableInJournal: 1
---- !u!114 &1314896437444206122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a01ca1f2c4cdcd14c822f59227551529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_id: 3
-  m_position: {x: 509.75598, y: 210.97559}
-  m_outputManager:
-    m_outputPorts:
-    - m_name: succes
-      m_maxConnection: 1
-      m_nextNodes:
-      - {fileID: 2861085508612100889}
-    - m_name: fail
-      m_maxConnection: 1
-      m_nextNodes: []
-  m_parentContainer: {fileID: 11400000}
-  _npcID: 1
---- !u!114 &2861085508612100889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78cbb0f685b810419b10856a3523f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_id: 4
-  m_position: {x: 991.4631, y: 213.41464}
-  m_outputManager:
-    m_outputPorts:
-    - m_name: out
-      m_maxConnection: 1
-      m_nextNodes:
-      - {fileID: 8442433236354419288}
-  m_parentContainer: {fileID: 11400000}
-  _name: mining ore
-  _description: You need to extract 50 units of coal and iron ore and return them
-    to the hunter.
---- !u!114 &2952118598917401675
+--- !u!114 &-3307142126734112049
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,58 +19,10 @@ MonoBehaviour:
     - m_name: out
       m_maxConnection: 1
       m_nextNodes:
-      - {fileID: 1314896437444206122}
+      - {fileID: 5730297032352470699}
   m_parentContainer: {fileID: 11400000}
-  m_next: {fileID: 1314896437444206122}
---- !u!114 &6247730144948398503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78cbb0f685b810419b10856a3523f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_id: 8
-  m_position: {x: 2550.2375, y: 232.91132}
-  m_outputManager:
-    m_outputPorts:
-    - m_name: out
-      m_maxConnection: 1
-      m_nextNodes: []
-  m_parentContainer: {fileID: 11400000}
-  _name: mining ore(finish)
-  _description: You need to extract 50 units of coal and iron ore and return them
-    to the hunter.
---- !u!114 &6731823253316869461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a01ca1f2c4cdcd14c822f59227551529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_id: 7
-  m_position: {x: 2176.82, y: 234.17715}
-  m_outputManager:
-    m_outputPorts:
-    - m_name: succes
-      m_maxConnection: 1
-      m_nextNodes:
-      - {fileID: 6247730144948398503}
-    - m_name: fail
-      m_maxConnection: 1
-      m_nextNodes: []
-  m_parentContainer: {fileID: 11400000}
-  _npcID: 1
---- !u!114 &8442433236354419288
+  m_next: {fileID: 0}
+--- !u!114 &-546536147870075648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,18 +34,139 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b5fe446d0cfa243ba61bf4959c3940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_id: 5
-  m_position: {x: 1421.9509, y: 231.70728}
+  m_id: 6
+  m_position: {x: 1586.2854, y: 172.85715}
   m_outputManager:
     m_outputPorts:
     - m_name: succes
       m_maxConnection: 1
       m_nextNodes:
-      - {fileID: -7303628440206741240}
+      - {fileID: 8519580280460150746}
     - m_name: fail
       m_maxConnection: 1
       m_nextNodes: []
   m_parentContainer: {fileID: 11400000}
-  _itemID: 6
-  _amount: 50
-  _conditionName: Iron ore
+  _itemID: 13
+  _amount: 1
+  _conditionName: Morgenstern
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e86ad9f2cf44443a3e59ebbc357adb, type: 3}
+  m_Name: QuestData_3
+  m_EditorClassIdentifier: 
+  m_nodes:
+  - {fileID: -3307142126734112049}
+  - {fileID: 5730297032352470699}
+  - {fileID: 4027950473569708941}
+  - {fileID: 4815625818263137182}
+  - {fileID: -546536147870075648}
+  - {fileID: 8519580280460150746}
+  m_generatorID: 8
+  _id: 3
+  _name: The Forge's Bounty
+  _description: 
+  _isRenderableInJournal: 1
+--- !u!114 &4027950473569708941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78cbb0f685b810419b10856a3523f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 4
+  m_position: {x: 791, y: 173}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 4815625818263137182}
+  m_parentContainer: {fileID: 11400000}
+  _name: smelt iron
+  _description: You need to process iron ore and coal in the smelter into ingots.
+    Then, use the ingots and coal to craft weapon blanks.
+--- !u!114 &4815625818263137182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01ca1f2c4cdcd14c822f59227551529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 5
+  m_position: {x: 1206.1426, y: 171.42847}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -546536147870075648}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _npcID: 1
+--- !u!114 &5730297032352470699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01ca1f2c4cdcd14c822f59227551529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 3
+  m_position: {x: 422, y: 174}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 4027950473569708941}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _npcID: 1
+--- !u!114 &8519580280460150746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78cbb0f685b810419b10856a3523f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 7
+  m_position: {x: 1983.1426, y: 205.71419}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _name: smelt iron(finish)
+  _description: You need to process iron ore and coal in the smelter into ingots.
+    Then, use the ingots and coal to craft weapon blanks.

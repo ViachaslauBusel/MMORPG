@@ -26,7 +26,7 @@ MonoBehaviour:
   m_parentContainer: {fileID: 11400000}
   _itemID: 2
   _amount: 1
-  _conditionName: find pickaxe
+  _conditionName: pickaxe
 --- !u!114 &-8062912337465071799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,8 +47,9 @@ MonoBehaviour:
       m_maxConnection: 1
       m_nextNodes: []
   m_parentContainer: {fileID: 11400000}
-  _name: finish quest
-  _description: finish quest
+  _name: quest finished
+  _description: You need to find a pickaxe from the skeletons living near the city
+    and return it to the hunter.
 --- !u!114 &-7697260843537921277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,8 +118,9 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: -8355995356568524551}
   m_parentContainer: {fileID: 11400000}
-  _name: find pickaxr(0)
-  _description: Quest taken
+  _name: Search for the Skeleton Pickaxe
+  _description: You need to find a pickaxe from the skeletons living near the city
+    and return it to the hunter.
 --- !u!114 &-1047572467376832246
 MonoBehaviour:
   m_ObjectHideFlags: 0

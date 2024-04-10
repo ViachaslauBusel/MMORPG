@@ -30,6 +30,7 @@ namespace ObjectRegistryEditor
         /// <returns>The added editable object.</returns>
         public IEditableObject AddObject()
         {
+#if UNITY_EDITOR
             int id;
             do
             {
@@ -45,7 +46,7 @@ namespace ObjectRegistryEditor
             path = Path.GetDirectoryName(path);
             string folder = name;
             path = Path.Combine(path, folder);
-            if(!Directory.Exists(path))
+            if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
@@ -53,6 +54,9 @@ namespace ObjectRegistryEditor
             AssetDatabase.CreateAsset(obj, path);
             _objects.Add(obj);
             return obj;
+#else
+            return null;
+#endif
         }
 
         /// <summary>
@@ -71,12 +75,14 @@ namespace ObjectRegistryEditor
         /// <param name="obj">The editable object to remove.</param>
         public void RemoveObject(IEditableObject obj)
         {
+#if UNITY_EDITOR
             if (obj != null)
             {
                 _objects.Remove((T)obj);
                 string path = AssetDatabase.GetAssetPath((ScriptableObject)obj);
                 AssetDatabase.DeleteAsset(path);
             }
+#endif
         }
 
         /// <summary>

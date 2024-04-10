@@ -1,10 +1,5 @@
 ﻿using NetworkObjectVisualization;
 using Services.Replication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -28,12 +23,12 @@ namespace Target
         {
             _id = networkObjectOwner.GetComponent<NetworkComponentsProvider>().NetworkGameObjectID;
             _targetObjectRegistry.Register(this);
-            Debug.Log($"TargetObject.AttachToNetworkObject: {_id}");
+            //Debug.Log($"TargetObject.AttachToNetworkObject: {_id}");
         }
 
         public void DetachFromNetworkObject()
         {
-            Debug.Log($"TargetObject.DetachFromNetworkObject: {_id}");
+            //Debug.Log($"TargetObject.DetachFromNetworkObject: {_id}");
             _targetObjectRegistry.Unregister(this);
             _id = 0;
         }
