@@ -22,8 +22,12 @@ MonoBehaviour:
     drops:
     - itemID: 6
       chance: 95
+      minAmount: 5
+      maxAmount: 10
     - itemID: 6
       chance: 30
+      minAmount: 1
+      maxAmount: 5
     profession: 1
     exp: 50
     stamina: 100
@@ -36,8 +40,12 @@ MonoBehaviour:
     drops:
     - itemID: 8
       chance: 90
+      minAmount: 5
+      maxAmount: 10
     - itemID: 11
       chance: 50
+      minAmount: 4
+      maxAmount: 9
     profession: 1
     exp: 50
     stamina: 100
@@ -50,8 +58,12 @@ MonoBehaviour:
     drops:
     - itemID: 8
       chance: 80
+      minAmount: 1
+      maxAmount: 20
     - itemID: 11
       chance: 80
+      minAmount: 1
+      maxAmount: 20
     profession: 1
     exp: 25
     stamina: 80

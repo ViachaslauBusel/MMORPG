@@ -51,6 +51,12 @@ public class LoginInformationWindow : MonoBehaviour {
             case LoginInformationCode.ConnectionFail:
                 info_text.text = "Не удалось установить соеденение";
                 break;
+            case LoginInformationCode.AlreadyInGame:
+                info_text.text = "Вы уже в игре";
+                break;
+            case LoginInformationCode.ServerNotReady:
+                info_text.text = "Сервер не готов";
+                break;
             default:
                 info_text.text = "Неизвестная ошибка";
                 break;

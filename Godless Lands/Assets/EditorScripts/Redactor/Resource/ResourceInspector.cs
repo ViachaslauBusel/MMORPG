@@ -56,6 +56,12 @@ namespace Resource
                 EditorGUILayout.LabelField("chance:", GUILayout.Width(60.0f));
                 drops[i].chance = EditorGUILayout.FloatField(drops[i].chance);
                 GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("minAmount:", GUILayout.Width(60.0f));
+                drops[i].minAmount = EditorGUILayout.IntField(drops[i].minAmount);
+                EditorGUILayout.LabelField("maxAmount:", GUILayout.Width(60.0f));
+                drops[i].maxAmount = EditorGUILayout.IntField(drops[i].maxAmount);
+                GUILayout.EndHorizontal();
                 if (DrawItemComponent(drops[i].itemID)) { remove = drops[i]; }
                 GUILayout.EndVertical();
             }

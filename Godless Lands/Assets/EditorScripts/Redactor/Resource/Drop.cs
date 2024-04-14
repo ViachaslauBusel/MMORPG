@@ -9,5 +9,7 @@ namespace Resource
     {
         public int itemID;
         public float chance;
+        public int minAmount;
+        public int maxAmount;
     }
 }

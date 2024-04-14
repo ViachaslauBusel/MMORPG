@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_id: 7
-  m_position: {x: 2067, y: 114}
+  m_position: {x: 2382.3848, y: 119.594406}
   m_outputManager:
     m_outputPorts:
     - m_name: out
@@ -69,7 +69,7 @@ MonoBehaviour:
     - m_name: succes
       m_maxConnection: 1
       m_nextNodes:
-      - {fileID: -8062912337465071799}
+      - {fileID: -2545716333939640744}
     - m_name: fail
       m_maxConnection: 1
       m_nextNodes: []
@@ -121,6 +121,32 @@ MonoBehaviour:
   _name: Search for the Skeleton Pickaxe
   _description: You need to find a pickaxe from the skeletons living near the city
     and return it to the hunter.
+--- !u!114 &-2545716333939640744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc848a1d9fdce24468d6c17970d9ad68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 8
+  m_position: {x: 2019.9878, y: 134.96506}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -8062912337465071799}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _itemID: 9
+  _amount: 1
 --- !u!114 &-1047572467376832246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +191,8 @@ MonoBehaviour:
   - {fileID: -8355995356568524551}
   - {fileID: -7697260843537921277}
   - {fileID: -8062912337465071799}
-  m_generatorID: 8
+  - {fileID: -2545716333939640744}
+  m_generatorID: 9
   _id: 7
   _name: find pickaxe
   _description: 

@@ -1,5 +1,5 @@
-﻿using NodeEditor;
-using NodeEditor.Attributes;
+﻿using NodeEditor.Attributes;
+using NodeEditor;
 using NodeEditor.Data;
 using System;
 using System.Collections.Generic;
@@ -11,17 +11,21 @@ using UnityEngine;
 namespace Quests.Nodes
 {
     [NodeGroup("Quests"), NodeDisplayStyle(NodeStyle.Style_2)]
-    internal class NearbyNPCCheck : Node, IHaveNextNode
+    internal class ItemRewardNode : Node, IHaveNextNode
     {
         [Port("succes")]
         private Node _successNode;
         [Port("fail")]
         private Node _failNode;
         [SerializeField]
-        private int _npcID;
+        private int _itemID;
+        [SerializeField]
+        private int _amount;
+
 
         public int SuccesIdNode => _successNode != null ? _successNode.ID : 0;
-        public int NPCID => _npcID;
+        public int ItemID => _itemID;
+        public int ItemAvailableAmount => _amount;
         public Node NextNode => _successNode;
     }
 }

@@ -49,7 +49,8 @@ namespace Resource
                 DropItemData dropItem = new DropItemData()
                 {
                     ItemID = drop.itemID,
-                    Amount = 1,
+                    MinAmount = drop.minAmount,
+                    MaxAmount = drop.maxAmount,
                     Chance = drop.chance
                 };
                 dropItems.Add(dropItem);

@@ -31,25 +31,15 @@ namespace ObjectRegistryEditor
         public IEditableObject AddObject()
         {
 #if UNITY_EDITOR
-            int id;
-            do
-            {
-                id = ++_generatorID;
-            }
-            while (ContainsKey(id));
+            int id = GetUniqueID(++_generatorID);
+        
 
             T obj = ScriptableObject.CreateInstance<T>();
             obj.Initialize(id);
 
             //Save the scriptable object to the folder with the same name as the registry
-            string path = AssetDatabase.GetAssetPath(this);
-            path = Path.GetDirectoryName(path);
-            string folder = name;
-            path = Path.Combine(path, folder);
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
+            string path = GetPathToEditableObjects();
+
             path = Path.Combine(path, $"{obj.GetType()}_{obj.ID}.asset");
             AssetDatabase.CreateAsset(obj, path);
             _objects.Add(obj);
@@ -57,6 +47,15 @@ namespace ObjectRegistryEditor
 #else
             return null;
 #endif
+        }
+
+        private int GetUniqueID(int id)
+        {
+            while (ContainsKey(id))
+            {
+                id = ++_generatorID;
+            }
+            return id;
         }
 
         /// <summary>
@@ -100,6 +99,51 @@ namespace ObjectRegistryEditor
         public T GetObjectByID(int id) => _objects.Find(i => i.ID == id);
 
         public virtual void Export() { }
+#if UNITY_EDITOR
+        private string GetPathToEditableObjects()
+        {
+            string path = AssetDatabase.GetAssetPath(this);
+            path = Path.GetDirectoryName(path);
+            string folder = name;
+            path = Path.Combine(path, folder);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            return path;
+        }
+#endif
 
+            private void OnValidate()
+        {
+            Validate();
+        }
+
+        private void Validate()
+        {
+#if UNITY_EDITOR
+            //Get all assets in the folder
+            string[] assets = AssetDatabase.FindAssets($"t:{typeof(T)}", new[] { GetPathToEditableObjects() });
+
+            //Check if the asset is in the list
+            foreach (string guid in assets)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                T obj = AssetDatabase.LoadAssetAtPath<T>(path);
+                if (_objects.Contains(obj) == false)
+                {
+                    int id = GetUniqueID(obj.ID);
+                  
+                    if(id != obj.ID)
+                    {
+                        obj.Initialize(id);
+                        EditorUtility.SetDirty(obj);
+                    }
+                    _objects.Add(obj);
+                    EditorUtility.SetDirty(this);
+                }
+            }
+#endif
+        }
     }
 }

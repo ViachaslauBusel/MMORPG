@@ -21,7 +21,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 5730297032352470699}
   m_parentContainer: {fileID: 11400000}
-  m_next: {fileID: 0}
+  m_next: {fileID: 5730297032352470699}
 --- !u!114 &-546536147870075648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_parentContainer: {fileID: 11400000}
   _itemID: 13
   _amount: 1
-  _conditionName: Morgenstern
+  _conditionName: Morgenshtern
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

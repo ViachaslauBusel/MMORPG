@@ -69,6 +69,29 @@ MonoBehaviour:
   m_parentContainer: {fileID: 11400000}
   _next: {fileID: 4937709938918001765}
   _replica: I mined ore
+--- !u!114 &-8503870161255784172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 64
+  m_position: {x: 1346.4719, y: 2030.9692}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 6209700004044178946}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 6209700004044178946}
+  _replica: I created the Morgenstern
 --- !u!114 &-8484819938665286081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +164,71 @@ MonoBehaviour:
   m_parentContainer: {fileID: 11400000}
   _next: {fileID: 3774249281245653968}
   _replica: ok
+--- !u!114 &-7742004810147133794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f524edd28b99b3469fcd54ea368e0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 62
+  m_position: {x: 4390.0513, y: 2121.2036}
+  m_outputManager:
+    m_outputPorts: []
+  m_parentContainer: {fileID: 11400000}
+--- !u!114 &-6705520285616713160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 67
+  m_position: {x: 2503.162, y: 2347.343}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 4174688892810569494}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 4174688892810569494}
+  _replica: Goodbye
+--- !u!114 &-6639363215308450442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 60
+  m_position: {x: 3557.98, y: 2028}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: -1205224960940574315}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: I'll be waiting here
 --- !u!114 &-6508597134489438511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,8 +361,9 @@ MonoBehaviour:
       - {fileID: -5314860691513069162}
       - {fileID: -1376854737696093941}
       - {fileID: 749441316183118878}
-      - {fileID: 4506285588584539832}
       - {fileID: 2875461727422722627}
+      - {fileID: 9190930508108723493}
+      - {fileID: 4506285588584539832}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: 'Greetings, traveler. '
 --- !u!114 &-5247212139885014078
@@ -428,6 +517,29 @@ MonoBehaviour:
   m_parentContainer: {fileID: 11400000}
   _next: {fileID: -5247212139885014078}
   _replica: Thank you
+--- !u!114 &-3713707636901348317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 58
+  m_position: {x: 2677.8354, y: 2136.274}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 850759394186015402}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 850759394186015402}
+  _replica: I will do it
 --- !u!114 &-2750531976782763812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +587,29 @@ MonoBehaviour:
   _next: {fileID: 8326858613297649056}
   _questData: {fileID: 11400000, guid: 6ee66308c239ceb418efa14b9952ef48, type: 2}
   _requiredQuestStageID: 7
+--- !u!114 &-1205224960940574315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 61
+  m_position: {x: 3979.98, y: 2141}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -7742004810147133794}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: -7742004810147133794}
+  _replica: ok
 --- !u!114 &-1171665396128747163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,7 +648,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 3941450214946054812}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: 3941450214946054812}
   _questData: {fileID: 11400000, guid: 8e7c9e84b3ae3ea40a213ec92add066f, type: 2}
   _requiredQuestStageID: 8
 --- !u!114 &-220589379934025540
@@ -625,7 +760,18 @@ MonoBehaviour:
   - {fileID: -505191463438258573}
   - {fileID: 3941450214946054812}
   - {fileID: 5221122098343092865}
-  m_generatorID: 58
+  - {fileID: -3713707636901348317}
+  - {fileID: 850759394186015402}
+  - {fileID: -6639363215308450442}
+  - {fileID: -1205224960940574315}
+  - {fileID: -7742004810147133794}
+  - {fileID: 9190930508108723493}
+  - {fileID: -8503870161255784172}
+  - {fileID: 6209700004044178946}
+  - {fileID: 774559127664710833}
+  - {fileID: -6705520285616713160}
+  - {fileID: 4174688892810569494}
+  m_generatorID: 69
 --- !u!114 &20902397885018985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,6 +944,56 @@ MonoBehaviour:
   _next: {fileID: -8644763139661342943}
   _questData: {fileID: 11400000, guid: 8e7c9e84b3ae3ea40a213ec92add066f, type: 2}
   _requiredQuestStageID: 4
+--- !u!114 &774559127664710833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8fb94510a6dde4a8d1b14f7b907d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 66
+  m_position: {x: 2134.2705, y: 2242.397}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: npc
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: player
+      m_maxConnection: 10
+      m_nextNodes:
+      - {fileID: -6705520285616713160}
+  m_parentContainer: {fileID: 11400000}
+  m_npcReplica: All missions completed
+--- !u!114 &850759394186015402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5842c7d0ee7057428021458704b36aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 59
+  m_position: {x: 3111.1255, y: 2131.2014}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -6639363215308450442}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _quest: {fileID: 11400000, guid: 0b68959b2a5b0074b8bc5437239c035d, type: 2}
 --- !u!114 &1483296535767810432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,7 +1155,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: -505191463438258573}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: -505191463438258573}
   _questData: {fileID: 11400000, guid: 0b68959b2a5b0074b8bc5437239c035d, type: 2}
   _requiredQuestStageID: 0
 --- !u!114 &3203861903796704487
@@ -1024,7 +1220,7 @@ MonoBehaviour:
       m_nextNodes:
       - {fileID: 5221122098343092865}
   m_parentContainer: {fileID: 11400000}
-  _next: {fileID: 0}
+  _next: {fileID: 5221122098343092865}
   _replica: What should I do with the mined ore?
 --- !u!114 &4090117799082228601
 MonoBehaviour:
@@ -1051,6 +1247,23 @@ MonoBehaviour:
       - {fileID: -5055934467791071389}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: Mine iron ore and coal from the Ining Stone nearby
+--- !u!114 &4174688892810569494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f524edd28b99b3469fcd54ea368e0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 68
+  m_position: {x: 2844.7297, y: 2395.478}
+  m_outputManager:
+    m_outputPorts: []
+  m_parentContainer: {fileID: 11400000}
 --- !u!114 &4506285588584539832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,7 +1277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_id: 51
-  m_position: {x: 1015.63196, y: 176}
+  m_position: {x: 1016.66296, y: 176}
   m_outputManager:
     m_outputPorts:
     - m_name: out
@@ -1144,9 +1357,11 @@ MonoBehaviour:
       m_nextNodes: []
     - m_name: player
       m_maxConnection: 10
-      m_nextNodes: []
+      m_nextNodes:
+      - {fileID: -3713707636901348317}
   m_parentContainer: {fileID: 11400000}
-  m_npcReplica: 
+  m_npcReplica: First, you need to smelt the weapon blank in the smelter, then assemble
+    the Morgenstern at the anvil.
 --- !u!114 &5401066382460674442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,6 +1411,31 @@ MonoBehaviour:
       - {fileID: -6093113184857596813}
   m_parentContainer: {fileID: 11400000}
   _quest: {fileID: 11400000, guid: 6ee66308c239ceb418efa14b9952ef48, type: 2}
+--- !u!114 &6209700004044178946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5842c7d0ee7057428021458704b36aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 65
+  m_position: {x: 1721.7024, y: 2130.4783}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 774559127664710833}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _quest: {fileID: 11400000, guid: 0b68959b2a5b0074b8bc5437239c035d, type: 2}
 --- !u!114 &6595967155741553987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1320,3 +1560,27 @@ MonoBehaviour:
       - {fileID: -6508597134489438511}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: You don't have enough items
+--- !u!114 &9190930508108723493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33bda2387dec81458b1a7d88ce1790f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 63
+  m_position: {x: 976.9718, y: 1936.4692}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -8503870161255784172}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: -8503870161255784172}
+  _questData: {fileID: 11400000, guid: 0b68959b2a5b0074b8bc5437239c035d, type: 2}
+  _requiredQuestStageID: 4

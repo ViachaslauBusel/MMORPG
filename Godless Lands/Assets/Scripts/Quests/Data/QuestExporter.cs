@@ -45,6 +45,7 @@ namespace Quests
                 QuestStageNode questStageNode => new Protocol.Data.Quests.Nodes.QuestStageNode(questStageNode.ID, questStageNode.NextNodeId),
                 InventoryItemAvailability inventoryItemAvailability => new InventoryItemAvailabilityQuestNode(inventoryItemAvailability.ID, inventoryItemAvailability.SuccesIdNode, inventoryItemAvailability.ItemID, inventoryItemAvailability.ItemAvailableAmount),
                 NearbyNPCCheck nearbyNPCCheck => new NearbyNpcCheckQuestNode(nearbyNPCCheck.ID, nearbyNPCCheck.SuccesIdNode, nearbyNPCCheck.NPCID),
+                Nodes.ItemRewardNode itemAwardNode => new Protocol.Data.Quests.Nodes.ItemRewardNode(itemAwardNode.ID, itemAwardNode.SuccesIdNode, itemAwardNode.ItemID, itemAwardNode.ItemAvailableAmount),
                 _ => null
             };
         }

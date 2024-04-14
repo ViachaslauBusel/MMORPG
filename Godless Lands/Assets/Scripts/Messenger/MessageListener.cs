@@ -35,26 +35,24 @@ namespace Messenger
             message.Msg = msg.Message;
 
             //    if (_message.Contains("%item:")) _message.Where((a))
-            message.Msg = ReplaceItem(message.Msg);
+            message.Msg = ReplaceItemName(message.Msg);
            
             TabsManager.Instance.AddMessage(message);
         }
 
-        private string ReplaceItem(string msg)
+        private string ReplaceItemName(string msg)
         {
-            Regex regex = new Regex(@"%item:\d+");
-            MatchCollection match = regex.Matches(msg);
-            foreach (Match str in match)
+            Regex itemRegex = new Regex(@"%item_name:(\d+):(\d+)");
+            MatchCollection matches = itemRegex.Matches(msg);
+
+            foreach (Match match in matches)
             {
-                print("str: " + str.Value);
-                regex = new Regex(@"\d+");
-                string number = regex.Match(str.Value).Value;
-                print("number: " + number);
-                msg = msg.Replace(
-                    str.Value,
-                    _itemsFactory.CreateItem(Int32.Parse(number)).Data.nameItem
-                           );
+                string itemId = match.Groups[1].Value;
+                string itemCount = match.Groups[2].Value;
+                string itemName = _itemsFactory.CreateItem(int.Parse(itemId)).Data.nameItem;
+                msg = msg.Replace(match.Value, $"{itemName} x {itemCount}");
             }
+
             return msg;
         }
         private void OnDestroy()

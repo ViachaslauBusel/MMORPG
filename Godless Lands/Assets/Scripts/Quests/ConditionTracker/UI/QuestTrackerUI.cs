@@ -54,6 +54,7 @@ namespace Quests.ConditionTracker.UI
             switch (nextNode)
             {
                 case QuestStageNode: break;
+                case ToStartNode: break;
                 case InventoryItemAvailability inventoryItemAvailability:
                     var condition = _diContainer.InstantiatePrefab(_questCanditionPrefab, transform);
                     condition.SetActive(true);
@@ -62,12 +63,14 @@ namespace Quests.ConditionTracker.UI
                     _questConditions.Add(condition);
                     AddCondiciton(inventoryItemAvailability.NextNode);
                     break;
-                case NearbyNPCCheck nearbyNPCCheck:
-                    AddCondiciton(nearbyNPCCheck.NextNode);
-                    break;
-                    case ToStartNode: break;
+               
                 default:
-                    Debug.LogError($"Unknown node type:{nextNode.GetType()}");
+                    if (nextNode is IHaveNextNode haveNextNode)
+                    {
+                        AddCondiciton(haveNextNode.NextNode);
+                    }
+                    else Debug.LogWarning($"Unknown node type:{nextNode.GetType()}");
+
                     break;
             }
         }

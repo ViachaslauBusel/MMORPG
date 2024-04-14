@@ -25,8 +25,34 @@ MonoBehaviour:
       m_nextNodes: []
   m_parentContainer: {fileID: 11400000}
   _itemID: 8
-  _amount: 50
+  _amount: 31
   _conditionName: coal
+--- !u!114 &-3838321455522196777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc848a1d9fdce24468d6c17970d9ad68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 9
+  m_position: {x: 2567.4773, y: 260.5262}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 6247730144948398503}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _itemID: 12
+  _amount: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,7 +73,8 @@ MonoBehaviour:
   - {fileID: -7303628440206741240}
   - {fileID: 6731823253316869461}
   - {fileID: 6247730144948398503}
-  m_generatorID: 9
+  - {fileID: -3838321455522196777}
+  m_generatorID: 10
   _id: 2
   _name: ore mining
   _description: ore mining
@@ -136,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_id: 8
-  m_position: {x: 2550.2375, y: 232.91132}
+  m_position: {x: 2959.448, y: 247.38498}
   m_outputManager:
     m_outputPorts:
     - m_name: out
@@ -165,7 +192,7 @@ MonoBehaviour:
     - m_name: succes
       m_maxConnection: 1
       m_nextNodes:
-      - {fileID: 6247730144948398503}
+      - {fileID: -3838321455522196777}
     - m_name: fail
       m_maxConnection: 1
       m_nextNodes: []
@@ -196,5 +223,5 @@ MonoBehaviour:
       m_nextNodes: []
   m_parentContainer: {fileID: 11400000}
   _itemID: 6
-  _amount: 50
+  _amount: 21
   _conditionName: Iron ore
