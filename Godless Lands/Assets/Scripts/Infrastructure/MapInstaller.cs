@@ -16,6 +16,7 @@ using Quests.Journal;
 using Recipes;
 using Skills;
 using Target;
+using Test.DrawPoints;
 using UnitVisualCache;
 using UnityEngine;
 using Workbench;
@@ -89,5 +90,11 @@ public class MapInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<QuestLevelCheckNodeHandler>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<QuestLevelUpNodeHandler>().FromNew().AsSingle().NonLazy();        
      
+
+        // TEST
+        // DRAW POINTS
+        Container.BindInterfacesAndSelfTo<DrawPointsModel>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<DrawPointsListener>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<PointsRenderer>().FromNew().AsSingle().NonLazy();
     }
 }

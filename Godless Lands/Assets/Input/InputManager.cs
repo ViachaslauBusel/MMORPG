@@ -116,6 +116,24 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveControl"",
+                    ""type"": ""Value"",
+                    ""id"": ""46bf0428-808e-4475-8ec6-4edd9c59fa29"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""22a728c2-128c-48c4-8c19-cf18c95b5ede"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -228,6 +246,72 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""action"": ""Hotbar_F8"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""9f19cdcf-3f21-4a0b-bf9c-e19c3dbfc41e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveControl"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""548d795d-21d4-4958-9a2a-f640080c297a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""cd6dae6e-8e3c-4ed9-b7c2-57109381195a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""fdda7bba-a1a7-4750-b364-af28c7d924eb"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""7f1ae4d0-746c-432e-9e8b-2bda2f5b21ff"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03eee9ec-c013-4ffa-9aa4-eb7d54f5f5b6"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -263,6 +347,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         m_Keyboard_Hotbar_F7 = m_Keyboard.FindAction("Hotbar_F7", throwIfNotFound: true);
         m_Keyboard_Hotbar_F8 = m_Keyboard.FindAction("Hotbar_F8", throwIfNotFound: true);
         m_Keyboard_SwitchCombat = m_Keyboard.FindAction("SwitchCombat", throwIfNotFound: true);
+        m_Keyboard_MoveControl = m_Keyboard.FindAction("MoveControl", throwIfNotFound: true);
+        m_Keyboard_Jump = m_Keyboard.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -332,6 +418,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Hotbar_F7;
     private readonly InputAction m_Keyboard_Hotbar_F8;
     private readonly InputAction m_Keyboard_SwitchCombat;
+    private readonly InputAction m_Keyboard_MoveControl;
+    private readonly InputAction m_Keyboard_Jump;
     public struct KeyboardActions
     {
         private @InputManager m_Wrapper;
@@ -346,6 +434,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         public InputAction @Hotbar_F7 => m_Wrapper.m_Keyboard_Hotbar_F7;
         public InputAction @Hotbar_F8 => m_Wrapper.m_Keyboard_Hotbar_F8;
         public InputAction @SwitchCombat => m_Wrapper.m_Keyboard_SwitchCombat;
+        public InputAction @MoveControl => m_Wrapper.m_Keyboard_MoveControl;
+        public InputAction @Jump => m_Wrapper.m_Keyboard_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -385,6 +475,12 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @SwitchCombat.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnSwitchCombat;
                 @SwitchCombat.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnSwitchCombat;
                 @SwitchCombat.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnSwitchCombat;
+                @MoveControl.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMoveControl;
+                @MoveControl.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMoveControl;
+                @MoveControl.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnMoveControl;
+                @Jump.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_KeyboardActionsCallbackInterface = instance;
             if (instance != null)
@@ -419,6 +515,12 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @SwitchCombat.started += instance.OnSwitchCombat;
                 @SwitchCombat.performed += instance.OnSwitchCombat;
                 @SwitchCombat.canceled += instance.OnSwitchCombat;
+                @MoveControl.started += instance.OnMoveControl;
+                @MoveControl.performed += instance.OnMoveControl;
+                @MoveControl.canceled += instance.OnMoveControl;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -444,5 +546,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         void OnHotbar_F7(InputAction.CallbackContext context);
         void OnHotbar_F8(InputAction.CallbackContext context);
         void OnSwitchCombat(InputAction.CallbackContext context);
+        void OnMoveControl(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

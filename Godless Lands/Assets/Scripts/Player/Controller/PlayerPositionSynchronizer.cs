@@ -1,5 +1,6 @@
 ﻿using Helpers;
 using NetworkObjectVisualization;
+using Protocol.Data.Replicated.Transform;
 using Protocol.MSG.Game;
 using System;
 using UnityEngine;
@@ -16,35 +17,39 @@ namespace Player.Controller
         private int cicle = 20;
         private Vector3 m_lastSentPosition = Vector3.zero;
         private float m_lastSentRotation = 0.0f;
-        private bool m_inMove = false;
         private long m_timeStamp;
-        private NetworkManager m_networkManager;
-        private Transform m_character;
-        private PlayerController m_controller;
-        private IVisualRepresentation m_skinObjectHolder;
+        private NetworkManager _networkManager;
+        private Transform _character;
+        private PlayerController _controller;
+        private IVisualRepresentation _skinObjectHolder;
 
 
 
         [Inject]
         private void Construct(NetworkManager networkManager)
         {
-            m_networkManager = networkManager;
+            _networkManager = networkManager;
         }
 
         private void Awake()
         {
-            m_skinObjectHolder = GetComponentInParent<IVisualRepresentation>();
-            m_controller = GetComponent<PlayerController>();
+            _skinObjectHolder = GetComponentInParent<IVisualRepresentation>();
+            _controller = GetComponent<PlayerController>();
+
+            _controller.OnStartMove += OnStartMove;
+            _controller.OnStopMove += OnStopMove;
+            _controller.OnJump += OnJump;
         }
+
         private void Start()
         {
-            m_skinObjectHolder.OnVisualObjectUpdated += AssignCharacterController;
-            AssignCharacterController(m_skinObjectHolder.VisualObject);
+            _skinObjectHolder.OnVisualObjectUpdated += AssignCharacterController;
+            AssignCharacterController(_skinObjectHolder.VisualObject);
         }
 
         private void AssignCharacterController(GameObject character)
         {
-            m_character = character.transform;
+            _character = character.transform;
         }
 
         private void FixedUpdate()
@@ -56,26 +61,38 @@ namespace Player.Controller
             }
         }
 
-       
+        private void OnStartMove()
+        {
+            cicle = m_send_cicle_frequency;
+            enabled = true;
+        }
+
+        private void OnStopMove()
+        {
+            Debug.Log("StopMove");
+            SendPosition(false);
+            enabled = false;
+        }
+
+        private void OnJump()
+        {
+            SendPosition(_controller.InMove, MoveFlag.Jump);
+        }
+
 
         private void SyncPosition()
         {
             //If the character has moved the minimum distance for synchronization
-            if (Vector3.Distance(m_lastSentPosition.GetClearY(), m_character.position.GetClearY()) > 0.1f || m_controller.isJumping())
+            if (Vector3.Distance(m_lastSentPosition.GetClearY(), _character.position.GetClearY()) > 0.1f)
             {
-                m_inMove = true;
-                SendPosition();
+                SendPosition(true);
                 return;
             }
 
-            //If in previously synchronization frame character has moved
-            if (m_inMove)
-            { m_inMove = false; SendPosition(); }
-
-            if (Mathf.Abs(Mathf.DeltaAngle(m_lastSentRotation, m_character.rotation.eulerAngles.y)) > 0.5f)
+            if (Mathf.Abs(Mathf.DeltaAngle(m_lastSentRotation, _character.rotation.eulerAngles.y)) > 0.5f)
             {
 
-                m_lastSentRotation = m_character.rotation.eulerAngles.y;
+                m_lastSentRotation = _character.rotation.eulerAngles.y;
                 //TODO msg
                 //Packet nw = new Packet(Channel.Discard);
                 //nw.WriteType(Types.Rotation);
@@ -86,23 +103,23 @@ namespace Player.Controller
 
         }
 
-        private void SendPosition()
+        private void SendPosition(bool inMove, MoveFlag flag = MoveFlag.None)
         {
-            float speed = Vector3.Distance(m_character.position.ClearY(), m_lastSentPosition.ClearY()) / ((DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - m_timeStamp) / 1000.0f);
+            float speed = Vector3.Distance(_character.position.ClearY(), m_lastSentPosition.ClearY()) / ((DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - m_timeStamp) / 1000.0f);
             m_timeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
-            m_lastSentPosition = m_character.position;
-            m_lastSentRotation = m_character.rotation.eulerAngles.y;
+            m_lastSentPosition = _character.position;
+            m_lastSentRotation = _character.rotation.eulerAngles.y;
 
             MSG_PLAYER_INPUT_CS playerInput = new MSG_PLAYER_INPUT_CS();
 
             playerInput.Position = m_lastSentPosition.ToNumeric();
             playerInput.Rotation = m_lastSentRotation;
             playerInput.Velocity = speed;
-            playerInput.InMove = m_inMove;
-            playerInput.MoveFlag = m_controller.TakeFlag();
+            playerInput.InMove = inMove;
+            playerInput.MoveFlag = flag;
 
-            m_networkManager.Client.Send(playerInput);
+            _networkManager.Client.Send(playerInput);
         }
     } 
 }
