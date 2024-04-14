@@ -26,7 +26,7 @@ namespace Infrastructure
         {
             Container.Bind<CharacterStatsHolder>().FromInstance(_characterStatsHolder).AsSingle();
             Container.Bind<PlayerSkillsHolder>().FromInstance(_playerSkillsHolder).AsSingle();
-            Container.Bind<SkillUsageRequestSender>().FromInstance(_skillUsageRequestSender).AsSingle();
+            Container.Bind<SkillUsageRequestSender>().FromInstance(_skillUsageRequestSender).AsSingle().NonLazy();
 
             Container.Bind<DropListener>().FromNew().AsSingle().NonLazy();
         }
