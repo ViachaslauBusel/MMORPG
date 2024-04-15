@@ -24,10 +24,6 @@ namespace Items
         public int Durability { get; internal set; }
         public int MaxDurability { get; internal set; }
 
-        public Item()
-        {
-            _slotIndex = -1;
-        }
 
         public Item(long uniqueId, int count, int slotIndex, ItemData data)
         {
@@ -36,5 +32,7 @@ namespace Items
             _slotIndex = slotIndex;
             _data = data;
         }
+
+        
     }
 }

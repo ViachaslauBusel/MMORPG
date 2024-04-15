@@ -15,7 +15,7 @@ namespace Cells
         private void Awake()
         {
             Init(ItemStorageType.Equipment, -1);
-            defaultIcon = icon.sprite.texture;
+            defaultIcon = _icon.sprite.texture;
             Hide();
         }
 
@@ -28,7 +28,7 @@ namespace Cells
         public override void Hide()
         {
             if(defaultIcon == null) return;
-            icon.sprite = Sprite.Create(defaultIcon, new Rect(0.0f, 0.0f, defaultIcon.width, defaultIcon.height), new Vector2(0.5f, 0.5f), 100.0f);
+            _icon.sprite = Sprite.Create(defaultIcon, new Rect(0.0f, 0.0f, defaultIcon.width, defaultIcon.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
         public override void Put(Cell cell)

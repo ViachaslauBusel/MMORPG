@@ -22,7 +22,7 @@ namespace Cells
         {
             Init();
             base.Start();
-            icon.enabled = true;
+            _icon.enabled = true;
         }
 
         public override void Put(Cell cell)

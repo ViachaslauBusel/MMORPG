@@ -89,7 +89,7 @@ namespace Cells
         {
             if (eventData.button != PointerEventData.InputButton.Left) return;
 
-            if (cell.IsEmpty()) {  return; }
+            if (cell.IsEmpty() || cell.IsLocked()) {  return; }
             DragCell dragCell =  Instantiate(prefabDragCell).GetComponent<DragCell>();
             dragCell.CaptureItem(transform, cell, postionClick);
         }

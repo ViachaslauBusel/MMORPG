@@ -17,12 +17,14 @@ namespace Inventory.UI
         public GameObject itemCell;
         private List<ItemCell> _cells;
         private Bag _bag;
+        private InventoryModel _inventoryModel;
         private DiContainer _diContainer;
 
         [Inject]
-        private void Construct(DiContainer diContainer)
+        private void Construct(DiContainer diContainer, InventoryModel inventoryModel)
         {
             _diContainer = diContainer;
+            _inventoryModel = inventoryModel;
         }
 
         public void Init(Bag bag)
@@ -31,6 +33,7 @@ namespace Inventory.UI
             _bag.OnCapacityChanged += UpdateCellsCount;
             _bag.OnWeightChanged += UpdateWeght;
             _bag.OnItemsChanged += UpdateItems;
+            _inventoryModel.OnLockUpdate += UpdateItems;
         }
 
         private void UpdateWeght()
@@ -49,6 +52,7 @@ namespace Inventory.UI
                     {
                         _cells[item.SlotIndex].PutItem(item);
                     }
+                    _cells[item.SlotIndex].SetLock(_inventoryModel.IsItemLocked(item.UniqueID));
                 }
                 else Debug.LogError("Index out of range");
             }
@@ -89,6 +93,14 @@ namespace Inventory.UI
             int itemIndex = _cells.FindIndex(cell => cell.GetItem() is Item item && item.UniqueID == itemUID);
             item = itemIndex >= 0 ? _cells[itemIndex] : null;
             return itemIndex >= 0;
+        }
+
+        private void OnDestroy()
+        {
+            _bag.OnCapacityChanged -= UpdateCellsCount;
+            _bag.OnWeightChanged -= UpdateWeght;
+            _bag.OnItemsChanged -= UpdateItems;
+            _inventoryModel.OnLockUpdate -= UpdateItems;
         }
     }
 }

@@ -9,11 +9,12 @@ namespace Cells
     public class Cell : MonoBehaviour
     {
  
-        protected Image icon;
+        protected Image _icon;
+        protected bool _locked = false;
 
         internal void Init()
         {
-            icon = transform.Find("Icon").GetComponent<Image>();
+            _icon = transform.Find("Icon").GetComponent<Image>();
             Hide();
         }
 
@@ -29,25 +30,25 @@ namespace Cells
         public virtual void Put(Cell cell) { }//Положить в ячейку содержимое другой ячейки
         public Texture2D GetIcon()//Возвращает иконку предмета\Умения
         {
-           return icon.sprite.texture;
+           return _icon.sprite.texture;
         }
         public Sprite GetSprite()//Возвращает иконку предмета\Умения
         {
-            return icon.sprite;
+            return _icon.sprite;
         }
 
         public virtual void Hide()
         {
-            if (icon != null)
+            if (_icon != null)
             {
-                icon.enabled = false;
+                _icon.enabled = false;
             }
         }
 
         public virtual void Show()
         {
             if(!IsEmpty())
-            if (icon != null) icon.enabled = true;
+            if (_icon != null) _icon.enabled = true;
         }
 
         public virtual void Abort()
@@ -68,6 +69,6 @@ namespace Cells
             return 0;
         }
 
-       
+        internal bool IsLocked() => _locked;
     }
 }

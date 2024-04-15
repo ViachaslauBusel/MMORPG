@@ -11,7 +11,6 @@ public class SmelterCell : ItemCell
 {
     private SmelterModel _smelterModel;
 
-
     [Inject]
     private void Construct(SmelterModel smelterModel)
     {
@@ -25,7 +24,7 @@ public class SmelterCell : ItemCell
 
     public override void Put(Cell cell)
     {
-        if (cell != null && cell is ItemCell itemCell && itemCell.IsEmpty() == false)
+        if (cell is ItemCell itemCell && itemCell.IsEmpty() == false)
         {
             HandleItemPut(this, itemCell.GetItem());
             HandleItemPut(itemCell, null);

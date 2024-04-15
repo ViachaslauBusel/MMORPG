@@ -36,11 +36,11 @@ namespace Cells
             this.skill = skill;
             if (IsEmpty())
             {
-                icon.enabled = false;
+                _icon.enabled = false;
                 return;
             }
-            icon.enabled = true;
-            icon.sprite = Sprite.Create(skill.icon, new Rect(0.0f, 0.0f, skill.icon.width, skill.icon.height), new Vector2(0.5f, 0.5f), 100.0f);
+            _icon.enabled = true;
+            _icon.sprite = Sprite.Create(skill.icon, new Rect(0.0f, 0.0f, skill.icon.width, skill.icon.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
         public Skill GetSkill()

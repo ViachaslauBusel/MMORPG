@@ -155,7 +155,7 @@ namespace Cells
             else
             {
                 Show();
-                icon.sprite = cellRenderInfo.CreateSprite();
+                _icon.sprite = cellRenderInfo.CreateSprite();
                 _countTxt.text = cellRenderInfo.CreateCountTxt();
             }
         }

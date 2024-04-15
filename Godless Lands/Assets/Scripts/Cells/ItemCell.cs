@@ -3,6 +3,7 @@ using Items;
 using Protocol.Data.Items;
 using Protocol.MSG.Game.Inventory;
 using RUCP;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -13,6 +14,7 @@ namespace Cells
 
     public class ItemCell : Cell
     {
+        protected Image _lock;
         protected Item _item;
         protected ItemStorageType _storageType;
         protected int _index;
@@ -37,6 +39,7 @@ namespace Cells
             base.Init();
 
             _countTxt = transform.Find("Count")?.GetComponent<Text>();
+            _lock = transform.Find("Lock")?.GetComponent<Image>();
         }
 
         public override bool IsEmpty()
@@ -49,7 +52,7 @@ namespace Cells
         /// </summary>
         public override void Use()
         {
-            if (IsEmpty()) return;
+            if (IsEmpty() || IsLocked()) return;
             _itemUsageService.UseItem(_item.UniqueID);
         }
 
@@ -84,10 +87,15 @@ namespace Cells
             }
         }
 
+        private void UpdateItem()
+        {
+            throw new NotImplementedException();
+        }
+
         protected void UpdateIcon()
         {
-            if(icon == null) return;
-            icon.sprite = Sprite.Create(_item.Data.texture, new Rect(0.0f, 0.0f, _item.Data.texture.width, _item.Data.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+            if(_icon == null) return;
+            _icon.sprite = Sprite.Create(_item.Data.texture, new Rect(0.0f, 0.0f, _item.Data.texture.width, _item.Data.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
         /// <summary>
@@ -183,6 +191,12 @@ namespace Cells
             base.Show();
             if (_countTxt != null)
                 _countTxt.text = _item.Data.stack ? _item.Count.ToString() : "";
+        }
+
+        internal void SetLock(bool value)
+        {
+            _locked = value;
+           if(_lock != null) _lock.enabled = value;
         }
     }
 }

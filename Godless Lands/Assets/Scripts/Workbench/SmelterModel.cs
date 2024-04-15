@@ -42,8 +42,9 @@ namespace Workbench
             {
                 if (items[i] == null)
                     continue;
-                items[i] = _inventoryModel.FindItem(items[i].UniqueID);
+                SetItem(items, i, _inventoryModel.FindItem(items[i].UniqueID));
             }
+            _inventoryModel.SignalLockUpdate();
         }
 
         public void AddComponent(int index, Item item)
@@ -51,11 +52,14 @@ namespace Workbench
             if (index < 0 || index >= SmelterConfig.COMPONENT_SIZE)
                 throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
 
-            _components[index] = item;
+            RemoveExistingItem(_components, item);
+
+            SetItem(_components, index, item);
 
             _recipes = _recipeComponentMatcherService.FindRecipe(_components, _fuels, _smelterUse);
 
             OnContentUpdate?.Invoke();
+            _inventoryModel.SignalLockUpdate();
         }
 
         public void AddFuel(int index, Item item)
@@ -63,25 +67,66 @@ namespace Workbench
             if (index < 0 || index >= SmelterConfig.FUEL_SIZE)
                 throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
 
-            _fuels[index] = item;
+            RemoveExistingItem(_fuels, item);
+
+            SetItem(_fuels, index, item);
 
             _recipes = _recipeComponentMatcherService.FindRecipe(Components, Fuels, _smelterUse);
 
             OnContentUpdate?.Invoke();
+            _inventoryModel.SignalLockUpdate();
+        }
+
+        private void RemoveExistingItem(Item[] items, Item item)
+        {
+            if(item == null)
+            {
+                return;
+            }
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] != null && items[i].UniqueID == item.UniqueID)
+                {
+                    SetItem(items, i, null);
+                }
+            }
+        }
+
+        private void SetItem(Item[] items, int index, Item item)
+        {
+            if (items[index] != null)
+                _inventoryModel.UnlockItem(items[index].UniqueID);
+
+            items[index] = item;
+
+            if (items[index] != null)
+                _inventoryModel.LockItem(items[index].UniqueID);
         }
 
         public void ReserverSmelterModel(WorkbenchType workbenchTypeUse)
         {
             _smelterUse = workbenchTypeUse;
-            Array.Clear(_components, 0, _components.Length);
-            Array.Clear(_fuels, 0, _fuels.Length);
-            OnContentUpdate?.Invoke();
+        }
+
+        internal void ReleaseSmelterModel()
+        {
+            for (int i = 0; i < _components.Length; i++)
+            {
+                SetItem(_components, i, null);
+            }
+            for (int i = 0; i < _fuels.Length; i++)
+            {
+                SetItem(_fuels, i, null);
+            }
+            _inventoryModel.SignalLockUpdate();
         }
 
         public void Dispose()
         {
             _inventoryModel.OnInventoryUpdate -= OnInventoryUpdate;
         }
+
+      
     }
 }
 

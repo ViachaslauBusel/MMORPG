@@ -79,6 +79,7 @@ namespace Workbench.UI.Smelter
             _canvas.enabled = false;
             Clear();
             _smelterModel.OnContentUpdate -= OnSmelterModelUpdate;
+            _smelterModel.ReleaseSmelterModel();
         }
 
         public void SetStatus(bool isReadyForWork)
