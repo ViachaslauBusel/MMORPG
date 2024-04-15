@@ -70,16 +70,16 @@ public class Bag
             return;
         }
 
-        foreach (var item in items)
+        foreach (var itemInfo in items)
         {
-            if (item.SlotIndex >= 0 && item.SlotIndex < _items.Length)
+            if (itemInfo.SlotIndex >= 0 && itemInfo.SlotIndex < _items.Length)
             {
-                if (ShouldUpdateItem(_items[item.SlotIndex], item))
+                if (ShouldUpdateItem(_items[itemInfo.SlotIndex], itemInfo))
                 {
-                    _items[item.SlotIndex] = _itemsFactory.CreateItem(item);
+                    _items[itemInfo.SlotIndex] = _itemsFactory.CreateItem(itemInfo);
                 }
             }
-            else Debug.LogError($"Slot index {item.SlotIndex} is out of range");
+            else Debug.LogError($"Slot index {itemInfo.SlotIndex} is out of range");
         }
         OnItemsChanged?.Invoke();
     }

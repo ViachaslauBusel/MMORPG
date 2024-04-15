@@ -78,11 +78,11 @@ public class SmelterCell : ItemCell
     {
         if (IsEmpty())
         {
-            HideIcon();
+            Hide();
         }
         else
         {
-            ShowIcon();
+            Show();
             UpdateIcon();
         }
     }

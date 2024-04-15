@@ -24,7 +24,7 @@ namespace Cells
             Texture2D texture = cell.GetIcon();
             GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
 
-            cell.HideIcon();//Скрыть иконку в ячейке на время перемещения
+            //cell.Hide();//Скрыть иконку в ячейке на время перемещения
 
         }
 
@@ -36,8 +36,7 @@ namespace Cells
                 Destroy(gameObject);
                 enabled = false;
                 Ray();
-                cell.ShowIcon();//Снова показать иконеку в ячейке
- 
+              
             }
         }
 

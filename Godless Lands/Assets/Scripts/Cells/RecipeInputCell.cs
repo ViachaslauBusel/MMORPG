@@ -38,12 +38,12 @@ namespace Cells
             
             if (IsEmpty())
             {
-                HideIcon();
+                Hide();
                 return;
             }
 
             UpdateIcon();
-            ShowIcon();
+            Show();
           
         }
 

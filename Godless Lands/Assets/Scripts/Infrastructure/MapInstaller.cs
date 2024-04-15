@@ -1,4 +1,5 @@
 using Cells;
+using Cells.CellStateCache;
 using CombatMode;
 using Dialogues;
 using Dialogues.NodeHandlers;
@@ -88,9 +89,11 @@ public class MapInstaller : MonoInstaller
         //Dialogues
         Container.BindInterfacesAndSelfTo<DialogueNodeHandlerStorage>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<QuestLevelCheckNodeHandler>().FromNew().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<QuestLevelUpNodeHandler>().FromNew().AsSingle().NonLazy();        
+        Container.BindInterfacesAndSelfTo<QuestLevelUpNodeHandler>().FromNew().AsSingle().NonLazy();   
+        
+        //Cells
+        Container.BindInterfacesAndSelfTo<CellStateCacheSystem>().FromNew().AsSingle().NonLazy();
      
-
         // TEST
         // DRAW POINTS
         Container.BindInterfacesAndSelfTo<DrawPointsModel>().FromNew().AsSingle().NonLazy();

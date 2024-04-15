@@ -150,11 +150,11 @@ namespace Cells
 
             if (cellRenderInfo == null)
             {
-                HideIcon();
+                Hide();
             }
             else
             {
-                ShowIcon();
+                Show();
                 icon.sprite = cellRenderInfo.CreateSprite();
                 _countTxt.text = cellRenderInfo.CreateCountTxt();
             }
@@ -180,15 +180,15 @@ namespace Cells
             _hide.enabled = false;
         }
 
-        public override void HideIcon()
+        public override void Hide()
         {
-            base.HideIcon();
+            base.Hide();
             _countTxt.enabled = false;
         }
 
-        public override void ShowIcon()
+        public override void Show()
         {
-            base.ShowIcon();
+            base.Show();
             _countTxt.enabled = true;
         }
 

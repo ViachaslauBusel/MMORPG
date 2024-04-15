@@ -14,7 +14,7 @@ namespace Cells
         internal void Init()
         {
             icon = transform.Find("Icon").GetComponent<Image>();
-            HideIcon();
+            Hide();
         }
 
         protected void Start()
@@ -36,14 +36,15 @@ namespace Cells
             return icon.sprite;
         }
 
-        public virtual void HideIcon()
+        public virtual void Hide()
         {
             if (icon != null)
             {
                 icon.enabled = false;
             }
         }
-        public virtual void ShowIcon()
+
+        public virtual void Show()
         {
             if(!IsEmpty())
             if (icon != null) icon.enabled = true;
@@ -51,7 +52,6 @@ namespace Cells
 
         public virtual void Abort()
         {
-
         }
 
         public virtual string GetText()

@@ -16,7 +16,7 @@ namespace Cells
         {
             Init(ItemStorageType.Equipment, -1);
             defaultIcon = icon.sprite.texture;
-            HideIcon();
+            Hide();
         }
 
         public override void Use()
@@ -25,7 +25,7 @@ namespace Cells
             _itemUsageService.TakeFromEquipAndPutInBag(ItemStorageType.PrimaryBag, -1, _item.UniqueID);
         }
 
-        public override void HideIcon()
+        public override void Hide()
         {
             if(defaultIcon == null) return;
             icon.sprite = Sprite.Create(defaultIcon, new Rect(0.0f, 0.0f, defaultIcon.width, defaultIcon.height), new Vector2(0.5f, 0.5f), 100.0f);
@@ -34,14 +34,21 @@ namespace Cells
         public override void Put(Cell cell)
         {
 
-            if (cell.GetType() != typeof(ItemCell) || cell.IsEmpty()) return;//Если ячейка не для предметов или пустая
+            if (cell.GetType() != typeof(ItemCell) || cell.IsEmpty())
+            {
+                return;//Если ячейка не для предметов или пустая
+            }
 
             ItemCell itemCell = cell as ItemCell;
-            if (itemCell.GetItem().Data.type != use) return;//Если тип предмета не соответствует ячейке
+            if (itemCell.GetItem().Data.type != use)
+            {
+                return;//Если тип предмета не соответствует ячейке
+            }
+            //_cellStateCacheSystem.ShowIfUIDUquals(cell, cell.GetItemUID(), 500);
             cell.Use();//Использовать предмет
         }
 
-        public override void ShowIcon()
+        public override void Show()
         {
             if(_item != null)
                 UpdateIcon();

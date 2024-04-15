@@ -1,4 +1,5 @@
-﻿using Items;
+﻿using Cells.CellStateCache;
+using Items;
 using Protocol.Data.Items;
 using Protocol.MSG.Game.Inventory;
 using RUCP;
@@ -17,13 +18,15 @@ namespace Cells
         protected int _index;
         protected Text _countTxt;
         protected ItemUsageService _itemUsageService;
+        protected CellStateCacheSystem _cellStateCacheSystem;
 
         public ItemStorageType StorageType => _storageType;
 
         [Inject]
-        public void Construct(ItemUsageService itemUsageService)
+        public void Construct(ItemUsageService itemUsageService, CellStateCacheSystem cellStateCacheSystem)
         {
             _itemUsageService = itemUsageService;
+            _cellStateCacheSystem = cellStateCacheSystem;
         }
 
         public void Init(ItemStorageType storageType, int index)
@@ -69,13 +72,11 @@ namespace Cells
             _item = item;
             if (IsEmpty())//If the cell is empty
             {
-                if (_countTxt != null)
-                    _countTxt.text = "";
-                HideIcon();
+                Hide();
                 return;
             }
 
-            ShowIcon();
+            Show();
             UpdateIcon();
             if (_countTxt != null)
             {
@@ -112,6 +113,9 @@ namespace Cells
 
             if (cell is ItemCell itemCell && itemCell.IsEmpty() == false)
             {
+                //_cellStateCacheSystem.HideItemUntilResponse(itemCell, 1_500);
+                //_cellStateCacheSystem.ShowItemUntilResponse(this, itemCell.GetItem(), 1_500);
+                PutItem(itemCell.GetItem());
                 MSG_SWAMP_ITEMS swamp_command = new MSG_SWAMP_ITEMS();
                 swamp_command.ItemUID = itemCell.GetItemUID();
                 swamp_command.ToCellIndex = _index;
@@ -167,6 +171,18 @@ namespace Cells
         public void SetMaxDurabilty(int durability)
         {
           //  _item.Data.maxDurability = durability;
+        }
+        public override void Hide()
+        {
+            base.Hide();
+            if (_countTxt != null)
+                _countTxt.text = "";
+        }
+        public override void Show()
+        {
+            base.Show();
+            if (_countTxt != null)
+                _countTxt.text = _item.Data.stack ? _item.Count.ToString() : "";
         }
     }
 }
