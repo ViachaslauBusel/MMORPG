@@ -35,6 +35,5 @@ namespace Drop
         {
             _networkManager.UnregisterHandler(Opcode.MSG_DROP_LIST_SYNC);
         }
-
     }
 }

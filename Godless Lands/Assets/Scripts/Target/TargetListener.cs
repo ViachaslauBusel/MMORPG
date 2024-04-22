@@ -6,7 +6,7 @@ using System;
 
 namespace Target
 {
-    public class TargetInformationService : IDisposable
+    public class TargetListener : IDisposable
     {
         public struct TargetInfo
         {
@@ -21,7 +21,7 @@ namespace Target
         public event Action<int, string, float> OnTargetObjectChanged;
         public event Action<float> OnTargetHPUpdated;
 
-        public TargetInformationService(NetworkManager networkManager)
+        public TargetListener(NetworkManager networkManager)
         {
             _networkManager = networkManager;
 

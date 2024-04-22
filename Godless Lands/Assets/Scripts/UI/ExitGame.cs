@@ -1,17 +1,21 @@
 ﻿using RUCP;
-using RUCP.Handler;
+using UI.ConfirmationDialog;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-public class ExitGame : MonoBehaviour {
-    private NetworkManager networkManager;
+public class ExitGame : MonoBehaviour
+{
+    private NetworkManager _networkManager;
+    private ConfirmationDialogController _confirmationDialog;
 
     [Inject]
-    private void Construct(NetworkManager networkManager)
+    private void Construct(NetworkManager networkManager, ConfirmationDialogController confirmationDialog)
     {
-        this.networkManager = networkManager;
-        networkManager.RegisterHandler(Types.LobbyReload, LobbyReload);
+        _networkManager = networkManager;
+        _confirmationDialog = confirmationDialog;
+
+        //networkManager.RegisterHandler(Types.LobbyReload, LobbyReload);
     }
 
 
@@ -22,7 +26,7 @@ public class ExitGame : MonoBehaviour {
 
     public void OnExit()
     {
-        Confirm.Instance.Subscribe(
+        _confirmationDialog.AddRequest(
         "Вы действительно хотите выйти из игры?",
         () => {
             Application.Quit();
@@ -32,7 +36,7 @@ public class ExitGame : MonoBehaviour {
     }
     public void OnReload()
     {
-        Confirm.Instance.Subscribe(
+        _confirmationDialog.AddRequest(
         "Вы действительно хотите выйти в комнату выбора персонажа?",
         () => {
         //TODO msg
@@ -47,6 +51,6 @@ public class ExitGame : MonoBehaviour {
 
     private void OnDestroy()
     {
-        networkManager?.UnregisterHandler(Types.LobbyReload);
+        //_networkManager?.UnregisterHandler(Types.LobbyReload);
     }
 }

@@ -28,6 +28,8 @@ namespace Infrastructure
         private NPCsFactory _npcsFactory;
         [SerializeField]
         private QuestDataHolder _questsDataHolder;
+        [SerializeField]
+        private DropBagFactory _dropBagFactory;
 
         public override void InstallBindings()
         {
@@ -40,6 +42,7 @@ namespace Infrastructure
             Container.Bind<RecipesDataHolder>().FromInstance(_recipesDataHolder).AsSingle();
             Container.Bind<NPCsFactory>().FromInstance(_npcsFactory).AsSingle();
             Container.Bind<QuestDataHolder>().FromInstance(_questsDataHolder).AsSingle();
+            Container.Bind<DropBagFactory>().FromInstance(_dropBagFactory).AsSingle();
         }
     }
 }

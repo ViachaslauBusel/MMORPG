@@ -13,10 +13,10 @@ namespace Target.UI
         private Image _hpBar;
         private UnitTargetRequestSender _unitTargetRequestSender;
         private GameObject _targetViewWindow;
-        private TargetInformationService _targetInfoService;
+        private TargetListener _targetInfoService;
 
         [Inject]
-        private void Construct(UnitTargetRequestSender unitTargetRequestSender, TargetInformationService targetInfoService)
+        private void Construct(UnitTargetRequestSender unitTargetRequestSender, TargetListener targetInfoService)
         {
             _unitTargetRequestSender = unitTargetRequestSender;
             _targetInfoService = targetInfoService;

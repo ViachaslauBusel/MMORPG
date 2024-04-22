@@ -1,8 +1,7 @@
-﻿using Messenger.Settings;
-using System.Collections;
-using System.Collections.Generic;
+﻿using UI.ConfirmationDialog;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Messenger.Settings
 {
@@ -13,6 +12,13 @@ namespace Messenger.Settings
         [SerializeField] Slider inputFontSize;
         private LayerField[] layers;
         private Tab selectTab;
+        private ConfirmationDialogController _confirmationDialog;
+
+        [Inject]
+        private void Construct(ConfirmationDialogController confirmationDialog)
+        {
+            _confirmationDialog = confirmationDialog;
+        }
 
         private void Awake()
         {
@@ -65,7 +71,7 @@ namespace Messenger.Settings
         public void Delete()
         {
             if (selectTab == null) return;
-            Confirm.Instance.Subscribe(
+            _confirmationDialog.AddRequest(
                 $"Вы уверены что хотите удалить вкладку {selectTab.name}?",
                 () => { 
                     MessengerSettings.Instance.EditableTabs.Remove(selectTab);

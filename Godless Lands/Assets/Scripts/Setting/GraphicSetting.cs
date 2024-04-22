@@ -1,12 +1,14 @@
 ﻿using Loader;
 using OpenWorld;
-using System.Collections;
 using System.Collections.Generic;
+using UI.ConfirmationDialog;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class GraphicSetting : MonoBehaviour
 {
+    private ConfirmationDialogController _confirmationDialog;
     public GameObject prefGameLoader;
     public Slider sliderScaleUI;
     public Slider sliderViewDistance;
@@ -18,6 +20,13 @@ public class GraphicSetting : MonoBehaviour
     public PostProfiles postProfiles;
     private MapLoader mapLoader;
     private UIScaler scaler;
+
+
+    [Inject]
+    private void Construct(ConfirmationDialogController confirmationDialog)
+    {
+        _confirmationDialog = confirmationDialog;
+    }
 
     void Awake()
     {
@@ -105,7 +114,7 @@ public class GraphicSetting : MonoBehaviour
         }
 
         if (restart)
-            Confirm.Instance.Subscribe(
+              _confirmationDialog.AddRequest(
               "Чтобы изменения вступили в силу, нужно перезагрузить игру",
               () =>
               {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 namespace Cells
 {
@@ -19,6 +20,14 @@ namespace Cells
         protected Cell cell;
         protected CellParent cellParent;
         private Vector3 postionClick;//Позиция мыши во время нажатия на левую кнопку мыши
+        private DiContainer _diContainer;
+
+
+        [Inject]
+        private void Construct(DiContainer diContainer)
+        {
+            _diContainer = diContainer;
+        }
 
         protected void Start()
         {
@@ -90,7 +99,7 @@ namespace Cells
             if (eventData.button != PointerEventData.InputButton.Left) return;
 
             if (cell.IsEmpty() || cell.IsLocked()) {  return; }
-            DragCell dragCell =  Instantiate(prefabDragCell).GetComponent<DragCell>();
+            DragCell dragCell =  _diContainer.InstantiatePrefab(prefabDragCell).GetComponent<DragCell>();
             dragCell.CaptureItem(transform, cell, postionClick);
         }
 

@@ -1,25 +1,36 @@
-﻿using System.Collections;
+﻿using Drop.GroundDrop;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Cells
 {
     public class DragCell : MonoBehaviour
     {
-        private CellParent cellParent;
-        private PointerEventData m_PointerEventData;
-        private EventSystem m_EventSystem;
-        private Cell cell;
+        [SerializeField]
+        private LayerMask _groundLayer;
+        private GroundDropInputHandler _groundDropInputHandler;
+        private CellParent _cellParent;
+        private PointerEventData _PointerEventData;
+        private EventSystem _EventSystem;
+        private Cell _cell;
 
+
+        [Inject]
+        private void Construct(GroundDropInputHandler groundDropInputHandler)
+        {
+            _groundDropInputHandler = groundDropInputHandler;
+        }
 
         public void CaptureItem(Transform parent, Cell cell, Vector3 position)
         {
-            cellParent = parent.GetComponentInParent<CellParent>();
-            m_EventSystem = EventSystem.current; 
-            this.cell = cell;
-            transform.SetParent(cellParent.parent);
+            _cellParent = parent.GetComponentInParent<CellParent>();
+            _EventSystem = EventSystem.current; 
+            this._cell = cell;
+            transform.SetParent(_cellParent.parent);
             ((RectTransform)transform).position = Input.mousePosition + ((parent as RectTransform).position - position);
             Texture2D texture = cell.GetIcon();
             GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
@@ -43,17 +54,20 @@ namespace Cells
         private void Ray()
         {
             //Set up the new Pointer Event
-            m_PointerEventData = new PointerEventData(m_EventSystem);
+            _PointerEventData = new PointerEventData(_EventSystem);
             //Set the Pointer Event Position to that of the mouse position
-            m_PointerEventData.position = Input.mousePosition;
+            _PointerEventData.position = Input.mousePosition;
 
             //Create a list of Raycast Results
             List<RaycastResult> results = new List<RaycastResult>();
             Result raycastResult = null;
-            foreach (GraphicRaycaster raycaster in cellParent.raycasters)
+            bool tryGroundRay = true;
+            foreach (GraphicRaycaster raycaster in _cellParent.raycasters)
             {
                 //Raycast using the Graphics Raycaster and mouse click position
-                raycaster.Raycast(m_PointerEventData, results);
+                raycaster.Raycast(_PointerEventData, results);
+
+                tryGroundRay = tryGroundRay && results.Count == 0;
 
                 //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
                 foreach (RaycastResult result in results)
@@ -83,9 +97,20 @@ namespace Cells
             if(raycastResult != null)
             {
                 Cell resultCell = raycastResult.resultObj.GetComponent<Cell>();
-                resultCell.Put(cell);
+                resultCell.Put(_cell);
             }
-            else cell.Abort();
+            else _cell.Abort();
+
+            if(tryGroundRay && _cell is ItemCell itemCell)
+            {
+                //Raycast ray from camera to ground and get hit point
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, float.MaxValue, _groundLayer))
+                {
+                    _groundDropInputHandler.DropItem(itemCell.GetItem(), hit.point);
+                }
+            }
          //   return false;
         }
 

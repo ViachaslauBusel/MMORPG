@@ -1,38 +1,47 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using UI.ConfirmationDialog;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Messenger.Settings
 {
     public class MessengerSettings : MonoBehaviour
     {
         public static MessengerSettings Instance { get; private set; }
-        [SerializeField] Button applyButton;
-        private TabsContainer editableContainer;
-        private Canvas canvas;
+        [SerializeField]
+        private Button applyButton;
+        private TabsContainer _editableContainer;
+        private Canvas _canvas;
+        private ConfirmationDialogController _confirmationDialog;
 
         public event Action update;
 
 
-        public TabsContainer EditableTabs => editableContainer;
+        public TabsContainer EditableTabs => _editableContainer;
+
+
+        [Inject]
+        private void Construct(ConfirmationDialogController confirmationDialog)
+        {
+            _confirmationDialog = confirmationDialog;
+        }
 
         private void Awake()
         {
             Instance = this;
-            canvas = GetComponent<Canvas>();
+            _canvas = GetComponent<Canvas>();
         }
 
         private void Start()
         {
-            canvas.enabled = false;
+            _canvas.enabled = false;
         }
         public void Open() {
-            if (canvas.enabled) return;
-            canvas.enabled = true;
+            if (_canvas.enabled) return;
+            _canvas.enabled = true;
 
-            editableContainer = TabsManager.Instance.ReadTabsContainer();
+            _editableContainer = TabsManager.Instance.ReadTabsContainer();
 
             applyButton.interactable = false;
 
@@ -42,15 +51,15 @@ namespace Messenger.Settings
         {
             if (applyButton.interactable)
             {
-                Confirm.Instance.Subscribe(
+                _confirmationDialog.AddRequest(
                    $"Все несохраненные изменения будут потеряны. Закрыть?",
                    () =>
                    {
-                       canvas.enabled = false;
+                       _canvas.enabled = false;
                    },
                    () => { }
                    );
-            } else canvas.enabled = false;
+            } else _canvas.enabled = false;
         }
         public void UpdateChanges()
         {

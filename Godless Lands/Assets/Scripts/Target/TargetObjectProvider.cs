@@ -5,12 +5,14 @@ namespace Target
     public class TargetObjectProvider
     {
         private TargetObjectRegistry _targetObjectRegistry;
-        private TargetInformationService _targetInformationService;
+        private TargetListener _targetInformationService;
         private int _targetObjectID;
+
+        public int TargetObjectID => _targetObjectID;
 
         public event Action<ITargetObject> OnTargetObjectChanged;
 
-        public TargetObjectProvider(TargetObjectRegistry targetObjectRegistry, TargetInformationService targetInformationService)
+        public TargetObjectProvider(TargetObjectRegistry targetObjectRegistry, TargetListener targetInformationService)
         {
             _targetObjectRegistry = targetObjectRegistry;
             _targetInformationService = targetInformationService;

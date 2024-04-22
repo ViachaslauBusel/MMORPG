@@ -1,7 +1,6 @@
 ﻿using Items;
 using Protocol.Data.Items;
-using Protocol.MSG.Game.Inventory;
-using RUCP;
+using UI.ConfirmationDialog;
 using Zenject;
 
 namespace Cells
@@ -10,12 +9,14 @@ namespace Cells
     {
         private ItemUsageService _itemUsageService;
         private SelectQuantityWindow _selectQuantityWindow;
+        private ConfirmationDialogController _confirmationDialog;
 
         [Inject]
-        private void Construct(ItemUsageService itemUsageService, SelectQuantityWindow selectQuantityWindow)
+        private void Construct(ItemUsageService itemUsageService, SelectQuantityWindow selectQuantityWindow, ConfirmationDialogController confirmationDialog)
         {
             _itemUsageService = itemUsageService;
             _selectQuantityWindow = selectQuantityWindow;
+            _confirmationDialog = confirmationDialog;
         }
 
         private new void Start()
@@ -55,7 +56,7 @@ namespace Cells
 
         private void DestroyItemRequest(Item item, ItemStorageType deletFrom, int count)
         {
-            Confirm.Instance.Subscribe(
+            _confirmationDialog.AddRequest(
                    "Do you really want to delete the item?",
                    () =>
                    {

@@ -10,7 +10,7 @@ public class Bag
 {
     private ItemStorageType _storageType;
     private ItemsFactory _itemsFactory;
-    private Item[] _items;
+    private Item[] _items = new Item[0];
     private int _currentWeight;
     private int _maxWeight;
     private int _currentItemsCount;
@@ -36,7 +36,7 @@ public class Bag
     {
         _currentItemsCount = currentItemsCount;
         
-        if (_items == null || _items.Length != maxItemsCount)
+        if (_items.Length != maxItemsCount)
         {
             var newItems = new Item[maxItemsCount];
             for (int i = 0; i < maxItemsCount; i++)

@@ -1,5 +1,7 @@
 ﻿using Drop.UI;
 using ObjectInteraction.UI;
+using Trade.UI;
+using UI.ConfirmationDialog;
 using UI.PlayerCharacterDead;
 using UnityEngine;
 using Zenject;
@@ -20,6 +22,10 @@ namespace Infrastructure
         private DialogWindow _dialogWindow;
         [SerializeField]
         private SelectQuantityWindow _selectQuantityWindow;
+        [SerializeField]
+        private ConfirmationDialogWindow _confirmationWindow;
+        [SerializeField]
+        private TradeWindow _tradeWindow;
 
         public override void InstallBindings()
         {
@@ -29,6 +35,8 @@ namespace Infrastructure
             Container.Bind<InventoryWindow>().FromInstance(_inventoryWindow).AsSingle();
             Container.Bind<DialogWindow>().FromInstance(_dialogWindow).AsSingle();
             Container.Bind<SelectQuantityWindow>().FromInstance(_selectQuantityWindow).AsSingle();
+            Container.Bind<ConfirmationDialogWindow>().FromInstance(_confirmationWindow).AsSingle();
+            Container.Bind<TradeWindow>().FromInstance(_tradeWindow).AsSingle();
         }
     }
 }

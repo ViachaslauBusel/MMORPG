@@ -1,8 +1,8 @@
 using Cells;
-using Cells.CellStateCache;
 using CombatMode;
 using Dialogues;
 using Dialogues.NodeHandlers;
+using Drop.GroundDrop;
 using Equipment;
 using Inventory;
 using Items;
@@ -18,6 +18,8 @@ using Recipes;
 using Skills;
 using Target;
 using Test.DrawPoints;
+using Trade;
+using UI.ConfirmationDialog;
 using UnitVisualCache;
 using UnityEngine;
 using Workbench;
@@ -59,7 +61,7 @@ public class MapInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<CharacterMeshProviderService>().FromNew().AsSingle().NonLazy();
 
         // Target
-        Container.BindInterfacesAndSelfTo<TargetInformationService>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<TargetListener>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<UnitTargetRequestSender>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<TargetObjectRegistry>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<TargetObjectProvider>().FromNew().AsSingle().NonLazy();
@@ -90,9 +92,17 @@ public class MapInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<DialogueNodeHandlerStorage>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<QuestLevelCheckNodeHandler>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<QuestLevelUpNodeHandler>().FromNew().AsSingle().NonLazy();   
-        
-        //Cells
-        Container.BindInterfacesAndSelfTo<CellStateCacheSystem>().FromNew().AsSingle().NonLazy();
+       
+        //Ground drop
+        Container.BindInterfacesAndSelfTo<GroundDropInputHandler>().FromNew().AsSingle().NonLazy();
+
+        //Trade
+        Container.BindInterfacesAndSelfTo<TradeInputHandler>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<TradeListener>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<TradeModel>().FromNew().AsSingle().NonLazy();
+
+        //Confirmation dialog
+        Container.BindInterfacesAndSelfTo<ConfirmationDialogController>().FromNew().AsSingle().NonLazy();
      
         // TEST
         // DRAW POINTS

@@ -1,8 +1,6 @@
-﻿using Cells.CellStateCache;
-using Items;
+﻿using Items;
 using Protocol.Data.Items;
 using Protocol.MSG.Game.Inventory;
-using RUCP;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,15 +18,13 @@ namespace Cells
         protected int _index;
         protected Text _countTxt;
         protected ItemUsageService _itemUsageService;
-        protected CellStateCacheSystem _cellStateCacheSystem;
 
         public ItemStorageType StorageType => _storageType;
 
         [Inject]
-        public void Construct(ItemUsageService itemUsageService, CellStateCacheSystem cellStateCacheSystem)
+        public void Construct(ItemUsageService itemUsageService)
         {
             _itemUsageService = itemUsageService;
-            _cellStateCacheSystem = cellStateCacheSystem;
         }
 
         public void Init(ItemStorageType storageType, int index)
@@ -123,7 +119,7 @@ namespace Cells
             {
                 //_cellStateCacheSystem.HideItemUntilResponse(itemCell, 1_500);
                 //_cellStateCacheSystem.ShowItemUntilResponse(this, itemCell.GetItem(), 1_500);
-                PutItem(itemCell.GetItem());
+                PutItem(itemCell.GetItem()); itemCell.Hide();
                 MSG_SWAMP_ITEMS swamp_command = new MSG_SWAMP_ITEMS();
                 swamp_command.ItemUID = itemCell.GetItemUID();
                 swamp_command.ToCellIndex = _index;
