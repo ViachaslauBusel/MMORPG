@@ -22,7 +22,7 @@ public class QuestData : ZenjectNodesContainer, IEditableObject
     public string Description => _description;
     public bool IsRenderableInJournal => _isRenderableInJournal;
 
-   
+    
 
     public Texture Preview => null;
 

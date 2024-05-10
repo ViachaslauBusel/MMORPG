@@ -47,8 +47,7 @@ namespace Trade
 
         public void AcceptTrade()
         {
-            MSG_TRADE_CONTROL_COMMAND_CS msg = new MSG_TRADE_CONTROL_COMMAND_CS();
-            msg.Command = TradeControlCommand.Accept;
+            MSG_CONFIRM_TRADE msg = new MSG_CONFIRM_TRADE();
             _networkManager.Client.Send(msg);
         }
 
