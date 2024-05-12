@@ -6,11 +6,13 @@ using UnityEngine;
 
 namespace Animation
 {
+    [RequireComponent(typeof(AnimationPlaybackTimeBuffer))]
     public class NetworkAnimator : MonoBehaviour, IVisualObjectScript
     {
         private Animator _animator;
         private AnimationPlaybackBufferHandler _animationPlaybackBufferHandler;
         private AnimationStateDataHandler _animationStateDataHandler;
+        private AnimationPlaybackTimeBuffer _animationPlaybackTimeBuffer;
         private float _playbackTime = 1.0f;
         private AnimationStateID _currentSata;
 
@@ -18,13 +20,12 @@ namespace Animation
         {
             return _playbackTime;
         }
-
         public void AttachToNetworkObject(GameObject networkObjectOwner)
         {
             _animationPlaybackBufferHandler = networkObjectOwner.GetComponent<AnimationPlaybackBufferHandler>();
             _animationStateDataHandler = networkObjectOwner.GetComponent<AnimationStateDataHandler>();
 
-            if(_animationPlaybackBufferHandler != null)
+            if (_animationPlaybackBufferHandler != null)
             {
                 _animationPlaybackBufferHandler.OnAnimationPlay += OnAnimationPlay;
             }
@@ -54,13 +55,14 @@ namespace Animation
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+            _animationPlaybackTimeBuffer = GetComponent<AnimationPlaybackTimeBuffer>();
         }
 
         private void OnAnimationPlay(AnimationData data)
         {
-            _playbackTime = data.PlaybackTime != 0 ? (data.PlaybackTime / 1_000f) : 1.0f;
+            _animationPlaybackTimeBuffer.PushTime(data.AnimationID, _playbackTime);
 
-            if(data.Direction != null)
+            if (data.Direction != null)
             {
                 Vector3 direction = data.Direction.Value.ToUnity();
                 direction.y = 0;
@@ -70,12 +72,9 @@ namespace Animation
             switch (data.AnimationLayer)
             {
                 case AnimationLayer.TimeAnimation:
-                    _animator.SetInteger("AttackType", (int)data.AnimationID);
-                    _animator.SetTrigger("atack");
-                    break;
                 case AnimationLayer.InstantAnimation:
-                    _animator.SetInteger("AttackType", (int)data.AnimationID);
-                    _animator.SetTrigger("skill");
+                    _animator.SetInteger("AnimationType", (int)data.AnimationID);
+                    _animator.SetTrigger("TriggerAnimation");
                     break;
                 case AnimationLayer.StateAnimation:
                   
