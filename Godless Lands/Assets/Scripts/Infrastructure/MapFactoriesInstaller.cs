@@ -1,4 +1,5 @@
-﻿using Factories;
+﻿using Animation;
+using Factories;
 using Items;
 using Physic.Dynamic;
 using Quests.Data;
@@ -30,6 +31,8 @@ namespace Infrastructure
         private QuestDataHolder _questsDataHolder;
         [SerializeField]
         private DropBagFactory _dropBagFactory;
+        [SerializeField]
+        private AnimationPriorityDataHolder _animationPriorityDataHolder;
 
         public override void InstallBindings()
         {
@@ -43,6 +46,7 @@ namespace Infrastructure
             Container.Bind<NPCsFactory>().FromInstance(_npcsFactory).AsSingle();
             Container.Bind<QuestDataHolder>().FromInstance(_questsDataHolder).AsSingle();
             Container.Bind<DropBagFactory>().FromInstance(_dropBagFactory).AsSingle();
+            Container.Bind<AnimationPriorityDataHolder>().FromInstance(_animationPriorityDataHolder).AsSingle();
         }
     }
 }

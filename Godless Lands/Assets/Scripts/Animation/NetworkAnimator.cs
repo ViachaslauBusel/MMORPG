@@ -3,6 +3,7 @@ using NetworkObjectVisualization;
 using Protocol.Data.Replicated.Animation;
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Animation
 {
@@ -13,13 +14,16 @@ namespace Animation
         private AnimationPlaybackBufferHandler _animationPlaybackBufferHandler;
         private AnimationStateDataHandler _animationStateDataHandler;
         private AnimationPlaybackTimeBuffer _animationPlaybackTimeBuffer;
-        private float _playbackTime = 1.0f;
+        private AnimationPriorityDataHolder _animationPriorityDataHolder;
         private AnimationStateID _currentSata;
 
-        public float GetPlaybackTime()
+
+        [Inject]
+        private void Construct(AnimationPriorityDataHolder animationPriorityDataHolder)
         {
-            return _playbackTime;
+            _animationPriorityDataHolder = animationPriorityDataHolder;
         }
+
         public void AttachToNetworkObject(GameObject networkObjectOwner)
         {
             _animationPlaybackBufferHandler = networkObjectOwner.GetComponent<AnimationPlaybackBufferHandler>();
@@ -60,7 +64,7 @@ namespace Animation
 
         private void OnAnimationPlay(AnimationData data)
         {
-            _animationPlaybackTimeBuffer.PushTime(data.AnimationID, _playbackTime);
+            _animationPlaybackTimeBuffer.PushTime(data.AnimationID, data.PlaybackTime / 1_000f);
 
             if (data.Direction != null)
             {
@@ -68,6 +72,15 @@ namespace Animation
                 direction.y = 0;
                 transform.LookAt(transform.position + direction);
             }
+
+            int currentPriority = _animator.GetInteger("Priority");
+            int newPriority = _animationPriorityDataHolder.GetPriority(data.AnimationID);
+            if (newPriority < currentPriority)
+            {
+                Debug.Log($"[{data.AnimationID}] Priority is lower than current priority");
+                return;
+            }
+            _animator.SetInteger("Priority", newPriority);
 
             switch (data.AnimationLayer)
             {
