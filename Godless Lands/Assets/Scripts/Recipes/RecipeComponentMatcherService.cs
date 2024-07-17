@@ -57,7 +57,7 @@ namespace Recipes
         {
             foreach (Piece piece in pieces)
             {
-                if (!items.Any(i => i != null && i.Data.id == piece.ID)) return false;
+                if (!items.Any(i => i != null && i.Data.ID == piece.ID)) return false;
             }
             return true;
         }

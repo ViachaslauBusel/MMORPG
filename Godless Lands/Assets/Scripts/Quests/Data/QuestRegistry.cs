@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Quests
 {
     [CreateAssetMenu(fileName = "QuestsDATA", menuName = "DATA/Quests Data", order = 51)]
-    public class QuestRegistry : EditableObjectRegistry<QuestData>
+    public class QuestRegistry : DataObjectRegistry<QuestData>
     {
         public override void Export()
         {

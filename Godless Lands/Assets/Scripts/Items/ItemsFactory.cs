@@ -11,7 +11,7 @@ namespace Items
     public class ItemsFactory : MonoBehaviour
     {
         [SerializeField]
-        private ItemsContainer _itemsContainer;
+        private ItemsRegistry _itemsContainer;
 
         internal Item CreateEmptyItem(long uid = 0, int count = 0, int slotIndex = -1)
         {
@@ -20,19 +20,19 @@ namespace Items
 
         internal Item CreateItem(int id, long uid = 0, int count = 0, int slotIndex = -1)
         {
-           ItemData item = _itemsContainer.GetItem(id);
+           ItemData item = _itemsContainer.GetObjectByID(id);
             return new Item(uid, count, slotIndex, item);
         }
 
         internal Item CreateItem(ItemSyncData item)
         {
-            ItemData data = _itemsContainer.GetItem(item.ItemID);
+            ItemData data = _itemsContainer.GetObjectByID(item.ItemID);
             return new Item(item.UniqueID, item.Count, item.SlotIndex, data);
         }
 
         public ItemData GetItemData(int id)
         {
-            return _itemsContainer.GetItem(id);
+            return _itemsContainer.GetObjectByID(id);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Resource
     [CanEditMultipleObjects]
     public class ResourceInspector : Editor
     {
-        private static ItemsContainer itemsList;
+        private static ItemsRegistry itemsList;
         public override void OnInspectorGUI()
         {
             Fabric resource = ((ResourceEditor)target).GetSelectObject() as Fabric;
@@ -73,21 +73,22 @@ namespace Resource
 
         private bool DrawItemComponent(int id)
         {
-            if (itemsList == null) return false;
-            ItemData item = itemsList.GetItem(id);
-            GUILayout.BeginHorizontal();
-            if (item != null)
-            {
-                GUILayout.Label(item.texture, GUILayout.Width(20), GUILayout.Height(20));
-                GUILayout.Label(item.nameItem);
-            }
-            else
-            {
-                GUILayout.FlexibleSpace();
-            }
-            if (GUILayout.Button("remove", GUILayout.Width(60))) return true;
-            GUILayout.EndHorizontal();
-            return false;
+           // if (itemsList == null)
+           return false;
+            //ItemData item = itemsList.GetItem(id);
+            //GUILayout.BeginHorizontal();
+            //if (item != null)
+            //{
+            //    GUILayout.Label(item.texture, GUILayout.Width(20), GUILayout.Height(20));
+            //    GUILayout.Label(item.nameItem);
+            //}
+            //else
+            //{
+            //    GUILayout.FlexibleSpace();
+            //}
+            //if (GUILayout.Button("remove", GUILayout.Width(60))) return true;
+            //GUILayout.EndHorizontal();
+            //return false;
         }
     }
 }

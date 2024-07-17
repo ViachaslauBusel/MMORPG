@@ -150,8 +150,8 @@ namespace Workbench.UI.RecipeCrafting
 
            
             
-            _icon.sprite = Sprite.Create(_item.Data.texture, new Rect(0.0f, 0.0f, _item.Data.texture.width, _item.Data.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
-            _nameTxt.text = _item.Data.nameItem;
+            _icon.sprite = Sprite.Create(_item.Data.Icon, new Rect(0.0f, 0.0f, _item.Data.Icon.width, _item.Data.Icon.height), new Vector2(0.5f, 0.5f), 100.0f);
+            _nameTxt.text = _item.Data.Name;
 
             if(fuel) _nameTxt.text += " (fuel)";
 

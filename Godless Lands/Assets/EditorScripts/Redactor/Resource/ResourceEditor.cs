@@ -11,8 +11,8 @@ namespace Resource
     public class ResourceEditor : Editor
     {
         private Fabric resource;
-        public ItemsContainer itemsList;
-        public  void Select(object selectObject, ItemsContainer itemsList)
+        public ItemsRegistry itemsList;
+        public  void Select(object selectObject, ItemsRegistry itemsList)
         {
             resource = selectObject as Fabric;
             this.itemsList = itemsList;

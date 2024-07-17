@@ -10,7 +10,7 @@ namespace Resource
     public class WindowResorceRedactor : Window
     {
         private ResourceEditor selectEditor;
-        private ItemsContainer items;
+        private ItemsRegistry items;
 
         [MenuItem("Window/Resources")]
         public static void ShowWindow()
@@ -27,7 +27,7 @@ namespace Resource
             objectList = AssetDatabase.LoadAssetAtPath<ResourceList>(path);
 
             path = PlayerPrefs.GetString("RedactorItemsList");
-            items = AssetDatabase.LoadAssetAtPath<ItemsContainer>(path);
+            items = AssetDatabase.LoadAssetAtPath<ItemsRegistry>(path);
         }
         protected override void DrawObject(System.Object obj)
         {

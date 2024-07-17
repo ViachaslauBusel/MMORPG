@@ -34,7 +34,7 @@ namespace Cells
 
         internal static CellRenderInfo CreateByItem(Item item)
         {
-            return new CellRenderInfo(item.Data.texture, true, item.Count.ToString());
+            return new CellRenderInfo(item.Data.Icon, true, item.Count.ToString());
         }
     }
 }

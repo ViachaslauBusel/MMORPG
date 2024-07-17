@@ -27,10 +27,10 @@ namespace Drop.UI
 
         public void SetItem(Item _item)
         {
-            _item_icon_img.sprite = Sprite.Create(_item.Data.texture, new Rect(0, 0, _item.Data.texture.width, _item.Data.texture.height), new Vector2(0.5f, 0.5f));
-            _item_name_txt.text = _item.Data.nameItem;
+            _item_icon_img.sprite = Sprite.Create(_item.Data.Icon, new Rect(0, 0, _item.Data.Icon.width, _item.Data.Icon.height), new Vector2(0.5f, 0.5f));
+            _item_name_txt.text = _item.Data.Name;
 
-            _countTxt.text = _item.Data.stack ? _item.Count.ToString() : "";
+            _countTxt.text = _item.Data.IsStackable ? _item.Count.ToString() : "";
 
             _itemSlotIndex = _item.SlotIndex;
 

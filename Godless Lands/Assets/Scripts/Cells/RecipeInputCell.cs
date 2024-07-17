@@ -1,4 +1,5 @@
 ﻿using Items;
+using Items.Data;
 using Workbench.UI.RecipeCrafting;
 
 namespace Cells
@@ -12,11 +13,12 @@ namespace Cells
             _recipeCraftingWindow = GetComponentInParent<RecipeCraftingWindow>();
             Init();
         }
+
         public override void Put(Cell cell)
         {
             if (cell == null) return;
             ItemCell itemCell = cell as ItemCell;
-            if (itemCell == null || itemCell.IsEmpty() || itemCell.GetItem().Data.type != ItemType.Recipes) return;
+            if (itemCell == null || itemCell.IsEmpty() || itemCell.GetItem().Data is not RecipeItemData) return;
             //  if (components.ConstainsItem(itemCell.GetItem().id)) return;//Если этот предмет уже есть в списке
             //   PutItem(itemCell.GetItem(), itemCell.GetCount(), itemCell.GetKey());//Установить иконку
             PutItem(itemCell.GetItem());
@@ -25,10 +27,10 @@ namespace Cells
 
         public override void PutItem(Item item)
         {
-            if (item != null && item.Data != null && item.Data.serializableObj is RecipesItem recipesItem)
+            if (item != null && item.Data != null && item.Data is RecipeItemData recipeData)
             {
                 _item = item;
-                _recipeCraftingWindow.SelectRecipeItem(item, recipesItem);
+                _recipeCraftingWindow.SelectRecipeItem(recipeData);
             }
             else
             {
@@ -44,7 +46,6 @@ namespace Cells
 
             UpdateIcon();
             Show();
-          
         }
 
         public override void Abort()

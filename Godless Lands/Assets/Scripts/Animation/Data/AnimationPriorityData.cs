@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Animation.Data
 {
     [CreateAssetMenu(fileName = "AnimationPriorityData", menuName = "Data/AnimationPriorityData")]
-    internal class AnimationPriorityData : ScriptableObject
+    public class AnimationPriorityData : ScriptableObject
     {
         [SerializeField]
         private List<AnimationPriority> _animationPriorities = new List<AnimationPriority>();
@@ -24,7 +24,7 @@ namespace Animation.Data
             return animationPriority != null ? animationPriority.Priority : 0;
         }
 
-        internal void UpdateData(List<AnimationPriority> animationPriorities)
+        public void UpdateData(List<AnimationPriority> animationPriorities)
         {
             _animationPriorities = animationPriorities;
         }

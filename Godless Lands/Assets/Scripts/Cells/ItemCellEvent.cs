@@ -1,8 +1,6 @@
 ﻿using Items;
-using System.Collections;
-using System.Collections.Generic;
+using Items.Data;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Cells
 {
@@ -56,37 +54,33 @@ namespace Cells
             _informer.Initial(Input.mousePosition, parent);
 
 
-            _informer.SetIcon(item.Data.texture);
+            _informer.SetIcon(item.Data.Icon);
 
-            if (item.Data.type == ItemType.Weapon || item.Data.type == ItemType.Armor)
-                _informer.SetName(item.EnchantLevel, item.Data.nameItem, item.Count, item.Durability);
-            else _informer.SetName(item.Data.nameItem);
+            if (item.Data is EquipmentItemData)
+                _informer.SetName(item.EnchantLevel, item.Data.Name, item.Count, item.Durability);
+            else _informer.SetName(item.Data.Name);
 
-            if (item.Data.stack) _informer.SetCount(item.Count);
-            switch (item.Data.type)
+            if (item.Data.IsStackable) _informer.SetCount(item.Count);
+            switch (item.Data)
             {
-                case ItemType.Weapon:
-                    WeaponItem weapon = item.Data.serializableObj as WeaponItem;
-                    if (weapon == null) break;
-                    _informer.SetLevel(weapon.weaponType);
-                    _informer.SetSpeedAtack(weapon.speed);
-                    _informer.SetAtack(weapon.minDamege, weapon.maxDamage, item.Count, item.EnchantLevel);
+                case WeaponItemData weapon:
+                    _informer.SetLevel(weapon.WeaponType);
+                    _informer.SetSpeedAtack(weapon.SpeedAttack);
+                    _informer.SetAtack(weapon.MinDamege, weapon.MaxDamage, item.Count, item.EnchantLevel);
                     _informer.SetDurability(item.Durability, item.MaxDurability);
                 
                 //    if (weapon.prickingDamage > 0) _informer.SetPrickingDamage(weapon.prickingDamage, count);
                 //    if (weapon.crushingDamage > 0) _informer.SetCrushingDamage(weapon.crushingDamage, count);
                  //   if (weapon.choppingDamage > 0) _informer.SetChoppingDamage(weapon.choppingDamage, count);
                     break;
-                case ItemType.RestorePoints:
-                    RestorePointsItem restorePoints = item.Data.serializableObj as RestorePointsItem;
-                    if (restorePoints == null) break;
-                    if (restorePoints.hp > 0) _informer.SetHP(restorePoints.hp);
-                    if (restorePoints.mp > 0) _informer.SetMP(restorePoints.mp);
-                    if (restorePoints.stamina > 0) _informer.SetStamina(restorePoints.stamina);
+                case ElixirItemData elixir:
+                    if (elixir.HpRestore > 0) _informer.SetHP(elixir.HpRestore);
+                    if (elixir.MpRestore > 0) _informer.SetMP(elixir.MpRestore);
+                    if (elixir.StaminaRestore > 0) _informer.SetStamina(elixir.StaminaRestore);
                     break;
             }
-            _informer.setDescription(item.Data.description);
-            _informer.setWeight(item.Data.weight);
+            _informer.setDescription(item.Data.Description);
+            _informer.setWeight(item.Data.Weight);
             return obj;
         }
     }

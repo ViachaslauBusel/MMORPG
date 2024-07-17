@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "com.object.registry.editor": "https://github.com/ViachaslauBusel/UnityDataEditors.git?path=/Packages/com.object.registry.editor",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
+    "com.unity.addressables": "1.19.19",
     "com.unity.ads": "3.7.5",
     "com.unity.analytics": "3.6.12",
     "com.unity.collab-proxy": "1.17.7",

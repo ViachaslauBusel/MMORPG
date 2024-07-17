@@ -1,13 +1,10 @@
 ﻿using Cells;
-using Inventory;
 using Items;
+using Items.Data;
 using Protocol.Data.Workbenches;
 using Recipes;
-using RUCP;
 using UnityEngine;
 using UnityEngine.UI;
-using Workbench;
-using Workbench.UI;
 using Zenject;
 
 namespace Workbench.UI.RecipeCrafting
@@ -74,12 +71,12 @@ namespace Workbench.UI.RecipeCrafting
             return _diContainer.InstantiatePrefab(_recipeComponentPref);
         }
 
-        public void SelectRecipeItem(Item item, RecipesItem recipesItem)
+        public void SelectRecipeItem(RecipeItemData recipeData)
         {
 
-            _selectRecipe = _recipesData.GetRecipeById(recipesItem.recipeID);
+            _selectRecipe = _recipesData.GetRecipeById(recipeData.ID);
             if (_selectRecipe == null) return;
-            _recipeName.text = item.Data.nameItem;
+            _recipeName.text = recipeData.Name;
 
             GameObject obj = CreatePieceField();
             obj.transform.SetParent(_content);

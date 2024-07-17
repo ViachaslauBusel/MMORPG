@@ -1,10 +1,12 @@
-﻿using Items;
+﻿using Cysharp.Threading.Tasks;
+using Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace NetworkObjectVisualization.Characters
 {
@@ -17,9 +19,12 @@ namespace NetworkObjectVisualization.Characters
             _itemsFactory = itemsFactory;
         }
 
-        public GameObject GetMesh(int id)
+        internal async UniTask<MeshHolder> GetMeshAsync(int partId)
         {
-           return _itemsFactory.GetItemData(id)?.prefab;
+            var goHandle = Addressables.LoadAssetAsync<GameObject>(_itemsFactory.GetItemData(partId).Prefab);
+            await goHandle.Task;
+
+            return new MeshHolder(goHandle);
         }
     }
 }

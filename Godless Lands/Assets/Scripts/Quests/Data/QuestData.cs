@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "QuestData", menuName = "ScriptableObjects/Quest Data", order = 1)]
 [NodeGroup(group: "Quests")]
 
-public class QuestData : ZenjectNodesContainer, IEditableObject
+public class QuestData : ZenjectNodesContainer, IDataObject
 {
     [SerializeField, HideInInspector]
     private int _id;

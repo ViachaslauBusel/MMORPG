@@ -11,30 +11,35 @@ namespace NetworkObjectVisualization.Characters
     {
         [SerializeField]
         private bool _isVisible = true;
-        private GameObject _part;
+        private MeshHolder _part;
+        private int _partID;
 
+        public int PartID => _partID;
         public bool IsVisible
         {
             get => _isVisible;
             set
             {
                 _isVisible = value;
-                if (_part != null)
-                {
-                    _part.SetActive(_isVisible);
-                }
+                _part?.SetActiveInstance(_isVisible);
             }
         }
 
         internal void ClearPart()
         {
-            Destroy(_part);
+            _part?.Release();
         }
 
-        internal void UpdatePart(GameObject weapon)
+        internal void SetPartID(int partId)
         {
-            _part = Instantiate(weapon, transform);
-            _part.SetActive(_isVisible);
+            _partID = partId;
+        }
+
+        internal void UpdatePart(MeshHolder weapon)
+        {
+            _part = weapon;
+            _part.Instantiate(transform);
+            _part.SetActiveInstance(_isVisible);
         }
     }
 }

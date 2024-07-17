@@ -25,40 +25,25 @@ public class DrawEquipmentContents : MonoBehaviour
 
         foreach (var cell in cells)
         {
-            EquipmentType eqType = GetEquipmentType(cell.use);
+            EquipmentType eqType = cell.CellType;
 
-            if(eqType == EquipmentType.None)
+            if (eqType == EquipmentType.None)
             {
-                Debug.LogError($"[{cell.use}] Equipment type not found");
+                Debug.LogError($"[{cell.CellType}] Equipment type not found");
                 continue;
             }
 
             if(_armorCells.ContainsKey(eqType))
             {
-               Debug.LogError($"[{cell.use}][{eqType}]Armor cell already registered");
+               Debug.LogError($"[{cell.CellType}][{eqType}]Armor cell already registered");
                 continue;
             }
             
-            Debug.Log($"[{cell.use}][{eqType}]Armor cell registered");
+            Debug.Log($"[{cell.CellType}][{eqType}]Armor cell registered");
             _armorCells.Add(eqType, cell);
         }
 
         _equipment.OnItemsChanged += OnItemsChanged;
-    }
-
-    private EquipmentType GetEquipmentType(ItemType use)
-    {
-      return  use switch
-        {
-            //ItemType.H => EquipmentType.ArmorHead,
-            //ItemType.Chest => EquipmentType.ArmorChest,
-            //ItemType.Legs => EquipmentType.ArmorLegs,
-            //ItemType.Feet => EquipmentType.ArmorFeet,
-           // ItemType.Pickaxe => EquipmentType.PickaxeTool,
-            ItemType.Pickaxe => EquipmentType.PickaxeTool,
-            ItemType.Weapon => EquipmentType.WeaponRightHand,
-            _ => EquipmentType.None
-        };
     }
 
     private void OnItemsChanged()

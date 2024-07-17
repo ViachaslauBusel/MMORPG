@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 4b0b410991e2936448980a6cca75e6a8
+  m_SerializeEntries:
+  - m_GUID: c160772856436f4418a29e03faa16e3e
+    m_Address: Assets/3Dmodel/Weapon/Axe/axe.obj
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b2f7a447e9471074abfac1117e397a5e
+    m_Address: Assets/Data/ItemsData/WeaponItemData_2.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: e87af954dabc30640aeba730b5256453, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5398564c929780f47b480e0d9b5ddef8, type: 2}
+    - {fileID: 11400000, guid: e88f247d0a5d22440949ebf3d36f67f1, type: 2}

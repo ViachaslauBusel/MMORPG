@@ -2,7 +2,6 @@
 using Recipes;
 using UnityEngine;
 using UnityEngine.UI;
-using Workbench.UI.Smelter;
 using Zenject;
 
 namespace Workbench.UI.Smelter
@@ -68,8 +67,8 @@ namespace Workbench.UI.Smelter
             }
 
             _icon.enabled = true;
-            _icon.sprite = Sprite.Create(item.Data.texture, new Rect(0.0f, 0.0f, item.Data.texture.width, item.Data.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
-            _itemName.text = item.Data.nameItem;
+            _icon.sprite = Sprite.Create(item.Data.Icon, new Rect(0.0f, 0.0f, item.Data.Icon.width, item.Data.Icon.height), new Vector2(0.5f, 0.5f), 100.0f);
+            _itemName.text = item.Data.Name;
         }
 
     }

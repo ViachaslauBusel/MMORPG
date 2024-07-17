@@ -36,7 +36,7 @@ namespace Cells
                 Item item = itemCell.GetItem();
                 ItemStorageType deletFrom = itemCell.StorageType;
 
-                if (item.Data.stack)
+                if (item.Data.IsStackable)
                 {
                     _selectQuantityWindow.Subscribe(
                     "How many pieces to move?",

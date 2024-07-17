@@ -57,11 +57,11 @@ public class SmelterCell : ItemCell
 
     public void SetCount(List<Piece> pieces)
     {
-        if (!IsEmpty() && _item.Data.stack)
+        if (!IsEmpty() && _item.Data.IsStackable)
         {
             foreach (Piece piece in pieces)
             {
-                if (piece.ID == _item.Data.id)
+                if (piece.ID == _item.Data.ID)
                 {
                     if (piece.count <= _item.Count) _countTxt.color = Color.green;
                     else _countTxt.color = Color.red;
@@ -89,7 +89,7 @@ public class SmelterCell : ItemCell
     public void DrawCount()
     {
         _countTxt.color = Color.white;
-        if (!IsEmpty() && _item.Data.stack)
+        if (!IsEmpty() && _item.Data.IsStackable)
         {
             _countTxt.text = _item.Count.ToString()+"/0";
         }

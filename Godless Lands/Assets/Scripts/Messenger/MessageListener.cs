@@ -49,7 +49,7 @@ namespace Messenger
             {
                 string itemId = match.Groups[1].Value;
                 string itemCount = match.Groups[2].Value;
-                string itemName = _itemsFactory.CreateItem(int.Parse(itemId)).Data.nameItem;
+                string itemName = _itemsFactory.CreateItem(int.Parse(itemId)).Data.Name;
                 msg = msg.Replace(match.Value, $"{itemName} x {itemCount}");
             }
 

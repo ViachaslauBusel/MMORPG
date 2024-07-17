@@ -79,7 +79,7 @@ namespace Cells
             UpdateIcon();
             if (_countTxt != null)
             {
-                _countTxt.text = _item.Data.stack ? _item.Count.ToString() : "";
+                _countTxt.text = _item.Data.IsStackable ? _item.Count.ToString() : "";
             }
         }
 
@@ -91,7 +91,7 @@ namespace Cells
         protected void UpdateIcon()
         {
             if(_icon == null) return;
-            _icon.sprite = Sprite.Create(_item.Data.texture, new Rect(0.0f, 0.0f, _item.Data.texture.width, _item.Data.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+            _icon.sprite = Sprite.Create(_item.Data.Icon, new Rect(0.0f, 0.0f, _item.Data.Icon.width, _item.Data.Icon.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Cells
         public int ID()
         {
             if (IsEmpty()) return -1;
-            return _item.Data.id;
+            return _item.Data.ID;
         }
         public int GetCount()
         {
@@ -160,7 +160,7 @@ namespace Cells
 
         public override string GetText()
         {
-            if(!IsEmpty() && _item.Data.stack) return GetCount().ToString();
+            if(!IsEmpty() && _item.Data.IsStackable) return GetCount().ToString();
             return base.GetText();
         }
 
@@ -186,7 +186,7 @@ namespace Cells
         {
             base.Show();
             if (_countTxt != null)
-                _countTxt.text = _item.Data.stack ? _item.Count.ToString() : "";
+                _countTxt.text = _item.Data.IsStackable ? _item.Count.ToString() : "";
         }
 
         internal void SetLock(bool value)

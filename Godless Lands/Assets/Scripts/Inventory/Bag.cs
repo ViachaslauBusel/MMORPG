@@ -98,6 +98,6 @@ public class Bag
 
     internal int GetItemCountByItemId(int itemId)
     {
-        return _items.Where(i => i != null && i.Data != null && i.Data.id == itemId).Sum(i => i.Count);
+        return _items.Where(i => i != null && i.Data != null && i.Data.ID == itemId).Sum(i => i.Count);
     }
 }

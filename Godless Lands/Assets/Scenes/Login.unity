@@ -1612,7 +1612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loginServerIP: 136.243.74.100
-  localhost: 1
+  localhost: 0
   version: 5
 --- !u!1 &1403641948
 GameObject:
@@ -2075,6 +2075,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270855802}
     m_Modifications:
+    - target: {fileID: 6068424486122636159, guid: 842876e1e75ea8940930782008a75f54,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6068424487243470804, guid: 842876e1e75ea8940930782008a75f54,
         type: 3}
       propertyPath: m_Name

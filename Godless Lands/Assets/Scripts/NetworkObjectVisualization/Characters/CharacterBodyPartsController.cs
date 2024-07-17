@@ -67,21 +67,24 @@ namespace NetworkObjectVisualization.Characters
 
         }
 
-        private void UpdatePart(BodyPart part, int partId)
+        private async void UpdatePart(BodyPart part, int partId)
         {
             part.ClearPart();
 
-            GameObject partMesh = _meshProviderService.GetMesh(partId);
+            part.SetPartID(partId);
 
-            if (partMesh == null)
+            MeshHolder partMesh = await _meshProviderService.GetMeshAsync(partId);
+
+            if (partMesh.IsValid == false)
             {
+                partMesh.Release();
                 Debug.Log($"[{part}][{partId}] CharacterBodyPartsController: UpdatePart: Part not found");
                 return;
             }
 
-            part.UpdatePart(partMesh);
+            // Check if the part is still the same
+            if (part.PartID == partId)
+            { part.UpdatePart(partMesh); }
         }
-
-       
     }
 }
