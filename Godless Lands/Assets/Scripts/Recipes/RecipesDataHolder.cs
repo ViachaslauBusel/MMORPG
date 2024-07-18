@@ -1,27 +1,22 @@
-﻿using System;
+﻿using Items;
+using Items.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Recipes
 {
-    public class RecipesDataHolder : MonoBehaviour
+    public class RecipesDataHolder
     {
-        [SerializeField]
-        private RecipesList _recipesList;
+        private List<RecipeItemData> _recipes;
 
-        public List<Recipe> RecipesList => _recipesList.recipes;
-
-        public Recipe GetRecipeByResultItemId(int idItem)
+        public RecipesDataHolder(ItemsRegistry itemsRegistry)
         {
-            return _recipesList.GetRecipeByResult(idItem);
+            _recipes = itemsRegistry.Objects.Where(i => i is RecipeItemData).Cast<RecipeItemData>().ToList();
         }
 
-        public Recipe GetRecipeById(int id)
-        {
-            return _recipesList.GetRecipe(id);
-        }
+        public IReadOnlyCollection<RecipeItemData> Recipes => _recipes;
+
+        public RecipeItemData GetRecipe(int id) => _recipes.FirstOrDefault(r => r.ID == id);
     }
 }

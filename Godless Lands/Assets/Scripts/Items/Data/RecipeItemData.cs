@@ -12,9 +12,12 @@ namespace Items.Data
         private List<ItemBundle> _fuel;
         [SerializeField]
         private WorkbenchType _workbenchType;
+        [SerializeField]
+        private ItemBundle _result;
 
         public IReadOnlyCollection<ItemBundle> Components => _components;
         public IReadOnlyCollection<ItemBundle> Fuel => _fuel;
         public WorkbenchType WorkbenchType => _workbenchType;
+        public ItemBundle Result => _result;
     }
 }

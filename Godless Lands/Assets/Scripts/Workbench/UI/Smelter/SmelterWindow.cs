@@ -1,4 +1,5 @@
 ﻿using Cells;
+using Items.Data;
 using Protocol.Data.Items;
 using Protocol.Data.Workbenches;
 using Recipes;
@@ -23,7 +24,7 @@ namespace Workbench.UI.Smelter
         private Canvas _canvas;
         private SmelterModel _smelterModel;
         private DiContainer _diContainer;
-        private Recipe _selectedRecipe;
+        private RecipeItemData _selectedRecipe;
         private WorkbenchInputHandler _workbenchInputHandler;
 
         public Transform recipesParent;
@@ -61,12 +62,12 @@ namespace Workbench.UI.Smelter
             foreach (SmelterCell cell in _component.GetCells())
             {
                 if (_selectedRecipe == null) cell.DrawCount();
-                else cell.SetCount(_selectedRecipe.component);
+                else cell.SetCount(_selectedRecipe.Components);
             }
             foreach (SmelterCell cell in _fuel.GetCells())
             {
                 if (_selectedRecipe == null) cell.DrawCount();
-                else cell.SetCount(_selectedRecipe.fuel);
+                else cell.SetCount(_selectedRecipe.Fuel);
             }
 
         }
@@ -103,7 +104,7 @@ namespace Workbench.UI.Smelter
 
             DestroyRecipes();
 
-            foreach (Recipe recipe in _smelterModel.Recipes)
+            foreach (RecipeItemData recipe in _smelterModel.Recipes)
             {
                 CreateRecipe(recipe);
             }
@@ -111,18 +112,18 @@ namespace Workbench.UI.Smelter
             RefreshCount();
         }
 
-        private void ContainsRecipe(Recipe recipe)
+        private void ContainsRecipe(RecipeItemData recipe)
         {
             if (recipe == null) return;
             if (recipes.Count < 1) SelectRecipe(null);
             foreach (SmelterRecipeCell recipeCell in recipes)
             {
-                if (recipeCell.GetRecipe().id == recipe.id) { recipeCell.Reselect(); return; }
+                if (recipeCell.GetRecipe().ID == recipe.ID) { recipeCell.Reselect(); return; }
             }
             SelectRecipe(null);
         }
 
-        private void CreateRecipe(Recipe recipe)
+        private void CreateRecipe(RecipeItemData recipe)
         {
             GameObject obj = _diContainer.InstantiatePrefab(RecipePrefab);
             obj.transform.SetParent(recipesParent);
@@ -137,7 +138,7 @@ namespace Workbench.UI.Smelter
             recipes.Clear();
         }
 
-        public void SelectRecipe(Recipe value)
+        public void SelectRecipe(RecipeItemData value)
         {
             _selectedRecipe = value;
             _createBut.interactable = _selectedRecipe != null;
@@ -147,7 +148,7 @@ namespace Workbench.UI.Smelter
         public void Create()
         {
             if (_selectedRecipe == null) return;
-            _workbenchInputHandler.CreateItem(_selectedRecipe.id,
+            _workbenchInputHandler.CreateItem(_selectedRecipe.ID,
                                               _component.GetCells().Where(c => !c.IsEmpty()).Select(c => c.GetItem().UniqueID).ToList(),
                                               _fuel.GetCells().Where(c => !c.IsEmpty()).Select(c => c.GetItem().UniqueID).ToList());
         }

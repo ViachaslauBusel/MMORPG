@@ -1,4 +1,5 @@
 ﻿using Items;
+using Items.Data;
 using Recipes;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ namespace Workbench.UI.Smelter
     {
         private Image _icon;
         private Text _itemName;
-        private Recipe _recipe;
+        private RecipeItemData _recipe;
         private Button _button;
         private SmelterWindow _smelterWindow;
         private ItemsFactory _itemsFactory;
@@ -47,13 +48,13 @@ namespace Workbench.UI.Smelter
             _button.interactable = false;
         }
 
-        public void SetRecipe(Recipe recipe)
+        public void SetRecipe(RecipeItemData recipe)
         {
             _recipe = recipe;
-            PutItem(_itemsFactory.CreateItem(_recipe.result));
+            PutItem(_itemsFactory.CreateItem(_recipe.Result.ID));
         }
 
-        public Recipe GetRecipe()
+        public RecipeItemData GetRecipe()
         {
             return _recipe;
         }

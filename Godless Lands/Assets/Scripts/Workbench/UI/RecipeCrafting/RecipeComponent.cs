@@ -1,5 +1,7 @@
 ﻿using Inventory;
 using Items;
+using Items.Data;
+using Protocol.Data.Workbenches;
 using Recipes;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,17 +29,17 @@ namespace Workbench.UI.RecipeCrafting
         private bool _expand = false;
         private Item _item;
         private int _allCount;
-        private Recipe _nextRecipe;
+        private RecipeItemData _nextRecipe;
         private RecipeCraftingWindow _craftingWindow;
         private List<RecipeComponent> _children;
         private bool _child = false;
         private InventoryModel _inventory;
         private ItemsFactory _itemsFactory;
-        private RecipesDataHolder _recipesDataHolder;
+        private RecipeComponentMatcherService _recipesDataHolder;
         private bool _active = false;
 
         [Inject]
-        public void Construct(InventoryModel inventory, ItemsFactory itemsFactory, RecipesDataHolder recipesDataHolder)
+        public void Construct(InventoryModel inventory, ItemsFactory itemsFactory, RecipeComponentMatcherService recipesDataHolder)
         {
             _inventory = inventory;
             _itemsFactory = itemsFactory;
@@ -109,7 +111,7 @@ namespace Workbench.UI.RecipeCrafting
         private void CreateChilds()
         {
             int index = transform.GetSiblingIndex();
-            foreach (Piece piece in _nextRecipe.component)
+            foreach (var piece in _nextRecipe.Components)
             {
                 GameObject obj = _craftingWindow.CreatePieceField();
                 obj.transform.SetParent(transform.parent);
@@ -118,7 +120,7 @@ namespace Workbench.UI.RecipeCrafting
                 component.SetPiece(piece, _element);
                 _children.Add(component);
             }
-            foreach (Piece piece in _nextRecipe.fuel)
+            foreach (var piece in _nextRecipe.Fuel)
             {
                 GameObject obj = _craftingWindow.CreatePieceField();
                 obj.transform.SetParent(transform.parent);
@@ -129,7 +131,7 @@ namespace Workbench.UI.RecipeCrafting
             }
         }
 
-        public void SetPiece(Piece piece,LayoutElement parenlayout = null, bool fuel = false)
+        public void SetPiece(ItemBundle piece, LayoutElement parenlayout = null, bool fuel = false)
         {
             _item = _itemsFactory.CreateItem(piece.ID);
             if (parenlayout != null)// If there is a child
@@ -143,7 +145,7 @@ namespace Workbench.UI.RecipeCrafting
                 _expandTxt.text = "+";
 
             _allCount = _inventory.GetItemCountByItemId(piece.ID);
-            int itemCount = piece.count;
+            int itemCount = piece.Amount;
             if (itemCount != 0)
                  _countTxt.text = " (" + _allCount + "/" + itemCount + ") ";// The amount of items needed to create the previous component, the amount in the backpack
             else _countTxt.text = " ";
@@ -157,12 +159,12 @@ namespace Workbench.UI.RecipeCrafting
 
             if (_nextRecipe != null)
             {
-                switch (_nextRecipe.use)
+                switch (_nextRecipe.WorkbenchType)
                 {
-                    case MachineUse.Smelter:
+                    case WorkbenchType.Smelter:
                         _nameTxt.text += " (smelter)";
                         break;
-                    case MachineUse.Grindstone:
+                    case WorkbenchType.Grindstone:
                         _nameTxt.text += " (grindstone)";
                         break;
                 }

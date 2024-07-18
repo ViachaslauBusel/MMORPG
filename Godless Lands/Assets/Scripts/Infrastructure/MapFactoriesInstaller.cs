@@ -24,8 +24,6 @@ namespace Infrastructure
         [SerializeField]
         private DynamicObjectControllersFactory _dynamicObjectControllersFactory;
         [SerializeField]
-        private RecipesDataHolder _recipesDataHolder;
-        [SerializeField]
         private NPCsFactory _npcsFactory;
         [SerializeField]
         private QuestDataHolder _questsDataHolder;
@@ -42,11 +40,11 @@ namespace Infrastructure
             Container.Bind<MiningStonesFactory>().FromInstance(_miningStonesFactory).AsSingle();
             Container.Bind<WorkbenchesFactory>().FromInstance(_workbenchesFactory).AsSingle();
             Container.Bind<DynamicObjectControllersFactory>().FromInstance(_dynamicObjectControllersFactory).AsSingle();
-            Container.Bind<RecipesDataHolder>().FromInstance(_recipesDataHolder).AsSingle();
             Container.Bind<NPCsFactory>().FromInstance(_npcsFactory).AsSingle();
             Container.Bind<QuestDataHolder>().FromInstance(_questsDataHolder).AsSingle();
             Container.Bind<DropBagFactory>().FromInstance(_dropBagFactory).AsSingle();
             Container.Bind<AnimationPriorityDataHolder>().FromInstance(_animationPriorityDataHolder).AsSingle();
+            Container.Bind<RecipesDataHolder>().AsSingle();
         }
     }
 }

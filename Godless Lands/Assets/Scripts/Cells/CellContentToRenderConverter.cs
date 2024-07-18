@@ -2,10 +2,8 @@
 using Inventory;
 using Items;
 using Skills;
-using SkillsRedactor;
-using System;
+using Skills.Data;
 using UnityEngine;
-using Zenject;
 
 namespace Cells
 {
@@ -56,7 +54,7 @@ namespace Cells
 
         private CellRenderInfo FromSkillID(int skillID)
         {
-            Skill skill = _playerSkillsHolder.GetSkill(skillID);
+            SkillData skill = _playerSkillsHolder.GetSkill(skillID);
 
             if (skill == null)
             {

@@ -1,5 +1,5 @@
 ﻿using Items;
-using SkillsRedactor;
+using Skills.Data;
 using UnityEngine;
 
 namespace Cells
@@ -17,9 +17,9 @@ namespace Cells
             Count = count;
         }
 
-        internal static CellRenderInfo CreateBySkill(Skill skill)
+        internal static CellRenderInfo CreateBySkill(SkillData skill)
         {
-           return new CellRenderInfo(skill.icon, false, "");
+           return new CellRenderInfo(skill.Icon, false, "");
         }
 
         internal Sprite CreateSprite()

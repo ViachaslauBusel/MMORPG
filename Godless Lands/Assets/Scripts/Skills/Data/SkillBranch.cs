@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SkillBranch:byte
+namespace Skills.Data
 {
-        Sword = 1 ,
+    public enum SkillBranch : byte
+    {
+        Sword = 1,
         Blunt = 2,
         Bow = 3
+    }
 }

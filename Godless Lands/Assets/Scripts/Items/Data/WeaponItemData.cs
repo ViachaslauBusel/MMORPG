@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Skills.Data;
+using UnityEngine;
 
 namespace Items.Data
 {

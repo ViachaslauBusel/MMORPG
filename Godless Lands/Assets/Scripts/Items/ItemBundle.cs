@@ -16,7 +16,13 @@ namespace Items
         [SerializeField]
         private int _amount;
 
-        public int Item => _item.ID;
+        public ItemBundle(int id, int count)
+        {
+            _item = new DataLink<ItemData>(id);
+            _amount = count;
+        }
+
+        public int ID => _item.ID;
         public int Amount => _amount;
     }
 }

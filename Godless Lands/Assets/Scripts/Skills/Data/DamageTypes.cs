@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-namespace SkillsRedactor
+﻿namespace Skills.Data
 {
     public enum DamageTypes
     {

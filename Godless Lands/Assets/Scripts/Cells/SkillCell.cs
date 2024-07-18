@@ -1,4 +1,5 @@
 ﻿using RUCP;
+using Skills.Data;
 using SkillsRedactor;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Cells
 {
     public class SkillCell : Cell
     {
-        private Skill skill;
+        private SkillData skill;
 
         private void Awake()
         {
@@ -31,7 +32,7 @@ namespace Cells
        //     NetworkManager.Send(nw);
         }
 
-        public void PutSkill(Skill skill)
+        public void PutSkill(SkillData skill)
         {
             this.skill = skill;
             if (IsEmpty())
@@ -40,10 +41,10 @@ namespace Cells
                 return;
             }
             _icon.enabled = true;
-            _icon.sprite = Sprite.Create(skill.icon, new Rect(0.0f, 0.0f, skill.icon.width, skill.icon.height), new Vector2(0.5f, 0.5f), 100.0f);
+            _icon.sprite = Sprite.Create(skill.Icon, new Rect(0.0f, 0.0f, skill.Icon.width, skill.Icon.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
 
-        public Skill GetSkill()
+        public SkillData GetSkill()
         {
             return skill;
         }
@@ -51,7 +52,7 @@ namespace Cells
         public override long GetItemUID()
         {
             if(IsEmpty()) return base.GetItemUID();
-            return skill.id;
+            return skill.ID;
 
         }
     }

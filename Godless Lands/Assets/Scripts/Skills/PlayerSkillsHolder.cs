@@ -2,6 +2,7 @@
 using Protocol;
 using Protocol.MSG.Game.Skills;
 using RUCP;
+using Skills.Data;
 using SkillsRedactor;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Skills
     public class PlayerSkillsHolder : MonoBehaviour
     {
         [SerializeField]
-        private SkillsList _skillsList;
+        private SkillsRegistry _skillsRegistry;
         private NetworkManager _networkManager;
         private List<int> _skills = new List<int>();
 
@@ -38,11 +39,11 @@ namespace Skills
             OnSkillsUpdate?.Invoke();
         }
 
-        public Skill GetSkill(int skillID)
+        public SkillData GetSkill(int skillID)
         {
             if(_skills.Contains(skillID) == false) return null;
 
-            Skill skill = _skillsList.GetSkill(skillID);
+            SkillData skill = _skillsRegistry.GetObjectByID(skillID);
 
             return skill;
         }
@@ -51,7 +52,5 @@ namespace Skills
         {
             _networkManager.UnregisterHandler(Opcode.MSG_SKILLS_UPDATE);
         }
-
-        
     }
 }

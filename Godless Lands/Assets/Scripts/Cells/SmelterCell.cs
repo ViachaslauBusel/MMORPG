@@ -55,17 +55,17 @@ public class SmelterCell : ItemCell
         DrawIcon();
     }
 
-    public void SetCount(List<Piece> pieces)
+    public void SetCount(IReadOnlyCollection<ItemBundle> pieces)
     {
         if (!IsEmpty() && _item.Data.IsStackable)
         {
-            foreach (Piece piece in pieces)
+            foreach (var piece in pieces)
             {
                 if (piece.ID == _item.Data.ID)
                 {
-                    if (piece.count <= _item.Count) _countTxt.color = Color.green;
+                    if (piece.Amount <= _item.Count) _countTxt.color = Color.green;
                     else _countTxt.color = Color.red;
-                    _countTxt.text = _item.Count.ToString() + '/' + piece.count.ToString();
+                    _countTxt.text = _item.Count.ToString() + '/' + piece.Amount.ToString();
                     return;
                 }
             }

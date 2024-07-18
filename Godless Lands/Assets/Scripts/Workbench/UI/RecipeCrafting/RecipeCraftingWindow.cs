@@ -21,7 +21,7 @@ namespace Workbench.UI.RecipeCrafting
         private Text _recipeName;
         private Canvas _canvas;
         private RecipeComponent _result;
-        private Recipe _selectRecipe;
+        private RecipeItemData _selectRecipe;
         private RecipesDataHolder _recipesData;
         private DiContainer _diContainer;
         private WorkbenchInputHandler _workbenchInputHandler;
@@ -63,7 +63,7 @@ namespace Workbench.UI.RecipeCrafting
         public void Create()
         {
             if (_selectRecipe == null) return;
-            _workbenchInputHandler.CreateItem(_selectRecipe.id, null, null);
+            _workbenchInputHandler.CreateItem(_selectRecipe.ID, null, null);
         }
 
         public GameObject CreatePieceField()
@@ -74,16 +74,14 @@ namespace Workbench.UI.RecipeCrafting
         public void SelectRecipeItem(RecipeItemData recipeData)
         {
 
-            _selectRecipe = _recipesData.GetRecipeById(recipeData.ID);
+            _selectRecipe = _recipesData.GetRecipe(recipeData.ID);
             if (_selectRecipe == null) return;
             _recipeName.text = recipeData.Name;
 
             GameObject obj = CreatePieceField();
             obj.transform.SetParent(_content);
             _result = obj.GetComponent<RecipeComponent>();
-            Piece piece = new Piece();
-            piece.ID = _selectRecipe.result;
-            piece.count = 0;
+            ItemBundle piece = new ItemBundle(_selectRecipe.Result.ID, 0);
 
             _result.SetPiece(piece);
             _result.Start();

@@ -1,4 +1,5 @@
 ﻿using Cells;
+using Skills.Data;
 using SkillsRedactor;
 using System;
 using System.Collections;
@@ -25,7 +26,7 @@ namespace Skills
         [SerializeField]
         private Transform _blantSkillsHolder;
         [SerializeField]
-        private SkillsList _skillsList;
+        private SkillsRegistry _skillsRegistry;
 
         private List<SkillCell> _instatiatedCellSkills = new List<SkillCell>();
 
@@ -79,12 +80,12 @@ namespace Skills
 
             foreach (int skillID in _playerSkillsHolder.Skills)
             {
-                Skill skill = _skillsList.GetSkill(skillID);
+                SkillData skill = _skillsRegistry.GetObjectByID(skillID);
                 if (skill == null) continue;
 
                 SkillCell skillCell = CreateSkillCell(skill);
 
-                Transform parent = skill.branch switch
+                Transform parent = skill.Branch switch
                 {
                     SkillBranch.Sword => _swordSkillsHolder,
                     SkillBranch.Blunt => _blantSkillsHolder,
@@ -97,7 +98,7 @@ namespace Skills
             }
         }
 
-        private SkillCell CreateSkillCell(Skill skill)
+        private SkillCell CreateSkillCell(SkillData skill)
         {
             GameObject obj = _container.InstantiatePrefab(prefSkillCell);
             SkillCell skillCell = obj.GetComponent<SkillCell>();

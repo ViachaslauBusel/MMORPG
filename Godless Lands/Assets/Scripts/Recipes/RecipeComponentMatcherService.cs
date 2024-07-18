@@ -1,4 +1,5 @@
 ﻿using Items;
+using Items.Data;
 using Protocol.Data.Workbenches;
 using System;
 using System.Collections.Generic;
@@ -15,51 +16,38 @@ namespace Recipes
             _recipesDataHolder = recipesDataHolder;
         }
 
-
-        public List<Recipe> FindRecipe(IReadOnlyCollection<Item> component, IReadOnlyCollection<Item> fuel, WorkbenchType machineUse)
+        public List<RecipeItemData> FindRecipe(IReadOnlyCollection<Item> component, IReadOnlyCollection<Item> fuel, WorkbenchType machineUse)
         {
-            List<Recipe> result = new List<Recipe>();
-            foreach (Recipe recipe in _recipesDataHolder.RecipesList)
-            {
-                if (Match(component, fuel, machineUse, recipe))
-                {
-                    result.Add(recipe);
-                }
-            }
-            return result;
+            return _recipesDataHolder.Recipes.Where(r => Match(component, fuel, machineUse, r)).ToList();
         }
 
-        private bool Match(IReadOnlyCollection<Item> component, IReadOnlyCollection<Item> fuel, WorkbenchType machineUse, Recipe recipe)
+        private bool Match(IReadOnlyCollection<Item> component, IReadOnlyCollection<Item> fuel, WorkbenchType machineUse, RecipeItemData recipe)
         {
-            if (recipe.component.Count == component.Count(i => i != null) && recipe.fuel.Count == fuel.Count(i => i != null))
+            if (recipe.Components.Count == component.Count(i => i != null) && recipe.Fuel.Count == fuel.Count(i => i != null))
             {
-                if (EqualsMachine(recipe.use, machineUse) == false) return false;
-                return ContainsAllItems(recipe.component, component) && ContainsAllItems(recipe.fuel, fuel);
+                if (EqualsMachine(recipe.WorkbenchType, machineUse) == false) return false;
+                return ContainsAllItems(recipe.Components, component) && ContainsAllItems(recipe.Fuel, fuel);
             }
             return false;
         }
 
-        private bool EqualsMachine(MachineUse use, WorkbenchType machineUse)
+        private bool EqualsMachine(WorkbenchType useType, WorkbenchType machineUse)
         {
-            WorkbenchType useType = use switch
-            {
-                MachineUse.Smelter => WorkbenchType.Smelter,
-                MachineUse.Workbench => WorkbenchType.Workbench,
-                MachineUse.Tannery => WorkbenchType.Tannery,
-                MachineUse.Grindstone => WorkbenchType.Grindstone,
-
-                _ => WorkbenchType.None,
-            };
             return useType == machineUse;
         }
 
-        private bool ContainsAllItems(List<Piece> pieces, IReadOnlyCollection<Item> items)
+        private bool ContainsAllItems(IReadOnlyCollection<ItemBundle> pieces, IReadOnlyCollection<Item> items)
         {
-            foreach (Piece piece in pieces)
+            foreach (ItemBundle piece in pieces)
             {
                 if (!items.Any(i => i != null && i.Data.ID == piece.ID)) return false;
             }
             return true;
+        }
+
+        public RecipeItemData GetRecipeByResultItemId(int id)
+        {
+            return _recipesDataHolder.Recipes.FirstOrDefault(r => r.Result.ID == id);
         }
     }
 }
