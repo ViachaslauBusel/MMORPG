@@ -1,11 +1,27 @@
 {
   "dependencies": {
+    "com.asset.perfomance.toolkit": {
+      "version": "https://github.com/ViachaslauBusel/Asset-Performance-Toolkit.git?path=/Packages/com.asset.perfomance.toolkit",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "dda571f848a5911388ee5e09ded6b2e56da806ec"
+    },
     "com.object.registry.editor": {
       "version": "https://github.com/ViachaslauBusel/UnityDataEditors.git?path=/Packages/com.object.registry.editor",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "5b6b8ba594bd0ece6694eb9f9c31668f76bc68e7"
+    },
+    "com.open.world": {
+      "version": "https://github.com/ViachaslauBusel/OpenWorld.git?path=/Packages/com.open.world",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.asset.perfomance.toolkit": "1.0.0"
+      },
+      "hash": "9e666a10a14f411cb98a6393161374cb81553998"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",

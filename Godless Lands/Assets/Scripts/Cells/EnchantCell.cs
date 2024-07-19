@@ -20,7 +20,7 @@ namespace Cells
             _inventoryWindow = inventoryWindow;
         }
 
-        private new void Awake()
+        private void Awake()
         {
            // base.Awake();
             enchant = GetComponentInParent<ItemEnchant>();

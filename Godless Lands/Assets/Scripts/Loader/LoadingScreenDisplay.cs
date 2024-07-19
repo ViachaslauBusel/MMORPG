@@ -36,5 +36,10 @@ namespace Loader
         {
             m_canvas.enabled = false;
         }
+
+        internal void Show(object value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

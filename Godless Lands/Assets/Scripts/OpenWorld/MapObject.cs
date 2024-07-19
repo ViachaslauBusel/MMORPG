@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OpenWorld
+namespace OpenWorldLegacy
 {
     //Данные для сохранение одного элемента карты
     [System.Serializable]

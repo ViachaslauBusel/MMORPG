@@ -4,6 +4,7 @@ using Network;
 using Network.Core;
 using Network.Replication;
 using OpenWorld;
+using OpenWorldLegacy;
 using Protocol;
 using Protocol.Data;
 using Protocol.MSG.Game;
@@ -59,11 +60,11 @@ namespace WorldScene
 
             m_replicationService.Clear();
             m_mapLoader.DestroyMap();
-            m_mapLoader.SetTrackingTransform(null);
+            m_mapLoader.SetTarget(null);
 
             m_sessionManagment.SetCharacterObjectID(prepareScene.GameObjectCharacterID);
 
-            m_mapLoader.LoadMap(prepareScene.EntryPoint.ToUnity());
+            m_mapLoader.LoadMapInPoint(prepareScene.EntryPoint.ToUnity());
 
             while(m_mapLoader.isDone == false)
             {

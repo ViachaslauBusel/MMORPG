@@ -1,8 +1,9 @@
 ﻿using Network.Object.Visualization;
+using OpenWorld;
 using UnityEngine;
 using Zenject;
 
-namespace OpenWorld
+namespace OpenWorldLegacy
 {
     public class MapActivator : MonoBehaviour
     {
@@ -30,7 +31,7 @@ namespace OpenWorld
         {
             if(@object != null)
             {
-                m_mapLoader.SetTrackingTransform(@object.transform);
+                m_mapLoader.SetTarget(@object.transform);
             }
         }
     }

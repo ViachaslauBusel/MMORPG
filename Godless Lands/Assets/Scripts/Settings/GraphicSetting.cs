@@ -1,5 +1,6 @@
 ﻿using Loader;
 using OpenWorld;
+using OpenWorldLegacy;
 using System.Collections.Generic;
 using UI.ConfirmationDialog;
 using UnityEngine;
@@ -39,8 +40,8 @@ public class GraphicSetting : MonoBehaviour
         sliderScaleUI.value = PlayerPrefs.GetFloat("scaleUI", 0.3f);
         ApplyScaleUI();
 
-        sliderViewDistance.value = mapLoader.areaVisible;
-        sliderBaseMapDis.value = mapLoader.basemapDistance;
+        sliderViewDistance.value = mapLoader.Settings.AreaVisible;
+        //sliderBaseMapDis.value = mapLoader.Settings.;
 
         dropdownQulity.ClearOptions();
         List<Dropdown.OptionData> optionDatas = new List<Dropdown.OptionData>();
@@ -48,11 +49,11 @@ public class GraphicSetting : MonoBehaviour
         {
             optionDatas.Add(new Dropdown.OptionData(QualitySettings.names[i]));
         }
-        dropdownQulity.AddOptions(optionDatas);
-        dropdownQulity.value = mapLoader.Qulity;
+        //dropdownQulity.AddOptions(optionDatas);
+        //dropdownQulity.value = mapLoader.Settings.Qulity;
 
-        sliderDetailDistance.value = mapLoader.DetailDistance;
-        sliderDetailDensity.value = mapLoader.DetailDensity;
+        //sliderDetailDistance.value = mapLoader.Settings.DetailDistance;
+        //sliderDetailDensity.value = mapLoader.DetailDensity;
 
         dropdownPostProfile.ClearOptions();
          optionDatas = new List<Dropdown.OptionData>();
@@ -78,36 +79,36 @@ public class GraphicSetting : MonoBehaviour
         bool restart = false;
         ApplyScaleUI();
         //Зона прогрузки террейна
-        if (mapLoader.areaVisible != (int)sliderViewDistance.value)
+        if (mapLoader.Settings.AreaVisible != (int)sliderViewDistance.value)
         {
-            mapLoader.areaVisible = (int)sliderViewDistance.value;
+            mapLoader.Settings.AreaVisible = (int)sliderViewDistance.value;
             restart = true;
         }
-        //Зона прогрузки текстуры хорошего качества
-        if (mapLoader.basemapDistance != (int)sliderBaseMapDis.value)
-        {
-            mapLoader.basemapDistance = (int)sliderBaseMapDis.value;
-            restart = true;
-        }
-        //Качество графики
-        if (dropdownQulity.value != mapLoader.Qulity)
-        {
-            //  print("quality: " + textureQuality.value);
-            mapLoader.Qulity = dropdownQulity.value;
-            restart = true;
-        }
-        //Зона прогрузки травы
-        if (mapLoader.DetailDistance != sliderDetailDistance.value)
-        {
-            mapLoader.DetailDistance = sliderDetailDistance.value;
-            restart = true;
-        }
-        //Количество травы
-        if (mapLoader.DetailDensity != sliderDetailDensity.value)
-        {
-            mapLoader.DetailDensity = sliderDetailDensity.value;
-            restart = true;
-        }
+        ////Зона прогрузки текстуры хорошего качества
+        //if (mapLoader.basemapDistance != (int)sliderBaseMapDis.value)
+        //{
+        //    mapLoader.basemapDistance = (int)sliderBaseMapDis.value;
+        //    restart = true;
+        //}
+        ////Качество графики
+        //if (dropdownQulity.value != mapLoader.Qulity)
+        //{
+        //    //  print("quality: " + textureQuality.value);
+        //    mapLoader.Qulity = dropdownQulity.value;
+        //    restart = true;
+        //}
+        ////Зона прогрузки травы
+        //if (mapLoader.DetailDistance != sliderDetailDistance.value)
+        //{
+        //    mapLoader.DetailDistance = sliderDetailDistance.value;
+        //    restart = true;
+        //}
+        ////Количество травы
+        //if (mapLoader.DetailDensity != sliderDetailDensity.value)
+        //{
+        //    mapLoader.DetailDensity = sliderDetailDensity.value;
+        //    restart = true;
+        //}
         if (postProfiles.Profile != dropdownPostProfile.value)
         {
             postProfiles.Profile = dropdownPostProfile.value;

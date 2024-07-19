@@ -1,6 +1,7 @@
 ﻿using Helpers;
 using Network.Core;
 using OpenWorld;
+using OpenWorldLegacy;
 using Player.Controller;
 using Protocol;
 using Protocol.MSG.Game;
@@ -123,7 +124,7 @@ namespace Loader
         private IEnumerator IELoadGame_part2(Vector3 point)
         {
             Debug.Log($"Load map in point:{point}");
-            mapLoader.LoadMap(point);
+            mapLoader.LoadMapInPoint(point);
             while (!mapLoader.isDone)
             {
                 yield return null;

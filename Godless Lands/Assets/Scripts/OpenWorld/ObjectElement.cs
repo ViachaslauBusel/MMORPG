@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OpenWorld
+namespace OpenWorldLegacy
 {
     //сохроняет обьекты на тайле 100 на 100 в лист MapObject
     public class ObjectElement : ScriptableObject

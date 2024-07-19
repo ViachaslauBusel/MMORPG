@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6760e2a0d82a11a4dbf07b75b1cb2f58, type: 3}
+  m_Name: PrimalIsle
+  m_EditorClassIdentifier: 
+  _mapName: PrimalIsle
+  _mapSizeKm: 3
+  _tilesPerKm: 10
+  _tileSize: 100
+  _worldStartPoint: {x: -1500, y: -1500}
+  _worldEndPoint: {x: 1500, y: 1500}
+  _worldMaxHeight: 600
+  _heightmapResolutionIndex: 3
+  _alphamapResolutionIndex: 3
+  _baseMapResolutionIndex: 3
+  _waterLevel: 0

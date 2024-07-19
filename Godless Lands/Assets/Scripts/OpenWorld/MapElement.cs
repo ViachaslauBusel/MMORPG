@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace OpenWorld
+namespace OpenWorldLegacy
 {
     public class MapElement : ScriptableObject
     {

@@ -1,4 +1,5 @@
-﻿namespace OpenWorld { 
+﻿namespace OpenWorldLegacy
+{ 
     public enum Orientation
     {
         Left,

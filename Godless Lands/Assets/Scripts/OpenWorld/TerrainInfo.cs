@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OpenWorld {
+namespace OpenWorldLegacy
+{
 
     public class TerrainInfo : MonoBehaviour {
 
