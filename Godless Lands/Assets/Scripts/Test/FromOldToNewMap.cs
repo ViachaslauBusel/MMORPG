@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class FromOldToNewMap : MonoBehaviour
 {
@@ -19,7 +20,12 @@ public class FromOldToNewMap : MonoBehaviour
 
     public void Convert()
     {
-        for(int kmX =0; kmX < _newMap.MapSizeKilometers; kmX++)
+
+        _newMap.WaterLevel = _oldMap.waterLevel;
+        return;
+        int totalTiles = _newMap.MapSizeKilometers * _newMap.MapSizeKilometers * _newMap.TilesPerKilometer * _newMap.TilesPerKilometer;
+        int processedTiles = 0;
+        for (int kmX =0; kmX < _newMap.MapSizeKilometers; kmX++)
         {
             for(int kmY = 0; kmY < _newMap.MapSizeKilometers; kmY++)
             {
@@ -41,7 +47,7 @@ public class FromOldToNewMap : MonoBehaviour
                             continue;
                         }
 
-                        string oldTilePath = $"Resources/Island/KMBlock_{kmX}_{kmY}/TRBlock_{tileX}_{tileY}.asset";
+                        string oldTilePath = $"Assets/Resources/Island/KMBlock_{kmX}_{kmY}/TRBlock_{tileX}_{tileY}.asset";
 
                         MapElement oldTile = AssetDatabase.LoadAssetAtPath<MapElement>(oldTilePath);
 
@@ -51,17 +57,34 @@ public class FromOldToNewMap : MonoBehaviour
                             continue;
                         }
 
-                        TerrainData tileData = oldTile.terrainData;
+                        //TerrainData tileData = newTile.TerrainData;
+                        //foreach(var splat in tileData.alphamapTextures)
+                        //{
+                        //    string path = AssetDatabase.GetAssetPath(splat);
+                        //    Debug.Log(path);
+                        //    //AssetDatabase.RemoveObjectFromAsset(splat);
+                        //    //AssetDatabase.AddObjectToAsset(splat, tileData);
+                        //}
                         //Detach the old tile from the old map
-                        AssetDatabase.RemoveObjectFromAsset(tileData);
-                        AssetDatabase.RemoveObjectFromAsset(newTile.TerrainData);
+                        var water = oldTile.waterTile;
+                        if (water == null) continue;
+                        AssetDatabase.RemoveObjectFromAsset(water);
+                       // AssetDatabase.RemoveObjectFromAsset(newTile.TerrainData);
 
-                        newTile.SetTerrainData(tileData);
-                        AssetDatabase.AddObjectToAsset(newTile.TerrainData, _newMap);
+                        AssetDatabase.AddObjectToAsset(water, newTile);
+                        newTile.SetWater(water);
 
+                        EditorUtility.SetDirty(newTile);
+
+                        // Update progress
+                        float progress = (float)processedTiles / totalTiles;
+                        EditorUtility.DisplayProgressBar("Converting", $"Converting tiles: {processedTiles} / {totalTiles}", progress);
+                        processedTiles++;
                     }
                 }
             }
         }
+        AssetDatabase.SaveAssets();
+        EditorUtility.ClearProgressBar();
     }
 }
