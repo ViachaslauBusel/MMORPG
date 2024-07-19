@@ -10,7 +10,7 @@ namespace OpenWorldEditor
     public class SceneNPCBrush
     {
         private static GameObject brush;//Кисть с нпц
-        private static NPCPrefab selectedPrefab;//Выбранныйпрефаб для кисти
+        private static NPCData selectedPrefab;//Выбранныйпрефаб для кисти
         private static Vector2 lastMousePos;
 
 
@@ -56,7 +56,7 @@ namespace OpenWorldEditor
                     Destroy();
                     selectedPrefab = WindowNPCBrush.NPCPrefab;
 
-                        brush = GameObject.Instantiate(selectedPrefab.prefab);
+                        brush = GameObject.Instantiate(selectedPrefab.Prefab.editorAsset);
                         brush.name = "BrushMonster";
                         //  brush.hideFlags = HideFlags.HideAndDontSave;
                 }

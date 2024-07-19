@@ -1,4 +1,5 @@
-﻿using Protocol;
+﻿using Network.Core;
+using Protocol;
 using Protocol.MSG.Game.CombatMode;
 using Protocol.MSG.Game.Trade;
 using RUCP;

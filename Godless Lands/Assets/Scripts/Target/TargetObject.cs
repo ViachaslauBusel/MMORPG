@@ -1,5 +1,5 @@
-﻿using NetworkObjectVisualization;
-using Services.Replication;
+﻿using Network.Object.Visualization;
+using Network.Replication;
 using UnityEngine;
 using Zenject;
 

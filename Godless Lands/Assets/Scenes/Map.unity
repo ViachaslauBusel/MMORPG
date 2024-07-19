@@ -13896,7 +13896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00013587462}
+  m_AnchoredPosition: {x: 0, y: 0.00044405225}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &438286537
@@ -17203,7 +17203,7 @@ MonoBehaviour:
   weaponSecondTitle: {fileID: 954615705}
   _swordSkillsHolder: {fileID: 1410394285}
   _blantSkillsHolder: {fileID: 834154343}
-  _skillsList: {fileID: 11400000, guid: ec1af822137243942a67fc4690a0d5b1, type: 2}
+  _skillsRegistry: {fileID: 0}
 --- !u!1 &532578318
 GameObject:
   m_ObjectHideFlags: 0
@@ -18349,7 +18349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d575cce813b15f845baf257913c1ac40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monstersList: {fileID: 11400000, guid: 6ea849a9579239a4cb67a55ee8015ab0, type: 2}
+  _monstersRegistry: {fileID: 0}
 --- !u!1 &563933633
 GameObject:
   m_ObjectHideFlags: 0
@@ -18918,7 +18918,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -275.12512}
+  m_AnchoredPosition: {x: 0, y: -275.12503}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580182927
@@ -22510,7 +22510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000006482314}
+  m_AnchoredPosition: {x: 0, y: 0.00052242517}
   m_SizeDelta: {x: 0, y: 25}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &701281000
@@ -24646,7 +24646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e319f6f27fe5653409dcbad07a282aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  use: 4
+  _cellType: 0
 --- !u!114 &778113881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29265,7 +29265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4460e5c2d6a8f429d6ee31d02d1763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillsList: {fileID: 11400000, guid: ec1af822137243942a67fc4690a0d5b1, type: 2}
+  _skillsRegistry: {fileID: 0}
 --- !u!114 &932704241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35604,7 +35604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e319f6f27fe5653409dcbad07a282aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  use: 1
+  _cellType: 0
 --- !u!1 &1163518319
 GameObject:
   m_ObjectHideFlags: 0
@@ -38028,7 +38028,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 591603738}
   m_HandleRect: {fileID: 591603737}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -42797,7 +42797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00017611885}
+  m_AnchoredPosition: {x: 0, y: 0.00044405225}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1392736773
@@ -57974,7 +57974,6 @@ MonoBehaviour:
   _miningStonesFactory: {fileID: 248777595}
   _workbenchesFactory: {fileID: 1301090184}
   _dynamicObjectControllersFactory: {fileID: 18861399}
-  _recipesDataHolder: {fileID: 162346349}
   _npcsFactory: {fileID: 261398123}
   _questsDataHolder: {fileID: 234143437}
   _dropBagFactory: {fileID: 1362331909}

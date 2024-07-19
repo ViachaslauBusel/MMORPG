@@ -16,7 +16,7 @@ namespace OpenWorldEditor
         private static MonsterDrawGizmos monsterDrawGizmos;
 
         //Если включено добовление ресурса на карту
-        public static Fabric ResourcePaint { get { if (WindowSetting.ResourcesList == null || _editableResource != null) return null; return WindowSetting.ResourcesList[selectIndex] as Fabric; } }
+      //  public static Fabric ResourcePaint { get { if (WindowSetting.ResourcesList == null || _editableResource != null) return null; return WindowSetting.ResourcesList[selectIndex] as Fabric; } }
         public static GameObject editableResources
         {
             set
@@ -39,7 +39,7 @@ namespace OpenWorldEditor
 
             if (GUILayout.Button("Закрепить"))
             {
-                WindowSetting.WorldResourcesList.Add(new WorldFabric((WindowSetting.ResourcesList[selectIndex]as Fabric).id, _editableResource.transform.position, radius));
+               // WindowSetting.WorldResourcesList.Add(new WorldFabric((WindowSetting.ResourcesList[selectIndex]as Fabric).id, _editableResource.transform.position, radius));
                 AssetDatabase.Refresh();
                 EditorUtility.SetDirty(WindowSetting.WorldResourcesList);
                 AssetDatabase.SaveAssets();
@@ -62,27 +62,27 @@ namespace OpenWorldEditor
                 return;
             }
 
-            if (WindowSetting.ResourcesList == null || WindowSetting.WorldResourcesList == null)
+            if (WindowSetting.WorldResourcesList == null)
             {
                 EditorGUILayout.HelpBox("Список ресурсов не выбран", MessageType.Error);
                 return;
             }
             GUILayout.Space(20.0f);
-            for (int i = page * monstersOnPage; i < WindowSetting.ResourcesList.Count; i++)
-            {
-                GUILayout.BeginHorizontal();
-                GUILayout.Label(((Fabric)WindowSetting.ResourcesList[i]).name + ":" + ((Fabric)WindowSetting.ResourcesList[i]).id);
-                GUI.enabled = i != selectIndex;
+            //for (int i = page * monstersOnPage; i < WindowSetting.ResourcesList.Count; i++)
+            //{
+            //    GUILayout.BeginHorizontal();
+            //    //GUILayout.Label(((Fabric)WindowSetting.ResourcesList[i]).name + ":" + ((Fabric)WindowSetting.ResourcesList[i]).id);
+            //    GUI.enabled = i != selectIndex;
 
-                if (GUILayout.Button("Select", GUILayout.Height(20.0f), GUILayout.Width(50.0f)))
-                {
-                    selectIndex = i;
-                }
+            //    if (GUILayout.Button("Select", GUILayout.Height(20.0f), GUILayout.Width(50.0f)))
+            //    {
+            //        selectIndex = i;
+            //    }
 
-                GUI.enabled = true;
-                GUILayout.EndHorizontal();
-                GUILayout.Space(5.0f);
-            }
+            //    GUI.enabled = true;
+            //    GUILayout.EndHorizontal();
+            //    GUILayout.Space(5.0f);
+            //}
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Cells;
+using Network.Core;
 using RUCP;
-using RUCP.Handler;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,7 +19,7 @@ public class ItemRepair : MonoBehaviour
     private void Construct(NetworkManager networkManager)
     {
        this.networkManager = networkManager;
-        networkManager.RegisterHandler(Types.ItemRepair, Repair);
+        networkManager.RegisterHandler(Network.Core.Types.ItemRepair, Repair);
     }
     private void Awake()
     {
@@ -105,6 +105,6 @@ public class ItemRepair : MonoBehaviour
 
     private void OnDestroy()
     {
-        networkManager?.UnregisterHandler(Types.ItemRepair);
+        networkManager?.UnregisterHandler(Network.Core.Types.ItemRepair);
     }
 }

@@ -1,8 +1,6 @@
 using Loader;
-using Player;
-using Services.Replication;
-using System.Collections;
-using System.Collections.Generic;
+using Network;
+using Network.Core;
 using UnityEngine;
 using Zenject;
 

@@ -1,10 +1,4 @@
-﻿using MonsterRedactor;
-using NPCs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NPCs;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +7,7 @@ namespace Factories
     internal class NPCsFactory : MonoBehaviour
     {
         [SerializeField]
-        private NPCList _npcList;
+        private NPCsRegistry _npcsRegistry;
         private DiContainer _diContainer;
 
         [Inject]
@@ -24,7 +18,7 @@ namespace Factories
 
         public GameObject CreateNPC(int skinID, Transform transform, Vector3 position, float rotation)
         {
-            var npcData = _npcList.GetNPC(skinID);
+            var npcData = _npcsRegistry.GetObjectByID(skinID);
 
             if (npcData == null)
             {
@@ -32,7 +26,7 @@ namespace Factories
                 return null;
             }
 
-            return _diContainer.InstantiatePrefab(npcData.prefab, position, Quaternion.Euler(0, rotation, 0), transform);
+            return _diContainer.InstantiatePrefab(npcData.Prefab.editorAsset, position, Quaternion.Euler(0, rotation, 0), transform);
         }
     }
 }

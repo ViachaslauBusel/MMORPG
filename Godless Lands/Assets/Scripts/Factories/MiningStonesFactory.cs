@@ -1,4 +1,5 @@
 ﻿using Resource;
+using Units.Resource.Data;
 using UnityEngine;
 using Zenject;
 
@@ -7,7 +8,7 @@ namespace Factories
     internal class MiningStonesFactory : MonoBehaviour
     {
         [SerializeField]
-        private ResourceList _resourcesData;
+        private ResourcesRegistry _resourcesData;
         private DiContainer _diContainer;
 
         [Inject]
@@ -18,7 +19,7 @@ namespace Factories
 
         public GameObject CreateStone(int skinID, Transform transform, Vector3 position)
         {
-            var miningStoneData = _resourcesData.GetFabric(skinID);
+            var miningStoneData = _resourcesData.GetObjectByID(skinID);
 
             if (miningStoneData == null)
             {
@@ -26,7 +27,7 @@ namespace Factories
                 return null;
             }
 
-            return _diContainer.InstantiatePrefab(miningStoneData.prefab, position, Quaternion.identity, transform);
+            return _diContainer.InstantiatePrefab(miningStoneData.Prefab.editorAsset, position, Quaternion.identity, transform);
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using Player;
-using NetworkObjectVisualization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Network.Object.Visualization;
 using UnityEngine;
 using Zenject;
 

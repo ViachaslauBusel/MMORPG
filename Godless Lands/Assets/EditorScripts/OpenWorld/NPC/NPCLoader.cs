@@ -107,17 +107,17 @@ namespace OpenWorldEditor
             {
                 if (Vector3.Distance(trackingObj.position, npc.point) < _areaVisible)
                 {
-                    GameObject prefabNPC = WindowSetting.NPCList.GetPrefab(npc.id);
-                    if (prefabNPC != null)
-                    {
-                        GameObject instantiateNPC = Instantiate(prefabNPC);
-                        instantiateNPC.transform.position = npc.point;
-                        instantiateNPC.transform.rotation = Quaternion.Euler(0.0f, npc.radius, 0.0f);
-                       NPCDraw npcDraw = instantiateNPC.AddComponent<NPCDraw>();
+                    //GameObject prefabNPC = WindowSetting.NPCList.GetPrefab(npc.id);
+                    //if (prefabNPC != null)
+                    //{
+                    //    GameObject instantiateNPC = Instantiate(prefabNPC);
+                    //    instantiateNPC.transform.position = npc.point;
+                    //    instantiateNPC.transform.rotation = Quaternion.Euler(0.0f, npc.radius, 0.0f);
+                    //   NPCDraw npcDraw = instantiateNPC.AddComponent<NPCDraw>();
 
-                        npcDraw.worldNPC = npc;
-                        npcVisible.Add(npcDraw);
-                    }
+                    //    npcDraw.worldNPC = npc;
+                    //    npcVisible.Add(npcDraw);
+                    //}
                 }
             }
         }

@@ -1,5 +1,5 @@
-﻿using RUCP;
-using RUCP.Handler;
+﻿using Network.Core;
+using RUCP;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +33,7 @@ public class TestRay : MonoBehaviour
         {
             if (nw.ReadBool())
             {
-                hitPoints.Enqueue(nw.ReadVector3());
+                //hitPoints.Enqueue(nw.ReadVector3());
             }
             else
             {

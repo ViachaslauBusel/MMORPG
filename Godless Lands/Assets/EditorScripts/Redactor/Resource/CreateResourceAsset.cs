@@ -8,11 +8,6 @@ namespace Resource
 {
     public class CreateResourceAsset
     {
-        [MenuItem("Assets/Create/ResourcesList")]
-        public static void Create()
-        {
-            CreateAsset.Create<ResourceList>("ResourcesList");
-        }
 
         [MenuItem("Assets/Create/WorldResourcesList")]
         public static void CreateWorld()

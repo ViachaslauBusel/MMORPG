@@ -24,27 +24,27 @@ namespace OpenWorldEditor
             if (resourcesLoader == null || resourcesLoader.Resources == null) return;
             foreach (ResourcesDrawGizmos resourceDraw in resourcesLoader.Resources)
             {
-                GUILayout.Space(10.0f);
-                GUILayout.BeginHorizontal();
-                Fabric _fabric = WindowSetting.ResourcesList.GetFabric(resourceDraw.worldFabric.id);
-                GUILayout.Label(_fabric.name + ": " + _fabric.id);
+                //GUILayout.Space(10.0f);
+                //GUILayout.BeginHorizontal();
+                //Fabric _fabric = WindowSetting.ResourcesList.GetFabric(resourceDraw.worldFabric.id);
+                //GUILayout.Label(_fabric.name + ": " + _fabric.id);
 
-                GUI.enabled = selectId != resourceDraw.worldFabric.GetHashCode();
-                if (GUILayout.Button("Select", GUILayout.Width(60.0f)))
-                {
-                    Selection.activeObject = resourceDraw.gameObject;
-                    selectId = resourceDraw.worldFabric.GetHashCode();
-                    return;
-                }
-                GUI.enabled = true;
+                //GUI.enabled = selectId != resourceDraw.worldFabric.GetHashCode();
+                //if (GUILayout.Button("Select", GUILayout.Width(60.0f)))
+                //{
+                //    Selection.activeObject = resourceDraw.gameObject;
+                //    selectId = resourceDraw.worldFabric.GetHashCode();
+                //    return;
+                //}
+                //GUI.enabled = true;
 
-                if (GUILayout.Button("Delet", GUILayout.Width(60.0f)))
-                {
-                    WindowSetting.WorldResourcesList.Remove(resourceDraw.worldFabric);//Удалить монстра из списка монстров карты
-                    ResourcesVisibleSceneGUI.UpdateResourceLoader();//Обновить монстров на сцене
-                    return;
-                }
-                GUILayout.EndHorizontal();
+                //if (GUILayout.Button("Delet", GUILayout.Width(60.0f)))
+                //{
+                //    WindowSetting.WorldResourcesList.Remove(resourceDraw.worldFabric);//Удалить монстра из списка монстров карты
+                //    ResourcesVisibleSceneGUI.UpdateResourceLoader();//Обновить монстров на сцене
+                //    return;
+                //}
+                //GUILayout.EndHorizontal();
             }
         }
     }

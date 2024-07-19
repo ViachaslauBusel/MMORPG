@@ -1,8 +1,8 @@
-﻿using Protocol;
+﻿using Network.Core;
+using Protocol;
 using Protocol.MSG.Game;
 using Protocol.MSG.Login;
 using RUCP;
-using RUCP.Handler;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -69,7 +69,7 @@ namespace ServerList
 
         private void OnDestroy()
         {
-            networkManager?.UnregisterHandler(Types.ServersList);
+            networkManager?.UnregisterHandler(Opcode.MSG_SERVER_LIST);
         }
     }
 }

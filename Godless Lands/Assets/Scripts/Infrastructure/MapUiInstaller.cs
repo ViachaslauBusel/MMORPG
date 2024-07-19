@@ -1,5 +1,5 @@
 ﻿using Drop.UI;
-using ObjectInteraction.UI;
+using Network.Object.Interaction.UI;
 using Trade.UI;
 using UI.ConfirmationDialog;
 using UI.PlayerCharacterDead;

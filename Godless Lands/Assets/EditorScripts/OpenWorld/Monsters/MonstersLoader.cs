@@ -103,16 +103,16 @@ namespace OpenWorldEditor
             {
                 if (Vector3.Distance(trackingObj.position, monster.point) < _areaVisible)
                 {
-                    GameObject prefabMonster = WindowSetting.monstersList.GetPrefab(monster.id);
-                    if(prefabMonster != null)
-                    {
-                        GameObject instantiateMonster = Instantiate(prefabMonster);
-                        instantiateMonster.transform.position = monster.point;
-                        MonsterDrawGizmos monsterDraw = instantiateMonster.AddComponent<MonsterDrawGizmos>();
-                        monsterDraw.radius = monster.radius;
-                        monsterDraw.worldMonster = monster;
-                        _monsters.Add(monsterDraw);
-                    }
+                    //GameObject prefabMonster = WindowSetting.monstersList.GetPrefab(monster.id);
+                    //if(prefabMonster != null)
+                    //{
+                    //    GameObject instantiateMonster = Instantiate(prefabMonster);
+                    //    instantiateMonster.transform.position = monster.point;
+                    //    MonsterDrawGizmos monsterDraw = instantiateMonster.AddComponent<MonsterDrawGizmos>();
+                    //    monsterDraw.radius = monster.radius;
+                    //    monsterDraw.worldMonster = monster;
+                    //    _monsters.Add(monsterDraw);
+                    //}
                 }
             }
         }

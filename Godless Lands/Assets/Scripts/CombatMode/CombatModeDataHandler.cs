@@ -1,12 +1,7 @@
-﻿using NetworkObjectVisualization;
+﻿using Network.Object.Visualization;
+using Network.Replication;
 using Protocol.Data.Replicated;
 using Protocol.MSG.Game.CombatMode;
-using Services.Replication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace CombatMode

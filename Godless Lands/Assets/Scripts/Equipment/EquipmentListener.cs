@@ -1,13 +1,9 @@
-﻿using Inventory;
+﻿using Network.Core;
 using Protocol;
 using Protocol.MSG.Game.Equipment.MSG;
 using Protocol.MSG.Game.Inventory;
 using RUCP;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Zenject;
 
 namespace Equipment

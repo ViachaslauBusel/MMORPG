@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Network.Core;
+using Protocol.MSG.Game.PlayerDeadState;
+using Protocol.MSG.Game.ToClient;
+using Protocol.MSG.Game.ToServer;
 using UnityEngine;
 using Zenject;
-using Protocol.MSG.Game.ToServer;
-using Protocol.MSG.Game.ToClient;
-using Protocol.MSG.Game.PlayerDeadState;
 
 namespace UI.PlayerCharacterDead
 {

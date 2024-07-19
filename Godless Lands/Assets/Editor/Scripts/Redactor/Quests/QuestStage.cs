@@ -101,10 +101,10 @@ namespace QuestsRedactor
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(15);
-                string name = WindowSetting.NPCList.GetName(NPC);
-                if (name.Equals("not found")) GUI.color = Color.red;
-                else GUI.color = Color.green;
-                NPC = EditorGUILayout.IntField(name, NPC, GUILayout.Width(170));
+                //string name = WindowSetting.NPCList.GetName(NPC);
+                //if (name.Equals("not found")) GUI.color = Color.red;
+               // else GUI.color = Color.green;
+              //  NPC = EditorGUILayout.IntField(name, NPC, GUILayout.Width(170));
                 GUI.color = Color.white;
                 GUILayout.EndHorizontal();
 

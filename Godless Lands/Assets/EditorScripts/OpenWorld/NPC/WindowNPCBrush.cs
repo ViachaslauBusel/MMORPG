@@ -22,7 +22,7 @@ namespace OpenWorldEditor
         /// <summary>
         /// Возвращает префаб НПЦ для выбранной кисти, если кисть не выбрана или есть обьект для закрепление null
         /// </summary>
-        public static NPCPrefab NPCPrefab { get { if (WindowSetting.NPCList == null) return null; return WindowSetting.NPCList[selectIndex]; } }
+        public static NPCData NPCPrefab { get { if (WindowSetting.NPCList == null) return null; return null; } }
         /// <summary>
         /// Текущий обьект для добовление на карту
         /// </summary>
@@ -55,7 +55,7 @@ namespace OpenWorldEditor
 
             if (GUILayout.Button("Закрепить"))
             {
-                WindowSetting.WorldNPCList.Add(new WorldNPC(WindowSetting.NPCList[selectIndex].id, _editableNPC.transform.position, _editableNPC.transform.rotation.eulerAngles.y));
+                WindowSetting.WorldNPCList.Add(new WorldNPC(WindowSetting.NPCList[selectIndex].ID, _editableNPC.transform.position, _editableNPC.transform.rotation.eulerAngles.y));
                 AssetDatabase.Refresh();
                 EditorUtility.SetDirty(WindowSetting.WorldNPCList);
                 AssetDatabase.SaveAssets();
@@ -90,7 +90,7 @@ namespace OpenWorldEditor
             for (int i = page * npcOnPage; i < WindowSetting.NPCList.Count; i++)
             {
                 GUILayout.BeginHorizontal();
-                GUILayout.Label(WindowSetting.NPCList[i].name + ":" + WindowSetting.NPCList[i].id);
+                GUILayout.Label(WindowSetting.NPCList[i].Name + ":" + WindowSetting.NPCList[i].ID);
                 GUI.enabled = i != selectIndex;
 
                 if (GUILayout.Button("Select", GUILayout.Height(20.0f), GUILayout.Width(50.0f)))

@@ -8,17 +8,17 @@ namespace OpenWorldEditor
     public class ResourcesSceneGUI
     {
         private static GameObject brush;
-        private static Fabric selectedFabric;
+       // private static Fabric selectedFabric;
 
         public static void SceneGUI(Camera _camera)
         {
 
 
-            if (WindowResources.ResourcePaint == null)//Если добавление ресурсов на карту не включен
-            {
-                Destroy();
-                return;
-            }
+            //if (WindowResources.ResourcePaint == null)//Если добавление ресурсов на карту не включен
+            //{
+            //    Destroy();
+            //    return;
+            //}
 
 
             RaycastHit hit;
@@ -30,18 +30,18 @@ namespace OpenWorldEditor
             if (Physics.Raycast(ray, out hit, 1000.0f, layerMask))
             {
 
-                if (brush == null || selectedFabric != WindowResources.ResourcePaint)
-                {
-                    Destroy();
-                    selectedFabric = WindowResources.ResourcePaint;
+                //if (brush == null || selectedFabric != WindowResources.ResourcePaint)
+                //{
+                //    Destroy();
+                //    selectedFabric = WindowResources.ResourcePaint;
 
-                    if (brush == null)
-                    {
-                        brush = GameObject.Instantiate(selectedFabric.prefab);
-                        brush.name = "BrushResources";
-                        //  brush.hideFlags = HideFlags.HideAndDontSave;
-                    }
-                }
+                //    if (brush == null)
+                //    {
+                //        brush = GameObject.Instantiate(selectedFabric.prefab);
+                //        brush.name = "BrushResources";
+                //        //  brush.hideFlags = HideFlags.HideAndDontSave;
+                //    }
+                //}
 
                 brush.transform.position = hit.point;
 

@@ -1,4 +1,5 @@
-﻿using Protocol;
+﻿using Network.Core;
+using Protocol;
 using Protocol.MSG.Game.Professions;
 using Protocol.MSG.Game.Quests;
 using RUCP;

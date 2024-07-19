@@ -1,10 +1,5 @@
-﻿using MonsterRedactor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
+using Walkers.Monster;
 using Zenject;
 
 namespace Factories
@@ -12,7 +7,7 @@ namespace Factories
     public class MonstersFactory : MonoBehaviour
     {
         [SerializeField]
-        private MonstersList _monstersList;
+        private MonstersRegistry _monstersRegistry;
         private DiContainer _diContainer;
 
         [Inject]
@@ -23,7 +18,7 @@ namespace Factories
 
         public GameObject CreateMonster(int skinID, Transform transform, Vector3 position)
         {
-           var monsterData = _monstersList.GetMonster(skinID);
+           var monsterData = _monstersRegistry.GetObjectByID(skinID);
 
             if(monsterData == null)
             {
@@ -31,7 +26,7 @@ namespace Factories
                 return null;
             }
 
-            return _diContainer.InstantiatePrefab(monsterData.prefab, position, Quaternion.identity, transform);
+            return _diContainer.InstantiatePrefab(monsterData.Prefab.editorAsset, position, Quaternion.identity, transform);
         }
     }
 }

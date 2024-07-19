@@ -1,6 +1,6 @@
 ﻿using Cells;
+using Network.Core;
 using RUCP;
-using RUCP.Handler;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +22,7 @@ public class ItemEnchant : MonoBehaviour
     private void Construct(NetworkManager networkManager)
     {
         this.networkManager = networkManager;
-        networkManager.RegisterHandler(Types.ItemEnchant, Enchant);
+        networkManager.RegisterHandler(Network.Core.Types.ItemEnchant, Enchant);
     }
 
     private void Awake()
@@ -140,6 +140,6 @@ public class ItemEnchant : MonoBehaviour
 
     private void OnDestroy()
     {
-        networkManager?.UnregisterHandler(Types.ItemEnchant);
+        networkManager?.UnregisterHandler(Network.Core.Types.ItemEnchant);
     }
 }

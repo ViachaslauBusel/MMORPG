@@ -1,5 +1,6 @@
 ﻿using Helpers;
-using NetworkObjectVisualization;
+using Network.Core;
+using Network.Object.Visualization;
 using Protocol.Data.Replicated.Transform;
 using Protocol.MSG.Game;
 using System;

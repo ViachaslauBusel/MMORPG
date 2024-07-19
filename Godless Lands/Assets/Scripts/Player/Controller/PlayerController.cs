@@ -1,11 +1,6 @@
-﻿using Loader;
-using Protocol.Data;
-using Protocol.Data.Replicated.Transform;
-using RUCP;
-using NetworkObjectVisualization;
+﻿using Network.Object.Visualization;
 using System;
 using UnityEngine;
-using Zenject;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Player.Controller

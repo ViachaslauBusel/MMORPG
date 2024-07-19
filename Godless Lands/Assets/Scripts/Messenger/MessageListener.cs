@@ -1,9 +1,8 @@
 ﻿using Items;
+using Network.Core;
 using Protocol;
 using Protocol.MSG.Game.Messenger;
 using RUCP;
-using RUCP.Handler;
-using System;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using Zenject;
@@ -58,7 +57,7 @@ namespace Messenger
         private void OnDestroy()
         {
 
-            _networkManager?.UnregisterHandler(Types.ChatMessage);
+            _networkManager?.UnregisterHandler(Opcode.MSG_MESSAGE_SC);
         }
     }
 }

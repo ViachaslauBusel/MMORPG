@@ -47,16 +47,16 @@ namespace OpenWorldEditor {
 
 
 
-            if (GUILayout.Button("Export monsters.dat"))
-            {
-                if (WindowSetting.WorldMonsterList == null || WindowSetting.monstersList == null)
-                {
-                    EditorUtility.DisplayDialog("Export monsters.dat", "Ошибка экспорта", "ok");
-                    return;
-                }
-                MonsterExport.Export(WindowSetting.WorldMonsterList, WindowSetting.monstersList);
-                EditorUtility.DisplayDialog("Export monsters.dat", "Экспорт выполнен", "ok");
-            }
+            //if (GUILayout.Button("Export monsters.dat"))
+            //{
+            //    //if (WindowSetting.WorldMonsterList == null || WindowSetting.monstersList == null)
+            //    //{
+            //    //    EditorUtility.DisplayDialog("Export monsters.dat", "Ошибка экспорта", "ok");
+            //    //    return;
+            //    //}
+            //    ////MonsterExport.Export(WindowSetting.WorldMonsterList, WindowSetting.monstersList);
+            //    //EditorUtility.DisplayDialog("Export monsters.dat", "Экспорт выполнен", "ok");
+            //}
             if (GUILayout.Button("Export npc.dat"))
             {
                 if (WindowSetting.WorldNPCList == null || WindowSetting.NPCList == null)
@@ -67,19 +67,19 @@ namespace OpenWorldEditor {
                 NPCExport.Export(WindowSetting.WorldNPCList, WindowSetting.NPCList);
                 EditorUtility.DisplayDialog("Export npc.dat", "Экспорт выполнен", "ok");
             }
-            if (GUILayout.Button("Export miningStones.dat"))
-            {
-                if (WindowSetting.WorldResourcesList == null || WindowSetting.ResourcesList == null)
-                {
-                    EditorUtility.DisplayDialog("Export miningStones.dat", "Ошибка экспорта", "ok");
-                    return;
-                }
-                ResourcesExport.Export(WindowSetting.WorldResourcesList, WindowSetting.ResourcesList);
-                EditorUtility.DisplayDialog("Export monsters.dat", "Экспорт выполнен", "ok");
-            }
+            //if (GUILayout.Button("Export miningStones.dat"))
+            //{
+            //    if (WindowSetting.WorldResourcesList == null || WindowSetting.ResourcesList == null)
+            //    {
+            //        EditorUtility.DisplayDialog("Export miningStones.dat", "Ошибка экспорта", "ok");
+            //        return;
+            //    }
+            //    ResourcesExport.Export(WindowSetting.WorldResourcesList, WindowSetting.ResourcesList);
+            //    EditorUtility.DisplayDialog("Export monsters.dat", "Экспорт выполнен", "ok");
+            //}
             if (GUILayout.Button("Export terrain.dat"))
             {
-                if (WindowSetting.WorldMonsterList == null || WindowSetting.monstersList == null)
+                if (WindowSetting.WorldMonsterList == null )
                 {
                     EditorUtility.DisplayDialog("Export terrain.dat", "Ошибка экспорта", "ok");
                     return;

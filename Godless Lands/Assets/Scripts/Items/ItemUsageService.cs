@@ -1,11 +1,7 @@
-﻿using Protocol.Data.Items;
+﻿using Network.Core;
+using Protocol.Data.Items;
 using Protocol.MSG.Game.Equipment.MSG;
 using Protocol.MSG.Game.Inventory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Items
 {

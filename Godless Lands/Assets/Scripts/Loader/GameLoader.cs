@@ -1,11 +1,11 @@
 ﻿using Helpers;
+using Network.Core;
 using OpenWorld;
 using Player.Controller;
 using Protocol;
 using Protocol.MSG.Game;
 using RUCP;
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -25,7 +25,7 @@ namespace Loader
         {
             m_networkManager = networkManager;
             m_sceneLoader = sceneLoader;
-            networkManager.RegisterHandler(Types.MapEntrance, MapEntrance);
+            networkManager.RegisterHandler(Network.Core.Types.MapEntrance, MapEntrance);
             m_networkManager.RegisterHandler(Opcode.MSG_WORLD_ENTRANCE, WorldEntrance);
         }
 
@@ -140,7 +140,7 @@ namespace Loader
 
         private void OnDestroy()
         {
-            m_networkManager?.UnregisterHandler(Types.MapEntrance);
+            m_networkManager?.UnregisterHandler(Network.Core.Types.MapEntrance);
             m_instance = null;
         }
     }

@@ -1,4 +1,5 @@
-﻿using Protocol.MSG.Game.Drop;
+﻿using Network.Core;
+using Protocol.MSG.Game.Drop;
 using UnityEngine;
 using Zenject;
 

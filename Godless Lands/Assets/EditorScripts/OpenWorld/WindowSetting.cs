@@ -30,11 +30,9 @@ namespace OpenWorldEditor
        
         public static int areaVisible { get { return _areaViseble; } }
         public static Map Map { get { return editMap.Save as Map; } }
-        public static MonstersList monstersList { get { return _monstersList.Save as MonstersList; } }
         public static WorldMonstersList WorldMonsterList { get { return _worldMonstrList.Save as WorldMonstersList; } }
-        public static NPCList NPCList { get { return _NPCList.Save as NPCList; } }
+        public static NPCsRegistry NPCList { get { return _NPCList.Save as NPCsRegistry; } }
         public static WorldNPCList WorldNPCList { get { return _worldNPCList.Save as WorldNPCList; } }
-        public static ResourceList ResourcesList { get { return _resourceList.Save as ResourceList; } }
         public static WorldResourcesList WorldResourcesList { get { return _worldResourcesList.Save as WorldResourcesList; } }
         public static MachineList MachineList { get { return _machineList.Save as MachineList; } }
         public static ItemsRegistry ItemsList { get { return _itemsList.Save as ItemsRegistry; } }
@@ -55,24 +53,17 @@ namespace OpenWorldEditor
             editMap.DontSave = EditorGUILayout.ObjectField(editMap.DontSave, typeof(Map), false) as Map;
 
             GUILayout.Space(15.0f);
-            GUILayout.Label("Список монстров"); GUILayout.Space(5.0f);
-            _monstersList.DontSave = EditorGUILayout.ObjectField(_monstersList.DontSave, typeof(MonstersList), false) as MonstersList;
-
-            GUILayout.Space(15.0f);
             GUILayout.Label("Список монстров закрепленых на карте"); GUILayout.Space(5.0f);
             _worldMonstrList.DontSave = EditorGUILayout.ObjectField(_worldMonstrList.DontSave, typeof(WorldMonstersList), false) as WorldMonstersList;
 
             GUILayout.Space(15.0f);
             GUILayout.Label("Список NPC"); GUILayout.Space(5.0f);
-            _NPCList.DontSave = EditorGUILayout.ObjectField(_NPCList.DontSave, typeof(NPCList), false) as NPCList;
+            _NPCList.DontSave = EditorGUILayout.ObjectField(_NPCList.DontSave, typeof(NPCsRegistry), false) as NPCsRegistry;
 
             GUILayout.Space(15.0f);
             GUILayout.Label("Список NPC закрепленых на карте"); GUILayout.Space(5.0f);
             _worldNPCList.DontSave = EditorGUILayout.ObjectField(_worldNPCList.DontSave, typeof(WorldNPCList), false) as WorldNPCList;
 
-            GUILayout.Space(15.0f);
-            GUILayout.Label("Список ресурсов"); GUILayout.Space(5.0f);
-            _resourceList.DontSave = EditorGUILayout.ObjectField(_resourceList.DontSave, typeof(ResourceList), false) as ResourceList;
 
             GUILayout.Space(15.0f);
             GUILayout.Label("Список ресурсов закрепленых на карте"); GUILayout.Space(5.0f);

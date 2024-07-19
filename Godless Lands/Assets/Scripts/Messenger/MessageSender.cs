@@ -1,4 +1,5 @@
-﻿using Protocol.MSG.Game.Messenger;
+﻿using Network.Core;
+using Protocol.MSG.Game.Messenger;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

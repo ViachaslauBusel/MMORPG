@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Walkers.Monster;
 
 namespace OpenWorldEditor
 {
@@ -19,7 +20,7 @@ namespace OpenWorldEditor
         private static MonsterDrawGizmos monsterDrawGizmos;
 
 
-        public static Monster MonsterPaint { get { if (WindowSetting.monstersList == null || _editableMonster != null) return null; return WindowSetting.monstersList[selectIndex]; } }
+        public static MonsterData MonsterPaint { get { if (_editableMonster != null) return null; return null; } }
         public static GameObject editableMonster { set {
                 radius = 1.0f;
                 monsterDrawGizmos = value.AddComponent<MonsterDrawGizmos>();//скрипт для отрисовки радиуса спавна 
@@ -38,7 +39,7 @@ namespace OpenWorldEditor
 
             if (GUILayout.Button("Закрепить"))
             {
-                WindowSetting.WorldMonsterList.Add(new WorldMonster(WindowSetting.monstersList[selectIndex].id, _editableMonster.transform.position, radius));
+                WindowSetting.WorldMonsterList.Add(new WorldMonster(0, _editableMonster.transform.position, radius));
                 AssetDatabase.Refresh();
                 EditorUtility.SetDirty(WindowSetting.WorldMonsterList);
                 AssetDatabase.SaveAssets();
@@ -61,16 +62,16 @@ namespace OpenWorldEditor
                 return;
             }
 
-            if (WindowSetting.monstersList == null || WindowSetting.WorldMonsterList == null)
+            if ( WindowSetting.WorldMonsterList == null)
             {
                 EditorGUILayout.HelpBox("Список монстров не выбран", MessageType.Error);
                 return;
             }
             GUILayout.Space(20.0f);
-            for (int i = page * monstersOnPage; i < WindowSetting.monstersList.Count; i++)
+            for (int i = page * monstersOnPage; i < 0; i++)
             {
                 GUILayout.BeginHorizontal();
-                GUILayout.Label(WindowSetting.monstersList[i].name + ":" + WindowSetting.monstersList[i].id);
+                GUILayout.Label(":" );
                 GUI.enabled = i != selectIndex;
 
                 if (GUILayout.Button("Select", GUILayout.Height(20.0f), GUILayout.Width(50.0f)))

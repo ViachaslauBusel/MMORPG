@@ -104,16 +104,16 @@ namespace OpenWorldEditor
             {
                 if (Vector3.Distance(trackingObj.position, fabric.point) < _areaVisible)
                 {
-                    GameObject prefabResource = WindowSetting.ResourcesList.GetPrefab(fabric.id);
-                    if (prefabResource != null)
-                    {
-                        GameObject instantiateResource = Instantiate(prefabResource);
-                        instantiateResource.transform.position = fabric.point;
-                        ResourcesDrawGizmos resourcesDraw = instantiateResource.AddComponent<ResourcesDrawGizmos>();
-                        resourcesDraw.radius = fabric.radius;
-                        resourcesDraw.worldFabric = fabric;
-                        _resources.Add(resourcesDraw);
-                    }
+                    //GameObject prefabResource = WindowSetting.ResourcesList.GetPrefab(fabric.id);
+                    //if (prefabResource != null)
+                    //{
+                    //    GameObject instantiateResource = Instantiate(prefabResource);
+                    //    instantiateResource.transform.position = fabric.point;
+                    //    ResourcesDrawGizmos resourcesDraw = instantiateResource.AddComponent<ResourcesDrawGizmos>();
+                    //    resourcesDraw.radius = fabric.radius;
+                    //    resourcesDraw.worldFabric = fabric;
+                    //    _resources.Add(resourcesDraw);
+                    //}
                 }
             }
         }

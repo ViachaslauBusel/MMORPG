@@ -1,7 +1,6 @@
 ﻿using Helpers;
-using NetworkObjectVisualization;
+using Network.Object.Visualization;
 using Protocol.Data.Replicated.Animation;
-using System;
 using UnityEngine;
 using Zenject;
 

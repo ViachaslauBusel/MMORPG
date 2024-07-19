@@ -1,7 +1,4 @@
-﻿using Equipment;
-using NetworkObjectVisualization.Characters;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Network.Object.Visualization.Entities.Characters;
 using UnityEngine;
 
 public class PickaxeAnimation : StateMachineBehaviour

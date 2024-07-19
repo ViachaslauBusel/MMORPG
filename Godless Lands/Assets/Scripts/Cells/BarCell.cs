@@ -1,4 +1,5 @@
-﻿using Protocol.MSG.Game.Hotbar;
+﻿using Network.Core;
+using Protocol.MSG.Game.Hotbar;
 using Skills;
 using System.Collections;
 using UnityEngine;

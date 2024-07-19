@@ -1,9 +1,6 @@
 ﻿using MCamera;
-using Services.Replication;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using Network;
+using Network.Replication;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

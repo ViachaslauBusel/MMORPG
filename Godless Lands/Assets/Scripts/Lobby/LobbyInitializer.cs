@@ -1,4 +1,5 @@
-﻿using Protocol.MSG.Game;
+﻿using Network.Core;
+using Protocol.MSG.Game;
 using UnityEngine;
 using Zenject;
 

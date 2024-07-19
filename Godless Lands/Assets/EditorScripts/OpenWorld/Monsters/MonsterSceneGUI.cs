@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Walkers.Monster;
 
 namespace OpenWorldEditor
 {
@@ -11,7 +12,7 @@ namespace OpenWorldEditor
     public class MonsterSceneGUI
     {
         private static GameObject brush;
-        private static Monster selectedMonster;
+        private static MonsterData selectedMonster;
        
 
 
@@ -42,7 +43,7 @@ namespace OpenWorldEditor
 
                     if (brush == null)
                     {
-                        brush = GameObject.Instantiate(selectedMonster.prefab);
+                       // brush = GameObject.Instantiate(selectedMonster.Prefab);
                         brush.name = "BrushMonster";
                       //  brush.hideFlags = HideFlags.HideAndDontSave;
                     }

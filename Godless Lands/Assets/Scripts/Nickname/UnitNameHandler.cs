@@ -1,10 +1,6 @@
-﻿using Protocol.Data.Replicated;
-using Services.Replication;
+﻿using Network.Replication;
+using Protocol.Data.Replicated;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Nickname
