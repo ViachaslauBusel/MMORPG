@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
-  m_Name: TestMap_ContentUpdateGroupSchema
+  m_Script: {fileID: 11500000, guid: 8f56e1e05d9ad8c449d0d5eda62cbda1, type: 3}
+  m_Name: NPCWorldDataRegistry 1
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: 26288dd6653541947b1df55940795e21, type: 2}
-  m_StaticContent: 0
+  _entityIds: 20000000
+  _entityData:
+  - DataObject: {fileID: 11400000, guid: 70569efb06edd614b92f184ca16d1824, type: 2}
+    SpawnPointType: 2
+    SpawnPointRadius: 0

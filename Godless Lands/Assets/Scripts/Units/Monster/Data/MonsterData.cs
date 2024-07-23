@@ -1,11 +1,12 @@
-﻿using ObjectRegistryEditor;
+﻿using Data;
+using ObjectRegistryEditor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Units.Monster
 {
-    public class MonsterData : ScriptableObject, IDataObject
+    public class MonsterData : ScriptableObject, IDataObject, IPrefabHolder
     {
         [SerializeField, HideInInspector]
         private int _id;

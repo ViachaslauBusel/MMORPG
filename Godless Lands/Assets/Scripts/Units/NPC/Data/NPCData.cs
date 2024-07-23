@@ -1,4 +1,5 @@
 ﻿
+using Data;
 using ObjectRegistryEditor;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using UnityEngine.AddressableAssets;
 namespace NPCs
 {
     [System.Serializable]
-    public class NPCData : ScriptableObject, IDataObject
+    public class NPCData : ScriptableObject, IDataObject, IPrefabHolder
     {
         [SerializeField, HideInInspector]
         private int _id;

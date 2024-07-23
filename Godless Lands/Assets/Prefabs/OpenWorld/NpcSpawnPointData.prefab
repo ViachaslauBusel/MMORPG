@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3197783693966863700
+--- !u!1 &290175244185212386
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8723149569992353798}
-  - component: {fileID: 5658052690278168250}
+  - component: {fileID: 5179065377729510043}
+  - component: {fileID: 6873654019332668258}
   m_Layer: 0
-  m_Name: MonsterSpawnPoint
+  m_Name: NpcSpawnPointData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8723149569992353798
+--- !u!4 &5179065377729510043
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3197783693966863700}
+  m_GameObject: {fileID: 290175244185212386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1177.6501, y: 184.23834, z: 1797.5747}
+  m_LocalPosition: {x: 1114.6257, y: 145.1163, z: 1855.7555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5658052690278168250
+--- !u!114 &6873654019332668258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3197783693966863700}
+  m_GameObject: {fileID: 290175244185212386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e458809b4f774294e91365fa6282470e, type: 3}
+  m_Script: {fileID: 11500000, guid: f11cefef0c5337a4598f52dba5da4365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _worldDataRegistry: {fileID: 11400000, guid: 548bfc868fac73d49a62b96f8349f4c4, type: 2}
+  _worldDataRegistry: {fileID: 11400000, guid: aaf6febba19dc784fbc32e6df49bd724, type: 2}
   _dataObject: {fileID: 0}
   _spawnPointType: 0
   _spawnRadius: 1
+  SomeData: 0

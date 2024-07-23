@@ -21,6 +21,12 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/OpenWorld/MonsterSpawnPoint.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6c01cc8beee3da4d8cde15b8d3262f1
+    m_Address: Assets/Prefabs/OpenWorld/NpcSpawnPointData.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e87af954dabc30640aeba730b5256453, type: 2}
   m_SchemaSet:

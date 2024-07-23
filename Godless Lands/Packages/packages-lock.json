@@ -12,7 +12,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "253e43a96b30caadbdc180e02b7468c3fbfb41a5"
+      "hash": "57e4eb11dc0715f3cf72f1a7408e785eb5a6f1fe"
     },
     "com.open.world": {
       "version": "https://github.com/ViachaslauBusel/OpenWorld.git?path=/Packages/com.open.world",
@@ -21,7 +21,7 @@
       "dependencies": {
         "com.asset.perfomance.toolkit": "1.0.0"
       },
-      "hash": "884a11bba11604b0059286cd4d8e42336c12a44c"
+      "hash": "5c9a6182c1a65aa4a62e5c0e44508dba1e5c2883"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
