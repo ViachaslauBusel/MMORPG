@@ -39,7 +39,7 @@ namespace Network.Object.Visualization.Entities.Characters
                     Debug.LogError("CharacterViewDataHandler: UpdateData: CharacterBodyPartsController not found");
                     return;
                 }
-                SetVisualObject(characterObj);
+                SetVisualObject(new AssetHolder(characterObj));
             }
             _bodyPartsController.UpdateWeapon(visualData.WeaponId);
             _bodyPartsController.UpdateTool(visualData.ToolId);

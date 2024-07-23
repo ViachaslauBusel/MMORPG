@@ -73,7 +73,7 @@ namespace Network.Object.Visualization.Entities.Characters
 
             part.SetPartID(partId);
 
-            MeshHolder partMesh = await _meshProviderService.GetMeshAsync(partId);
+            AssetHolder partMesh = await _meshProviderService.GetMeshAsync(partId);
 
             if (partMesh.IsValid == false)
             {

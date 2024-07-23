@@ -21,22 +21,37 @@ MonoBehaviour:
     m_Address: Assets/3Dmodel/Weapon/Axe/axe.obj
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b2f7a447e9471074abfac1117e397a5e
     m_Address: Assets/Data/ItemsData/WeaponItemData_2.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2962718255661f0438f1e289a90c793e
     m_Address: Monsters/SKELETON
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ff8d4b1df6ae06b4b824be023eb42d54
     m_Address: Monsters/Dummy_mdl
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e7656cfae1cc7c469dbba0dd4a5b53f
     m_Address: Monsters/SKELETON 1
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c46b93bb947b2e24b88682e58eede668
+    m_Address: Assets/Prefabs/NPC/Mesh_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 600b660585fe64d4dbf2e4a56056304c
+    m_Address: Assets/3Dmodel/World/Beds and Table/table1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e87af954dabc30640aeba730b5256453, type: 2}
   m_SchemaSet:

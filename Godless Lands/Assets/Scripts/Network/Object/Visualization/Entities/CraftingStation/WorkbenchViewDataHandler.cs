@@ -1,5 +1,6 @@
 ﻿using Factories;
 using Network.Object.Dynamic.Transformations;
+using Network.Object.Visualization.Entities.Characters;
 using Network.Replication;
 using Protocol.Data.Replicated;
 using Protocol.Data.Replicated.Skins;
@@ -10,13 +11,13 @@ namespace Network.Object.Visualization.Entities.CraftingStation
 {
     internal class WorkbenchViewDataHandler : NetworkObjectVisualHandler, INetworkDataHandler
     {
-        private WorkbenchesFactory _workbenchesFactory;
+        private CraftingStationsFactory _workbenchesFactory;
         private WorkbenchSkinData _visualData;
         private TransfromDataHandler _networkTransform;
 
 
         [Inject]
-        private void Construct(WorkbenchesFactory worbenchesFactory)
+        private void Construct(CraftingStationsFactory worbenchesFactory)
         {
             _workbenchesFactory = worbenchesFactory;
         }
@@ -39,7 +40,7 @@ namespace Network.Object.Visualization.Entities.CraftingStation
             DestroyExistingUnitObject();
             GameObject visualObject = CreateNewUnit();
 
-            SetVisualObject(visualObject);
+            SetVisualObject(new AssetHolder(visualObject));
         }
 
         private GameObject CreateNewUnit()

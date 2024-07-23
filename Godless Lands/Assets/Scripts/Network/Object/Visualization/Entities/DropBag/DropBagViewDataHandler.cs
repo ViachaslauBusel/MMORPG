@@ -1,5 +1,6 @@
 ﻿using Factories;
 using Network.Object.Dynamic.Transformations;
+using Network.Object.Visualization.Entities.Characters;
 using Network.Replication;
 using Protocol.Data.Replicated;
 using Protocol.Data.Replicated.Skins;
@@ -41,7 +42,7 @@ namespace Network.Object.Visualization.Entities.DropBag
 
             GameObject visualObject =  CreateNewUnit();
 
-            SetVisualObject(visualObject);
+            SetVisualObject(new AssetHolder(visualObject));
         }
 
         private GameObject CreateNewUnit()

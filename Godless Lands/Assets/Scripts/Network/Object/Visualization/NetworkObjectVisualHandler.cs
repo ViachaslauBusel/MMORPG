@@ -1,4 +1,5 @@
-﻿using Network.Replication;
+﻿using Network.Object.Visualization.Entities.Characters;
+using Network.Replication;
 using System;
 using UnityEngine;
 
@@ -6,11 +7,11 @@ namespace Network.Object.Visualization
 {
     public abstract class NetworkObjectVisualHandler : MonoBehaviour, IVisualRepresentation, IDestroyNotifier
     {
-        protected GameObject _visualObject;
+        protected AssetHolder _visualObject;
         protected NetworkComponentsProvider _networkComponentsProvider;
 
         public event Action<GameObject> OnVisualObjectUpdated;
-        public GameObject VisualObject => _visualObject;
+        public GameObject VisualObject => _visualObject.InstanceObject;
 
 
         protected void Awake()
@@ -24,7 +25,7 @@ namespace Network.Object.Visualization
             {
                 DetachVisualObjectScript();
 
-                Destroy(_visualObject);
+                _visualObject.Release();
                 _visualObject = null;
             }
         }
@@ -33,8 +34,7 @@ namespace Network.Object.Visualization
         {
             if (_visualObject == null) return;
 
-            Debug.Log($"DetachVisualObjectScript:{_visualObject.name}");
-            var visualObjectScript = _visualObject.GetComponentsInChildren<IVisualObjectScript>();
+            var visualObjectScript = _visualObject.InstanceObject.GetComponentsInChildren<IVisualObjectScript>();
 
             foreach (var script in visualObjectScript)
             {
@@ -42,14 +42,14 @@ namespace Network.Object.Visualization
             }
         }
 
-        protected void SetVisualObject(GameObject visualObject)
+        protected void SetVisualObject(AssetHolder visualObject)
         {
             bool isUpdated = _visualObject != visualObject;
             _visualObject = visualObject;
 
             if (_visualObject != null)
             {
-                var visualObjectScript = _visualObject.GetComponentsInChildren<IVisualObjectScript>();
+                var visualObjectScript = _visualObject.InstanceObject.GetComponentsInChildren<IVisualObjectScript>();
 
                 foreach (var script in visualObjectScript)
                 {
@@ -57,7 +57,7 @@ namespace Network.Object.Visualization
                 }
             }
 
-            if (isUpdated) OnVisualObjectUpdated?.Invoke(_visualObject);
+            if (isUpdated) OnVisualObjectUpdated?.Invoke(_visualObject.InstanceObject);
         }
 
         // This method is called just before the object is destroyed

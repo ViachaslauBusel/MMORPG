@@ -1,5 +1,6 @@
 ﻿using Factories;
 using Network.Object.Dynamic.Transformations;
+using Network.Object.Visualization.Entities.Characters;
 using Network.Replication;
 using Protocol.Data.Replicated;
 using Protocol.Data.Replicated.Skins;
@@ -36,19 +37,30 @@ namespace Network.Object.Visualization.Entities.Corpse
             UpdateVisualObject();
         }
 
-        protected void UpdateVisualObject()
+        protected async void UpdateVisualObject()
         {
+            AssetHolder visualObject = GetCachedVisualObject(_visualData.CachedObjectId);
+
+            if (visualObject != null)
+            {
+                DestroyExistingUnitObject();
+                SetVisualObject(visualObject);
+                return;
+            }
+
+            int skinID = _visualData.SkinID;
+
+            var assetHolder = await _monstersFactory.CreateMonster(skinID);
+
+            if (skinID != _visualData.SkinID)
+            {
+                assetHolder.Release();
+                return;
+            }
+
             DestroyExistingUnitObject();
-
-            GameObject visualObject = GetCachedVisualObject(_visualData.CachedObjectId);
-            visualObject ??= CreateNewUnit();
-
-            SetVisualObject(visualObject);
-        }
-
-        private GameObject CreateNewUnit()
-        {
-            return _monstersFactory.CreateMonster(_visualData.SkinID, transform, _networkTransform.Position);
+            assetHolder.Instantiate(transform, _networkTransform.Position, _networkTransform.Rotation);
+            SetVisualObject(assetHolder);
         }
     }
 }

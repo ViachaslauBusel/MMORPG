@@ -1,11 +1,14 @@
-﻿using Resource;
+﻿using Cysharp.Threading.Tasks;
+using Network.Object.Visualization.Entities.Characters;
 using Units.Resource.Data;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 namespace Factories
 {
-    internal class MiningStonesFactory : MonoBehaviour
+    internal class MiningStonesFactory : AddressablesAssetFactory
     {
         [SerializeField]
         private ResourcesRegistry _resourcesData;
@@ -17,17 +20,6 @@ namespace Factories
             _diContainer = diContainer;
         }
 
-        public GameObject CreateStone(int skinID, Transform transform, Vector3 position)
-        {
-            var miningStoneData = _resourcesData.GetObjectByID(skinID);
-
-            if (miningStoneData == null)
-            {
-                Debug.LogError($"Stone with id {skinID} not found");
-                return null;
-            }
-
-            return _diContainer.InstantiatePrefab(miningStoneData.Prefab.editorAsset, position, Quaternion.identity, transform);
-        }
+        public async UniTask<AssetHolder> CreateStone(int skinID) => await CreateAssetHolder(_resourcesData, skinID);
     }
 }

@@ -38,20 +38,24 @@ namespace Network.Object.Visualization.Entities.Monsters
             UpdateVisualObject();
         }
 
-        protected void UpdateVisualObject()
+        protected async void UpdateVisualObject()
         {
             if (_skinID == _visualData.SkinID) return;
-            DestroyExistingUnitObject();
 
-            GameObject visualObject = CreateNewUnit();
-
-            SetVisualObject(visualObject);
             _skinID = _visualData.SkinID;
-        }
+            int skinID = _visualData.SkinID;
 
-        private GameObject CreateNewUnit()
-        {
-            return _monstersFactory.CreateMonster(_visualData.SkinID, transform, _networkTransform.Position);
+            var assetHolder = await _monstersFactory.CreateMonster(skinID);
+
+            if (skinID != _visualData.SkinID)
+            {
+                assetHolder.Release();
+                return;
+            }
+
+            DestroyExistingUnitObject();
+            assetHolder.Instantiate(transform, _networkTransform.Position, _networkTransform.Rotation);
+            SetVisualObject(assetHolder);
         }
     }
 }

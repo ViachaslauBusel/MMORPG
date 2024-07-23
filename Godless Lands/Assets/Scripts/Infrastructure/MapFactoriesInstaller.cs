@@ -20,7 +20,7 @@ namespace Infrastructure
         [SerializeField]
         private MiningStonesFactory _miningStonesFactory;
         [SerializeField]
-        private WorkbenchesFactory _workbenchesFactory;
+        private CraftingStationsFactory _workbenchesFactory;
         [SerializeField]
         private DynamicObjectControllersFactory _dynamicObjectControllersFactory;
         [SerializeField]
@@ -38,7 +38,7 @@ namespace Infrastructure
             Container.Bind<CharactersFactory>().FromInstance(_charactersFactory).AsSingle();
             Container.Bind<MonstersFactory>().FromInstance(_monstersFactory).AsSingle();
             Container.Bind<MiningStonesFactory>().FromInstance(_miningStonesFactory).AsSingle();
-            Container.Bind<WorkbenchesFactory>().FromInstance(_workbenchesFactory).AsSingle();
+            Container.Bind<CraftingStationsFactory>().FromInstance(_workbenchesFactory).AsSingle();
             Container.Bind<DynamicObjectControllersFactory>().FromInstance(_dynamicObjectControllersFactory).AsSingle();
             Container.Bind<NPCsFactory>().FromInstance(_npcsFactory).AsSingle();
             Container.Bind<QuestDataHolder>().FromInstance(_questsDataHolder).AsSingle();

@@ -13,6 +13,7 @@ namespace Network.Object.Visualization.Entities.NPC
         private NPCsFactory _npcFactory;
         private NpcSkinData _visualData;
         private TransfromDataHandler _networkTransform;
+        private int _currentVisualObjectId;
 
 
         [Inject]
@@ -34,18 +35,23 @@ namespace Network.Object.Visualization.Entities.NPC
             UpdateVisualObject(_visualData.SkinID);
         }
 
-        protected void UpdateVisualObject(int visualObjectId)
+        protected async void UpdateVisualObject(int visualObjectId)
         {
+            _currentVisualObjectId = visualObjectId;
+
+            var assetHolder = await _npcFactory.CreateNPC(_visualData.SkinID);
+
+            if(_currentVisualObjectId != visualObjectId)
+            {
+                assetHolder.Release();
+                return;
+            }
+
             DestroyExistingUnitObject();
 
-            GameObject visualObject = CreateNewUnit();
+            assetHolder.Instantiate(transform, _networkTransform.Position, _networkTransform.Rotation);
 
-            SetVisualObject(visualObject);
-        }
-
-        private GameObject CreateNewUnit()
-        {
-            return _npcFactory.CreateNPC(_visualData.SkinID, transform, _networkTransform.Position, _networkTransform.Rotation);
+            SetVisualObject(assetHolder);
         }
     }
 }

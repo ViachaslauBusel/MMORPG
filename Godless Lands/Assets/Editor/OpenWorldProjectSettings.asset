@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectsLayers:
   - Static
-  - 
-  - 
+  - NPCs
+  - Monsters
   - 
   - 
   - 

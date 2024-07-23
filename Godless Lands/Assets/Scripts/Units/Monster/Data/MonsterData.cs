@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Walkers.Monster
+namespace Units.Monster
 {
     public class MonsterData : ScriptableObject, IDataObject
     {

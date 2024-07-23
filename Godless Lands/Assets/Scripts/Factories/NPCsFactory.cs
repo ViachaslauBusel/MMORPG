@@ -1,10 +1,14 @@
-﻿using NPCs;
+﻿using Cysharp.Threading.Tasks;
+using Network.Object.Visualization.Entities.Characters;
+using NPCs;
+using Units.Monster;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Zenject;
 
 namespace Factories
 {
-    internal class NPCsFactory : MonoBehaviour
+    internal class NPCsFactory : AddressablesAssetFactory
     {
         [SerializeField]
         private NPCsRegistry _npcsRegistry;
@@ -16,17 +20,6 @@ namespace Factories
             _diContainer = diContainer;
         }
 
-        public GameObject CreateNPC(int skinID, Transform transform, Vector3 position, float rotation)
-        {
-            var npcData = _npcsRegistry.GetObjectByID(skinID);
-
-            if (npcData == null)
-            {
-                Debug.LogError($"Monster with id {skinID} not found");
-                return null;
-            }
-
-            return _diContainer.InstantiatePrefab(npcData.Prefab.editorAsset, position, Quaternion.Euler(0, rotation, 0), transform);
-        }
+        public async UniTask<AssetHolder> CreateNPC(int skinID) => await CreateAssetHolder(_npcsRegistry, skinID);
     }
 }

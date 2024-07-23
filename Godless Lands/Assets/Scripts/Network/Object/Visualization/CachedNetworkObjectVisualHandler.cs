@@ -1,4 +1,5 @@
-﻿using Network.Object.Visualization.VisualCache;
+﻿using Network.Object.Visualization.Entities.Characters;
+using Network.Object.Visualization.VisualCache;
 using UnityEngine;
 using Zenject;
 
@@ -32,7 +33,7 @@ namespace Network.Object.Visualization
         /// </summary>
         /// <param name="visualObjectId"></param>
         /// <returns></returns>
-        protected GameObject GetCachedVisualObject(int visualObjectId)
+        protected AssetHolder GetCachedVisualObject(int visualObjectId)
         {
             if (visualObjectId != 0)
             {

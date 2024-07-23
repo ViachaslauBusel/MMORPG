@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c519d22508fa3d943a041f2d2ce466f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c6e132d5f91a5f419d4c1bb5bbfc551, type: 3}
   m_Name: MonstersRegistry
   m_EditorClassIdentifier: 
-  _objects: []
-  _generatorID: 0
+  _objects:
+  - {fileID: 11400000, guid: 24fbda3a09c5b90488231df39b193e12, type: 2}
+  - {fileID: 11400000, guid: 7d24c63a8a3554f4685db978f3b13fa9, type: 2}
+  _generatorID: 2

@@ -34,18 +34,20 @@ namespace Network.Object.Visualization.Entities.Resources
             UpdateVisualObject();
         }
 
-        protected void UpdateVisualObject()
+        protected async void UpdateVisualObject()
         {
+            int skinID = _visualData.SkinID;
+
+            var assetHolder = await _miningStonesFactory.CreateStone(skinID);
+
+            if (skinID != _visualData.SkinID)
+            {
+                assetHolder.Release();
+                return;
+            }
             DestroyExistingUnitObject();
-
-            GameObject visualObject = CreateNewUnit();
-
-            SetVisualObject(visualObject);
-        }
-
-        private GameObject CreateNewUnit()
-        {
-            return _miningStonesFactory.CreateStone(_visualData.SkinID, transform, _networkTransform.Position);
+            assetHolder.Instantiate(transform, _networkTransform.Position);
+            SetVisualObject(assetHolder);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Network.Object.Visualization.Entities.Characters
     {
         [SerializeField]
         private bool _isVisible = true;
-        private MeshHolder _part;
+        private AssetHolder _part;
         private int _partID;
 
         public int PartID => _partID;
@@ -35,7 +35,7 @@ namespace Network.Object.Visualization.Entities.Characters
             _partID = partId;
         }
 
-        internal void UpdatePart(MeshHolder weapon)
+        internal void UpdatePart(AssetHolder weapon)
         {
             _part = weapon;
             _part.Instantiate(transform);

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Walkers.Monster
+namespace Units.Monster
 {
     [CreateAssetMenu(fileName = "MonstersRegistry", menuName = "Registry/Monsters")]
     public class MonstersRegistry : DataObjectRegistry<MonsterData>

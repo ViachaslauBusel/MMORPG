@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network.Object.Visualization.Entities.Characters;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -9,10 +10,10 @@ namespace Network.Object.Visualization.VisualCache
     {
         class VisualCacheEntry
         {
-            public readonly GameObject Visual;
+            public readonly AssetHolder Visual;
             public readonly long TimeStamp;
 
-            public VisualCacheEntry(GameObject visual)
+            public VisualCacheEntry(AssetHolder visual)
             {
                 Visual = visual;
                 TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
@@ -27,26 +28,26 @@ namespace Network.Object.Visualization.VisualCache
             _visualChaceHolder = new GameObject("VisualChaceHolder");
         }
 
-        public void Add(int id, GameObject visualObject)
+        public void Add(int id, AssetHolder visualObject)
         {
             Debug.Log($"Add visual for unit with id {id} to cache");
             if (_cache.TryGetValue(id, out var existingVisual))
             {
                 Debug.LogWarning($"Visual for unit with id {id} already exists in cache");
-                GameObject.Destroy(existingVisual.Visual);
+                existingVisual.Visual.Release();
             }
 
-            visualObject.transform.SetParent(_visualChaceHolder.transform);
+            visualObject.InstanceObject.transform.SetParent(_visualChaceHolder.transform);
             _cache[id] = new VisualCacheEntry(visualObject); // Use indexer to add or update the value
         }
 
-        public GameObject Get(int id, Transform transform)
+        public AssetHolder Get(int id, Transform transform)
         {
             if (_cache.TryGetValue(id, out var visual))
             {
                 Debug.Log($"Get visual for unit with id {id} from cache");
                 _cache.Remove(id);
-                visual.Visual.transform.SetParent(transform);
+                visual.Visual.InstanceObject.transform.SetParent(transform);
                 return visual.Visual;
             }
             Debug.LogWarning($"Visual for unit with id {id} not found in cache");
@@ -65,7 +66,7 @@ namespace Network.Object.Visualization.VisualCache
             foreach (var id in _needRemoveVisual)
             {
                 Debug.Log($"Remove visual for unit with id {id} from cache");
-                GameObject.Destroy(_cache[id].Visual);
+                _cache[id].Visual.Release();
                 _cache.Remove(id);
             }
             _needRemoveVisual.Clear();

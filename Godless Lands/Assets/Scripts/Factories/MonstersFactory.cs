@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-using Walkers.Monster;
+using Units.Monster;
 using Zenject;
+using Cysharp.Threading.Tasks;
+using Network.Object.Visualization.Entities.Characters;
 
 namespace Factories
 {
-    public class MonstersFactory : MonoBehaviour
+    public class MonstersFactory : AddressablesAssetFactory
     {
         [SerializeField]
         private MonstersRegistry _monstersRegistry;
@@ -16,17 +18,6 @@ namespace Factories
             _diContainer = diContainer;
         }
 
-        public GameObject CreateMonster(int skinID, Transform transform, Vector3 position)
-        {
-           var monsterData = _monstersRegistry.GetObjectByID(skinID);
-
-            if(monsterData == null)
-            {
-                Debug.LogError($"Monster with id {skinID} not found");
-                return null;
-            }
-
-            return _diContainer.InstantiatePrefab(monsterData.Prefab.editorAsset, position, Quaternion.identity, transform);
-        }
+        public async UniTask<AssetHolder> CreateMonster(int skinID) => await CreateAssetHolder(_monstersRegistry, skinID);
     }
 }

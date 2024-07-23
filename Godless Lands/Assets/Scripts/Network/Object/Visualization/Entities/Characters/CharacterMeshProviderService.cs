@@ -19,12 +19,12 @@ namespace Network.Object.Visualization.Entities.Characters
             _itemsFactory = itemsFactory;
         }
 
-        internal async UniTask<MeshHolder> GetMeshAsync(int partId)
+        internal async UniTask<AssetHolder> GetMeshAsync(int partId)
         {
             var goHandle = Addressables.LoadAssetAsync<GameObject>(_itemsFactory.GetItemData(partId).Prefab);
             await goHandle.Task;
 
-            return new MeshHolder(goHandle);
+            return new AssetHolder(goHandle);
         }
     }
 }
