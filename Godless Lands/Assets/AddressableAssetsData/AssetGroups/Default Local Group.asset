@@ -52,6 +52,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f83dfef6a5471ee478a3545d7cf2200e
+    m_Address: Assets/Prefabs/Units/Res/Mine.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21c58ecd2c1b8874b8f215b8ebac579d
+    m_Address: Assets/Prefabs/Units/Res/cooper.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03a3521670ee40b43ad9ef46e066459e
+    m_Address: Assets/Prefabs/OpenWorld/ResourceSpawnPoint.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e87af954dabc30640aeba730b5256453, type: 2}
   m_SchemaSet:

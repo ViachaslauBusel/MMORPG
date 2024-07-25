@@ -1,4 +1,5 @@
-﻿using Items;
+﻿using Data;
+using Items;
 using ObjectRegistryEditor;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using UnityEngine.AddressableAssets;
 
 namespace Units.Resource.Data
 {
-    public class ResourceHarvestData : ScriptableObject, IDataObject
+    public class ResourceHarvestData : ScriptableObject, IDataObject, IPrefabHolder
     {
         [SerializeField, HideInInspector]
         private int _id;
