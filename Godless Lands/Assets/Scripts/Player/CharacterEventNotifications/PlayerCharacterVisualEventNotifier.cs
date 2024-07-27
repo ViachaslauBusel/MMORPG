@@ -14,6 +14,8 @@ namespace Player
         public event Action<GameObject> OnPlayerCharacterVisualSpawned;
         public event Action<GameObject> OnPlayerCharacterVisualDestroyed;
 
+        public GameObject PlayerCharacterVisualObject => _playerCharacterVisualObject;
+
         [Inject]
         public void Construct(PlayerCharacterNetworkObjecEventNotifier networkEventNotifier)
         {

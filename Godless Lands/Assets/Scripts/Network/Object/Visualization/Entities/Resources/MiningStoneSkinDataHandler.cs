@@ -10,13 +10,13 @@ namespace Network.Object.Visualization.Entities.Resources
 {
     internal class MiningStoneSkinDataHandler : NetworkObjectVisualHandler, INetworkDataHandler
     {
-        private MiningStonesFactory _miningStonesFactory;
+        private ResourcesFactory _miningStonesFactory;
         private MiningStoneSkinData _visualData;
         private TransfromDataHandler _networkTransform;
 
 
         [Inject]
-        private void Construct(MiningStonesFactory miningStonesFactory)
+        private void Construct(ResourcesFactory miningStonesFactory)
         {
             _miningStonesFactory = miningStonesFactory;
         }

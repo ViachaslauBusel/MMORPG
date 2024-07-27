@@ -12,7 +12,6 @@ namespace Skills
 {
     public class PlayerSkillsHolder : MonoBehaviour
     {
-        [SerializeField]
         private SkillsRegistry _skillsRegistry;
         private NetworkManager _networkManager;
         private List<int> _skills = new List<int>();
@@ -22,9 +21,10 @@ namespace Skills
         public event Action OnSkillsUpdate;
 
         [Inject]
-        private void Construct(NetworkManager networkManager)
+        private void Construct(NetworkManager networkManager, SkillsRegistry skillsRegistry)
         {
             _networkManager = networkManager;
+            _skillsRegistry = skillsRegistry;
             _networkManager.RegisterHandler(Opcode.MSG_SKILLS_UPDATE, SkillsUpdate);
         }
 

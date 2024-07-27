@@ -9,11 +9,19 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Zenject;
 
 namespace Factories
 {
-    public class AddressablesAssetFactory : MonoBehaviour
+    public class AddressablesAssetFactory
     {
+        private DiContainer _diContainer;
+
+        public AddressablesAssetFactory(DiContainer diContainer)
+        {
+            _diContainer = diContainer;
+        }
+
         protected async UniTask<AssetHolder> CreateAssetHolder(IDataObjectRegistry registry, int objectID)
         {
             var dataObject = registry.GetObjectByID(objectID);
@@ -42,7 +50,7 @@ namespace Factories
                 return null;
             }
 
-            return new AssetHolder(assetHandler);
+            return new AssetHolder(_diContainer, assetHandler);
         }
     }
 }

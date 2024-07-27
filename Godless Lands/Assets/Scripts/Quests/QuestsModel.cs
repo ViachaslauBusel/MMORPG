@@ -1,9 +1,5 @@
-﻿using Quests.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Quests
@@ -11,15 +7,15 @@ namespace Quests
     internal class QuestsModel
     {
         private Dictionary<int, Quest> _quests = new Dictionary<int, Quest>();
-        private QuestDataHolder _dataHolder;
+        private QuestRegistry _questRegistry;
       
         public event Action OnQuestsUpdated;
 
         public IReadOnlyCollection<Quest> Quests => _quests.Values;
 
-        public QuestsModel(QuestDataHolder dataHolder)
+        public QuestsModel(QuestRegistry questRegistry)
         {
-            _dataHolder = dataHolder;
+            _questRegistry = questRegistry;
         }
 
         internal void UpdateQuest(int questId, int stageID)
@@ -30,7 +26,7 @@ namespace Quests
             }
             else
             {
-                QuestData questData = _dataHolder.GetQuestData(questId);
+                QuestData questData = _questRegistry.GetObjectByID(questId);
                 if(questData != null) 
                 {
                     _quests.Add(questId, new Quest(questId, questData, stageID));

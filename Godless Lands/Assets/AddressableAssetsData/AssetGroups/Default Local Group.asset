@@ -22,8 +22,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b2f7a447e9471074abfac1117e397a5e
-    m_Address: Assets/Data/ItemsData/WeaponItemData_2.asset
+  - m_GUID: de052fac90a293f479a6adec10eee949
+    m_Address: Assets/Prefabs/Weapon/plane.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -64,6 +64,26 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 03a3521670ee40b43ad9ef46e066459e
     m_Address: Assets/Prefabs/OpenWorld/ResourceSpawnPoint.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9b85860d07f92945b386b0acee4fe2a
+    m_Address: Assets/Prefabs/Weapon/pickaxe.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9b27eb28a4ff0644a0bf78333f7b7e3
+    m_Address: Assets/Prefabs/Weapon/morgenshtern.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0466fcd0fd73ee744851048e6006aa5d
+    m_Address: Assets/Prefabs/Weapon/sword.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 025f5b5995d81e04baa62a90bab01c54
+    m_Address: Assets/Prefabs/Weapon/axe.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

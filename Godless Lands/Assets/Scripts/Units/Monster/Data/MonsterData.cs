@@ -1,5 +1,6 @@
-﻿using Data;
+﻿using Factories;
 using ObjectRegistryEditor;
+using Protocol.Data.Monsters;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -14,6 +15,8 @@ namespace Units.Monster
         private string _name;
         [SerializeField]
         private AssetReferenceT<GameObject> _prefab;
+        [SerializeField]
+        private int _health;
 
         public int ID => _id;
         public string Name => _name;
@@ -23,11 +26,21 @@ namespace Units.Monster
         public Texture Preview => null;
 #endif
         public AssetReferenceT<GameObject> Prefab => _prefab;
+        public int Health => _health;
 
 
         public void Initialize(int id)
         {
             _id = id;
+        }
+
+        public MonsterInfo ToServerData()
+        {
+            return new MonsterInfo
+            {
+                ID = ID,
+                HP = Health
+            };
         }
     }
 }

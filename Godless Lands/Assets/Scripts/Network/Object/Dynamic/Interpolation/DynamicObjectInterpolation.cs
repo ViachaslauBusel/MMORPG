@@ -94,9 +94,10 @@ namespace Network.Object.Dynamic.Interpolation
 
             Vector3 p_0 = m_characterController.transform.position;
             Vector3 p_1 = m_pathStepCalculator.DestionationPoint;
+            float height = Mathf.Abs(p_1.y - p_0.y);
             p_0.y = p_1.y = 0.0f;
             float distance = Vector3.Distance(p_1, p_0);
-            if (distance > 4.0f )
+            if (distance > 4.0f || height > 2f)
             {
                 Debug.LogError($"Position out of sync, position correction");
                 m_updatePosition = UpdatePositionInWait;

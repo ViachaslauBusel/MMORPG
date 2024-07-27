@@ -1,4 +1,5 @@
-﻿using Helpers;
+﻿using Animation.Data;
+using Helpers;
 using Network.Object.Visualization;
 using Protocol.Data.Replicated.Animation;
 using UnityEngine;
@@ -13,14 +14,14 @@ namespace Animation
         private AnimationPlaybackBufferHandler _animationPlaybackBufferHandler;
         private AnimationStateDataHandler _animationStateDataHandler;
         private AnimationPlaybackTimeBuffer _animationPlaybackTimeBuffer;
-        private AnimationPriorityDataHolder _animationPriorityDataHolder;
+        private AnimationPriorityData _animationPriorityData;
         private AnimationStateID _currentSata;
 
 
         [Inject]
-        private void Construct(AnimationPriorityDataHolder animationPriorityDataHolder)
+        private void Construct(AnimationPriorityData animationPriorityData)
         {
-            _animationPriorityDataHolder = animationPriorityDataHolder;
+            _animationPriorityData = animationPriorityData;
         }
 
         public void AttachToNetworkObject(GameObject networkObjectOwner)
@@ -73,7 +74,7 @@ namespace Animation
             }
 
             int currentPriority = _animator.GetInteger("Priority");
-            int newPriority = _animationPriorityDataHolder.GetPriority(data.AnimationID);
+            int newPriority = _animationPriorityData.GetPriority(data.AnimationID);
             if (newPriority < currentPriority)
             {
                 Debug.Log($"[{data.AnimationID}] Priority is lower than current priority");

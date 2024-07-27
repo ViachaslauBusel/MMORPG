@@ -10,13 +10,12 @@ namespace Factories
 {
     internal class NPCsFactory : AddressablesAssetFactory
     {
-        [SerializeField]
         private NPCsRegistry _npcsRegistry;
         private DiContainer _diContainer;
 
-        [Inject]
-        private void Construct(DiContainer diContainer)
+        public NPCsFactory(DiContainer diContainer, NPCsRegistry npcsRegistry) : base(diContainer)
         {
+            _npcsRegistry = npcsRegistry;
             _diContainer = diContainer;
         }
 

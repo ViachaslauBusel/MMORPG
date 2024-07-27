@@ -11,7 +11,7 @@ namespace Network.Object.Visualization
         protected NetworkComponentsProvider _networkComponentsProvider;
 
         public event Action<GameObject> OnVisualObjectUpdated;
-        public GameObject VisualObject => _visualObject.InstanceObject;
+        public GameObject VisualObject => _visualObject?.InstanceObject;
 
 
         protected void Awake()

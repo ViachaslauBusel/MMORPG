@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Zenject;
 
 namespace Network.Object.Visualization.Entities.Characters
 {
@@ -10,9 +11,11 @@ namespace Network.Object.Visualization.Entities.Characters
         private AsyncOperationHandle<GameObject> _assetHandle;
         private GameObject _asset;
         private GameObject _objectInstance;
+        private DiContainer _diContainer;
 
-        public AssetHolder(AsyncOperationHandle<GameObject> meshHandle)
+        public AssetHolder(DiContainer diContainer, AsyncOperationHandle<GameObject> meshHandle)
         {
+            _diContainer = diContainer;
             _assetHandle = meshHandle;
             _asset = meshHandle.Result;
         }
@@ -31,7 +34,11 @@ namespace Network.Object.Visualization.Entities.Characters
             {
                 return _objectInstance;
             }
-            _objectInstance = GameObject.Instantiate(_asset, transform);
+            if(_asset == null)
+            {
+                return null;
+            }
+            _objectInstance = _diContainer.InstantiatePrefab(_asset, transform);
             return _objectInstance;
         }
 

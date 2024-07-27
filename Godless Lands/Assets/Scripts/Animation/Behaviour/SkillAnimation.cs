@@ -1,8 +1,6 @@
 ﻿using Animation;
-using Inventory;
+using Animation.Data;
 using Protocol.Data.Replicated.Animation;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -13,14 +11,14 @@ public class SkillAnimation : StateMachineBehaviour
     [SerializeField]
     private string _multipler;
     private AnimationPlaybackTimeBuffer _animationPlaybackTimeBuffer;
-    private AnimationPriorityDataHolder _animationPriorityDataHolder;
+    private AnimationPriorityData _animationPriorityData;
     private float _startPlayTime;
 
 
     [Inject]
-    private void Construct(AnimationPriorityDataHolder animationPriorityDataHolder)
+    private void Construct(AnimationPriorityData animationPriorityData)
     {
-        _animationPriorityDataHolder = animationPriorityDataHolder;
+        _animationPriorityData = animationPriorityData;
     }
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -42,7 +40,7 @@ public class SkillAnimation : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Log($"[{_animationID}] OnStateExit:{Time.time - _startPlayTime}");
-        int priority = _animationPriorityDataHolder.GetPriority(_animationID);
+        int priority = _animationPriorityData.GetPriority(_animationID);
         if(priority >= animator.GetInteger("Priority"))
         {
             animator.SetInteger("Priority", 0);

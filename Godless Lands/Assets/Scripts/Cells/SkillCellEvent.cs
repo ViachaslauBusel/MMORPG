@@ -1,7 +1,4 @@
 ﻿using Skills.Data;
-using SkillsRedactor;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cells

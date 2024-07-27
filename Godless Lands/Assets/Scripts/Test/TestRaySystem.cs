@@ -1,9 +1,11 @@
 ﻿using Helpers;
 using Network.Core;
+using Player;
 using Protocol;
 using Protocol.MSG.Game.ToClient;
 using Protocol.MSG.Game.ToServer;
 using RUCP;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -16,7 +18,7 @@ namespace Assets.Scripts.Test
         private List<Vector3> _points = new List<Vector3>();
 
         [Inject]
-        public void Construct(NetworkManager networkManager)
+        private void Construct(NetworkManager networkManager)
         {
             _networkManager = networkManager;
             _networkManager.RegisterHandler(Opcode.MSG_RAYCAST_TEST, OnRaycastTest);
@@ -38,6 +40,7 @@ namespace Assets.Scripts.Test
         {
             if (Input.GetButton("Jump"))
             {
+                Debug.Log("Send raycast test message");
                 MSG_RAYCAST_TEST_CS msg = new MSG_RAYCAST_TEST_CS();
                 _networkManager.Client.Send(msg);
             }

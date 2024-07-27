@@ -19,13 +19,12 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _startSpawn: 60
-  _timeSpawn: 30
   _drops:
   - _item:
       _id: 1
-    _amount: 1
     _chance: 91.8
+    _minAmount: 5
+    _maxAmount: 10
   _profession: 1
   _exp: 90
   _stamina: 10

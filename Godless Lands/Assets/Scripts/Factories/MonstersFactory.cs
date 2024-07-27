@@ -8,14 +8,13 @@ namespace Factories
 {
     public class MonstersFactory : AddressablesAssetFactory
     {
-        [SerializeField]
         private MonstersRegistry _monstersRegistry;
         private DiContainer _diContainer;
 
-        [Inject]
-        private void Construct(DiContainer diContainer)
+        public MonstersFactory(DiContainer diContainer, MonstersRegistry monstersRegistry) : base(diContainer)
         {
             _diContainer = diContainer;
+            _monstersRegistry = monstersRegistry;
         }
 
         public async UniTask<AssetHolder> CreateMonster(int skinID) => await CreateAssetHolder(_monstersRegistry, skinID);

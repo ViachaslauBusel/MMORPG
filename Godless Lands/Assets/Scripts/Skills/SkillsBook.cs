@@ -1,8 +1,5 @@
 ﻿using Cells;
 using Skills.Data;
-using SkillsRedactor;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +22,6 @@ namespace Skills
         private Transform _swordSkillsHolder;
         [SerializeField]
         private Transform _blantSkillsHolder;
-        [SerializeField]
         private SkillsRegistry _skillsRegistry;
 
         private List<SkillCell> _instatiatedCellSkills = new List<SkillCell>();
@@ -35,9 +31,11 @@ namespace Skills
         private DiContainer _container;
 
         [Inject]
-        private void Construct(PlayerSkillsHolder playerSkillsHolder, DiContainer container)
+        private void Construct(PlayerSkillsHolder playerSkillsHolder, DiContainer container, SkillsRegistry skillsRegistry)
         {
             _playerSkillsHolder = playerSkillsHolder;
+            _skillsRegistry = skillsRegistry;
+
             _playerSkillsHolder.OnSkillsUpdate += OnSkillsUpdate;
             _container = container;
         }

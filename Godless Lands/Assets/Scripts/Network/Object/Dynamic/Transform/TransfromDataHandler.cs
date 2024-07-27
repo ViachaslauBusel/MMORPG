@@ -9,19 +9,19 @@ namespace Network.Object.Dynamic.Transformations
 {
     public class TransfromDataHandler : MonoBehaviour, INetworkDataHandler
     {
-        private TransformData m_transformData;
+        private TransformData _transformData;
 
         public event Action OnUpdateData;
 
-        public Vector3 Position => m_transformData.Position.ToUnity();
-        public float Rotation => m_transformData.Rotation;
-        public bool InMove => m_transformData.InMove;
-        public float Velocity => m_transformData.Velocity;
-        public byte Version => m_transformData.Version;
+        public Vector3 Position => _transformData.Position.ToUnity();
+        public float Rotation => _transformData.Rotation;
+        public bool InMove => _transformData.InMove;
+        public float Velocity => _transformData.Velocity;
+        public byte Version => _transformData.Version;
 
         public void UpdateData(IReplicationData updatedData)
         {
-            m_transformData = (TransformData)updatedData;
+            _transformData = (TransformData)updatedData;
             OnUpdateData?.Invoke();
         }
     }

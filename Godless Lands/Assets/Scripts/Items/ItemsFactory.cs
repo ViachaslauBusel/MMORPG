@@ -8,10 +8,15 @@ using UnityEngine;
 
 namespace Items
 {
-    public class ItemsFactory : MonoBehaviour
+    public class ItemsFactory
     {
-        [SerializeField]
         private ItemsRegistry _itemsContainer;
+
+
+        public ItemsFactory(ItemsRegistry itemsContainer)
+        {
+            _itemsContainer = itemsContainer;
+        }
 
         internal Item CreateEmptyItem(long uid = 0, int count = 0, int slotIndex = -1)
         {

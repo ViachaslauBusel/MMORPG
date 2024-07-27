@@ -1,4 +1,5 @@
 ﻿using ObjectRegistryEditor;
+using Protocol.Data.Items;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -39,6 +40,11 @@ namespace Items
         public void Initialize(int id)
         {
             _id = id;
+        }
+
+        public virtual ItemInfo ToServerData()
+        {
+            return new ItemInfo(ID, IsStackable, Weight);
         }
     }
 

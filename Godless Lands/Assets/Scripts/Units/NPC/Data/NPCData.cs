@@ -1,8 +1,6 @@
-﻿
-using Data;
+﻿using Factories;
 using ObjectRegistryEditor;
-using System.Collections;
-using System.Collections.Generic;
+using Protocol.Data.NPCs;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -32,6 +30,14 @@ namespace NPCs
         public void Initialize(int id)
         {
             _id = id;
+        }
+
+        public NpcInfo ToServerData()
+        {
+            return new NpcInfo
+            {
+                ID = ID,
+            };
         }
     }
 }

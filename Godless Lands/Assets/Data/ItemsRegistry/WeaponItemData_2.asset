@@ -19,11 +19,11 @@ MonoBehaviour:
   _isStackable: 0
   _weight: 100
   _prefab:
-    m_AssetGUID: b2f7a447e9471074abfac1117e397a5e
+    m_AssetGUID: 025f5b5995d81e04baa62a90bab01c54
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _minDamage: 0
-  _maxDamage: 0
-  _speedAttack: 0
+  _minDamage: 100
+  _maxDamage: 200
+  _speedAttack: 1.5
   _weaponType: 2

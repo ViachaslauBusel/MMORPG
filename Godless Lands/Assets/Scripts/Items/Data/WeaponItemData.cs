@@ -1,4 +1,5 @@
-﻿using Skills.Data;
+﻿using Protocol.Data.Items;
+using Skills.Data;
 using UnityEngine;
 
 namespace Items.Data
@@ -20,5 +21,10 @@ namespace Items.Data
         public int MaxDamage => _maxDamage;
         public int MinDamege => _minDamage;
         public SkillBranch WeaponType => _weaponType;
+
+        public override ItemInfo ToServerData()
+        {
+            return new WeaponItemInfo(ID, IsStackable, Weight, MinDamege, MaxDamage, (int)(SpeedAttack * 1000f));
+        }
     }
 }

@@ -1,13 +1,17 @@
-﻿using Data;
+﻿using Factories;
 using Helpers;
+using NPCs;
 using ObjectRegistryEditor;
 using OpenWorld.DataStore;
+using Protocol.Data.SpawnData;
+using Units.Monster;
+using Units.Resource.Data;
 using UnityEngine;
 
 namespace OpenWorld.SpawnData
 {
     [ExecuteInEditMode]
-    public class SpawnPointDataSync<T, K> : MapEntityDataSync<T> where T : SpawnPointData, new() where K : ScriptableObject, IDataObject, IPrefabHolder
+    public class SpawnPointDataSync<T, K> : MapEntityDataSync<T>, ISpawnPoint where T : SpawnPointData, new() where K : ScriptableObject, IDataObject, IPrefabHolder
     {
         [SerializeField]
         private K _dataObject;
@@ -15,8 +19,35 @@ namespace OpenWorld.SpawnData
         private SpawnPointType _spawnPointType;
         [SerializeField]
         private float _spawnRadius = 1f;
+        [SerializeField]
+        private float _minSpawnTime = 1f;
+        [SerializeField]
+        private float _maxSpawnTime = 1f;
         private int _prefabInstanceId;
         private GameObject _prefabInstance;
+
+        public UnitType UnitType
+        {
+            get
+            {
+                switch (_dataObject)
+                {
+                    case MonsterData:
+                        return UnitType.Monster;
+                    case NPCData:
+                        return UnitType.NPC;
+                    case ResourceHarvestData:
+                        return UnitType.Resource;
+                    default:
+                        return UnitType.Unknown;
+                }
+            }
+        }
+        public int UnitID => _dataObject?.ID ?? 0;
+        public SpawnPointType SpawnPointType => _spawnPointType;
+        public float SpawnRadius => _spawnRadius;
+        public float MinSpawnTime => _minSpawnTime;
+        public float MaxSpawnTime => _maxSpawnTime;
 
         protected override void LoadDataProperties(T data)
         {
@@ -36,6 +67,7 @@ namespace OpenWorld.SpawnData
 
         private void UpdateInstance()
         {
+            if (ReadDataMode) return;
             if (_prefabInstance != null)
             {
                 _prefabInstanceId = 0;
