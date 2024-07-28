@@ -24,11 +24,11 @@ namespace Network.Core
 
         private void Awake()
         {
-            if (Instance != null) Destroy(this);
+            if (Instance != null) Destroy(gameObject);
             else
             {
                 Instance = this;
-                DontDestroyOnLoad(this);
+                DontDestroyOnLoad(gameObject);
             }
 
         }

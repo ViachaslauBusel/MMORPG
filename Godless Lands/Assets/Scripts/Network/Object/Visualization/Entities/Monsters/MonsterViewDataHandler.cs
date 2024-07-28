@@ -15,6 +15,8 @@ namespace Network.Object.Visualization.Entities.Monsters
         private TransfromDataHandler _networkTransform;
         private int _skinID;
 
+        public int ID => _visualData.SkinID;
+
         protected override bool IsNeedChaceVisual => _visualData.InNeedChaceVisual;
 
         [Inject]

@@ -70,7 +70,7 @@ namespace Player.Controller
 
         private void OnStopMove()
         {
-            Debug.Log("StopMove");
+            //Debug.Log("StopMove");
             SendPosition(false);
             enabled = false;
         }

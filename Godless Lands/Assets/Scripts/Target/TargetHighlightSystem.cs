@@ -30,7 +30,7 @@ namespace Target
 
         private void OnTargetObjectChanged(ITargetObject @object)
         {
-            //Debug.Log($"Target object changed:{@object}");
+            Debug.Log($"Target object changed:{@object}");
             if(@object == null)
             {
                 _highlight.SetActive(false);
