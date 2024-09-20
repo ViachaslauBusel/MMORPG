@@ -46,7 +46,9 @@ namespace OpenWorld.SpawnData
         public int UnitID => _dataObject?.ID ?? 0;
         public SpawnPointType SpawnPointType => _spawnPointType;
         public float SpawnRadius => _spawnRadius;
+        // Time after which the spawn will occur
         public float MinSpawnTime => _minSpawnTime;
+        // Time during which the spawn will occur
         public float MaxSpawnTime => _maxSpawnTime;
 
         protected override void LoadDataProperties(T data)
@@ -54,7 +56,8 @@ namespace OpenWorld.SpawnData
             _dataObject = (K)data.DataObject;
             _spawnPointType = data.SpawnPointType;
             _spawnRadius = data.SpawnPointRadius;
-
+            _minSpawnTime = data.MinSpawnTime;
+            _maxSpawnTime = data.MaxSpawnTime;
             UpdateInstance();
         }
 
@@ -63,6 +66,8 @@ namespace OpenWorld.SpawnData
             data.DataObject = _dataObject;
             data.SpawnPointType = _spawnPointType;
             data.SpawnPointRadius = _spawnRadius;
+            data.MinSpawnTime = _minSpawnTime;
+            data.MaxSpawnTime = _maxSpawnTime;
         }
 
         private void UpdateInstance()

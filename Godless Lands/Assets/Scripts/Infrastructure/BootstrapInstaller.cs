@@ -2,6 +2,8 @@ using Loader;
 using Network;
 using Network.Core;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using Zenject;
 
 public class BootstrapInstaller : MonoInstaller

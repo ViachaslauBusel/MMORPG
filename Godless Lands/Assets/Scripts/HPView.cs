@@ -1,10 +1,12 @@
 ﻿using Protocol.Data.Stats;
+using Protocol.Data.Vitals;
 using RUCP;
 using RUCP.Handler;
 using System;
 using Systems.Stats;
 using UnityEngine;
 using UnityEngine.UI;
+using Vitals;
 using Zenject;
 
 public class HPView : MonoBehaviour {
@@ -16,27 +18,29 @@ public class HPView : MonoBehaviour {
     [SerializeField] Text mp_txt;
     [SerializeField] Image stamina_bar;
     [SerializeField] Text stamina_txt;
-    private CharacterStatsHolder _statsHolder;
+    private CharacterVitalsStorage _vitalsStorage;
+    private CharacterStatsHolder _characterStatsHolder;
 
 
     [Inject]
-    private void Construct(CharacterStatsHolder characterStatsHolder)
+    private void Construct(CharacterVitalsStorage vitalsStorage, CharacterStatsHolder characterStatsHolder)
     {
-        _statsHolder = characterStatsHolder;
+        _vitalsStorage = vitalsStorage;
+        _characterStatsHolder = characterStatsHolder;
     }
 
     private void Start()
     {
-        _statsHolder.OnUpdateStats += UpdateStats;
-        UpdateStats();
+        _vitalsStorage.VitalsUpdated += UpdateVitals;
+        UpdateVitals();
     }
 
-    private void UpdateStats()
+    private void UpdateVitals()
     {
-        SetName(_statsHolder.GetName());
-        UpdateHP(_statsHolder.GetStat(StatCode.HP), _statsHolder.GetStat(StatCode.MaxHP));
-        UpdateMP(_statsHolder.GetStat(StatCode.MP), _statsHolder.GetStat(StatCode.MaxMP));
-        UpdateStamina(_statsHolder.GetStat(StatCode.Stamina), _statsHolder.GetStat(StatCode.MaxStamina));
+        SetName(_characterStatsHolder.GetName());
+        UpdateHP(_vitalsStorage.GetVital(VitalCode.Health).CurrentValue, _vitalsStorage.GetVital(VitalCode.Health).MaxValue);
+        UpdateMP(_vitalsStorage.GetVital(VitalCode.Mana).CurrentValue, _vitalsStorage.GetVital(VitalCode.Mana).MaxValue);
+        UpdateStamina(_vitalsStorage.GetVital(VitalCode.Stamina).CurrentValue, _vitalsStorage.GetVital(VitalCode.Stamina).MaxValue);
     }
 
     public void SetName(string _name)
@@ -62,6 +66,6 @@ public class HPView : MonoBehaviour {
 
     private void OnDestroy()
     {
-       _statsHolder.OnUpdateStats -= UpdateStats;
+       _vitalsStorage.VitalsUpdated -= UpdateVitals;
     }
 }

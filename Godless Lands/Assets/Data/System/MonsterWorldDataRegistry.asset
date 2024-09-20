@@ -17,15 +17,25 @@ MonoBehaviour:
   - DataObject: {fileID: 11400000, guid: 24fbda3a09c5b90488231df39b193e12, type: 2}
     SpawnPointType: 0
     SpawnPointRadius: 14
+    MinSpawnTime: 1
+    MaxSpawnTime: 1
   - DataObject: {fileID: 11400000, guid: 7d24c63a8a3554f4685db978f3b13fa9, type: 2}
     SpawnPointType: 1
     SpawnPointRadius: 13.02
+    MinSpawnTime: 1
+    MaxSpawnTime: 1
   - DataObject: {fileID: 11400000, guid: 7d24c63a8a3554f4685db978f3b13fa9, type: 2}
     SpawnPointType: 1
     SpawnPointRadius: 16.19
+    MinSpawnTime: 1
+    MaxSpawnTime: 1
   - DataObject: {fileID: 11400000, guid: 259a622417346bd438b79fb1af06b2bc, type: 2}
     SpawnPointType: 2
     SpawnPointRadius: 1
+    MinSpawnTime: 1
+    MaxSpawnTime: 1
   - DataObject: {fileID: 11400000, guid: 259a622417346bd438b79fb1af06b2bc, type: 2}
     SpawnPointType: 2
     SpawnPointRadius: 1
+    MinSpawnTime: 1
+    MaxSpawnTime: 1

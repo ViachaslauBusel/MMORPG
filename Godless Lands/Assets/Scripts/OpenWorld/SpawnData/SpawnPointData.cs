@@ -9,5 +9,7 @@ namespace OpenWorld.SpawnData
         public ScriptableObject DataObject;
         public SpawnPointType SpawnPointType;
         public float SpawnPointRadius;
+        public float MinSpawnTime;
+        public float MaxSpawnTime;
     }
 }

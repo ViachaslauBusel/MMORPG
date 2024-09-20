@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Systems.Stats;
 using UnityEngine;
+using Vitals;
 using Zenject;
 
 namespace Infrastructure
@@ -29,6 +30,10 @@ namespace Infrastructure
             Container.Bind<SkillUsageRequestSender>().FromInstance(_skillUsageRequestSender).AsSingle().NonLazy();
 
             Container.Bind<DropListener>().FromNew().AsSingle().NonLazy();
+
+            //Vitals
+            Container.Bind<CharacterVitalsListener>().FromNew().AsSingle().NonLazy();   
+            Container.BindInterfacesAndSelfTo<CharacterVitalsStorage>().AsSingle();
         }
     }
 }

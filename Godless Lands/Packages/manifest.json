@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.asset.perfomance.toolkit": "https://github.com/ViachaslauBusel/Asset-Performance-Toolkit.git?path=/Packages/com.asset.perfomance.toolkit",
+    "com.node.editor": "https://github.com/ViachaslauBusel/NodeEditor.git?path=/Packages/com.node.editor",
     "com.object.registry.editor": "https://github.com/ViachaslauBusel/UnityDataEditors.git?path=/Packages/com.object.registry.editor",
     "com.open.world": "https://github.com/ViachaslauBusel/OpenWorld.git?path=/Packages/com.open.world",
     "com.unity.2d.sprite": "1.0.0",

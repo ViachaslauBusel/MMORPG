@@ -9,25 +9,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b55dc4977e207a84fa934389f3605b7a, type: 3}
-  m_Name: WeaponItemData_2
+  m_Script: {fileID: 11500000, guid: 0850a575d0a0ac84eaa7e47b28b9cc77, type: 3}
+  m_Name: ArmorItemData_3
   m_EditorClassIdentifier: 
-  _id: 2
-  _name: "\u0422\u043E\u043F\u043E\u0440"
-  _icon: {fileID: 2800000, guid: 172774604c1bee84185a69041576525b, type: 3}
+  _id: 3
+  _name: Armor
+  _icon: {fileID: 2800000, guid: 2f1eaeeaad36ee5469eff7ff158f37ba, type: 3}
   _description: 
   _isStackable: 0
   _weight: 100
   _prefab:
-    m_AssetGUID: 025f5b5995d81e04baa62a90bab01c54
+    m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _minDamage: 100
-  _maxDamage: 200
-  _speedAttack: 1.5
-  _weaponType: 2
+  _equipmentType: 4
+  _defense: 100
   _modifiers:
-  - Code: 4
+  - Code: 1
     ModType: 300
-    ModValue: 0.5
+    ModValue: 0.2
+  - Code: 3
+    ModType: 300
+    ModValue: 0.2
+  - Code: 6
+    ModType: 300
+    ModValue: 0.2

@@ -15,4 +15,5 @@ MonoBehaviour:
   _objects:
   - {fileID: 11400000, guid: bd934b4db2f98114680d79d90199dcfd, type: 2}
   - {fileID: 11400000, guid: b2f7a447e9471074abfac1117e397a5e, type: 2}
-  _generatorID: 0
+  - {fileID: 11400000, guid: 9d0aae3660544154f970eac9c108a924, type: 2}
+  _generatorID: 3

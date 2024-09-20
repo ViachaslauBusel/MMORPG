@@ -1,5 +1,7 @@
 ﻿using Protocol.Data.Items;
+using Protocol.Data.Stats;
 using Skills.Data;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Items.Data
@@ -15,6 +17,8 @@ namespace Items.Data
         private float _speedAttack;
         [SerializeField]
         private SkillBranch _weaponType;
+        [SerializeField]
+        private List<StatModifierData> _modifiers;
 
 
         public float SpeedAttack => _speedAttack;
@@ -24,7 +28,7 @@ namespace Items.Data
 
         public override ItemInfo ToServerData()
         {
-            return new WeaponItemInfo(ID, IsStackable, Weight, MinDamege, MaxDamage, (int)(SpeedAttack * 1000f));
+            return new WeaponItemInfo(ID, IsStackable, Weight, MinDamege, MaxDamage, (int)(SpeedAttack * 1000f), _modifiers);
         }
     }
 }

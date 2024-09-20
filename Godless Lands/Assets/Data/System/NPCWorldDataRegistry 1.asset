@@ -17,3 +17,5 @@ MonoBehaviour:
   - DataObject: {fileID: 11400000, guid: 70569efb06edd614b92f184ca16d1824, type: 2}
     SpawnPointType: 2
     SpawnPointRadius: 0
+    MinSpawnTime: 1
+    MaxSpawnTime: 1

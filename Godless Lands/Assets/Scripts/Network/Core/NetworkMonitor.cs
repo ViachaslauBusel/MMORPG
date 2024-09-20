@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using System.Text;
 
 namespace Network.Core
 {
     public class NetworkMonitor : MonoBehaviour
     {
-
         private Text client_txt;
         private float deltaTime = 0.0f;
         private NetworkManager networkManager;
+        private StringBuilder stringBuilder = new StringBuilder();
 
         [Inject]
         private void Construct(NetworkManager networkManager)
         {
             this.networkManager = networkManager;
         }
+
         private void Start()
         {
             client_txt = GetComponent<Text>();
@@ -24,7 +26,6 @@ namespace Network.Core
         private void Update()
         {
             deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
-
         }
 
         private void OnGUI()
@@ -33,17 +34,13 @@ namespace Network.Core
             {
                 float fps = deltaTime * 1000.0f;
                 float msec = 1.0f / deltaTime;
-                string text = string.Format("{1:0.} ({0:0.0} ms)", fps, msec);
-                client_txt.text = "FPS: " + text + '\n';
-                client_txt.text += "Ping: ";
-                client_txt.text += networkManager.Client.Statistic.Ping.ToString();
-                client_txt.text += "ms\n";
 
-                client_txt.text += "Lost[";
-                client_txt.text += networkManager.Client.Statistic.ResentPackets.ToString();
-                client_txt.text += '/';
-                client_txt.text += networkManager.Client.Statistic.SentPackets.ToString();
-                client_txt.text += ']';
+                stringBuilder.Clear();
+                stringBuilder.AppendFormat("FPS: {0:0.} ({1:0.0} ms)\n", msec, fps);
+                stringBuilder.AppendFormat("Ping: {0}ms\n", networkManager.Client.Statistic.Ping);
+                stringBuilder.AppendFormat("Lost[{0}/{1}]", networkManager.Client.Statistic.ResentPackets, networkManager.Client.Statistic.SentPackets);
+
+                client_txt.text = stringBuilder.ToString();
             }
             else
             {

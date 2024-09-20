@@ -75,9 +75,9 @@ namespace Network.Object.Visualization.Entities.Characters
 
             AssetHolder partMesh = await _meshProviderService.GetMeshAsync(partId);
 
-            if (partMesh.IsValid == false)
+            if (partMesh == null || partMesh.IsValid == false)
             {
-                partMesh.Release();
+                partMesh?.Release();
                 Debug.Log($"[{part}][{partId}] CharacterBodyPartsController: UpdatePart: Part not found");
                 return;
             }

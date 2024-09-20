@@ -152,6 +152,7 @@ namespace Network.Object.Dynamic.Interpolation
         {
             m_transformData.OnUpdateData -= UpdateTrnsformData;
             m_transformEvents.OnServerReceivedEvent -= ReceiveEvent;
+            m_dynamicObjectHolder.OnVisualObjectUpdated -= AssignComponents;
         }
     }
 }
