@@ -1,4 +1,4 @@
-﻿using Protocol.Data.Workbenches;
+﻿using Protocol.Data.Units.CraftingStation;
 using UnityEngine;
 using Workbench.UI.RecipeCrafting;
 using Workbench.UI.Smelter;
@@ -30,14 +30,14 @@ namespace Workbench.UI
             _workbenchListener.OnWindowCommand += OnWindowCommand;
         }
 
-        private void OnWindowCommand(WorkbenchType type, bool openWin, bool isReadyForWork)
+        private void OnWindowCommand(CraftingStationType type, bool openWin, bool isReadyForWork)
         {
             Debug.Log($"OnWindowCommand: {type}, {openWin}, {isReadyForWork}");
            if(openWin)
             {
                 if(_openedWindow != null)
                 {
-                    if (_openedWindow.WorkbenchType != type)
+                    if (_openedWindow.StationType != type)
                     {
                         Debug.LogError("Trying to open already opened window");
                         _openedWindow.Close();
@@ -49,7 +49,7 @@ namespace Workbench.UI
             }
             else
             {
-                if(_openedWindow != null && _openedWindow.WorkbenchType == type)
+                if(_openedWindow != null && _openedWindow.StationType == type)
                 {
                     _openedWindow.Close();
                     _openedWindow = null;
@@ -61,12 +61,12 @@ namespace Workbench.UI
             }
         }
 
-        private IWorkbenchWindow GetWindow(WorkbenchType type) => type switch
+        private IWorkbenchWindow GetWindow(CraftingStationType type) => type switch
         {
-            WorkbenchType.Smelter => _smelterWindow,
-            WorkbenchType.Grindstone => _grindstoneWindow,
-            WorkbenchType.Tannery => _tanneryWindow,
-            WorkbenchType.Workbench => _recipeCraftingWindow,
+            CraftingStationType.Smelter => _smelterWindow,
+            CraftingStationType.Grindstone => _grindstoneWindow,
+            CraftingStationType.Tannery => _tanneryWindow,
+            CraftingStationType.Workbench => _recipeCraftingWindow,
             _ => null
         };
 

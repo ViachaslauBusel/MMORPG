@@ -1,9 +1,9 @@
-﻿using Cysharp.Threading.Tasks;
-using Network.Object.Visualization.Entities.Characters;
+﻿using AssetPerformanceToolkit.AssetManagement;
+using Cysharp.Threading.Tasks;
 using NPCs;
-using Units.Monster;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
+using Protocol.Data.Units;
+using Target;
+using Units.Registry;
 using Zenject;
 
 namespace Factories
@@ -19,6 +19,11 @@ namespace Factories
             _diContainer = diContainer;
         }
 
-        public async UniTask<AssetHolder> CreateNPC(int skinID) => await CreateAssetHolder(_npcsRegistry, skinID);
+        public async UniTask<AssetInstance> CreateNPC(int skinID)
+        {
+            var assetInstance = await LoasAssetInstanceAssync(_npcsRegistry, skinID);
+            assetInstance.InstanceObject.GetComponent<UnitVisualObject>()?.Initialize(skinID, UnitType.Monster);
+            return assetInstance;
+        }
     }
 }

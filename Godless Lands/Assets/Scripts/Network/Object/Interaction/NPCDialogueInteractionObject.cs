@@ -1,10 +1,11 @@
-﻿using Network.Replication;
+﻿using Network.Object.Visualization;
+using Network.Replication;
 using UnityEngine;
 using Zenject;
 
 namespace Network.Object.Interaction
 {
-    public class NPCDialogueInteractionObject : MonoBehaviour, IInteractableObject
+    public class NPCDialogueInteractionObject : MonoBehaviour, IInteractableObject, IVisualObjectScript
     {
         [SerializeField] 
         private DialogData _dialogData;
@@ -23,7 +24,7 @@ namespace Network.Object.Interaction
             _dialogWindow = dialogWindow;
         }
 
-        private void Awake()
+        public void AttachToNetworkObject(GameObject networkObjectOwner)
         {
             _networkComponentsProvider = GetComponentInParent<NetworkComponentsProvider>();
             _interactableObjectsRegistry.RegisterInteractableObject(_networkComponentsProvider.NetworkGameObjectID, this);
@@ -34,7 +35,7 @@ namespace Network.Object.Interaction
             _dialogWindow.OpenDialog(_dialogData.StartNode.Next);
         }
 
-        private void OnDestroy()
+        public void DetachFromNetworkObject()
         {
             _interactableObjectsRegistry.UnregisterInteractableObject(_networkComponentsProvider.NetworkGameObjectID);
         }

@@ -1,7 +1,7 @@
 ﻿using Cells;
 using Items;
 using Items.Data;
-using Protocol.Data.Workbenches;
+using Protocol.Data.Units.CraftingStation;
 using Recipes;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,7 +27,7 @@ namespace Workbench.UI.RecipeCrafting
         private WorkbenchInputHandler _workbenchInputHandler;
         private bool _isReadyForWork;
 
-        public WorkbenchType WorkbenchType => WorkbenchType.Workbench;
+        public CraftingStationType StationType => CraftingStationType.Workbench;
 
 
         [Inject]

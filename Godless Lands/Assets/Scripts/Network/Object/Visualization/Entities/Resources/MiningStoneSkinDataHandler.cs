@@ -46,7 +46,8 @@ namespace Network.Object.Visualization.Entities.Resources
                 return;
             }
             DestroyExistingUnitObject();
-            assetHolder.Instantiate(transform, _networkTransform.Position);
+            assetHolder.InstanceObject.transform.SetParent(transform);
+            assetHolder.InstanceObject.transform.position = _networkTransform.Position;
             SetVisualObject(assetHolder);
         }
     }

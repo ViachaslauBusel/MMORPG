@@ -1,6 +1,6 @@
 ﻿using Helpers;
 using ObjectRegistryEditor;
-using Protocol.Data.Monsters;
+using Protocol.Data.Units.Monsters;
 using System.Collections.Generic;
 using UnityEngine;
 

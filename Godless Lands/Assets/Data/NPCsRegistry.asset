@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dae0861c8bf9bd488a7aa44bd271d82, type: 3}
   m_Name: NPCsRegistry
   m_EditorClassIdentifier: 
-  _objects: []
+  _objects:
+  - {fileID: 11400000, guid: 70569efb06edd614b92f184ca16d1824, type: 2}
   _generatorID: 0

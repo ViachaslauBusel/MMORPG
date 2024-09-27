@@ -85,7 +85,7 @@ namespace Inventory.UI
                 Destroy(_cells[lastIndex].gameObject);
                 _cells.RemoveAt(lastIndex);
             }
-            Debug.Log($"[DrawBag] UpdateCellsCount:{_cells.Count}");
+            //Debug.Log($"[DrawBag] UpdateCellsCount:{_cells.Count}");
         }
 
         internal bool TryGetItemCellByItemUID(long itemUID, out ItemCell item)

@@ -1,6 +1,6 @@
-﻿using Factories;
+﻿using AssetPerformanceToolkit.AssetManagement;
+using Factories;
 using Network.Object.Dynamic.Transformations;
-using Network.Object.Visualization.Entities.Characters;
 using Network.Replication;
 using Protocol.Data.Replicated;
 using Protocol.Data.Replicated.Skins;
@@ -41,8 +41,7 @@ namespace Network.Object.Visualization.Entities.DropBag
             DestroyExistingUnitObject();
 
             GameObject visualObject =  CreateNewUnit();
-
-            SetVisualObject(new AssetHolder(visualObject));
+            SetVisualObject(new AssetInstance(visualObject));
         }
 
         private GameObject CreateNewUnit()

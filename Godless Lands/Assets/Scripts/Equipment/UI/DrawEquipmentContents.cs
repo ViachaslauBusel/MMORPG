@@ -39,7 +39,6 @@ public class DrawEquipmentContents : MonoBehaviour
                 continue;
             }
             
-            Debug.Log($"[{cell.CellType}][{eqType}]Armor cell registered");
             _armorCells.Add(eqType, cell);
         }
 

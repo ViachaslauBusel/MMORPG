@@ -5,6 +5,7 @@ using Protocol.Data.Replicated;
 using Protocol.Data.Replicated.Skins;
 using UnityEngine;
 using Zenject;
+using Helpers;
 
 namespace Network.Object.Visualization.Entities.NPC
 {
@@ -48,9 +49,7 @@ namespace Network.Object.Visualization.Entities.NPC
             }
 
             DestroyExistingUnitObject();
-
-            assetHolder.Instantiate(transform, _networkTransform.Position, _networkTransform.Rotation);
-
+            assetHolder.InstanceObject.SetTransform(transform, _networkTransform.Position, _networkTransform.Rotation);
             SetVisualObject(assetHolder);
         }
     }

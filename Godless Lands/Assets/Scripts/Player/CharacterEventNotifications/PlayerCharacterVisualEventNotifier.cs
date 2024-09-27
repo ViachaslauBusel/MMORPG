@@ -28,7 +28,7 @@ namespace Player
 
         private void OnPlayerCharacterObjectDestroyed(GameObject @object)
         {
-            Debug.Log("PlayerCharacterVisualEventNotifier: OnPlayerCharacterObjectDestroyed");
+            //Debug.Log("PlayerCharacterVisualEventNotifier: OnPlayerCharacterObjectDestroyed");
             OnVisualObjectUpdated(null);
 
             if(_playerCharacterVisualRepresentation != null)
@@ -39,7 +39,7 @@ namespace Player
 
         private void OnPlayerCharacterObjectSpawned(GameObject @object)
         {
-            Debug.Log("PlayerCharacterVisualEventNotifier: OnPlayerCharacterObjectSpawned");
+           // Debug.Log("PlayerCharacterVisualEventNotifier: OnPlayerCharacterObjectSpawned");
             if(_playerCharacterVisualRepresentation != null)
             {
                 _playerCharacterVisualRepresentation.OnVisualObjectUpdated -= OnVisualObjectUpdated;

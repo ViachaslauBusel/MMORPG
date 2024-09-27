@@ -1,4 +1,5 @@
-﻿using Network.Object.Visualization.Entities.Characters;
+﻿using AssetPerformanceToolkit.AssetManagement;
+using Network.Object.Visualization.Entities.Characters;
 using Network.Object.Visualization.VisualCache;
 using UnityEngine;
 using Zenject;
@@ -19,12 +20,12 @@ namespace Network.Object.Visualization
 
         private void CacheVisual()
         {
-            if (_visualObject == null) return;
+            if (_visualObjectInstance == null) return;
 
             DetachVisualObjectScript();
 
             // Caching the visual object for later use as a corpse
-            _visualCacheService.Add(_networkComponentsProvider.NetworkGameObjectID, _visualObject);
+            _visualCacheService.Add(_networkComponentsProvider.NetworkGameObjectID, _visualObjectInstance);
             SetVisualObject(null);
         }
 
@@ -33,7 +34,7 @@ namespace Network.Object.Visualization
         /// </summary>
         /// <param name="visualObjectId"></param>
         /// <returns></returns>
-        protected AssetHolder GetCachedVisualObject(int visualObjectId)
+        protected AssetInstance GetCachedVisualObject(int visualObjectId)
         {
             if (visualObjectId != 0)
             {

@@ -35,7 +35,7 @@ namespace CombatMode
                 return;
             }
 
-            Debug.Log($"Switching weapon attachment.:{_combatMode.CombatModeActive}");
+            //Debug.Log($"Switching weapon attachment.:{_combatMode.CombatModeActive}");
             _weaponPoint.SetParent(_combatMode.CombatModeActive ? _handPoint : _backPoint);
             _weaponPoint.localPosition = Vector3.zero;
             _weaponPoint.localRotation = Quaternion.identity;

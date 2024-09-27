@@ -1,16 +1,10 @@
-﻿using Protocol.Data.Workbenches;
-using Recipes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Protocol.Data.Units.CraftingStation;
 
 namespace Workbench.UI
 {
     public interface IWorkbenchWindow
     {
-        WorkbenchType WorkbenchType { get; }
+        CraftingStationType StationType { get; }
         void Open(bool isReadyForWork);
         void Close();
         void SetStatus(bool isReadyForWork);

@@ -1,8 +1,9 @@
-﻿using UnityEngine;
-using Units.Monster;
-using Zenject;
+﻿using AssetPerformanceToolkit.AssetManagement;
 using Cysharp.Threading.Tasks;
-using Network.Object.Visualization.Entities.Characters;
+using Protocol.Data.Units;
+using Units.Monster;
+using Units.Registry;
+using Zenject;
 
 namespace Factories
 {
@@ -17,6 +18,11 @@ namespace Factories
             _monstersRegistry = monstersRegistry;
         }
 
-        public async UniTask<AssetHolder> CreateMonster(int skinID) => await CreateAssetHolder(_monstersRegistry, skinID);
+        public async UniTask<AssetInstance> CreateMonsterAsync(int skinID)
+        {
+            var assetInstance = await LoasAssetInstanceAssync(_monstersRegistry, skinID);
+            assetInstance.InstanceObject.GetComponent<UnitVisualObject>()?.Initialize(skinID, UnitType.Monster);
+            return assetInstance;
+        }
     }
 }

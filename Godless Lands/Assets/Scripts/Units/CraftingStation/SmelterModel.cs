@@ -1,7 +1,7 @@
 ﻿using Inventory;
 using Items;
 using Items.Data;
-using Protocol.Data.Workbenches;
+using Protocol.Data.Units.CraftingStation;
 using Recipes;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Workbench
         private Item[] _fuels = new Item[SmelterConfig.FUEL_SIZE];
         private List<RecipeItemData> _recipes = new List<RecipeItemData>();
         private RecipeComponentMatcherService _recipeComponentMatcherService;
-        private WorkbenchType _smelterUse;
+        private CraftingStationType _smelterUse;
         private InventoryModel _inventoryModel;
 
         public IReadOnlyCollection<Item> Components => _components;
@@ -104,7 +104,7 @@ namespace Workbench
                 _inventoryModel.LockItem(items[index].UniqueID);
         }
 
-        public void ReserverSmelterModel(WorkbenchType workbenchTypeUse)
+        public void ReserverSmelterModel(CraftingStationType workbenchTypeUse)
         {
             _smelterUse = workbenchTypeUse;
         }

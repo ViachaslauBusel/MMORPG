@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using Protocol.Data.Units;
+using Units.Registry;
 using UnityEngine;
 using Zenject;
 
@@ -9,18 +9,18 @@ namespace Factories
     public class CharactersFactory : MonoBehaviour
     {
         [SerializeField]
-        private GameObject m_humanMalePrefab;
-        private DiContainer m_container;
+        private GameObject _humanMalePrefab;
+        private DiContainer _container;
 
         [Inject]
         private void Construct(DiContainer container)
         {
-            m_container = container;
+            _container = container;
         }
 
         public GameObject CreateHumanMale(Transform parent, Vector3 position)
         {
-            return m_container.InstantiatePrefab(m_humanMalePrefab, position, Quaternion.identity, parent);
+            return _container.InstantiatePrefab(_humanMalePrefab, position, Quaternion.identity, parent);
         }
     }
 }

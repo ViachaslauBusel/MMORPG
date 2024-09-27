@@ -1,11 +1,12 @@
-﻿using Network.Object.Visualization.Entities.Monsters;
+﻿using Network.Object.Visualization;
+using Network.Object.Visualization.Entities.Monsters;
 using Units.Monster;
 using UnityEngine;
 using Zenject;
 
 namespace Nickname
 {
-    public class MonsterNicknameRenderer : NicknameRenderer
+    public class MonsterNicknameRenderer : NicknameRenderer, IVisualObjectScript
     {
         private MonstersRegistry _monstersRegistry;
         private MonsterViewDataHandler _monsterViewDataHandler;
@@ -16,9 +17,9 @@ namespace Nickname
             _monstersRegistry = monstersRegistry;
         }
 
-        private void Awake()
+        public void AttachToNetworkObject(GameObject networkObjectOwner)
         {
-            _monsterViewDataHandler = GetComponentInParent<MonsterViewDataHandler>();
+            _monsterViewDataHandler = networkObjectOwner.GetComponent<MonsterViewDataHandler>();
             if (_monsterViewDataHandler == null)
             {
                 Debug.LogError("MonsterViewDataHandler not found");
@@ -26,13 +27,17 @@ namespace Nickname
             }
 
             MonsterData monsterData = _monstersRegistry.GetObjectByID(_monsterViewDataHandler.ID);
-            if(monsterData == null)
+            if (monsterData == null)
             {
                 Debug.LogError("MonsterData not found");
                 return;
             }
 
             SetNickname(monsterData.Name);
+        }
+
+        public void DetachFromNetworkObject()
+        {
         }
     }
 }

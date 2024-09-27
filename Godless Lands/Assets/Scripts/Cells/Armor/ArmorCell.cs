@@ -21,7 +21,7 @@ namespace Cells
         private void Awake()
         {
             Init(ItemStorageType.Equipment, -1);
-            _defaultIcon = _icon.sprite.texture;
+            _defaultIcon = _icon.sprite != null ? _icon.sprite.texture : null;
             Hide();
         }
 

@@ -3,7 +3,8 @@ using Helpers;
 using NPCs;
 using ObjectRegistryEditor;
 using OpenWorld.DataStore;
-using Protocol.Data.SpawnData;
+using Protocol.Data.Units;
+using Units.CraftingStatio.Data;
 using Units.Monster;
 using Units.Resource.Data;
 using UnityEngine;
@@ -38,11 +39,14 @@ namespace OpenWorld.SpawnData
                         return UnitType.NPC;
                     case ResourceHarvestData:
                         return UnitType.Resource;
+                    case CraftingStationData:
+                        return UnitType.CraftingStation;
                     default:
                         return UnitType.Unknown;
                 }
             }
         }
+
         public int UnitID => _dataObject?.ID ?? 0;
         public SpawnPointType SpawnPointType => _spawnPointType;
         public float SpawnRadius => _spawnRadius;

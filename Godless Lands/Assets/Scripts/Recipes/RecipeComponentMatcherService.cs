@@ -1,7 +1,6 @@
 ﻿using Items;
 using Items.Data;
-using Protocol.Data.Workbenches;
-using System;
+using Protocol.Data.Units.CraftingStation;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,22 +15,22 @@ namespace Recipes
             _recipesDataHolder = recipesDataHolder;
         }
 
-        public List<RecipeItemData> FindRecipe(IReadOnlyCollection<Item> component, IReadOnlyCollection<Item> fuel, WorkbenchType machineUse)
+        public List<RecipeItemData> FindRecipe(IReadOnlyCollection<Item> component, IReadOnlyCollection<Item> fuel, CraftingStationType machineUse)
         {
             return _recipesDataHolder.Recipes.Where(r => Match(component, fuel, machineUse, r)).ToList();
         }
 
-        private bool Match(IReadOnlyCollection<Item> component, IReadOnlyCollection<Item> fuel, WorkbenchType machineUse, RecipeItemData recipe)
+        private bool Match(IReadOnlyCollection<Item> component, IReadOnlyCollection<Item> fuel, CraftingStationType machineUse, RecipeItemData recipe)
         {
             if (recipe.Components.Count == component.Count(i => i != null) && recipe.Fuel.Count == fuel.Count(i => i != null))
             {
-                if (EqualsMachine(recipe.WorkbenchType, machineUse) == false) return false;
+                if (EqualsMachine(recipe.StationType, machineUse) == false) return false;
                 return ContainsAllItems(recipe.Components, component) && ContainsAllItems(recipe.Fuel, fuel);
             }
             return false;
         }
 
-        private bool EqualsMachine(WorkbenchType useType, WorkbenchType machineUse)
+        private bool EqualsMachine(CraftingStationType useType, CraftingStationType machineUse)
         {
             return useType == machineUse;
         }

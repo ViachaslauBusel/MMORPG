@@ -1,9 +1,8 @@
-﻿using Cysharp.Threading.Tasks;
-using Network.Object.Visualization.Entities.Characters;
+﻿using AssetPerformanceToolkit.AssetManagement;
+using Cysharp.Threading.Tasks;
+using Protocol.Data.Units;
+using Units.Registry;
 using Units.Resource.Data;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 namespace Factories
@@ -17,6 +16,11 @@ namespace Factories
             _resourcesData = resourcesData;
         }
 
-        public async UniTask<AssetHolder> CreateStone(int skinID) => await CreateAssetHolder(_resourcesData, skinID);
+        public async UniTask<AssetInstance> CreateStone(int skinID)
+        {
+            var assetInstance = await LoasAssetInstanceAssync(_resourcesData, skinID);
+            assetInstance.InstanceObject.GetComponent<UnitVisualObject>()?.Initialize(skinID, UnitType.Resource);
+            return assetInstance;
+        }
     }
 }

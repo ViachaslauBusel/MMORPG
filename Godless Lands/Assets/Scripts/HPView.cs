@@ -50,18 +50,23 @@ public class HPView : MonoBehaviour {
 
     private void UpdateHP(int hp, int max_hp)
     {
-        hp_bar.fillAmount = hp / (float)max_hp;
         hp_txt.text = hp + "/" + max_hp;
+        if (max_hp == 0) return;
+        hp_bar.fillAmount = Mathf.Clamp01(hp / (float)max_hp);
     }
+
     private void UpdateMP(int mp, int maxMp)
     {
-        mp_bar.fillAmount = mp / (float)maxMp;
         mp_txt.text = mp + "/" + maxMp;
+        if (maxMp == 0) return;
+        mp_bar.fillAmount = Mathf.Clamp01(mp / (float)maxMp);
     }
+
     private void UpdateStamina(int stamina, int maxStamina)
     {
-        stamina_bar.fillAmount = stamina / (float)maxStamina;
         stamina_txt.text = stamina + "/" + maxStamina;
+        if (maxStamina == 0) return;
+        stamina_bar.fillAmount = Mathf.Clamp01(stamina / (float)maxStamina);
     }
 
     private void OnDestroy()

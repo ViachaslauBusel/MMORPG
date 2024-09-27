@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cf8ad0483b37c4eb7d2bc5fe519fa4, type: 3}
   m_Name: ResourcesRegistry
   m_EditorClassIdentifier: 
-  _objects: []
+  _objects:
+  - {fileID: 11400000, guid: e7c24f3750658bc4682e93617d82a285, type: 2}
   _generatorID: 0

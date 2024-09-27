@@ -1,8 +1,6 @@
-﻿using Cells;
-using Items.Data;
+﻿using Items.Data;
 using Protocol.Data.Items;
-using Protocol.Data.Workbenches;
-using Recipes;
+using Protocol.Data.Units.CraftingStation;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -20,7 +18,7 @@ namespace Workbench.UI.Smelter
         [SerializeField]
         private Button _createBut;
         [SerializeField]
-        private WorkbenchType _workbenchType;
+        private CraftingStationType _stationType;
         private Canvas _canvas;
         private SmelterModel _smelterModel;
         private DiContainer _diContainer;
@@ -36,7 +34,7 @@ namespace Workbench.UI.Smelter
         private bool _isReadyForWork;
 
 
-        public WorkbenchType WorkbenchType => _workbenchType;
+        public CraftingStationType StationType => _stationType;
 
         [Inject]
         private void Construct(SmelterModel smelterModel, DiContainer diContainer)
@@ -91,7 +89,7 @@ namespace Workbench.UI.Smelter
         public void Open(bool isReadyForWork)
         {
             SetStatus(isReadyForWork);
-            _smelterModel.ReserverSmelterModel(_workbenchType);
+            _smelterModel.ReserverSmelterModel(_stationType);
             Clear();
             _canvas.enabled = true;
             _smelterModel.OnContentUpdate += OnSmelterModelUpdate;

@@ -1,16 +1,20 @@
-﻿using ObjectRegistryEditor;
+﻿using Factories;
+using ObjectRegistryEditor;
+using Protocol.Data.Units.CraftingStation;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Units.CraftingStatio.Data
 {
-    public class CraftingStationData : ScriptableObject, IDataObject
+    public class CraftingStationData : ScriptableObject, IDataObject, IPrefabHolder
     {
         [SerializeField, HideInInspector]
         private int _id;
         [SerializeField]
         private string _name;
+        [SerializeField]
+        private CraftingStationType _stationType;
         [SerializeField]
         private AssetReferenceT<GameObject> _prefab;
 
@@ -27,6 +31,15 @@ namespace Units.CraftingStatio.Data
         public void Initialize(int id)
         {
             _id = id;
+        }
+
+        public CraftingStationInfo ToServerData()
+        {
+            return new CraftingStationInfo
+            {
+                ID = ID,
+                StationType = _stationType
+            };
         }
     }
 }

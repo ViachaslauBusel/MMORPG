@@ -1,9 +1,11 @@
 ﻿using Network.Core;
+using Nickname;
 using Protocol;
 using Protocol.MSG.Game.ToClient;
 using Protocol.MSG.Game.ToClient.Target;
 using RUCP;
 using System;
+using Units.Registry;
 
 namespace Target
 {
@@ -16,15 +18,16 @@ namespace Target
             public float PercentHP;
         }
 
+        private UnitVisualObjectRegistry _unitObjectRegistry;
         private NetworkManager _networkManager;
-        private TargetInfo _targetInfo;
 
         public event Action<int, string, float> OnTargetObjectChanged;
         public event Action<float> OnTargetHPUpdated;
 
-        public TargetListener(NetworkManager networkManager)
+        public TargetListener(NetworkManager networkManager, UnitVisualObjectRegistry unitObjectRegistry)
         {
             _networkManager = networkManager;
+            _unitObjectRegistry = unitObjectRegistry;
 
             _networkManager.RegisterHandler(Opcode.MSG_UNIT_TARGET_FULL_SC, OnTargetState);
             _networkManager.RegisterHandler(Opcode.MSG_UNIT_TARGET_HP_SC, OnTargetChangeHP);
@@ -35,9 +38,8 @@ namespace Target
            packet.Read(out MSG_UNIT_TARGET_HP_SC targetHP);
 
             //Debug.Log($"TargetStateReceiverService.OnTargetChangeHP: {targetHP}");
-            _targetInfo.PercentHP = targetHP.PercentHP;
 
-            OnTargetHPUpdated?.Invoke(_targetInfo.PercentHP);
+            OnTargetHPUpdated?.Invoke(targetHP.PercentHP);
         }
 
         private void OnTargetState(Packet packet)
@@ -46,10 +48,8 @@ namespace Target
 
             //Debug.Log($"TargetStateReceiverService.OnTargetState: {targetState.TargetObjectID}");
 
-            _targetInfo.objectId = targetState.TargetObjectID;
-            _targetInfo.TargetName = targetState.TargetName;
-            _targetInfo.PercentHP = targetState.PercentHP;
-            OnTargetObjectChanged?.Invoke(_targetInfo.objectId, _targetInfo.TargetName, _targetInfo.PercentHP);
+            string targetName = _unitObjectRegistry.GetUnitVisualObjectByNetworkId(targetState.TargetObjectID)?.Nickname ?? "null";
+            OnTargetObjectChanged?.Invoke(targetState.TargetObjectID, targetName, targetState.PercentHP);
         }
 
         public void Dispose()

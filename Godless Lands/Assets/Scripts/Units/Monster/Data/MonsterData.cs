@@ -1,6 +1,6 @@
 ﻿using Factories;
 using ObjectRegistryEditor;
-using Protocol.Data.Monsters;
+using Protocol.Data.Units.Monsters;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;

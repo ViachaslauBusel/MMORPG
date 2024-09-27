@@ -1,4 +1,4 @@
-﻿using Network.Object.Visualization.Entities.Characters;
+﻿using AssetPerformanceToolkit.AssetManagement;
 using Network.Replication;
 using System;
 using UnityEngine;
@@ -7,11 +7,11 @@ namespace Network.Object.Visualization
 {
     public abstract class NetworkObjectVisualHandler : MonoBehaviour, IVisualRepresentation, IDestroyNotifier
     {
-        protected AssetHolder _visualObject;
+        protected AssetInstance _visualObjectInstance;
         protected NetworkComponentsProvider _networkComponentsProvider;
 
         public event Action<GameObject> OnVisualObjectUpdated;
-        public GameObject VisualObject => _visualObject?.InstanceObject;
+        public GameObject VisualObject => _visualObjectInstance?.InstanceObject;
 
 
         protected void Awake()
@@ -21,20 +21,20 @@ namespace Network.Object.Visualization
 
         protected void DestroyExistingUnitObject()
         {
-            if (_visualObject != null)
+            if (_visualObjectInstance != null)
             {
                 DetachVisualObjectScript();
 
-                _visualObject.Release();
-                _visualObject = null;
+                _visualObjectInstance.Release();
+                _visualObjectInstance = null;
             }
         }
 
         protected void DetachVisualObjectScript()
         {
-            if (_visualObject == null) return;
+            if (_visualObjectInstance == null) return;
 
-            var visualObjectScript = _visualObject.InstanceObject.GetComponentsInChildren<IVisualObjectScript>();
+            var visualObjectScript = _visualObjectInstance.InstanceObject.GetComponentsInChildren<IVisualObjectScript>();
 
             foreach (var script in visualObjectScript)
             {
@@ -42,14 +42,19 @@ namespace Network.Object.Visualization
             }
         }
 
-        protected void SetVisualObject(AssetHolder visualObject)
+        protected void SetVisualObject(AssetInstance visualObjectInstance)
         {
-            bool isUpdated = _visualObject != visualObject;
-            _visualObject = visualObject;
+            bool isUpdated = _visualObjectInstance != visualObjectInstance;
 
-            if (_visualObject != null)
+            if(isUpdated == false) Debug.LogError("Visual object is already set");
+
+            _visualObjectInstance = visualObjectInstance;
+            GameObject visualObject = null;
+
+            if (_visualObjectInstance != null)
             {
-                var visualObjectScript = _visualObject.InstanceObject.GetComponentsInChildren<IVisualObjectScript>();
+                visualObject = _visualObjectInstance.InstanceObject;
+                var visualObjectScript = visualObject.GetComponentsInChildren<IVisualObjectScript>();
 
                 foreach (var script in visualObjectScript)
                 {
@@ -57,7 +62,7 @@ namespace Network.Object.Visualization
                 }
             }
 
-            if (isUpdated) OnVisualObjectUpdated?.Invoke(_visualObject.InstanceObject);
+            if (isUpdated) OnVisualObjectUpdated?.Invoke(visualObject);
         }
 
         // This method is called just before the object is destroyed

@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using AssetPerformanceToolkit.AssetManagement;
+using Cysharp.Threading.Tasks;
 using Network.Object.Visualization.Entities.Characters;
 using ObjectRegistryEditor;
 using System;
@@ -22,7 +23,7 @@ namespace Factories
             _diContainer = diContainer;
         }
 
-        protected async UniTask<AssetHolder> CreateAssetHolder(IDataObjectRegistry registry, int objectID)
+        protected async UniTask<AssetInstance> LoasAssetInstanceAssync(IDataObjectRegistry registry, int objectID)
         {
             var dataObject = registry.GetObjectByID(objectID);
 
@@ -39,18 +40,16 @@ namespace Factories
                 return null;
             }
 
-            var assetHandler = Addressables.LoadAssetAsync<GameObject>(prefabHolder.Prefab);
+            var assetHandler = await AssetLoader.LoadInstance(prefabHolder.Prefab, _diContainer.InstantiatePrefab);
 
-            await assetHandler.Task;
-
-            if (assetHandler.Status != AsyncOperationStatus.Succeeded)
+            if (assetHandler.IsValid == false)
             {
-                Addressables.Release(assetHandler);
+                assetHandler.Release();
                 Debug.LogError($"Failed to load asset {prefabHolder.Prefab}");
                 return null;
             }
 
-            return new AssetHolder(_diContainer, assetHandler);
+            return assetHandler;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Inventory;
 using Items;
 using Items.Data;
-using Protocol.Data.Workbenches;
+using Protocol.Data.Units.CraftingStation;
 using Recipes;
 using System.Collections.Generic;
 using UnityEngine;
@@ -159,12 +159,12 @@ namespace Workbench.UI.RecipeCrafting
 
             if (_nextRecipe != null)
             {
-                switch (_nextRecipe.WorkbenchType)
+                switch (_nextRecipe.StationType)
                 {
-                    case WorkbenchType.Smelter:
+                    case CraftingStationType.Smelter:
                         _nameTxt.text += " (smelter)";
                         break;
-                    case WorkbenchType.Grindstone:
+                    case CraftingStationType.Grindstone:
                         _nameTxt.text += " (grindstone)";
                         break;
                 }

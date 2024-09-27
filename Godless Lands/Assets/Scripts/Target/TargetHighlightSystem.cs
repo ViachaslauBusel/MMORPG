@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Units.Registry;
 using UnityEngine;
 using Zenject;
 
@@ -28,7 +29,7 @@ namespace Target
             _highlight.SetActive(false);
         }
 
-        private void OnTargetObjectChanged(ITargetObject @object)
+        private void OnTargetObjectChanged(IUnitVisualObject @object)
         {
             Debug.Log($"Target object changed:{@object}");
             if(@object == null)
@@ -41,6 +42,11 @@ namespace Target
                 _highlight.SetActive(true);
                 _highlight.transform.SetParent(@object.Transform, false);
             }
+        }
+
+        private void OnDestroy()
+        {
+            _targetObjectProvider.OnTargetObjectChanged -= OnTargetObjectChanged;
         }
     }
 }

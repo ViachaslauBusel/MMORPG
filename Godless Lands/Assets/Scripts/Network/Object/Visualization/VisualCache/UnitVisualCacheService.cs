@@ -1,4 +1,5 @@
-﻿using Network.Object.Visualization.Entities.Characters;
+﻿using AssetPerformanceToolkit.AssetManagement;
+using Network.Object.Visualization.Entities.Characters;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,10 @@ namespace Network.Object.Visualization.VisualCache
     {
         class VisualCacheEntry
         {
-            public readonly AssetHolder Visual;
+            public readonly AssetInstance Visual;
             public readonly long TimeStamp;
 
-            public VisualCacheEntry(AssetHolder visual)
+            public VisualCacheEntry(AssetInstance visual)
             {
                 Visual = visual;
                 TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
@@ -28,7 +29,7 @@ namespace Network.Object.Visualization.VisualCache
             _visualChaceHolder = new GameObject("VisualChaceHolder");
         }
 
-        public void Add(int id, AssetHolder visualObject)
+        public void Add(int id, AssetInstance visualObject)
         {
             Debug.Log($"Add visual for unit with id {id} to cache");
             if (_cache.TryGetValue(id, out var existingVisual))
@@ -41,7 +42,7 @@ namespace Network.Object.Visualization.VisualCache
             _cache[id] = new VisualCacheEntry(visualObject); // Use indexer to add or update the value
         }
 
-        public AssetHolder Get(int id, Transform transform)
+        public AssetInstance Get(int id, Transform transform)
         {
             if (_cache.TryGetValue(id, out var visual))
             {

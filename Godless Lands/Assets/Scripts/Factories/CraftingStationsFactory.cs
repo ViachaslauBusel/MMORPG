@@ -1,4 +1,4 @@
-﻿using Protocol.Data.Workbenches;
+﻿using Protocol.Data.Units.CraftingStation;
 using UnityEngine;
 using Zenject;
 
@@ -22,14 +22,14 @@ namespace Factories
             _diContainer = diContainer;
         }
 
-        public GameObject CreateStone(WorkbenchType workbenchType, Transform transform, Vector3 position)
+        public GameObject CreateStone(CraftingStationType workbenchType, Transform transform, Vector3 position)
         {
             var workbenchPrefab = workbenchType switch
             {
-                WorkbenchType.Smelter => smelterPref,
-                WorkbenchType.Grindstone => grindstonePref,
-                WorkbenchType.Workbench => workbenchPref,
-                WorkbenchType.Tannery => tanneryPref,
+                CraftingStationType.Smelter => smelterPref,
+                CraftingStationType.Grindstone => grindstonePref,
+                CraftingStationType.Workbench => workbenchPref,
+                CraftingStationType.Tannery => tanneryPref,
                 _ => null
             };
 

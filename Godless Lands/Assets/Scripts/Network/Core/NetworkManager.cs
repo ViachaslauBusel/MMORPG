@@ -24,12 +24,12 @@ namespace Network.Core
 
         private void Awake()
         {
-            if (Instance != null) Destroy(gameObject);
-            else
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
+            //if (Instance != null) Destroy(gameObject);
+            //else
+            //{
+            //    Instance = this;
+            //    DontDestroyOnLoad(gameObject);
+            //}
 
         }
         internal bool IsConnectedTo(string ip, int port)

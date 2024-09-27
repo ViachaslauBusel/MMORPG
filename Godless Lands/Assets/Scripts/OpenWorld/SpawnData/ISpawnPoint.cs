@@ -1,4 +1,4 @@
-﻿using Protocol.Data.SpawnData;
+﻿using Protocol.Data.Units;
 
 namespace OpenWorld.SpawnData
 {

@@ -1,4 +1,5 @@
-﻿using Factories;
+﻿using AssetPerformanceToolkit.AssetManagement;
+using Factories;
 using Network.Object.Dynamic.Transformations;
 using Network.Replication;
 using Protocol.Data.Replicated;
@@ -39,7 +40,7 @@ namespace Network.Object.Visualization.Entities.Characters
                     Debug.LogError("CharacterViewDataHandler: UpdateData: CharacterBodyPartsController not found");
                     return;
                 }
-                SetVisualObject(new AssetHolder(characterObj));
+                SetVisualObject(new AssetInstance(characterObj));
             }
             _bodyPartsController.UpdateWeapon(visualData.WeaponId);
             _bodyPartsController.UpdateTool(visualData.ToolId);

@@ -6,6 +6,7 @@ using NPCs;
 using Quests;
 using Recipes;
 using Skills.Data;
+using Units.CraftingStatio.Data;
 using Units.Monster;
 using Units.Resource.Data;
 using UnityEngine;
@@ -41,8 +42,6 @@ namespace Infrastructure
         public override void InstallBindings()
         {
             Container.Bind<AnimationPriorityData>().FromInstance(_animationPriorityData).AsSingle();
-            Container.Bind<CharactersFactory>().FromInstance(_charactersFactory).AsSingle();
-            Container.Bind<CraftingStationsFactory>().FromInstance(_craftingStationsFactory).AsSingle();
             Container.Bind<DynamicObjectControllersFactory>().FromInstance(_dynamicObjectControllersFactory).AsSingle();
             Container.Bind<DropBagFactory>().FromInstance(_dropBagFactory).AsSingle();
             Container.Bind<ItemsRegistry>().FromInstance(_itemsRegistry).AsSingle();
@@ -53,10 +52,13 @@ namespace Infrastructure
             Container.Bind<SkillsRegistry>().FromInstance(_skillsRegistry).AsSingle();
             Container.Bind<RecipesDataHolder>().AsSingle();
 
+            Container.Bind<CraftingStationsFactory>().FromInstance(_craftingStationsFactory).AsSingle();
+            Container.Bind<CharactersFactory>().FromInstance(_charactersFactory).AsSingle();
             Container.Bind<ItemsFactory>().AsSingle();
             Container.Bind<ResourcesFactory>().AsSingle();
             Container.Bind<MonstersFactory>().AsSingle();
             Container.Bind<NPCsFactory>().AsSingle();
+
         }
     }
 }

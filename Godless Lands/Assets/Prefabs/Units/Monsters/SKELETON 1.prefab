@@ -1388,8 +1388,8 @@ GameObject:
   - component: {fileID: 5890436827145876799}
   - component: {fileID: 4975008816183175436}
   - component: {fileID: 8462845624987510227}
-  - component: {fileID: -1095026598393958226}
   - component: {fileID: 3108297412425943686}
+  - component: {fileID: 3746503163670652215}
   m_Layer: 8
   m_Name: SKELETON 1
   m_TagString: Untagged
@@ -1487,18 +1487,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_animationSpeed: 20
---- !u!114 &-1095026598393958226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5890436827145876792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d8aec5750a03844190e8e1bfcaa841c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3108297412425943686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,6 +1497,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb68da888c566264483dac535fdf1615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3746503163670652215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890436827145876792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c097681796dffde4e8d1a511e6b55bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5890436827179221491

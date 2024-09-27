@@ -2,6 +2,7 @@
 using Network.Core;
 using Protocol.MSG.Game.ToServer;
 using System;
+using Units.Registry;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
@@ -43,11 +44,11 @@ namespace Target
 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    ITargetObject targetObject = hit.transform.GetComponentInParent<ITargetObject>();
+                    IUnitVisualObject targetObject = hit.transform.GetComponentInParent<IUnitVisualObject>();
 
                     if (targetObject != null)
                     {
-                        SetTarget(targetObject.ID);
+                        SetTarget(targetObject.NewtorkId);
                     }
                 }
             }

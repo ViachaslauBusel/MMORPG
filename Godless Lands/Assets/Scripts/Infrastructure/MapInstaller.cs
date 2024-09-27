@@ -10,6 +10,7 @@ using MCamera;
 using Network.Object.Interaction;
 using Network.Object.Visualization.Entities.Characters;
 using Network.Object.Visualization.VisualCache;
+using Nickname;
 using OpenWorld;
 using Player;
 using Professions;
@@ -21,6 +22,7 @@ using Target;
 using Test.DrawPoints;
 using Trade;
 using UI.ConfirmationDialog;
+using Units.Registry;
 using UnityEngine;
 using Workbench;
 using Zenject;
@@ -63,7 +65,6 @@ public class MapInstaller : MonoInstaller
         // Target
         Container.BindInterfacesAndSelfTo<TargetListener>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<UnitTargetRequestSender>().FromNew().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<TargetObjectRegistry>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<TargetObjectProvider>().FromNew().AsSingle().NonLazy();
 
         // Combat mode
@@ -109,5 +110,13 @@ public class MapInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<DrawPointsModel>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<DrawPointsListener>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<PointsRenderer>().FromNew().AsSingle().NonLazy();
+
+        //Nicknames 
+        Container.BindInterfacesAndSelfTo<NetworkNicknameProviderService>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<NicknameProviderService>().FromNew().AsSingle();
+
+        //Units
+        Container.BindInterfacesAndSelfTo<UnitVisualObjectRegistry>().FromNew().AsSingle().NonLazy();
+
     }
 }

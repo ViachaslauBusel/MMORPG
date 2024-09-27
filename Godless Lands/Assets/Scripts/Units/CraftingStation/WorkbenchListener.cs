@@ -1,6 +1,6 @@
 ﻿using Network.Core;
 using Protocol;
-using Protocol.Data.Workbenches;
+using Protocol.Data.Units.CraftingStation;
 using Protocol.MSG.Game.Workbench;
 using RUCP;
 using System;
@@ -11,7 +11,7 @@ namespace Workbench
     {
         private NetworkManager _networkManager;
 
-        public event Action<WorkbenchType, bool, bool> OnWindowCommand;
+        public event Action<CraftingStationType, bool, bool> OnWindowCommand;
 
         public WorkbenchListener(NetworkManager networkManager)
         {

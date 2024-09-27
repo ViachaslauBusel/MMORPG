@@ -25,7 +25,7 @@ namespace Vitals
         {
             packet.Read(out MSG_UPDATE_VITALS updVitals);
 
-            Debug.Log("Vitals updated");
+            //Debug.Log("Vitals updated");
 
             foreach (var vital in updVitals.Vitals)
             {

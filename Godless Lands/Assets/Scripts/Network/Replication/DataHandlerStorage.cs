@@ -16,9 +16,11 @@ using Protocol.Data.Replicated.Animation;
 using Protocol.Data.Replicated.ObjectInteraction;
 using Protocol.Data.Replicated.Skins;
 using Protocol.Data.Replicated.Transform;
+using Protocol.Data.Units;
 using Protocol.MSG.Game.CombatMode;
 using System;
 using System.Collections.Generic;
+using Units;
 using UnityEngine;
 using Zenject;
 

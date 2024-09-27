@@ -1,9 +1,7 @@
-﻿using ObjectRegistryEditor;
-using System;
+﻿using Helpers;
+using ObjectRegistryEditor;
+using Protocol.Data.Units.CraftingStation;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Units.CraftingStatio.Data
@@ -13,19 +11,13 @@ namespace Units.CraftingStatio.Data
     {
         public override void Export()
         {
-            //using (BinaryWriter stream_out = new BinaryWriter(File.Open(@"Export/machines.dat", FileMode.Create)))
-            //List<WorkbenchData> workbenches = new List<WorkbenchData>();
-            //foreach (Machine machine in machineList.machines)
-            //{
-            //    WorkbenchData workbench = new WorkbenchData()
-            //    {
-            //        WorkbenchType = (WorkbenchType)machine.machineUse,
-            //        Position = machine.position.ToNumeric(),
-            //        Rotation = machine.rotation.y,
-            //    };
-            //    workbenches.Add(workbench);
-            //}
-            //ExportHelper.WriteToFile("machines", workbenches);
+            var stationsData = new List<CraftingStationInfo>();
+            for (int i = 0; i < Objects.Count; i++)
+            {
+                var station = Objects[i].ToServerData();
+                stationsData.Add(station);
+            }
+            ExportHelper.WriteToFile("craftingStations", stationsData);
         }
     }
 }

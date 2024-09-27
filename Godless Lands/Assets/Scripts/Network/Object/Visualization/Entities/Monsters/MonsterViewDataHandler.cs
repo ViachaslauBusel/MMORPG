@@ -36,7 +36,7 @@ namespace Network.Object.Visualization.Entities.Monsters
         {
             _visualData = (MonsterSkinData)updatedData;
 
-            Debug.Log("MonsterViewDataHandler: UpdateData: " + _visualData.InNeedChaceVisual);
+            //Debug.Log("MonsterViewDataHandler: UpdateData: " + _visualData.InNeedChaceVisual);
             UpdateVisualObject();
         }
 
@@ -47,7 +47,7 @@ namespace Network.Object.Visualization.Entities.Monsters
             _skinID = _visualData.SkinID;
             int skinID = _visualData.SkinID;
 
-            var assetHolder = await _monstersFactory.CreateMonster(skinID);
+            var assetHolder = await _monstersFactory.CreateMonsterAsync(skinID);
 
             if (skinID != _visualData.SkinID)
             {
@@ -56,7 +56,9 @@ namespace Network.Object.Visualization.Entities.Monsters
             }
 
             DestroyExistingUnitObject();
-            assetHolder.Instantiate(transform, _networkTransform.Position, _networkTransform.Rotation);
+            assetHolder.InstanceObject.transform.SetParent(transform);
+            assetHolder.InstanceObject.transform.position = _networkTransform.Position;
+            assetHolder.InstanceObject.transform.rotation = Quaternion.Euler(0, _networkTransform.Rotation, 0);
             SetVisualObject(assetHolder);
         }
     }

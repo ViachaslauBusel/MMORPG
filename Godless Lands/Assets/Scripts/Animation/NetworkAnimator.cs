@@ -101,7 +101,7 @@ namespace Animation
 
         private void OnAnimationStateChange(AnimationStateID state)
         {
-            Debug.Log($"OnAnimationStateChange: {state}");
+            //Debug.Log($"OnAnimationStateChange: {state}");
 
             _animator.SetInteger("stateIndex", (int)state);
             if (state != AnimationStateID.None && _currentSata != state)

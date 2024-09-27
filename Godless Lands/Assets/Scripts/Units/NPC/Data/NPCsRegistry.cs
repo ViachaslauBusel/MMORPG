@@ -1,7 +1,7 @@
 ﻿
 using Helpers;
 using ObjectRegistryEditor;
-using Protocol.Data.NPCs;
+using Protocol.Data.Units.NPCs;
 using System.Collections.Generic;
 using UnityEngine;
 

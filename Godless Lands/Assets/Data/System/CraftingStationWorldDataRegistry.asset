@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c4d7c8614e7f44795bb575b2a41d5a, type: 3}
+  m_Name: CraftingStationWorldDataRegistry
+  m_EditorClassIdentifier: 
+  _entityIds: 2700000028000000290000002a000000
+  _entityData:
+  - DataObject: {fileID: 11400000, guid: ec4b53e92b8958540921fa93c584bc19, type: 2}
+    SpawnPointType: 2
+    SpawnPointRadius: 0
+    MinSpawnTime: 1
+    MaxSpawnTime: 1
+  - DataObject: {fileID: 11400000, guid: 2257227ea3ff2dd4faa78aed3dfb7e96, type: 2}
+    SpawnPointType: 2
+    SpawnPointRadius: 0
+    MinSpawnTime: 1
+    MaxSpawnTime: 1
+  - DataObject: {fileID: 11400000, guid: b670a3090888f7c4d89083f8512b0cae, type: 2}
+    SpawnPointType: 2
+    SpawnPointRadius: 0
+    MinSpawnTime: 1
+    MaxSpawnTime: 1
+  - DataObject: {fileID: 11400000, guid: 27c8ba5511077504db52b6a9999002c1, type: 2}
+    SpawnPointType: 2
+    SpawnPointRadius: 0
+    MinSpawnTime: 1
+    MaxSpawnTime: 1

@@ -1,6 +1,6 @@
 ﻿using Factories;
 using ObjectRegistryEditor;
-using Protocol.Data.NPCs;
+using Protocol.Data.Units.NPCs;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;

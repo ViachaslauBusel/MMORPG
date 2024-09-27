@@ -1,10 +1,10 @@
-﻿using Factories;
+﻿using AssetPerformanceToolkit.AssetManagement;
+using Factories;
+using Helpers;
 using Network.Object.Dynamic.Transformations;
-using Network.Object.Visualization.Entities.Characters;
 using Network.Replication;
 using Protocol.Data.Replicated;
 using Protocol.Data.Replicated.Skins;
-using UnityEngine;
 using Zenject;
 
 namespace Network.Object.Visualization.Entities.Corpse
@@ -39,7 +39,7 @@ namespace Network.Object.Visualization.Entities.Corpse
 
         protected async void UpdateVisualObject()
         {
-            AssetHolder visualObject = GetCachedVisualObject(_visualData.CachedObjectId);
+            AssetInstance visualObject = GetCachedVisualObject(_visualData.CachedObjectId);
 
             if (visualObject != null)
             {
@@ -50,7 +50,7 @@ namespace Network.Object.Visualization.Entities.Corpse
 
             int skinID = _visualData.SkinID;
 
-            var assetHolder = await _monstersFactory.CreateMonster(skinID);
+            var assetHolder = await _monstersFactory.CreateMonsterAsync(skinID);
 
             if (skinID != _visualData.SkinID)
             {
@@ -59,7 +59,7 @@ namespace Network.Object.Visualization.Entities.Corpse
             }
 
             DestroyExistingUnitObject();
-            assetHolder.Instantiate(transform, _networkTransform.Position, _networkTransform.Rotation);
+            assetHolder.InstanceObject.SetTransform(transform, _networkTransform.Position, _networkTransform.Rotation);
             SetVisualObject(assetHolder);
         }
     }
