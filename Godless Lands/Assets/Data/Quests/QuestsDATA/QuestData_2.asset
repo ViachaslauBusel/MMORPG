@@ -51,8 +51,7 @@ MonoBehaviour:
       m_maxConnection: 1
       m_nextNodes: []
   m_parentContainer: {fileID: 11400000}
-  _itemID: 12
-  _amount: 1
+  _itemsReward: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,11 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_nodes:
   - {fileID: 2952118598917401675}
-  - {fileID: 1314896437444206122}
   - {fileID: 2861085508612100889}
-  - {fileID: 8442433236354419288}
-  - {fileID: -7303628440206741240}
-  - {fileID: 6731823253316869461}
   - {fileID: 6247730144948398503}
   - {fileID: -3838321455522196777}
   m_generatorID: 10
@@ -122,8 +117,7 @@ MonoBehaviour:
     m_outputPorts:
     - m_name: out
       m_maxConnection: 1
-      m_nextNodes:
-      - {fileID: 8442433236354419288}
+      m_nextNodes: []
   m_parentContainer: {fileID: 11400000}
   _name: mining ore
   _description: You need to extract 50 units of coal and iron ore and return them
@@ -146,10 +140,9 @@ MonoBehaviour:
     m_outputPorts:
     - m_name: out
       m_maxConnection: 1
-      m_nextNodes:
-      - {fileID: 1314896437444206122}
+      m_nextNodes: []
   m_parentContainer: {fileID: 11400000}
-  m_next: {fileID: 1314896437444206122}
+  m_next: {fileID: 0}
 --- !u!114 &6247730144948398503
 MonoBehaviour:
   m_ObjectHideFlags: 0

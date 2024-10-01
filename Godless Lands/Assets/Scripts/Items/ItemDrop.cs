@@ -1,5 +1,6 @@
 ﻿using Items;
 using ObjectRegistryEditor;
+using Protocol.Data.Items;
 using System;
 using UnityEngine;
 
@@ -26,5 +27,10 @@ public class ItemDrop
         _minAmount = minAmount;
         _maxAmount = maxAmount;
         _chance = chance;
+    }
+
+    public ItemDropSData ToServerData()
+    {
+        return new ItemDropSData(ID, MinAmount, MaxAmount, Chance);
     }
 }

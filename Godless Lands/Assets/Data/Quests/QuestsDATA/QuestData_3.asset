@@ -19,9 +19,67 @@ MonoBehaviour:
     - m_name: out
       m_maxConnection: 1
       m_nextNodes:
-      - {fileID: 5730297032352470699}
+      - {fileID: 4027950473569708941}
   m_parentContainer: {fileID: 11400000}
-  m_next: {fileID: 5730297032352470699}
+  m_next: {fileID: 4027950473569708941}
+--- !u!114 &-1758884313918922287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94229dce9d7af694e8f043e11ee576c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 9
+  m_position: {x: 1550.8695, y: 202.35287}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 8519580280460150746}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _conditionName: Iron Ore
+  _requiredItem:
+    _item:
+      _id: 7
+    _amount: 10
+--- !u!114 &-745179881101551476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94229dce9d7af694e8f043e11ee576c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 8
+  m_position: {x: 1180.2811, y: 183.52936}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -1758884313918922287}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _conditionName: Coal
+  _requiredItem:
+    _item:
+      _id: 9
+    _amount: 10
 --- !u!114 &-546536147870075648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,12 +121,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_nodes:
   - {fileID: -3307142126734112049}
-  - {fileID: 5730297032352470699}
   - {fileID: 4027950473569708941}
-  - {fileID: 4815625818263137182}
-  - {fileID: -546536147870075648}
   - {fileID: 8519580280460150746}
-  m_generatorID: 8
+  - {fileID: -745179881101551476}
+  - {fileID: -1758884313918922287}
+  - {fileID: 8553850130437381391}
+  m_generatorID: 11
   _id: 3
   _name: The Forge's Bounty
   _description: 
@@ -92,7 +150,7 @@ MonoBehaviour:
     - m_name: out
       m_maxConnection: 1
       m_nextNodes:
-      - {fileID: 4815625818263137182}
+      - {fileID: -745179881101551476}
   m_parentContainer: {fileID: 11400000}
   _name: smelt iron
   _description: You need to process iron ore and coal in the smelter into ingots.
@@ -160,13 +218,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_id: 7
-  m_position: {x: 1983.1426, y: 205.71419}
+  m_position: {x: 1951.3779, y: 205.71419}
   m_outputManager:
     m_outputPorts:
     - m_name: out
       m_maxConnection: 1
-      m_nextNodes: []
+      m_nextNodes:
+      - {fileID: 8553850130437381391}
   m_parentContainer: {fileID: 11400000}
   _name: smelt iron(finish)
   _description: You need to process iron ore and coal in the smelter into ingots.
     Then, use the ingots and coal to craft weapon blanks.
+--- !u!114 &8553850130437381391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc848a1d9fdce24468d6c17970d9ad68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 10
+  m_position: {x: 2337.0227, y: 224.70587}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes: []
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _itemsReward:
+  - _item:
+      _id: 7
+    _amount: 60
+  - _item:
+      _id: 9
+    _amount: 60

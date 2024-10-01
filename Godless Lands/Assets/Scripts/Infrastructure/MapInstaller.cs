@@ -16,6 +16,8 @@ using Player;
 using Professions;
 using Quests;
 using Quests.Journal;
+using Quests.Nodes;
+using Quests.Nodes.Handlers;
 using Recipes;
 using Skills;
 using Target;
@@ -85,6 +87,10 @@ public class MapInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<QuestsController>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<QuestsModel>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<QuestsListener>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<QuestNodeCoordinator>().FromNew().AsSingle().NonLazy();
+
+        Container.BindInterfacesAndSelfTo<QuestHandlerStorage>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<InventoryItemAvailabilityHandler>().FromNew().AsSingle().NonLazy();
 
         //Quests Journal
         Container.BindInterfacesAndSelfTo<QuestJournalModel>().FromNew().AsSingle().NonLazy();

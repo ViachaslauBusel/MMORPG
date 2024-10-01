@@ -23,6 +23,8 @@ namespace Quests
         internal TaskAwaiter IncreaseQuestStage(int questId)
         {
             TaskAwaiter taskAwaiter = new TaskAwaiter();
+
+            //If there is already a quest being increased, return false
             if (_questIdToIncrease != 0)
             {
                 taskAwaiter.SetResult(false);

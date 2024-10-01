@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Quests.ConditionTracker.UI
+namespace Quests.TaskTracker.UI
 {
     internal class QuestsTrackerScreenUI : MonoBehaviour
     {
@@ -60,7 +58,7 @@ namespace Quests.ConditionTracker.UI
                 }
                 else
                 {
-                    var questUIObj = _diContainer.InstantiatePrefab(_questPrefab, transform);
+                    var questUIObj = _diContainer.InstantiatePrefab(_questPrefab, _questPrefab.transform.parent);
                     questUIObj.SetActive(true);
                     var questUI = questUIObj.GetComponent<QuestTrackerUI>();
                     questUI.UpdateQuest(quest);

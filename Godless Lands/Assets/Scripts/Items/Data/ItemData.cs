@@ -1,5 +1,5 @@
 ﻿using ObjectRegistryEditor;
-using Protocol.Data.Items;
+using Protocol.Data.Items.Types;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -42,9 +42,9 @@ namespace Items
             _id = id;
         }
 
-        public virtual ItemInfo ToServerData()
+        public virtual ItemSData ToServerData()
         {
-            return new ItemInfo(ID, IsStackable, Weight);
+            return new ItemSData(ID, IsStackable, Weight);
         }
     }
 

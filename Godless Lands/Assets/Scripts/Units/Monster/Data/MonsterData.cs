@@ -1,6 +1,8 @@
 ﻿using Factories;
 using ObjectRegistryEditor;
 using Protocol.Data.Units.Monsters;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -17,6 +19,8 @@ namespace Units.Monster
         private AssetReferenceT<GameObject> _prefab;
         [SerializeField]
         private int _health;
+        [SerializeField]
+        private List<ItemDrop> _drop;
 
         public int ID => _id;
         public string Name => _name;
@@ -27,6 +31,7 @@ namespace Units.Monster
 #endif
         public AssetReferenceT<GameObject> Prefab => _prefab;
         public int Health => _health;
+        public IReadOnlyCollection<ItemDrop> Drop => _drop;
 
 
         public void Initialize(int id)
@@ -34,13 +39,14 @@ namespace Units.Monster
             _id = id;
         }
 
-        public MonsterInfo ToServerData()
+        public MonsterSData ToServerData()
         {
-            return new MonsterInfo
-            {
-                ID = ID,
-                HP = Health
-            };
+            return new MonsterSData
+            (
+                ID,
+                Health,
+                _drop.Select(d => d.ToServerData()).ToList()
+            );
         }
     }
 }

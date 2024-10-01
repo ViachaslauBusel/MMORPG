@@ -12,7 +12,7 @@ namespace Units.Monster
 
         public override void Export()
         {
-            var monstersData = new List<MonsterInfo>();
+            var monstersData = new List<MonsterSData>();
             for (int i = 0; i < Objects.Count; i++)
             {
                 var monster = Objects[i].ToServerData();

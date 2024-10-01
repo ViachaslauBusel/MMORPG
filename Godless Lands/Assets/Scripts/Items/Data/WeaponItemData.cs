@@ -1,4 +1,4 @@
-﻿using Protocol.Data.Items;
+﻿using Protocol.Data.Items.Types;
 using Protocol.Data.Stats;
 using Skills.Data;
 using System.Collections.Generic;
@@ -26,9 +26,9 @@ namespace Items.Data
         public int MinDamege => _minDamage;
         public SkillBranch WeaponType => _weaponType;
 
-        public override ItemInfo ToServerData()
+        public override ItemSData ToServerData()
         {
-            return new WeaponItemInfo(ID, IsStackable, Weight, MinDamege, MaxDamage, (int)(SpeedAttack * 1000f), _modifiers);
+            return new WeaponItemSData(ID, IsStackable, Weight, MinDamege, MaxDamage, (int)(SpeedAttack * 1000f), _modifiers);
         }
     }
 }

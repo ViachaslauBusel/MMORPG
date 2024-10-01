@@ -1,11 +1,7 @@
-﻿using Protocol.Data.Items;
+﻿using Protocol.Data.Items.Types;
 using Protocol.Data.Stats;
 using Protocol.MSG.Game.Equipment;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Items.Data
@@ -24,9 +20,9 @@ namespace Items.Data
         public int Defense => _defense;
         public List<StatModifierData> Modifiers => _modifiers;
 
-        public override ItemInfo ToServerData()
+        public override ItemSData ToServerData()
         {
-            return new ArmorItemInfo(ID, IsStackable, Weight, _equipmentType, _defense, _modifiers);
+            return new ArmorItemSData(ID, IsStackable, Weight, _equipmentType, _defense, _modifiers);
         }
     }
 }

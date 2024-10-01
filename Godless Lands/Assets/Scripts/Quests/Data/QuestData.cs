@@ -1,12 +1,13 @@
 using Infrastructure;
 using NodeEditor;
+using NodeEditor.Data;
 using ObjectRegistryEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "QuestData", menuName = "ScriptableObjects/Quest Data", order = 1)]
 [NodeGroup(group: "Quests")]
 
-public class QuestData : ZenjectNodesContainer, IDataObject
+public class QuestData : NodesContainer, IDataObject
 {
     [SerializeField, HideInInspector]
     private int _id;

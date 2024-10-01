@@ -20,3 +20,19 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   _health: 800
+  _drop:
+  - _item:
+      _id: 6
+    _chance: 100
+    _minAmount: 1
+    _maxAmount: 1
+  - _item:
+      _id: 4
+    _chance: 51
+    _minAmount: 1
+    _maxAmount: 10
+  - _item:
+      _id: 2
+    _chance: 100
+    _minAmount: 1
+    _maxAmount: 1

@@ -53,13 +53,7 @@ namespace Units.Resource.Data
                 Profesion = (int)_profession,
                 Exp = _exp,
                 Stamina = _stamina,
-                Drops = _drops.Select(d => new DropItemData()
-                {
-                    ItemID = d.ID,
-                    MinAmount = d.MinAmount,
-                    MaxAmount = d.MaxAmount,
-                    Chance = d.Chance
-                }).ToList()
+                Drops = _drops.Select(d => d.ToServerData()).ToList()
             };
         }
     }

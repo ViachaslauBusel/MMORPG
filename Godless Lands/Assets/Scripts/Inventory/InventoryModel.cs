@@ -13,7 +13,7 @@ namespace Inventory
         public Bag PrimaryBag { get; } 
         public Bag SecondaryBag { get; }
 
-        public event Action OnInventoryUpdate;
+        public event Action OnInventoryUpdated;
         public event Action OnLockUpdate;
 
         public InventoryModel(ItemsFactory itemsFactory)
@@ -24,7 +24,7 @@ namespace Inventory
 
         internal void SignalInventoryUpdate()
         {
-            OnInventoryUpdate?.Invoke();
+            OnInventoryUpdated?.Invoke();
         }
 
         internal Item FindItem(long uniqueID)
@@ -72,6 +72,11 @@ namespace Inventory
         internal void SignalLockUpdate()
         {
             OnLockUpdate?.Invoke();
+        }
+
+        internal object GetItemCountByItemId(object itemID)
+        {
+            throw new NotImplementedException();
         }
     }
 }

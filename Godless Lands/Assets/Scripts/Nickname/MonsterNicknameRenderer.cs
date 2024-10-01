@@ -22,7 +22,6 @@ namespace Nickname
             _monsterViewDataHandler = networkObjectOwner.GetComponent<MonsterViewDataHandler>();
             if (_monsterViewDataHandler == null)
             {
-                Debug.LogError("MonsterViewDataHandler not found");
                 return;
             }
 

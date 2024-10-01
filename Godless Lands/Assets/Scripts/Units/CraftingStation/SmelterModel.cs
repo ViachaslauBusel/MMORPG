@@ -27,7 +27,7 @@ namespace Workbench
         {
             _recipeComponentMatcherService = recipeComponentMatcherService;
             _inventoryModel = inventoryModel;
-            _inventoryModel.OnInventoryUpdate += OnInventoryUpdate;
+            _inventoryModel.OnInventoryUpdated += OnInventoryUpdate;
         }
 
         private void OnInventoryUpdate()
@@ -124,7 +124,7 @@ namespace Workbench
 
         public void Dispose()
         {
-            _inventoryModel.OnInventoryUpdate -= OnInventoryUpdate;
+            _inventoryModel.OnInventoryUpdated -= OnInventoryUpdate;
         }
 
       

@@ -38,7 +38,7 @@ namespace Hotbar
 
             _networkManager.RegisterHandler(Opcode.MSG_HOTBAR_UPDATE, UpdateBarCell);
             _playerSkillsHolder.OnSkillsUpdate += RedrawCells;
-            _inventoryModel.OnInventoryUpdate += RedrawCells;
+            _inventoryModel.OnInventoryUpdated += RedrawCells;
             _equipmentModel.OnItemsChanged += RedrawCells;
         }
 
@@ -83,7 +83,7 @@ namespace Hotbar
         {
             _networkManager?.UnregisterHandler(Opcode.MSG_HOTBAR_UPDATE);
             _playerSkillsHolder.OnSkillsUpdate -= RedrawCells;
-            _inventoryModel.OnInventoryUpdate -= RedrawCells;
+            _inventoryModel.OnInventoryUpdated -= RedrawCells;
             _equipmentModel.OnItemsChanged -= RedrawCells;
         }
     }

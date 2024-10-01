@@ -1,9 +1,10 @@
-﻿using ObjectRegistryEditor;
-using System;
+﻿using Helpers;
+using NodeEditor.Data;
+using ObjectRegistryEditor;
+using Protocol.Data.Quests;
+using Quests.Export;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Quests
@@ -13,7 +14,19 @@ namespace Quests
     {
         public override void Export()
         {
-            QuestExporter.Export(this);
+            List<QuestSData> questDatas = Objects
+              .Select(questData => new QuestSData(questData.ID, ExportNodes(questData.Nodes)))
+              .ToList();
+
+            ExportHelper.WriteToFile("quests", questDatas);
+        }
+
+        private static List<QuestSNode> ExportNodes(IEnumerable<Node> nodes)
+        {
+            return nodes.Select(n => n as IExportableNode)
+                        .Where(n => n != null)
+                        .Select(n => n.ToServerData())
+                        .ToList();
         }
     }
 }

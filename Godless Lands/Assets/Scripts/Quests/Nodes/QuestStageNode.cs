@@ -1,11 +1,12 @@
 using NodeEditor;
 using NodeEditor.Data;
-using System.Collections;
-using System.Collections.Generic;
+using Protocol.Data.Quests;
+using Protocol.Data.Quests.Nodes;
+using Quests.Export;
 using UnityEngine;
 
 [NodeGroup("Quests")]
-public class QuestStageNode : Node
+public class QuestStageNode : Node, IExportableNode
 {
     [Port("out")]
     private Node _nextNode;
@@ -20,4 +21,9 @@ public class QuestStageNode : Node
     public int NextNodeId => _nextNode != null ? _nextNode.ID : 0;
     public string Name => _name;
     public string Description => _description;
+
+    public QuestSNode ToServerData()
+    {
+        return new QuestStageSNode(ID, NextNodeId);
+    }
 }

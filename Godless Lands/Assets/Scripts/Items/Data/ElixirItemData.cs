@@ -1,4 +1,4 @@
-﻿using Protocol.Data.Items;
+﻿using Protocol.Data.Items.Types;
 using UnityEngine;
 
 namespace Items.Data
@@ -17,9 +17,9 @@ namespace Items.Data
         public int MpRestore => _mpRestore;
         public int StaminaRestore => _staminaRestore;
 
-        public override ItemInfo ToServerData()
+        public override ItemSData ToServerData()
         {
-            return new ElixirItemInfo(ID, IsStackable, Weight, HpRestore, MpRestore, StaminaRestore);
+            return new ElixirItemSData(ID, IsStackable, Weight, HpRestore, MpRestore, StaminaRestore);
         }
     }
 }
