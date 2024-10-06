@@ -1,6 +1,7 @@
 ﻿using Items.Data;
 using Protocol.Data.Items;
 using Protocol.Data.Units.CraftingStation;
+using Recipes.Data;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -22,7 +23,7 @@ namespace Workbench.UI.Smelter
         private Canvas _canvas;
         private SmelterModel _smelterModel;
         private DiContainer _diContainer;
-        private RecipeItemData _selectedRecipe;
+        private RecipeData _selectedRecipe;
         private WorkbenchInputHandler _workbenchInputHandler;
 
         public Transform recipesParent;
@@ -65,7 +66,7 @@ namespace Workbench.UI.Smelter
             foreach (SmelterCell cell in _fuel.GetCells())
             {
                 if (_selectedRecipe == null) cell.DrawCount();
-                else cell.SetCount(_selectedRecipe.Fuel);
+                else cell.SetCount(_selectedRecipe.Fuels);
             }
 
         }
@@ -102,7 +103,7 @@ namespace Workbench.UI.Smelter
 
             DestroyRecipes();
 
-            foreach (RecipeItemData recipe in _smelterModel.Recipes)
+            foreach (RecipeData recipe in _smelterModel.Recipes)
             {
                 CreateRecipe(recipe);
             }
@@ -110,7 +111,7 @@ namespace Workbench.UI.Smelter
             RefreshCount();
         }
 
-        private void ContainsRecipe(RecipeItemData recipe)
+        private void ContainsRecipe(RecipeData recipe)
         {
             if (recipe == null) return;
             if (recipes.Count < 1) SelectRecipe(null);
@@ -121,7 +122,7 @@ namespace Workbench.UI.Smelter
             SelectRecipe(null);
         }
 
-        private void CreateRecipe(RecipeItemData recipe)
+        private void CreateRecipe(RecipeData recipe)
         {
             GameObject obj = _diContainer.InstantiatePrefab(RecipePrefab);
             obj.transform.SetParent(recipesParent);
@@ -136,7 +137,7 @@ namespace Workbench.UI.Smelter
             recipes.Clear();
         }
 
-        public void SelectRecipe(RecipeItemData value)
+        public void SelectRecipe(RecipeData value)
         {
             _selectedRecipe = value;
             _createBut.interactable = _selectedRecipe != null;

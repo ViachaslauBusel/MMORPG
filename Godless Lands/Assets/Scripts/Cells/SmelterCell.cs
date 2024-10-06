@@ -55,7 +55,7 @@ public class SmelterCell : ItemCell
         DrawIcon();
     }
 
-    public void SetCount(IReadOnlyCollection<ItemBundle> pieces)
+    public void SetCount(IReadOnlyCollection<ItemBundleLink> pieces)
     {
         if (!IsEmpty() && _item.Data.IsStackable)
         {

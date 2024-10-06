@@ -1,15 +1,17 @@
-﻿using System;
+﻿using Protocol.MSG.Game.Quests;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Quests
 {
-    internal class QuestsModel
+    public class QuestsModel
     {
         private Dictionary<int, Quest> _quests = new Dictionary<int, Quest>();
         private QuestRegistry _questRegistry;
       
-        public event Action OnQuestsUpdated;
+        public event Action OnJournalUpdated;
+        public event Action<Quest, QuestSyncFlag> OnQuestUpdated;
 
         public IReadOnlyCollection<Quest> Quests => _quests.Values;
 
@@ -18,7 +20,7 @@ namespace Quests
             _questRegistry = questRegistry;
         }
 
-        internal void UpdateQuest(int questId, int stageID)
+        internal void UpdateQuest(int questId, int stageID, QuestSyncFlag flag)
         {
             if (_quests.ContainsKey(questId))
             {
@@ -33,11 +35,13 @@ namespace Quests
                 }
                 else Debug.LogError("QuestData not found for questId: " + questId);
             }
+
+            OnQuestUpdated?.Invoke(_quests[questId], flag);
         }
 
         internal void NotifyQuestUpdates()
         {
-            OnQuestsUpdated?.Invoke();
+            OnJournalUpdated?.Invoke();
         }
 
         internal bool TryGetQuestById(int questId, out Quest quest)

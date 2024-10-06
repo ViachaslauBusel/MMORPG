@@ -1,22 +1,19 @@
 ﻿using ObjectRegistryEditor;
+using Protocol.Data.Items;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Items
 {
     [Serializable]
-    public class ItemBundle
+    public class ItemBundleLink
     {
         [SerializeField]
         private DataLink<ItemData> _item;
         [SerializeField]
         private int _amount;
 
-        public ItemBundle(int id, int count)
+        public ItemBundleLink(int id, int count)
         {
             _item = new DataLink<ItemData>(id);
             _amount = count;
@@ -24,5 +21,28 @@ namespace Items
 
         public int ID => _item.ID;
         public int Amount => _amount;
+
+        internal ItemBundleSData ToServerData()
+        {
+            return new ItemBundleSData(_item.ID, _amount);
+        }
+    }
+
+    [Serializable]
+    public class ItemBundleData
+    {
+        [SerializeField]
+        private ItemData _item;
+        [SerializeField]
+        private int _amount;
+
+
+        public ItemData Item => _item;
+        public int Amount => _amount;
+
+        internal ItemBundleSData ToServerData()
+        {
+            return new ItemBundleSData(_item.ID, _amount);
+        }
     }
 }

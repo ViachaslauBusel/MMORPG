@@ -22,7 +22,7 @@ namespace Quests.Nodes
         [SerializeField]
         private string _conditionName;
         [SerializeField]
-        private ItemBundle _requiredItem;
+        private ItemBundleLink _requiredItem;
 
         public int SuccesIdNode => _successNode != null ? _successNode.ID : 0;
         public string ConditionName => _conditionName;

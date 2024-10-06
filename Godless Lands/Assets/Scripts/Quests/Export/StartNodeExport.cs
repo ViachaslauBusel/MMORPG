@@ -15,7 +15,7 @@ namespace Quests.Export
 
         public QuestSNode ToServerData()
         {
-            return new StartQuestSNode(_startNode.ID, _startNode.Next.ID);
+            return new StartQuestSNode(_startNode.ID, _startNode.Next?.ID ?? 0);
         }
     }
 }

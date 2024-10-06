@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Quests.TaskTracker.UI
 {
-    internal class QuestConditionTrackerUI : MonoBehaviour
+    internal class QuestTaskTrackerUI : MonoBehaviour
     {
         [SerializeField]
         private TMP_Text _conditionDescription;

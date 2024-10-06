@@ -3,6 +3,7 @@ using Items;
 using Items.Data;
 using Protocol.Data.Units.CraftingStation;
 using Recipes;
+using Recipes.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -21,8 +22,8 @@ namespace Workbench.UI.RecipeCrafting
         private Text _recipeName;
         private Canvas _canvas;
         private RecipeComponent _result;
-        private RecipeItemData _selectRecipe;
-        private RecipesDataHolder _recipesData;
+        private RecipeData _selectRecipe;
+        private RecipesRegistry _recipesRegistry;
         private DiContainer _diContainer;
         private WorkbenchInputHandler _workbenchInputHandler;
         private bool _isReadyForWork;
@@ -31,9 +32,9 @@ namespace Workbench.UI.RecipeCrafting
 
 
         [Inject]
-        private void Construct(RecipesDataHolder recipesData, DiContainer diContainer)
+        private void Construct(RecipesRegistry recipesRegistry, DiContainer diContainer)
         {
-            _recipesData = recipesData;
+            _recipesRegistry = recipesRegistry;
             _diContainer = diContainer;
         }
 
@@ -74,14 +75,14 @@ namespace Workbench.UI.RecipeCrafting
         public void SelectRecipeItem(RecipeItemData recipeData)
         {
 
-            _selectRecipe = _recipesData.GetRecipe(recipeData.ID);
+            _selectRecipe = _recipesRegistry.GetObjectByID(recipeData.ID);
             if (_selectRecipe == null) return;
             _recipeName.text = recipeData.Name;
 
             GameObject obj = CreatePieceField();
             obj.transform.SetParent(_content);
             _result = obj.GetComponent<RecipeComponent>();
-            ItemBundle piece = new ItemBundle(_selectRecipe.Result.ID, 0);
+            ItemBundleLink piece = new ItemBundleLink(_selectRecipe.Result.Item.ID, 0);
 
             _result.SetPiece(piece);
             _result.Start();

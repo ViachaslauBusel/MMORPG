@@ -11,6 +11,7 @@ namespace Quests.Export
     {
         public static IExportableNode ToExportableNode(this Node node)
         {
+            if (node == null) return null;
             if (node is IExportableNode exportableNode)
             {
                 return exportableNode;

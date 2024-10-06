@@ -1,7 +1,9 @@
 using Infrastructure;
+using Items;
 using NodeEditor;
 using NodeEditor.Data;
 using ObjectRegistryEditor;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "QuestData", menuName = "ScriptableObjects/Quest Data", order = 1)]
@@ -17,13 +19,16 @@ public class QuestData : NodesContainer, IDataObject
     private string _description;
     [SerializeField]
     private bool _isRenderableInJournal = true;
+    [SerializeField]
+    private List<ItemBundleLink> _reward;
 
     public int ID => _id;
     public string Name => _name;
     public string Description => _description;
     public bool IsRenderableInJournal => _isRenderableInJournal;
+    public IReadOnlyCollection<ItemBundleLink> Reward => _reward;
 
-    
+
 
     public Texture Preview => null;
 

@@ -1,26 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using Quests.ActiveQuestTracker;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zenject;
 
 namespace Quests.TaskTracker.UI
 {
-    internal class QuestsTrackerScreenUI : MonoBehaviour
+    public class QuestsTrackerWidgetUI : MonoBehaviour
     {
         [SerializeField]
         private GameObject _questPrefab;
         private QuestsModel _questsModel;
+        private ActiveQuestsTrackerModel _activeQuestsTrackerModel;
         private DiContainer _diContainer;
         private Dictionary<int, QuestTrackerUI> _questUIs = new Dictionary<int, QuestTrackerUI>();
 
 
         [Inject]
-        public void Construct(QuestsModel questsModel, DiContainer diContainer)
+        private void Construct(QuestsModel questsModel, ActiveQuestsTrackerModel activeQuestsTrackerModel, DiContainer diContainer)
         {
             _questsModel = questsModel;
+            _activeQuestsTrackerModel = activeQuestsTrackerModel;
             _diContainer = diContainer;
 
-            _questsModel.OnQuestsUpdated += UpdateQuests;
+            _activeQuestsTrackerModel.OnQuestListUpdated += UpdateQuests;
         }
 
         private void Awake()
@@ -31,47 +34,34 @@ namespace Quests.TaskTracker.UI
         private void UpdateQuests()
         {
             //Remove quest that are no longer in the model
-            foreach (var questUI in _questUIs.Values.ToArray())
+            for(int i = _questUIs.Values.Count - 1; i >= 0; i--)
             {
-                if (!_questsModel.Quests.Any(q => q.ID == questUI.QuestID))
+                var questUI = _questUIs.Values.ElementAt(i);
+                if (!_activeQuestsTrackerModel.IsQuesTracked(questUI.QuestID))
                 {
                     Destroy(questUI.gameObject);
                     _questUIs.Remove(questUI.QuestID);
                 }
             }
 
-            foreach (var quest in _questsModel.Quests)
+            foreach (var questId in _activeQuestsTrackerModel.Quests)
             {
-                if(quest.IsCompleted)
-                {
-                    if(_questUIs.ContainsKey(quest.ID))
-                    {
-                        Destroy(_questUIs[quest.ID].gameObject);
-                        _questUIs.Remove(quest.ID);
-                    }
-                    continue;
-                }
-
-                if(_questUIs.ContainsKey(quest.ID))
-                {
-                    _questUIs[quest.ID].UpdateQuest(quest);
-                }
-                else
+                if (_questUIs.ContainsKey(questId) == false && _questsModel.TryGetQuestById(questId, out var quest))
                 {
                     var questUIObj = _diContainer.InstantiatePrefab(_questPrefab, _questPrefab.transform.parent);
                     questUIObj.SetActive(true);
                     var questUI = questUIObj.GetComponent<QuestTrackerUI>();
                     questUI.UpdateQuest(quest);
-                    _questUIs.Add(quest.ID, questUI);
+                    _questUIs.Add(questId, questUI);
                 }
             }
 
-            gameObject.SetActive(_questsModel.Quests.Count > 0);
+            gameObject.SetActive(_questUIs.Count > 0);
         }
 
         private void OnDestroy()
         {
-            _questsModel.OnQuestsUpdated -= UpdateQuests;
+            _activeQuestsTrackerModel.OnQuestListUpdated -= UpdateQuests;
         }
     }
 }

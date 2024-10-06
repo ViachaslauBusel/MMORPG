@@ -3,6 +3,7 @@ using Items;
 using Items.Data;
 using Protocol.Data.Units.CraftingStation;
 using Recipes;
+using Recipes.Data;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,7 +30,7 @@ namespace Workbench.UI.RecipeCrafting
         private bool _expand = false;
         private Item _item;
         private int _allCount;
-        private RecipeItemData _nextRecipe;
+        private RecipeData _nextRecipe;
         private RecipeCraftingWindow _craftingWindow;
         private List<RecipeComponent> _children;
         private bool _child = false;
@@ -120,7 +121,7 @@ namespace Workbench.UI.RecipeCrafting
                 component.SetPiece(piece, _element);
                 _children.Add(component);
             }
-            foreach (var piece in _nextRecipe.Fuel)
+            foreach (var piece in _nextRecipe.Fuels)
             {
                 GameObject obj = _craftingWindow.CreatePieceField();
                 obj.transform.SetParent(transform.parent);
@@ -131,7 +132,7 @@ namespace Workbench.UI.RecipeCrafting
             }
         }
 
-        public void SetPiece(ItemBundle piece, LayoutElement parenlayout = null, bool fuel = false)
+        public void SetPiece(ItemBundleLink piece, LayoutElement parenlayout = null, bool fuel = false)
         {
             _item = _itemsFactory.CreateItem(piece.ID);
             if (parenlayout != null)// If there is a child

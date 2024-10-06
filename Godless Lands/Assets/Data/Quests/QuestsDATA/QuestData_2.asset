@@ -27,7 +27,7 @@ MonoBehaviour:
   _itemID: 8
   _amount: 31
   _conditionName: coal
---- !u!114 &-3838321455522196777
+--- !u!114 &-3638953043013322524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -36,11 +36,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc848a1d9fdce24468d6c17970d9ad68, type: 3}
+  m_Script: {fileID: 11500000, guid: 94229dce9d7af694e8f043e11ee576c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_id: 9
-  m_position: {x: 2567.4773, y: 260.5262}
+  m_id: 11
+  m_position: {x: 1479.1721, y: 230.2807}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -852889786371351097}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _conditionName: Coal
+  _requiredItem:
+    _item:
+      _id: 9
+    _amount: 20
+--- !u!114 &-852889786371351097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94229dce9d7af694e8f043e11ee576c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 12
+  m_position: {x: 1931.3013, y: 253.9899}
   m_outputManager:
     m_outputPorts:
     - m_name: succes
@@ -51,7 +80,11 @@ MonoBehaviour:
       m_maxConnection: 1
       m_nextNodes: []
   m_parentContainer: {fileID: 11400000}
-  _itemsReward: []
+  _conditionName: Ore
+  _requiredItem:
+    _item:
+      _id: 7
+    _amount: 20
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,12 +101,24 @@ MonoBehaviour:
   - {fileID: 2952118598917401675}
   - {fileID: 2861085508612100889}
   - {fileID: 6247730144948398503}
-  - {fileID: -3838321455522196777}
-  m_generatorID: 10
+  - {fileID: 7450380647348455123}
+  - {fileID: -3638953043013322524}
+  - {fileID: -852889786371351097}
+  m_generatorID: 13
   _id: 2
   _name: ore mining
   _description: ore mining
   _isRenderableInJournal: 1
+  _reward:
+  - _item:
+      _id: 7
+    _amount: 50
+  - _item:
+      _id: 9
+    _amount: 50
+  - _item:
+      _id: 10
+    _amount: 1
 --- !u!114 &1314896437444206122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,12 +157,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_id: 4
-  m_position: {x: 991.4631, y: 213.41464}
+  m_position: {x: 934.8842, y: 209.46729}
   m_outputManager:
     m_outputPorts:
     - m_name: out
       m_maxConnection: 1
-      m_nextNodes: []
+      m_nextNodes:
+      - {fileID: -3638953043013322524}
   m_parentContainer: {fileID: 11400000}
   _name: mining ore
   _description: You need to extract 50 units of coal and iron ore and return them
@@ -140,9 +186,10 @@ MonoBehaviour:
     m_outputPorts:
     - m_name: out
       m_maxConnection: 1
-      m_nextNodes: []
+      m_nextNodes:
+      - {fileID: 7450380647348455123}
   m_parentContainer: {fileID: 11400000}
-  m_next: {fileID: 0}
+  m_next: {fileID: 7450380647348455123}
 --- !u!114 &6247730144948398503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_id: 8
-  m_position: {x: 2959.448, y: 247.38498}
+  m_position: {x: 2411.3472, y: 251.18243}
   m_outputManager:
     m_outputPorts:
     - m_name: out
@@ -185,12 +232,38 @@ MonoBehaviour:
     - m_name: succes
       m_maxConnection: 1
       m_nextNodes:
-      - {fileID: -3838321455522196777}
+      - {fileID: 0}
     - m_name: fail
       m_maxConnection: 1
       m_nextNodes: []
   m_parentContainer: {fileID: 11400000}
   _npcID: 1
+--- !u!114 &7450380647348455123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a517e32a8c0a7449e3b1e7ab70d6d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 10
+  m_position: {x: 493.8246, y: 172.39622}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: succes
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: 2861085508612100889}
+    - m_name: fail
+      m_maxConnection: 1
+      m_nextNodes: []
+  m_parentContainer: {fileID: 11400000}
+  _npc:
+    _id: 1
 --- !u!114 &8442433236354419288
 MonoBehaviour:
   m_ObjectHideFlags: 0

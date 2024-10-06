@@ -25,7 +25,7 @@ namespace Quests.Journal.UI
         {
             ClearQuestDescription();
             _questJournalModel.OnQuestSelected += OnQuestSelected;
-            _questsModel.OnQuestsUpdated += OnQuestsUpdated;
+            _questsModel.OnJournalUpdated += OnQuestsUpdated;
         }
 
         private void OnQuestsUpdated()
@@ -64,7 +64,7 @@ namespace Quests.Journal.UI
         private void OnDestroy()
         {
             _questJournalModel.OnQuestSelected -= OnQuestSelected;
-            _questsModel.OnQuestsUpdated -= OnQuestsUpdated;
+            _questsModel.OnJournalUpdated -= OnQuestsUpdated;
         }
     }
 }

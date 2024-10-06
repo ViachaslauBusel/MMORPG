@@ -15,7 +15,7 @@ namespace Quests
         public override void Export()
         {
             List<QuestSData> questDatas = Objects
-              .Select(questData => new QuestSData(questData.ID, ExportNodes(questData.Nodes)))
+              .Select(questData => new QuestSData(questData.ID, ExportNodes(questData.Nodes), questData.Reward.Select(i => i.ToServerData()).ToList()))
               .ToList();
 
             ExportHelper.WriteToFile("quests", questDatas);
@@ -23,7 +23,7 @@ namespace Quests
 
         private static List<QuestSNode> ExportNodes(IEnumerable<Node> nodes)
         {
-            return nodes.Select(n => n as IExportableNode)
+            return nodes.Select(n => n?.ToExportableNode())
                         .Where(n => n != null)
                         .Select(n => n.ToServerData())
                         .ToList();

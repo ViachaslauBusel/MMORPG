@@ -28,7 +28,7 @@ namespace Quests.Journal.UI
         private void Awake()
         {
             _journalModel.OnQuestSelected += OnQuestSelected;
-            _questsModel.OnQuestsUpdated += RedrawQuestList;
+            _questsModel.OnJournalUpdated += RedrawQuestList;
         }
 
         private void RedrawQuestList()
@@ -64,6 +64,12 @@ namespace Quests.Journal.UI
             {
                 button.IsSelected = button.QuestId == questId;
             }
+        }
+
+        private void OnDestroy()
+        {
+            _journalModel.OnQuestSelected -= OnQuestSelected;
+            _questsModel.OnJournalUpdated -= RedrawQuestList;
         }
     }
 }

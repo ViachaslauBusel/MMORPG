@@ -4,9 +4,8 @@ using Items;
 using Network.Object.Dynamic;
 using NPCs;
 using Quests;
-using Recipes;
+using Recipes.Data;
 using Skills.Data;
-using Units.CraftingStatio.Data;
 using Units.Monster;
 using Units.Resource.Data;
 using UnityEngine;
@@ -38,6 +37,8 @@ namespace Infrastructure
         private ResourcesRegistry _resourcesRegistry;
         [SerializeField]
         private SkillsRegistry _skillsRegistry;
+        [SerializeField]
+        private RecipesRegistry _recipesRegistry;
 
         public override void InstallBindings()
         {
@@ -50,7 +51,7 @@ namespace Infrastructure
             Container.Bind<QuestRegistry>().FromInstance(_questRegistry).AsSingle();
             Container.Bind<ResourcesRegistry>().FromInstance(_resourcesRegistry).AsSingle();
             Container.Bind<SkillsRegistry>().FromInstance(_skillsRegistry).AsSingle();
-            Container.Bind<RecipesDataHolder>().AsSingle();
+            Container.Bind<RecipesRegistry>().FromInstance(_recipesRegistry).AsSingle();
 
             Container.Bind<CraftingStationsFactory>().FromInstance(_craftingStationsFactory).AsSingle();
             Container.Bind<CharactersFactory>().FromInstance(_charactersFactory).AsSingle();

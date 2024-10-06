@@ -15,8 +15,8 @@ using OpenWorld;
 using Player;
 using Professions;
 using Quests;
+using Quests.ActiveQuestTracker;
 using Quests.Journal;
-using Quests.Nodes;
 using Quests.Nodes.Handlers;
 using Recipes;
 using Skills;
@@ -88,6 +88,10 @@ public class MapInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<QuestsModel>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<QuestsListener>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<QuestNodeCoordinator>().FromNew().AsSingle().NonLazy();
+        //Quests Active
+        Container.BindInterfacesAndSelfTo<ActiveQuestsTrackerModel>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<ActiveQuestsTrackerController>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<QuestAutoTracker>().FromNew().AsSingle().NonLazy();
 
         Container.BindInterfacesAndSelfTo<QuestHandlerStorage>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<InventoryItemAvailabilityHandler>().FromNew().AsSingle().NonLazy();

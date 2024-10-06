@@ -1,8 +1,8 @@
 ﻿using Inventory;
 using Items;
-using Items.Data;
 using Protocol.Data.Units.CraftingStation;
 using Recipes;
+using Recipes.Data;
 using System;
 using System.Collections.Generic;
 
@@ -12,14 +12,14 @@ namespace Workbench
     {
         private Item[] _components = new Item[SmelterConfig.COMPONENT_SIZE];
         private Item[] _fuels = new Item[SmelterConfig.FUEL_SIZE];
-        private List<RecipeItemData> _recipes = new List<RecipeItemData>();
+        private List<RecipeData> _recipes = new List<RecipeData>();
         private RecipeComponentMatcherService _recipeComponentMatcherService;
         private CraftingStationType _smelterUse;
         private InventoryModel _inventoryModel;
 
         public IReadOnlyCollection<Item> Components => _components;
         public IReadOnlyCollection<Item> Fuels => _fuels;
-        public IReadOnlyCollection<RecipeItemData> Recipes => _recipes;
+        public IReadOnlyCollection<RecipeData> Recipes => _recipes;
 
         public event Action OnContentUpdate;
 

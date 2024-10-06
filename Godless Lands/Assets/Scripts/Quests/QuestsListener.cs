@@ -25,7 +25,7 @@ namespace Quests
 
             foreach (var quest in msg.Quests)
             {
-                _questsModel.UpdateQuest(quest.QuestId, quest.StageID);
+                _questsModel.UpdateQuest(quest.QuestId, quest.StageID, quest.Flag);
             }
             _questsModel.NotifyQuestUpdates();
         }

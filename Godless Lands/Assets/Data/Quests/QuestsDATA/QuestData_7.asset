@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_id: 7
-  m_position: {x: 2158.6619, y: 170.8081}
+  m_position: {x: 1727.8926, y: 189.4894}
   m_outputManager:
     m_outputPorts:
     - m_name: out
@@ -73,12 +73,12 @@ MonoBehaviour:
     - m_name: succes
       m_maxConnection: 1
       m_nextNodes:
-      - {fileID: -2545716333939640744}
+      - {fileID: 0}
     - m_name: fail
       m_maxConnection: 1
       m_nextNodes: []
   m_parentContainer: {fileID: 11400000}
-  _successNode: {fileID: -2545716333939640744}
+  _successNode: {fileID: 0}
   _failNode: {fileID: 0}
   _npcID: 1
 --- !u!114 &-6748649604194670516
@@ -94,13 +94,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_id: 10
-  m_position: {x: 1237.0394, y: 196.07736}
+  m_position: {x: 1305.0808, y: 204.3248}
   m_outputManager:
     m_outputPorts:
     - m_name: succes
       m_maxConnection: 1
       m_nextNodes:
-      - {fileID: -2545716333939640744}
+      - {fileID: -8062912337465071799}
     - m_name: fail
       m_maxConnection: 1
       m_nextNodes: []
@@ -156,34 +156,6 @@ MonoBehaviour:
   _name: Search for the Skeleton Pickaxe
   _description: You need to find a pickaxe from the skeletons living near the city
     and return it to the hunter.
---- !u!114 &-2545716333939640744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc848a1d9fdce24468d6c17970d9ad68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_id: 8
-  m_position: {x: 1680.9261, y: 147.63815}
-  m_outputManager:
-    m_outputPorts:
-    - m_name: succes
-      m_maxConnection: 1
-      m_nextNodes:
-      - {fileID: -8062912337465071799}
-    - m_name: fail
-      m_maxConnection: 1
-      m_nextNodes: []
-  m_parentContainer: {fileID: 11400000}
-  _itemsReward:
-  - _item:
-      _id: 5
-    _amount: 1
 --- !u!114 &-1977558218182765274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_id: 9
-  m_position: {x: 485.99994, y: 228}
+  m_position: {x: 473.62878, y: 175.42267}
   m_outputManager:
     m_outputPorts:
     - m_name: succes
@@ -253,7 +225,6 @@ MonoBehaviour:
   - {fileID: -5697423530678162692}
   - {fileID: -5411177988710263429}
   - {fileID: -8062912337465071799}
-  - {fileID: -2545716333939640744}
   - {fileID: -1977558218182765274}
   - {fileID: -6748649604194670516}
   m_generatorID: 11
@@ -261,3 +232,7 @@ MonoBehaviour:
   _name: find pickaxe
   _description: 
   _isRenderableInJournal: 1
+  _reward:
+  - _item:
+      _id: 5
+    _amount: 1

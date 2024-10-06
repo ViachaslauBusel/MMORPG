@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Quests.TaskTracker.UI
 {
-    internal class QuestTrackerUI : MonoBehaviour
+    public class QuestTrackerUI : MonoBehaviour
     {
         [SerializeField]
         private TMP_Text _questName;
@@ -50,7 +50,7 @@ namespace Quests.TaskTracker.UI
         {
             var condition = _diContainer.InstantiatePrefab(_questCanditionPrefab, _questCanditionPrefab.transform.parent);
             condition.SetActive(true);
-            var conditionScript = condition.GetComponent<QuestConditionTrackerUI>();
+            var conditionScript = condition.GetComponent<QuestTaskTrackerUI>();
             conditionScript.Init(task);
             _questConditions.Add(condition);
         }

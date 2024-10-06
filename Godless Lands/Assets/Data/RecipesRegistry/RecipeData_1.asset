@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553730b9fe38c3a498dea3245777ea85, type: 3}
+  m_Name: RecipeData_1
+  m_EditorClassIdentifier: 
+  _id: 1
+  _stationType: 3
+  _components:
+  - _item:
+      _id: 10
+    _amount: 1
+  - _item:
+      _id: 11
+    _amount: 3
+  _fuels: []
+  _result:
+    _item: {fileID: 11400000, guid: cc18dde0d17655e4cb2b770640646a87, type: 2}
+    _amount: 1

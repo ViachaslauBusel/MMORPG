@@ -23,7 +23,7 @@ namespace Quests.Nodes
         [Port("fail")]
         private Node _failNode;
         [SerializeField]
-        private List<ItemBundle> _itemsReward;
+        private List<ItemBundleLink> _itemsReward;
 
         public int SuccesIdNode => _successNode != null ? _successNode.ID : 0;
         public Node NextNode => _successNode;
