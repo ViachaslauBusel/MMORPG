@@ -63,6 +63,7 @@ namespace WorldScene
             m_mapLoader.SetTarget(null);
 
             m_sessionManagment.SetCharacterObjectID(prepareScene.GameObjectCharacterID);
+            m_sessionManagment.SetCharacterID(prepareScene.CharacterID);
 
             m_mapLoader.LoadMapInPoint(prepareScene.EntryPoint.ToUnity());
 

@@ -11,6 +11,8 @@ namespace Quests.Journal.UI
         private TMP_Text _questTitle;
         [SerializeField]
         private TMP_Text _questDescription;
+        [SerializeField]
+        private GameObject _questControlPanel;
         private QuestJournalModel _questJournalModel;
         private QuestsModel _questsModel;
 
@@ -47,12 +49,14 @@ namespace Quests.Journal.UI
             }
             _questTitle.text = quest.Data.Name;
             _questDescription.text = GetQuestDescription(quest);
+            _questControlPanel.SetActive(true);
         }
 
         private void ClearQuestDescription()
         {
             _questTitle.text = "";
             _questDescription.text = "";
+            _questControlPanel.SetActive(false);
         }
 
         private string GetQuestDescription(Quest quest)

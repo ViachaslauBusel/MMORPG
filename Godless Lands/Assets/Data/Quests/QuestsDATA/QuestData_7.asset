@@ -31,29 +31,6 @@ MonoBehaviour:
       _id: 0
     _amount: 0
   _conditionName: pickaxe
---- !u!114 &-8062912337465071799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78cbb0f685b810419b10856a3523f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_id: 7
-  m_position: {x: 1727.8926, y: 189.4894}
-  m_outputManager:
-    m_outputPorts:
-    - m_name: out
-      m_maxConnection: 1
-      m_nextNodes: []
-  m_parentContainer: {fileID: 11400000}
-  _name: quest finished
-  _description: You need to find a pickaxe from the skeletons living near the city
-    and return it to the hunter.
 --- !u!114 &-7697260843537921277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,8 +76,7 @@ MonoBehaviour:
     m_outputPorts:
     - m_name: succes
       m_maxConnection: 1
-      m_nextNodes:
-      - {fileID: -8062912337465071799}
+      m_nextNodes: []
     - m_name: fail
       m_maxConnection: 1
       m_nextNodes: []
@@ -224,7 +200,6 @@ MonoBehaviour:
   m_nodes:
   - {fileID: -5697423530678162692}
   - {fileID: -5411177988710263429}
-  - {fileID: -8062912337465071799}
   - {fileID: -1977558218182765274}
   - {fileID: -6748649604194670516}
   m_generatorID: 11

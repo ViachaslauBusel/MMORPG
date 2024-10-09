@@ -586,7 +586,7 @@ MonoBehaviour:
   m_parentContainer: {fileID: 11400000}
   _next: {fileID: 8326858613297649056}
   _questData: {fileID: 11400000, guid: 6ee66308c239ceb418efa14b9952ef48, type: 2}
-  _requiredQuestStageID: 7
+  _requiredQuestStageID: -1
 --- !u!114 &-1205224960940574315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_parentContainer: {fileID: 11400000}
   _next: {fileID: 3941450214946054812}
   _questData: {fileID: 11400000, guid: 8e7c9e84b3ae3ea40a213ec92add066f, type: 2}
-  _requiredQuestStageID: 8
+  _requiredQuestStageID: -1
 --- !u!114 &-220589379934025540
 MonoBehaviour:
   m_ObjectHideFlags: 0

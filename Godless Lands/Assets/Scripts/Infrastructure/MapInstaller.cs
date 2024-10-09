@@ -90,8 +90,8 @@ public class MapInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<QuestNodeCoordinator>().FromNew().AsSingle().NonLazy();
         //Quests Active
         Container.BindInterfacesAndSelfTo<ActiveQuestsTrackerModel>().FromNew().AsSingle();
-        Container.BindInterfacesAndSelfTo<ActiveQuestsTrackerController>().FromNew().AsSingle();
-        Container.BindInterfacesAndSelfTo<QuestAutoTracker>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<ActiveQuestsTrackerPersistence>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<QuestTrackingHandler>().FromNew().AsSingle().NonLazy();
 
         Container.BindInterfacesAndSelfTo<QuestHandlerStorage>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<InventoryItemAvailabilityHandler>().FromNew().AsSingle().NonLazy();

@@ -42,6 +42,8 @@ namespace Dialogues.Data.Nodes
                     values.Add(new DropdownOptionValue(stageNode.ID, stageNode.Name));
                 }
             }
+
+            values.Add(new DropdownOptionValue(-1, "Quest completed"));
             return values.ToArray();
         }
     }

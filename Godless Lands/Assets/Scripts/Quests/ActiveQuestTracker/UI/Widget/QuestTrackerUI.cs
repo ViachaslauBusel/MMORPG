@@ -36,8 +36,8 @@ namespace Quests.TaskTracker.UI
             _questConditions.Clear();
 
             //If there is no next stage, then we dont show any tasks
-            if (_questNodeCoordinator.GetNextQuestStage(quest.GetCurrentStage(), out var task, out _) == false) return;
-
+            _questNodeCoordinator.GetNextQuestStage(quest.GetCurrentStage(), out var task, out _);
+            Debug.Log($"Adding conditions:{task.Count}");
             foreach (var t in task)
             {
                 AddCondiciton(t);

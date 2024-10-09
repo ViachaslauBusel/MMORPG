@@ -66,8 +66,7 @@ MonoBehaviour:
     m_outputPorts:
     - m_name: succes
       m_maxConnection: 1
-      m_nextNodes:
-      - {fileID: 8519580280460150746}
+      m_nextNodes: []
     - m_name: fail
       m_maxConnection: 1
       m_nextNodes: []
@@ -96,7 +95,7 @@ MonoBehaviour:
     - m_name: succes
       m_maxConnection: 1
       m_nextNodes:
-      - {fileID: 8519580280460150746}
+      - {fileID: 0}
     - m_name: fail
       m_maxConnection: 1
       m_nextNodes: []
@@ -119,7 +118,6 @@ MonoBehaviour:
   m_nodes:
   - {fileID: -3307142126734112049}
   - {fileID: 4027950473569708941}
-  - {fileID: 8519580280460150746}
   - {fileID: -745179881101551476}
   - {fileID: -5529333964626986297}
   m_generatorID: 12
@@ -205,26 +203,3 @@ MonoBehaviour:
       m_nextNodes: []
   m_parentContainer: {fileID: 11400000}
   _npcID: 1
---- !u!114 &8519580280460150746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78cbb0f685b810419b10856a3523f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_id: 7
-  m_position: {x: 1951.3779, y: 205.71419}
-  m_outputManager:
-    m_outputPorts:
-    - m_name: out
-      m_maxConnection: 1
-      m_nextNodes: []
-  m_parentContainer: {fileID: 11400000}
-  _name: smelt iron(finish)
-  _description: You need to process iron ore and coal in the smelter into ingots.
-    Then, use the ingots and coal to craft weapon blanks.

@@ -37,15 +37,17 @@ namespace Quests.TaskTracker.UI
             for(int i = _questUIs.Values.Count - 1; i >= 0; i--)
             {
                 var questUI = _questUIs.Values.ElementAt(i);
-                if (!_activeQuestsTrackerModel.IsQuesTracked(questUI.QuestID))
+                if (!_activeQuestsTrackerModel.IsQuestTracked(questUI.QuestID))
                 {
+                    Debug.Log("Removing quest " + questUI.QuestID);
                     Destroy(questUI.gameObject);
                     _questUIs.Remove(questUI.QuestID);
                 }
             }
 
-            foreach (var questId in _activeQuestsTrackerModel.Quests)
+            foreach (var questId in _activeQuestsTrackerModel.ActiveQuests)
             {
+                Debug.Log($"Checking quest {questId}, is in UI: {_questUIs.ContainsKey(questId)}, {_questsModel.TryGetQuestById(questId, out _)}");
                 if (_questUIs.ContainsKey(questId) == false && _questsModel.TryGetQuestById(questId, out var quest))
                 {
                     var questUIObj = _diContainer.InstantiatePrefab(_questPrefab, _questPrefab.transform.parent);

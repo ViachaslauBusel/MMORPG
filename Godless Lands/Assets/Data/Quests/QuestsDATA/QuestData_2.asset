@@ -74,8 +74,7 @@ MonoBehaviour:
     m_outputPorts:
     - m_name: succes
       m_maxConnection: 1
-      m_nextNodes:
-      - {fileID: 6247730144948398503}
+      m_nextNodes: []
     - m_name: fail
       m_maxConnection: 1
       m_nextNodes: []
@@ -100,7 +99,6 @@ MonoBehaviour:
   m_nodes:
   - {fileID: 2952118598917401675}
   - {fileID: 2861085508612100889}
-  - {fileID: 6247730144948398503}
   - {fileID: 7450380647348455123}
   - {fileID: -3638953043013322524}
   - {fileID: -852889786371351097}
@@ -190,29 +188,6 @@ MonoBehaviour:
       - {fileID: 7450380647348455123}
   m_parentContainer: {fileID: 11400000}
   m_next: {fileID: 7450380647348455123}
---- !u!114 &6247730144948398503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78cbb0f685b810419b10856a3523f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_id: 8
-  m_position: {x: 2411.3472, y: 251.18243}
-  m_outputManager:
-    m_outputPorts:
-    - m_name: out
-      m_maxConnection: 1
-      m_nextNodes: []
-  m_parentContainer: {fileID: 11400000}
-  _name: mining ore(finish)
-  _description: You need to extract 50 units of coal and iron ore and return them
-    to the hunter.
 --- !u!114 &6731823253316869461
 MonoBehaviour:
   m_ObjectHideFlags: 0

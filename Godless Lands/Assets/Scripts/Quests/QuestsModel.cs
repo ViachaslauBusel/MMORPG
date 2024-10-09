@@ -22,6 +22,21 @@ namespace Quests
 
         internal void UpdateQuest(int questId, int stageID, QuestSyncFlag flag)
         {
+            //if (flag == QuestSyncFlag.Completed)
+            //{
+            //    if (_quests.ContainsKey(questId))
+            //    {
+            //        var quest = _quests[questId];
+            //        _quests.Remove(questId);
+            //        OnQuestUpdated?.Invoke(quest, flag);
+            //    }
+            //    else
+            //    {
+            //        Debug.LogError("Quest not found for questId: " + questId);
+            //    }
+            //    return;
+            //}
+
             if (_quests.ContainsKey(questId))
             {
                 _quests[questId].UpdateStageId(stageID);
