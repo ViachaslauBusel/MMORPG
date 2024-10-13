@@ -19,7 +19,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "9799a61f8087af3dd88596511a0532506d468975"
+      "hash": "d70718d057b321bbfe0c44a1d1b78626b7e49f7a"
     },
     "com.open.world": {
       "version": "https://github.com/ViachaslauBusel/OpenWorld.git?path=/Packages/com.open.world",

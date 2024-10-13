@@ -76,6 +76,7 @@ namespace OpenWorld.SpawnData
 
         private void UpdateInstance()
         {
+#if UNITY_EDITOR
             if (ReadDataMode) return;
             if (_prefabInstance != null)
             {
@@ -92,6 +93,7 @@ namespace OpenWorld.SpawnData
                 _prefabInstance.transform.localPosition = Vector3.zero;
                 _prefabInstance.transform.localRotation = Quaternion.identity;
             }
+#endif
         }
 
         private void Update()

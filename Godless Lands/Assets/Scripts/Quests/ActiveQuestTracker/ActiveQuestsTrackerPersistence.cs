@@ -31,7 +31,7 @@ namespace Quests.ActiveQuestTracker
                 if (characterId == 0) return;
 
                 string activeQuestsJson = PlayerPrefs.GetString("ActiveQuests_" + characterId, string.Empty);
-                Debug.Log($"[{characterId}]Loading active quests: " + activeQuestsJson);
+                //Debug.Log($"[{characterId}]Loading active quests: " + activeQuestsJson);
                 if (string.IsNullOrEmpty(activeQuestsJson)) return;
 
                 _loadData = JsonConvert.DeserializeObject<Dictionary<int, bool>>(activeQuestsJson);
@@ -47,7 +47,7 @@ namespace Quests.ActiveQuestTracker
             var quests = _model.Quests.ToDictionary(q => q, q => _model.IsQuestTracked(q));
             string activeQuestsJson = JsonConvert.SerializeObject(quests);
             PlayerPrefs.SetString("ActiveQuests_" + _sessionManagmentService.CharacterID, activeQuestsJson);
-            Debug.Log($"[{_sessionManagmentService.CharacterID}]Saving active quests: " + activeQuestsJson);
+            //Debug.Log($"[{_sessionManagmentService.CharacterID}]Saving active quests: " + activeQuestsJson);
         }
 
         internal void ClearData()
