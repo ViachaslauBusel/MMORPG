@@ -13,8 +13,7 @@ namespace MCamera
         [SerializeField]
         private float m_height = 2.5f;
         private Camera m_camera;
-
-        private Vector3 rotation;
+        private Vector3 _rotation;
 
         public Camera Camera { get => m_camera; }
 
@@ -24,6 +23,7 @@ namespace MCamera
         }
         private void Start()
         {
+            _rotation = transform.rotation.eulerAngles;
             //If the tracking point is not set, disable the script
             if (m_trackingCharacter == null)
             { enabled = false; }
@@ -42,15 +42,13 @@ namespace MCamera
             {
                 if (Input.GetButton("MouseLeft"))
                 {
-                    rotation = transform.localRotation.eulerAngles;
-                    rotation.x -= (Input.GetAxis("Mouse Y") * speed_rotation) * Time.deltaTime;
-                    if (rotation.x < 300.0f && rotation.x >= 200.0f) rotation.x = 300.0f;
-                    else if (rotation.x > 65.0f && rotation.x < 200.0f) rotation.x = 65.0f;
+                    _rotation.x -= (Input.GetAxis("Mouse Y") * speed_rotation) * Time.deltaTime;
+                    _rotation.x = Mathf.Clamp(_rotation.x, -50.0f, 65.0f);
 
-                    rotation.y += (Input.GetAxis("Mouse X") * speed_rotation) * Time.deltaTime;
+                    _rotation.y += (Input.GetAxis("Mouse X") * speed_rotation) * Time.deltaTime;
                     //print(rotation);
 
-                    transform.localRotation = Quaternion.Euler(rotation);
+                    transform.localRotation = Quaternion.Euler(_rotation);
                 }
                 else
                 {
@@ -68,21 +66,19 @@ namespace MCamera
                     }
 
                     // Rotate the camera around vertical axis using mouse axis Y
-                    rotation = transform.localRotation.eulerAngles;
-                    rotation.y = targetRotation.y;
-                    rotation.x -= (Input.GetAxis("Mouse Y") * speed_rotation) * Time.deltaTime;
-                    if (rotation.x < 300.0f && rotation.x >= 200.0f) rotation.x = 300.0f;
-                    else if (rotation.x > 65.0f && rotation.x < 200.0f) rotation.x = 65.0f;
+                    _rotation.y = targetRotation.y;
+                    _rotation.x -= (Input.GetAxis("Mouse Y") * speed_rotation) * Time.deltaTime;
+                    _rotation.x = Mathf.Clamp(_rotation.x, -50.0f, 65.0f);
 
-                    transform.rotation = Quaternion.Euler(rotation);
+                    transform.rotation = Quaternion.Euler(_rotation);
                 }
             }
             // Return camera to the back
             else if (m_trackingCharacter != null && m_trackingCharacter.enabled)
             {
-                rotation = transform.rotation.eulerAngles;
-                rotation.y = Mathf.MoveTowardsAngle(rotation.y, m_trackingCharacter.transform.rotation.eulerAngles.y, speed_rotation * Time.deltaTime);
-                transform.rotation = Quaternion.Euler(rotation);
+                _rotation = transform.rotation.eulerAngles;
+                _rotation.y = Mathf.MoveTowardsAngle(_rotation.y, m_trackingCharacter.transform.rotation.eulerAngles.y, speed_rotation * Time.deltaTime);
+                transform.rotation = Quaternion.Euler(_rotation);
             }
           
             //float targetRotationY = m_trackingPoint.rotation.eulerAngles.y;
