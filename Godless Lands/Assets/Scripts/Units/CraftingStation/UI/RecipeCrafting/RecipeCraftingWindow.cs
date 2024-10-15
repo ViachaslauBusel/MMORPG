@@ -8,9 +8,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Workbench.UI.RecipeCrafting
+namespace CraftingStations.UI.RecipeCrafting
 {
-    public class RecipeCraftingWindow : MonoBehaviour, IWorkbenchWindow
+    public class RecipeCraftingWindow : MonoBehaviour, ICraftWindow
     {
         [SerializeField]
         private RecipeInputCell _recipeCell;
@@ -25,22 +25,22 @@ namespace Workbench.UI.RecipeCrafting
         private RecipeData _selectRecipe;
         private RecipesRegistry _recipesRegistry;
         private DiContainer _diContainer;
-        private WorkbenchInputHandler _workbenchInputHandler;
+        private CraftingStationController _craftingStationController;
         private bool _isReadyForWork;
 
         public CraftingStationType StationType => CraftingStationType.Workbench;
 
 
         [Inject]
-        private void Construct(RecipesRegistry recipesRegistry, DiContainer diContainer)
+        private void Construct(RecipesRegistry recipesRegistry, DiContainer diContainer, CraftingStationController craftingStationController)
         {
             _recipesRegistry = recipesRegistry;
             _diContainer = diContainer;
+            _craftingStationController = craftingStationController;
         }
 
         private void Awake()
         {
-            _workbenchInputHandler = GetComponentInParent<WorkbenchInputHandler>();
             _canvas = GetComponent<Canvas>();
             _canvas.enabled = false;
         }
@@ -48,6 +48,7 @@ namespace Workbench.UI.RecipeCrafting
         public void Hide()
         {
             _canvas.enabled = false;
+            _craftingStationController.CloseWindow();
         }
 
         public void Open(bool isReadyForWork)
@@ -64,7 +65,7 @@ namespace Workbench.UI.RecipeCrafting
         public void Create()
         {
             if (_selectRecipe == null) return;
-            _workbenchInputHandler.CreateItem(_selectRecipe.ID, null, null);
+            _craftingStationController.CreateItem(_selectRecipe.ID, null, null);
         }
 
         public GameObject CreatePieceField()

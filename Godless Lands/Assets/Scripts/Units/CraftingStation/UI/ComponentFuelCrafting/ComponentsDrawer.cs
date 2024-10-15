@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Workbench.UI.Smelter
+namespace CraftingStations.UI.ComponentFuelCrafting
 {
     public class ComponentsDrawer : MonoBehaviour
     {

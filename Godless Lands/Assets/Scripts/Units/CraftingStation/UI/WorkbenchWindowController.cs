@@ -1,26 +1,26 @@
 ﻿using Protocol.Data.Units.CraftingStation;
 using UnityEngine;
-using Workbench.UI.RecipeCrafting;
-using Workbench.UI.Smelter;
+using CraftingStations.UI.RecipeCrafting;
+using CraftingStations.UI.ComponentFuelCrafting;
 using Zenject;
 
-namespace Workbench.UI
+namespace CraftingStations.UI
 {
     public class WorkbenchWindowController : MonoBehaviour
     {
         [SerializeField]
-        private SmelterWindow _smelterWindow;
+        private ComponentFuelCraftingWindow _smelterWindow;
         [SerializeField]
-        private SmelterWindow _grindstoneWindow;
+        private ComponentFuelCraftingWindow _grindstoneWindow;
         [SerializeField]
-        private SmelterWindow _tanneryWindow;
+        private ComponentFuelCraftingWindow _tanneryWindow;
         [SerializeField]
         private RecipeCraftingWindow _recipeCraftingWindow;
-        private IWorkbenchWindow _openedWindow;
-        private WorkbenchListener _workbenchListener;
+        private ICraftWindow _openedWindow;
+        private CraftingStationListener _workbenchListener;
 
         [Inject]
-        public void Construct(WorkbenchListener workbenchListener)
+        public void Construct(CraftingStationListener workbenchListener)
         {
             _workbenchListener = workbenchListener;
         }
@@ -61,7 +61,7 @@ namespace Workbench.UI
             }
         }
 
-        private IWorkbenchWindow GetWindow(CraftingStationType type) => type switch
+        private ICraftWindow GetWindow(CraftingStationType type) => type switch
         {
             CraftingStationType.Smelter => _smelterWindow,
             CraftingStationType.Grindstone => _grindstoneWindow,

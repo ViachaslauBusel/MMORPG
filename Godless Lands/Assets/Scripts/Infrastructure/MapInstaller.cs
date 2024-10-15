@@ -26,7 +26,7 @@ using Trade;
 using UI.ConfirmationDialog;
 using Units.Registry;
 using UnityEngine;
-using Workbench;
+using CraftingStations;
 using Zenject;
 
 public class MapInstaller : MonoInstaller
@@ -75,9 +75,10 @@ public class MapInstaller : MonoInstaller
         //Recipes
         Container.BindInterfacesAndSelfTo<RecipeComponentMatcherService>().FromNew().AsSingle().NonLazy();
 
-        //Workbench
-        Container.BindInterfacesAndSelfTo<WorkbenchListener>().FromNew().AsSingle().NonLazy();
+        //Crafting Stations
+        Container.BindInterfacesAndSelfTo<CraftingStationListener>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<SmelterModel>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<CraftingStationController>().FromNew().AsSingle();
 
         //Professions
         Container.BindInterfacesAndSelfTo<ProfessionsModel>().FromNew().AsSingle().NonLazy();

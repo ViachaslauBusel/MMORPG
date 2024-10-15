@@ -1,8 +1,8 @@
 ﻿using Protocol.Data.Units.CraftingStation;
 
-namespace Workbench.UI
+namespace CraftingStations.UI
 {
-    public interface IWorkbenchWindow
+    public interface ICraftWindow
     {
         CraftingStationType StationType { get; }
         void Open(bool isReadyForWork);

@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Workbench.UI.RecipeCrafting
+namespace CraftingStations.UI.RecipeCrafting
 {
     public class RecipeComponent : MonoBehaviour
     {

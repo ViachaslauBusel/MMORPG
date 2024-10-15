@@ -5,15 +5,15 @@ using Protocol.MSG.Game.Workbench;
 using RUCP;
 using System;
 
-namespace Workbench
+namespace CraftingStations
 {
-    public class WorkbenchListener : IDisposable
+    public class CraftingStationListener : IDisposable
     {
         private NetworkManager _networkManager;
 
         public event Action<CraftingStationType, bool, bool> OnWindowCommand;
 
-        public WorkbenchListener(NetworkManager networkManager)
+        public CraftingStationListener(NetworkManager networkManager)
         {
             _networkManager = networkManager;
 

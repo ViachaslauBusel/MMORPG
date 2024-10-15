@@ -8,9 +8,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Workbench.UI.Smelter
+namespace CraftingStations.UI.ComponentFuelCrafting
 {
-    public class SmelterWindow : MonoBehaviour, IWorkbenchWindow
+    /// <summary>
+    /// Manages windows of a group of stations that can create items from components and fuel
+    /// </summary>
+    public class ComponentFuelCraftingWindow : MonoBehaviour, ICraftWindow
     {
         [SerializeField]
         private ComponentsDrawer _component;
@@ -24,29 +27,26 @@ namespace Workbench.UI.Smelter
         private SmelterModel _smelterModel;
         private DiContainer _diContainer;
         private RecipeData _selectedRecipe;
-        private WorkbenchInputHandler _workbenchInputHandler;
+        private CraftingStationController _craftingStationController;
 
         public Transform recipesParent;
         public GameObject RecipePrefab;
         private List<SmelterRecipeCell> recipes = new List<SmelterRecipeCell>();
-       
-
-        public MachineUse machineUse;
         private bool _isReadyForWork;
 
 
         public CraftingStationType StationType => _stationType;
 
         [Inject]
-        private void Construct(SmelterModel smelterModel, DiContainer diContainer)
+        private void Construct(SmelterModel smelterModel, DiContainer diContainer, CraftingStationController craftingStationController)
         {
             _smelterModel = smelterModel;
             _diContainer = diContainer;
-        }
+            _craftingStationController = craftingStationController;
+        } 
 
         private void Awake()
         {
-            _workbenchInputHandler = GetComponentInParent<WorkbenchInputHandler>();
             _canvas = GetComponent<Canvas>();
             _canvas.enabled = false;
             _createBut.interactable = false;
@@ -73,6 +73,7 @@ namespace Workbench.UI.Smelter
         public void Hide()
         {
             _canvas.enabled = false;
+            _craftingStationController.CloseWindow();
         }
         public void Close()
         {
@@ -147,7 +148,7 @@ namespace Workbench.UI.Smelter
         public void Create()
         {
             if (_selectedRecipe == null) return;
-            _workbenchInputHandler.CreateItem(_selectedRecipe.ID,
+            _craftingStationController.CreateItem(_selectedRecipe.ID,
                                               _component.GetCells().Where(c => !c.IsEmpty()).Select(c => c.GetItem().UniqueID).ToList(),
                                               _fuel.GetCells().Where(c => !c.IsEmpty()).Select(c => c.GetItem().UniqueID).ToList());
         }

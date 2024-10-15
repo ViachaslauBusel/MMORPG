@@ -73,10 +73,5 @@ namespace Inventory
         {
             OnLockUpdate?.Invoke();
         }
-
-        internal object GetItemCountByItemId(object itemID)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

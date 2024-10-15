@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Workbench
+namespace CraftingStations
 {
-    public class WorkbenchInputHandler : MonoBehaviour
+    public class CraftingStationController
     {
         private NetworkManager _networkManager;
 
-        [Inject]
-        private void Construct(NetworkManager networkManager)
+        public CraftingStationController(NetworkManager networkManager)
         {
             _networkManager = networkManager;
         }

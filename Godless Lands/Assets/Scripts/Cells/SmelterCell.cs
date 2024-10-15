@@ -4,7 +4,7 @@ using Protocol.Data.Items;
 using Recipes;
 using System.Collections.Generic;
 using UnityEngine;
-using Workbench;
+using CraftingStations;
 using Zenject;
 
 public class SmelterCell : ItemCell

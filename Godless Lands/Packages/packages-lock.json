@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "7910e9bdff70f86dcd775bf7d59bca0720bca420"
+      "hash": "fe82099fe331e75a95d33e161f2e276b592b313a"
     },
     "com.node.editor": {
       "version": "https://github.com/ViachaslauBusel/NodeEditor.git?path=/Packages/com.node.editor",

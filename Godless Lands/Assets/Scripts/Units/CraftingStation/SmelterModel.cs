@@ -6,7 +6,7 @@ using Recipes.Data;
 using System;
 using System.Collections.Generic;
 
-namespace Workbench
+namespace CraftingStations
 {
     public class SmelterModel : IDisposable
     {

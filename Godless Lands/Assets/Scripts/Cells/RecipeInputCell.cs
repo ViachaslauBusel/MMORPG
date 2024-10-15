@@ -1,6 +1,6 @@
 ﻿using Items;
 using Items.Data;
-using Workbench.UI.RecipeCrafting;
+using CraftingStations.UI.RecipeCrafting;
 
 namespace Cells
 {

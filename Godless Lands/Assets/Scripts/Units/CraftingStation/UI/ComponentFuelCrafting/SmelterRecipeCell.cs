@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Workbench.UI.Smelter
+namespace CraftingStations.UI.ComponentFuelCrafting
 {
     public class SmelterRecipeCell : MonoBehaviour
     {
@@ -13,7 +13,7 @@ namespace Workbench.UI.Smelter
         private Text _itemName;
         private RecipeData _recipe;
         private Button _button;
-        private SmelterWindow _smelterWindow;
+        private ComponentFuelCraftingWindow _smelterWindow;
         private ItemsFactory _itemsFactory;
 
 
@@ -33,7 +33,7 @@ namespace Workbench.UI.Smelter
 
         private void Start()
         {
-            _smelterWindow = GetComponentInParent<SmelterWindow>();
+            _smelterWindow = GetComponentInParent<ComponentFuelCraftingWindow>();
             transform.localScale = Vector3.one;
         }
 

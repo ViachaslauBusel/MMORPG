@@ -1,9 +1,9 @@
 ﻿using Cells;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Workbench.UI.RecipeCrafting;
+using CraftingStations.UI.RecipeCrafting;
 
-namespace Workbench.GUI
+namespace CraftingStations.GUI
 {
     public class EventRecipeCelll : EventTrigger
     {
