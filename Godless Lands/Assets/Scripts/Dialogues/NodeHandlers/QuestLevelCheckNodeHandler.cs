@@ -28,14 +28,12 @@ namespace Dialogues.NodeHandlers
         {
             QuestLevelCheckNode questLevelCheck = conditionNode as QuestLevelCheckNode;
             if (questLevelCheck == null) return null;
-            // Check if this quest exists in the journal
-            bool isExist = _questsModel.TryGetQuestById(questLevelCheck.QuestId, out Quest quest);
 
-            // If the quest does not exist in the journal, then the ID of its current stage is 0
-            int questStageID = isExist ? quest.CurrentStageID : 0;
+            // Get the current quest stage ID
+            int questStageID = _questsModel.GetQuestCurrentStageID(questLevelCheck.QuestId);
 
             // Compare the quest stage ID with the required one
-            if(questStageID == questLevelCheck.RequiredStageId) return questLevelCheck.SuccesNode;
+            if (questStageID == questLevelCheck.RequiredStageId) return questLevelCheck.SuccesNode;
             
             return questLevelCheck.FailNode;
         }

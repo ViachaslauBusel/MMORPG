@@ -25,6 +25,16 @@ MonoBehaviour:
     _chance: 91.8
     _minAmount: 5
     _maxAmount: 10
+  - _item:
+      _id: 7
+    _chance: 91.8
+    _minAmount: 5
+    _maxAmount: 10
+  - _item:
+      _id: 9
+    _chance: 91.8
+    _minAmount: 5
+    _maxAmount: 10
   _profession: 1
   _exp: 90
   _stamina: 10

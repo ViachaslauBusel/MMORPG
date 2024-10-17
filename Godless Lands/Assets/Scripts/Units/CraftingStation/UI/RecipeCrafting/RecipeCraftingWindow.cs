@@ -75,8 +75,7 @@ namespace CraftingStations.UI.RecipeCrafting
 
         public void SelectRecipeItem(RecipeItemData recipeData)
         {
-
-            _selectRecipe = _recipesRegistry.GetObjectByID(recipeData.ID);
+            _selectRecipe = recipeData.Recipe;
             if (_selectRecipe == null) return;
             _recipeName.text = recipeData.Name;
 
