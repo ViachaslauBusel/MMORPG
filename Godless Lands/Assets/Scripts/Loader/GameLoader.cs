@@ -16,18 +16,18 @@ namespace Loader
     public class GameLoader : MonoBehaviour
     {
         private static GameLoader m_instance;
-        private MapLoader mapLoader;
+        private MapLoader _mapLoader;
         public Image progressBar;
-        private NetworkManager m_networkManager;
-        private ZenjectSceneLoader m_sceneLoader;
+        private NetworkManager _networkManager;
+        private ZenjectSceneLoader _sceneLoader;
+        private PlayerMovementController _playerMovementController;
 
         [Inject]
         private void Construct(NetworkManager networkManager, ZenjectSceneLoader sceneLoader)
         {
-            m_networkManager = networkManager;
-            m_sceneLoader = sceneLoader;
-            networkManager.RegisterHandler(Network.Core.Types.MapEntrance, MapEntrance);
-            m_networkManager.RegisterHandler(Opcode.MSG_WORLD_ENTRANCE, WorldEntrance);
+            _networkManager = networkManager;
+            _sceneLoader = sceneLoader;
+            _networkManager.RegisterHandler(Opcode.MSG_WORLD_ENTRANCE, WorldEntrance);
         }
 
         private void Awake()
@@ -47,23 +47,6 @@ namespace Loader
             Time.timeScale = 0.0f;
         }
 
-       
-
-        private void MapEntrance(Packet packet)
-        {
-            mapLoader = GameObject.Find("Map").GetComponent<MapLoader>();
-           //TODO mapLoader.LoadMap(packet.ReadVector3());
-        }
-
-        public void LoadGame()
-        {
-            Debug.Log($"LOAD GAME:{Time.frameCount}");
-            StartCoroutine(IELoadGame_part1());
-        }
-        //private void Update()
-        //{
-        //    Debug.Log($"Update:{Time.frameCount}");
-        //}
         public void LoadPoint()
         {
             StartCoroutine(IELoadPoint());
@@ -71,17 +54,17 @@ namespace Loader
 
         private IEnumerator IELoadPoint()
         {
-            PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
+            CharacterInstanceMovementController player = GameObject.Find("Player").GetComponent<CharacterInstanceMovementController>();
             player.enabled = false;
 
-            mapLoader = GameObject.Find("Map").GetComponent<MapLoader>();
-            mapLoader.DestroyMap();
-            mapLoader.LoadMap();
+            _mapLoader = GameObject.Find("Map").GetComponent<MapLoader>();
+            _mapLoader.DestroyMap();
+            _mapLoader.LoadMap();
 
-            while (!mapLoader.isDone)
+            while (!_mapLoader.isDone)
             {
                 yield return null;
-                progressBar.fillAmount = mapLoader.progress;
+                progressBar.fillAmount = _mapLoader.progress;
             }
 
             //TODO msg
@@ -96,7 +79,7 @@ namespace Loader
         }
         private IEnumerator IELoadGame_part1()
         {
-            AsyncOperation asyncLoad = m_sceneLoader.LoadSceneAsync("Map");
+            AsyncOperation asyncLoad = _sceneLoader.LoadSceneAsync("Map");
 
             // Wait until the asynchronous scene fully loads
             while (!asyncLoad.isDone)
@@ -106,14 +89,14 @@ namespace Loader
             }
 
 
-            mapLoader = GameObject.Find("Map").GetComponent<MapLoader>();
+            _mapLoader = GameObject.Find("Map").GetComponent<MapLoader>();
 
-            while (!mapLoader.Ready)
+            while (!_mapLoader.Ready)
                 yield return null;
 
             //Дождаться загрузки сцены с картой, и отправить запрос на сервер для того что бы начать получения данных
             MSG_WORLD_ENTRANCE_CS entrance_request = new MSG_WORLD_ENTRANCE_CS();
-            m_networkManager.Client.Send(entrance_request);
+            _networkManager.Client.Send(entrance_request);
         }
 
         private void WorldEntrance(Packet packet)
@@ -124,11 +107,11 @@ namespace Loader
         private IEnumerator IELoadGame_part2(Vector3 point)
         {
             Debug.Log($"Load map in point:{point}");
-            mapLoader.LoadMapInPoint(point);
-            while (!mapLoader.isDone)
+            _mapLoader.LoadMapInPoint(point);
+            while (!_mapLoader.isDone)
             {
                 yield return null;
-                progressBar.fillAmount = 0.2f + (0.8f * mapLoader.progress);
+                progressBar.fillAmount = 0.2f + (0.8f * _mapLoader.progress);
             }
 
 
@@ -141,7 +124,7 @@ namespace Loader
 
         private void OnDestroy()
         {
-            m_networkManager?.UnregisterHandler(Network.Core.Types.MapEntrance);
+            _networkManager.UnregisterHandler(Opcode.MSG_WORLD_ENTRANCE);
             m_instance = null;
         }
     }

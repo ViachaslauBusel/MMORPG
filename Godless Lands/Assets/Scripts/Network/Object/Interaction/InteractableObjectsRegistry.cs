@@ -29,7 +29,7 @@ namespace Network.Object.Interaction
         {
             if (_interactableObjects.ContainsKey(networkGameObjectID) == false)
             {
-                Debug.LogError($"Interactable object with id {networkGameObjectID} does not exist in the registry");
+               // Debug.LogError($"Interactable object with id {networkGameObjectID} does not exist in the registry");
                 return;
             }
             _interactableObjects.Remove(networkGameObjectID);

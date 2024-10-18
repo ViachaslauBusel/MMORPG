@@ -49,7 +49,7 @@ namespace Network.Object.Visualization.Entities.Monsters
 
             var assetHolder = await _monstersFactory.CreateMonsterAsync(skinID);
 
-            if (skinID != _visualData.SkinID)
+            if (skinID != _visualData.SkinID || assetHolder.IsValid == false)
             {
                 assetHolder.Release();
                 return;

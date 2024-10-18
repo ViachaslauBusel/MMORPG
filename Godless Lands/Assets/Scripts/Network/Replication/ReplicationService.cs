@@ -58,6 +58,7 @@ namespace Network.Replication
                 Debug.LogError($"[{objectID}]Error destroy game object, specified ID not found");
                 return;
             }
+            Debug.Log($"Destroy network object:{objectID}");
             _objects[objectID].NotifyComponentsPreDestroy();
             OnNetworkObjectDestroyed?.Invoke(_objects[objectID].gameObject);
             Destroy(_objects[objectID].gameObject);

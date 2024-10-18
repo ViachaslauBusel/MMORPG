@@ -11,6 +11,7 @@ namespace Network.Object.Visualization
         protected NetworkComponentsProvider _networkComponentsProvider;
 
         public event Action<GameObject> OnVisualObjectUpdated;
+        public event Action OnVisualObjectDestroyed;
         public GameObject VisualObject => _visualObjectInstance?.InstanceObject;
 
 
@@ -27,6 +28,7 @@ namespace Network.Object.Visualization
 
                 _visualObjectInstance.Release();
                 _visualObjectInstance = null;
+                OnVisualObjectDestroyed?.Invoke();
             }
         }
 

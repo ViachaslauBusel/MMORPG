@@ -9,22 +9,20 @@ using Zenject;
 
 namespace Player.Controller
 {
-    public class PlayerPositionSynchronizer : MonoBehaviour
+    public class CharacterInstancePositionSynchronizer : MonoBehaviour
     {
         /// <summary>
-        /// Position sending frequency
+        /// Количество кадров между отправкой пакетов
         /// </summary>
-        private const int m_send_cicle_frequency = 20;
-        private int cicle = 20;
-        private Vector3 m_lastSentPosition = Vector3.zero;
-        private float m_lastSentRotation = 0.0f;
-        private long m_timeStamp;
+        private const int SEND_CYCLE_FREQUENCY = 20;
+        private int _cicle = 20;
+        private Vector3 _lastSentPosition = Vector3.zero;
+        private float _lastSentRotation = 0.0f;
+        private long _timeStamp;
         private NetworkManager _networkManager;
         private Transform _character;
-        private PlayerController _controller;
+        private CharacterInstanceMovementController _controller;
         private IVisualRepresentation _skinObjectHolder;
-
-
 
         [Inject]
         private void Construct(NetworkManager networkManager)
@@ -35,7 +33,7 @@ namespace Player.Controller
         private void Awake()
         {
             _skinObjectHolder = GetComponentInParent<IVisualRepresentation>();
-            _controller = GetComponent<PlayerController>();
+            _controller = GetComponent<CharacterInstanceMovementController>();
 
             _controller.OnStartMove += OnStartMove;
             _controller.OnStopMove += OnStopMove;
@@ -55,16 +53,16 @@ namespace Player.Controller
 
         private void FixedUpdate()
         {
-            if (--cicle < 0)
+            if (--_cicle < 0)
             {
-                cicle = m_send_cicle_frequency;
+                _cicle = SEND_CYCLE_FREQUENCY;
                 SyncPosition();
             }
         }
 
         private void OnStartMove()
         {
-            cicle = m_send_cicle_frequency;
+            _cicle = SEND_CYCLE_FREQUENCY;
             enabled = true;
         }
 
@@ -84,16 +82,16 @@ namespace Player.Controller
         private void SyncPosition()
         {
             //If the character has moved the minimum distance for synchronization
-            if (Vector3.Distance(m_lastSentPosition.GetClearY(), _character.position.GetClearY()) > 0.1f)
+            if (Vector3.Distance(_lastSentPosition.GetClearY(), _character.position.GetClearY()) > 0.1f)
             {
                 SendPosition(true);
                 return;
             }
 
-            if (Mathf.Abs(Mathf.DeltaAngle(m_lastSentRotation, _character.rotation.eulerAngles.y)) > 0.5f)
+            if (Mathf.Abs(Mathf.DeltaAngle(_lastSentRotation, _character.rotation.eulerAngles.y)) > 0.5f)
             {
 
-                m_lastSentRotation = _character.rotation.eulerAngles.y;
+                _lastSentRotation = _character.rotation.eulerAngles.y;
                 //TODO msg
                 //Packet nw = new Packet(Channel.Discard);
                 //nw.WriteType(Types.Rotation);
@@ -106,19 +104,20 @@ namespace Player.Controller
 
         private void SendPosition(bool inMove, MoveFlag flag = MoveFlag.None)
         {
-            float speed = Vector3.Distance(_character.position.ClearY(), m_lastSentPosition.ClearY()) / ((DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - m_timeStamp) / 1000.0f);
-            m_timeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            float speed = Vector3.Distance(_character.position.ClearY(), _lastSentPosition.ClearY()) / ((DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - _timeStamp) / 1000.0f);
+            _timeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
-            m_lastSentPosition = _character.position;
-            m_lastSentRotation = _character.rotation.eulerAngles.y;
+            _lastSentPosition = _character.position;
+            _lastSentRotation = _character.rotation.eulerAngles.y;
 
             MSG_PLAYER_INPUT_CS playerInput = new MSG_PLAYER_INPUT_CS();
 
-            playerInput.Position = m_lastSentPosition.ToNumeric();
-            playerInput.Rotation = m_lastSentRotation;
+            playerInput.Position = _lastSentPosition.ToNumeric();
+            playerInput.Rotation = _lastSentRotation;
             playerInput.Velocity = speed;
             playerInput.InMove = inMove;
             playerInput.MoveFlag = flag;
+            playerInput.Segment = _controller.Segment;
 
             _networkManager.Client.Send(playerInput);
         }

@@ -1,11 +1,12 @@
 ﻿using Network.Object.Visualization;
 using System;
 using UnityEngine;
+using Zenject;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Player.Controller
 {
-    public class PlayerController : MonoBehaviour
+    public class CharacterInstanceMovementController : MonoBehaviour
     {
         [SerializeField]
         private float _speed = 6.0f;
@@ -17,12 +18,23 @@ namespace Player.Controller
         private InputManager _inputManager;
         private bool _inMove;
         private Vector3 _localDirection;
+        private byte _segment = 0;
+        private int _blockCount = 0;
+        private PlayerMovementController _playerMovementController;
 
         public bool InMove => _inMove;
+        public byte Segment => _segment;
+        public bool IsBlocked => _blockCount > 0;
 
         public event Action OnStartMove;
         public event Action OnStopMove;
         public event Action OnJump;
+
+        [Inject]
+        private void Construct(PlayerMovementController playerMovementController)
+        {
+            _playerMovementController = playerMovementController;
+        }
 
         private void Awake()
         {
@@ -48,6 +60,23 @@ namespace Player.Controller
         {
             _skinObjectHolder.OnVisualObjectUpdated += AssignComponents;
             AssignComponents(_skinObjectHolder.VisualObject);
+            _playerMovementController.RegisterCharacterInstance(this);
+        }
+
+        public void Initialize(byte segment)
+        {
+            _segment = segment;
+        }
+
+        public void BlockMove()
+        {
+            _blockCount++;
+            _segment++;
+        }
+
+        public void UnblockMove()
+        {
+            _blockCount--;
         }
 
         private void AssignComponents(GameObject skinObject)
@@ -95,7 +124,8 @@ namespace Player.Controller
 
         void Update()
         {
-            if (_characterController == null || _characterController.enabled == false)
+
+            if (IsBlocked || _characterController == null || _characterController.enabled == false)
             {
                 return;
             }
@@ -104,7 +134,7 @@ namespace Player.Controller
             {
                 _localDirection = new Vector3(_inputDirection.x, _localDirection.y, _inputDirection.y);
             }
-          
+
             Vector3 applyVelocity = _characterController.transform.TransformDirection(_localDirection);
             applyVelocity *= (_speed * 0.95f);
 
@@ -115,26 +145,27 @@ namespace Player.Controller
             _animator.SetBool("isGrounded", _characterController.isGrounded);
         }
 
-       
+
         private float ApplyGravity(float velocityY)
         {
             // Apply gravity
             if (_characterController.isGrounded && velocityY < 0f)
             {
-               return -1f;
+                return -1f;
             }
             return Mathf.Clamp(velocityY - Config.GRAVITY_FORCE * Time.deltaTime, -Config.GRAVITY, Config.JUMP_FORCE);
         }
 
         private void OnDestroy()
         {
-            _skinObjectHolder.OnVisualObjectUpdated -= AssignComponents;
+            _playerMovementController.UnregisterCharacterInstance();
 
             if (_inputManager != null)
-
+            {
                 _inputManager.Keyboard.MoveControl.performed -= MoveInput;
-            _inputManager.Keyboard.MoveControl.canceled -= StopMoveInput;
-            _inputManager.Keyboard.Jump.performed -= JumpInput;
+                _inputManager.Keyboard.MoveControl.canceled -= StopMoveInput;
+                _inputManager.Keyboard.Jump.performed -= JumpInput;
+            }
         }
     }
 }

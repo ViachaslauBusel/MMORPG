@@ -12,5 +12,6 @@ namespace Network.Object.Visualization
         GameObject VisualObject { get; }
 
         event Action<GameObject> OnVisualObjectUpdated;
+        event Action OnVisualObjectDestroyed;
     }
 }

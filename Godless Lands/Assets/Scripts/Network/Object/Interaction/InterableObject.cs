@@ -55,7 +55,6 @@ namespace Network.Object.Interaction
 
         private void UnregisterInteractableObject()
         {
-            if (_visualObject == null) return;
             _interactableObjectsRegistry.UnregisterInteractableObject(_networkComponentsProvider.NetworkGameObjectID);
             _visualObject = null;
         }
@@ -63,6 +62,7 @@ namespace Network.Object.Interaction
         private void OnDestroy()
         {
             UnregisterInteractableObject();
+            _visualRepresentation.OnVisualObjectUpdated -= OnVisualObjectUpdated;
         }
     }
 }

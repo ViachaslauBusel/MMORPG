@@ -28,6 +28,7 @@ using Units.Registry;
 using UnityEngine;
 using CraftingStations;
 using Zenject;
+using Player.Controller;
 
 public class MapInstaller : MonoInstaller
 {
@@ -50,7 +51,10 @@ public class MapInstaller : MonoInstaller
         // Player character
         Container.BindInterfacesAndSelfTo<PlayerCharacterNetworkObjecEventNotifier>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<PlayerCharacterVisualEventNotifier>().FromNew().AsSingle().NonLazy();
-       
+
+        // Movement
+        Container.BindInterfacesAndSelfTo<PlayerMovementController>().FromNew().AsSingle();
+
         // Inventory
         Container.BindInterfacesAndSelfTo<InventoryModel>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<InventoryListener>().FromNew().AsSingle().NonLazy();
