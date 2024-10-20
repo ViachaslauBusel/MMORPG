@@ -181,6 +181,24 @@ MonoBehaviour:
   m_outputManager:
     m_outputPorts: []
   m_parentContainer: {fileID: 11400000}
+--- !u!114 &-7034657105304558399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad46a7f9aa89d8a47b4ac349c398ee10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 71
+  m_position: {x: 1348.8372, y: 902.21533}
+  m_outputManager:
+    m_outputPorts: []
+  m_parentContainer: {fileID: 11400000}
+  _shopData: {fileID: 11400000, guid: ec5178f7fff681d43a174b5752b6db1f, type: 2}
 --- !u!114 &-6705520285616713160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +382,7 @@ MonoBehaviour:
       - {fileID: 2875461727422722627}
       - {fileID: 9190930508108723493}
       - {fileID: 4506285588584539832}
+      - {fileID: 275495257973149195}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: 'Greetings, traveler. '
 --- !u!114 &-5247212139885014078
@@ -771,7 +790,9 @@ MonoBehaviour:
   - {fileID: 774559127664710833}
   - {fileID: -6705520285616713160}
   - {fileID: 4174688892810569494}
-  m_generatorID: 69
+  - {fileID: 275495257973149195}
+  - {fileID: -7034657105304558399}
+  m_generatorID: 72
 --- !u!114 &20902397885018985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,6 +843,29 @@ MonoBehaviour:
       - {fileID: -7887733273566006704}
   m_parentContainer: {fileID: 11400000}
   m_npcReplica: Be careful, my friend. Good luck, and return with the pickaxe.
+--- !u!114 &275495257973149195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80729dd2ddd6444b94fed59f2b0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_id: 70
+  m_position: {x: 993.69165, y: 891.84546}
+  m_outputManager:
+    m_outputPorts:
+    - m_name: out
+      m_maxConnection: 1
+      m_nextNodes:
+      - {fileID: -7034657105304558399}
+  m_parentContainer: {fileID: 11400000}
+  _next: {fileID: 0}
+  _replica: Open shop
 --- !u!114 &310721837927062931
 MonoBehaviour:
   m_ObjectHideFlags: 0

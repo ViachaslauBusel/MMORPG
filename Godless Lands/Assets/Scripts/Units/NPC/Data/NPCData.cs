@@ -1,6 +1,8 @@
-﻿using Factories;
+﻿using Dialogues.Data.Nodes;
+using Factories;
 using ObjectRegistryEditor;
 using Protocol.Data.Units.NPCs;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -16,6 +18,8 @@ namespace NPCs
         private string _name;
         [SerializeField]
         private AssetReferenceT<GameObject> _prefab;
+        [SerializeField]
+        private DialogData _dialog;
 
         public int ID => _id;
         public string Name => _name;
@@ -25,6 +29,7 @@ namespace NPCs
         public Texture Preview => null;
 #endif
         public AssetReferenceT<GameObject> Prefab => _prefab;
+        public DialogData Dialog => _dialog;
 
 
         public void Initialize(int id)
@@ -32,12 +37,13 @@ namespace NPCs
             _id = id;
         }
 
-        public NpcInfo ToServerData()
+        public NpcSData ToServerData()
         {
-            return new NpcInfo
-            {
-                ID = ID,
-            };
+            return new NpcSData(_id,
+                                _dialog.Nodes.OfType<ShopNode>()
+                                             .Select(n => n.ShopData.ToServerData())
+                                             .FirstOrDefault()
+                                );
         }
     }
 }

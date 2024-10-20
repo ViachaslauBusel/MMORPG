@@ -19,3 +19,4 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  _dialog: {fileID: 11400000, guid: eda4dde3a30cba14d98a328257b067cb, type: 2}

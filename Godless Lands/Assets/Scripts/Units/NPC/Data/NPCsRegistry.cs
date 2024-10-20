@@ -12,7 +12,7 @@ namespace NPCs
     {
         public override void Export()
         {
-            var monstersData = new List<NpcInfo>();
+            var monstersData = new List<NpcSData>();
             for (int i = 0; i < Objects.Count; i++)
             {
                 var npc = Objects[i].ToServerData();

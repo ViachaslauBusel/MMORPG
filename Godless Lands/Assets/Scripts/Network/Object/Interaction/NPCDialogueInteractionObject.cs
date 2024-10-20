@@ -7,7 +7,6 @@ namespace Network.Object.Interaction
 {
     public class NPCDialogueInteractionObject : MonoBehaviour, IInteractableObject, IVisualObjectScript
     {
-        [SerializeField] 
         private DialogData _dialogData;
         private NetworkComponentsProvider _networkComponentsProvider;
         private InteractableObjectsRegistry _interactableObjectsRegistry;
@@ -22,6 +21,11 @@ namespace Network.Object.Interaction
         {
             _interactableObjectsRegistry = interactableObjectsRegistry;
             _dialogWindow = dialogWindow;
+        }
+
+        public void Init(DialogData dialogData)
+        {
+            _dialogData = dialogData;
         }
 
         public void AttachToNetworkObject(GameObject networkObjectOwner)
