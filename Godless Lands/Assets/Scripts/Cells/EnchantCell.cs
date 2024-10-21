@@ -1,4 +1,5 @@
-﻿using Items;
+﻿using Inventory;
+using Items;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,14 +11,14 @@ namespace Cells
    
     public class EnchantCell : ItemCell
     {
-        private InventoryWindow _inventoryWindow;
+        private InventoryModel _inventoryModel;
         private ItemEnchant enchant;
         private long objectID = 0;
 
         [Inject]
-        private void Construct(InventoryWindow inventoryWindow)
+        private void Construct(InventoryModel inventoryModel)
         {
-            _inventoryWindow = inventoryWindow;
+            _inventoryModel = inventoryModel;
         }
 
         private void Awake()
@@ -52,7 +53,7 @@ namespace Cells
         internal void Refresh()//Вызывается из инвентаря при обновлении предметов
         {
 
-            Item item =  _inventoryWindow.GetItemByObjectID(objectID);
+            Item item =  _inventoryModel.GetItemByUID(objectID);
 
             PutItem(item);
         }

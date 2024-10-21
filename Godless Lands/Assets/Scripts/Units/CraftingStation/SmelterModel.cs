@@ -45,7 +45,6 @@ namespace CraftingStations
                     continue;
                 SetItem(items, i, _inventoryModel.FindItem(items[i].UniqueID));
             }
-            _inventoryModel.SignalLockUpdate();
         }
 
         public void AddComponent(int index, Item item)
@@ -60,7 +59,6 @@ namespace CraftingStations
             _recipes = _recipeComponentMatcherService.FindRecipe(_components, _fuels, _smelterUse);
 
             OnContentUpdate?.Invoke();
-            _inventoryModel.SignalLockUpdate();
         }
 
         public void AddFuel(int index, Item item)
@@ -75,7 +73,6 @@ namespace CraftingStations
             _recipes = _recipeComponentMatcherService.FindRecipe(Components, Fuels, _smelterUse);
 
             OnContentUpdate?.Invoke();
-            _inventoryModel.SignalLockUpdate();
         }
 
         private void RemoveExistingItem(Item[] items, Item item)
@@ -119,7 +116,6 @@ namespace CraftingStations
             {
                 SetItem(_fuels, i, null);
             }
-            _inventoryModel.SignalLockUpdate();
         }
 
         public void Dispose()

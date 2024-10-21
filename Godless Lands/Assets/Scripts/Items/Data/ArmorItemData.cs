@@ -22,7 +22,7 @@ namespace Items.Data
 
         public override ItemSData ToServerData()
         {
-            return new ArmorItemSData(ID, IsStackable, Weight, _equipmentType, _defense, _modifiers);
+            return new ArmorItemSData(ID, IsStackable, Weight, Price, _equipmentType, _defense, _modifiers);
         }
     }
 }

@@ -1,25 +1,24 @@
 ﻿using Items;
 using Protocol.Data.Items;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Inventory
 {
     public class InventoryModel
     {
-        private HashSet<long> _lockedItems = new HashSet<long>();
+        private readonly ItemStorage _primaryBag;
+        private readonly ItemStorage _secondaryBag;
 
-        public Bag PrimaryBag { get; } 
-        public Bag SecondaryBag { get; }
+        public ItemStorage PrimaryBag => _primaryBag;
+        public ItemStorage SecondaryBag => _secondaryBag;
 
         public event Action OnInventoryUpdated;
-        public event Action OnLockUpdate;
 
         public InventoryModel(ItemsFactory itemsFactory)
         {
-            PrimaryBag = new Bag(itemsFactory, ItemStorageType.PrimaryBag);
-            SecondaryBag = new Bag(itemsFactory, ItemStorageType.SecondaryBag);
+            _primaryBag = new ItemStorage(itemsFactory, ItemStorageType.PrimaryBag);
+            _secondaryBag = new ItemStorage(itemsFactory, ItemStorageType.SecondaryBag);
         }
 
         internal void SignalInventoryUpdate()
@@ -29,12 +28,12 @@ namespace Inventory
 
         internal Item FindItem(long uniqueID)
         {
-           if(PrimaryBag.TryFindItem(uniqueID, out Item item))
+            if (PrimaryBag.TryGetItemByUID(uniqueID, out Item item))
             {
                 return item;
             }
 
-            if(SecondaryBag.TryFindItem(uniqueID, out item))
+            if (SecondaryBag.TryGetItemByUID(uniqueID, out item))
             {
                 return item;
             }
@@ -42,20 +41,34 @@ namespace Inventory
             return null;
         }
 
+        public Item GetItemByUID(long itemUID)
+        {
+            if (PrimaryBag.TryGetItemByUID(itemUID, out Item item)) return item;
+            if (SecondaryBag.TryGetItemByUID(itemUID, out item)) return item;
+            return null;
+        }
+
         internal int GetItemCountByItemId(int iD)
         {
             return PrimaryBag.GetItemCountByItemId(iD) + SecondaryBag.GetItemCountByItemId(iD);
         }
-        
 
         public bool IsItemLocked(long uniqueID)
         {
-            return _lockedItems.Contains(uniqueID);
+            return _primaryBag.IsItemLocked(uniqueID) || _secondaryBag.IsItemLocked(uniqueID);
         }
 
         internal void UnlockItem(long uniqueID)
         {
-            if (_lockedItems.Remove(uniqueID) == false)
+            if (_primaryBag.IsItemLocked(uniqueID))
+            {
+                _primaryBag.UnlockItem(uniqueID);
+            }
+            else if (_secondaryBag.IsItemLocked(uniqueID))
+            {
+                _secondaryBag.UnlockItem(uniqueID);
+            }
+            else
             {
                 Debug.LogWarning($"Item {uniqueID} is not locked");
             }
@@ -63,15 +76,18 @@ namespace Inventory
 
         internal void LockItem(long uniqueID)
         {
-            if (_lockedItems.Add(uniqueID) == false)
+            if (_primaryBag.TryGetItemByUID(uniqueID, out Item item))
             {
-                Debug.LogWarning($"Item {uniqueID} is already locked");
+                _primaryBag.LockItem(uniqueID);
             }
-        }
-
-        internal void SignalLockUpdate()
-        {
-            OnLockUpdate?.Invoke();
+            else if (_secondaryBag.TryGetItemByUID(uniqueID, out item))
+            {
+                _secondaryBag.LockItem(uniqueID);
+            }
+            else
+            {
+                Debug.LogWarning($"Item {uniqueID} not found");
+            }
         }
     }
 }

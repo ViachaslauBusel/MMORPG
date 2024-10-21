@@ -1,68 +1,62 @@
-﻿using Cells;
-using Inventory;
-using Inventory.UI;
-using Items;
+﻿using Items.UI;
+using Protocol.Data.Items;
 using UnityEngine;
+using UnityEngine.UI;
+using Windows;
 using Zenject;
 
-public delegate void Update();
-public class InventoryWindow : MonoBehaviour
+namespace Inventory.UI
 {
-
-    [SerializeField]
-    private DrawBagContents _primaryBag;
-    [SerializeField]
-    private DrawBagContents _secondaryBag;
-    private Canvas _canvasInventory;
-    private InventoryModel _inventory;
-    private UISort _uISort;
-
-
-    [Inject]
-    private void Construct(InventoryModel inventoryModel)
+    public class InventoryWindow : Window
     {
-        _inventory = inventoryModel;
-    }
+        [SerializeField]
+        private Button _primaryBagBut, _secondaryBagBut;
+        [SerializeField]
+        private ItemStorageRenderer _storageRender;
+        [SerializeField]
+        private ItemStorageSlotUsageDisplay _storageSlotUsageRender;
+        [SerializeField]
+        private ItemStorageWeightDisplay _storageWeightRender;
+        private InventoryModel _inventory;
+        private ItemStorageType _currentBagType;
 
-    private void Awake()
-    {
-        _uISort = GetComponentInParent<UISort>();
-        _canvasInventory = GetComponent<Canvas>();
-
-        _canvasInventory.enabled = false;
-
-        _primaryBag.Init(_inventory.PrimaryBag);
-        _secondaryBag.Init(_inventory.SecondaryBag);
-    }
-
-    public Item GetItemByObjectID(long objectID) => GetItemCellByObjectID(objectID)?.GetItem();
-    
-    public ItemCell GetItemCellByObjectID(long objectID)
-    {
-        if (_primaryBag.TryGetItemCellByItemUID(objectID, out ItemCell itemCell)
-        || _secondaryBag.TryGetItemCellByItemUID(objectID, out itemCell))
+        [Inject]
+        private void Construct(InventoryModel inventoryModel)
         {
-            return itemCell;
+            _inventory = inventoryModel;
         }
 
-        return null;// _armor.GetItemCell(objectID);
-    }
+        protected override void Awake()
+        {
+            _primaryBagBut.onClick.AddListener(SwitchBagToPrimary);
+            _secondaryBagBut.onClick.AddListener(SwitchBagToSecondary);
+            base.Awake();
 
-    public static void RegisterUpdate(Update refresh)
-    {
-       // Instance.update += refresh;
-    }
+            SwitchBagToPrimary();
+        }
 
-    public static void UnregisterUpdate(Update refresh)
-    {
-       // Instance.update -= refresh;
-    }
+        private void SwitchBagToSecondary()
+        {
+            _currentBagType = ItemStorageType.SecondaryBag;
+            SwitchBag();
+        }
 
-    public void OpenCloseInventory()
-    {
-        _canvasInventory.enabled = !_canvasInventory.enabled;
+        private void SwitchBagToPrimary()
+        {
+            _currentBagType = ItemStorageType.PrimaryBag;
+            SwitchBag();
+        }
 
-        if(_canvasInventory.enabled) _uISort.PickUp(_canvasInventory);
+        private void SwitchBag()
+        {
+            _primaryBagBut.interactable = _currentBagType != ItemStorageType.PrimaryBag;
+            _secondaryBagBut.interactable = _currentBagType != ItemStorageType.SecondaryBag;
+            var storage = _currentBagType == ItemStorageType.PrimaryBag ? _inventory.PrimaryBag : _inventory.SecondaryBag;
+
+            _storageRender.Initialize(storage);
+            _storageSlotUsageRender.Initialize(storage);
+            _storageWeightRender.Initialize(storage);
+        }
     }
 }
 

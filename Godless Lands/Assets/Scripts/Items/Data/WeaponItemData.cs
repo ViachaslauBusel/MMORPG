@@ -28,7 +28,7 @@ namespace Items.Data
 
         public override ItemSData ToServerData()
         {
-            return new WeaponItemSData(ID, IsStackable, Weight, MinDamege, MaxDamage, (int)(SpeedAttack * 1000f), _modifiers);
+            return new WeaponItemSData(ID, IsStackable, Weight, Price, MinDamege, MaxDamage, (int)(SpeedAttack * 1000f), _modifiers);
         }
     }
 }

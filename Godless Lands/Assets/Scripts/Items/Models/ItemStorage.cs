@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Bag
+public class ItemStorage
 {
     private ItemStorageType _storageType;
     private ItemsFactory _itemsFactory;
@@ -14,10 +14,12 @@ public class Bag
     private int _currentWeight;
     private int _maxWeight;
     private int _currentItemsCount;
+    private HashSet<long> _lockedItems = new HashSet<long>();
 
-    public event Action OnCapacityChanged;
-    public event Action OnWeightChanged;
+    public event Action<int, int> OnCapacityChanged;
+    public event Action<int, int> OnWeightChanged;
     public event Action OnItemsChanged;
+    public event Action OnLockUpdate;
 
     public int CurrentItemsCount => _currentItemsCount;
     public int MaxItemsCount => _items.Length;
@@ -26,7 +28,7 @@ public class Bag
     public ItemStorageType StorageType => _storageType;
     public IReadOnlyCollection<Item> Items => _items;
 
-    public Bag(ItemsFactory itemsFactory, ItemStorageType storageType)
+    public ItemStorage(ItemsFactory itemsFactory, ItemStorageType storageType)
     {
         _storageType = storageType;
         _itemsFactory = itemsFactory;
@@ -52,14 +54,15 @@ public class Bag
             }
             _items = newItems;
         }
-        OnCapacityChanged?.Invoke();
+        OnCapacityChanged?.Invoke(_currentItemsCount, maxItemsCount);
+        OnItemsChanged?.Invoke();
     }
 
     internal void UpdateWeight(int currentWeight, int maxWeight)
     {
         _currentWeight = currentWeight;
         _maxWeight = maxWeight;
-        OnWeightChanged?.Invoke();
+        OnWeightChanged?.Invoke(_currentWeight, _maxWeight);
     }
 
     internal void UpdateItems(List<ItemSyncData> items)
@@ -90,14 +93,37 @@ public class Bag
             || existingItem.Count != newItem.Count;
     }
 
-    internal bool TryFindItem(long uniqueID, out Item item)
+    public bool TryGetItemByUID(long uniqueID, out Item item)
     {
         item = Array.Find(_items, i => i != null && i.UniqueID == uniqueID);
         return item != null;
     }
 
-    internal int GetItemCountByItemId(int itemId)
+    public int GetItemCountByItemId(int itemId)
     {
         return _items.Where(i => i != null && i.Data != null && i.Data.ID == itemId).Sum(i => i.Count);
+    }
+
+    public bool IsItemLocked(long uniqueID)
+    {
+        return _lockedItems.Contains(uniqueID);
+    }
+
+    public void UnlockItem(long uniqueID)
+    {
+        if (_lockedItems.Remove(uniqueID) == false)
+        {
+            Debug.LogWarning($"Item {uniqueID} is not locked");
+        }
+        else OnLockUpdate?.Invoke();
+    }
+
+    public void LockItem(long uniqueID)
+    {
+        if (_lockedItems.Add(uniqueID) == false)
+        {
+            Debug.LogWarning($"Item {uniqueID} is already locked");
+        }
+        else OnLockUpdate?.Invoke();
     }
 }

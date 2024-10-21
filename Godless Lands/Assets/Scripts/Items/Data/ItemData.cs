@@ -21,6 +21,8 @@ namespace Items
         [SerializeField]
         private int _weight;
         [SerializeField]
+        private int _price;
+        [SerializeField]
         private AssetReference _prefab;
 
         public int ID => _id;
@@ -35,6 +37,7 @@ namespace Items
         public string Description => _description;
         public bool IsStackable => _isStackable;
         public int Weight => _weight;
+        public int Price => _price;
         public AssetReference Prefab => _prefab;
 
         public void Initialize(int id)
@@ -44,7 +47,7 @@ namespace Items
 
         public virtual ItemSData ToServerData()
         {
-            return new ItemSData(ID, IsStackable, Weight);
+            return new ItemSData(ID, IsStackable, Weight, Price);
         }
     }
 

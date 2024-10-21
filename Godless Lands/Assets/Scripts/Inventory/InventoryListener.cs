@@ -27,7 +27,7 @@ namespace Inventory
         {
             packet.Read(out MSG_INVENTORY_SYNC_SC data);
 
-            Bag bag = data.Bag switch
+            ItemStorage bag = data.Bag switch
             {
                 ItemStorageType.PrimaryBag => _inventoryModel.PrimaryBag,
                 ItemStorageType.SecondaryBag => _inventoryModel.SecondaryBag,

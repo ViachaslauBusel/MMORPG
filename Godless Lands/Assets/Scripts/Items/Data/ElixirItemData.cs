@@ -19,7 +19,7 @@ namespace Items.Data
 
         public override ItemSData ToServerData()
         {
-            return new ElixirItemSData(ID, IsStackable, Weight, HpRestore, MpRestore, StaminaRestore);
+            return new ElixirItemSData(ID, IsStackable, Weight, Price, HpRestore, MpRestore, StaminaRestore);
         }
     }
 }

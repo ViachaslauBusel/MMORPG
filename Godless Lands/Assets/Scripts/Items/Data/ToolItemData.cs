@@ -12,7 +12,7 @@ namespace Items.Data
 
         public override ItemSData ToServerData()
         {
-            return new ToolItemSData(ID, IsStackable, Weight, _toolType);
+            return new ToolItemSData(ID, IsStackable, Weight, Price, _toolType);
         }
     }
 }

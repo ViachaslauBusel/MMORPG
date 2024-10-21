@@ -69,7 +69,7 @@ public class ItemEnchant : MonoBehaviour
 
     private void Open()
     {
-        if (!canvas.enabled) InventoryWindow.RegisterUpdate(Refresh);
+        //TODO if (!canvas.enabled) InventoryWindow.RegisterUpdate(Refresh);
         canvas.enabled = true;
               uISort.PickUp(canvas);
         button.onClick.RemoveAllListeners();
@@ -82,7 +82,7 @@ public class ItemEnchant : MonoBehaviour
     }
     private void Close()
     {
-        if (canvas.enabled) InventoryWindow.UnregisterUpdate(Refresh);
+        //TODO if (canvas.enabled) InventoryWindow.UnregisterUpdate(Refresh);
         canvas.enabled = false;
         enchantCell.PutItem(null);
     }
