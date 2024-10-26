@@ -36,6 +36,7 @@ namespace Network.Object.Interaction
 
         public void HandleInteraction()
         {
+            _dialogWindow.Open(this);
             _dialogWindow.OpenDialog(_dialogData.StartNode.Next);
         }
 

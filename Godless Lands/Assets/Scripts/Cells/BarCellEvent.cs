@@ -30,7 +30,7 @@ namespace Cells
             }
             else if(targetCell is ItemCell)
             {
-                informer = ItemCellEvent.ItemInfo(cellParent.parent, (targetCell as ItemCell).GetItem());
+                informer = ItemInteractionFactory.CreateItemInfoPanel(cellParent.parent, (targetCell as ItemCell).GetItem());
             }
             //    (cell as BarCell).GetTargetCell().GetComponent<CellEvent>().ShowInfo();
         }

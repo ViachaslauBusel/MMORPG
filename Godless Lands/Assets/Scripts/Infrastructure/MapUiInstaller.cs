@@ -18,8 +18,6 @@ namespace Infrastructure
         [SerializeField]
         private DropWindow _dropWindow;
         [SerializeField]
-        private DialogWindow _dialogWindow;
-        [SerializeField]
         private SelectQuantityWindow _selectQuantityWindow;
         [SerializeField]
         private ConfirmationDialogWindow _confirmationWindow;
@@ -31,7 +29,6 @@ namespace Infrastructure
             Container.Bind<PlayerCharacterDeadWindow>().FromInstance(_playerCharacterDeadWindow).AsSingle();
             Container.Bind<InteractionIndicator>().FromInstance(_interactionIndicator).AsSingle();
             Container.Bind<DropWindow>().FromInstance(_dropWindow).AsSingle();
-            Container.Bind<DialogWindow>().FromInstance(_dialogWindow).AsSingle();
             Container.Bind<SelectQuantityWindow>().FromInstance(_selectQuantityWindow).AsSingle();
             Container.Bind<ConfirmationDialogWindow>().FromInstance(_confirmationWindow).AsSingle();
             Container.Bind<TradeWindow>().FromInstance(_tradeWindow).AsSingle();

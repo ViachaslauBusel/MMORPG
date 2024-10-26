@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Dialogues.Data.Nodes
 {
     [NodeGroup(group: "Dialogues"), NodeDisplayStyle(NodeStyle.Style_2)]
-    public class ShopNode : Node
+    public class StoreNode : Node, IExecutionNode
     {
         [SerializeField]
         private TradingShopData _shopData;

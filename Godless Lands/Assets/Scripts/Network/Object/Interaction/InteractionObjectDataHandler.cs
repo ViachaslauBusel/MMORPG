@@ -11,19 +11,17 @@ namespace Network.Object.Interaction
     /// </summary>
     public class InteractionObjectDataHandler : InterableObject, INetworkDataHandler
     {
-        private NetworkManager _networkManager;
+        private InteractionController _interactionController;
 
         [Inject]
-        private void Construct(NetworkManager networkManager)
+        private void Construct(InteractionController interactionController)
         {
-            _networkManager = networkManager;
+            _interactionController = interactionController;
         }
 
         public override void HandleInteraction()
         {
-            MSG_OBJECT_INTERACTION_REQUEST_CS msg = new MSG_OBJECT_INTERACTION_REQUEST_CS();
-            msg.ObjectId = NetworkGameObjectID;
-            _networkManager.Client.Send(msg);
+          _interactionController.StartInteraction(NetworkGameObjectID);
         }
 
         public void UpdateData(IReplicationData updatedData)

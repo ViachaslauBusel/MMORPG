@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cells.Interactions;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,7 +14,6 @@ namespace Cells
 
         protected bool doubleClick = true;
         protected GameObject informer;
-        private GameObject prefabDragCell;//Префаб премещаемого обьекта
         private float time_show = 1.0f; //Время через которое показывать информацию после наведение курсора
         private float timer;
         private float lastClick = 0.0f;//Время последнего нажатие на левую кнопку мыши
@@ -21,19 +21,21 @@ namespace Cells
         protected CellParent cellParent;
         private Vector3 postionClick;//Позиция мыши во время нажатия на левую кнопку мыши
         private DiContainer _diContainer;
+        private ItemInteractionMenuFactory _itemInteractionFactory;
 
+        protected ItemInteractionMenuFactory ItemInteractionFactory => _itemInteractionFactory;
 
         [Inject]
-        private void Construct(DiContainer diContainer)
+        private void Construct(DiContainer diContainer, ItemInteractionMenuFactory itemInteractionFactory)
         {
             _diContainer = diContainer;
+            _itemInteractionFactory = itemInteractionFactory;
         }
 
-        protected void Start()
+        protected virtual void Start()
         {
             cellParent = GetComponentInParent<CellParent>();
             cell = GetComponent<Cell>();
-            prefabDragCell = Resources.Load<GameObject>("Cell/DragCell");
         }
 
         public override void OnPointerEnter(PointerEventData data)//Срабатывает при наведении курсора
@@ -98,10 +100,10 @@ namespace Cells
         {
             if (eventData.button != PointerEventData.InputButton.Left) return;
 
-            if (cell.IsEmpty() || cell.IsLocked()) {  return; }
-            DragCell dragCell =  _diContainer.InstantiatePrefab(prefabDragCell).GetComponent<DragCell>();
-            dragCell.CaptureItem(transform, cell, postionClick);
+            if (cell.IsEmpty() || cell.IsLocked()) { return; }
+            _itemInteractionFactory.CreateDragCell(transform, cell, postionClick);
         }
+
 
         public override void OnPointerDown(PointerEventData eventData)
         {

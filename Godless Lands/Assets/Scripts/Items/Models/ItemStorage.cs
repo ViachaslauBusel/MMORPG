@@ -10,7 +10,7 @@ public class ItemStorage
 {
     private ItemStorageType _storageType;
     private ItemsFactory _itemsFactory;
-    private Item[] _items = new Item[0];
+    protected Item[] _items = new Item[0];
     private int _currentWeight;
     private int _maxWeight;
     private int _currentItemsCount;
@@ -23,6 +23,7 @@ public class ItemStorage
 
     public int CurrentItemsCount => _currentItemsCount;
     public int MaxItemsCount => _items.Length;
+    public int FreeSlotsCount => MaxItemsCount - CurrentItemsCount;
     public int CurrentWeight => _currentWeight;
     public int MaxWeight => _maxWeight;
     public ItemStorageType StorageType => _storageType;
@@ -32,6 +33,11 @@ public class ItemStorage
     {
         _storageType = storageType;
         _itemsFactory = itemsFactory;
+    }
+
+    protected void NotifyItemChanged()
+    {
+        OnItemsChanged?.Invoke();
     }
 
     internal void UpdateCapacity(int currentItemsCount, int maxItemsCount)
@@ -75,6 +81,7 @@ public class ItemStorage
 
         foreach (var itemInfo in items)
         {
+            Debug.Log($"Item {itemInfo.UniqueID}:{itemInfo.ItemID} updated");
             if (itemInfo.SlotIndex >= 0 && itemInfo.SlotIndex < _items.Length)
             {
                 if (ShouldUpdateItem(_items[itemInfo.SlotIndex], itemInfo))
@@ -86,10 +93,12 @@ public class ItemStorage
         }
         OnItemsChanged?.Invoke();
     }
+
     private bool ShouldUpdateItem(Item existingItem, ItemSyncData newItem)
     {
         return existingItem == null
             || existingItem.UniqueID != newItem.UniqueID
+            || (existingItem.Data?.ID ?? 0) != newItem.ItemID
             || existingItem.Count != newItem.Count;
     }
 
@@ -125,5 +134,10 @@ public class ItemStorage
             Debug.LogWarning($"Item {uniqueID} is already locked");
         }
         else OnLockUpdate?.Invoke();
+    }
+
+    internal void Clear()
+    {
+        _items = new Item[0];
     }
 }

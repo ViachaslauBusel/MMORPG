@@ -1,43 +1,31 @@
-using Cysharp.Threading.Tasks;
 using Dialogues;
 using Dialogues.Data;
 using Dialogues.Data.Nodes;
+using Network.Object.Interaction;
 using NodeEditor.Data;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Windows;
 using Zenject;
 
-public class DialogWindow : MonoBehaviour
+public class DialogWindow : Window
 {
     [SerializeField]
     private Text _npcDialog;
     [SerializeField]
     private GameObject _playerDialogPrefab;
-    private Canvas _canvas;
     private DiContainer _diContainer;
     private List<GameObject> _playerDialogue = new List<GameObject>();
     private bool _blockingControl = false;
     private DialogueNodeHandlerStorage _dialogueNodeHandlerStorage;
+    private IInteractableObject _npc;
 
     [Inject]
     private void Construct(DiContainer diContainer, DialogueNodeHandlerStorage dialogueNodeHandlerStorage)
     {
         _diContainer = diContainer;
         _dialogueNodeHandlerStorage = dialogueNodeHandlerStorage;
-    }
-
-    private void Awake()
-    {
-        _canvas = GetComponent<Canvas>();
-    }
-
-    private void Start()
-    {
-        Close();
     }
 
     public void OpenDialog(Node node)
@@ -50,7 +38,6 @@ public class DialogWindow : MonoBehaviour
             Close();
             return;
         }
-        _canvas.enabled = true;
         HandleNode(node);
     }
 
@@ -60,7 +47,7 @@ public class DialogWindow : MonoBehaviour
         Node nextNode = null;
         if (_dialogueNodeHandlerStorage.TryGetExecutionHandler(executionNode, out IDialogExecutionNodeHandler handler))
         {
-             nextNode = await handler.Execute(executionNode);
+             nextNode = await handler.Execute(executionNode, _npc);
         }
         _blockingControl = false;
         HandleNode(nextNode);
@@ -86,7 +73,7 @@ public class DialogWindow : MonoBehaviour
                 Close();
                 return;
                 case ToStartNode toStartNode:
-                    HandleNode(toStartNode.ParentContainer.StartNode.Next);
+                HandleNode(toStartNode.ParentContainer.StartNode.Next);
                 break;
             default:
                 Debug.LogError($"Invalid node type:{node.GetType()}");
@@ -135,10 +122,10 @@ public class DialogWindow : MonoBehaviour
         singleDialogue.SetDialog(dialogue, nextNode);
     }
 
-    public void Close() 
+    public void Open(IInteractableObject npc)
     {
-        if (_blockingControl) return;
-        _canvas.enabled = false;
+        _npc = npc;
+        Open();
     }
 
     public void Clear()

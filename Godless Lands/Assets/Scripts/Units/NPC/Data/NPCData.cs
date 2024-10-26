@@ -40,7 +40,7 @@ namespace NPCs
         public NpcSData ToServerData()
         {
             return new NpcSData(_id,
-                                _dialog.Nodes.OfType<ShopNode>()
+                                _dialog.Nodes.OfType<StoreNode>()
                                              .Select(n => n.ShopData.ToServerData())
                                              .FirstOrDefault()
                                 );

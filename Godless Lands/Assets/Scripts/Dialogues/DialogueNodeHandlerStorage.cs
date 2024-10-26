@@ -11,15 +11,22 @@ using Zenject;
 
 namespace Dialogues
 {
-    internal class DialogueNodeHandlerStorage
+    internal class DialogueNodeHandlerStorage : IInitializable
     {
         private Dictionary<Type, IDialogExecutionNodeHandler> _executionHandlers = new Dictionary<Type, IDialogExecutionNodeHandler>();
         private Dictionary<Type, IDialogConditionNodeHandler> _conditionHandlers = new Dictionary<Type, IDialogConditionNodeHandler>();
+        private DiContainer _diContainer;
 
         public DialogueNodeHandlerStorage(DiContainer diContainer)
         {
-            _executionHandlers.Add(typeof(QuestLevelUpNode), diContainer.Resolve<QuestLevelUpNodeHandler>());
-            _conditionHandlers.Add(typeof(QuestLevelCheckNode), diContainer.Resolve<QuestLevelCheckNodeHandler>());
+            _diContainer = diContainer;
+        }
+
+        public void Initialize()
+        {
+            _executionHandlers.Add(typeof(QuestLevelUpNode), _diContainer.Resolve<QuestLevelUpNodeHandler>());
+            _conditionHandlers.Add(typeof(QuestLevelCheckNode), _diContainer.Resolve<QuestLevelCheckNodeHandler>());
+            _executionHandlers.Add(typeof(StoreNode), _diContainer.Resolve<StoreNodeHandler>());
         }
 
         internal bool TryGetExecutionHandler(IExecutionNode executionNode, out IDialogExecutionNodeHandler handler)
@@ -31,5 +38,7 @@ namespace Dialogues
         {
             return _conditionHandlers.TryGetValue(conditionNode.GetType(), out handler);
         }
+
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Animation.Data;
+using Cells.Interactions;
 using Factories;
 using Items;
 using Network.Object.Dynamic;
@@ -39,6 +40,8 @@ namespace Infrastructure
         private SkillsRegistry _skillsRegistry;
         [SerializeField]
         private RecipesRegistry _recipesRegistry;
+        [SerializeField]
+        private ItemInteractionMenuFactory _itemInteractionMenuFactory;
 
         public override void InstallBindings()
         {
@@ -52,6 +55,7 @@ namespace Infrastructure
             Container.Bind<ResourcesRegistry>().FromInstance(_resourcesRegistry).AsSingle();
             Container.Bind<SkillsRegistry>().FromInstance(_skillsRegistry).AsSingle();
             Container.Bind<RecipesRegistry>().FromInstance(_recipesRegistry).AsSingle();
+            Container.Bind<ItemInteractionMenuFactory>().FromInstance(_itemInteractionMenuFactory).AsSingle();
 
             Container.Bind<CraftingStationsFactory>().FromInstance(_craftingStationsFactory).AsSingle();
             Container.Bind<CharactersFactory>().FromInstance(_charactersFactory).AsSingle();

@@ -24,14 +24,14 @@ namespace Windows
             _canvas.enabled = false;
         }
 
-        public void Open()
+        public virtual void Open()
         {
             _canvas.enabled = true;
             _uISort.PickUp(_canvas);
             OnOpen?.Invoke();
         }
 
-        public void Close()
+        public virtual void Close()
         {
             _canvas.enabled = false;
             OnClose?.Invoke();
@@ -39,9 +39,14 @@ namespace Windows
 
         public void ToggleWindow()
         {
-            _canvas.enabled = !_canvas.enabled;
-
-            if (_canvas.enabled) _uISort.PickUp(_canvas);
+            if(IsOpened)
+            {
+                Close();
+            }
+            else
+            {
+                Open();
+            }
         }
     }
 }

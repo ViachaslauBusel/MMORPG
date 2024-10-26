@@ -1,5 +1,6 @@
 ﻿using Dialogues.Data;
 using Dialogues.Data.Nodes;
+using Network.Object.Interaction;
 using NodeEditor.Data;
 using Protocol.Data.Quests;
 using Quests;
@@ -12,7 +13,7 @@ using Zenject;
 
 namespace Dialogues.NodeHandlers
 {
-    internal class QuestLevelCheckNodeHandler : IDialogConditionNodeHandler
+    public class QuestLevelCheckNodeHandler : IDialogConditionNodeHandler
     {
         private QuestsModel _questsModel;
         private Node _next;

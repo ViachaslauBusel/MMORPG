@@ -1,15 +1,12 @@
 ﻿using Items;
 using Protocol.Data.Items;
 using Protocol.MSG.Game.Inventory;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Cells
 {
-
-
     public class ItemCell : Cell
     {
         protected Image _lock;
@@ -77,21 +74,20 @@ namespace Cells
 
             Show();
             UpdateIcon();
-            if (_countTxt != null)
-            {
-                _countTxt.text = _item.Data.IsStackable ? _item.Count.ToString() : "";
-            }
-        }
-
-        private void UpdateItem()
-        {
-            throw new NotImplementedException();
         }
 
         protected void UpdateIcon()
         {
             if(_icon == null) return;
             _icon.sprite = Sprite.Create(_item.Data.Icon, new Rect(0.0f, 0.0f, _item.Data.Icon.width, _item.Data.Icon.height), new Vector2(0.5f, 0.5f), 100.0f);
+        }
+
+        protected virtual void UpdateCount()
+        {
+            if (_countTxt != null)
+            {
+                _countTxt.text = _item.Data.IsStackable ? _item.Count.ToString() : "";
+            }
         }
 
         /// <summary>
@@ -126,13 +122,6 @@ namespace Cells
                 _itemUsageService.SwampItem(swamp_command);
             }
         }
-
-       // public void SetObjectID(int objetcID)
-       // {
-       //     item.objectID = objetcID;
-       // }
-
-        
 
         public Item GetItem()
         {
@@ -185,8 +174,7 @@ namespace Cells
         public override void Show()
         {
             base.Show();
-            if (_countTxt != null)
-                _countTxt.text = _item.Data.IsStackable ? _item.Count.ToString() : "";
+            UpdateCount();
         }
 
         internal void SetLock(bool value)

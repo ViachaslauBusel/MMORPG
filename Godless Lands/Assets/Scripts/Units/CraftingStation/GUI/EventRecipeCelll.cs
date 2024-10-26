@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using CraftingStations.UI.RecipeCrafting;
+using Cells.Interactions;
+using Zenject;
 
 namespace CraftingStations.GUI
 {
@@ -13,6 +15,13 @@ namespace CraftingStations.GUI
         protected GameObject _informer;
         private RecipeComponent _component;
         private Canvas _parentCanvas;
+        private ItemInteractionMenuFactory _itemInteractionMenuFactory;
+
+        [Inject]
+        private void Construct(ItemInteractionMenuFactory itemInteractionMenuFactory)
+        {
+            _itemInteractionMenuFactory = itemInteractionMenuFactory;
+        }
 
         private void Awake()
         {
@@ -57,7 +66,7 @@ namespace CraftingStations.GUI
         {
             if (_informer == null)
             {
-                _informer = ItemCellEvent.ItemInfo(_parentCanvas.transform, _component.GetItem());
+                _informer = _itemInteractionMenuFactory.CreateItemInfoPanel(_parentCanvas.transform, _component.GetItem());
             }
         }
 

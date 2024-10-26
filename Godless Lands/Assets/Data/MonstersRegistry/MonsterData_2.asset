@@ -36,3 +36,8 @@ MonoBehaviour:
     _chance: 100
     _minAmount: 1
     _maxAmount: 1
+  - _item:
+      _id: 13
+    _chance: 100
+    _minAmount: 200
+    _maxAmount: 2000

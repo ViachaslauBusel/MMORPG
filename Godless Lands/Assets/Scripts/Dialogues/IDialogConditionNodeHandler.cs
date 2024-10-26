@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dialogues
 {
-    internal interface IDialogConditionNodeHandler
+    public interface IDialogConditionNodeHandler
     {
         Node CheckCondition(IConditionNode conditionNode);
     }

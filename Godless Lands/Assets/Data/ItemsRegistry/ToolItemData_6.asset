@@ -18,6 +18,7 @@ MonoBehaviour:
   _description: 
   _isStackable: 0
   _weight: 100
+  _price: 300
   _prefab:
     m_AssetGUID: e9b85860d07f92945b386b0acee4fe2a
     m_SubObjectName: 

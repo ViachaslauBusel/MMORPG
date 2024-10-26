@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Dialogues.Data;
 using Dialogues.Data.Nodes;
+using Network.Object.Interaction;
 using NodeEditor.Data;
 using Quests;
 
@@ -18,7 +19,7 @@ namespace Dialogues.NodeHandlers
             _questsController = questsController;
         }
 
-        public async UniTask<Node> Execute(IExecutionNode executionNode)
+        public async UniTask<Node> Execute(IExecutionNode executionNode, IInteractableObject npc)
         {
             QuestLevelUpNode node = executionNode as QuestLevelUpNode;
             if (node == null) return null;

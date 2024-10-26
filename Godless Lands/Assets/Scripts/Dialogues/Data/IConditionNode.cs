@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dialogues.Data
 {
-    internal interface IConditionNode
+    public interface IConditionNode
     {
     }
 }

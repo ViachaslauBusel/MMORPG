@@ -14,7 +14,7 @@ namespace Items
         private string _name;
         [SerializeField]
         private Texture2D _icon;
-        [SerializeField]
+        [SerializeField, TextArea]
         private string _description;
         [SerializeField]
         private bool _isStackable;

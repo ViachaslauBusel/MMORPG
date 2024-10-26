@@ -10,6 +10,8 @@ namespace Inventory
         private readonly ItemStorage _primaryBag;
         private readonly ItemStorage _secondaryBag;
 
+        public int FreeSlots => PrimaryBag.FreeSlotsCount + SecondaryBag.FreeSlotsCount;
+        public int MaxSlots => PrimaryBag.MaxItemsCount + SecondaryBag.MaxItemsCount;
         public ItemStorage PrimaryBag => _primaryBag;
         public ItemStorage SecondaryBag => _secondaryBag;
 

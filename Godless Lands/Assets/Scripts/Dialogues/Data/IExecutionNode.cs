@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Dialogues.Data
 {
-    internal interface IExecutionNode
+    public interface IExecutionNode
     {
     }
 }

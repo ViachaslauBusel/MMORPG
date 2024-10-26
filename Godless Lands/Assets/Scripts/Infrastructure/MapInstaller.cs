@@ -29,6 +29,8 @@ using UnityEngine;
 using CraftingStations;
 using Zenject;
 using Player.Controller;
+using Shop.Models;
+using Shop;
 
 public class MapInstaller : MonoInstaller
 {
@@ -47,6 +49,7 @@ public class MapInstaller : MonoInstaller
         // Object interaction
         Container.BindInterfacesAndSelfTo<InteractableObjectsRegistry>().FromNew().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<InteractionObjectInputHandler>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<InteractionController>().FromNew().AsSingle();
 
         // Player character
         Container.BindInterfacesAndSelfTo<PlayerCharacterNetworkObjecEventNotifier>().FromNew().AsSingle().NonLazy();
@@ -106,9 +109,10 @@ public class MapInstaller : MonoInstaller
 
         //Dialogues
         Container.BindInterfacesAndSelfTo<DialogueNodeHandlerStorage>().FromNew().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<QuestLevelCheckNodeHandler>().FromNew().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<QuestLevelUpNodeHandler>().FromNew().AsSingle().NonLazy();   
-       
+        Container.BindInterfacesAndSelfTo<QuestLevelCheckNodeHandler>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<QuestLevelUpNodeHandler>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<StoreNodeHandler>().FromNew().AsSingle();
+
         //Ground drop
         Container.BindInterfacesAndSelfTo<GroundDropInputHandler>().FromNew().AsSingle().NonLazy();
 
@@ -132,6 +136,11 @@ public class MapInstaller : MonoInstaller
 
         //Units
         Container.BindInterfacesAndSelfTo<UnitVisualObjectRegistry>().FromNew().AsSingle().NonLazy();
+
+        //Shop
+        Container.BindInterfacesAndSelfTo<StoreModel>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<StoreListener>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<StoreController>().FromNew().AsSingle();
 
     }
 }

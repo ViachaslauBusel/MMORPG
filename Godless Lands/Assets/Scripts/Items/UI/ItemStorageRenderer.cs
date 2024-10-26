@@ -26,12 +26,16 @@ namespace Items.UI
 
         public void Initialize(ItemStorage itemStorage)
         {
+            if (ParentWindow.IsOpened)
+            {
+                HandleWindowClose();
+            }
+
             _itemStorage = itemStorage;
 
             if (ParentWindow.IsOpened)
             {
-                RefreshCellCount(_itemStorage.CurrentItemsCount, _itemStorage.MaxItemsCount);
-                RefreshItems();
+                HandleWindowOpen();
             }
         }
 
