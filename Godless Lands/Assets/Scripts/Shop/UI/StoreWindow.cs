@@ -19,8 +19,14 @@ namespace Shop.UI
 
         public override void Close()
         {
-            base.Close();
+            Hide();
             _storeController.CloseStore();
+            Debug.Log("Store closed");
+        }
+
+        public void Hide()
+        {
+            base.Close();
         }
     }
 }

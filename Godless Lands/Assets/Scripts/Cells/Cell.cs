@@ -37,6 +37,8 @@ namespace Cells
             return _icon.sprite;
         }
 
+        public virtual bool IsInteractingWithCurrentCell(Cell cell) => true;
+
         public virtual void Hide()
         {
             if (_icon != null)

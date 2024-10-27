@@ -62,7 +62,7 @@ namespace Shop
             }
             else
             {
-                _shopWindow.Close();
+                _shopWindow.Hide();
             }
         }
 

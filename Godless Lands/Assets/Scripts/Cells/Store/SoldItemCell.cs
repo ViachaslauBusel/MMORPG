@@ -9,6 +9,7 @@ using Zenject;
 
 namespace Cells.Store
 {
+    //Ячейка для предмета который  в списке продажи
     public class SoldItemCell : ItemCell
     {
         private SelectQuantityWindow _selectQuantityWindow;
@@ -19,6 +20,11 @@ namespace Cells.Store
         {
             _selectQuantityWindow = selectQuantityWindow;
             _storeModel = storeModel;
+        }
+
+        public override bool IsInteractingWithCurrentCell(Cell cell)
+        {
+            return cell.GetType() == typeof(SaleItemCell);
         }
 
         public override void Put(Cell cell)

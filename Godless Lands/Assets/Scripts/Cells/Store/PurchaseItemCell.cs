@@ -18,6 +18,11 @@ namespace Cells.Store
             _storeModel = storeModel;
         }
 
+        public override bool IsInteractingWithCurrentCell(Cell cell)
+        {
+            return cell.GetType() == typeof(StoreItemCell);
+        }
+
         public override void Put(Cell cell)
         {
             if (cell is StoreItemCell storeItemCell)

@@ -14,7 +14,7 @@ namespace Shop.UI
         private ItemStorageRenderer _itemsSoldByPlayerRender;
         private StoreModel _shopModel;
         private StoreController _storeController;
-        private Window _parentWindow;
+        private StoreWindow _parentWindow;
 
         [Inject]
         private void Construct(StoreModel shopModel, StoreController storeController)
@@ -25,7 +25,7 @@ namespace Shop.UI
 
         private void Awake()
         {
-            _parentWindow = GetComponentInParent<Window>();
+            _parentWindow = GetComponentInParent<StoreWindow>();
         }
 
         private void Start()
@@ -35,8 +35,8 @@ namespace Shop.UI
 
         public void SellItems()
         {
+            _parentWindow.Hide();
             _storeController.SellItems(_shopModel.ItemsSoldByPlayer.Items.Where(item => !item.IsEmpty).Select(i => new ItemBundleNData(i.Data.ID, i.Count)).ToList());
-            _parentWindow.Close();
         }
     }
 }

@@ -40,6 +40,11 @@ namespace Cells
             return _item == null || _item.IsEmpty;
         }
 
+        public override bool IsInteractingWithCurrentCell(Cell cell)
+        {
+            return cell.GetType() == typeof(ArmorCell) || cell.GetType() == typeof(ItemCell);
+        }
+
         /// <summary>
         /// Send command to the server to use the item
         /// </summary>

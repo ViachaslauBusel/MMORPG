@@ -97,7 +97,8 @@ namespace Cells
             if(raycastResult != null)
             {
                 Cell resultCell = raycastResult.resultObj.GetComponent<Cell>();
-                resultCell.Put(_cell);
+                if(resultCell.IsInteractingWithCurrentCell(_cell))
+                   resultCell.Put(_cell);
             }
             else _cell.Abort();
 
