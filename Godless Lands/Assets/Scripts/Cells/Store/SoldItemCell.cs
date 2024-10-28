@@ -1,4 +1,5 @@
-﻿using Shop.Models;
+﻿using Items.Data;
+using Shop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Cells.Store
 
         public override bool IsInteractingWithCurrentCell(Cell cell)
         {
-            return cell.GetType() == typeof(SaleItemCell);
+            return cell is SaleItemCell saleCell && saleCell.IsEmpty() == false && saleCell.GetItem().Data is not MoneyItemData;
         }
 
         public override void Put(Cell cell)
