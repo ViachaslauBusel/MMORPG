@@ -36,6 +36,7 @@ namespace Messenger
                     msg.Layer = layer;
                     msg.Message = inputField.text;
                     _networkManager.Client.Send(msg);
+                    Debug.Log($"Message sent to {layer} with text: {inputField.text}");
 
                     inputField.text = "";
                 }
