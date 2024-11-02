@@ -21,8 +21,6 @@ namespace Infrastructure
         private SelectQuantityWindow _selectQuantityWindow;
         [SerializeField]
         private ConfirmationDialogWindow _confirmationWindow;
-        [SerializeField]
-        private TradeWindow _tradeWindow;
 
         public override void InstallBindings()
         {
@@ -31,7 +29,6 @@ namespace Infrastructure
             Container.Bind<DropWindow>().FromInstance(_dropWindow).AsSingle();
             Container.Bind<SelectQuantityWindow>().FromInstance(_selectQuantityWindow).AsSingle();
             Container.Bind<ConfirmationDialogWindow>().FromInstance(_confirmationWindow).AsSingle();
-            Container.Bind<TradeWindow>().FromInstance(_tradeWindow).AsSingle();
 
             foreach(var window in GetComponentsInChildren<Window>())
             {

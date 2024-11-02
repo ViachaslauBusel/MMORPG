@@ -5,7 +5,7 @@ using Windows;
 
 namespace Shop.UI
 {
-    public abstract class TotalItemPriceCalculator : ParentWindowElement
+    public abstract class TotalItemPriceCalculator : WindowElement
     {
         [SerializeField]
         private TMP_Text _totalPriceText;

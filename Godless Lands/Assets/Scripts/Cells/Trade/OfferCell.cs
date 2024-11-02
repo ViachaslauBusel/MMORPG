@@ -1,11 +1,12 @@
-﻿using Protocol.Data.Items;
+﻿using Cells.Trade;
+using Protocol.Data.Items;
 using System.Collections;
 using System.Collections.Generic;
 using Trade;
 using UnityEngine;
 using Zenject;
 
-namespace Cells
+namespace Cells.Trade
 {
     public class OfferCell : ItemCell
     {
@@ -22,6 +23,11 @@ namespace Cells
         {
             _isPlayerCell = isPlayerCell;
             base.Init(ItemStorageType.None, index);
+        }
+
+        public override bool IsInteractingWithCurrentCell(Cell cell)
+        {
+            return cell is PlayerTradeCell;
         }
 
         public override void Use()

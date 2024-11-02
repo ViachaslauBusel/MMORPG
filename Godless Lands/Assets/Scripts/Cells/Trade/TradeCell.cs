@@ -1,4 +1,5 @@
-﻿using RUCP;
+﻿using Cells.Trade;
+using RUCP;
 using Zenject;
 
 namespace Cells
@@ -11,6 +12,11 @@ namespace Cells
         private void Construct(SelectQuantityWindow selectQuantityWindow)
         {
             _selectQuantityWindow = selectQuantityWindow;
+        }
+
+        public override bool IsInteractingWithCurrentCell(Cell cell)
+        {
+            return cell is PlayerTradeCell;
         }
 
         /// <summary>

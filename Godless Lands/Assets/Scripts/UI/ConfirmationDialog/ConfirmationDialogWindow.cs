@@ -51,9 +51,10 @@ namespace UI.ConfirmationDialog
                 int waitRequestID = _requestId;
                 float totalWaitTime = endWaitTime - Time.time;
                 float timer = totalWaitTime;
+                Debug.Log("Total Wait time: " + totalWaitTime);
                 while (timer > 0 && waitRequestID == _requestId)
                 {
-                    _timer.fillAmount = Mathf.Clamp01(timer / endWaitTime);
+                    _timer.fillAmount = Mathf.Clamp01(timer / totalWaitTime);
                     await UniTask.Yield();
                     timer -= Time.deltaTime;
                 }

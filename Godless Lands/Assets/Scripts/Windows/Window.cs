@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Windows
 {
-    public class Window : MonoBehaviour
+    public abstract class Window : MonoBehaviour
     {
         private Canvas _canvas;
         private UISort _uISort;
@@ -26,6 +22,8 @@ namespace Windows
 
         public virtual void Open()
         {
+            if (IsOpened) return;
+
             _canvas.enabled = true;
             _uISort.PickUp(_canvas);
             OnOpen?.Invoke();
@@ -33,6 +31,8 @@ namespace Windows
 
         public virtual void Close()
         {
+            if (!IsOpened) return;
+
             _canvas.enabled = false;
             OnClose?.Invoke();
         }
@@ -48,5 +48,8 @@ namespace Windows
                 Open();
             }
         }
+
+        protected virtual void OnOpenWindow() { }
+        protected virtual void OnCloseWindow() { }
     }
 }

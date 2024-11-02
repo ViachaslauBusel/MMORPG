@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Items.UI
 {
-    public class ItemStorageRenderer : ParentWindowElement
+    public class ItemStorageRenderer : WindowElement
     {
         [SerializeField]
         private Transform _contentTransform;

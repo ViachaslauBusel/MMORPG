@@ -32,7 +32,7 @@ namespace Trade
         private void OnSyncTradeWindow(Packet packet)
         {
             packet.Read(out MSG_SYNC_TRADE_WINDOW_SC syncTradeWindow);
-            Debug.Log($"Trade ID: {syncTradeWindow.TradeID}, IsOwner: {syncTradeWindow.IsOwner}, BagSize: {syncTradeWindow.BagSize}, Items: {syncTradeWindow.Items}");
+            //Debug.Log($"Trade ID: {syncTradeWindow.TradeID}, IsOwner: {syncTradeWindow.IsOwner}, BagSize: {syncTradeWindow.BagSize}, Items: {syncTradeWindow.Items}");
             _tradeModel.Update(syncTradeWindow.TradeID, syncTradeWindow.IsOwner, syncTradeWindow.BagSize, syncTradeWindow.Items);
         }
 

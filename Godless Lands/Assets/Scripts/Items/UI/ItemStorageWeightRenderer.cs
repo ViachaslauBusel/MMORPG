@@ -4,7 +4,7 @@ using Windows;
 
 namespace Items.UI
 {
-    public class ItemStorageWeightDisplay : ParentWindowElement
+    public class ItemStorageWeightDisplay : WindowElement
     {
         [SerializeField]
         private Image _weightBar;

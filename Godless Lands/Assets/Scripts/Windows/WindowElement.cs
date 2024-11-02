@@ -2,7 +2,7 @@
 
 namespace Windows
 {
-    public abstract class ParentWindowElement : MonoBehaviour
+    public abstract class WindowElement : MonoBehaviour
     {
         private Window _parentWindow;
 

@@ -4,7 +4,7 @@ using Windows;
 
 namespace Items.UI
 {
-    public class ItemStorageSlotUsageDisplay : ParentWindowElement
+    public class ItemStorageSlotUsageDisplay : WindowElement
     {
         [SerializeField]
         private Text _slotUsageText;

@@ -25,7 +25,8 @@ namespace UI.ConfirmationDialog
             _description = description;
             _callYES = callYES;
             _callNO = callNO;
-            if(waitTime > 0.001f) _endWaitTime = Time.time + waitTime;
+            Debug.Log("Wait time: " + waitTime);
+            if (waitTime > 0.001f) _endWaitTime = Time.time + waitTime;
         }
 
         public int CompareTo(ConfirmationRequest other)

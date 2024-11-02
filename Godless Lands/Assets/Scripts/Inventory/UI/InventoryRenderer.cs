@@ -55,8 +55,8 @@ namespace Inventory.UI
             var storage = _currentBagType == ItemStorageType.PrimaryBag ? _inventory.PrimaryBag : _inventory.SecondaryBag;
 
             _storageRender.Initialize(storage);
-            _storageSlotUsageRender.Initialize(storage);
-            _storageWeightRender.Initialize(storage);
+            _storageSlotUsageRender?.Initialize(storage);
+            _storageWeightRender?.Initialize(storage);
         }
     }
 }
