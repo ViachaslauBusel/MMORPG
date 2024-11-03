@@ -1,9 +1,5 @@
-﻿using Cells.Trade;
-using Protocol.Data.Items;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Protocol.Data.Items;
 using Trade;
-using UnityEngine;
 using Zenject;
 
 namespace Cells.Trade

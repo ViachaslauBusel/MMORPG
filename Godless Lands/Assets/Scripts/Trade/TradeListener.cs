@@ -26,7 +26,15 @@ namespace Trade
 
             _networkManager.RegisterHandler(Opcode.MSG_TRADE_REQUEST, OnTradeRequest);
             _networkManager.RegisterHandler(Opcode.MSG_OPEN_TRADE_WINDOW, OnOpenTradeWindow);
+            _networkManager.RegisterHandler(Opcode.MSG_STATE_TRADE_WINDOW, OnStateSyncWindow);
             _networkManager.RegisterHandler(Opcode.MSG_SYNC_TRADE_WINDOW, OnSyncTradeWindow);
+            _networkManager.RegisterHandler(Opcode.MSG_CLOSE_TRADE_WINDOW, OnCloseTradeWindow);
+        }
+     
+        private void OnStateSyncWindow(Packet packet)
+        {
+            packet.Read(out MSG_STATE_TRADE_WINDOW_SC state);
+            _tradeWindow.SyncState(state.PlayerLock, state.PartnerLock);
         }
 
         private void OnSyncTradeWindow(Packet packet)
@@ -40,10 +48,12 @@ namespace Trade
         {
             packet.Read(out MSG_OPEN_TRADE_WINDOW_SC tradeWindow);
 
-            if(tradeWindow.Visible)
-             _tradeWindow.Open(tradeWindow.PlayerLock, tradeWindow.PartnerLock);
-            else
-             _tradeWindow.Close();
+            _tradeWindow.Open(tradeWindow.ApponentName);
+        }
+
+        private void OnCloseTradeWindow(Packet packet)
+        {
+            _tradeWindow.Close();
         }
 
         private void OnTradeRequest(Packet packet)
@@ -78,7 +88,9 @@ namespace Trade
         {
             _networkManager.UnregisterHandler(Opcode.MSG_TRADE_REQUEST);
             _networkManager.UnregisterHandler(Opcode.MSG_OPEN_TRADE_WINDOW);
+            _networkManager.UnregisterHandler(Opcode.MSG_CLOSE_TRADE_WINDOW);
             _networkManager.UnregisterHandler(Opcode.MSG_SYNC_TRADE_WINDOW);
+            _networkManager.UnregisterHandler(Opcode.MSG_STATE_TRADE_WINDOW);
         }
     }
 }
