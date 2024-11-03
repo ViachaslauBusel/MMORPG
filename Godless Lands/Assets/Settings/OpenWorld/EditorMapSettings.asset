@@ -16,4 +16,4 @@ MonoBehaviour:
   _waterMaterial: {fileID: 2100000, guid: 52b7d70b1de7c4ce09662b77c14d9fda, type: 2}
   _terrainMaterial: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
   _areaVisible: 4
-  _terrainLayer: 0
+  _terrainLayer: 11

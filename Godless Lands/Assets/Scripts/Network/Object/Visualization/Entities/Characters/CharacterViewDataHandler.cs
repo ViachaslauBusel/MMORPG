@@ -4,6 +4,7 @@ using Network.Object.Dynamic.Transformations;
 using Network.Replication;
 using Protocol.Data.Replicated;
 using Protocol.Data.Replicated.Skins;
+using Protocol.MSG.Game.Equipment;
 using UnityEngine;
 using Zenject;
 
@@ -42,9 +43,13 @@ namespace Network.Object.Visualization.Entities.Characters
                 }
                 SetVisualObject(new AssetInstance(characterObj));
             }
-            _bodyPartsController.UpdateWeapon(visualData.WeaponId);
-            _bodyPartsController.UpdateTool(visualData.ToolId);
-            _bodyPartsController.UpdateHead(visualData.HeadId);
+            _bodyPartsController.UpdatePart(EquipmentType.WeaponRightHand, visualData.WeaponId);
+            _bodyPartsController.UpdatePart(EquipmentType.PickaxeTool, visualData.ToolId);
+            _bodyPartsController.UpdatePart(EquipmentType.ArmorHead, visualData.HeadId);
+            _bodyPartsController.UpdatePart(EquipmentType.ArmorChest, visualData.ChestId);
+            _bodyPartsController.UpdatePart(EquipmentType.ArmorHands, visualData.HandsId);
+            _bodyPartsController.UpdatePart(EquipmentType.ArmorLegs, visualData.LegsId);
+            _bodyPartsController.UpdatePart(EquipmentType.ArmorFeet, visualData.FeetId);
         }
 
         protected GameObject CreateNewUnit()

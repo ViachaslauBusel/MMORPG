@@ -69,7 +69,7 @@ public class MapInstaller : MonoInstaller
 
         // Unit visualisation
         Container.BindInterfacesAndSelfTo<UnitVisualCacheService>().FromNew().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<CharacterMeshProviderService>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<ItemPrefabProviderService>().FromNew().AsSingle().NonLazy();
 
         // Target
         Container.BindInterfacesAndSelfTo<TargetListener>().FromNew().AsSingle().NonLazy();

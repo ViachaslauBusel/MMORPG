@@ -20,7 +20,7 @@ MonoBehaviour:
   _weight: 100
   _price: 200
   _prefab:
-    m_AssetGUID: 
+    m_AssetGUID: 729120dbcebd28a4593636f8c49fdb8c
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

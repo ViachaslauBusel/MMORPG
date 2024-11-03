@@ -1,82 +1,82 @@
-﻿using Protocol.Data.Replicated.Skins;
-using System;
+﻿using AssetPerformanceToolkit.AssetManagement;
+using Protocol.MSG.Game.Equipment;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Zenject;
 
 namespace Network.Object.Visualization.Entities.Characters
 {
     public class CharacterBodyPartsController : MonoBehaviour
     {
-        [SerializeField]
-        private BodyPart _weaponPart;
-        [SerializeField]
-        private BodyPart _toolPart;
-        [SerializeField]
-        private BodyPart _headPart;
-      
-        private CharacterMeshProviderService _meshProviderService;
+        private Dictionary<EquipmentType, BodyPart> _bodyParts = new Dictionary<EquipmentType, BodyPart>();
+        private ItemPrefabProviderService _itemPrefabService;
         private Animator _animator;
-        private int _weaponId;
-        private int _toolId;
-        private int _headId;
-
-        public BodyPart Pickaxe => _toolPart;
-        public BodyPart Weapon => _weaponPart;
 
 
         [Inject]
-        private void Construct(CharacterMeshProviderService meshProviderService)
+        private void Construct(ItemPrefabProviderService meshProviderService)
         {
-            _meshProviderService = meshProviderService;
+            _itemPrefabService = meshProviderService;
         }
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+
+            var parts = GetComponentsInChildren<BodyPart>();
+
+            foreach (var part in parts)
+            {
+                _bodyParts.Add(part.EquipmentType, part);
+            }
         }
 
-        internal void UpdateHead(int headId)
+        public BodyPart Get(EquipmentType type)
         {
-            if (_headId == headId) return;
+            if (_bodyParts.TryGetValue(type, out BodyPart part) == false)
+            {
+                Debug.LogError($"CharacterBodyPartsController: Get: Part not found: {type}");
+                return null;
+            }
 
-            _headId = headId;
+            return part;
         }
 
-        internal void UpdateWeapon(int weaponId)
+        public void UpdatePart(EquipmentType type, int partId)
         {
-            if (_weaponId == weaponId) return;
+            Debug.Log($"CharacterBodyPartsController: UpdatePart: {type} {partId}");
+            if (_bodyParts.TryGetValue(type, out BodyPart part) == false)
+            {
+                Debug.LogError($"CharacterBodyPartsController: UpdatePart: Part not found: {type}");
+                return;
+            }
 
-            _weaponId = weaponId;
+            if (type == EquipmentType.WeaponRightHand)
+            {
+                _animator.SetInteger("weaponType", partId != 0 ? 1 : 0);
+            }
 
-            _animator.SetInteger("weaponType", _weaponId != 0 ? 1 : 0);
-
-            UpdatePart(_weaponPart, _weaponId);
+            UpdatePart(part, _itemPrefabService.GetPrefab(partId), partId);
         }
 
-        internal void UpdateTool(int toolId)
+        private async void UpdatePart(BodyPart part, AssetReference prefab, int partId)
         {
-            if (_toolId == toolId) return;
-
-            _toolId = toolId;
-
-            UpdatePart(_toolPart, _toolId);
-
-        }
-
-        private async void UpdatePart(BodyPart part, int partId)
-        {
-            part.ClearPart();
+            if (partId == part.PartID) return;
 
             part.SetPartID(partId);
 
-            AssetHolder partMesh = await _meshProviderService.GetMeshAsync(partId);
+            if(prefab == null)
+            {
+                part.ToDefaultPart();
+                return;
+            }
+
+            AssetInstance partMesh = await AssetLoader.LoadInstance(prefab);
 
             if (partMesh == null || partMesh.IsValid == false)
             {
+                part.ToDefaultPart();
                 partMesh?.Release();
                 Debug.Log($"[{part}][{partId}] CharacterBodyPartsController: UpdatePart: Part not found");
                 return;

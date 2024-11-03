@@ -1,39 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.UI.GridLayoutGroup;
+﻿using UnityEngine;
 
 namespace Animation
 {
     internal class CharacterMovementAnimatior : MonoBehaviour
     {
         [SerializeField]
-        private float m_animationSpeed = 10;
-        private Animator m_animator;
-        private Vector3 m_lastFramePosition;
-        private float m_forwardSpeed;
-        private float m_sideSpeed;
+        private float _animationSpeed = 10;
+        private Animator _animator;
+        private Vector3 _lastFramePosition;
+        private float _forwardSpeed;
+        private float _sideSpeed;
 
         private void Awake()
         {
-            m_animator = GetComponent<Animator>();
+            _animator = GetComponent<Animator>();
         }
 
         private void Start()
         {
-            m_lastFramePosition = transform.position;
+            _lastFramePosition = transform.position;
         }
 
         private void LateUpdate()
         {
-            Vector3 velocity = m_lastFramePosition - transform.position;
-            m_lastFramePosition = transform.position;
+            Vector3 velocity = transform.position - _lastFramePosition;
+            _lastFramePosition = transform.position;
             velocity.y = 0f;
-            var speed = velocity.magnitude;
+            var speed = velocity.magnitude / Time.deltaTime;
 
             var direction2D = new Vector2(velocity.x, velocity.z).normalized;
             var forward2D = new Vector2(transform.forward.x, transform.forward.z).normalized;
@@ -43,11 +36,11 @@ namespace Animation
 
             var speedAnim = speed;
 
-            m_forwardSpeed = Mathf.Lerp(m_forwardSpeed, animationDirect.x * speedAnim, 10 * Time.deltaTime);
-            m_sideSpeed = Mathf.Lerp(m_sideSpeed, animationDirect.y * speedAnim, 10 * Time.deltaTime);
+            _forwardSpeed = Mathf.Lerp(_forwardSpeed, animationDirect.x * speedAnim, 10 * Time.deltaTime);
+            _sideSpeed = Mathf.Lerp(_sideSpeed, animationDirect.y * speedAnim, 10 * Time.deltaTime);
 
-            m_animator.SetFloat("vertical", -m_forwardSpeed * m_animationSpeed);
-            m_animator.SetFloat("horizontal", -m_sideSpeed * m_animationSpeed);
+            _animator.SetFloat("vertical", _forwardSpeed * _animationSpeed);
+            _animator.SetFloat("horizontal", _sideSpeed * _animationSpeed);
         }
     }
 }

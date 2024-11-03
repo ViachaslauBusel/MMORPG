@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Armor
+  m_EditorClassIdentifier: 
+  m_GroupName: Armor
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 1dffc6c6b30c3d643b901d7490e03c58
+  m_SerializeEntries:
+  - m_GUID: 862bd38ae26dc1d4d9cb183b8d16349c
+    m_Address: Assets/3Dmodel/Character/RpgHuman/ArmorPrefab/Boots.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e304707724af59408a7f941a7c7066e
+    m_Address: Assets/3Dmodel/Character/RpgHuman/ArmorPrefab/Gloves.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25c56888b3a811e46ab837c86b99c77f
+    m_Address: Assets/3Dmodel/Character/RpgHuman/ArmorPrefab/Helmet.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ff17760097350c4d9cbef9ac4d925d7
+    m_Address: Assets/3Dmodel/Character/RpgHuman/ArmorPrefab/Pants.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 729120dbcebd28a4593636f8c49fdb8c
+    m_Address: Assets/3Dmodel/Character/RpgHuman/ArmorPrefab/Tunic.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: e87af954dabc30640aeba730b5256453, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b3666ee406dcad8449b8065a79b1deba, type: 2}
+    - {fileID: 11400000, guid: 0086b31ae95e09745972058cb9ef06a5, type: 2}

@@ -1,6 +1,7 @@
 ﻿using Loader;
 using OpenWorld;
 using OpenWorldLegacy;
+using System;
 using System.Collections.Generic;
 using UI.ConfirmationDialog;
 using UnityEngine;
@@ -49,7 +50,7 @@ public class GraphicSetting : MonoBehaviour
         {
             optionDatas.Add(new Dropdown.OptionData(QualitySettings.names[i]));
         }
-        //dropdownQulity.AddOptions(optionDatas);
+        dropdownQulity.AddOptions(optionDatas);
         //dropdownQulity.value = mapLoader.Settings.Qulity;
 
         //sliderDetailDistance.value = mapLoader.Settings.DetailDistance;
@@ -74,10 +75,16 @@ public class GraphicSetting : MonoBehaviour
         PlayerPrefs.SetFloat("scaleUI", sliderScaleUI.value);
     }
 
+    private void ApplyQuality()
+    {
+        QualitySettings.SetQualityLevel(dropdownQulity.value);
+    }
+
     public void Apply()
     {
         bool restart = false;
         ApplyScaleUI();
+        ApplyQuality();
         //Зона прогрузки террейна
         if (mapLoader.Settings.AreaVisible != (int)sliderViewDistance.value)
         {

@@ -1,0 +1,123 @@
+<linker>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Animation.AnimationPlaybackTimeBuffer" preserve="all" />
+    <type fullname="Animation.Behaviour.MiningStoneDestroyAnimation" preserve="all" />
+    <type fullname="Animation.CharacterMovementAnimatior" preserve="all" />
+    <type fullname="Animation.NetworkAnimator" preserve="all" />
+    <type fullname="DialogData" preserve="all" />
+    <type fullname="Dialogues.Data.Nodes.DialogNode" preserve="all" />
+    <type fullname="Dialogues.Data.Nodes.DialogueExitNode" preserve="all" />
+    <type fullname="Dialogues.Data.Nodes.PlayerDialogNode" preserve="all" />
+    <type fullname="Dialogues.Data.Nodes.QuestLevelCheckNode" preserve="all" />
+    <type fullname="Dialogues.Data.Nodes.QuestLevelUpNode" preserve="all" />
+    <type fullname="Dialogues.Data.Nodes.StoreNode" preserve="all" />
+    <type fullname="Items.Data.RecipeItemData" preserve="all" />
+    <type fullname="Items.Data.WeaponItemData" preserve="all" />
+    <type fullname="Items.ItemData" preserve="all" />
+    <type fullname="Network.Object.Interaction.NPCDialogueInteractionObject" preserve="all" />
+    <type fullname="Network.Object.Visualization.Entities.Characters.BodyPartData" preserve="all" />
+    <type fullname="Nickname.MonsterNicknameRenderer" preserve="all" />
+    <type fullname="NPCs.NPCData" preserve="all" />
+    <type fullname="OpenWorld.SpawnData.CraftingStation.CraftingStationSpawnPointData" preserve="all" />
+    <type fullname="OpenWorld.SpawnData.CraftingStation.CraftingStationWorldDataRegistry" preserve="all" />
+    <type fullname="OpenWorld.SpawnData.Monster.MonsterSpawnPointData" preserve="all" />
+    <type fullname="OpenWorld.SpawnData.Monster.MonsterWorldDataRegistry" preserve="all" />
+    <type fullname="OpenWorld.SpawnData.NPC.NpcSpawnPointDataSync" preserve="all" />
+    <type fullname="OpenWorld.SpawnData.NPC.NPCWorldDataRegistry" preserve="all" />
+    <type fullname="OpenWorld.SpawnData.Resources.ResourceSpawnPointData" preserve="all" />
+    <type fullname="OpenWorld.SpawnData.Resources.ResourceWorldDataRegistry" preserve="all" />
+    <type fullname="QuestData" preserve="all" />
+    <type fullname="Quests.Nodes.InventoryItemRequirementNode" preserve="all" />
+    <type fullname="Quests.Nodes.NearbyNPCValidatorNode" preserve="all" />
+    <type fullname="QuestStageNode" preserve="all" />
+    <type fullname="Recipes.Data.RecipeData" preserve="all" />
+    <type fullname="SkillAnimation" preserve="all" />
+    <type fullname="ToStartNode" preserve="all" />
+    <type fullname="Trading.Shop.Data.TradingShopData" preserve="all" />
+    <type fullname="Units.CraftingStatio.Data.CraftingStationData" preserve="all" />
+    <type fullname="Units.Monster.MonsterData" preserve="all" />
+    <type fullname="Units.Registry.UnitVisualObject" preserve="all" />
+    <type fullname="Units.Resource.Data.ResourceHarvestData" preserve="all" />
+    <type fullname="ItemDrop" preserve="nothing" serialized="true" />
+    <type fullname="OpenWorld.SpawnData.Resources.ResourceWorldData" preserve="nothing" serialized="true" />
+    <type fullname="Items.ItemBundleData" preserve="nothing" serialized="true" />
+    <type fullname="Items.ItemBundleLink" preserve="nothing" serialized="true" />
+    <type fullname="OpenWorld.SpawnData.CraftingStation.CraftingStationWorldData" preserve="nothing" serialized="true" />
+    <type fullname="OpenWorld.SpawnData.Monster.MonsterWorldData" preserve="nothing" serialized="true" />
+    <type fullname="OpenWorld.SpawnData.NPC.NpcWorldData" preserve="nothing" serialized="true" />
+    <type fullname="Trading.Shop.Data.ShopItemData" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="com.open.world, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="OpenWorld.DATA.MapTile" preserve="all" />
+    <type fullname="OpenWorld.DATA.MapEntity" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="NodeEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="NodeEditor.Data.StartNode" preserve="all" />
+    <type fullname="NodeEditor.Data.NodeOutputManager" preserve="nothing" serialized="true" />
+    <type fullname="NodeEditor.Data.Port" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+    <type fullname="UnityEngine.AddressableAssets.AssetReferenceT`1[UnityEngine.GameObject]" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.AddressableAssets.AssetReference" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.LegacyResourcesProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Animation" preserve="all" />
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+    <type fullname="UnityEngine.Animator" preserve="all" />
+    <type fullname="UnityEngine.Avatar" preserve="all" />
+    <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.LODGroup" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Mesh" preserve="all" />
+    <type fullname="UnityEngine.MeshFilter" preserve="all" />
+    <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.MonoBehaviour" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.RectTransform" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.SkinnedMeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.BoxCollider" preserve="all" />
+    <type fullname="UnityEngine.CapsuleCollider" preserve="all" />
+    <type fullname="UnityEngine.CharacterController" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TerrainModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.TerrainData" preserve="all" />
+    <type fullname="UnityEngine.TerrainLayer" preserve="all" />
+    <type fullname="UnityEngine.Tree" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Font" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
+    <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
+    <type fullname="UnityEngine.UI.Outline" preserve="all" />
+    <type fullname="UnityEngine.UI.Text" preserve="all" />
+    <type fullname="UnityEngine.UI.FontData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.MaskableGraphic/CullStateChangedEvent" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Canvas" preserve="all" />
+    <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="ObjectRegistry">
+    <type fullname="ObjectRegistryEditor.DataLink`1[Items.ItemData]" preserve="nothing" serialized="true" />
+    <type fullname="ObjectRegistryEditor.DataLink`1[NPCs.NPCData]" preserve="nothing" serialized="true" />
+  </assembly>
+</linker>

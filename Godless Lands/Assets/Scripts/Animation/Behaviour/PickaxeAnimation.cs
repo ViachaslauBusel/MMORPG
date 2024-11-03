@@ -1,4 +1,5 @@
 ﻿using Network.Object.Visualization.Entities.Characters;
+using Protocol.MSG.Game.Equipment;
 using UnityEngine;
 
 public class PickaxeAnimation : StateMachineBehaviour
@@ -10,8 +11,9 @@ public class PickaxeAnimation : StateMachineBehaviour
         _characterBodyPartsController = animator.GetComponent<CharacterBodyPartsController>();
         if(_characterBodyPartsController != null)
         {
-            _characterBodyPartsController.Pickaxe.IsVisible = true;
-            _characterBodyPartsController.Weapon.IsVisible = false;
+            _characterBodyPartsController.Get(EquipmentType.PickaxeTool).IsVisible = true;
+            //_characterBodyPartsController.Get(EquipmentType.WeaponLeftHand).IsVisible = false;
+            _characterBodyPartsController.Get(EquipmentType.WeaponRightHand).IsVisible = false;
         }
     }
 
@@ -20,8 +22,9 @@ public class PickaxeAnimation : StateMachineBehaviour
         if(layerIndex == 0) return;
         if (_characterBodyPartsController != null)
         {
-            _characterBodyPartsController.Pickaxe.IsVisible = false;
-            _characterBodyPartsController.Weapon.IsVisible = true;
+            _characterBodyPartsController.Get(EquipmentType.PickaxeTool).IsVisible = false;
+            //_characterBodyPartsController.Get(EquipmentType.WeaponLeftHand).IsVisible = true;
+            _characterBodyPartsController.Get(EquipmentType.WeaponRightHand).IsVisible = true;
         }
     }
 }
